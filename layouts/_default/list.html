@@ -1,0 +1,12 @@
+<!-- In the case of a list page, list.html would replace single.html.
+    At its most basic, this file uses a loop to call li.html for each
+    item in the list. It can also set up list order or pagination using
+    Hugo’s Paginator https://gohugo.io/templates/pagination/#list-paginator-pages. -->
+
+{{ define "main" }}
+<ul>
+  {{ range (.Paginator 6).Pages.ByPublishDate.Reverse }} list item layout goes
+  here, or it can be put in a separate file and rendered {{ .Render "li"}} {{
+  end }}
+</ul>
+{{ template "_internal/pagination.html" . }} {{ end }}
