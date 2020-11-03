@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="scss/custom.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:wght@400,600,700&display=swap" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+		<script src="styleGuide.js" charset="utf-8"></script>
+		<script src="bootstrap/js/src/dropdown.js" charset="utf-8"></script>
+		<title>Document</title>
+	</head>
+
+	<body>
+<div class="wrapper"> 
+<nav class='sidebar'><div class="sidebar-header"><h1>Style Guide</h1></div><ul> 
+<li><a href="?section=1.1_Colors">1.1 Colors</a></li> 
+<li><a href="?section=1.2_Typography">1.2 Typography</a></li> 
+<li><a href="?section=1.3_Buttons">1.3 Buttons</a></li> 
+<li><a href="?section=1.4_Form_Elements">1.4 Form Elements</a></li> 
+<li><a href="?section=2.1_Cards">2.1 Cards</a></li> 
+<li><a href="?section=2.2_Dropdown">2.2 Dropdown</a></li> 
+</ul></nav> 
+<section id="1.1_Colors" class="container"> 
+<article class="color-fields">
+   <h2>Colors</h2>
+   <!-- Showcase Colors -->
+   <div class="row mb-3">
+      <div class="col">
+         <h3>Primary-Color</h3>
+         <p class="text-primary">text-class: text-primary</p>
+         <br>
+         <p class="bg-primary text-white p-2">background-class: bg-primary</p>
+      </div>
+      <div class="col">
+         <h3>Secondary-Color</h3>
+         <p class="text-secondary">text-class: text-secondary</p>
+         <br>
+         <p class="bg-secondary text-white p-2">background-class: bg-secondary</p>
+      </div>
+   </div>
+</article>
+
+<article class="color-fields">
+   <h2>Greyscale</h2>
+   <div class="row mb-3">
+      <div class="col">
+         <h3>White</h3>
+         <p class="text-white bg-dark">text-class: text-white</p>
+         <br>
+         <p class="bg-white text-dark p-2">background-class: bg-white</p>
+      </div>
+      <div class="col">
+         <h3>Dark</h3>
+         <p class="text-dark">text-class: text-dark</p>
+         <br>
+         <p class="bg-dark text-white p-2">background-class: bg-dark</p>
+      </div>
+   </div>
+</article>
+
+<!-- TODO: @Zhanna showcase all colors we will use in our design.
+See https://getbootstrap.com/docs/4.0/utilities/colors/ for more info. -->
+</section> 
+<section id="1.2_Typography" class="container"> 
+<!-- Typographie -->
+<h1 class="black">Header Level 1</h1>
+<h2>Header Level 2</h2>
+<h3>Header Level 3</h3>
+<h4>Header Level 4</h4>
+<p>A normal Text paragraph. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores ipsam cupiditate vitae sit, facilis saepe mollitia nesciunt, voluptates voluptatibus quis?</p>
+<a href="#">A link</a>
+
+<!-- TODO: @Zhanna showcase different alignment and text styling (font-weight and font-style).
+See https://getbootstrap.com/docs/4.0/utilities/text/ for more info -->
+</section> 
+<section id="1.3_Buttons" class="container"> 
+<!-- Button styles -->
+<article class="buttons">
+   <div class="row mt-3">
+      <div class="col">
+         <h2 class="black">Basic button</h2>
+         <p>class="btn btn-light"</p>
+         <button class="btn btn-light">Default</button>
+         <button class="btn btn-light active">Active</button>
+         <button class="btn btn-light" disabled>Disabled</button>
+      </div>
+      <div class="col">
+         <h2>Fill Primary</h2>
+         <p>class="btn btn-primary"</p>
+         <button class="btn btn-primary">Default</button>
+         <button class="btn btn-primary active">Active</button>
+         <button class="btn btn-primary" disabled>Disabled</button>
+      </div>
+      <div class="col">
+         <h2 class="green">Outline Primary</h2>
+         <p>class="btn btn-outline-primary"</p>
+         <button class="btn btn-outline-primary">Default</button>
+         <button class="btn btn-outline-primary active">Active</button>
+         <button class="btn btn-outline-primary" disabled>Disabled</button>
+      </div>
+   </div>
+   <div class="row mt-3">
+      <div class="col">
+         <h2 class="black">Basic button</h2>
+         <p>class="btn btn-light"</p>
+         <button class="btn btn-light">Default</button>
+         <button class="btn btn-light active">Active</button>
+         <button class="btn btn-light" disabled>Disabled</button>
+      </div>
+      <div class="col">
+         <h2>Fill Primary</h2>
+         <p>class="btn btn-primary"</p>
+         <button class="btn btn-primary">Default</button>
+         <button class="btn btn-primary active">Active</button>
+         <button class="btn btn-primary" disabled>Disabled</button>
+      </div>
+      <div class="col">
+         <h2 class="green">Outline Primary</h2>
+         <p>class="btn btn-outline-primary"</p>
+         <button class="btn btn-outline-primary">Default</button>
+         <button class="btn btn-outline-primary active">Active</button>
+         <button class="btn btn-outline-primary" disabled>Disabled</button>
+      </div>
+   </div>
+
+   <!-- TODO: @Zhannah showcase other button styles.
+   See https://getbootstrap.com/docs/4.0/components/buttons/ for more info -->
+</article>
+</section> 
+<section id="1.4_Form_Elements" class="container"> 
+<!-- Form elements -->
+<article class="forms">
+   <div class="">
+      <h2>Text input</h2>
+      <pre>
+<div class="input-wrapper">
+   <label for="">Default</label>
+   <input type="text" name="username" value="Street 1">
+</div>
+      </pre>
+      <div class="input-wrapper">
+         <label for="">Default</label>
+         <input type="text" name="username" value="Street 1">
+      </div>
+      <div class="input-wrapper">
+         <label for="">Focus / Hover</label>
+         <input class="focus" type="text" name="address" value="Street 1">
+      </div>
+      <div class="input-wrapper">
+         <label for="">Active</label>
+         <input class="active" type="text" name="address" value="Street 1">
+      </div>
+      <div class="input-wrapper">
+         <label for="">Disabled</label>
+         <input type="text" name="username" value="Street 1" disabled>
+      </div>
+   </div>
+   <div class="">
+      <h2>Select</h2>
+      <pre>
+<div class="input-wrapper">
+   <label for="">Default</label>
+   <select>
+      <option value="0">Choose an option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+   </select>
+</div>
+      </pre>
+      <div class="input-wrapper">
+         <label for="">Default</label>
+         <select>
+            <option value="0">Choose an option</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+         </select>
+      </div>
+      <div class="input-wrapper">
+         <label for="">Focus / Hover</label>
+         <select class="focus">
+            <option value="0">Choose an option</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+         </select>
+      </div>
+      <div class="input-wrapper">
+         <label for="">Active</label>
+         <select class="active">
+            <option value="0">Choose an option</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+         </select>
+      </div>
+   </div>
+   <div class="">
+      <h2>Checkbox</h2>
+      <pre>
+<div class="input-wrapper">
+   <fieldset>
+      <legend class="label">Choose an Option</legend>
+
+      <div class="checkbox">
+         <input id="radioA" type="radio" name="radioOptions" value="Option A">
+         <label class="radio-button" for="radioA">Default</label>
+      </div>
+
+      <div class="checkbox">
+         <input class="focus" id="radioB" type="radio" name="radioOptions" value="Option B">
+         <label class="radio-button" for="radioB">Focus / Hover</label>
+      </div>
+
+      <div class="checkbox">
+         <input id="radioC" type="radio" name="radioOptions" value="Option C" checked>
+         <label class="radio-button" for="radioC">Selected</label>
+      </div>
+   </fieldset>
+</div>
+      </pre>
+      <div class="input-wrapper">
+         <fieldset>
+            <legend class="label">Choose an Option</legend>
+
+            <div class="radio-select">
+               <input id="radioA" type="radio" name="radioOptions" value="Option A">
+               <label class="radio-button" for="radioA">Default</label>
+            </div>
+
+            <div class="radio-select">
+               <input class="focus" id="radioB" type="radio" name="radioOptions" value="Option B">
+               <label class="radio-button" for="radioB">Focus / Hover</label>
+            </div>
+
+            <div class="radio-select">
+               <input id="radioC" type="radio" name="radioOptions" value="Option C" checked>
+               <label class="radio-button" for="radioC">Selected</label>
+            </div>
+         </fieldset>
+      </div>
+   </div>
+   <div class="">
+      <h2>Checkbox</h2>
+      <pre>
+<div class="input-wrapper">
+   <fieldset>
+      <legend class="label">Multiple Choice</legend>
+      <div class="checkbox">
+         <input id="radioA" type="checkbox" name="radioOptions" value="Option A">
+         <label class="radio-button" for="radioA">Default</label>
+      </div>
+
+      <div class="checkbox">
+         <input class="focus" id="radioB" type="checkbox" name="radioOptions" value="Option B">
+         <label class="radio-button" for="radioB">Focus / Hover</label>
+      </div>
+
+      <div class="checkbox">
+         <input id="radioC" type="checkbox" name="radioOptions" value="Option C" checked>
+         <label class="radio-button" for="radioC">Selected</label>
+      </div>
+   </fieldset>
+</div>
+      </pre>
+      <div class="input-wrapper">
+         <fieldset>
+            <legend class="label">Multiple Choice</legend>
+            <div class="checkbox">
+               <input id="radioA" type="checkbox" name="radioOptions" value="Option A">
+               <label class="radio-button" for="radioA">Default</label>
+            </div>
+
+            <div class="checkbox">
+               <input class="focus" id="radioB" type="checkbox" name="radioOptions" value="Option B">
+               <label class="radio-button" for="radioB">Focus / Hover</label>
+            </div>
+
+            <div class="checkbox">
+               <input id="radioC" type="checkbox" name="radioOptions" value="Option C" checked>
+               <label class="radio-button" for="radioC">Selected</label>
+            </div>
+         </fieldset>
+      </div>
+   </div>
+   <div class="">
+      <h2>Range Input</h2>
+      <pre>
+<div class="input-wrapper">
+   <label id="" for="slider">Choose a value</label>
+   <input id="slider" type="range" name="" min="0" max="100" value="">
+</div>
+      </pre>
+      <div class="input-wrapper">
+         <label id="" for="slider">Choose a value</label>
+         <input id="slider" type="range" name="" min="0" max="100" value="">
+      </div>
+   </div>
+   <div class="">
+      <h2>Color Picker</h2>
+      <pre>
+<div class="input-wrapper">
+   <label id="colorValue" for="colorSettingsSlider">Color</label>
+   <input id="colorSettingsSlider" type="color" name="" value="">
+</div>
+      </pre>
+      <div class="input-wrapper">
+         <label id="colorValue" for="colorSettingsSlider">Color</label>
+         <input id="colorSettingsSlider" type="color" name="" value="">
+      </div>
+   </div>
+</article>
+</section> 
+<section id="2.1_Cards" class="container"> 
+<h2>Cards</h2>
+<article class="">
+   <div class="bg-very-light-grey card-wrapper" style="max-width: 300px; margin: 0;">
+      <h3>Heading</h3>
+      <p>This is a card with a little paragraph.</p>
+      <button class="btn fill-primary" type="button" name="button">Show details</button>
+   </div>
+</article>
+</section> 
+<section id="2.2_Dropdown" class="container"> 
+<article class="">
+   <h2>Dropdown</h2>
+   <button class="btn dropdown-default" type="button" data-toggle="dropdown-content">Toggle content</button>
+   <div id="dropdown-content" class="bg-very-light-grey card-wrapper" style="margin-top: 1rem;">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque a deserunt, id, cum voluptates nihil ad unde aperiam, quibusdam impedit quia repellendus nisi. Beatae, reprehenderit maxime provident? Voluptatem repellendus repellat doloribus quam itaque voluptas. Obcaecati natus necessitatibus quia sequi earum!</p>
+   </div>
+</article>
+</section> 
+</div> 
+</body>
+</html>
