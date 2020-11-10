@@ -1,6 +1,6 @@
 baseURL = "http://localhost:1313/"
 title = "Medien und Medienströme"
-theme = "hugo-theme-techdoc"
+theme = "mmsTheme"
 
 [params]
 
