@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="stylesheet" href="scss/custom.min.css">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:wght@400,600,700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 		<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 		<script src="styleGuide.js" charset="utf-8"></script>
 		<script type="module" src="bootstrap/compiled/bootstrap.bundle.min.js" charset="utf-8"></script>
@@ -41,7 +41,7 @@
          <h3>Secondary-Color</h3>
          <p class="text-secondary">text-class: text-secondary</p>
          <br>
-         <p class="bg-secondary text-white p-2">background-class: bg-secondary</p>
+         <p class="bg-secondary text-dark p-2">background-class: bg-secondary</p>
       </div>
    </div>
 </article>
@@ -63,9 +63,6 @@
       </div>
    </div>
 </article>
-
-<!-- TODO: @Zhanna showcase all colors we will use in our design.
-See https://getbootstrap.com/docs/4.0/utilities/colors/ for more info. -->
 </section> 
 <section id="1.2_Typography" class="container"> 
 <!-- Typographie -->
@@ -73,11 +70,8 @@ See https://getbootstrap.com/docs/4.0/utilities/colors/ for more info. -->
 <h2>Header Level 2</h2>
 <h3>Header Level 3</h3>
 <h4>Header Level 4</h4>
-<p>A normal Text paragraph. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores ipsam cupiditate vitae sit, facilis saepe mollitia nesciunt, voluptates voluptatibus quis?</p>
+<p class="font-weight-light">A normal Text paragraph. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores ipsam cupiditate vitae sit, facilis saepe mollitia nesciunt, voluptates voluptatibus quis?</p>
 <a href="#">A link</a>
-
-<!-- TODO: @Zhanna showcase different alignment and text styling (font-weight and font-style).
-See https://getbootstrap.com/docs/4.0/utilities/text/ for more info -->
 </section> 
 <section id="1.3_Buttons" class="container"> 
 <!-- Button styles -->
@@ -85,10 +79,10 @@ See https://getbootstrap.com/docs/4.0/utilities/text/ for more info -->
    <div class="row mt-3">
       <div class="col">
          <h2 class="black">Basic button</h2>
-         <p>class="btn btn-light"</p>
-         <button class="btn btn-light">Default</button>
-         <button class="btn btn-light active">Active</button>
-         <button class="btn btn-light" disabled>Disabled</button>
+         <p>class="btn btn-secondary"</p>
+         <button class="btn btn-secondary">Default</button>
+         <button class="btn btn-secondary active">Active</button>
+         <button class="btn btn-secondary" disabled>Disabled</button>
       </div>
       <div class="col">
          <h2>Fill Primary</h2>
@@ -97,28 +91,13 @@ See https://getbootstrap.com/docs/4.0/utilities/text/ for more info -->
          <button class="btn btn-primary active">Active</button>
          <button class="btn btn-primary" disabled>Disabled</button>
       </div>
+      <div class="w-100"></div>
       <div class="col">
-         <h2 class="green">Outline Primary</h2>
-         <p>class="btn btn-outline-primary"</p>
-         <button class="btn btn-outline-primary">Default</button>
-         <button class="btn btn-outline-primary active">Active</button>
-         <button class="btn btn-outline-primary" disabled>Disabled</button>
-      </div>
-   </div>
-   <div class="row mt-3">
-      <div class="col">
-         <h2 class="black">Basic button</h2>
-         <p>class="btn btn-light"</p>
-         <button class="btn btn-light">Default</button>
-         <button class="btn btn-light active">Active</button>
-         <button class="btn btn-light" disabled>Disabled</button>
-      </div>
-      <div class="col">
-         <h2>Fill Primary</h2>
-         <p>class="btn btn-primary"</p>
-         <button class="btn btn-primary">Default</button>
-         <button class="btn btn-primary active">Active</button>
-         <button class="btn btn-primary" disabled>Disabled</button>
+        <h2 class="green">Dark basic button</h2>
+        <p>class="btn btn-dark-secondary"</p>
+        <button class="btn btn-dark-secondary">Default</button>
+        <button class="btn btn-dark-secondary active">Active</button>
+        <button class="btn btn-dark-secondary" disabled>Disabled</button>
       </div>
       <div class="col">
          <h2 class="green">Outline Primary</h2>
@@ -127,10 +106,7 @@ See https://getbootstrap.com/docs/4.0/utilities/text/ for more info -->
          <button class="btn btn-outline-primary active">Active</button>
          <button class="btn btn-outline-primary" disabled>Disabled</button>
       </div>
-   </div>
-
-   <!-- TODO: @Zhannah showcase other button styles.
-   See https://getbootstrap.com/docs/4.0/components/buttons/ for more info -->
+    </div>
 </article>
 </section> 
 <section id="1.4_Form_Elements" class="container"> 

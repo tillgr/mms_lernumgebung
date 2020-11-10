@@ -1,3 +1,11 @@
+$theme-colors: (
+  "primary": #002557,
+  "secondary": #EBEBEB
+);
+
+$font-family-base: (
+  'Open Sans', sans-serif
+);
 
 .wrapper {
    width: 100%;
@@ -15,3 +23,7 @@ pre {
 }
 
 @import "../bootstrap/scss/bootstrap.scss";
+
+.btn-dark-secondary {
+  @include button-variant(#898989, #898989);
+}
