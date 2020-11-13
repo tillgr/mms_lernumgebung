@@ -1,5 +1,10 @@
 # README
 
+## Styleguide usage
+* Go to /design/styleguide/
+* Open styleGuide.combined.html with your favourite browser
+* Have fun
+
 ## Local Installation
 
 * Install HUGO: https://gohugo.io/getting-started/installing/

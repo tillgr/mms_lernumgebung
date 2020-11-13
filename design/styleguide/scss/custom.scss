@@ -1,6 +1,7 @@
 $theme-colors: (
   "primary": #002557,
-  "secondary": #EBEBEB
+  "secondary": #EBEBEB,
+  "danger": #dd2727
 );
 
 $font-family-base: (
@@ -22,8 +23,8 @@ pre {
   padding: 1rem;
 }
 
-@import "../bootstrap/scss/bootstrap.scss";
-
-.btn-dark-secondary {
-  @include button-variant(#898989, #898989);
+.MathJax {
+  text-align: left !important;
 }
+
+@import "../bootstrap/scss/bootstrap.scss";
