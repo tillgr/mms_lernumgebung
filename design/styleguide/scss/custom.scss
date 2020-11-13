@@ -1,0 +1,30 @@
+$theme-colors: (
+  "primary": #002557,
+  "secondary": #EBEBEB,
+  "danger": #dd2727
+);
+
+$font-family-base: (
+  'Open Sans', sans-serif
+);
+
+.wrapper {
+   width: 100%;
+   display: flex;
+   align-items: stretch;
+}
+
+.sidebar {
+   width: 25%;
+}
+
+pre {
+  background-color: #fff7eb;
+  padding: 1rem;
+}
+
+.MathJax {
+  text-align: left !important;
+}
+
+@import "../bootstrap/scss/bootstrap.scss";
