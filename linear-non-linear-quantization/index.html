@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="style.css">
         <title>Quantisierung und Digitalisierung von Audiosignalen</title>
+        <script src="bootstrap/compiled/bootstrap.bundle.min.js" charset="utf-8"></script>
     </head>
     <body>
         <div>
@@ -13,15 +14,30 @@
         </div>
         
         <div class="sidenav">
-            <a href="#">&#8226 Einführung</a>
-            <a href="#">&#8226 Auflösung</a>
-            <a href="#">&#8226 Lineare Quantisierung</a>
-            <a href="#">&#8226 Nichtlineare Quantisierung</a>
-            <a href="#">&#8226 Auswertung</a>
+            <a id="sidebarIntroduction" onclick="btnIntroduction()" href="#" class="sidebar">&#8226 Einführung</a>
+            <a id="sidebarResolution" onclick="btnResolution()" href="#" class="sidebar">&#8226 Auflösung</a>
+            <a id="placeholderResolution" class="placeholder">&#8226 Auflösung</a>
+            <a href="#" class="sidebar" id="sidebarLinear">&#8226 Lineare Quantisierung</a>
+            <a id="placeholderLinear" class="placeholder">&#8226 Lineare Quantisierung</a>
+            <a href="#" class="sidebar" id="sidebarNonlinear">&#8226 Nichtlineare Quantisierung</a>
+            <a id="placeholderNonlinear" class="placeholder">&#8226 Nichtlineare Quantisierung</a>
+            <a href="#" class="sidebar" id="sidebarEvaluation">&#8226 Auswertung</a>
+            <a id="placeholderEvaluation" class="placeholder">&#8226 Auswertung</a>
         </div>
-            
-    
-        
-        <p>In progress ...</p>
+        <div id="intro">
+            <p class="txtIntro">Bei der Digitalisierung werden zeit- 
+                und wertkontinuierliche Audiosignale in eine 
+                zeit- und wertdiskrete Folge umgewandelt. 
+                Die Quantisierung besteht in der 
+                Darstellung der Messwerte mit endlicher
+                Auflösung, indem sie auf ganzzahlige 
+                Binärwerte abgebildet werden. 
+                In dieser Übung sollen die relevanten 
+                Schritte der Quantisierung durchlaufen 
+                werden, um die Unterschide der linearen 
+                und nichtlinearen Vorgehensweise zu erkennen.</p>
+                <button class="btnStart btn btn-primary" onclick="btnResolution()">Start</button>
+        </div>
+        <script src="script.js"></script>
     </body>
 </html>
