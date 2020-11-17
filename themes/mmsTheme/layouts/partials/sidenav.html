@@ -1,0 +1,41 @@
+{{ $currentPage := . }}
+<div class="col-12 col-md-4 col-xl-3 px-4 bg-secondary mms-sidenav">
+  <nav class="mt-4">
+    <h1 class="h4">Themenbereiche</h1>
+    <ul class="list-unstyled">
+      {{ range $index, $element := (where .Site.Sections "Section" "lernumgebung")}}
+        {{ range $index, $element := .Pages}}
+          {{ if (eq $currentPage.Parent.Title .Title)}}
+          <!-- This is for Single Pages to highlight the current chosen link -->
+            <li class="py-1"><a class="dropdown-toggle" href="#section{{$index}}" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="section{{$index}}">{{ .Title }}</a>
+              <ul id="section{{$index}}" class="list-unstyled collapse show">
+                {{ range .Pages.ByTitle }}
+                  {{ if (eq $currentPage.Title .Title)}}
+                  <!-- This is for Single Pages to highlight the current chosen link -->
+                    <li>
+                      <a class="bg-primary text-white" href="{{.RelPermalink}}">
+                        {{.Title}}
+                        <span class="sr-only">(aktuell)</span>
+                      </a>
+                    </li>
+                  {{ else }}
+                    <li><a href="{{.RelPermalink}}">{{.Title}}</a></li>
+                  {{ end }}
+                {{ end }}
+              </ul>
+            </li>
+          {{ else }}
+          <!-- This is for non highlighting -->
+            <li><a class="dropdown-toggle" href="#section{{$index}}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="section{{$index}}">{{ .Title }}</a>
+              <ul id="section{{$index}}" class="list-unstyled collapse">
+                {{ range .Pages.ByTitle }}
+                  <li><a href="{{.RelPermalink}}">{{.Title}}</a></li>
+                {{ end }}
+              </ul>
+            </li>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    </ul>
+  </nav>
+</div>
