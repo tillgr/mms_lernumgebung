@@ -1,2 +1,6 @@
-<link rel="stylesheet" href="static/css/custom.min.css" >
-<script type="module" src="static/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{"css/custom.min.css" | absURL}}">
+{{ $title := print .Site.Title " | " .Title }} {{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
+<title>{{ $title }}</title>
