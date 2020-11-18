@@ -12,11 +12,15 @@
                 <h3 class="title2">von Audiosignalen</h3>
             </header>
         </div>
-        
+
         <div class="sidenav">
             <a id="sidebarIntroduction" onclick="btnIntroduction()" href="#" class="sidebar">&#8226 Einführung</a>
             <a id="sidebarResolution" onclick="btnResolution()" href="#" class="sidebar">&#8226 Auflösung</a>
             <a id="placeholderResolution" class="placeholder">&#8226 Auflösung</a>
+            <a id="sidebarSamplingFrequency" onclick="btnResolution()" href="#" class="sidebar">&nbsp - Abtast- &nbsp&nbspfrequenz</a>
+            <a id="placeholderSamplingFrequency" class="placeholder">&nbsp - Abtast- &nbsp&nbspfrequenz</a>
+            <a id="sidebarStoragefrequency" onclick="btnStoragefrequency()" href="#" class="sidebar">&nbsp - Speicher- &nbsp&nbspfrequenz</a>
+            <a id="placeholderStoragefrequency" class="placeholder">&nbsp - Speicher- &nbsp&nbspfrequenz</a>
             <a href="#" class="sidebar" id="sidebarLinear">&#8226 Lineare Quantisierung</a>
             <a id="placeholderLinear" class="placeholder">&#8226 Lineare Quantisierung</a>
             <a href="#" class="sidebar" id="sidebarNonlinear">&#8226 Nichtlineare Quantisierung</a>
@@ -25,19 +29,48 @@
             <a id="placeholderEvaluation" class="placeholder">&#8226 Auswertung</a>
         </div>
         <div id="intro">
-            <p class="txtIntro">Bei der Digitalisierung werden zeit- 
-                und wertkontinuierliche Audiosignale in eine 
-                zeit- und wertdiskrete Folge umgewandelt. 
-                Die Quantisierung besteht in der 
+            <p class="txtIntro">Bei der Digitalisierung werden zeit-
+                und wertkontinuierliche Audiosignale in eine
+                zeit- und wertdiskrete Folge umgewandelt.
+                Die Quantisierung besteht in der
                 Darstellung der Messwerte mit endlicher
-                Auflösung, indem sie auf ganzzahlige 
-                Binärwerte abgebildet werden. 
-                In dieser Übung sollen die relevanten 
-                Schritte der Quantisierung durchlaufen 
-                werden, um die Unterschide der linearen 
+                Auflösung, indem sie auf ganzzahlige
+                Binärwerte abgebildet werden.
+                In dieser Übung sollen die relevanten
+                Schritte der Quantisierung durchlaufen
+                werden, um die Unterschide der linearen
                 und nichtlinearen Vorgehensweise zu erkennen.</p>
                 <button class="btnStart btn btn-primary" onclick="btnResolution()">Start</button>
         </div>
+
+        <div id="resolution1">
+            <p class="taskResolution1">Ein analoges Audiosignal mit einer Grenzfrequenz von
+                <span id="limitFrequency"></span>
+                Hz soll abgetastet und digitalisiert werden.
+                Welche Abtastfrequenz muss für eine eindeutige Rekonstruktion
+                des Signals aus den digitalen Daten vorliegen?</p>
+            <div class="formResolution1">
+              <form class="inputFieldResolution1" name="inputFieldResolution1" action="index.html" method="post">
+                  <label for="samplingFrequency">Abtastfrequenz:</label>
+                  <input type="number" name="samplingFrequency">Hz
+              </form>
+              <button class="btnShowCorrectAnswer btn btn-secondary" onclick="btnShowCorrectAnswerResolution1()">Lösung</button>
+            </div>
+            <div class="errorMessage">
+                <p id="errorMessageResolution1_1">Nur Zahlen eingeben!</p>
+                <p id="errorMessageResolution1_2"><span id="inputSamplingFrequency"></span> Hz ist Falsch! Bitte beachte das Shannon Theorem!</p>
+            </div>
+                          <p id="answerIsCorrectSampling">Richtig!<p>
+            <p id="answerExplanationResolution1_1">Das Shannon Abtasttheorem sagt aus, dass zur eindeutigen Rekonstruktion eines Signales
+                  die Abtastrate mindestens das Doppelte der höchsten im Originalsignal enthaltenen
+                  Frequenz(Grenzfrequenz) betragen muss.</p>
+            <p id="answerExplanationResolution1_2">Also: 2 x <span id="answerLimitFrequency"></span>
+                  Hz = <span id="answerSamplingFrequency"></span> Hz</p>
+
+            <button class="btnsamplingFrequency btn btn-primary" onclick="btnCheckAnswer()">Weiter</button>
+            <button class="btnsamplingFrequency2 btn btn-primary" onclick="btnStoragefrequency()">Weiter</button>
+        </div>
+
         <script src="script.js"></script>
     </body>
 </html>

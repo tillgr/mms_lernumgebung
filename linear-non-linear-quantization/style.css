@@ -24,13 +24,13 @@ body{
 
 .sidenav {
     width: 170px;
-    height: 450px;
+    height: 520px;
     position: fixed;
     left: 0;
     background-color: #EBEBEB ;
     padding-top: 20px;
   }
-  
+
   .sidenav a {
     padding: 20px 8px 10px 16px;
     text-decoration: none;
@@ -47,7 +47,7 @@ body{
       font-size: 23px;
       position: absolute;
       margin-top: 20px;
-      
+
   }
 
   .btn {
@@ -92,4 +92,65 @@ body{
 
   .placeholder{
       color: gray;
+  }
+  #resolution1{
+      border: 2px solid #212529;
+      border-radius: 5px;
+      margin-left: 190px;
+      width: 590px;
+      font-size: 23px;
+      position: absolute;
+      margin-top: 20px;
+
+  }
+  .taskResolution1{
+      padding: 10px;
+      padding-bottom: 0px;
+      line-height: 140%;
+  }
+
+  .inputFieldResolution1{
+      padding: 10px;
+      padding-bottom: 0px;
+      line-height: 140%
+  }
+  #limitFrequency{
+      font-weight: bold;
+  }
+  .btnsamplingFrequency{
+      position: relative;
+      left: 80%;
+      margin: 10px;
+  }
+  #errorMessageResolution1_1{
+     padding-left: 10px;
+     color: #ff3311;
+  }
+  #errorMessageResolution1_2{
+     padding-left: 10px;
+     color: #ff3311;
+  }
+  .btnShowCorrectAnswer{
+      margin: 10px;
+      position: relative;
+  }
+  .btnsamplingFrequency2{
+      position: relative;
+      left: 80%;
+      margin: 10px;
+  }
+  #answerIsCorrectSampling{
+     padding-left: 10px;
+     font-weight: bold;
+  }
+  #answerExplanationResolution1_1{
+      padding: 10px;
+      padding-bottom: 0px;
+      line-height: 140%;
+  }
+  #answerExplanationResolution1_2{
+      padding: 10px;
+      padding-bottom: 15px;
+      line-height: 140%;
+      font-weight: bold;
   }
