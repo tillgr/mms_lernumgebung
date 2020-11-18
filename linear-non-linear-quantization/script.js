@@ -48,7 +48,6 @@ function btnIntroduction(){
 
 function randomFrequency(){
     document.getElementById('limitFrequency').innerHTML = randomNumber;
-    document.getElementById('inputSamplingFrequency').innerHTML = randomNumber;
 }
 
 function btnCheckAnswer(){
@@ -65,6 +64,7 @@ function btnCheckAnswer(){
         document.getElementById("answerIsCorrectSampling").style.display="block";
         btnShowCorrectAnswerResolution1();
     }else {
+        document.getElementById('inputSamplingFrequency').innerHTML = inputAnswer;
         document.getElementById("errorMessageResolution1_2").style.display = "block";
         document.querySelector('.btnShowCorrectAnswer').style.display = "block";
         document.forms["inputFieldResolution1"]["samplingFrequency"].value = "";
