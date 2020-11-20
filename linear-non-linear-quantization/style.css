@@ -122,14 +122,7 @@ body{
       left: 80%;
       margin: 10px;
   }
-  #errorMessageResolution1_1{
-     padding-left: 10px;
-     color: #ff3311;
-  }
-  #errorMessageResolution1_2{
-     padding-left: 10px;
-     color: #ff3311;
-  }
+
   .btnShowCorrectAnswer{
       margin: 10px;
       position: relative;
@@ -154,3 +147,63 @@ body{
       line-height: 140%;
       font-weight: bold;
   }
+
+  #resolution2{
+    border: 2px solid #212529;
+    border-radius: 5px;
+    margin-left: 190px;
+    width: 590px;
+    font-size: 23px;
+    position: absolute;
+    margin-top: 20px;
+
+}
+
+.taskResolution2{
+    padding: 10px;
+    padding-bottom: 0px;
+    line-height: 140%;
+}
+
+.btnContinueStorage{
+    position: relative;
+    left: 80%;
+    margin: 10px;
+}
+
+.formResolution2{
+    margin-left: 160px;
+}
+
+.btnShowCorrectAnswerStorage{
+    margin: 10px;
+    position: relative;
+}
+
+#answerIsCorrectStorage{
+    padding-top: 10px;
+    padding-left: 10px;
+    font-weight: bold;
+    margin-bottom: 0;
+ }
+
+ #answerExplanationStorage{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    line-height: 140%;
+ }
+
+ .btnContinueLinear{
+    position: relative;
+    left: 80%;
+    margin: 10px;
+ }
+.wrongAnswer{
+    padding-left: 10px;
+     color: #ff3311;
+}
+
+.boldType{
+    font-weight: bold;
+}

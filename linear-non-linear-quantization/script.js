@@ -13,9 +13,24 @@ document.getElementById('answerExplanationResolution1_1').style.display = "none"
 document.getElementById('answerExplanationResolution1_2').style.display = "none";
 document.querySelector('.btnsamplingFrequency2').style.display = "none";
 document.getElementById('answerIsCorrectSampling').style.display = "none";
+document.getElementById('resolution2').style.display ='none';
+document.getElementById('errorMessageResolution2_1').style.display ='none';
+document.getElementById('errorMessageResolution2_2').style.display ='none';
+document.getElementById('answerIsCorrectStorage').style.display = 'none';
+document.getElementById('btnShowCorrectAnswerStorage').style.display = 'none';
+document.getElementById('answerExplanationStorage').style.display = 'none';
+document.querySelector('.btnContinueLinear').style.display = "none";
 
 var randomNumber = Math.round(Math.random() * 5000 ) + 18000;
 var correctAnswer = randomNumber * 2;
+
+var randomSecond = Math.round(Math.random() * 5) + 5;
+var randomStorage = Math.round(Math.random() * 400) + 100;
+var samples = 44000*randomSecond;
+var availableStorage = randomStorage *8192;
+var storageAnswer = Math.floor(availableStorage / samples);
+var storage_Byte = randomStorage*1024;
+var storage_bit = storage_Byte*8;
 
 function btnResolution(){
     document.getElementById("sidebarResolution").style.display = "block";
@@ -32,6 +47,7 @@ function btnResolution(){
     document.getElementById("intro").style.display="none";
     document.getElementById('resolution1').style.display = "block";
     randomFrequency();
+    document.getElementById('resolution2').style.display ='none';
 }
 
 function btnIntroduction(){
@@ -44,6 +60,7 @@ function btnIntroduction(){
     document.getElementById("sidebarNonlinear").style.color = "#212529";
     document.getElementById("sidebarEvaluation").style.color = "#212529";
     document.getElementById("resolution1").style.display="none";
+    document.getElementById('resolution2').style.display ='none';
 }
 
 function randomFrequency(){
@@ -94,6 +111,86 @@ function btnStoragefrequency(){
     document.getElementById("sidebarLinear").style.color = "#212529";
     document.getElementById("sidebarNonlinear").style.color = "#212529";
     document.getElementById("sidebarEvaluation").style.color = "#212529";
+    document.getElementById('resolution1').style.display = "none";
+    document.getElementById('intro').style.display = "none";
+    document.getElementById('resolution2').style.display ='block';
+    document.getElementById('limitSeconds').innerHTML = randomSecond;
+    document.getElementById('limitStorage').innerHTML = randomStorage;
+}
+
+function btnCheckAnswerStorage(){
+    let inputStorage = document.getElementById('storageAnswer').value;
+
+    if(inputStorage==''){
+        document.getElementById('errorMessageResolution2_1').style.display ='block';
+        document.getElementById('storageAnswer').value = '';
+    }else if(inputStorage == storageAnswer){
+        document.getElementById('answerIsCorrectStorage').style.display = 'block';
+        document.getElementById('answerExplanationStorage').style.display = 'block';
+        document.getElementById('Storage_task').style.display='none';
+        document.getElementById('samples').innerHTML = samples;
+        document.getElementById("secondsCorrect").innerHTML = randomSecond;
+        document.getElementById("secondsCorrect2").innerHTML = randomSecond;
+        document.getElementById("storage").innerHTML = randomStorage;
+        document.getElementById("storage2").innerHTML = randomStorage;
+        document.getElementById("storage3_Byte").innerHTML = storage_Byte;
+        document.getElementById("storage3_Byte2").innerHTML = storage_Byte;
+        document.getElementById("storage4_Bit").innerHTML = storage_bit;
+        document.getElementById('samples2').innerHTML = samples;
+        document.getElementById("storage4_Bit2").innerHTML = storage_bit;
+        document.getElementById("storage4_Bit3").innerHTML = storage_bit;
+        document.getElementById('samples3').innerHTML = samples;
+        document.getElementById('answerStorage').innerHTML = storageAnswer;
+        document.querySelector('.btnContinueLinear').style.display = "block";
+        document.querySelector('.btnContinueStorage').style.display = "none";
+
+    }else{
+        
+        document.getElementById('errorMessageResolution2_2').style.display ='block';
+        document.getElementById('storageInput').innerHTML = inputStorage;
+        document.getElementById('storageAnswer').value='';
+        document.getElementById('btnShowCorrectAnswerStorage').style.display = 'block';
+        
+    
+        
+    }
+}
+
+function btnShowCorrectAnswerResolution2(){
+    document.getElementById('errorMessageResolution2_1').style.display = "none";
+    document.getElementById('errorMessageResolution2_2').style.display = "none";
+    document.querySelector('.taskResolution2').style.display = "none";
+    document.querySelector('.formResolution2').style.display = "none";
+    document.getElementById('answerExplanationStorage').style.display = "block";
+    document.getElementById('samples').innerHTML = samples;
+    document.getElementById("secondsCorrect").innerHTML = randomSecond;
+    document.getElementById("secondsCorrect2").innerHTML = randomSecond;
+    document.getElementById("storage").innerHTML = randomStorage;
+    document.getElementById("storage2").innerHTML = randomStorage;
+    document.getElementById("storage3_Byte").innerHTML = storage_Byte;
+    document.getElementById("storage3_Byte2").innerHTML = storage_Byte;
+    document.getElementById("storage4_Bit").innerHTML = storage_bit;
+    document.getElementById('samples2').innerHTML = samples;
+    document.getElementById("storage4_Bit2").innerHTML = storage_bit;
+    document.getElementById("storage4_Bit3").innerHTML = storage_bit;
+    document.getElementById('samples3').innerHTML = samples;
+    document.getElementById('answerStorage').innerHTML = storageAnswer;
+    document.querySelector('.btnContinueLinear').style.display = "block";
+    document.getElementById('btnShowCorrectAnswerStorage').style.display = "none";
+    document.querySelector('.btnContinueStorage').style.display = "none";
+}
+
+function btnContinueLinear(){
+    document.getElementById("sidebarLinear").style.display = "block";
+    document.getElementById("placeholderLinear").style.display = "none";
+    document.getElementById("sidebarLinear").style.color = "#ff3311";
+    document.getElementById("sidebarIntroduction").style.color = "#212529";
+    document.getElementById("sidebarStoragefrequency").style.color = "#212529";
+    document.getElementById("sidebarResolution").style.color = "#212529";
+    document.getElementById("sidebarSamplingFrequency").style.color = "#212529";
+    document.getElementById("sidebarNonlinear").style.color = "#212529";
+    document.getElementById("sidebarEvaluation").style.color = "#212529";
+    document.getElementById("resolution2").style.display = "none";
     document.getElementById('resolution1').style.display = "none";
     document.getElementById('intro').style.display = "none";
 }

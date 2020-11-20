@@ -21,7 +21,7 @@
             <a id="placeholderSamplingFrequency" class="placeholder">&nbsp - Abtast- &nbsp&nbspfrequenz</a>
             <a id="sidebarStoragefrequency" onclick="btnStoragefrequency()" href="#" class="sidebar">&nbsp - Speicher- &nbsp&nbspfrequenz</a>
             <a id="placeholderStoragefrequency" class="placeholder">&nbsp - Speicher- &nbsp&nbspfrequenz</a>
-            <a href="#" class="sidebar" id="sidebarLinear">&#8226 Lineare Quantisierung</a>
+            <a href="#" class="sidebar" id="sidebarLinear" onclick="btnContinueLinear()">&#8226 Lineare Quantisierung</a>
             <a id="placeholderLinear" class="placeholder">&#8226 Lineare Quantisierung</a>
             <a href="#" class="sidebar" id="sidebarNonlinear">&#8226 Nichtlineare Quantisierung</a>
             <a id="placeholderNonlinear" class="placeholder">&#8226 Nichtlineare Quantisierung</a>
@@ -38,7 +38,7 @@
                 Binärwerte abgebildet werden.
                 In dieser Übung sollen die relevanten
                 Schritte der Quantisierung durchlaufen
-                werden, um die Unterschide der linearen
+                werden, um die Unterschiede der linearen
                 und nichtlinearen Vorgehensweise zu erkennen.</p>
                 <button class="btnStart btn btn-primary" onclick="btnResolution()">Start</button>
         </div>
@@ -57,8 +57,8 @@
               <button class="btnShowCorrectAnswer btn btn-secondary" onclick="btnShowCorrectAnswerResolution1()">Lösung</button>
             </div>
             <div class="errorMessage">
-                <p id="errorMessageResolution1_1">Nur Zahlen eingeben!</p>
-                <p id="errorMessageResolution1_2"><span id="inputSamplingFrequency"></span> Hz ist Falsch! Bitte beachte das Shannon Theorem!</p>
+                <p id="errorMessageResolution1_1" class="wrongAnswer">Nur Zahlen eingeben!</p>
+                <p id="errorMessageResolution1_2" class="wrongAnswer"><span id="inputSamplingFrequency"></span> Hz ist Falsch! Bitte beachte das Shannon Theorem!</p>
             </div>
             <p id="answerIsCorrectSampling">Richtig!<p>
             <p id="answerExplanationResolution1_1">Das Shannon Abtasttheorem sagt aus, dass zur eindeutigen Rekonstruktion eines Signales
@@ -69,6 +69,45 @@
 
             <button class="btnsamplingFrequency btn btn-primary" onclick="btnCheckAnswer()">Weiter</button>
             <button class="btnsamplingFrequency2 btn btn-primary" onclick="btnStoragefrequency()">Weiter</button>
+        </div>
+        <div id="resolution2">
+            <div id="Storage_task">
+                <p class="taskResolution2">Ein analoges Audiosignal der Länge
+                    <span class="boldType"><span id="limitSeconds"></span> s</span>
+                     soll mit einer Frequenz von <span class="boldType">44 Khz</span> abgetastet werden.
+                    <br><br>Dabei soll der Speicherbedarf <span class="boldType"><span id="limitStorage"></span> Kbyte</span> nicht überschreiten.
+                    <br><br>Mit wieviel Bit kann maximal quantisiert werden?
+                </p>
+                <div class="formResolution2"> 
+                    <input type="number" id="storageAnswer"> bit
+                </div>
+                <button id="btnShowCorrectAnswerStorage" class="btnShowCorrectAnswerStorage btn btn-secondary" onclick="btnShowCorrectAnswerResolution2()">Lösung</button>
+                <div class="errorMessage">
+                    <p id="errorMessageResolution2_1" class="wrongAnswer">Nur Zahlen eingeben!</p>
+                    <p id="errorMessageResolution2_2" class="wrongAnswer"><span id="storageInput"></span> bit ist Falsch! Bitte überprüfe deine Rechnung!</p>
+                </div>
+            </div>
+            <div id="answerIsCorrectStorage" class="boldType">Richtig!</div>
+            <div id="answerExplanationStorage">
+                <p>
+                    Das Audiosignal wird <span class="boldType">44000 mal</span> in der Sekunde abgetastet,
+                    es ist <span class="boldType"><span id="secondsCorrect"></span> s</span> lang. Daraus ergeben
+                    sich <span class="boldType">44000 1/s * <span id="secondsCorrect2"></span> s = <span id="samples"></span>
+                    Abtastwerte</span>.
+                     <br><br>
+                     Es stehen <span class="boldType"><span id="storage"></span> KByte</span> zur Verfügung. Das sind 
+                     <span class="boldType"><span id="storage2"></span> * 1024 = <span id="storage3_Byte"></span> Byte</span>,
+                     was wiederum <span class="boldType"><span id="storage3_Byte2"></span> * 8 = <span id="storage4_Bit"></span>
+                     bit</span> sind.<br><br>
+                     Wenn es für <span class="boldType"><span id="samples2"></span> Abstastwerte <span id="storage4_Bit2"></span>
+                     bit</span> zur Verfügung stehen, dann kann jeder Wert mit maximal <span class="boldType"><span id="storage4_Bit3"></span>
+                     / <span id="samples3"></span> = <span id="answerStorage"></span> bit</span> gespeichert werden.
+                </p>
+            </div>
+            
+            <button class="btnContinueStorage btn btn-primary" onclick="btnCheckAnswerStorage()">Weiter</button>
+            <button class="btnContinueLinear btn btn-primary" onclick="btnContinueLinear()">Weiter</button>
+
         </div>
 
         <script src="script.js"></script>
