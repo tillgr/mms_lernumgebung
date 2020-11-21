@@ -174,6 +174,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	var function_data = [];
 	var spectrum_data = new Array(10);
 	
+	for(var i = 0; i < spectrum_data.length; i++) {
+		spectrum_data[i] = {"name": "A" + (i+1).toString(), "value": 0};
+	}
+	console.log(spectrum_data);
 	
 	// function calculation
 	function calculateFunctionAt(n) {
@@ -203,11 +207,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 	}
 	
-	
 	// spectrum calculation
 	function calculateSpectrumData() {
 		for(var i = 0; i < spectrum_data.length; i++) {
-			spectrum_data[i] = Math.sqrt(parseInt(sliders_a[i].value, 10) * parseInt(sliders_a[i].value, 10) + parseInt(sliders_b[i].value, 10) * parseInt(sliders_b[i].value, 10));
+			spectrum_data[i].value = Math.sqrt(parseInt(sliders_a[i].value, 10) * parseInt(sliders_a[i].value, 10) + parseInt(sliders_b[i].value, 10) * parseInt(sliders_b[i].value, 10));
 		}
 	}
 	
@@ -357,36 +360,44 @@ document.addEventListener("DOMContentLoaded", function() {
 					
 	
 	
-	// graph2 (spectrum_data) ///////////////
-	
-	var x = d3.scaleBand()
-		.domain(d3.range(spectrum_data.length))
-		.range([margin.left, width - margin.right])
-		.padding(0.1);
-		
-	var y = d3.scaleLinear()
-		.domain([0, 150]).nice()
-		.range([height - margin.bottom, margin.top]);
-		
+	// graph2 (spectrum_data) (bar chart)
+
+	var padding = 10;
+	var bar_width = width / spectrum_data.length - padding;
+	var max_height = height;
+
 	var svg2 = d3.select("#svg_graph2")
-		.attr("viewBox", [0, 0, width, height]);		
-		
-	var dataLine = svg2.selectAll(".dataLine")
-		.data([spectrum_data], (d, i) => i);
-		
-		dataLine
-			.enter()
-			.append("path")
-				.attr("class", "dataLine")
-			.merge(dataLine)
-			.transition()
-			.duration(200)
-				.attr("fill", "none")
-				.attr("stroke", "blue")
-				.attr("stroke-linejoin", "round")
-				.attr("d", d3.line()
-					.x((d, i) => x(i))
-					.y(d => y(d)));
+		.attr("viewBox", [0, 0, width, height]);
+
+	svg2.selectAll("rect")
+		.data(spectrum_data)
+		.enter()
+		.append("rect")
+		.attr("x", function(d, i) { return bar_width * i + padding * i; })
+		.attr("y", max_height)
+		.attr("width", bar_width)
+		.attr("height", 0)
+		.style("fill", function(d) { return "blue";})
+		.on("mouseover", function(d, i) {
+			svg2.append("text")
+			.attr("x", bar_width * i + padding * i + bar_width / 2)
+			.attr("y", max_height - max_height * d.value / 100 - 5)
+			.style("fill", "green")
+			.style("text-anchor", "middle")
+			.style("font-size", "36px")
+			.text(d.name);
+			})
+		.on("mouseout", function() {
+			svg2.selectAll("text").remove();
+		});
+   
+	svg2.selectAll("rect")
+		.transition()
+		.duration(0)
+		.attr("y", function(d) { return max_height - max_height * d.value / 100; })
+		.attr("height", function(d) { return max_height * d.value / 100; });
 		
 	}
+	
+	
 });
