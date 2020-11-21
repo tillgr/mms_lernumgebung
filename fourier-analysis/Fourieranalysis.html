@@ -13,64 +13,82 @@
 		</header>
 		<main>
 			<div class="applet">
-				<svg width="1000" height="500" id="svg_graph1"></svg>
-				<svg width="1000" height="300" id="svg_graph2"></svg>
+			
+				<div id="graph1_wrapper">
+					<svg width="1000" height="500" id="svg_graph1"></svg>
+				</div>
 				
-				<button id="buttonSineWave">Sinus</button>
-				<button id="buttonCosineWave">Cosinus</button>
-				<button id="buttonSawWave">Sägezahn</button>
-				<button id="buttonSquareWave">Rechteck</button>
-				<button id="buttonTriangleWave">Dreieck</button>
-				<button id="buttonGraetzSine">Graetz-Sinus</button>
-				<button id="buttonResetWave">Reset</button>
+				<div id="graph2_wrapper">
+					<svg width="1000" height="300" id="svg_graph2"></svg>
+				</div>
 				
-				<!--sliders_a-->
-				<input id="slider_a_0" type="range" min="-99" max="99" value="0">
-				<input id="slider_a_1" type="range" min="-99" max="99" value="0">
-				<input id="slider_a_2" type="range" min="-99" max="99" value="0">
-				<input id="slider_a_3" type="range" min="-99" max="99" value="0">
-				<input id="slider_a_4" type="range" min="-99" max="99" value="0">
-				<input id="slider_a_5" type="range" min="-99" max="99" value="0">
-				<input id="slider_a_6" type="range" min="-99" max="99" value="0">
-				<input id="slider_a_7" type="range" min="-99" max="99" value="0">
-				<input id="slider_a_8" type="range" min="-99" max="99" value="0">
-				<input id="slider_a_9" type="range" min="-99" max="99" value="0">
+				<div id="button_wrapper">
+					<button id="buttonSineWave">Sinus</button>
+					<button id="buttonCosineWave">Cosinus</button>
+					<button id="buttonSawWave">Sägezahn</button>
+					<button id="buttonSquareWave">Rechteck</button>
+					<button id="buttonTriangleWave">Dreieck</button>
+					<button id="buttonGraetzSine">Graetz-Sinus</button>
+					<button id="buttonResetWave">Reset</button>
+				</div>
 				
-				<!--text_inputs_a-->
-				<input id="text_field_a_0" type="text" placeholder="a_0">
-				<input id="text_field_a_1" type="text" placeholder="a_1">
-				<input id="text_field_a_2" type="text" placeholder="a_2">
-				<input id="text_field_a_3" type="text" placeholder="a_3">
-				<input id="text_field_a_4" type="text" placeholder="a_4">
-				<input id="text_field_a_5" type="text" placeholder="a_5">
-				<input id="text_field_a_6" type="text" placeholder="a_6">
-				<input id="text_field_a_7" type="text" placeholder="a_7">
-				<input id="text_field_a_8" type="text" placeholder="a_8">
-				<input id="text_field_a_9" type="text" placeholder="a_9">
-				
-				<!--sliders_b-->
-				<input id="slider_b_0" type="range" min="-99" max="99" value="0">
-				<input id="slider_b_1" type="range" min="-99" max="99" value="0">
-				<input id="slider_b_2" type="range" min="-99" max="99" value="0">
-				<input id="slider_b_3" type="range" min="-99" max="99" value="0">
-				<input id="slider_b_4" type="range" min="-99" max="99" value="0">
-				<input id="slider_b_5" type="range" min="-99" max="99" value="0">
-				<input id="slider_b_6" type="range" min="-99" max="99" value="0">
-				<input id="slider_b_7" type="range" min="-99" max="99" value="0">
-				<input id="slider_b_8" type="range" min="-99" max="99" value="0">
-				<input id="slider_b_9" type="range" min="-99" max="99" value="0">
-				
-				<!--text_inputs_b-->
-				<input id="text_field_b_0" type="text" placeholder="b_0">
-				<input id="text_field_b_1" type="text" placeholder="b_1">
-				<input id="text_field_b_2" type="text" placeholder="b_2">
-				<input id="text_field_b_3" type="text" placeholder="b_3">
-				<input id="text_field_b_4" type="text" placeholder="b_4">
-				<input id="text_field_b_5" type="text" placeholder="b_5">
-				<input id="text_field_b_6" type="text" placeholder="b_6">
-				<input id="text_field_b_7" type="text" placeholder="b_7">
-				<input id="text_field_b_8" type="text" placeholder="b_8">
-				<input id="text_field_b_9" type="text" placeholder="b_9">
+				<div id="slider_section">					
+					<!--sliders_a-->
+					<div id="sliders_a_wrapper">
+						<input id="slider_a_0" type="range" min="-99" max="99" value="0">
+						<input id="slider_a_1" type="range" min="-99" max="99" value="0">
+						<input id="slider_a_2" type="range" min="-99" max="99" value="0">
+						<input id="slider_a_3" type="range" min="-99" max="99" value="0">
+						<input id="slider_a_4" type="range" min="-99" max="99" value="0">
+						<input id="slider_a_5" type="range" min="-99" max="99" value="0">
+						<input id="slider_a_6" type="range" min="-99" max="99" value="0">
+						<input id="slider_a_7" type="range" min="-99" max="99" value="0">
+						<input id="slider_a_8" type="range" min="-99" max="99" value="0">
+						<input id="slider_a_9" type="range" min="-99" max="99" value="0">
+					</div>
+					
+					<!--text_inputs_a-->
+					<div id="text_fields_a_wrapper">
+						<input id="text_field_a_0" type="text" placeholder="a_0">
+						<input id="text_field_a_1" type="text" placeholder="a_1">
+						<input id="text_field_a_2" type="text" placeholder="a_2">
+						<input id="text_field_a_3" type="text" placeholder="a_3">
+						<input id="text_field_a_4" type="text" placeholder="a_4">
+						<input id="text_field_a_5" type="text" placeholder="a_5">
+						<input id="text_field_a_6" type="text" placeholder="a_6">
+						<input id="text_field_a_7" type="text" placeholder="a_7">
+						<input id="text_field_a_8" type="text" placeholder="a_8">
+						<input id="text_field_a_9" type="text" placeholder="a_9">
+					</div>
+					
+					<!--sliders_b-->
+					<div id="sliders_b_wrapper">
+						<input id="slider_b_0" type="range" min="-99" max="99" value="0">
+						<input id="slider_b_1" type="range" min="-99" max="99" value="0">
+						<input id="slider_b_2" type="range" min="-99" max="99" value="0">
+						<input id="slider_b_3" type="range" min="-99" max="99" value="0">
+						<input id="slider_b_4" type="range" min="-99" max="99" value="0">
+						<input id="slider_b_5" type="range" min="-99" max="99" value="0">
+						<input id="slider_b_6" type="range" min="-99" max="99" value="0">
+						<input id="slider_b_7" type="range" min="-99" max="99" value="0">
+						<input id="slider_b_8" type="range" min="-99" max="99" value="0">
+						<input id="slider_b_9" type="range" min="-99" max="99" value="0">
+					</div>
+					
+					<!--text_inputs_b-->
+					<div id="text_fields_b_wrapper">
+						<input id="text_field_b_0" type="text" placeholder="b_0">
+						<input id="text_field_b_1" type="text" placeholder="b_1">
+						<input id="text_field_b_2" type="text" placeholder="b_2">
+						<input id="text_field_b_3" type="text" placeholder="b_3">
+						<input id="text_field_b_4" type="text" placeholder="b_4">
+						<input id="text_field_b_5" type="text" placeholder="b_5">
+						<input id="text_field_b_6" type="text" placeholder="b_6">
+						<input id="text_field_b_7" type="text" placeholder="b_7">
+						<input id="text_field_b_8" type="text" placeholder="b_8">
+						<input id="text_field_b_9" type="text" placeholder="b_9">
+					</div>
+				</div>
 			</div>
 		</main>	
 	</body>
