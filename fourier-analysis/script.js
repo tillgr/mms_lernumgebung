@@ -231,17 +231,39 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	// graph1 (function_data) ///////////////
 	
-	var x = d3.scaleBand()
-		.domain(d3.range(function_data.length))
-		.range([margin.left, width - margin.right])
-		.padding(0.1);
+	var x = d3.scaleLinear()
+		.domain([0, 8])
+		.range([margin.left, width - margin.right]);
 		
 	var y = d3.scaleLinear()
 		.domain([-300, 300]).nice()
 		.range([height - margin.bottom, margin.top]);
 		
-	var xAxis = d3.axisBottom(x);
+	var xAxis = d3.axisBottom(x)
+		.ticks(8)
+		.tickFormat(d => d + "π");
+			
 	var yAxis = d3.axisLeft(y);
+	
+	var grid = g => g
+      .attr("stroke", "currentColor")
+      .attr("stroke-opacity", 0.1)
+      .call(g => g.append("g")
+        .selectAll("line")
+        .data(x.ticks())
+        .join("line")
+          .attr("x1", d => 0.5 + x(d))
+          .attr("x2", d => 0.5 + x(d))
+          .attr("y1", 20)
+          .attr("y2", height - 20))
+      .call(g => g.append("g")
+        .selectAll("line")
+        .data(y.ticks())
+        .join("line")
+          .attr("y1", d => 0.5 + y(d))
+          .attr("y2", d => 0.5 + y(d))
+          .attr("x1", 20)
+          .attr("x2", width - 20));
 		
 	var svg1 = d3.select("#svg_graph1")
 		.attr("viewBox", [0, 0, width, height]);
@@ -252,10 +274,14 @@ document.addEventListener("DOMContentLoaded", function() {
 		.attr("class", "x_axis")
 		.attr("transform", "translate(0," + y(0) + ")")
 		.call(xAxis);
+	
 	svg1.append("g")
 		.attr("class", "y_axis")
 		.attr("transform", "translate(" + (margin.left) + ", 0)")
 		.call(yAxis);
+		
+	svg1.append("g")
+		.call(grid);
 		
 		
 		var dataLine = svg1.selectAll(".dataLine")
@@ -306,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		.attr("transform", "translate(" + (margin.left) + ", 0)")
 		.call(yAxis);
 		
-		
+	/*	
 		var dataLine = svg2.selectAll(".dataLine")
 			.data([spectrum_data], (d, i) => i);
 		
@@ -323,6 +349,8 @@ document.addEventListener("DOMContentLoaded", function() {
 				.attr("d", d3.line()
 					.x((d, i) => x(i))
 					.y(d => y(d)));
+	*/
+	updateGraphs();
 					
 	function updateGraphs() {
 		
@@ -365,6 +393,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	var padding = 10;
 	var bar_width = width / spectrum_data.length - padding;
 	var max_height = height;
+	
+	var y = d3.scaleLinear()
+		.domain([0, 150]).nice()
+		.range([height - margin.bottom, margin.top]);
 
 	var svg2 = d3.select("#svg_graph2")
 		.attr("viewBox", [0, 0, width, height]);
@@ -373,8 +405,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		.data(spectrum_data)
 		.enter()
 		.append("rect")
-		.attr("x", function(d, i) { return bar_width * i + padding * i; })
-		.attr("y", max_height)
+		.attr("x", function(d, i) { return bar_width * i + padding * i + 50; })
+		.attr("y", 0)
 		.attr("width", bar_width)
 		.attr("height", 0)
 		.style("fill", function(d) { return "blue";})
@@ -394,8 +426,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	svg2.selectAll("rect")
 		.transition()
 		.duration(0)
-		.attr("y", function(d) { return max_height - max_height * d.value / 100; })
-		.attr("height", function(d) { return max_height * d.value / 100; });
+		.attr("y", d => y(d.value))
+		.attr("height", d => max_height - margin.bottom - y(d.value));
 		
 	}
 	
