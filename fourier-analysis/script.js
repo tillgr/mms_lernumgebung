@@ -122,6 +122,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 	
 	// add slider EventListeners
+	
+	/*
 	sliders_a.forEach(function(slider) {
 		slider.addEventListener("input", function() {
 			text_fields_a[sliders_a.indexOf(this)].value = slider.value;
@@ -139,7 +141,29 @@ document.addEventListener("DOMContentLoaded", function() {
 			updateGraphs();
 		});
 	});
+	*/
 	
+	sliders_a[0].addEventListener("input", function() {text_fields_a[0].value = sliders_a[0].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_a[1].addEventListener("input", function() {text_fields_a[1].value = sliders_a[1].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_a[2].addEventListener("input", function() {text_fields_a[2].value = sliders_a[2].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_a[3].addEventListener("input", function() {text_fields_a[3].value = sliders_a[3].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_a[4].addEventListener("input", function() {text_fields_a[4].value = sliders_a[4].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_a[5].addEventListener("input", function() {text_fields_a[5].value = sliders_a[5].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_a[6].addEventListener("input", function() {text_fields_a[6].value = sliders_a[6].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_a[7].addEventListener("input", function() {text_fields_a[7].value = sliders_a[7].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_a[8].addEventListener("input", function() {text_fields_a[8].value = sliders_a[8].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_a[9].addEventListener("input", function() {text_fields_a[9].value = sliders_a[9].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	
+	sliders_b[0].addEventListener("input", function() {text_fields_b[0].value = sliders_b[0].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_b[1].addEventListener("input", function() {text_fields_b[1].value = sliders_b[1].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_b[2].addEventListener("input", function() {text_fields_b[2].value = sliders_b[2].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_b[3].addEventListener("input", function() {text_fields_b[3].value = sliders_b[3].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_b[4].addEventListener("input", function() {text_fields_b[4].value = sliders_b[4].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_b[5].addEventListener("input", function() {text_fields_b[5].value = sliders_b[5].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_b[6].addEventListener("input", function() {text_fields_b[6].value = sliders_b[6].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_b[7].addEventListener("input", function() {text_fields_b[7].value = sliders_b[7].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_b[8].addEventListener("input", function() {text_fields_b[8].value = sliders_b[8].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+	sliders_b[9].addEventListener("input", function() {text_fields_b[9].value = sliders_b[9].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
 	
 	// text fields are saved in arrays
 	var text_fields_a = new Array(10);
