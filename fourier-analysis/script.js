@@ -307,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// graph2 (spectrum_data) ///////////////
 	
 	var x = d3.scaleBand()
-		.domain(d3.range(spectrum_data.length))
+		.domain(d3.range(spectrum_data.length + 1))
 		.range([margin.left, width - margin.right])
 		.padding(0.1);
 		
@@ -315,7 +315,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		.domain([0, 150]).nice()
 		.range([height - margin.bottom, margin.top]);
 		
-	var xAxis = d3.axisBottom(x);
+	var xAxis = d3.axisBottom(x)
+		.ticks(8)
+		.tickFormat(d => "A" + d);
 	var yAxis = d3.axisLeft(y);
 		
 	var svg2 = d3.select("#svg_graph2")
@@ -332,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		.attr("transform", "translate(" + (margin.left) + ", 0)")
 		.call(yAxis);
 		
-	/*	
+	
 		var dataLine = svg2.selectAll(".dataLine")
 			.data([spectrum_data], (d, i) => i);
 		
@@ -349,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				.attr("d", d3.line()
 					.x((d, i) => x(i))
 					.y(d => y(d)));
-	*/
+	
 	updateGraphs();
 					
 	function updateGraphs() {
@@ -391,7 +393,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// graph2 (spectrum_data) (bar chart)
 
 	var padding = 10;
-	var bar_width = width / spectrum_data.length - padding;
+	var bar_width = width / (spectrum_data.length + 1) - padding;
 	var max_height = height;
 	
 	var y = d3.scaleLinear()
