@@ -134,16 +134,17 @@ input[type="text"] {
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: space-around;
+	align-items: center;
 }
 
 .slider_and_textfield input[type="range"] {
-	transform-origin: 50px 50px;
+	transform-origin: 45px 45px;
 	transform: rotate(-90deg);
-	width: 100px;
+	width: 90px;
 	height: 20px;
 	margin-top: 0;
 	margin-right: -75px;
-	margin-bottom: 75px;
+	margin-bottom: 65px;
 }
 
 .slider_and_textfield input[type="text"] {
@@ -151,7 +152,6 @@ input[type="text"] {
 	height: 15px;
 	margin: 0;
 }
-
 
 /* slider appearance */
 
