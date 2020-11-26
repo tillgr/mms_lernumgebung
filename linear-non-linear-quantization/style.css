@@ -264,3 +264,7 @@ body{
 .marginTop{
     margin-top: 0;
 }
+
+.click-circle:hover{
+    cursor: pointer;
+}

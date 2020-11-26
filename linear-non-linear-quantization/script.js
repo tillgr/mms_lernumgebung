@@ -209,6 +209,19 @@ window.onload = function() {
         {x: 0.12, y: randomDataset()}, {x: 0.14, y: randomDataset()},
         {x: 0.16, y: randomDataset()}, {x: 0.18, y: randomDataset()}
     ];
+
+    var circleData = [
+        {x:0 , y:0},{x:0 , y:40},{x:0 , y:80}, {x:0 , y:120}, {x:0 , y:160}, {x:0 , y:200}, {x:0 , y:240}, {x:0 , y:280},
+        {x:35 , y:0},{x:35 , y:40},{x:35 , y:80}, {x:35 , y:120}, {x:35 , y:160}, {x:35 , y:200}, {x:35 , y:240}, {x:35 , y:280},
+        {x:71 , y:0},{x:71 , y:40},{x:71 , y:80}, {x:71 , y:120}, {x:71 , y:160}, {x:71 , y:200}, {x:71 , y:240}, {x:71 , y:280},
+        {x:106 , y:0},{x:106 , y:40},{x:106 , y:80}, {x:106 , y:120}, {x:106 , y:160}, {x:106 , y:200}, {x:106 , y:240}, {x:106 , y:280},
+        {x:142 , y:0},{x:142 , y:40},{x:142 , y:80}, {x:142 , y:120}, {x:142 , y:160}, {x:142 , y:200}, {x:142 , y:240}, {x:142 , y:280},
+        {x:177 , y:0},{x:177 , y:40},{x:177 , y:80}, {x:177 , y:120}, {x:177 , y:160}, {x:177 , y:200}, {x:177 , y:240}, {x:177 , y:280},
+        {x:213 , y:0},{x:213 , y:40},{x:213 , y:80}, {x:213 , y:120}, {x:213 , y:160}, {x:213 , y:200}, {x:213 , y:240}, {x:213 , y:280},
+        {x:248 , y:0},{x:248 , y:40},{x:248 , y:80}, {x:248 , y:120}, {x:248 , y:160}, {x:248 , y:200}, {x:248 , y:240}, {x:248 , y:280},
+        {x:284 , y:0},{x:284 , y:40},{x:284 , y:80}, {x:284 , y:120}, {x:284 , y:160}, {x:284 , y:200}, {x:284 , y:240}, {x:284 , y:280},
+        {x:320 , y:0},{x:320 , y:40},{x:320 , y:80}, {x:320 , y:120}, {x:320 , y:160}, {x:320 , y:200}, {x:320 , y:240}, {x:320 , y:280}
+    ];
     var xScale = d3.scale.linear()
             .domain(d3.extent(dataset, function(d) {
                 return d.x;
@@ -269,6 +282,18 @@ window.onload = function() {
             .classed('x', true)
             .classed('grid', true)
             .call(xAxisGrid);
+    var circles = main.selectAll("circle")
+        .data(circleData)
+        .enter()
+        .append("circle");
+    var circleAttributes = circles
+        .attr('class', 'click-circle')
+        .attr("cx", function(d){return d.x;})
+        .attr("cy", function(d){return d.y;})
+        .attr("r", "2px")
+        .style("fill",  "#002557")
+        .on("mouseover", function(){d3.select(this).style("fill", "red");})
+        .on("mouseout", function(){d3.select(this).style("fill", "#002557" );});
 }
 
 function randomDataset(){
