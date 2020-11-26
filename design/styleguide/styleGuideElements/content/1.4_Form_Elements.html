@@ -18,35 +18,27 @@
         <input class="form-control" type="text" name="username" value="Street 1" disabled>
       </div>
     </div>
+
     <div class="col-6">
-      <h2>Select</h2>
-      <pre>
+      <h2>Number input</h2>
+      <p>Media Team: The controls don't look very appealing in different browsers. However the standard controls are currently not stylable, so we agreed and it being a browser problem and not ours.</p>
+      <pre class="language-html">
 <div class="form-group">
-  <label for="selectControl1">Default</label>
-  <select id="selectControl1" class="form-control">
-    <option value="0">Choose an option</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-  </select>
+  <label for="textInput">Default</label>
+  <input class="form-control" type="number" min="-20" max="500" step="0.1" name="username" value="Street 1">
 </div>
         </pre>
       <div class="form-group">
-        <label for="selectControl1">Default</label>
-        <select id="selectControl1" class="form-control">
-           <option value="0">Choose an option</option>
-           <option value="1">Option 1</option>
-           <option value="2">Option 2</option>
-        </select>
+        <label for="textInput">Default</label>
+        <input class="form-control" type="number" min="-20" max="500" step="0.1" name="username" value="Street 1">
       </div>
       <div class="form-group">
-        <label for="selectControl1">Disabled</label>
-        <select id="selectControl1" class="form-control" disabled>
-           <option value="0">Choose an option</option>
-           <option value="1">Option 1</option>
-           <option value="2">Option 2</option>
-        </select>
+        <label for="">Disabled</label>
+        <input class="form-control" type="number" min="-20" max="500" step="0.1" name="username" value="Street 1" disabled>
       </div>
     </div>
+  </div>
+
   <div class="row mt-5">
     <div class="col-6">
       <h2>Checkbox</h2>
@@ -136,6 +128,35 @@
   </div>
   <div class="row mt-5">
     <div class="col-6">
+      <h2>Select</h2>
+      <pre>
+<div class="form-group">
+  <label for="selectControl1">Default</label>
+  <select id="selectControl1" class="form-control">
+    <option value="0">Choose an option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+  </select>
+</div>
+        </pre>
+      <div class="form-group">
+        <label for="selectControl1">Default</label>
+        <select id="selectControl1" class="form-control">
+           <option value="0">Choose an option</option>
+           <option value="1">Option 1</option>
+           <option value="2">Option 2</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="selectControl1">Disabled</label>
+        <select id="selectControl1" class="form-control" disabled>
+           <option value="0">Choose an option</option>
+           <option value="1">Option 1</option>
+           <option value="2">Option 2</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-6">
       <h2>Range Input</h2>
       <pre>
 <div class="form-group">
@@ -148,6 +169,8 @@
         <input class="form-control-range" id="slider" type="range" name="" min="0" max="100" value="">
       </div>
     </div>
+  </div>
+  <div class="row mt-5">
     <div class="col-6">
       <h2>Help Text</h2>
       <pre>
