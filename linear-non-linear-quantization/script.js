@@ -222,7 +222,8 @@ window.onload = function() {
             .orient('bottom');
     var yAxis = d3.svg.axis()
             .scale(yScale)
-            .orient('left');
+            .orient('left')
+            .tickValues([30,60,90,120,150,180,210]);
     main.append('g')
             .attr('class', 'axis')
             .attr('transform', 'translate(0,' + (height - padding.top - padding.bottom) + ')')
