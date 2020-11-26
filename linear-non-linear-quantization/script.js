@@ -236,7 +236,12 @@ window.onload = function() {
 
     main.append('g')
             .attr('class', 'axis')
-            .call(yAxis);
+            .call(yAxis)
+        .append("text")
+            .attr("x","-30")
+            .attr("y","-20")
+            .attr("fill", "#002557")
+            .text("mV");
     var line = d3.svg.line()
             .x(function(d) {
                 return xScale(d.x)
