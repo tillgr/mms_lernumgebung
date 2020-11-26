@@ -227,7 +227,13 @@ window.onload = function() {
     main.append('g')
             .attr('class', 'axis')
             .attr('transform', 'translate(0,' + (height - padding.top - padding.bottom) + ')')
-            .call(xAxis);
+            .call(xAxis)
+        .append("text")
+            .attr("x","335")
+            .attr("y","30")
+            .attr("fill", "#002557")
+            .text("ms");
+
     main.append('g')
             .attr('class', 'axis')
             .call(yAxis);
@@ -258,7 +264,6 @@ window.onload = function() {
             .classed('x', true)
             .classed('grid', true)
             .call(xAxisGrid);
-
 }
 
 function randomDataset(){
