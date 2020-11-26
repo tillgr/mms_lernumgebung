@@ -203,11 +203,11 @@ window.onload = function() {
             .classed('main', true)
             .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
     var dataset = [
-        {x: 0, y: 97}, {x: 0.02, y: 150},
-        {x: 0.04, y: 174}, {x: 0.06, y: 165},
-        {x: 0.08, y: 77}, {x: 0.1, y: 46},
-        {x: 0.12, y: 65}, {x: 0.14, y: 43},
-        {x: 0.16, y: 14}, {x: 0.18, y: 4}
+        {x: 0, y: randomDataset()}, {x: 0.02, y: randomDataset()},
+        {x: 0.04, y: randomDataset()}, {x: 0.06, y: randomDataset()},
+        {x: 0.08, y: randomDataset()}, {x: 0.1, y: randomDataset()},
+        {x: 0.12, y: randomDataset()}, {x: 0.14, y: randomDataset()},
+        {x: 0.16, y: randomDataset()}, {x: 0.18, y: randomDataset()}
     ];
     var xScale = d3.scale.linear()
             .domain(d3.extent(dataset, function(d) {
@@ -259,4 +259,8 @@ window.onload = function() {
             .classed('grid', true)
             .call(xAxisGrid);
 
+}
+
+function randomDataset(){
+    return  Math.floor(Math.random() * 210) +1;
 }
