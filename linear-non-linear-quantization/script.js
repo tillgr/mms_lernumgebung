@@ -20,6 +20,7 @@ document.getElementById('answerIsCorrectStorage').style.display = 'none';
 document.getElementById('btnShowCorrectAnswerStorage').style.display = 'none';
 document.getElementById('answerExplanationStorage').style.display = 'none';
 document.querySelector('.btnContinueLinear').style.display = "none";
+document.getElementById('linearQuantisation').style.display = 'none';
 
 var randomNumber = Math.round(Math.random() * 5000 ) + 18000;
 var correctAnswer = randomNumber * 2;
@@ -145,14 +146,14 @@ function btnCheckAnswerStorage(){
         document.querySelector('.btnContinueStorage').style.display = "none";
 
     }else{
-        
+
         document.getElementById('errorMessageResolution2_2').style.display ='block';
         document.getElementById('storageInput').innerHTML = inputStorage;
         document.getElementById('storageAnswer').value='';
         document.getElementById('btnShowCorrectAnswerStorage').style.display = 'block';
-        
-    
-        
+
+
+
     }
 }
 
@@ -193,4 +194,52 @@ function btnContinueLinear(){
     document.getElementById("resolution2").style.display = "none";
     document.getElementById('resolution1').style.display = "none";
     document.getElementById('intro').style.display = "none";
+    document.getElementById('linearQuantisation').style.display = 'block';
+}
+window.onload = function() {
+    var width = 400, height = 360;
+    var padding = { top: 40, right: 40, bottom: 40, left: 40 };
+    var main = d3.select('.container svg').append('g')
+            .classed('main', true)
+            .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
+    var dataset = [
+        {x: 0, y: 97}, {x: 0.02, y: 150},
+        {x: 0.04, y: 174}, {x: 0.06, y: 165},
+        {x: 0.08, y: 77}, {x: 0.1, y: 46},
+        {x: 0.12, y: 65}, {x: 0.14, y: 43},
+        {x: 0.16, y: 14}, {x: 0.18, y: 4}
+    ];
+    var xScale = d3.scale.linear()
+            .domain(d3.extent(dataset, function(d) {
+                return d.x;
+            }))
+            .range([0, width - padding.left - padding.right]);
+    var yScale = d3.scale.linear()
+            .domain([0, 210])
+            .range([height - padding.top - padding.bottom, 0]);
+    var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient('bottom');
+    var yAxis = d3.svg.axis()
+            .scale(yScale)
+            .orient('left');
+    main.append('g')
+            .attr('class', 'axis')
+            .attr('transform', 'translate(0,' + (height - padding.top - padding.bottom) + ')')
+            .call(xAxis);
+    main.append('g')
+            .attr('class', 'axis')
+            .call(yAxis);
+    var line = d3.svg.line()
+            .x(function(d) {
+                return xScale(d.x)
+            })
+            .y(function(d) {
+                return yScale(d.y);
+            })
+            .interpolate('linear');
+    main.append('path')
+            .attr('class', 'line')
+            .attr('d', line(dataset));
+
 }

@@ -1,6 +1,6 @@
 .header{
     background: #002557;
-    width: 800px;
+    width: 900px;
     text-align: center;
     color: white;
     margin: 0;
@@ -24,7 +24,7 @@ body{
 
 .sidenav {
     width: 170px;
-    height: 520px;
+    height: 550px;
     position: fixed;
     left: 0;
     background-color: #EBEBEB ;
@@ -43,7 +43,7 @@ body{
       border: 2px solid #212529;
       border-radius: 5px;
       margin-left: 190px;
-      width: 590px;
+      width: 690px;
       font-size: 23px;
       position: absolute;
       margin-top: 20px;
@@ -97,7 +97,7 @@ body{
       border: 2px solid #212529;
       border-radius: 5px;
       margin-left: 190px;
-      width: 590px;
+      width: 690px;
       font-size: 23px;
       position: absolute;
       margin-top: 20px;
@@ -152,7 +152,7 @@ body{
     border: 2px solid #212529;
     border-radius: 5px;
     margin-left: 190px;
-    width: 590px;
+    width: 690px;
     font-size: 23px;
     position: absolute;
     margin-top: 20px;
@@ -206,4 +206,37 @@ body{
 
 .boldType{
     font-weight: bold;
+}
+
+#linearTask{
+    border: 2px solid #212529;
+    border-radius: 5px;
+    margin-left: 190px;
+    width: 240px;
+    font-size: 23px;
+    position: absolute;
+    margin-top: 20px;
+    padding: 10px;
+    line-height: 140%;
+}
+#linearFormDiagram{
+
+    margin-left: 470px;
+    width: 410px;
+    position:absolute;
+    height: 520px;
+
+}
+.container{
+  margin: 20px auto;
+  width: 400px;
+  height: 360px;
+  border: 2px solid #212529;
+  border-radius: 5px;
+}
+.axis path,
+.axis line,
+.line {
+    stroke: #000;
+    fill: none;
 }
