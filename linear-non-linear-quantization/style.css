@@ -219,13 +219,26 @@ body{
     padding: 10px;
     line-height: 140%;
 }
+.btnBeginLinearQuantisation{
+    margin-left: 60px;
+}
 #linearFormDiagram{
 
     margin-left: 470px;
     width: 410px;
     position:absolute;
     height: 520px;
+    font-size: 14px;
 
+}
+.linearTable{
+  margin: 20px auto;
+  width: 435px;
+  padding-left: 40px;
+  padding-bottom: 10px;
+}
+.linearTable th{
+  border-bottom: 2px solid #212529;
 }
 .container{
   margin: 20px auto;
@@ -239,4 +252,11 @@ body{
 .line {
     stroke: #000;
     fill: none;
+}
+.grid .tick {
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+.grid path {
+    stroke-width: 0;
 }

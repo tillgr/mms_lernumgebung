@@ -242,5 +242,21 @@ window.onload = function() {
     main.append('path')
             .attr('class', 'line')
             .attr('d', line(dataset));
+    var yAxisGrid = yAxis.ticks(7)
+            .tickSize((width-padding.left-padding.right), 0, 0)
+            .tickFormat("")
+            .orient("right");
+    var xAxisGrid = xAxis.ticks(9)
+            .tickSize(-((height - padding.top - padding.bottom)), 0, 0)
+            .tickFormat("")
+            .orient("top");
+    main.append("g")
+            .classed("y",true)
+            .classed("grid",true)
+            .call(yAxisGrid)
+    main.append("g")
+            .classed('x', true)
+            .classed('grid', true)
+            .call(xAxisGrid);
 
 }
