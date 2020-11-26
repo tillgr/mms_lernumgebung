@@ -320,11 +320,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	
 	svg1.append("g")
+		.style("font", "20px times")
+		//.style("font-size", "20px")
 		.attr("class", "x_axis")
 		.attr("transform", "translate(0," + y(0) + ")")
 		.call(xAxis);
 	
 	svg1.append("g")
+		.style("font", "20px times")
+		//.style("font-size", "20px")
 		.attr("class", "y_axis")
 		.attr("transform", "translate(" + (margin.left) + ", 0)")
 		.call(yAxis);
@@ -375,10 +379,14 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	
 	svg2.append("g")
+		.style("font", "20px times")
+		//.style("font-size", "20px")
 		.attr("class", "x_axis")
 		.attr("transform", "translate(0," + y(0) + ")")
 		.call(xAxis);
 	svg2.append("g")
+		.style("font", "20px times")
+		//.style("font-size", "20px")
 		.attr("class", "y_axis")
 		.attr("transform", "translate(" + (margin.left) + ", 0)")
 		.call(yAxis);
