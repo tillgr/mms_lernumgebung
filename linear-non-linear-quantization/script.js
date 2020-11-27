@@ -203,11 +203,11 @@ window.onload = function() {
             .classed('main', true)
             .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
     var dataset = [
-        {x: 0, y: randomDataset()}, {x: 0.02, y: randomDataset()},
-        {x: 0.04, y: randomDataset()}, {x: 0.06, y: randomDataset()},
-        {x: 0.08, y: randomDataset()}, {x: 0.1, y: randomDataset()},
-        {x: 0.12, y: randomDataset()}, {x: 0.14, y: randomDataset()},
-        {x: 0.16, y: randomDataset()}, {x: 0.18, y: randomDataset()}
+        {x: 0, y: 100}, {x: 0.02, y: randomDataset1()},
+        {x: 0.04, y: randomDataset1()}, {x: 0.06, y: randomDataset1()},
+        {x: 0.08, y: randomDataset1()}, {x: 0.1, y: randomDataset1()},
+        {x: 0.12, y: 20}, {x: 0.14, y: randomDataset2()},
+        {x: 0.16, y: randomDataset2()}, {x: 0.18, y: randomDataset2()}
     ];
 
     var circleData = [
@@ -296,6 +296,10 @@ window.onload = function() {
         .on("mouseout", function(){d3.select(this).style("fill", "#002557" );});
 }
 
-function randomDataset(){
-    return  Math.floor(Math.random() * 210) +1;
+function randomDataset1(){
+    return  Math.floor(Math.random() * 191) +20;
+}
+
+function randomDataset2(){
+    return  Math.floor(Math.random() * 45) +1;
 }
