@@ -1,7 +1,8 @@
 $theme-colors: (
   "primary": #002557,
   "secondary": #EBEBEB,
-  "danger": #dd2727
+  "danger": #dd2727,
+  "grey": #6f7174
 );
 $font-family-base: (
   'Open Sans',
@@ -70,7 +71,7 @@ pre {
   a {
     display: block;
     padding: .125rem 0;
-    color: #6f7174;
+    color: theme-color("grey");
     font-size: .875rem;
 
     &:hover, &:focus, &:active {

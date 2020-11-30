@@ -1,5 +1,7 @@
-if ($('main').find('h2,h3,h4,h5,h6').length > 0) {
-  $('main').find('h2,h3,h4,h5,h6').addClass('h-marginal');
+var headings = $('main').find('h2,h3,h4,h5,h6');
+
+if (headings.length > 0) {
+  headings.addClass('h-marginal');
 
   var $result = $('<div/>');
   var curDepth = 0;
