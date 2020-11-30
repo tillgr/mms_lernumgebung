@@ -9,7 +9,7 @@
           <!-- This is for Single Pages to highlight the current chosen link -->
             <li class="py-1"><a class="dropdown-toggle" href="#section{{$index}}" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="section{{$index}}">{{ .Title }}</a>
               <ul id="section{{$index}}" class="list-unstyled collapse show">
-                {{ range .Pages.ByTitle }}
+                {{ range sort .Pages "File.Path" }}
                   {{ if (eq $currentPage.Title .Title)}}
                   <!-- This is for Single Pages to highlight the current chosen link -->
                     <li>
