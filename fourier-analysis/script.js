@@ -26,9 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		resetWave();
 		sliders_a[0].value = 99;
 		
-		calculateFunctionData(64);
-		calculateSpectrumData();
-		updateGraphs();
+		update();
 	}
 	
 	function createCosineWave() {
@@ -36,9 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		resetWave();
 		sliders_b[0].value = 99;
 		
-		calculateFunctionData(64);
-		calculateSpectrumData();
-		updateGraphs();
+		update();
 	}
 	
 	function createSawWave() {
@@ -52,9 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		sliders_a[5].value = 2;
 		sliders_a[6].value = 1;
 		
-		calculateFunctionData(64);
-		calculateSpectrumData();
-		updateGraphs();
+		update();
 	}
 	
 	function createSquareWave() {
@@ -67,9 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		sliders_a[6].value = 4;
 		sliders_a[7].value = 1;
 		
-		calculateFunctionData(64);
-		calculateSpectrumData();
-		updateGraphs();
+		update();
 	}
 	
 	function createTriangleWave() {
@@ -81,9 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		sliders_b[4].value = 10;
 		sliders_b[5].value = 1;
 		
-		calculateFunctionData(64);
-		calculateSpectrumData();
-		updateGraphs();
+		update();
 	}
 	
 	var displayFunctionGraetz = false;
@@ -93,9 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		sliders_a[0].value = 99;
 		displayFunctionGraetz = true;
 		
-		calculateFunctionData(64);
-		calculateSpectrumData();
-		updateGraphs();
+		update();
 	}
 	
 	function resetWave() {
@@ -106,9 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		
 		displayFunctionGraetz = false;
-		calculateFunctionData(64);
-		calculateSpectrumData();
-		updateGraphs();
+		update();
 	}
 	
 	
@@ -217,6 +203,20 @@ document.addEventListener("DOMContentLoaded", function() {
 	text_fields_b[7].addEventListener("input", function() {sliders_b[7].value = text_fields_b[7].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
 	text_fields_b[8].addEventListener("input", function() {sliders_b[8].value = text_fields_b[8].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
 	text_fields_b[9].addEventListener("input", function() {sliders_b[9].value = text_fields_b[9].value;calculateFunctionData(64);calculateSpectrumData();updateGraphs();});
+
+	function updateTextfields() {
+		for(var i = 0; i < sliders_a.length; i++) {
+			text_fields_a[i].value = sliders_a[i].value;
+			text_fields_b[i].value = sliders_b[i].value;
+		}
+	}
+
+	function update() {
+		updateTextfields();
+		calculateFunctionData(64);
+		calculateSpectrumData();
+		updateGraphs();
+	}
 	
 	
 	// data arrays
