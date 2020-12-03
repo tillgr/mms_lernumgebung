@@ -300,6 +300,7 @@ window.onload = function() {
           setCircleColumnGreyByX(Object.values(point)[0]);
           setRedOnCircleData(Object.values(point)[0], Object.values(point)[1], true);
           updateArrays();
+          console.log(absoluteArray);
         })
 
     function getCircleColumnByX(xValue) {
@@ -337,45 +338,41 @@ window.onload = function() {
       });
       return bool;
     }
-    var absoluteArray = {
-      0: null,
-      35: null,
-      71: null,
-      106: null,
-      142: null,
-      177: null,
-      213: null,
-      248: null,
-      284: null,
-      320: null,
-    };
-    var relativeArray = {
-      0: null,
-      35: null,
-      71: null,
-      106: null,
-      142: null,
-      177: null,
-      213: null,
-      248: null,
-      284: null,
-      320: null,
-    };
+    var absoluteArray = [
+      {x:0.00, y:null},
+      {x:0.02, y:null},
+      {x:0.04, y:null},
+      {x:0.06, y:null},
+      {x:0.08, y:null},
+      {x:0.10, y:null},
+      {x:0.12, y:null},
+      {x:0.14, y:null},
+      {x:0.16, y:null},
+      {x:0.18, y:null}
+    ];
 
     function updateArrays(){
-
-      for (var key in absoluteArray) {
-        if (isRedCircleInColumn(getCircleColumnByX(key))) {
+      absoluteArray.forEach((point) => {
+        if (isRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))) {
           // TODO: hier berechnungen machen
-          absoluteArray[key] = getRedCircleInColumn(getCircleColumnByX(key))['y']
+          point['y'] = getRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))['y']
         }
-      }
-      for (var key in relativeArray) {
-        if (isRedCircleInColumn(getCircleColumnByX(key))) {
-          // TODO: hier berechnungen machen
-          console.log(dataset);
-          relativeArray[key] = getRedCircleInColumn(getCircleColumnByX(key))['y'] - dataset[key]
-        }
+      });
+    }
+    var correctArray = []
+    initializeCorrectArray()
+    function initializeCorrectArray() {
+      for (var i = 0; i <= 0.18; i+=0.02) {
+        let min = 210
+        let coordinate;
+        getCircleColumnByX(i).forEach((point) => {
+          if (min > Math.abs(point['y'] - dataset.find(point2 => point2['x'] == i.toFixed(2))['y'])) {
+            min = Math.abs(point['y'] - dataset.find(point2 => point2['x'] == i.toFixed(2))['y']);
+            coordinate = point['y']
+          }
+        });
+        console.log({x: parseFloat(i.toFixed(2)), y: coordinate});
+        correctArray.push({x: i, y: min});
       }
     }
 }
