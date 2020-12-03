@@ -1,0 +1,341 @@
+---
+title: "4.5 JPEG-Kodierung"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<p>Die Joint Photographic Experts Group (ISO/IEC JTC1/SC2/WG10) hat den Standard ISO 10918 entwickelt. Der JPEG-Standard
+    ist anwendbar auf digitale Einzelbilder mit unterschiedlichen Zeilen- und Spaltenzahlen sowie mit unterschiedlichen
+    Helligkeitsauflösungen. Er wird verwendet für:</p>
+<ul>
+    <li>Schwarzweiß-Bilder,</li>
+    <li>Bilder mit den Farbkomponenten R, G, B und</li>
+    <li>Bilder mit den Luminanz-/Farbdifferenzkomponenten Y, U, V oder Y, I,Q.</li>
+</ul>
+
+<p>JPEG ist ein Austauschformat, das neben den Bilddaten die Parameter und Tabellen des Kodierprozesses enthält. Der
+    Anwender kann die Kompressionsparameter seinen Anforderungen entsprechend anpassen. Es sind Kompressionsfaktoren von
+    1:10 bis 1:50 möglich.</p>
+<p>Das verlustbehaftete JPEG-Verfahren ist für fotografische Aufnahmen mit fließenden Farbübergängen optimal. Er ist
+    weniger geeignet für z.B. Bilddaten mit harten Kontrasten wie Cartoons, Liniengrafiken oder Texte, die meist große
+    Farbflächen und abrupte Farbwechsel enthalten.</p>
+<p>Anforderungen an das Verfahren:</p>
+<ul>
+    <li>Unabhängigkeit von der Bildgröße.</li>
+    <li>Jedes Verhältnis Höhe zu Breite eines Bildes und eines Pixels soll unterstützt werden.</li>
+    <li>Farbraum und Farbvielfalt müssen unabhängig voneinander sein.</li>
+    <li>Bildinhalt soll beliebige Komplexität und statistische Eigenschaften haben können.</li>
+    <li>Verarbeitung mit Softwarelösung auf Standardhardware.</li>
+    <li>Dekodieren eines Bildes soll sequentiell (Zeile für Zeile) und progressiv (Bild wird als Ganzes immer mehr
+        verfeinert) möglich sein.
+    </li>
+    <li>Anwender soll durch Wahl der Parameter eine individuelle Abwägung zwischen der Qualität des dekodierten Bildes,
+        der Dauer der Kompression und der Bildgröße vornehmen können.
+    </li>
+</ul>
+
+<p><strong>Der YCbCr-Farbraum</strong></p><!--TODO: Formatierung-->
+<p>Die vom Auge unterscheidbaren Farben - ca. 8 Millionen Farbtöne - können auf eine Addition der drei Grundfarben
+    'Rot', 'Grün' und 'Blau' (RGB) zurückgeführt werden. Monitore erzeugen aus den RGB-Bildern das darzustellende Bild
+    (Elektronenstrahl, Phosphorbeschichtung).</p>
+<p>Bei Helligkeit-Farbigkeit-Modellen, z.B. dem YCbCr Modell, werden Farbwerte durch die Grundhelligkeit der Farbe, die
+    Farbe (Farbart) mit dem größten Anteil (Rot, Grün oder Blau) und die Sättigung der Farbe, z.B. pastell, stark, fast
+    weiß, beschrieben. Beim YCrCb-Modell wird ein RGB-Farbwert in eine Grundhelligkeit Y und zwei Komponenten Cr und Cb
+    aufgeteilt. Cb ist ein Maß für die Abweichung von der 'Mittelfarbe' Grau in Richtung 'Blau'. Cr ist die
+    entsprechende Maßzahl für die Differenz zu Rot.</p><!--TODO: Formatierung-->
+<p>Umrechnung von RGB-Farbwerten in den YCbCr-Farbraum:</p><!--TODO: Formatierung-->
+<!--TODO: Formeln shortcode-->
+
+<p>Rücktransformation vom YCbCr-Farbraum in RGB-Werte:</p><!--TODO: Formatierung-->
+<!--TODO: Formeln shortcode-->
+
+<p><strong>Farbsubsampling</strong></p>
+<p>Da das Auge örtliche Unterschiede in Cb und Cr schlechter wahrnimmt als in Y, kann die Ortsauflösung von Cb und Cr
+    gegenüber der von Y reduziert werden. Dies geschieht, indem für kleine Gebiete die Werte Cb und Cr gemittelt werden,
+    anstatt Cb und Cr in jedem Punkt zu kodieren, d.h. man reduziert in den C-Ebenen die Zahl der Punkte. Üblicherweise
+    haben diese Gebiete eine Größe von 2 x 2 Pixeln.</p><!--TODO: Formatierung-->
+
+<p><strong>JPEG-Operationsmodi</strong></p>
+<p>JPEG soll möglichst vielen Anforderungen der Bilddatenkompression gerecht werden. Deshalb wurden folgende
+    Basismethoden festgelegt, die jeweils für Teilbereiche gute Ergebnisse liefern:</p>
+<ul>
+    <li>Verlustbehafteter, sequentieller DCT-basierter Mode: Basis-Mode, der von jedem JPEG Dekoder unterstützt wird.
+    </li>
+    <li>Erweiterter verlustbehafteter DCT-basierter Mode: weitere Alternativen zum Basis-Mode.</li>
+    <li>Verlustfreier Mode: geringere Kompression, fehlerfreie Rekonstruktion des Originalbildes.</li>
+    <li>Hierarchischer Mode: beinhaltet Bilder verschiedener Auflösungen, kodiert mit Algorithmen der anderen drei
+        Modi.
+    </li>
+</ul>
+
+<h2>4.5.1 Verlustfreie Kompression</h2>
+<p>Bei diesem informationserhaltenden Kompressionsverfahren werden die Bilddaten so komprimiert, daß sie nach der
+    Dekompression aufs Bit genau den Originaldaten entsprechen (lossless mode).</p>
+<p>Kompressionsschema: Die Daten werden zuerst in eine Menge von Deskriptoren transformiert, für diese Deskriptoren wird
+    ein statistisches Modell (i.allg. eine Verschlüsselungstabelle) erstellt und danach werden die Deskriptoren an Hand
+    des Modells kodiert.</p>
+<p>Als Transformation wird die DPCM<!--TODO: Fehlende Referenzen--> verwendet. Angenommen, die Daten sind schon bis zu
+    einer gewissen Stelle kodiert, dann ermittelt eine spezielle Vorhersagemethode einen möglichen Wert für das nächste
+    Datum. Kodiert wird anschließend nur die Differenz des vorausgesagten Wertes zum Originalwert. Je besser die
+    Vorhersagemethode, desto kleiner sind die Unterschiede, und desto häufiger kann man kleinere Zahlen abbilden. Die
+    Vorhersage der Werte erfolgt mit Berechnungsmethoden, die von verschiedenen benachbarten Pixeln abhängen. Für die
+    Kodierung stehen die Huffman-Kodierung und das binär arithmetische Kodieren zur Verfügung.</p>
+
+<h2>4.5.2 Verlustbehaftetes JPEG-Verfahren</h2>
+<!--TODO: Applet JPEG Kompression-->
+<img src="..." alt="Arbeitsschritte bei JPEG"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<h3 class="h4">4.5.2.1 JPEG Bildaufbereitung</h3>
+<p>Wegen der Forderung nach Unabhängigkeit von Bildgröße, Seitenverhältnis, Pixelzahl, etc. wird unterstellt, das ein
+    Bild aus 1 bis N < 256 Komponenten bzw. Ebenen besteht. Am gebräuchlichsten sind bei Farbbildern die drei
+    Komponenten Y, Cb, und Cr, es sind aber noch weitere denkbar. Die Auflösung der Farbbestandteile muss nicht gleich
+    sein. Zum Beispiel wird bei 4:2:0 eine vertikale und horizontale Unterabtastung jeweils um den Faktor 2 verwendet,
+    sodass die Datenmenge der Farbinformation um den Faktor 4 reduziert wird.</p>
+<p>Jede Ebene C<sup>i</sup> besteht aus einer rechtwinkligen Anordnung von X<sup>i</sup> * Y<sup>i</sup> Pixel. DVI
+    verwendete z.B. YUV-Farbilder aus 3 Ebenen mit Y<sup>1</sup> = 4 * Y<sup>2</sup> = 4 * Y<sup>3</sup>; X<sup>1</sup>
+    = 4 * X<sup>2</sup> = 4 * X<sup>3</sup>.</p>
+<img src="..." alt="Bildebenen"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Jedes Pixel wird mit p Bit dargestellt, der Werteraum ist 2<sup>p</sup>-1. Die Pixel aller Ebenen haben gleiche
+    Bit-Tiefe.</p>
+<ul>
+    <li>verlustbehaftetes JPEG: 8 bzw. 12 Bit pro Pixel</li>
+    <li>verlustfreies JPEG: 2 <= p <= 12 Bit / Pixel</li>
+</ul>
+
+<p>Für jede Komponente werden horizontale und vertikale Auflösungsfaktoren H<sup>i</sup> und V<sup>i</sup> definiert,
+    indem man jeweils das Verhältnis der horizontalen und vertikalen Auflösungen bildet. Ist die Gesamtauflösung des
+    Bildes X und Y, so ergeben sich die Auflösungen der Komponenten i wie folgt:</p>
+<!--TODO: Formeln shortcode-->
+
+<p>Hmax und Vmax sind dabei die größten Werte für Hi und Vi. Diese Auflösungsfaktoren werden für jede Komponente im
+    'frame header' angegeben.</p><!--TODO: Formatierung-->
+<ul>
+    <li>X<sub>max</sub> = Maximum aller X<sup>i</sup> ; Y<sub>max</sub> = Maximum aller Y<sup>i</sup></li>
+    <li>H<sup>i</sup> bzw. V<sup>i</sup>= relative Auflösung, ganzzahlige Werte von 1 bis 4</li>
+    <li>H<sub>max</sub> bzw. V<sub>max</sub> = maximale horizontale bzw. vertikale Auflösung</li>
+</ul><!--TODO: Formatierung-->
+
+<p>Beispiel: 3 Ebenen mit</p>
+<p>X<sub>max</sub> = Y<sub>max</sub> = 512 Pixel; H<sup>0</sup> = 4, V<sup>0</sup> =1; H<sup>1</sup> = 2, V<sup>1</sup>
+    = 2; H<sup>2</sup> = 1,</p><!--TODO: Formatierung-->
+<p>V<sup>2</sup> = 1, daraus errechnet sich mit H<sub>max</sub> = 4 und V<sub>max</sub> = 2:
+</p><!--TODO: Formatierung-->
+<p>X<sup>0</sup> = H<sup>0</sup> * X<sub>max</sub> / H<sub>max</sub> = 512; Y0 = V0 * Ymax / Vmax = 256
+</p><!--TODO: Formatierung-->
+<p>X<sup>1</sup> = 2 * 512/4 = 256; Y<sup>1</sup> = 2 * 512/2 = 512; X<sup>2</sup> = 128, Y<sup>2</sup> = 256
+</p><!--TODO: Formatierung-->
+
+<p>Zur Kompression werden die Ebenen in Dateneinheiten (DU) zerlegt. Während die DCT-basierten Modi Blöcke zu 8 x 8
+    Bildpunkten bearbeiten, gehen die verlustlosen Modi Pixel für Pixel vor.</p>
+<ul>
+    <li>verlustfreier Modus: Dateneinheit = 1 Pixel</li>
+    <li>verlustbehafteter Modus: Dateneinheit = Block aus 8 * 8 Pixel</li>
+</ul>
+<p>Für die Kodierungsprozeduren können Dateneinheiten zu minimal-kodierten Einheiten (minimal coded units, MCU)
+    zusammengefasst werden. Umfasst ein Bild mehrere Komponenten, werden diese überlappt kodiert. Eine MCU ist hier ein
+    Paket mit jeweils H<sup>i</sup> x V<sup>i</sup> Dateneinheiten von jeder Komponente i.</p>
+<p>Reihenfolge der Bearbeitung der Dateneinheiten d<sup>i</sup><sub>uv</sub>:</p>
+<ul>
+    <li>nicht verschachtelt (<em>non-interleaved</em>): Bearbeitung erfolgt zeilenweise, d.h. von links nach rechts, von
+        oben nach unten.
+    </li>
+    <li>verschachtelt (<em>interleaved</em>): Damit bei der Wiedergabe eines RGB-Bildes großer Auflösung dieses nicht
+        zunächst
+        rot, dann rot-grün und schließlich korrekt angezeigt wird, erfolgt die Wiedergabe verschachtelt über 3 Ebenen.
+        Einheit der Bearbeitung ist eine MCU.
+    </li>
+</ul>
+
+<p>Das Dekodieren und korrekte Anzeigen von Bildteilen erfolgt je MCU. Dadurch erfolgt selbst bei nur teilweise
+    dekodierten Bildern eine korrekte Farbdarstellung.</p>
+<p>Für das folgende Bild gilt z.B.</p>
+<p></p>
+<p></p>
+<img src="..." alt="Beispiele für MCUs"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<h3 class="h4">4.5.2.2 Bildverarbeitung</h3>
+<p>Im Folgenden wird die Bildverarbeitung für den sequentiellen DCT-basierten Mode beschrieben.</p>
+<p>Die Pixel einer Ebene sind mit p = 8 Bit kodiert. Der Wertebereich von 0 bis 256 wird in das um den Nullpunkt
+    symmetrische Intervall (-128, 127) verschoben. Eine Dateneinheit besteht aus 8 x 8 verschobenen Pixelwerten
+    S<sub>yx</sub> , mit x, y &isin; {0, ..., 7}.</p>
+
+<p>Es wird die Diskrete Cosinus Transformation DCT (FDCT = Forward Discret Cosinus Transformation
+    <!--TODO: Fehlende Referenzen--> ) auf die Dateneinheit angewendet.</p>
+<!--TODO: Formeln shortcode-->
+
+<p>mit c<sub>u</sub>, c<sub>v</sub> = 1/<!--TODO: Formeln shortcode--> für u, v = 0; sonst c<sub>u</sub>,
+    c<sub>v</sub> = 1.</p>
+<p>Die Berechnung der Koeffizienten ist umfangreich. So benötigt man für einen zu transformierenden Pixelwert 56
+    Additionen und 64 Multiplikationen. In <!--TODO: Fehlende Referenzen-->sind schnelle Algorithmen für die DCT
+    beschrieben, die u.a. die symmetrischen Eigenschaften der Formeln nutzen.</p>
+<p>Theoretisch ist die Transformation 'Bild --> DCT --> IDCT --> DBild' verlustfrei, in der Praxis treten jedoch
+    Rundungsfehler auf.</p>
+<p>JPEG schreibt tolerierbare maximale Abweichungen vor.</p>
+<p>Die wenigsten Blöcke sind durch scharfe Kanten geprägt, d.h. i.w. sind es Flächen mit kontinuierlichem Farbverlauf.
+    Deshalb haben viele AC-Koeffizienten den Wert Null oder fast Null.</p>
+<p>Der Vorteil der DCT wird bei Bildern mit kontinuierlichen Farbübergängen besonders deutlich: Da sich benachbarte
+    Bildpunkte i.d.R. kaum unterscheiden, nehmen in der Koeffizientendarstellung nur der DC-Koeffizient und einige
+    niederfrequente AC-Koeffizienten größere Werte an. Die anderen sind sehr klein, d.h. die Farbschwankungen sind
+    gering.</p>
+
+<h3 class="h4">4.5.2.3 Quantisierung der DCT-Koeffizienten</h3>
+<p>Das Ziel von JPEG ist es, die Kompressionsrate möglichst frei wählen zu können. Dies wird durch die Quantisierung
+    erreicht. Die Quantisierung ist eine Abbildung, die für jedes Pixel eines Blockes durch eine von der Anwendung
+    festgelegte Tabelle mit 64 Einträgen (q<sub>uv</sub>) gesteuert wird.</p>
+<p>Sq<sub>uv</sub> seien quantisierte Koeffizenten; q<sub>uv</sub> seien ganzzahlige 8 Bit Werte; k sei ein frei
+    wählbarer Faktor, der den Kompressionsgrad bestimmt</p>
+<p>Sq<sub>uv</sub> = Runden</p><!--TODO: Formeln shortcode-->
+
+<p>Für die Dequantisierung im Rahmen der Dekompression, gilt:</p>
+<p>Sd<sub>uv</sub> = Sq<sub>uv</sub> * q<sub>uv</sub></p>
+
+<p>Durch die Transformation entsteht ein Informationsverlust, da die quantisierten Werte nicht den originalen
+    Koeffizienten entsprechen. Je größer der Quantisierungsfaktor (k x q<sub>uv</sub>)ist, desto größer ist auch der
+    Informationsverlust. Für die Quantisierung ohne sichtbaren Informationsverlust sind jeweils für Helligkeit und
+    Farbigkeit optimierte Quantisierungstabellen entwickelt worden<!--TODO: Fehlende Referenzen--> . In diesen Tabellen
+    werden für den DC-Koeffizienten und niederfrequente AC-Koeffizienten (kleinere) Quantisierungsfaktoren verwendet als
+    für die höheren. Man nutzt dabei die Schwäche des menschlichen Auges aus.</p>
+<p>Bei Implementierungen von JPEG kann man eine gewünschte Kompressionsrate (oder Bildqualität) als Parameter k
+    einstellen, bei der folgenden Kompression werden dann einfach die Quantisierungsfaktoren entsprechend skaliert.</p>
+<img src="..." alt="Wirkung der Quantisierung bei JPEG"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p><strong>Kodierung der Koeffizienten</strong></p>
+<img src="..." alt="Die 64 Koeffizienten"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Um zu veranschaulichen, wie die Basisblöcke aussehen, nach denen die Koeffizienten der DCT-Darstellung entwickelt
+    werden, dient die Abbildung von Graustufenbildern:</p>
+<ul>
+    <li>Kodierung des DC-Koeffizienten S<sub>00</sub>: Da die Grundfarbe sich nur wenig zwischen benachbarten
+        Dateneinheiten ändert, wird diese Differenz kodiert. DCi = S<sub>i,00</sub> - S<sub>i-1,00</sub></li>
+    <li>Kodierung der AC-Koeffizienten S<sub>uv</sub> für u, v > 0 : Die S<sub>uv</sub> werden gemäß einer
+        Zick-Zack-Sequenz sortiert, d.h. zunächst werden die Koeffizienten mit der niedrigeren Frequenz (i.allg. höherem
+        Wert) kodiert, gefolgt von den Koeffizienten mit höheren Frequenzen, von denen die meisten i.allg. Null sind.
+    </li>
+</ul>
+<img src="..." alt="Zick-Zack-Sortierung und Quantisierung"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<h3 class="h4">4.5.2.4 Entropiekompression der Daten</h3>
+<p>Das Ergebnis der bisher beschriebenen Verfahren enthält noch Redundanzen, die durch folgende nachgeschaltete
+    Verfahren reduziert werden können:</p>
+<ul>
+    <li>Darstellung von Variable Length Integers, anstatt Integers fester Länge,</li>
+    <li>Komprimierung durch den Huffman-Algorithmus,</li>
+    <li>Arithmetisches Kodieren : Komprimiert zwar besser als das Huffman-Verfahren, ist jedoch mit verschiedenen
+        Patenten belegt, so daß Lizenzgebühren anfallen. Aus diesem Grund arbeiten viele Implementierungen mit dem
+        Huffman-Verfahren.
+    </li>
+</ul>
+
+<p><strong>Variable Length Integers (VLI):</strong></p>
+<p>Die bisher dargestellten Methoden dienen i.w. der Transformation, wodurch die Kodierung der Koeffizienten um 3 Bits
+    größer werden kann. Da jedoch viele Koeffizienten durch die Quantisierung verschwinden, wird dies wieder wett
+    gemacht. Sind Koeffizienten klein, so würde bei fester Codelänge (z.B. 8 Bit) genauso viel Raum wie für große Zahlen
+    benötigt. Bei der VLI werden Integerwerte mit variabler Länge kodiert. Allerdings muss die Länge des Wertes bei der
+    Codierung mit angeben werden, um die Werte später wieder reproduzieren zu können. Es ergibt sich folgende
+    VLI-Darstellung:</p>
+<!--TODO: Formeln shortcode-->
+
+<p><strong>Huffman-Codierung:</strong></p>
+<p>Die DC- und AC-Werte werden transformiert, um eine für das Huffman-Verfahren günstige Codefolge zu erhalten.</p>
+<ul>
+    <li>DC-Koeffizient: Wird nach der DPCM kodiert, wobei Bezugspunkt der DC-Koeffizient des vorhergehenden Blocks ist.
+        Das Ergebnis wird in einen VLI-Wert umgewandelt.
+    </li>
+    <li>AC-Koeffizienten: Werden in einer besonderen Darstellung verschlüsselt. Die entstehenden Werte haben die Form
+        (Länge, Größe, Wert).<br/>
+        Länge = 4-Bit Zahl, entspricht der Anzahl von Nullen bis zum nächsten Nicht-Null-Koeffizienten,<br/>
+        Größe = Anzahl der Bits, die der Wert des Nicht-Nullkoeffizienten in VLI-Darstellung benötigt.<br/>
+        Wert = Wert des Koeffizienten.
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<p>Es wird deutlich, dass möglichst lange Folgen von Nullen zu einer kompakten Kodierung führen (Run-Length-Coding).
+    Unter diesen Nullsequenzen haben zwei eine besondere Bedeutung.</p>
+<ul>
+    <li>Eine Nullenfolge, die bis zum Ende des Blocks geht, wird nur als Blockendemarke (end-of-block, EOB) kodiert.
+    </li>
+    <li>Kodierte Werte der Form (15,0) haben Nullsequenzen, die länger als fünfzehn Zeichen sind. Auch hier wird auf
+        eine Kodierung des Wertes verzichtet.
+    </li>
+</ul>
+
+<h3 class="h4">4.5.2.5 Vergleich JPEG-Kodierter Bilder</h3>
+<img src="..." alt="JPEG - verlustfreie Kompression"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<img src="..." alt=" JPEG mit Kompressionsfaktor von ca. 1:7"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Die folgenden Bilder zeigen, dass JPEG nicht für alle Arten von Bildern geeignet ist. Es ist geeignet für Bilder mit
+    sanften Farbverläufen, nicht jedoch für Bilder mit scharfen Kanten und aprupten Farbübergängen.</p>
+<img src="..."
+     alt="Verlustfreie JPEG-Kompression bei einem nicht für JPEG geeigneten Bild"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<img src="..."
+     alt="Kompressionsrate von ca. 1:5 bei einem nicht für JPEG geeigneten Bild"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Die Bilder zeigen, dass JPEG für Bilder mit kontinuierlichem Farbverlauf geeignet ist. Für Bilder mit harten Kanten
+    ist es ungeeignet.</p>
+<p>Bei hohen Kompressionsfaktoren werden Artefakte sichtbar, d.h., die Blockstruktur der 8x8-Blöcke wird sichtbar.</p>
+
+<h3 class="h4">4.5.2.6 Darstellungsmodi</h3>
+<ul>
+    <li>Beim <strong>Sequential Mode</strong> werden die Bilddaten in einem Durchgang, von links oben nach rechts unten
+        kodiert.
+        <ul>
+            <li>Bei Bildern aus mehreren Komponenten, werden diese nicht nacheinander, also Komponente für Komponente
+                verschlüsselt, sondern die Komponenten werden überlappt behandelt.
+            </li>
+            <li>Dieser Modus ist für die meisten Anwendungen anwendbar, liefert die besten Kompressionsraten und ist mit
+                am einfachsten zu implementieren.
+            </li>
+        </ul>
+    </li>
+    <li>Beim <strong>Progressive Mode</strong> erfolgt die Darstellung des Bildes in mehreren Durchgängen, von
+        denen jeder nur einen Teil der Koeffizienten kodiert. Es gibt zwei grundlegende Arten:
+        <ul>
+            <li>Das Bild wird zunächst unscharf und dann von Durchlauf zu Durchlauf zunehmend genauer dargestellt.</li>
+            <li>Zum einen können die Koeffizienten in Frequenzbändern zusammengefasst und die niedrigen Frequenzen
+                zuerst verschlüsselt werden,
+            </li>
+            <li>zum anderen können die Koeffizienten mit immer größerer Genauigkeit übertragen werden.</li>
+        </ul>
+    </li>
+    <li>Der <strong>Hierarchical Mode</strong> ist eine andere Form des progressive mode. Er verwendet eine Anzahl von
+        Bildern mit immer gröberer Auflösung, die durch Filtern mit einem Tiefpass und Mittelung von mehreren
+        Pixelwerten erzeugt werden. Zunächst wird das Bild mit der kleinsten Auflösung kodiert. Dieses dient wiederum
+        als Basis für eine Vorhersage auf das Bild mit der nächstgrößeren Auflösung. Dieser Vorgang wird wiederholt, bis
+        die volle Auflösung erreicht ist.
+    </li>
+</ul>
+
+<h2>4.5.3 JPEG Interchange Format </h2>
+<p>Das JPEG- Komitee legte zwar alle Einzelheiten der Algorithmen fest, definierte jedoch kein allgemeines Dateiformat
+    für komprimierte Bilder. Es normierte nur das sogenannte JPEG Interchange Format (JIF), das zur Darstellung des
+    eigentlichen JPEG Datenstroms dient.</p>
+<p>Beispiel:</p>
+<p>JPEG erlaubt Farbräume mit verschiedenen Komponenten. Die Algorithmen regeln nicht die Bedeutung einzelner Farben,
+    die Anzahl der Komponenten legt den Farbraum nicht eindeutig fest, d.h. die Norm enthält keine Informationen über
+    den benutzten Farbraum, so daß dieser im Datenstrom kodiert werden muss.</p>
+<p>JIF strukturiert die Bilddaten durch sog. Marken.</p>
+<ul>
+    <li>Jede Marke kennzeichnet den Beginn eines Markersegments. Jedes Markersegment beginnt mit dem Byte FF, gefolgt
+        von einem Byte, das die Funktion der jeweiligen Marke angibt. Vor dem ersten FF dürfen optional weitere
+        Füll-Bytes mit dem Wert FF stehen.
+    </li>
+    <li>Es folgt die Angabe der Länge des Segmentes durch 2 Byte.</li>
+    <li>Der Datenstrom beginnt mit einer SOI-Marke (start of image) und endet mit einer EOI-Marke (end of image).
+        Dazwischen befinden sich ein - oder im 'hierarchical mode' - mehrere Frame-Segmente beginnend mit einer
+        SOFn-Marke (start of frame).
+    </li>
+    <li>Diese Frame-Segmente setzen die für alle in diesem Frame vorkommenden Bilddurchläufe notwendigen Parameter, wie
+        Bildgröße, Genauigkeit der Prozeduren, Anzahl der Komponenten und deren horizontale und vertikale Auflösungen.
+        Ein Parameter n gibt hierbei an, welcher Mode und welches Kodierungsverfahren bei der Bearbeitung verwendet
+        wird.
+    </li>
+</ul>
+
+<p>Frame-Segmente bestehen wiederum aus einem - oder im 'progressive mode' - mehreren Scan-Segmenten. Die ein
+    Scan-Segment einleitenden SOS-Marken (start of scan) kennzeichnen den Beginn eines Bilddurchlaufs und stehen
+    unmittelbar vor den Codesegmenten. Enthält ein Scan-Segment mehrere Codesegmente, werden diese durch zwei Bytes
+    große RST-Marken (restart) getrennt. Der Vorteil ist, daß einzelne Codesegmente lokalisiert werden können, ohne die
+    Daten zu dekodieren. Daher können die Segmente durch verschiedene Prozesse parallel verarbeitet werden.</p>
+<p>Zusätzlich zu den genannten Segmenten definiert JPEG noch weitere Segmente, die z.B. Quantisierungs- oder
+    Kodierungstabellen oder Parameter für die einzelnen Modi beinhalten.</p>
