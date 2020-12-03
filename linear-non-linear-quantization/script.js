@@ -49,6 +49,7 @@ function btnResolution(){
     document.getElementById('resolution1').style.display = "block";
     randomFrequency();
     document.getElementById('resolution2').style.display ='none';
+    document.getElementById('linearQuantisation').style.display = 'none';
 }
 
 function btnIntroduction(){
@@ -62,6 +63,7 @@ function btnIntroduction(){
     document.getElementById("sidebarEvaluation").style.color = "#212529";
     document.getElementById("resolution1").style.display="none";
     document.getElementById('resolution2').style.display ='none';
+    document.getElementById('linearQuantisation').style.display = 'none';
 }
 
 function randomFrequency(){
@@ -100,6 +102,7 @@ function btnShowCorrectAnswerResolution1(){
     document.getElementById('answerSamplingFrequency').innerHTML = correctAnswer;
     document.querySelector('.btnsamplingFrequency2').style.display = "block";
     document.querySelector('.btnsamplingFrequency').style.display = "none";
+    document.getElementById('linearQuantisation').style.display = 'none';
 }
 function btnStoragefrequency(){
     document.getElementById("sidebarStoragefrequency").style.display = "block";
@@ -117,6 +120,7 @@ function btnStoragefrequency(){
     document.getElementById('resolution2').style.display ='block';
     document.getElementById('limitSeconds').innerHTML = randomSecond;
     document.getElementById('limitStorage').innerHTML = randomStorage;
+    document.getElementById('linearQuantisation').style.display = 'none';
 }
 
 function btnCheckAnswerStorage(){
@@ -179,6 +183,7 @@ function btnShowCorrectAnswerResolution2(){
     document.querySelector('.btnContinueLinear').style.display = "block";
     document.getElementById('btnShowCorrectAnswerStorage').style.display = "none";
     document.querySelector('.btnContinueStorage').style.display = "none";
+    document.getElementById('linearQuantisation').style.display = 'none';
 }
 
 function btnContinueLinear(){
@@ -211,17 +216,17 @@ window.onload = function() {
     ];
 
     var circleData = [
-        {x:0 , y:0},{x:0 , y:40},{x:0 , y:80}, {x:0 , y:120}, {x:0 , y:160}, {x:0 , y:200}, {x:0 , y:240}, {x:0 , y:280},
-        {x:35 , y:0},{x:35 , y:40},{x:35 , y:80}, {x:35 , y:120}, {x:35 , y:160}, {x:35 , y:200}, {x:35 , y:240}, {x:35 , y:280},
-        {x:71 , y:0},{x:71 , y:40},{x:71 , y:80}, {x:71 , y:120}, {x:71 , y:160}, {x:71 , y:200}, {x:71 , y:240}, {x:71 , y:280},
-        {x:106 , y:0},{x:106 , y:40},{x:106 , y:80}, {x:106 , y:120}, {x:106 , y:160}, {x:106 , y:200}, {x:106 , y:240}, {x:106 , y:280},
-        {x:142 , y:0},{x:142 , y:40},{x:142 , y:80}, {x:142 , y:120}, {x:142 , y:160}, {x:142 , y:200}, {x:142 , y:240}, {x:142 , y:280},
-        {x:177 , y:0},{x:177 , y:40},{x:177 , y:80}, {x:177 , y:120}, {x:177 , y:160}, {x:177 , y:200}, {x:177 , y:240}, {x:177 , y:280},
-        {x:213 , y:0},{x:213 , y:40},{x:213 , y:80}, {x:213 , y:120}, {x:213 , y:160}, {x:213 , y:200}, {x:213 , y:240}, {x:213 , y:280},
-        {x:248 , y:0},{x:248 , y:40},{x:248 , y:80}, {x:248 , y:120}, {x:248 , y:160}, {x:248 , y:200}, {x:248 , y:240}, {x:248 , y:280},
-        {x:284 , y:0},{x:284 , y:40},{x:284 , y:80}, {x:284 , y:120}, {x:284 , y:160}, {x:284 , y:200}, {x:284 , y:240}, {x:284 , y:280},
-        {x:320 , y:0},{x:320 , y:40},{x:320 , y:80}, {x:320 , y:120}, {x:320 , y:160}, {x:320 , y:200}, {x:320 , y:240}, {x:320 , y:280}
-    ];
+      {x:0 , y:0 , isRed:false},{x:0 , y:40 , isRed:false},{x:0 , y:80 , isRed:false}, {x:0 , y:120 , isRed:false}, {x:0 , y:160 , isRed:false}, {x:0 , y:200 , isRed:false}, {x:0 , y:240 , isRed:false}, {x:0 , y:280 , isRed:false},
+      {x:35 , y:0 , isRed:false},{x:35 , y:40 , isRed:false},{x:35 , y:80 , isRed:false}, {x:35 , y:120 , isRed:false}, {x:35 , y:160 , isRed:false}, {x:35 , y:200 , isRed:false}, {x:35 , y:240 , isRed:false}, {x:35 , y:280 , isRed:false},
+      {x:71 , y:0 , isRed:false},{x:71 , y:40 , isRed:false},{x:71 , y:80 , isRed:false}, {x:71 , y:120 , isRed:false}, {x:71 , y:160 , isRed:false}, {x:71 , y:200 , isRed:false}, {x:71 , y:240 , isRed:false}, {x:71 , y:280 , isRed:false},
+      {x:106 , y:0 , isRed:false},{x:106 , y:40 , isRed:false},{x:106 , y:80 , isRed:false}, {x:106 , y:120 , isRed:false}, {x:106 , y:160 , isRed:false}, {x:106 , y:200 , isRed:false}, {x:106 , y:240 , isRed:false}, {x:106 , y:280 , isRed:false},
+      {x:142 , y:0 , isRed:false},{x:142 , y:40 , isRed:false},{x:142 , y:80 , isRed:false}, {x:142 , y:120 , isRed:false}, {x:142 , y:160 , isRed:false}, {x:142 , y:200 , isRed:false}, {x:142 , y:240 , isRed:false}, {x:142 , y:280 , isRed:false},
+      {x:177 , y:0 , isRed:false},{x:177 , y:40 , isRed:false},{x:177 , y:80 , isRed:false}, {x:177 , y:120 , isRed:false}, {x:177 , y:160 , isRed:false}, {x:177 , y:200 , isRed:false}, {x:177 , y:240 , isRed:false}, {x:177 , y:280 , isRed:false},
+      {x:213 , y:0 , isRed:false},{x:213 , y:40 , isRed:false},{x:213 , y:80 , isRed:false}, {x:213 , y:120 , isRed:false}, {x:213 , y:160 , isRed:false}, {x:213 , y:200 , isRed:false}, {x:213 , y:240 , isRed:false}, {x:213 , y:280 , isRed:false},
+      {x:248 , y:0 , isRed:false},{x:248 , y:40 , isRed:false},{x:248 , y:80 , isRed:false}, {x:248 , y:120 , isRed:false}, {x:248 , y:160 , isRed:false}, {x:248 , y:200 , isRed:false}, {x:248 , y:240 , isRed:false}, {x:248 , y:280 , isRed:false},
+      {x:284 , y:0 , isRed:false},{x:284 , y:40 , isRed:false},{x:284 , y:80 , isRed:false}, {x:284 , y:120 , isRed:false}, {x:284 , y:160 , isRed:false}, {x:284 , y:200 , isRed:false}, {x:284 , y:240 , isRed:false}, {x:284 , y:280 , isRed:false},
+      {x:320 , y:0 , isRed:false},{x:320 , y:40 , isRed:false},{x:320 , y:80 , isRed:false}, {x:320 , y:120 , isRed:false}, {x:320 , y:160 , isRed:false}, {x:320 , y:200 , isRed:false}, {x:320 , y:240 , isRed:false}, {x:320 , y:280 , isRed:false}
+  ];
     var xScale = d3.scale.linear()
             .domain(d3.extent(dataset, function(d) {
                 return d.x;
@@ -290,10 +295,35 @@ window.onload = function() {
         .attr('class', 'click-circle')
         .attr("cx", function(d){return d.x;})
         .attr("cy", function(d){return d.y;})
-        .attr("r", "2px")
-        .style("fill",  "#002557")
-        .on("mouseover", function(){d3.select(this).style("fill", "red");})
-        .on("mouseout", function(){d3.select(this).style("fill", "#002557" );});
+        .attr("r", "4px")
+        .style("fill",  "grey")
+        .on("click", function(point) {
+          setCircleColumnGreyByX(Object.values(point)[0]);
+          setRedOnCircleData(Object.values(point)[0], Object.values(point)[1], true);
+        })
+
+    function getCircleColumnByX(xValue) {
+      return circleData.filter(point => point['x'] == xValue);
+    }
+
+    function setCircleColumnGreyByX(x) {
+      getCircleColumnByX(x).forEach((point) => {
+        setRedOnCircleData(Object.values(point)[0], Object.values(point)[1], false);
+      });
+    }
+
+    function updateCircleDataView(){
+    	circles.filter(function(d) { return d['isRed'] == true; }).style("fill", "red");
+      circles.filter(function(d) { return d['isRed'] == false; }).style("fill", "grey");
+    }
+    function setRedOnCircleData(x, y, boolRed) {
+      circleData.forEach((point) => {
+        if (Object.values(point)[0] == x && Object.values(point)[1] == y) {
+          point['isRed'] = boolRed;
+        }
+      });
+      updateCircleDataView();
+    }
 }
 
 function randomDataset1(){
