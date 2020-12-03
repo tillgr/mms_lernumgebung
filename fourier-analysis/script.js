@@ -317,8 +317,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	var svg1 = d3.select("#svg_graph1")
 		.attr("viewBox", [0, 0, width, height]);
 	
-	
-	
 	svg1.append("g")
 		.style("font", "20px times")
 		//.style("font-size", "20px")
@@ -335,32 +333,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 	svg1.append("g")
 		.call(grid);
-		
-		
-		var dataLine = svg1.selectAll(".dataLine")
-			.data([function_data], (d, i) => i);
-		
-		dataLine
-			.enter()
-			.append("path")
-				.attr("class", "dataLine")
-			.merge(dataLine)
-			.transition()
-			.duration(10)
-				.attr("fill", "none")
-				.attr("stroke", "blue")
-				.attr("stroke-linejoin", "round")
-				.attr("d", d3.line()
-					.x((d, i) => x(i))
-					.y(d => y(d)));
-					
-					
 	
 	
 	// graph2 (spectrum_data) ///////////////
 	
 	var x = d3.scaleBand()
-		.domain(d3.range(spectrum_data.length + 1))
+		.domain(d3.range(spectrum_data.length))
 		.range([margin.left, width - margin.right])
 		.padding(0.1);
 		
@@ -370,13 +348,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 	var xAxis = d3.axisBottom(x)
 		.ticks(8)
-		.tickFormat(d => "A" + d);
+		.tickFormat(d => "A" + (d + 1));
 	var yAxis = d3.axisLeft(y);
 		
 	var svg2 = d3.select("#svg_graph2")
 		.attr("viewBox", [0, 0, width, height]);
-	
-	
 	
 	svg2.append("g")
 		.style("font", "20px times")
@@ -391,23 +367,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		.attr("transform", "translate(" + (margin.left) + ", 0)")
 		.call(yAxis);
 		
-	
-		var dataLine = svg2.selectAll(".dataLine")
-			.data([spectrum_data], (d, i) => i);
-		
-		dataLine
-			.enter()
-			.append("path")
-				.attr("class", "dataLine")
-			.merge(dataLine)
-			.transition()
-			.duration(200)
-				.attr("fill", "none")
-				.attr("stroke", "blue")
-				.attr("stroke-linejoin", "round")
-				.attr("d", d3.line()
-					.x((d, i) => x(i))
-					.y(d => y(d)));
 	
 	updateGraphs();
 					
@@ -427,22 +386,22 @@ document.addEventListener("DOMContentLoaded", function() {
 	var svg1 = d3.select("#svg_graph1")
 		.attr("viewBox", [0, 0, width, height]);		
 		
-		var dataLine = svg1.selectAll(".dataLine")
-			.data([function_data], (d, i) => i);
+	var dataLine = svg1.selectAll(".dataLine")
+		.data([function_data], (d, i) => i);
 		
-		dataLine
-			.enter()
-			.append("path")
-				.attr("class", "dataLine")
-			.merge(dataLine)
-			.transition()
-			.duration(200)
-				.attr("fill", "none")
-				.attr("stroke", "blue")
-				.attr("stroke-linejoin", "round")
-				.attr("d", d3.line()
-					.x((d, i) => x(i))
-					.y(d => y(d)));
+	dataLine
+		.enter()
+		.append("path")
+			.attr("class", "dataLine")
+		.merge(dataLine)
+		.transition()
+		.duration(200)
+			.attr("fill", "none")
+			.attr("stroke", "blue")
+			.attr("stroke-linejoin", "round")
+			.attr("d", d3.line()
+				.x((d, i) => x(i))
+				.y(d => y(d)));
 					
 					
 	
@@ -450,8 +409,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	// graph2 (spectrum_data) (bar chart)
 
 	var padding = 10;
-	var bar_width = width / (spectrum_data.length + 1) - padding;
+	var bar_width = width / (spectrum_data.length) - padding;
 	var max_height = height;
+
+	var x = d3.scaleBand()
+		.domain(d3.range(spectrum_data.length))
+		.range([margin.left, width - margin.right])
+		.padding(0.1);
 	
 	var y = d3.scaleLinear()
 		.domain([0, 150]).nice()
@@ -459,28 +423,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	var svg2 = d3.select("#svg_graph2")
 		.attr("viewBox", [0, 0, width, height]);
-
+	
 	svg2.selectAll("rect")
 		.data(spectrum_data)
 		.enter()
 		.append("rect")
-		.attr("x", function(d, i) { return bar_width * i + padding * i + 50; })
+		.attr("x", function(d, i) { return x(i)/*return bar_width * i + padding * i + 50; */})
 		.attr("y", 0)
 		.attr("width", bar_width)
 		.attr("height", 0)
 		.style("fill", function(d) { return "blue";})
-		.on("mouseover", function(d, i) {
-			svg2.append("text")
-			.attr("x", bar_width * i + padding * i + bar_width / 2)
-			.attr("y", max_height - max_height * d.value / 100 - 5)
-			.style("fill", "green")
-			.style("text-anchor", "middle")
-			.style("font-size", "36px")
-			.text(d.name);
-			})
-		.on("mouseout", function() {
-			svg2.selectAll("text").remove();
-		});
    
 	svg2.selectAll("rect")
 		.transition()
