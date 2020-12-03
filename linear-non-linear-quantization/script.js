@@ -215,18 +215,13 @@ window.onload = function() {
         {x: 0.16, y: randomDataset2()}, {x: 0.18, y: randomDataset2()}
     ];
 
-    var circleData = [
-      {x:0 , y:0 , isRed:false},{x:0 , y:40 , isRed:false},{x:0 , y:80 , isRed:false}, {x:0 , y:120 , isRed:false}, {x:0 , y:160 , isRed:false}, {x:0 , y:200 , isRed:false}, {x:0 , y:240 , isRed:false}, {x:0 , y:280 , isRed:false},
-      {x:35 , y:0 , isRed:false},{x:35 , y:40 , isRed:false},{x:35 , y:80 , isRed:false}, {x:35 , y:120 , isRed:false}, {x:35 , y:160 , isRed:false}, {x:35 , y:200 , isRed:false}, {x:35 , y:240 , isRed:false}, {x:35 , y:280 , isRed:false},
-      {x:71 , y:0 , isRed:false},{x:71 , y:40 , isRed:false},{x:71 , y:80 , isRed:false}, {x:71 , y:120 , isRed:false}, {x:71 , y:160 , isRed:false}, {x:71 , y:200 , isRed:false}, {x:71 , y:240 , isRed:false}, {x:71 , y:280 , isRed:false},
-      {x:106 , y:0 , isRed:false},{x:106 , y:40 , isRed:false},{x:106 , y:80 , isRed:false}, {x:106 , y:120 , isRed:false}, {x:106 , y:160 , isRed:false}, {x:106 , y:200 , isRed:false}, {x:106 , y:240 , isRed:false}, {x:106 , y:280 , isRed:false},
-      {x:142 , y:0 , isRed:false},{x:142 , y:40 , isRed:false},{x:142 , y:80 , isRed:false}, {x:142 , y:120 , isRed:false}, {x:142 , y:160 , isRed:false}, {x:142 , y:200 , isRed:false}, {x:142 , y:240 , isRed:false}, {x:142 , y:280 , isRed:false},
-      {x:177 , y:0 , isRed:false},{x:177 , y:40 , isRed:false},{x:177 , y:80 , isRed:false}, {x:177 , y:120 , isRed:false}, {x:177 , y:160 , isRed:false}, {x:177 , y:200 , isRed:false}, {x:177 , y:240 , isRed:false}, {x:177 , y:280 , isRed:false},
-      {x:213 , y:0 , isRed:false},{x:213 , y:40 , isRed:false},{x:213 , y:80 , isRed:false}, {x:213 , y:120 , isRed:false}, {x:213 , y:160 , isRed:false}, {x:213 , y:200 , isRed:false}, {x:213 , y:240 , isRed:false}, {x:213 , y:280 , isRed:false},
-      {x:248 , y:0 , isRed:false},{x:248 , y:40 , isRed:false},{x:248 , y:80 , isRed:false}, {x:248 , y:120 , isRed:false}, {x:248 , y:160 , isRed:false}, {x:248 , y:200 , isRed:false}, {x:248 , y:240 , isRed:false}, {x:248 , y:280 , isRed:false},
-      {x:284 , y:0 , isRed:false},{x:284 , y:40 , isRed:false},{x:284 , y:80 , isRed:false}, {x:284 , y:120 , isRed:false}, {x:284 , y:160 , isRed:false}, {x:284 , y:200 , isRed:false}, {x:284 , y:240 , isRed:false}, {x:284 , y:280 , isRed:false},
-      {x:320 , y:0 , isRed:false},{x:320 , y:40 , isRed:false},{x:320 , y:80 , isRed:false}, {x:320 , y:120 , isRed:false}, {x:320 , y:160 , isRed:false}, {x:320 , y:200 , isRed:false}, {x:320 , y:240 , isRed:false}, {x:320 , y:280 , isRed:false}
-  ];
+    var circleData = [];
+
+    for (var xValue = 0; xValue <= 0.18; xValue+=0.02) {
+      for (var yValue = 210; yValue >= 0; yValue-=30) {
+        circleData.push({x: xValue, y: yValue, isRed: false})
+      }
+    }
     var xScale = d3.scale.linear()
             .domain(d3.extent(dataset, function(d) {
                 return d.x;
@@ -293,13 +288,18 @@ window.onload = function() {
         .append("circle");
     var circleAttributes = circles
         .attr('class', 'click-circle')
-        .attr("cx", function(d){return d.x;})
-        .attr("cy", function(d){return d.y;})
+        .attr("cx", function(d) {
+          return xScale(d.x);
+        })
+        .attr("cy", function(d) {
+          return yScale(d.y);
+        })
         .attr("r", "4px")
         .style("fill",  "grey")
         .on("click", function(point) {
           setCircleColumnGreyByX(Object.values(point)[0]);
           setRedOnCircleData(Object.values(point)[0], Object.values(point)[1], true);
+          updateArrays();
         })
 
     function getCircleColumnByX(xValue) {
@@ -323,6 +323,60 @@ window.onload = function() {
         }
       });
       updateCircleDataView();
+    }
+    function getRedCircleInColumn(array){
+      return array.find(point => point['isRed'] == true);
+    }
+    function isRedCircleInColumn(array){
+      let bool = false;
+      array.forEach((point) => {
+        if (point['isRed'] == true) {
+          bool = true;
+          return false;
+        }
+      });
+      return bool;
+    }
+    var absoluteArray = {
+      0: null,
+      35: null,
+      71: null,
+      106: null,
+      142: null,
+      177: null,
+      213: null,
+      248: null,
+      284: null,
+      320: null,
+    };
+    var relativeArray = {
+      0: null,
+      35: null,
+      71: null,
+      106: null,
+      142: null,
+      177: null,
+      213: null,
+      248: null,
+      284: null,
+      320: null,
+    };
+
+    function updateArrays(){
+
+      for (var key in absoluteArray) {
+        if (isRedCircleInColumn(getCircleColumnByX(key))) {
+          // TODO: hier berechnungen machen
+          absoluteArray[key] = getRedCircleInColumn(getCircleColumnByX(key))['y']
+        }
+      }
+      for (var key in relativeArray) {
+        if (isRedCircleInColumn(getCircleColumnByX(key))) {
+          // TODO: hier berechnungen machen
+          console.log(dataset);
+          relativeArray[key] = getRedCircleInColumn(getCircleColumnByX(key))['y'] - dataset[key]
+        }
+      }
     }
 }
 
