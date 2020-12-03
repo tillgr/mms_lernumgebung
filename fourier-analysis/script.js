@@ -223,11 +223,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	var function_data = [];
 	var spectrum_data = new Array(10);
 	
-	for(var i = 0; i < spectrum_data.length; i++) {
-		spectrum_data[i] = {"name": "A" + (i+1).toString(), "value": 0};
-	}
-	console.log(spectrum_data);
-	
 	// function calculation
 	function calculateFunctionAt(n) {
 		
@@ -259,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// spectrum calculation
 	function calculateSpectrumData() {
 		for(var i = 0; i < spectrum_data.length; i++) {
-			spectrum_data[i].value = Math.sqrt(parseInt(sliders_a[i].value, 10) * parseInt(sliders_a[i].value, 10) + parseInt(sliders_b[i].value, 10) * parseInt(sliders_b[i].value, 10));
+			spectrum_data[i] = Math.sqrt(parseInt(sliders_a[i].value, 10) * parseInt(sliders_a[i].value, 10) + parseInt(sliders_b[i].value, 10) * parseInt(sliders_b[i].value, 10));
 		}
 	}
 	
@@ -437,8 +432,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		svg2.selectAll("rect")
 			.transition()
 			.duration(0)
-			.attr("y", d => y(d.value))
-			.attr("height", d => max_height - margin.bottom - y(d.value));
+			.attr("y", d => y(d))
+			.attr("height", d => max_height - margin.bottom - y(d));
 		
 	}
 	
