@@ -93,3 +93,21 @@ ul {
     margin-left: 1rem;
   }
 }
+
+.snippet {
+  border: .1rem solid theme-color("primary");
+
+  header {
+    padding: .5rem;
+  }
+
+  .content {
+    padding: .5rem;
+
+    @media screen and (min-width: 1200px) {
+      svg {
+        width: 80%;
+      }
+    }
+  }
+}
