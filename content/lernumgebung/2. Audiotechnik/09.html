@@ -1,0 +1,601 @@
+---
+title: "2.9 Raumklang"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<h2>1.9.1 Grundlagen der Wellenausbreitung</h2>
+<p><strong>Interferenz, Schwebung</strong></p>
+<p>Die Überlagerung von Schallwellen wird als <strong>Interferenz</strong>> bezeichnet. Die resultierende Amplitude
+    hängt von der Phasenlage der einzelnen Wellen ab, wobei gleiche Phasenlage eine Verstärkung (konstruktive
+    Interferenz) und entgegengesetzte Phasenlage eine Abschwächung der Amplitude bewirkt. Die Überlagerung von Wellen
+    annähernd gleicher Frequenz zu einem sich wellenförmig ändernden Amplitudenverlauf wird als
+    <strong>Schwebung</strong> bezeichnet.</p><!--TODO: Formatierung-->
+
+<p><strong>Reflexion</strong></p>
+<p>An der Grenzfläche zwischen 2 Medien wird ein Teil der ankommenden Energie in Richtung Quelle zurückgeworfen
+    (<strong>Reflexion</strong>). Ist die Grenzfläche im Vergleich zur Wellenlänge groß, so gilt das Snellius’sche
+    Gesetz (Einfalls- gleich Ausfallswinkel): v2* sin(a1) = v1* sin(a2); wobei v1 und v2 die jeweiligen
+    Ausbreitungsgeschwindigkeiten bedeuten. Glatte Oberflächen führen zu regelmäßiger, raue Oberflächen zu diffuser
+    Reflektion. Oberflächen werden als rau bezeichnet, wenn die Unebenheiten größer als die Länge der reflektierenden
+    Welle sind.</p><!--TODO: Formatierung-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p><strong>Absorption, Dissipation und Transmission</strong></p>
+<p>Ein Teil der Schallenergie wird an der Grenzfläche nicht reflektiert sondern von dieser aufgenommen (<strong>Absorption</strong>).
+    Der Absorbtionsgrad ist abhängig von der Frequenz der Welle. Von der absorbierten Energie wird ein Teil in Wärme
+    ungewandelt (<strong>Dissipation</strong>) und der restliche Teil wird im zweiten Medium weitergeleitet (<strong>Transmission</strong>).
+</p><!--TODO: Formatierung-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p><strong>Brechung, Beugung</strong></p>
+<p>Ändert sich die Ausbreitungsgeschwindigkeit kontinuierlich mit dem Ort, so ergibt sich ein gekrümmter Ausbreitungsweg
+    (<strong>Brechung</strong>).Ein Objekt ist für eine Schallwelle dann ein Hindernis, wenn seine Abmessungen größer
+    als die Wellenlänge sind - ansonsten passiert eine <strong>Beugung</strong> der Welle um diesen herum. Die
+    Wellenlänge bestimmt also, ob es zur Beugung, Reflexion und Absorption kommt. Gleiches gilt auch für Öffnungen in
+    einem Objekt: Sind diese kleiner als die Wellenlänge des Schalls, so erfolgt eine strahlenförmige Ausbreitung
+    dahinter. Z.B. gelangen tiefe Frequenzen bei Türspalten durch Beugung, hohe Frequenzen nur durch Mehrfachreflexion
+    in einen benachbarten Raum. Grundsätzlich gilt: hohe Frequenzen breiten sich i. Allg. schlechter aus als tiefe - ein
+    Schallereignis klingt umso dumpfer, je weiter der Hörer entfernt ist.</p><!--TODO: Formatierung-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p><strong>Direktschall, Erstreflektion, Nachhall</strong></p>
+<p>Als <strong>Direktschall</strong> wird die Wellenfront bezeichnet, die sich auf dem kürzesten Wege von der Quelle zum
+    Hörer ausbreitet. Meist ca. 30 - 40 ms nach dem Direktschall treffen beim Hörer Reflektionen erster Ordnung
+    (<strong>Erstreflektionen</strong>) ein. Allerdings werden erst ab einer Verzögerung von über 100 ms zwei Ereignisse
+    hörbar (Echo). Nach der Erstreflektion treffen jene Wellenfronten beim Hörer ein, die mehrfach an den Wänden
+    reflektiert wurden (<strong>Nachhall</strong>). Diese Reflektionen sind immer dichter und von geringerer Energie,
+    und werden als einheitliches, verklingendes Schallergebnis wahrgenommen. Nachhallzeit und Halldichte beschreiben die
+    Abfolge der Mehrfachreflexionen. Verzögerung und Verhältnis der Amplituden zwischen Direktschall, Erstreflexion und
+    Nachhall sind charakteristisch für die Raumgröße und die Entfernung zwischen Hörer und Quelle. Nähe bedeutet kurzer
+    Weg und hohe Intensität des Direktschall bei stärkerer Verzögerung der Erstreflexion. Entfernung bedeutet geringere
+    Laufzeit- und Intensitätsunterschiede der Amplituden; Intensität I=f(1/Entfernung²).</p><!--TODO: Formatierung-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p><strong>Impulsantwort</strong></p>
+<p>Als <strong>Impuls</strong> bezeichnet man ein sehr kurzes, breitbandiges, energiereiches Signal (wie z.B. ein Schuss
+    oder Klatschen). Ist ein Impuls Eingangssignal eines linearen Systems, so repräsentiert die
+    <strong>Impulsantwort</strong> den Frequenzgang des Systems (Direktschall, Erstreflexion und Nachhall). Anhand
+    seiner charakteristischen Impulsantwort lassen sich die Klangeigenschaften eines Raumes gut beschreiben; durch
+    Faltung eines Audiosignals mit der Impulsantwort eines Raums, erhält das Produkt die akustischen Eigenschaften des
+    betreffenden Raumes.</p>
+
+<h2>1.9.2 Akustische Raumwahrnehmung</h2>
+<p>Schall breitet sich in Form von Wellen mit Schallgeschwindigkeit durch Luft aus. Dabei werden die Schallwellen im
+    Raum an Objekten <strong>reflektiert</strong> oder teilweise bis vollständig von Objekten oder dem Trägermedium Luft
+    <strong>absorbiert</strong>. Dies geschieht abhängig von der Frequenz der Schallwellen. Das Material der Objekte ist
+    ausschlaggebend für die Stärke der Absorption und Reflektion. Luft absorbiert vorwiegend höhere Frequenzanteile.
+    Dadurch wirkt Schall aus größerer Entfernung dumpfer. Es ist auch möglich, dass Schallwellen Objekte durchdringen,
+    allerdings trifft dies eher auf tiefe als auf hohe Frequenzen zu. Die <strong>Occlusion</strong> beschreibt eine
+    Situation, in der eine Schallquelle durch ein Objekt verdeckt wird. In diesem Fall werden Schallwellen mit
+    Wellenlängen größer der Ausdehnung des Objektes um das Objekt gebeugt, kleinere werden absorbiert. Durch <strong>Interferenz</strong>
+    (Überlagerung von Wellen) können sich Schallwellen verstärken oder auslöschen. Die geometrischen Eigenschaften der
+    Objekte im Raum, wie Ecken, Kanten und Öffnungen, führen zusätzlich zu Brechung und Streuung der Schallwellen.
+</p>
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Will man eine natürliche Umgebung akustisch simulieren, so gestaltet sich dies daher als sehr komplex und kann nur
+    näherungsweise erfolgen. Abhilfe verschafft also eine Vereinfachung der Umgebung, so wie es bei
+    3D-Benutzerschnittstellen und virtuellen Umgebungen der Fall ist. Je komplexer die virtuelle Welt jedoch erstellt
+    wird, desto aufwändiger wird auch die Berechnung des Raumklanges</p><!--TODO: Fehlende Referenzen-->
+<p>Die Wahrnehmung von Schall lässt sich anhand von drei Komponenten beschreiben: Schallquellen, die akustische Umgebung
+    und der Hörende.</p>
+<ul>
+    <li>Eine <strong>Schallquelle</strong> ist der Ausgangspunkt von Schallwellen und kann sich fest an einem Punkt
+        befinden oder im Raum bewegen. Die Ausbreitung der Schallwellen erfolgt kugelförmig um diese Quelle nach allen
+        Richtungen, die Intensität kann dabei jedoch für jede Richtung verschieden sein.
+    </li>
+    <li>Die <strong>akustische Umgebung</strong> umfasst das Ausbreitungsmedium Luft und Objekte, wie Wände und
+        Gegenstände im Raum.
+    </li>
+    <li>Der <strong>Hörende</strong> empfängt Schallwellen aus der Umgebung und kann sich ebenfalls an einem bestimmten
+        Punkt befinden oder im Raum bewegen.
+    </li>
+</ul>
+
+<p>Bewegen sich Schallquellen oder der Hörende relativ zueinander, so bezeichnen wir den zu beobachtenden Effekt als
+    GlossarDoppler-Effekt<!--TODO: Missing Hyperlink--> . Ausschlaggebend ist, dass die von einem Empfänger registrierte
+    Frequenz einer Schallwelle nicht mehr mit der gesendeten Frequenz übereinstimmt. D.h., bewegen sich Schallquelle und
+    Hörer aufeinander zu, so erhöht sich die Frequenz, bewegen sie sich voneinander fort, so verringert sich die
+    Frequenz.</p>
+<p>Auch der Ankunftszeitpunkt beim Hörer hat Einfluss auf die Wahrnehmung eines Signals (<strong>precedence
+    effect</strong>): Wird ein Impulssignal so über 2 Lautsprecher ausgegeben, dass das linke Signal geringfügig früher
+    als das Rechte gesendet wird, so wird von der Versuchsperson nur ein linkes Signal wahrgenommen.</p>
+<p>Geringe Laufzeitunterschiede der Schallwellen zu den Ohren des Hörenden (<strong>interaural time difference</strong>)
+    und unterschiedliche Intensität des Schalles am rechten und linken Ohr (<strong>interaural intensity
+        difference</strong>) ermöglichen dem Menschen die Richtungswahrnehmung. Selbst geringste Unterschiede kann das
+    Gehör wahrnehmen, die vom Gehirn in entsprechende Richtungsinformationenen der Schallwellen verarbeitet werden. Die
+    Zeitdifferenz (auch Phasendifferenz) ist i.W. nur bei tiefen Frequenzen wahrnehmbar; sie lässt sich berechnen durch
+    , wobei a = Kopfradius (ca. 8,75 cm) und c = Schallgeschwindigkeit (ca.340 m/s) ist. Intensitätsunterschiede
+    (Lautstärke-) entstehen i.W. nur bei hohen Frequenzen, da Signalwellen, deren Wellenlänge größer ist als der
+    menschliche Kopf, kaum gestört werden. Daher ist dieser Effekt kaum bei niedrigen Frequenzen wahrnehmbar, weshalb
+    Bässe schlecht ortbar sind.</p><!-- TODO: Formelzeichen--><!--TODO: Formatierung-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Um zu erkennen, von wo ein Schall eintrifft, wertet das Gehirn das Spektrum der empfangenen Schallwellen aus, denn es
+    wird je nach Richtung durch Absorptionen und Interferenzen bestimmter Frequenzanteile am Kopf und Oberkörper sowie
+    im Gehörgang des Menschen verändert. In verschiedenen Forschungsprojekten wurden Mikrofone in Dummy-Puppen
+    eingesetzt, um diese Veränderungen zu messen. Daraus resultierten dann sogenannte "<strong>Head-Related Transfer
+        Functions</strong>" (HRTFs), mit deren Hilfe schließlich Audiosignale aus unterschiedlichen Richtungen simuliert
+    werden können. Um jedoch die genaue Lage einer Schallquelle erkennen zu können, ist neben der Richtungsinformation
+    auch eine Information über die Entfernung der Quelle notwendig.</p>
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Das Einschätzen der Entfernung beruht auf Erfahrungen des Hörenden: Hat der Hörende eine Vorstellung von der normalen
+    Lautstärke einer Schallquelle, kann er über die empfangene <strong>Intensität</strong> Rückschlüsse über ihre
+    Entfernung ziehen. Normalerweise fällt allerdings die Wahrnehmung durch das Sehen leichter, da Schallquellen in der
+    Regel mit sichtbaren Objekten verbunden sind.</p>
+<p>Im Bereich von etwa einem Meter um den Kopf des Hörenden, dem sogenannten
+    <strong>near field</strong>
+    ,
+    sind auch interaural intensity difference und HRTFs stark von der Entfernung abhängig. So sind wir in der
+    Lage, in diesem etwa der Reichweite der Arme entsprechenden Bereich sowohl Richtung als auch Entfernung der
+    Schallquelle gut wahrzunehmen.
+</p>
+<p>Befinden sich Schallquelle und Hörer in einem Raum, treten Reflektionen in der Umgebung auf. Hierbei treffen
+    Schallwellen, die direkt aus der Richtung der Quelle emfangen werden, als erste ein, denn sie haben den kürzesten
+    Weg (<strong>direct path</strong>). Sie haben auch eine höhere Intensität als reflektierte Schallwellen, die erst
+    nach einer leichten
+    Verzögerung eintreffen und durch die teilweise Absorption eine geringere Intensität besitzen. Als "<strong>early
+        reflections</strong>" bezeichnet man diejenigen Schallimpulse, welche den Empfänger innerhalb einer kurzen
+    Zeitspanne (ca. 20
+    bis 80ms) nach dem direct path-Impulsen erreichen. Sie werden noch als getrennte Impulse wahrgenommen und vermitteln
+    dem Hörenden Informationen über die Umgebung. Noch später eintreffende Schallwellen, werden als
+    "<strong>Hall</strong>" (<strong>reverb</strong>)
+    bezeichnet. Diese Wellen bilden einen unbestimmten, abebbenden Klang, der aus keiner besonderen Richtung zu kommen
+    scheint. Mit diesem Hallanteil ist der Hörer in der Lage, sich einen Eindruck von der Größe und der Art des Raumes,
+    in dem er sich befindet, einen Eindruck zu verschaffen.</p>
+<p>Befindet sich eine Schallquelle hinter einem anderen Objekt, z.B. hinter einer Wand, so kann es sein, dass sie sich
+    für den Hörenden an einem anderen, gespiegelten Ort zu befinden scheint, was als <strong>Behinderung</strong>
+    (<strong>obstruction</strong>)
+    bezeichnet wird. Dabei werden keine oder nur stark abgeschwächte direct path-Impulse empfangen, sondern eher einmal
+    reflektierte Schallwellen aus entgegengesetzter Richtung. Die eigentliche Richtung der Schallquelle erkennt der
+    Hörende erst, sobald er das Hindernis umschreitet. Die Occlusion wird über Tiefpassfilterung realisiert.</p>
+<p>Eine Anpassung des Klangbildes an die aktuelle Position und Orientierung des Hörers erfolgt anhand des
+    Kompensationssignal, welches aus den beiden Parametern berechnet wird. Die Bestimmung des Kompensationssignals ist
+    aufwendig, da mit kürzerer Wellenlänge die Empfindlichkeit für Abweichungen von der optimalen Hörposition steigt.
+    Einfachste Verfahren beschränken sich auf Kompensation 1. Ordnung, und berücksichtigen nicht den Einfluss der
+    Übertragung des Schalls von den Lautsprechern zum Trommelfell des Hörers.</p>
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Unter Berücksichtigung oben genannter Prinzipien ist es nun möglich, mit Lautsprechern oder Kopfhörern Raumklang zu
+    erzeugen und virtuelle Schallquellen im Raum zu positionieren. Man bezeichnet diesen Vorgang als <strong>Spatialization</strong>
+    bzw. Erzeugung von <strong>spatialized sound</strong></p><!--TODO: Fehlende Referenzen-->
+
+<h2>1.9.3 3D-Audioverfahren</h2>
+<h4>1.9.3.1 Verfahren zur Echtzeitberechnung</h4>
+<p>Eine exakte Berechnung des Raumklanges an einem bestimmten Punkt im Raum ist durch Nachbildung der in Kapitel 1.9.2
+    beschriebenen Effekte möglich. Da sich Schallwellen wie Lichtwellen ausbreiten und an der Position des Hörers
+    eintreffen, kann man diese Berechnung mit den Verfahren Link Raytracing<!--TODO: Missing Hyperlink--> und Link
+    Radiosity<!--TODO: Missing Hyperlink--> vergleichen, die aus der
+    3D-Grafik bekannt sind. Dort beschreibt Radiosity die Berechnung von aufgenommener und abgestrahlter Energie an
+    Oberflächen, Raytracing ist die Verfolgung von Strahlen und deren Reflektionen (im Audiobereich spricht man dann von
+    Pathtracing). Jedoch erfolgt die Berechnung im Audiobereich, im Gegensatz zum Raytracing-Verfahren, ausgehend von
+    den Schallquellen hin zur Hörerposition. Die Umgebung des Hörenden wird dabei in Form einer geometrischen
+    Beschreibung, die gleichzeitig zur Visualisierung verwendet wird, zur Ermittlung von Reflektionen, Absorptionen und
+    Verdeckungen berücksichtigt Literatur<!--TODO: Fehlende Referenzen--> Literatur<!--TODO: Fehlende Referenzen--> . Da
+    die genaue Berechnung sehr aufwendig ist, mussten
+    für Echtzeitanwendungen Vereinfachungen gefunden werden.</p>
+
+<h4>1.9.3.2 Image Source Verfahren</h4>
+<p>Hierbei werden virtuelle Schallquellen durch Spiegelung der Ursprungsquellen an allen nicht verdeckten Oberflächen
+    der Umgebung erzeugt und Absorptionen berücksichtigt. Die ermittelten virtuellen Quellen werden erneut gespiegelt,
+    bis die gewünschte Tiefe (Anzahl von Reflektionsvorgängen) erreicht ist. So können alle Reflektionspfade erfasst
+    werden. Zum Schluss wird überprüft, welche der virtuellen und ursprünglichen Quellen von der Hörerposition aus
+    sichtbar sind. Diese werden durch Spatialization hörbar gemacht. Bei komplexen Umgebungen wird der Rechenaufwand
+    jedoch sehr hoch. Dieser kann aber durch Vereinfachung der Raumgeometrie und Reduzierung der Reflektionsvorgänge
+    verringert werden. Der diffuse Hallanteil (späte Reflektionen höherer Ordnung und Streuung) kann auch zusätzlich
+    näherungsweise generiert werden, da dieser für die Richtungswahrnehmung keine Rolle spielt.</p>
+
+<h4>1.9.3.3 Beamtracing</h4>
+<p>Beamtracing ist ein Verfahren, das sich besonders gut für feststehende Schallquellen eignet. Für diese werden im
+    Vorfeld mögliche Reflektionspfade anhand pyramidenförmiger <strong>Beams</strong> klassifiziert und vorausberechnet.
+    Die Beams decken
+    zusammen die gesamte Umgebung einer Schallquelle ab. Die Einteilung der Beams erfolgt anhand der Umgebung, so dass
+    auf jedes Oberflächenpolygon um die Schallquelle herum genau ein Beam trifft. Ein Beam umfasst damit alle möglichen
+    Reflektionen einer Schallquelle an einem Oberflächenpolygon. Der Beam wird nach der ersten Reflektion rekursiv
+    weiterverfolgt, wobei beim Auftreffen auf andere Polygone der Beam in Subbeams aufgeteilt wird. Auf diese Weise
+    entsteht ein <strong>Beamtree</strong>, der die Ausgangsbasis für die spätere Berechnung der von der Hörerposition
+    aus hörbaren virtuellen Schallquellen ist.</p>
+<p>Im Vergleich zum Image Source Verfahren kann der Berechnungsaufwand damit erheblich reduziert werden. Nachteilig ist
+    jedoch, dass Reflektionen an gekrümmten Oberflächen und Brechung sehr schwierig zu modellieren sind und dass bei
+    Veränderung der Positionen von Schallquellen der Beamtree neu berechnet werden muss.</p>
+
+<h4>1.9.3.4 Approximative Verfahren</h4>
+<p>Bei approximativen Verfahren wird Raumklang nur näherungsweise berechnet, ohne eine Strahlverfolgung durchzuführen.
+    Man vereinfacht die Umgebung und führt sie auf verschiedene mögliche vordefinierte einfache Räume zurück. Befindet
+    sich ein Objekt zwischen einer Schallquelle und der Hörerposition, so wird der Klang der Quelle gefiltert, so dass
+    diese leiser und dumpfer klingt.</p>
+<p>Diese Verfahren sind gut geeignet für Anwendungen, bei denen es nicht auf eine exakte 3D-Soundwiedergabe ankommt
+    (z.B. bei Spielen) und noch andere rechenintensive Aufgaben parallel dazu anfallen.</p>
+<!--TODO: Applet Surround Sound Simulation-->
+
+<h2>1.9.4 Effekte für mehr Realismus</h2>
+<p><strong>Größe von Schallquellen</strong></p>
+<p>Normalerweise kann man jede Schallquelle vereinfacht als punktförmig betrachten. Nur ist dies nicht immer ohne
+    weiteres möglich. Besitzt beispielsweise eine Schallquelle einen großen Resonanzkörper mit eventuell mehreren
+    unterschiedlichen Schallquellen (z.B. Motor, Reifen, Karosserie etc. eines Fahrzeuges) und ist sie nicht weit genug
+    vom Hörenden entfernt, so nimmt dieser den Schall aus vielen Richtungen gleichzeitig wahr. Dabei ist die jeweilige
+    Intensität von der Entfernung zur Oberfläche des Körpers abhängig.</p>
+<p>Dies in der virtuellen Welt nachzubilden, erfordert großen Rechenaufwand, da man mehrere punktförmige Schallquellen
+    auf der Oberfläche bzw. innerhalb des Resonanzkörpers verteilt und schließlich die Reflektionen für jede dieser
+    Schallquellen getrennt berechnet werden. Günstiger ist es daher, wenn die Größe einer Schallquelle erst nach der
+    Berechnung berücksichtigt wird, indem der Klang bei der Auralization entsprechend aufgefächert, d.h. aus mehreren
+    Richtungen gleichzeitig wiedergegeben wird. Um Interferenzeffekte zu vermeiden, ist jedoch bei der Auffächerung bzw.
+    der Verwendung mehrerer gleichklingender Schallquellen zu beachten, dass die Audiosignale aus den verschiedenen
+    Richtungen dekorreliert<!--TODO: Missing Hyperlink--> werden müssen.</p>
+
+<p><strong>Stochastische Hintergrundgeräusche</strong></p>
+<p>Um eine natürliche Umgebung noch realistischer zu simulieren, könnte man der virtuellen Umgebung stochastische
+    Geräusche, die fast ständig hörbar sind, wie Wind, Regen, Fahrgeräusche etc. hinzufügen. Diese Geräusche füllen die
+    Umgebung aus und kommen aus keiner bestimmten Richtung. Eine Nachbildung wäre zwar durch viele einzelne verteilte
+    Schallquellen möglich, dies würde aber einen unnötig hohen Rechenaufwand bedeuten. Somit ist es besser, solche
+    Hintergrundgeräusche nach der Berechnung der Schallquellen den Audiosignalen hinzuzufügen.</p>
+
+<p><strong>Dopplereffekt</strong></p>
+<p>Bewegt sich eine Schallquelle relativ zum Hörenden, so nimmt man dies durch eine Frequenzänderung war. Entfernt sie
+    sich, wird ihr Klang tiefer, kommt sie näher, wird er höher. Benannt wurde dieser Effekt nach seinem Entdecker
+    Christian Johann Doppler. Um ihn simulieren zu können, muss die Wiedergabegeschwindigkeit der Soundsamples laufend
+    an die Geschwindigkeit der zugeordneten Schallquellen angepasst werden.</p>
+
+<p><strong>Zeitverzögerung bei großer Entfernung, Echos</strong></p>
+<p>Da die Schallgeschwindigkeit deutlich niedriger als die Lichtgeschwindigkeit ist, nimmt man den Schall eines Objektes
+    zeitverzögert wahr, wenn es sich in großer Entfernung am Zuhörer vorbeibewegt. Bewegt sich dieses Objekt selbst dazu
+    noch mit hoher Geschwindigkeit, so hinkt der Schall scheinbar hinterher. Dieses Phänomen kann man zum Beispiel gut
+    bei schnellen Flugzeugen beobachten. Man kann diese Zeitverzögerungen nachbilden, indem Schallquellen getrennt von
+    den graphischen Objekten im virtuellen Raum angeordnet werden.</p>
+<p>Zeitverzögerungen bei Schallreflektionen über größere Entfernung bezeichnet man als <strong>Echo</strong>. Dabei
+    werden die
+    reflektierten Schallwellen einer Schallquelle deutlich wahrnehmbar später beim Hörenden eintreffen als die
+    Schallwellen, die direkt von der Schallquelle kommen. Hierfür können zusätzliche Schallquellen verwendet werden, die
+    den gleichen Klang zeitverzögert von der Position, an der die Reflektion auftritt, wiedergeben.</p>
+
+<p><strong>Nahortung</strong></p>
+<p>Ist der Abstand von Schallquelle und Hörer groß genug, sind HRTFs und IID relativ unabhängig von der Entfernung.
+    Beträgt der Abstand allerdings weniger als einen Meter, gilt dies nicht mehr, da Richtungs- und
+    Entfernungswahrnehmung im Nahbereich sehr gut ausgeprägt sind. Deshalb sollte die Berechnung der Schallsignale für
+    die Auralization hier möglichst genau erfolgen. Dies erreicht man, indem man eine hinreichende Anzahl von HRTFs in
+    unterschiedlichen Entfernungen misst, zwischen denen dann bei der Auralization umgeschaltet wird. Sind nicht genug
+    Messungen vorhanden, ist eine realistische Simulation einer gleichförmigen Annäherung nicht möglich, da Sprünge beim
+    Umschalten zu hören sind.</p>
+<p>Als andere Möglichkeit entwickelte das Unternehmen Sensaura Ltd. unter dem Namen <strong>MacroFX</strong> einen
+    Algorithmus, der,
+    ausgehend von einm HRTF-Satz, für größere Entfernungen die spektrale Veränderung der Schallsignale abhängig von der
+    Entfernung berechnet. Der Algorithmus arbeitet mit verschiedenen Zonen und ermöglicht auch eine Lokalisation
+    innerhalb eines Ohres (Flüstersound) oder innerhalb des Kopfes (Kopfhörereffekt).</p>
+
+<p><strong>Dämpfung durch Entfernung und Luftabsorption</strong></p>
+<p>Schallausbreitung verbraucht Energie, so dass die Schallintensität mit der Entfernung abnimmt. Der Dämpfungseffekt
+    beträgt ca. 6 dB bei Verdopplung der Entfernung. Luft hat zu dem die Eigenschaft, Teile höherer Frequenzen zu
+    absorbieren (Bei Entfernungen > 10 m, werden Frequenzen > 4 kHz absorbiert).</p>
+
+<p><strong>Windeffekte</strong></p>
+<p>Wind ändert die Geschwindigkeit und Dämpfung der Schallausbreitung. Wind in Richtung der Schallquelle scheint die
+    Entfernung der Quelle zu vergrößern, wobei die Tonhöhe unbeeinflusst bleibt. Vereinfachend nimmt man an, dass sich
+    der kugelförmig ausbreitende Schall in Windrichtung verschiebt. Bei Ausbreitung in Windrichtung wird Schall nach
+    unten abgelenkt. Um Windeffekte zu erzeugen (oder auszugleichen) wird die Schallquelle abhängig von Entfernung,
+    Windgeschwindigkeit und -richtung verschoben.</p>
+
+<p><strong>Vermeidung von Latenz und Überlastung</strong></p>
+<p>Besonders bei Verwendung von Binauralization und Headtracking, wobei versucht wird, die Wiedergabe der aktuellen
+    Kopfposition nachzuführen, kann es zu Zeitverzögerungen bei der Wiedergabe (<strong>Latenz</strong>) kommen. Um
+    Überlastungen und Latenz zu vermeiden, wird die Fülle von Informationen über das Audiosignal begrenzt. So wird die
+    Anzahl von Schallquellen, von Rekursionen, von Reflektionspfaden und von virtuellen Schallquellen auf einen
+    maximalen Wert festgelegt. Beispielsweise darf nur eine virtuelle Schallquelle pro hörbarer Reflektion verwendet
+    werden. </p>
+<p>Bei DSP-basierten Soundkarten gibt man eine maximale Anzahl von <strong>3D-Streams</strong>, die für gleichzeitig
+    hörbare Schallquellen stehen, in der Spezifikation vor. So sind auch die virtuellen Schallquellen mit einbezogen,
+    wenn Reflektionen berücksichtigt werden.</p>
+
+<h2>1.9.5 Scheduling</h2>
+<p>Wird die vorgegebene maximale Anzahl von Schallquellen überschritten, müssen die wichtigsten Quellen ausgewählt
+    werden. Dies geschieht mittels eines geeigneten <strong>Scheduling-Algorithmus</strong>, der die Entfernung einer
+    Schallquelle zum Hörenden, vorgegebene Prioritäten, Lautstärke, Spieldauer, Alter eines Sounds und, falls
+    ermittelbar, den Aufmerksamkeitsfokus des Hörenden berücksichtigt.</p>
+<p>Weiterhin können Maskierungseffekte ausgenutzt werden. Dabei sind leise Schallquellen beim Vorhandensein von lauten
+    nicht hörbar und können somit weggelassen werden. Die Maskierung wirkt um so stärker, je näher die Frequenzbereiche
+    der Sounds beieinander liegen. Ausserdem haben kurze Klänge meist Signalwirkung und sind daher wichtiger als lange,
+    allerdings wird eine Unterbrechung eines längeren Stückes als störend empfunden. Ist der kurze Klang jedoch
+    mindestens genauso laut, so wird die Unterbrechung nicht bewusst wahrgenommen, da die Aufmerksamkeit zu dem neuen
+    Klang wechselt. Auch das Alter, d.h. wie lange ein Sound bereits gespielt wird, ist von Bedeutung. Meist ist der
+    größte Informationsgehalt zu Beginn eines Sounds zu finden.</p>
+<p>Bei Vorhandensein eines Head- bzw. Eyetracking-Systems, ist es auch möglich, die Blickrichtung zu berücksichtigen, da
+    Klänge stark mit sichtbaren Objekten gekoppelt sind. Hören wir einen neuen Klang, so drehen wir meist automatisch
+    den Kopf in diese Richtung, um zu sehen, was der Ursprung des Klanges ist und um den Klang besser wahrnehmen zu
+    können. Interessiert uns das Klangereignis, verweilen wir mit dem Blick in dieser Richtung und lässt das Interesse
+    nach, so wandert der Blick und gleichzeitig die Aufmerksamkeit weiter. Somit ist ein älterer Klang, dem die
+    Aufmerksamkeit entzogen wird, von geringerer Bedeutung.</p>
+<p>Natürlich existieren auch andere Möglichkeiten, zum Beispiel können nah beieinanderliegende Schallquellen zu einer
+    zusammengefasst werden, indem deren Soundsamples gemixt werden. Der Hörende kann immer schlechter bestimmen, aus
+    welchen Richtungen die Klänge kommen, je mehr Schallquellen hörbar sind. Sind die verwendeten Klänge in Echtzeit
+    generiert - also nicht als fertige Samples vorhanden - so ist neben der Anzahl der Schallquellen auch der
+    Rechenaufwand zur Erzeugung der Sounds von Bedeutung. Der Scheduling-Algorithmus kann hierbei dazu verwendet werden,
+    die Klänge je nach Bedeutung in unterschiedlicher Qualität zu erzeugen und dadurch Rechenzeit einzusparen.</p>
+
+<p><strong>Level of Detail</strong></p>
+<p>Ein Level of Detail beschreibt die Genauigkeit eines Abschnittes der Umgebung. Bei niedrigem Level enthält ein
+    Abschnitt beispielsweise nur eine Schallquelle und keine Reflektionen. Bei einem mittleren Level ist z.B. die
+    Geometrie vereinfacht und nur die Reflektionen erster Ordnung werden berücksichtigt. Ein hoher Level entspräche dann
+    einer detaillierten Geometrie mit mehrfachen Reflektionen und mehreren Schallquellen.</p>
+<p>Mit Hilfe dieser unterschiedlich genauen Ebenen kann das spätere Scheduling dabei unterstützt werden, drohende
+    Überlastung zu vermeiden, indem zwischen den verschiedenen Genauigkeiten umgeschaltet wird.</p>
+
+<h2>1.9.6 Wiedergabe räumlicher Musik</h2>
+<p>Besonders im Bereich der Musik wollte man Raumklang so exakt wie möglich aufzeichnen und anderswo wiedergeben können.
+    Geräusche von oben und unten sollten dabei ebenso berücksichtigt werden, wie die anderen Richtungen. Jedoch ist bei
+    der Aufzeichnung nicht bekannt, welche Lautsprecherkonfiguration später bei der Wiedergabe verwendet wird. Man
+    versucht, optimale Akustik und hohe Klangqualität beizubehalten. Im Folgenden soll nun auf verschiedene
+    Möglichkeiten zur Wiedergabe räumlicher Musik eingegangen werden. </p>
+
+<h4>1.9.6.1 Quadrophonie und andere Mehrkanalverfahren</h4>
+<p>Man baute bestehende Systeme aus und kodierte zusätzlich zwei hintere Kanäle in das Stereo Signal mit ein. Vier
+    Lautsprecher wurden nun quadratisch um den Zuhörer angeordnet. Diese ersten Versuche, Raumklang zu erzeugen,
+    bezeichnet man als <strong>Quadrophonie</strong>.</p>
+<p>Dieses System steht allerdings mehreren Problemen gegenüber. So geht die Mittenortung eines Signales verloren, sobald
+    die vorderen Lautsprecher in einem größeren Winkel zum Zuhörer als 60° auseinander stehen - selbst wenn das Signal
+    gleichermaßen auf die vorderen Kanäle verteilt ist. Auch die exakte Trennung der vorderen und hinteren Kanäle aus
+    dem kodierten Signal ist nicht möglich Literatur<!--TODO: Missing Hyperlink--> . Folglich war dieses System nicht
+    sehr erfolgreich.</p>
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Um wirklich realitätsnahen Raumklang zu erzeugen, sind zwei Möglichkeiten denkbar. Entweder könnte man für fast jede
+    mögliche Eintreffrichtung einen eigenen Kanal verwenden oder man müsste Laufzeitunterschiede und spektrale
+    Änderungen simulieren. Aufgrund der Erkenntnisse der Psychoakustik ist dies zwar möglich, erfordert allerdings
+    erheblichen Rechenaufwand und die Verwendung einzelner diskreter Schallquellen, so dass die hier beschriebenen
+    Mehrkanalverfahren den oben genannten Ansprüchen nicht gerecht werden.</p>
+
+<h4>1.9.6.2 Binauralization (Schalldruckverfahren)</h4>
+<p>Eine einfache Herangehensweise zur Erzeugung von Raumklang ist die Durchführung von
+    <strong>Kunstkopfaufnahmen</strong>. Dabei wird ein künstlicher Kopf verwendet, in dem mit Mikrofonen die
+    Wahrnehmung des menschlichen Gehörs imitiert werden soll. Leider kann dabei nicht berücksichtigt werden, dass
+    aufgrund anatomischer Unterschiede jeder Hörer räumlichen Klang leicht verschieden wahrnimmt und dass bei der
+    Wiedergabe auf dem Weg der Schallwellen durch den Gehörgang erneut Verfälschungen auftreten. So ist der räumliche
+    Klangeindruck nur sehr vage.</p>
+<p>Ausserdem müssen Mikrofone und Wiedergabesysteme aufeinander abgestimmt werden, da deren Frequenzgänge nie ganz
+    linear sind. Bei der möglichen Wiedergabe über Kopfhörer oder Lautsprecherpaar sollen die erzeugten Audiosignale dem
+    Schalldruck an den Trommelfellen des Hörers des Originalklanges entsprechen. Dieses Verfahren wird deshalb als
+    <strong>Schalldruckverfahren</strong> oder <strong>Binauralization</strong> bezeichnet.</p>
+<p>Werden bei der Wiedergabe Lautsprecher verwendet, ist es möglich, dass das Signal des linken Lautsprechers mit
+    leichter Verzögerung auch vom rechten Ohr wahrgenommen wird und umgekehrt. Dabei wird der Ton auch abhängig vom
+    Winkel gefiltert. Diese Erscheinung bezeichnet man als <strong>Crosstalk</strong>.</p>
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Sind die Winkel der Lautsprecher zum Hörer bekannt, ist es allerdings mit Hilfe der entsprechenden HRTF möglich, das
+    Crosstalk-Signal zu bestimmen und durch das Verfahren der Crosstalk-Cancellation zu beseitigen. Dabei addiert man
+    das ermittelte Signal zeitversetzt und mit umgekehrter Phase zum jeweils anderen Kanal hinzu, so dass das
+    Crosstalk-Signal durch die Überlagerung der Wellen ausgelöscht wird.<!--TODO: Fehlende Referenzen--></p>
+<p>Ein weiteres Problem bei der Lautsprecherwiedergabe sind im Raum auftretende Reflektionen, die zu einer Verfälschung
+    des binauralen Signales führen.</p>
+<p>Mitte der 90er Jahre wurde von Brown Innovations Inc.<!--TODO: Fehlende Referenzen--> ein anderes
+    Binauralization-Verfahren, der<strong>Virtual Audio Imager</strong>, entwickelt. Wie im Bild gut zu erkennen ist,
+    wird dabei ein binaurales Signal durch einen über der Hörerposition angebrachten, halbkugelförmigen Emitter direkt
+    auf die Ohren des Zuhörers projiziert. Verfügbar sind Systeme mit bis zu vier Hörerpositionen. Das emittierte Signal
+    maskiert Umgebungsgeräusche und ausserhalb der Hörerpositionen ist es um etwa 80% reduziert, also kaum noch zu
+    hören. So können mehrere Emitter ein einem Raum installiert werden, ohne dass sie sich gegenseitig stören.</p>
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<h4>1.9.6.3 Ambisonics Raumklangverfahren</h4>
+<p>Mit dem <strong>Ambisonics-Verfahren</strong><!--TODO: Fehlende Referenzen-->  versuchte man die Nachteile der
+    Kustkopfaufnahmen zu vermeiden. Es wurde schon Mitte der 70er Jahre von den englischen Wissenschaftlern Michael A.
+    Gerzon am Mathematical Institute in Oxford und Professor Peter B. Fellgett am Cybernetics Department at University
+    of Reading entwickelt. Die Music Technology Group an der University of York in England betrieb weitere Forschungen.
+</p>
+<p>Die Idee ist, den Kanälen Raumdimensionen anstatt bestimmte Lautsprecherpositionen zuzuordnen. Demnach haben Klänge
+    im Raum einen x-, y- und z-Anteil sowie eine Gesamtintensität. Aus den Verhältnissen dieser Anteile ergibt sich die
+    Richtung und Entfernung einer Schallquelle. Um nun Raumklang aufzeichnen zu können, wurde das <strong>Soundfield-Mikrofon</strong>
+    entwickelt. Es enthält vier Mikrofonkapseln: Eine Kapsel besitzt Kugelcharakteristik und nimmt die Gesamtintensität
+    des Schalls auf; die anderen drei Kapseln haben sogenannte Acht-Charakteristik, d.h., sie nehmen nur Schallwellen
+    auf, die frontal oder von hinten auf sie auftreffen. Diese Kapseln sind wie die x-, y- und z-Achse eines
+    dreidimensionalen Koordinatensystems, jeweils in 90°-Winkeln zueinander angeordnet. Das Resultat dieser Aufnahmen
+    bezeichnet man als <strong>B-Format</strong>, ein Signal, das die gesamten Raumklanginformationen inklusive
+    Höhenposition in vier Kanälen besitzt. Man kann dieses Signal beliebig weiterverarbeiten, wie z.B. mischen und im
+    Raum um beliebige Achsen drehen oder verschieben.</p>
+<p>Um das B-Format in Signale für eine bestimmte Lautsprecheranordnung umwandeln zu können, ist ein spezieller Decoder
+    notwendig. Anstelle des normalen levelbasierten Pannings auf die Lautsprecherkanäle werden dabei auch Phase und
+    Frequenzgang der Signale an die menschliche Ortswahrnehmung angepasst. Da die Signale der einzelnen Lautsprecher in
+    Beziehung zueinander stehen und gemeinsam ein stabiles Klangfeld erzeugen, kann ein optimaler Raumeindruck erzielt
+    werden, der sogar bei Bewegung des Zuhörers aus dem Mittelpunkt der Anordnung heraus erhalten bleibt.</p>
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Als <strong>UHJ-Format</strong> bezeichnet man eine spezielle Kodierung des B-Formats. Sie wurde entwickelt, um die
+    Kompatibilität zu herkömmlichen Aufzeichnungsverfahren zu ermöglichen.</p>
+
+<h4>1.9.6.4 Audio Spotlight</h4>
+<p>Ein erster Prototyp eines anderen Verfahrens zur Klangerzeugung wurde 1998 auf der 105th Convention of the Audio
+    Engineering Society vorgeführt, das sogenannte Audio Spotlight. Frank Joseph Pompei entwickelt es derzeit am MIT
+    Media Laboratory.<!--TODO: Fehlende Referenzen--></p>
+<p>Hierbei werden gerichtete Ultraschall-Strahlen erzeugt und unter Ausnutzung bestimmter nichtlinearer Eigenschaften
+    der Luft in hörbare Signale umgewandelt. Mit dieser neuen Technologie ist es z.B. möglich, Audio-Signale direkt auf
+    die Ohren eines Zuhörers im Raum zu strahlen oder Schallquellen beliebig auf Wände zu projizieren. Damit wäre
+    Binauralization ohne Kopfhörer und ohne störende Reflektionen und Crosstalk im Raum möglich.</p>
+
+<h2>1.9.7 Verknüpfung von 3D Sound- und Geometriedaten</h2>
+<p>In VR-Welten können zur Klangberechnung die visuellen Geometriedaten genutzt werden, die zu diesem Zweck aus den
+    vorhandenen Geometriedaten zu extrahieren sind, da nicht alle Informationen für die Klangberechnung relevant sind
+    (z.B. Texturen oder Details wie Türklinken). Andererseits sind einige Angaben, wie Material- und
+    Oberflächeneigenschaften, für die Klangberechnung von Bedeutung, werden jedoch nicht für die graphische Darstellung
+    verwendet.</p>
+<p>Die Verknüpfung dieser Informationen erfolgt über deklarative Formate, z.B. XML. Damit werden Eigenschaften für
+    Soundquellen, den Hörenden, die Umgebung und deren Zusammenwirken festgelegt. Weiterhin ist es möglich, Sound an
+    bewegte Objekte zu koppeln, die Blick- und Bewegungsrichtung des Hörenden zu berücksichtigen. Die Beschreibung
+    erfolgt mit unterschiedlicher Genauigkeit (level of detail). Der Genauigkeitsgrad wird in Abhängigkeit von der
+    Entfernung des Hörenden und der Rechenleistung gewählt. Für ein akustisches Feedback können Interaktionen mit
+    Klängen gekoppelt und über Sensoren ausgelöst werden, z.B. bei Annäherung an ein Objekt, Anklicken eines Objektes
+    oder bei einem vordefinierten Ereignis.</p>
+<p>Die Anwendung erzeugt über die eingelesenen Klang- und Grafikinformationen Aufrufe an die API- und Toolkit-Schicht,
+    die sich auf Funktionen der Sound- und Grafik-Hardware stützt.</p>
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<h2>1.9.8 3D Sound APIs</h2>
+<h4>1.9.8.1 Das Audio-Subsystem</h4>
+<p><strong>Anforderungen der Interactive Audio Special Interest Group (IASIG)</strong></p>
+<p>Ein 3D-Audio-Subsystem sollte aus einer DSP-Soundkarte<!--TODO: Missing Hyperlink--> , der Wiedergabetechnologie und
+    einem 3D-Sound API bestehen. Diese Anforderungen können als Richtinien für die Mindestanforderungen an interaktive
+    3D-Audio-Systeme betrachtet werden. Es gibt verschiedene Level; Level 3 wird für 2001 erwartet.</p>
+
+<p><strong>Vorgaben des Level1 der I3D:</strong></p>
+<ul>
+    <li>8 gleichzeitige 3D-Audiostreams, > 22 kHz, 16 Bit Auflösung in Echtzeit ohne hörbare Latenz</li>
+    <li>Quellen und Hörer mit x, y und z-Koordinaten in einem 3D Raum positioniert</li>
+    <li>Intensität der Sounds in Abhängigkeit von der Entfernung zum Hörenden berechnet</li>
+    <li>Soundquellen und Hörerposition können bewegt werden, Doppler-Effekt berücksichtigt</li>
+    <li>Hörende besitzt variable Blickrichtung, aus der er Grafik und Klang wahrnimmt</li>
+    <li>Soundquellen können Schall kegelförmig in eine bestimmte Richtung abstrahlen</li>
+</ul>
+
+<p><strong>I3D Level 2: Erweiterung von Level 1</strong></p>
+<ul>
+    <li>Soundquellen werden in Zusammenhang mit der räumlichen Umgebung betrachtet</li>
+    <li>Modell zur Berechnung von Hall in Abhängigkeit von Raumeigenschaften</li>
+    <li>Erzeugung dynamischer Halleffekte anhand eines Raummodells</li>
+</ul>
+
+<p><strong>I3D Level 2 Hall:</strong></p>
+<ul>
+    <li>Modell zur Berechnung von Hall berücksichtigt frühe Reflektionen (early reflections) und diffusen Hallanteil
+        (late reverberation) mit unterschiedlicher Verzögerung und Dämpfung der Intensität
+    </li>
+    <li> Dazu wurden u.a. folgende Parameter definiert (auch Teil des Direct Sound 3D APIs):</li>
+    <!--TODO: Formatierung-->
+    <!--TODO: Tabelle shortcode-->
+</ul>
+
+<p><strong>I3D Level 2: Soundquellen</strong></p>
+<ul>
+    <li>Wiedergabe von mindestens 16 gleichzeitigen 3D-Audiostreams</li>
+    <li>Pro Soundquelle einstellbarer Tiefpassfilter und Intensitätsdämpfer zur Nachbildung von Verdeckung</li>
+</ul>
+
+<p><strong>I3D Level 2: Reflektion und Verdeckung</strong></p>
+<ul>
+    <li>Verdeckung von Soundquellen durch Objekte in der Umgebung</li>
+    <li>Da keine Berechnung von Reflektionspfaden vorgesehen ist, werden early reflections ohne Berücksichtigung ihrer
+        Richtung mit in die Berechnung des Halls einbezogen.
+    </li>
+    <li>Ist die Soundquelle nicht verdeckt, so ist dies wegen Verzögerungseffekten meisten ausreichend.</li>
+    <li>Bei Verdeckung (Level 3) sollten virtuelle Soundquellen für 1. Reflektionen berechnet werden</li>
+    <li>Verdeckungseffekte können durch Tiefpassfilterung mit gleichzeitiger Dämpfung der Soundquelle nachgebildet
+        werden. Bei Occlusion ist auch eine Anpassung der Hallerzeugung notwendig
+    </li>
+</ul>
+
+<h3 class="h4">1.9.8.2 3D-Sound-APIs</h3>
+<p>Die wichtigsten 3D-Sound APIs sind:</p>
+<ul>
+    <li>High-level: Open Audio Library (OpenAL)</li>
+    <li>Middle-level: Direct Sound 3D, Environmental Audio Extensions (EAX)</li>
+    <li>Low-level: Sensaura, (Aureal A3D), QSound 3D und QM-API</li>
+</ul>
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p><strong>Direct Sound 3D</strong></p>
+<p>Direct Sound 3D ist ein Microsoft API. Die aktuelle Version DirectX 8.0 unterstützt die IASIG-Richtlinien Level 2,
+    was z.B. das Abspielen und Mischen beliebiger .wav-Quellen und die automatische Verwaltung der Puffer (1
+    Primärpuffer, n Sekundärpuffer) anbelangt. Es verwendet HEL<!--TODO: Fehlende Referenzen--> , eine automatische
+    Sample-Rate-Konvertierung, 3D-Funktionen inclusive HRTF<!--TODO: Missing Hyperlink--> . Direct Sound 3D wurde primär
+    für Spiele entwickelt, unterstützt aber inzwischen MIDI über DirectMusic.</p>
+<p>Eine Direct Sound 3D-Anwendung verwendet das COM<!--TODO: Fehlende Referenzen--> -Objektmodell. Die prinzipielle
+    Vorgehensweise ist die folgende:
+    Zunächst wird ein DirectSound Objekt angelegt. Die Hardware und die Lautsprecherkonfiguration (Aufstellwinkel)
+    werden ausgewählt. Es werden Sound-Puffer angelegt. Die Wav-Daten werden in die Puffer geschrieben. Dann wird
+    gemischt und die Ausgabe begonnen. Der DiectSound Mixer enthält einen Primärpuffer und ein oder mehrere
+    Sekundär-Puffer. Der Primärpuffer enthält die Audiodaten, wie sie an den Lautsprecher gegeben werden. Die Daten der
+    sekundären Puffer werden beim Abspielen dem Primärpuffer hinzugemischt. Für beide Puffer können verschiedene
+    Parameter angegeben werden. Unter anderem können die inneren und äußeren Winkel für eine gerichtete kegelförmige
+    Abstrahlung angegeben werden. Befindet sich der Hörer innerhalb des Kegels, hört er mit voller Lautstärke.</p>
+<p>Je Puffer werden über folgende Parameter die Eigenschaften einer Soundquelle eingestellt:</p>
+<!--TODO: Tabelle shortcode-->
+
+<p><strong>Creative Labs "Environmental Audio Extensions" (EAX)</strong></p>
+<p>EAX nutzt die Möglichkeiten programmierbarer DSPs für realistischen Echtzeit-Raumklang durch Simulation der Umgebung
+    mittels Klangfilterung und Halleffekt. Die aktuelle Version ist 2.0. EAX ist ein de-facto-Industriestandard und
+    stellt eine Erweiterung von DirectSound 3D dar. Es können verschiedene Echo- und Halleffekte global für den
+    Primärpuffer und für einzelne DirectSound Quellen eingestellt werden. Es bietet Hardwareunterstützung für occlusion
+    <!--TODO: Missing Hyperlink-->
+    und obstruction<!--TODO: Missing Hyperlink--> . Die akustische Umgebung kann modelliert werden, so gibt es diverse
+    Presets wie "concert hall" oder
+    "bathroom". Über Hall-Parameter sind die Verzögerung, die Intensität der early reflections, die Dichte, das Spektrum
+    und die Dauer der Hallfahne einstellbar.</p>
+
+<p><strong>Open Audio Library (OpenAL)</strong></p>
+<p>OpenAL ist ein plattformübergreifendes 3D-Sound API in Anlehnung an die Grafik-API OpenGL. Im Oktober 2000 wurde die
+    erste Spezifikation des API veröffentlicht. Der Programmcode der Library existiert als Open Source für Windows, Mac
+    OS, Unix-Systeme und BeOS. Unter Windows wird auf die DirectSound 3D-API aufgesetzt. Der erste Code und die
+    Spezifikation sind unter http://www.openal.org/<!--TODO: Missing Hyperlink--> verfügbar. Open AL integriert in der
+    aktuellen Spezifikation nur
+    IASIG-Richtlinien Level 1 Funktionen. Über Extensions sind Erweiterungen möglich: z.B. gibt es von Creative Labs ein
+    OpenAL SDK.</p>
+
+<h2 class="h4">1.9.8.3 Ein Beispiel: Das Projekt DIVA</h2>
+<p>DIVA (Digital Interactive Virtual Acoustics) Literatur<!--TODO: Fehlende Referenzen--> ist ein Kooperationsprojekt
+    der Telecommunication Software and Multimedia Laboratory und dem Laboratory of Acoustics and Audio Signal Processing
+    an der Helsinky University of Technology. Es umfasst die folgenden Themengebiete:</p>
+<ul>
+    <li>automatische Echtzeit-Animation der Darsteller</li>
+    <li>Interaktionen durch Bewegungsanalyse</li>
+    <li>Sound-Generierung mittels physikalischer Instrumenten-Modellierung</li>
+    <li>Akustik-Modellierung und Auralization (hörbar machen).</li>
+</ul>
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p><strong>Animation</strong></p>
+<p>Die Orchestermitglieder und ihre Instrumente werden kinematisch modelliert. Die Musiker haben in gewissem Umfang die
+    Fähigkeit, auf Änderungen in ihrer Umgebung zu reagieren. Das DIVA-System kann automatisch das Spielen
+    (Manipulieren) der Instrumente generieren ausgehend von MIDI-codierter Musik. Die Musiker werden mittels
+    kinematischer menschlicher Modelle repräsentiert, die über 70 Freiheitsgrade haben.</p>
+
+<p><strong>Soundgenerierung</strong></p>
+<p>Anstelle konventioneller Soundsynthese-Methoden werden in DIVA physikalische Modellierungstechniken von
+    Musikinstrumenten (modellbasierte Soundsynthese) angewendet. Die Grundidee bei der physikalischen Modellierung ist,
+    den Soundgenerierungsmechanismus eines akustischen Musikinstrumentes zu imitieren. Die DIVA Soundsynthese-Module
+    bestehen aus verschiedenen physikalischen Instrumenten, die von einer Standard-MIDI-Schnittstelle gesteuert werden.
+    Gegenwärtig sind Gitarre, Bass und Flöte implementiert. Alle 3 Instrumente werden von einer einzigen Workstation in
+    Echtzeit generiert. Andere Instrumente, insbesondere Schlagzeug, werden mit MIDI-kompatiblen Synthesizern erzeugt,
+    welche an die Workstation angeschlossen sind. Der synthetisierte Sound wird dem Auralization-Module übergeben.</p>
+
+<p><strong>Auralization</strong></p>
+<p>Das Ziel ist, den 3D-Sound eines realen Raumes künstlich in Echtzeit zu erzeugen. Auralization wird auf den direkten
+    Sound und die ersten Reflexionen angewandt. Gegenwärtig werden dabei ITD<!--TODO: Fehlende Referenzen--> und HRTF
+    <!--TODO: Fehlende Referenzen--> angewandt. Zusammen erzeugen diese Verfahren einen räumlichen Eindruck, sowohl
+    vertikal als auch horizontal. Die HRTFs sind FIR-Filter<!--TODO: Fehlende Referenzen--> und man kann individuell auf
+    unterschiedliche Hörer zugeschnittene Filter nutzen.</p>
+<p>Der Sound kann mittels Kopfhörer oder mittels Lautsprecher reproduziert werden. Kopfhörer geben die beste Kontrolle
+    über das Soundfeld im Ohr des Hörers, weil die Akustik der Umgebung keinen Einfluss auf den Sound hat. Ist das Hören
+    über Kopfhörer nicht erwünscht, kann stattdessen ein Feld von Lautsprechern zum Einsatz kommen. Im Projekt DIVA wird
+    <strong>Vector Base Amplitude Panning</strong> (VBAP) verwendet, um das Bewegen von Schallquellen zwischen
+    Lautsprechern zu interpolieren. Im Projekt wird weiterhin die Möglichkeit untersucht, ein Lautsprecherpaar mit
+    HRTF-Filterung zu nutzen. Diese Methode bietet jedoch nur ein sehr begrenztes Hörfeld. Die Illusion des vituellen
+    Akustikraumes wird zerstört, wenn der Hörer den Kopf bewegt.</p>
+<p>Ein weiteres Problem ist die Interpolation der Bildquellen, wenn sich der Hörer bewegt. Damit ändert sich das Bild.
+    Bewegt sich das Bild, ändern sich ITD<!--TODO: Fehlende Referenzen--> und HRTF<!--TODO: Fehlende Referenzen--> . Ein
+    Gewinn bei der Interpolation der Entfernung ist, dass man einen echten Doppler-Effekt
+    <!--TODO: Fehlende Referenzen--> erzielt.</p>
+<p>In der Implementierung gibt es zwei getrennte Programme. Eines berechnet die Bildquelle an der Position des Hörers.
+    Dies bedeutet, das der direkte Sound und die ersten Reflexionen von allen Schallquellen entsprechend des Bildes
+    berechnet werden. Das akustische Modell kann sich während einer normalen Aktion ändern.</p>
+<p>Das andere Programm berechnet das Audio. Das bedeutet, dass die verschiedenen Bildquellen mit ihrem direkten Sound
+    und den Reflexionen berechnet werden und ein Algorithmus zur Berechnung des Halls läuft. Alle Schallquellen bleiben
+    während der Berechnung separat und werden erst beim Hören gemixt.</p>
+<p>Mit DIVA wurde ein operationelles virtuelles Audio-System geschaffen, das echtzeitfähig ist. Damit wurde eine
+    realistische Audio-Umgebung geschaffen.</p>
+
+<h2>1.9.9 Zusammenfassung: Status 3D-Audio 2001</h2>
+<p>Zur Zeit sind 3D-Musikaufnahmen kaum erhältlich. DVD-Audio befindet sich in der Markteinführung. Es gibt erste
+    Videoclips mit AC-3. Im Kino ist der Mehrkanalton Standard. Es gibt Mehrkanal-Ton auf DVD. Die bevorzugten Formate
+    sind hierbei: Dolby Digital, DTS, und MPEG-2.</p>
+<p>Es haben sich Mehrkanal-Soundkarten etabliert, die i. Allg. 6 Kanäle bieten.</p>
+<p>Es sind 3D-APIs verfügbar, insbesondere DirectSound 3D und EAX für 2 und 4 Lautsprecher bzw. Kopfhörer.</p>
+<p>relevante Links:</p>
+<p>LinkDVD-Audio<!--TODO: Fehlende Referenzen--></p>
+<p>LinkAC-3<!--TODO: Fehlende Referenzen--></p>
+<p>LinkDolby Digital<!--TODO: Fehlende Referenzen--></p>
+<p>LinkDTS<!--TODO: Fehlende Referenzen--></p>
+<p>LinkMPEG-2<!--TODO: Fehlende Referenzen--></p>
+<p>LinkDirectSound 3D<!--TODO: Fehlende Referenzen--></p>
+<p>LinkEAX<!--TODO: Fehlende Referenzen--></p>
+
+<h3 class="h4">Weiterführende Links</h3>
+<!--TODO: Fehlende Referenzen-->

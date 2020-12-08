@@ -1,0 +1,292 @@
+---
+title: "2.2 Analoge Audiosignale"
+date: 2020-10-12T09:49:44+02:00
+draft: true
+---
+
+<h2>2.2.1 Eigenschaften von Audiosignalen</h2>
+<p>Die Frequenz eines analogen Audiosignals bestimmt dessen Tonhöhe. Dabei ist die Wellenlänge indirekt proportional zur
+    Frequenz und hängt von der Ausbreitungssgeschwindigkeit der Welle ab. Die Amplitude bestimmt die Lautstärke des
+    Signals und wird in Dezibel [dB] gemessen.</p>
+
+<!--TODO: Image shortcode TODO:Fehlende Referenzen-->
+<!--TODO: Image shortcode TODO:Fehlende Referenzen-->
+
+<h5>Klang:</h5>
+<p>Als Klang bezeichnet man ein beliebiges Audiosignal.</p>
+<h5>Ton:</h5>
+<p>Ein Ton ist ein periodisches Audiosignal mit konstanter Wellenform.</p>
+<h5>Rauschen:</h5>
+<p>Als Rauschen bezeichnet man den andauernden Teil des Audiosignals, der keine relevante Audioinformation enthält.</p>
+<h5>Geräusch:</h5>
+<p>Ein Geräusch ist ein zeitlich begrenztes Rauschen.</p>
+
+<p>Ein Ton wird durch seine Höhe, Farbe (Timbre), Lautstärke und Dauer bestimmt. Aus der Sicht der Signalbearbeitung
+    spricht man von Frequenz (pitch), Wellenform (waveform), Amplitude und Dauer eines Audiosignals. Ein Mensch kann
+    Töne im Frequenzbereich zwischen 16 Hz und 20 kHz wahrnehmen. Die Farbe des Tones wird durch seine Wellenform
+    bestimmt. Die "weichste" Wellenform hat ein Sinus-Signal und ergibt den angenehmsten Klang.</p>
+<p>Beliebige Wellenformen der Wellenlänge λ können als Summe von Sinus-Wellen der Wellenlängen n x λ dargestellt
+    werden.</p> <!-- TODO: Formelzeichen-->
+
+<h5>Grundton:</h5>
+<p>Den Sinus-Ton mit der größten Wellenlänge, d.h. mit der niedrigsten Frequenz bezeichnet man als Grundton.</p>
+<h5>Obertöne</h5>
+<p>Sinus-Töne mit höheren Frequenzen werden Obertöne genannt.</p>
+<h5>Harmonische</h5>
+<p>Obertöne mit ganzzahligem Verhältnis heißen "Harmonische". Es wird zwischen geraden und ungeraden Harmonischen
+    unterschieden.</p>
+
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Hörbeispiele:</p><!--TODO:Formatierung-->
+<!--TODO: Audio shortcode-->
+
+<p>Musikinstrumente besitzen auch Obertöne, deren Frequenz kein Ganzzahliges der Grundfrequenz ist. Die Anzahl, die
+    relative Intensität und die relativen Phasenverschiebungen der Obertöne bestimmen die Farbe des Tones. Je größer die
+    Zahl der Obertöne, desto "reicher" und voller klingt der Ton. Besitzt ein Ton viele Harmonische höherer Ordnung, so
+    klingt er schärfer und heller. Bei nur wenigen oder nur schwachen Obertöne, wirkt der Ton dunkel und gedämpft.</p>
+<p>Audiosignale entstehen z.B. durch Vibrationen der Stimmbänder (Gesang), von Saiten (Saiteninstrumente), einer
+    Luftsäule (Blasinstrument). Die Klangfarbe wird vom Material des Instrumentes beeinflusst (Blech-, Holzinstrumente).
+    Beispiel: Saiteninstrument</p><!--TODO: Fehlende Referenzen-->
+
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Zu Beginn entstehen in der Saite Oszillationen verschiedenster Frequenzen, wobei die mit einer nicht ganzzahligen
+    Wellenlänge schnell abklingen. In der Saite bilden sich so genannte stehende Wellen mit Knoten, in denen die Saite
+    sich nicht bewegt.</p>
+
+<h2>2.2.2 Signalanalyse</h2>
+<p>Für die Signalanalyse bieten sich drei Methoden an:</p>
+
+<h5>Statistische Analyse</h5>
+<p>betrachtet das Signal statistisch als Folge von Ereignissen.</p>
+<h5>Fourier Analyse</h5>
+<p>transformiert das Signal aus dem Zeit- in den Frequenzraum und analysiert die Frequenzinhalte des Signals.</p>
+<h5>Wavelet-Analyse</h5>
+<p>verwendet verschiedene Funktionen, um ein Signal im Frequenzraum zu beobachten.</p><!--TODO: Formatierung-->
+
+<h4>Statistische Analyse</h4>
+<p>Es wird unterschieden zwischen zeitdiskreten und zeitkontinuierlichen Signalen. Obwohl Schnittsysteme digitale, also
+    zeitdiskrete Signale verarbeiten, betrachtet man diese zum Teil als zeitkontinuierlich, um bestimmte Eigenschaften
+    der Audiosequenzen zu berücksichtigen. Die nachfolgenden Formeln sind deshalb sowohl für diskrete (links) wie auch
+    stetige Funktionen (rechts) angegeben. Um ein diskretes oder stetiges Signal statistisch zu betrachten, wird die
+    Amplitude des Signals zu einem Zeitpunkt t als zufällige Variable angenommen. Die wichtigste Aussage über die
+    Amplitudenverteilung des Signals erhält man aus der Wahrscheinlichkeitsdichte. Sie zeigt, mit welcher
+    Wahrscheinlichkeit die Amplitude den Wert x erreicht.</p>
+
+<!--TODO: Formeln shortcode-->
+<p>Dabei gilt:</p>
+<!--TODO: Formeln shortcode-->
+<p>Die wichtigsten Parameter sind Erwartungswert E, Median M und Varianz . Erwartungswert oder Mittelwert ist der Wert,
+    um den sich die Funktionswerte mit größter Wahrscheinlichkeit sammeln.</p> <!-- TODO: Formelzeichen-->
+<!--TODO: Formlen shortcode-->
+<p>Die Wurzel aus der Varianz ist die Standardabweichung :</p> <!-- TODO: Formelzeichen-->
+<!--TODO: Formeln shortcode-->
+<p>Sie ist ein Maß für die Streuung der möglichen Werte der Variablen um den Erwartungswert.</p>
+
+<h4>Fourier Analyse</h4>
+<p>Die Fouriertransformation erlaubt die Betrachtung von Systemen und Signalformen im Frequenzbereich, indem sie die
+    Zeitsignale in eine andere Darstellung überführt. Diese Darstellung lässt die zur Bildung der Signale notwendigen
+    Frequenzanteile erkennen. Jede beliebige periodische Funktion kann durch die Summe einer Reihe (Fourier Reihe)
+    dargestellt werden. Jede periodische Funktion mit der Kreisfrequenz</p>
+<!--TODO: Formeln shortcode-->
+<p>lässt sich als folgende Summe darstellen:</p>
+<!--TODO: Formeln shortcode-->
+<p>Hierzu gibt es ein Java-Applet, dass grafisch zu verschiedenen Funktionen die zugehörigen Fourierspektren darstellen
+    kann.</p>
+<!--TODO: Fourierspektren Applet-->
+
+<p>Mit anderen Worten, man kann jede beliebige periodische Funktion der Frequenz aus der Summe der Sinus- und
+    Cosinusfunktionen mit der n-fachen Frequenz () bilden. Dabei ist der Offset. Die Berechnung der unendlichen Reihen
+    und wird als Fourier-Transformation gekennzeichnet:</p> <!-- TODO: Formelzeichen-->
+<!--TODO: Formeln shortcode-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Koeffizienten und können als Vektor aufgefasst werden, wodurch sie durch einen Winkel und eine Intensität dargestellt
+    werden können. Dies hat den Vorteil, dass die Intensität des Vektors die Amplitude des Frequenzanteils der Funktion
+    bei der Zentralfrequenz und der Winkel die Phasenverschiebung ist.</p> <!-- TODO: Formelzeichen-->
+<!--TODO: Formeln shortcode-->
+
+<p>Zur weiteren Vereinfachung wird das Zahlenpaar oft als eine komplexe Zahl dargestellt. Dann liefert die Eulersche
+    Gleichung (2.3) eine weitere Basis für die Vereinfachung in der Form:</p> <!-- TODO: Formelzeichen-->
+<!--TODO: Formeln shortcode-->
+
+<p>Damit lässt sich die Formel (1.10) wie folgt ausdrücken:</p>
+<!--TODO: Formeln shortcode-->
+
+<p>sind komplexe Zahlen:</p><!-- TODO: Formelzeichen-->
+<!--TODO: Formeln shortcode-->
+
+<p>Die Reihe aller Amplituden stellt das Spektrum der Funktion dar. Das Spektrum einer Funktion ist Ausgangsbasis für
+    viele Anwendungen und Analysen des Signals. Eine verbreitete Anwendungen ist die Datenkompression. Die Berechnung
+    der ursprünglichen Funktion aus den Koeffizienten und erfolgt über die inverse Fourier
+    Transformation.</p><!-- TODO: Formelzeichen-->
+<p>Dient als Ausgangsbasis eine diskrete Funktion, die als Reihe mit der Periode N angegeben ist, wird die Fourier
+    Transformation für diskrete Funktionen, die Diskrete Fourier Transformation (DFT)
+    angewandt.</p><!-- TODO: Formelzeichen-->
+<!--TODO: Formeln shortcode-->
+
+<p>Die Berechnung der Koeffizienten der DFT lautet:</p>
+<!--TODO: Formeln shortcode-->
+
+<p>Die beiden Formeln kann man analog zur stetigen Version in der komplexen Form darstellen. Zusätzlich werden die
+    Winkel oft zur Vereinfachung durch ersetzt.</p><!-- TODO: Formelzeichen-->
+<!--TODO: Formeln shortcode-->
+
+<p>Sowohl die Ausgangsfunktion wie auch die Fourier-Transformierte sind diskrete Funktionen, ausgedrückt durch die
+    Reihen und . Die Zusammenhänge sollen an einem Ausschnitt einer Orgelsequenz erläutert
+    werden:</p><!-- TODO: Formelzeichen-->
+
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Das Ergebnis der DFT ist als diskretes Spektrum dieses Klanges im folgenden Diagramm dargestellt. Es sind der
+    Grundton und einige Harmonische zu erkennen. Man sieht, dass die einzelnen Spitzen in Abständen, die ein
+    ganzzahliges der niedrigsten Frequenz darstellen, verteilt sind. Das ist ein Zeichen für die Glossar Konsonanz
+    <!--TODO: Missing Hyperlink--> dieses Klanges.</p>
+
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Die Formel für die DFT lässt sich auch in Matrixform darstellen:</p>
+<!--TODO: Formeln shortcode-->
+<p>Die Anzahl der notwendigen Rechenoperationen für die DFT beträgt ca. N² (siehe auch Arbeiten von Cooley
+    <!--TODO: Fehlende Referenzen-->)</p>
+
+<h2>2.2.3 Dämpfung, Frequenzgang und Klirrfaktor</h2>
+<p>Das <strong>Dämpfungsmaß</strong> wird durch die Formel (1.19) bestimmt, wobei Ue das Eingangssignal und Ua das
+    Ausgangssignal ist. Ua = Ue / 2 entspricht einer Dämpfung von 6 dB.</p><!-- TODO: Formelzeichen-->
+<!--TODO: Formeln shortcode-->
+
+<p>Der <strong>Frequenzgang</strong> lässt sich als Ua = f (Ue) beschreiben; f gibt Aufschluss über Nichtlineare
+    Verzerrung, Clipping, Zeit- und Frequenzbereich. </p><!-- TODO: Formelzeichen-->
+
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Der <strong>Klirrfaktor</strong> k ist das Maß für die Obertöne (Harmonische); er ermittelt sich aus der Gleichung
+    (1.20), wobei das Ausgangsignal Ua z.B. die Grundschwingung U1 und deren Obertöne (U2, U3, ...) umfasst.
+</p><!-- TODO: Formelzeichen-->
+<p>Die <strong>Klirrdämpfung</strong> folgt aus dem Klirrfaktor k. </p>
+
+<!--TODO: Formeln shortcode-->
+
+<h2>2.2.4 Störsignalarten</h2>
+<p>Die Übertragung bzw. Speicherung eines Signals ist stark von der Art des Signals bzw. der in ihm enthaltenen
+    Information abhängig. Übertragungskanäle werden im Allgemeinen mehr oder weniger gestört, ihr Modell besteht deshalb
+    aus einem Addierer mit einem Rauschgenerator.</p>
+<p>Es ist zu unterscheiden zwischen zeitbegrenzten (<i>transienten</i>) und andauernden (<i>statistischen</i>)
+    Störungen.</p>
+<ul>
+    <li>Transiente Störungen sind Clicks, Crackles und Drop-Outs.</li>
+    <li>Andauernde Störungen sind DC-Offset und Hintergrundrauschen.</li>
+</ul>
+
+<h5>Clicks (Klicken, Knacksen):</h5>
+<p>Clicks sind lokale Störungen des Audiomaterials, die bei Schallplatten und Filmen entstehen. Sie haben meistens
+    mechanische Ursachen und entstehen durch Kratzer oder große Staubpartikel. Die Länge variiert zwischen 50 µs und 4
+    ms. </p> <!--TODO: Formatierung-->
+<p>Hörbeispiele:</p><!--TODO: Formatierung-->
+<!--TODO: Audio shortcode-->
+
+<h5>Crackles (Knistern):</h5>
+<p>Crackles sind oszillierende Störungen mit kleinerer Energie als bei den Clicks, jedoch ist ihre Dauer länger. Durch
+    ihren oszillierenden Charakter werden sie als sehr störend empfunden.</p>
+
+<h5>Drop Outs (Ausfälle):</h5>
+<p>Drop Outs entstehen bei Ausfällen oder Synchronisationsproblemen in digitalen Systemen. Ihre Dauer kann zwischen
+    einem und mehreren Tausend Samples betragen. </p>
+<p>Hörbeispiele:</p><!--TODO: Formatierung-->
+<!--TODO: Audio shortcode-->
+
+<h5>DC-Offset:</h5>
+<p>Der DC-Offset (direct current - Gleichspannng) verursacht keine hörbaren Störungen, sie bilden den
+    Gleichspannungsanteil eines Signals. Es ist die Verschiebung des Signals von der x-Achse weg. Er entsteht bei allen
+    Verstärkern, die keine perfekte Nullspannung an ihrem Ausgang liefern (Drifting). Der DC-Offset entsteht auch bei
+    vielen A/D Wandlern. Diese Störung ist unerwünscht, weil sich durch den Gleichspannungsanteil die Symmetrie des
+    Signals verfälscht, was bei der weiteren Bearbeitung des Signals nachteilig sein kann. Bei der 'Fast Fourier
+    Transformation' (FFT) ist dies unerwünscht, da jede Frequenzkomponente mit der Glossar Diracfunktion
+    <!--TODO: Missing Hyperlink--> gefaltet wird, wodurch eine Verdeckung niedrigerer Frequenzen entsteht. </p>
+<p>Hörbeispiele:</p><!--TODO: Formatierung-->
+<!--TODO: Audio shortcode-->
+
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<h5>Hintergrundrauschen:</h5>
+<p>Hintergrundrauschen bezeichnet alle stochastischen und statistisch nichtdeterminierbaren Störungen. Es ist die am
+    meisten vorkommende Störung. Diese Störungen sind schwer zu entfernen, weil es keine Regel für ihre Form, Häufigkeit
+    oder Intensität gibt. Sie verfälschen das Signal in allen Frequenzbereichen. Das Hintergrundrauschen entsteht durch
+    Fehler im Medium (Bandrauschen), in einzelnen Bauteilen (thermisches Rauschen, Verstärkerrauschen) oder durch äußere
+    Einflüsse. </p>
+<p>Hörbeispiele:</p><!--TODO: Formatierung-->
+<!--TODO: Audio shortcode-->
+
+<h5>Wows oder 'Pitch Variationen':</h5>
+<p>Wows entstehen durch Veränderungen der Aufnahme- oder Abspielgeschwindigkeit mechanischer Tonträger, z.B. bei nicht
+    exakt gleichmäßiger Umdrehung oder Zentrierung einer Schallplatte oder durch ungleichmäßige Arbeit des
+    Antriebsmotors. </p>
+<p>Hörbeispiele:</p><!--TODO: Formatierung-->
+<!--TODO: Audio shortcode-->
+
+<h2>2.2.5 Hintergrundrauschen</h2>
+<p>Rauschen enthält keine relevante Information und hat viele Ursachen:</p>
+<ul>
+    <li>thermische Bewegung der Ladungsträger in Leitern,</li>
+    <li>Bestrahlung durch Photonen und andere subatomare Partikel (kosmische Strahlung),</li>
+    <li>elektromagnetische Felder von Leitungen und Geräten,</li>
+    <li>mechanische Störungen oder</li>
+    <li>statische Elektrizität.</li>
+</ul>
+
+<p>Man unterscheidet zwischen weißem Rauschen, Stoßrauschen, Funkelrauschen, und Geräuschen.</p>
+<ul>
+    <li><strong>Weißes Rauschen</strong> entsteht durch thermische Bewegung in Leitern und Bestrahlung durch
+        energiegeladene Teilchen. Es
+        hat zufälligen Charakter. Die Amplituden sind normalverteilt und die GlossarSpektraldichte
+        <!--TODO: Missing Hyperlink--> ist frequenzunabhängig. Die Rauschanteile im Signal verringern den Dynamikumfang
+        und verschlechtern die Qualität des Signals. Weißes Rauschen lässt sich nicht vollständig vermeiden. Es sind
+        aber trotzdem einige Maßnahmen zur Verringerung des Rauschens möglich.
+        <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+    </li>
+    <li><strong>Stoßrauschen</strong> entsteht in bestimmten Halbleitern oder bei Fehlern im Kristallgitter eines
+        Bauteils. Stoßrauschen ist, wie in der Abbildung dargestellt, im Allgemeinen durch weißes Rauschen überlagert
+        und für Audiosignale nur von geringer Bedeutung. Die Signal- und Pausendauer ist exponentiell verteilt.
+        <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+    </li>
+    <li><strong>Funkelrauschen</strong> entsteht durch thermische Bewegungen der Ladungsträger in aktiven Bauteilen
+        (Halbleitern), hat stochastischen Charakter und unterscheidet sich von dem weißen Rauschen nur durch seine
+        Glossarspektrale Dichte<!--TODO: Missing Hyperlink-->. Die spektrale Dichte des Funkelrauschens fällt mit
+        steigender Frequenz und zwar etwa 10 dB pro Oktave. Bei Frequenzen ab etwa 2kHz ist das Funkelrauschen durch das
+        weiße Rauschen verdeckt. Da die Bewegungen der Elektronen im Halbleiter komplizierter sind als im Leiter, kommt
+        es bei dem Funkelrauschen zu Schwankungen in der Verteilung der Amplitudenwerte, so dass man stochastische
+        Kenngrößen der Verteilungen unterstellt. Besonders wichtig ist die Varianz der Verteilung. Sie zeigt, wie sehr
+        sich der stochastische Charakter der Verteilung ändert.
+    </li>
+</ul>
+
+<p>Bei allen anderen Rauschsignalen, die nur eine begrenzte Dauer haben und deren Charakter sich mathematisch nicht
+    beschreiben lässt, spricht man von <strong>Geräuschen</strong>. Ursachen sind vor allem mechanische Fehler und die
+    Entladung der
+    statischen Elektrizität. Geräusche werden als besonders störend empfunden, weil sie diskontinuierlich und
+    unregelmäßig vorkommen. Das menschliche Ohr gewöhnt sich mit der Zeit wegen ihrer Kontinuität an weißes oder
+    Funkelrauschen. Geräusche haben unterschiedliche Formen und Dauer und sind in ihrem Auftreten im Allgemeinen
+    unvorhersehbar. Eine genaue Kenntnis der Ursachen von Geräuschen ist oft der einzige Ansatzpunkt für ihre Analyse
+    und Entfernung. Im Vergleich mit anderen Rauscharten spielen Geräusche eine wichtige Rolle im niedrigeren
+    Frequenzbereich. Zudem wird zwischen rosa und braunen Rauschen unterschieden.</p>
+
+<ul>
+    <li><strong>Rosa Rauschen</strong> charakterisiert ein weißes Rauschen, bei dem die spektrale Energie pro Oktave
+        konstant ist. Das bedeutet eine Spektralverteilung proportional zu 1/f. Mit ihm werden sehr gut die
+        Eigenschaften des Systems bei natürlichen Audiosignalen nachgebildet, da bei ihnen die Spektralenergie mit
+        steigender Frequenz meistens fallend ist.
+    </li>
+    <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+    <li>
+        <strong>Braunes Rauschen</strong> entspricht der Brownschen Bewegung der Atome. Das Signal hat zu einem
+        Zeitpunkt t die gleiche Wahrscheinlichkeit, sich in beide Richtungen auszubreiten. Für die Systemanalyse ist es
+        weniger von Bedeutung, in der Natur entsteht es oft durch mechanische Störungen, z.B. kleine Partikel auf einer
+        Schallplatte.
+    </li>
+</ul>
+<!--TODO: Tabelle shortcode-->

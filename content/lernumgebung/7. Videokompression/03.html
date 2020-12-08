@@ -1,0 +1,23 @@
+---
+title: "7.3 Prinzipien der Datenreduktion"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<p><strong>Redundanzreduktion</strong></p>
+<p>Bei der Redundanzreduktion werden überflüssige, weil bekannte, Informationen ausgespart. In einem Videosignal können
+    dies neben - oder übereinander liegende Bildpunkte (spatiale Redundanz), oder Bildpunkte in aufeinander folgenden
+    Teilbildern (temporale Redundanz) sein. Kodiert werden nur die Signalinhalte, die sich bezogen auf die
+    vorhergehenden Bildpunkte (spatial und temporal) geändert haben. Die Redundanzreduktion hat keinen
+    Informationsverlust zur Folge (verlustfreie Codierung).</p>
+<p>Methoden: Entropiecodierung, Differenzcodierung mit Bewegungskompensation</p>
+
+<p><strong>Irrelevanzreduktion</strong></p>
+<p>Bei der Irrelevanzreduktion werden nicht wahrgenommene Informationen weggelassen. So wird z.B die hohe
+    Chrominanzauflösung des 4:4:4-Signals vom Auge nicht wahrgenommen, weshalb beim TV die 4:2:2 Abtastung Verwendung
+    findet. Zudem sind in realen Videosignalen höhere Frequenzen zunehmend mit geringerer Amplitude vertreten, so dass
+    hier eine reduzierte Auflösung (gröbere Quantisierung) vertretbar ist. Die Irrelevanzreduktion hat einen (nicht
+    sichtbaren) Informationsverlust zur Folge (verlustbehaftet).</p>
+<p>Methoden: Transformationscodierung (DCT) und Quantisierung.</p>
+<p>Tiefergehende Erläuterung und Anwendung der beschriebenen Reduktionsprinzipien in den Kapiteln Bildkompression
+    <!--TODO: Fehlende Referenzen--> und MPEG-Videokompression<!--TODO: Fehlende Referenzen-->.</p>

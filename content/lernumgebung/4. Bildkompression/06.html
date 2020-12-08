@@ -1,0 +1,391 @@
+---
+title: "4.6  Fraktale Kompression"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<p><strong>Einleitung</strong></p>
+<p>In der Natur kommen viele Strukturen vor, die starke Selbstähnlichkeiten aufweisen, z.B. Gebirgsformationen,
+    Meeresküsten oder Blätter von Pflanzen. Solche sich wiederholenden Muster kann man nutzen, wenn man ein
+    umfangreiches Gebilde durch ein kleines Erzeugersystem darstellen möchte. Die Abbildung zeigt einen Farn, der durch
+    die wiederholte Anwendung von vier affinen Abbildungen entstanden ist.</p>
+<img src="..." alt=" Farn mit Selbstähnlichkeit"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>So ist die Idee der Fractal Image Compression (FIC) entstanden. Ein Bild wird durch eine iterierte Funktion
+    beschrieben. Dabei werden die im Bild vorhandenen Selbstähnlichkeiten ausgenutzt. Details des Bildes sind
+    verkleinerte und evtl. gedrehte oder gespiegelte Kopien anderer Bildteile<!--TODO: Fehlende Referenzen--> . Das
+    Hauptproblem ist, zu den jeweiligen Bildteilen geeignete Transformationsfunktionen zu finden. Gespeichert werden die
+    Parameter dieser Funktionen und nicht die Pixel der Bildteile, wodurch eine hohe Komprimierungsrate und eine
+    schnelle Dekomprimierung erreicht wird.</p>
+<p>Merkmale der FIC:</p>
+<ul>
+    <li>blockbasierte, verlustbehaftete Kompression,</li>
+    <li>schnelle Dekompression, sehr rechenintensive Kompression,</li>
+    <li>Verfahren durch zwei Patente geschützt.</li>
+    <li>Bei akzeptabler Qualität werden Kompressionsraten bei der FIC von typisch 1:60 (bei JPEG von ca. 1:30) erzielt.
+        Bei geringerer Qualität werden Faktoren von 1:200 erreicht ( LinkQuadtree ).
+    </li>
+</ul>
+
+<p>Historischer Hintergrund<!--TODO: Fehlende Referenzen--></p>
+<ul>
+    <li>Basis ist die von B. Mandelbrot (IBM) 1977 veröffentlichte Arbeit zur fraktalen Geometrie. Hierzu entwickelte J.
+        Hutchinson 1981 den als 'Iterated Function Theory' bekannten mathematischen Rahmen.
+    </li>
+    <li>Dies wurde von M. Barnsley in seinem Buch 'Fractals Everywhere' in Richtung 'Iterated Functions Systems' IFS und
+        dem 'Collage Theorem' verfeinert.
+    </li>
+    <li>Das 'Collage Theorem'<!--TODO: Fehlende Referenzen--> legt die Bedingungen fest, die ein IFS zur Repräsentation
+        eines fraktalen Bildes erfüllen muß.
+    </li>
+    <li>Mit dem IFS können somit Bilder erzeugt werden, die natürlichen Objekten, z.B. dem oben dargestellten fraktalen
+        Farn, sehr ähnlich sind. Durch inverse Operation ist damit die Kompression der entsprechenden Bilder möglich.
+    </li>
+    <li>Alan Sloan, ein Kollege von Barnsley, hat das Potential von IFS für die Kompression von Bildern als erster
+        erkannt, beide haben das Verfahren zum Patent angemeldet. Das patentierte Verfahren erfordert jedoch
+        Unterstützung durch den Benutzer und hat sich deshalb so in der Praxis nicht durchgesetzt.
+    </li>
+    <li>A. Jacquin, ein Mitarbeiter von Barnsley, hat das Verfahren modifiziert und verbessert, so daß vollautomatische
+        Kompression möglich wurde<!--TODO: Fehlende Referenzen--> , das sog. 'Partitioned IFS'. Alle aktuellen FIC
+        Programme basieren auf diesem Ansatz. Barnsley & Sloan besitzen ein entsprechendes zweites Patent. Entsprechende
+        Produkte werden von 'Iterated Systems' (an der Barnsley beteiligt ist) vertrieben.
+    </li>
+</ul>
+
+<h2>4.6.1 Multiple Reduction Copy Machine</h2>
+<p>Zur Veranschaulichung der klassischen IFS Methode soll als Metapher eine 'Multiple Reduction Copy Maschine' (MRCM)
+    genutzt werden<!--TODO: Fehlende Referenzen--> . Sie beschreibt grob den inversen Prozess der Fraktalen
+    Kompression:</p>
+<p>Angenommen sei ein Kopierer, der mehrere Linsensysteme besitzt. Diese können unabhängig voneinander jeweils das
+    Ursprungsbild um einen Faktor verkleinern und an eine bestimmte Stelle kopieren. Der Kopierer bekommt ein beliebiges
+    Bild als Eingabe und gibt die Überlagerung aller verkleinerten Bilder, wie in untenstehender Graphik dargestellt,
+    aus.</p>
+<img src="..." alt="Kopiermaschine"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Die Kopiermaschine ermöglicht folgende Einstellungen:</p>
+<ul>
+    <li>Anzahl der Linsensysteme,</li>
+    <li>Verkleinerungsfaktor für jedes Linsensystem und</li>
+    <li>Anordnung (Position) der verkleinerten Bilder bei der Ausgabe.</li>
+    <li>Grundidee: Nutzung der Ausgabe der MRCM wieder als Eingabe.</li>
+    <img src="..." alt="Prinzip der Kopiermaschine"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+</ul>
+
+<p>Beispiel:</p>
+<p>Eine MRCM sei so konfiguriert, daß sie das Quellbild auf 25% verkleinert und es jeweils oben in die Mitte und unten
+    links sowie unten rechts kopiert.</p>
+<img src="..." alt="Das Sirpinski-Dreieck aus"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Bei verschiedenen Eingaben und gleicher Transformationsvorschrift ergibt sich obenstehendes Bild. Jede Eingabe führt
+    bei dieser MRCM nach endlich vielen Iterationsschritten zum gleichen Ergebnis, dem Sirpinski-Dreieck, einem der
+    einfachsten und bekanntesten IFS<!--TODO: Fehlende Referenzen--> . Den 'Grenzwert' der MRCM nennt man ihren
+    Attraktor.</p>
+
+<p><strong>Mathematische Darstellung</strong></p>
+<p>Die von der MRCM ausgeführten Transformationen sind Drehungen, Spiegelungen, Verschiebungen und Verkleinerungen, also
+    affine lineare Transformationen in der Ebene:</p>
+<!--TODO: Formeln shortcode-->
+
+<p>Hierdurch wird ein Punkt (x,y) des ursprünglichen Bildes zu den neuen Koordinaten (x', y') transformiert.</p>
+<p>Die drei Transformationen für das Sierpinski-Dreieck haben folgende Koeffizienten a ... f:</p>
+<!--TODO: Formeln shortcode-->
+
+<p>Die ersten vier Koeffizienten sind identisch, was nicht generell der Fall ist. Solange die Determinante kleiner 1
+    ist, konvergiert die Transformation gegen den Attraktor:</p>
+<!--TODO: Formeln shortcode-->
+
+<p>Die Verwendung von Fraktalen zur Kompression von Bildern basiert auf folgenden Annahmen:</p>
+<ul>
+    <li>Viele natürliche Bilder enthalten eine Detail-in-Detail Struktur.</li>
+    <li>IFS<!--TODO: Fehlende Referenzen--> erzeugen fraktale Bilder, die ähnlich den natürlichen sind.</li>
+    <li>Die IFS-Repräsentation eines Bildes ist kompakt.</li>
+    <li>Beispiel:</li>
+    <img src="..." alt="Fraktaler Baum aus"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+</ul>
+
+<p>Die IFS, die den oben dargestellten fraktalen Baum erzeugt, besteht z.B. aus den folgenden vier Transformationen:</p>
+<!--TODO: Tabelle shortcode-->
+
+<p>Die Datei zur Beschreibung der IFS besteht aus 176 Byte, wogegen das Pixelbild ca. 250.000 Byte einnimmt.</p>
+<p>Die klassische IFS unterstellt Selbstähnlichkeit des gesamten Bildes zu Teilen des Bildes. Dies ist bei natürlichen
+    Bildern, wie z.B. das einer Landschaft mit Bäumen, Gräsern, Bergen und Himmel, selten und die Selbstähnlichkeiten zu
+    finden ist äußerst kompliziert. Deshalb beschränkt man die Forderung auf Selbstähnlichkeit zwischen Teilbereichen
+    eines Bildes.</p>
+
+<h2>4.6.2 Kompressionsverfahren</h2>
+<p>Fraktale Kompression ist der inverse Prozeß zu IFS<!--TODO: Fehlende Referenzen--></p>
+<img src="..." alt="Finden von Selbstähnlichkeiten aus"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Zu einem gegebenen Bild soll eine Funktion gefunden werden, die bei Iteration das Bild möglichst gut annähert. Dazu
+    muß im Bild nach Selbstähnlichkeiten gesucht werden, also nach Teilbildern, die anderen Teilbildern möglichst
+    ähnlich sind.</p>
+<p>Das Prinzip des 'Partitioned IFS' ist in Abb.3.6.6 dargestellt:</p>
+<ul>
+    <li>Einteilung des zu komprimierenden Bildes in folgende Bereiche:
+        <ul>
+            <li><strong>Range-Blöcke:</strong> Sie enthalten in ihrer Summe alle Pixel des Bildes, wobei jeder einzelne
+                Block keine Pixel eines anderen Blockes enthält (also keine Überlappung existiert).
+            </li>
+            <li><strong>Domain-Blöcke:</strong> Sie sind größer als die Range-Blöcke, können sich überlappen und müssen
+                in ihrer Summe nicht alle Pixel des Bildes enthalten.
+            </li>
+        </ul>
+    </li>
+    <li>Ziel des Kompressionsprozesses ist es, einen möglichst ähnlichen Domain-Block für jeden Range-Block zu finden.
+        Dazu wird jeder Domain-Block mit jedem Range-Block verglichen.
+    </li>
+    <li>Ein Domain-Block ist einem Range-Block am ähnlichsten, wenn die Distanz zwischen Range-Block und transformiertem
+        Domain-Block am geringsten ist.
+    </li>
+    <li>Der Domain-Block wird zunächst transformiert und normalisiert.</li>
+    <li>Die Ähnlichkeitsprüfung erfolgt durch Berechnung des quadratischen Abstandes zwischen normalisiertem
+        Domain-Block und Range-Block (Vergleich erfolgt pixelweise).
+    </li>
+    <li>Durch die Wahl kleiner Range-Blöcke wird schnell ein "passender" Domain-Block gefunden.</li>
+</ul><!--TODO: Formatierung-->
+
+<p><strong>Partitionierungsverfahren:</strong></p>
+<p>Folgende Partitionierungsverfahren werden unterschieden:</p>
+<ul>
+    <li>Quadrate: Unterteilung des Bildes in gleich große Quadrate.
+        <ul>
+            <li>Zur Vereinfachung des Kompressionsprozesses wählte Jacquin rechteckige, doppelt so große Domain-Blöcke,
+                d.h. 16 x 8 Pixel bei 8 x 8 Pixel Range-Blöcken.
+            </li>
+        </ul>
+    </li>
+    <li>Quadtree: Bild wird zunächst in gleich große Quadrate unterteilt und im weiteren Verfahren je nach Inhalt in
+        immer kleinere Quadrate unterteilt. Der Vorteil dieser Methode ist: Die Zuordnung größerer Areale mit wenig
+        Detailinformation geschieht schnell bei nur geringem Speicherverbrauch.
+    </li>
+    <img src="..." alt="Partitionierung nach Quadraten und Quadtree-Verfahren aus">
+    <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+    <li>HV: Beim HV-Verfahren wird zunächst das gesamte Bild als ein Domain-Block betrachtet. Im weiteren Verlauf wird
+        das Bild immer weiter in Rechtecke unterteilt. Ein Rechteck wird immer an einer vom Bildinhalt abhängigen Stelle
+        in zwei Rechtecke geteilt.
+    </li>
+    <li>Triangular: Unterteilung in Dreiecke, sonst gleiches Prinzip wie bei HV. Ein Dreieck wird jeweils in 4 kleinere
+        Dreiecke unterteilt. Mit dieser Methode findet man besser zueinander passende Blöcke. Die Berechnung der
+        Transformationen ist jedoch aufwändiger.
+    </li>
+</ul>
+
+<p>Bei der Unterteilung wird das Bild zunächst in große Rangeblöcke aufgeteilt. Blöcke mit großer Dynamik werden weiter
+    unterteilt. Je größer die Domain-Blöcke, desto größer ist die Kompression, desto schlechter ist aber auch die
+    Bildqualität.</p>
+<p>Ermittlung des Domain-Blockes mit der größten Ähnlichkeit</p>
+<ul>
+    <li>Die Blöcke sind nicht nur durch Ihren Informationsgehalt sondern auch durch Kontrast- und Helligkeitswerte
+        bestimmt.
+    </li>
+    <li>Wird bei der Transformation eine Normalisierung bez. der Helligkeits- und Kontrastwerte der Pixel vorgenommen,
+        so können mehr Range-Blöcke durch denselben Domain-Block beschrieben werden.
+    </li>
+</ul>
+
+<p>Die Transformation hat dann folgende Form, mit <em>z = f(x,y)</em>, <em>S</em> als Kontrast, <em>o</em> als
+    Helligkeit und <em>(x,Y)</em> als Ortsvektor.</p>
+<!--TODO: Formeln shortcode-->
+
+<ul>
+    <li><em>s<sub>i</sub></em> reguliert die Einstellungen des Kontrastes der Luminanz eines Pixels. Bei
+        <em>s<sub>i</sub></em> = 0 wird der Domain-Block schwarz, bei <em>s<sub>i</sub></em> = 1 bleibt er unverändert,
+        zwischen 0 und 1 verliert er und über 1 gewinnt er Kontrast.
+    </li>
+    <li><em>o<sub>i</sub></em> reguliert die Helligkeit. Positive Werte hellen den Block auf, negative verdunkeln ihn.
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<p>Zur Suche nach Selbstähnlichkeiten werden zunächst die beiden zu vergleichenden Bildausschnitte auf das gleiche
+    Helligkeits- und Kontrastniveau gebracht. Dies bezeichnet man mit <strong>Normalisierung</strong>. Danach werden sie
+    mit der Methode der kleinsten Quadrate verglichen.</p>
+<ul>
+    <li>Die <strong>Anpassung</strong> der Bilder <em>f</em> und <em>g</em> entspricht der Minimierung von</li>
+    <!--TODO: Formeln shortcode-->
+    <li><em>R</em> wird minimal, wenn die partiellen Ableitungen nach <em>s</em> bzw. <em>o</em> null sind. Dies ist der
+        Fall, wenn gilt:
+    </li>
+    <!--TODO: Formeln shortcode-->
+    <p>und</p>
+    <!--TODO: Formeln shortcode-->
+</ul>
+
+<p>Der <strong>Abstand</strong> zweier Bilder <em>f</em>, <em>g</em> kann z.B. durch folgende Funktion berechnet werden:
+</p>
+<ul>
+    <li>Pixelweise Maximumsfunktion:</li>
+    <!--TODO: Formeln shortcode-->
+    <li>Summe der Beträge aller Pixelabstände:</li>
+    <!--TODO: Formeln shortcode-->
+</ul><!--TODO: Formatierung-->
+
+<p><strong>Speicherung des komprimierten Bildes:</strong></p>
+<p>Je nach verwendetem Partitionierungsverfahren können die Transformationswerte noch durch kürzere ersetzt werden. Beim
+    Quadtree kann z.B. mit jeweils einem Bit angegeben werden, ob das jeweilige Quadrat weiter unterteilt wird oder
+    nicht.</p>
+<p>Beim HV-Verfahren reicht es, zusätzlich jeweils einen Offset für die Teilungsstelle anzugeben, der dann kleine Werte
+    annimmt. Für jede Transformation sind prinzipiell folgende Werte <em>a<sub>i</sub></em> , <em>b<sub>i</sub></em> ,
+    <em>c<sub>i</sub></em> , <em>d<sub>i</sub></em> , <em>e<sub>i</sub></em> , <em>f<sub>i</sub></em> ,
+    <em>s<sub>i</sub></em> und <em>o<sub>i</sub></em> der obigen Formel zu speichern. Beschränkt man die
+    Transformationen auf</p><!--TODO: Formatierung-->
+
+<ol>
+    <li>Rotation um 0°,</li>
+    <li>Rotation um 90°,</li>
+    <li>Rotation um 180°,</li>
+    <li>Rotation um 270°,</li>
+    <li>Spiegeln um die horizontale,</li>
+    <li>Spiegeln um die vertikale Achse,</li>
+    <li>Spiegeln um die rechte,</li>
+    <li>Spiegeln um die linke Diagonale, und</li>
+</ol>
+
+<p>kennzeichnet diese durch den Parameter mi, so läßt sich die Transformation durch folgenden Satz beschreiben:</p>
+<p><em>w<sub>i</sub></em> = (<em>e<sub>i</sub></em>, <em>f<sub>i</sub></em>, <em>m<sub>i</sub></em>,
+    <em>o<sub>i</sub></em>, <em>s<sub>i</sub></em> )</p>
+<p>Gespeichert werden diese Transformationswerte. Für jede Transformation muß auch gespeichert werden, auf welches
+    Teilbild sich die Transformation bezieht. Dies geschieht je nach Partitionierungsverfahren durch eine Zahl oder die
+    Koordinaten. Insgesamt ergeben sich i.allg. ca. 31 Bit pro Range-Block. Die Anzahl der Transformationen, die
+    gespeichert werden müssen, hängt ab vom Partitionierungsverfahren, von der Feinheit der Partitionierung und damit
+    von der angestrebten Bildqualität.</p>
+
+<p><strong>Komprimierung von Farbbildern</strong></p>
+<p>Um ein Farbbild zu komprimieren, wird das gleiche Verfahren wie für Graubilder auf jede Komponente des Farbbildes
+    angewandt. Bei der Dekomprimierung wird dann jeder Anteil getrennt dekomprimiert und anschließend wieder
+    zusammengesetzt.</p>
+
+<h2>4.6.3 Dekompressionsprozess</h2>
+<p>Die Dekompression beginnt gewöhnlich damit, daß der Bildspeicher einheitlich auf einen mittleren Grauwert gesetzt
+    wird. Dies stellt das Ausgangsbild (seed image) dar.</p>
+<img src="..." alt="Dekomprimierung eines fraktalen Bildes mit unterschiedlichem seed image aus">
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Auf den Bildspeicher werden dann die Transformationen angewandt, d.h. die Pixel eines jeden Range-Blockes werden je
+    Iteration ausgehend vom jeweiligen Domain-Block und der Transformationsvorschrift wi in neue Werte überführt. Das
+    Ergebnis wird als Eingabe für den nächsten Iterationsschritt verwandt. Nach der zweiten Iteration kann man i.allg.
+    schon das Originalbild erahnen, nach der vierten Iteration ist es meist schon sehr gut wiedergegeben.</p>
+<p>Abb. 3.6.9 illustriert den Dekompressionsprozess der zwei Bilder 'Vogel' und 'Kameramann'
+    <!--TODO: Fehlende Referenzen--></p>
+<ul>
+    <li>Jedes Bild hat eine Größe von 256 x 256 Pixeln mit 8 Bit pro Pixel.</li>
+    <li>Alle Range-Blöcke sind 8x8, d.h. die PIFS besteht aus 1024 affinen Transformationen.</li>
+    <li>Das Bild Kameramann wird in diesem Beispiel als Ausgangsbild (seed image) für das Bild Vogel und umgekehrt
+        genutzt.
+    </li>
+    <li>Man erkennt, daß das Ausgangsbild keinen Einfluß auf das Ergebnis, d.h. das dekomprimierte Bild hat. Es wird
+        hierdurch lediglich die Zahl der erforderlichen Iterationen bestimmt.
+    </li>
+    <li>So kann auch mit einem vollständigen schwarzen oder auch weißen Bild begonnen werden.</li>
+</ul>
+<img src="..." alt="Seedimage (oben lins) und das Aussehen des Bildes nach 1, 2, und 3 Iterationsschritten aus">
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<img src="..." alt="Konvergenzprozeß bei unterschiedlichen Ausgangsbildern aus">
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Die obenstehende Graphik zeigt den Konvergenzprozeß abhängig vom Ausgangsbild.<!--TODO: Fehlende Referenzen--></p>
+<p>Die Kompressionsrate für jedes der beiden Bilder ergibt sich bei Verwendung folgender Werte:</p>
+<ul>
+    <li>Ausgangsbildgröße = 256x256x8 bits = 65.536 Bytes</li>
+    <li><em>f<sub>i</sub></em> = 8 bits: 256 horizontale Positionen</li>
+    <li><em>m<sub>i</sub></em> = 8 bits: 256 vertikale Positionen</li>
+    <li><em>s<sub>i</sub></em> = 5 bits: ausreichend nach empirischen Tests</li>
+    <li><em>o<sub>i</sub></em> = 6 bits: ausreichend nach empirischen Tests</li>
+    <li><em>w<sub>i</sub></em> = 32 bits x 1024 Transformationen = 4096 Bytes</li>
+    <li>Kompressionsrate = 65.536 : 4096 = 16 : 1</li>
+</ul>
+
+<p>Verschiedene Optimierungen sind denkbar. Den größten Einfluss hat die Partitionierung der Range-Blöcke. Sowohl das
+    Bild mit dem Kameramann wie auch das mit dem Vogel weist große Hintergrundbereiche auf, die sich nur geringfügig
+    ändern. Diese können gut durch größere Range-Blöcke, z.B. 32 x 32 Pixel, repräsentiert werden. Dagegen sollten
+    Bereiche mit hohem Kontrast und aktiven Details eher in Blöcken von 4 x 4 Pixel aufgeteilt werden.</p>
+
+<h2>4.6.4 Prinzipieller Kompressionsalgorithmus</h2>
+<p>Die prinzipielle Vorgehensweise soll an den oben dargestellten Bildern beschrieben werden.</p>
+<p>Partitionierungsverfahren: 'Quadrate fester Größe', 8 x 8 Punkte.</p>
+<ul>
+    <li>Damit wird das Bild in 1024 Range-Blöcke partitioniert: R = {R<sub>1</sub>, ..., R<sub>1024</sub>}.</li>
+    <li>Zudem wird es in 241 x 241 = 58.081 (überlappenden) 16 x 16 Quadrate (Domain-Blöcke) aufgeteilt: D =
+        {D<sub>1</sub>, ...., D<sub>58081</sub>}
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<p>Durch die Quadrate sind nur Drehungen um 90 Grad und Spiegelungen an der X- oder Y-Achse erlaubt. Der
+    Verkleinerungsfaktor wird auf 25% festgelegt, so daß es 8 mögliche Transformationen gibt.</p>
+<p>Nun wird für jedes R<sub>i</sub> das D<sub>i</sub> gesucht, welches am ähnlichsten ist.</p>
+<ul>
+    <li>Dazu werden R<sub>i</sub> und D<sub>i</sub> in der Größe angepaßt, d.h. es werden aus jedem Pixel 4 Pixel
+        gemacht.
+    </li>
+    <li>Dann werden mit Hilfe der oben angegebenen Formeln die Faktoren für die Helligkeits- und Kontrastanpassung der
+        beiden Bilder ermittelt und auf eines der Bilder angewendet.
+    </li>
+    <li>Dann kann für jede der 8 möglichen Transformationen der Abstand mit einer der Formeln des einen Bildes zum
+        transformierten anderen Bild berechnet werden.
+    </li>
+    <li>Von allen D<sub>i</sub> wird dann das D<sub>i</sub> genommen, das dem R<sub>i</sub> mit einer bestimmten
+        Transformation am ähnlichsten ist, und es werden die Parameter gespeichert.
+    </li>
+</ul>
+
+<p>Dies wird für alle Range-Blöcke wiederholt. Es sind damit 1.024 x 58.081 x 8 = 475.799.552 Transformationen und
+    Bildvergleiche notwendig, hinzu kommen 1.024 x 58.081 = 59.474.944 Helligkeits- und Kontrastanpassungen. Der Aufwand
+    ist also trotz der einfachen Voraussetzungen (kleines Graustufenbild, einfachste Partitionierung, starke
+    Einschränkung der erlaubten Quellbereiche) erheblich.</p>
+<p>Der allgemeine Kompressions-Algorithmus ist damit:</p>
+<!--TODO: Codesample-->
+
+<p>Bei Quadtree-, HV- und Triangularer Partitionierung wird so vorgegangen, daß zunächst bis zu einer gewissen
+    Maximalgröße partitioniert wird. Dann wird geprüft, ob der minimale Abstand zu einem Quellbild bereits eine
+    anzugebende Schranke (als Maß für die gewünschte Kompressionsrate bzw. Bildqualität) unterschritten hat. Wenn nicht,
+    wird das Bild weiter partitioniert; sonst wird die Transformation gespeichert und die Partitionierung (in diesem
+    Ast) abgebrochen.</p>
+<!--TODO: Applet Fraktale Kompression-->
+
+<h2>4.6.5 Eigenschaften des Verfahrens</h2>
+<p>Vorteile der fraktalen Kompression:</p>
+<ul>
+    <li>Fraktal komprimierte Bilder sind prinzipiell unabhängig von der Auflösung des Originalbildes.</li>
+    <li>Die Dekompression ist einfach und nicht rechenintensiv.</li>
+    <li>Das Kompressions-Ergebnis ist meist besser als bei einer Kompression mit JPEG.</li>
+</ul>
+
+<p>Nachteil:</p>
+<ul>
+    <li>Die Komprimierung ist sehr rechenintensiv und aufwändig.</li>
+</ul>
+<img src="..."
+     alt="Im linken Originalbild wird bei Vergrößerungen die Pixelstruktur deutlich, während das rechte, fraktal komprimierte Bild auch bei Vergrößerungen gute Ergebnisse zeigt.">
+<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<h2>4.6.6 Programm FRACOMP</h2>
+<p>Unterstützt werden die IFS<!--TODO: Fehlende Referenzen--> und QIF-Transformation.</p>
+
+<p><strong>IFS-Transformation: </strong></p>
+<p>FRACOMP wendet den einfachen Brute-force-Algorithmus an, bei dem das Bild in gleichgroße Rangeblöcke aufgeteilt wird,
+    deren Größe eingestellt werden kann. Zu jedem Rangeblock wird ein doppelt so großer Domänenblock gesucht, der zu dem
+    Rangeblock die größte Ähnlichkeit besitzt. Das Paar 'Rangeblock ↔ bester Domänenblock' bestimmt mit der
+    entsprechenden Helligkeits- und Kontrastinformation eine Transformation. Wurde für jeden Rangeblock im Bild die
+    Transformation gefunden, so wurde der fraktale Code vollständig erzeugt und kann dann gespeichert werden.</p>
+<p>QIF-Transformationen:</p>
+<img src="..." alt="Aufteilung in Domain-Blöcke"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Dieses Verfahren ist trickreicher. Das schon vorbearbeitete Bild und die möglichen Domänenblöcke, die sich auf einem
+    einstellbaren Gitter befinden, werden klassifiziert (max. 72 Klassen). Dann werden zu jedem Rangeblock nur
+    Domänenblöcke der entsprechenden Klasse verglichen, was die Laufzeit erheblich verkürzt.</p>
+<img src="..." alt="Aufteilung in Rangeblöcke"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Ist die Übereinstimmung zwischen Range- und Domänenblock nicht gut genug (wie gut sie sein soll, ist einstellbar), so
+    wird rekursiv der Rangeblock in seine Quadranten geteilt und der Range-Domänenblockvergleich beginnt bei den
+    kleineren Blöcken erneut, d.h. es wird Quadtree-Partitionierung verwandt. Die weitere Vorgehensweise ist den
+    IFS-Transformationen ähnlich.</p>
+<p>Eine Visualisierung der Transformationen ist durch die Menüpunkte 'QIF-/IFS-<strong>Transformationen
+    anzeigen</strong>' möglich. Es wird ein neues Fenster eröffnet, das die Rangeblockaufteilung des Bildes zeigt. Die
+    schwarzen Blöcke zeigen diejenigen Transformationen, welche den Skalierungsfaktor Null besitzen.</p>
+<img src="..." alt="Anzeige des Programmes fracomp"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Transformationen sind fest mit dem dazugehörenden Bild verbunden. Hierdurch kann ein QIF - oder IFS-<strong>Fehlerbild</strong>
+    erzeugt werden.</p>
+<p>Will man aus den Transformationen das entsprechende Bild generieren, so geschieht dies durch 'QIF-/IFS-<strong>Transformationen
+    anwenden</strong>'. Verschiedenste Parameter können eingestellt werden. Ein neues Fenster mit dem erzeugten Bild
+    wird geöffnet. Dieses Bild ist mit dem Originalbild nicht identisch, da die fraktale Bildkompression verlustbehaftet
+    ist. Information über die Transformationen erhält man durch 'QIF-/ IFS -<strong>Info anzeigen</strong>'.</p>
