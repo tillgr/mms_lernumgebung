@@ -17,7 +17,7 @@ var inverse = true;
 for(var i = 1; i < 1000; i++){
 	var movement = Math.random();
 	if(inverse){
-		if(expectedGraphData[i - 1] + movement <= 255){
+		if(expectedGraphData[i - 1] + movement <= 270){
 			expectedGraphData[i] = expectedGraphData[i - 1] + movement;
 			actualGraphData[i] = actualGraphData[i - 1] - movement;
 		}else{
@@ -142,7 +142,16 @@ function drawExpectedGraph(){
 			.attr("stroke-width", 1.5)
 			.attr("d", d3.line()
 				.x((d, i) => x(i / stepSize))
-				.y(d => y(d))
+				.y(function(d){
+					//clipping
+					if(d > 255){
+						return y(255);
+					}else if(d < 0){
+						return y(0);
+					}
+					
+					return y(d);
+				})
 			);
 	
 	//draw points on expected graph
@@ -154,7 +163,16 @@ function drawExpectedGraph(){
 			.attr("fill", "blue")
 			.attr("opacity", 0.8)
 			.attr("cx", d => x(d))
-			.attr("cy", d => y(expectedGraphData[d * stepSize]))
+			.attr("cy", function(d){
+				//clipping
+				if(expectedGraphData[d * stepSize] > 255){
+					return y(255);
+				}else if(expectedGraphData[d * stepSize] < 0){
+					return y(0);
+				}
+				
+				return y(expectedGraphData[d * stepSize]);
+			})
 			.attr("r", 3);
 }
 
@@ -174,7 +192,16 @@ function drawActualGraph(){
 			.attr("stroke-width", 1.5)
 			.attr("d", d3.line()
 				.x((d, i) => x(i / stepSize))
-				.y(d => y(d))
+				.y(function(d){
+					//clipping
+					if(d > 255){
+						return y(255);
+					}else if(d < 0){
+						return y(0);
+					}
+					
+					return y(d);
+				})
 			);
 	
 	//draw points on actual graph
@@ -186,6 +213,15 @@ function drawActualGraph(){
 			.attr("fill", "red")
 			.attr("opacity", 0.8)
 			.attr("cx", d => x(d))
-			.attr("cy", d => y(actualGraphData[d * stepSize]))
+			.attr("cy", function(d){
+				//clipping
+				if(actualGraphData[d * stepSize] > 255){
+					return y(255);
+				}else if(actualGraphData[d * stepSize] < 0){
+					return y(0);
+				}
+				
+				return y(actualGraphData[d * stepSize]);
+			})
 			.attr("r", 3);
 }
