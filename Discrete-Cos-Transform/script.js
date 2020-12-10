@@ -45,6 +45,7 @@ function magic() {
 
 // ----------------- GUI -----------------
 
+//setup
 var t_mode = ['DCT', 'DFT'];
 var sfield = {1:'150, 170, 132, 185, 147, 190, 215, 220',
 		 2:'165, 185, 130, 190, 175, 196, 223, 199',
@@ -75,7 +76,10 @@ var params = {
   'magic': function() { magic() }
 }
 
-const gui = new dat.GUI();
+const gui = new dat.GUI({autoPlace: false});
+gui.domElement.id = 'datGUI';
+
+document.getElementById('panel').appendChild(gui.domElement);
 
 gui.add(params, 't_mode', t_mode);
 
@@ -86,6 +90,8 @@ gui.add(params, 'q_mode', q_mode).onChange(() => { drawPlot() });
 gui.add(params, 'reset');
 
 gui.add(params, 'magic');
+
+//onChange
 
 for (let i = 0; i < 16; i++) {
   params['user_cfield' + i] = user_cfield[i];
@@ -103,4 +109,5 @@ function reset(user_cfield) {
 
 document.addEventListener("DOMContentLoaded", function(){
   drawPlot();
+
 });

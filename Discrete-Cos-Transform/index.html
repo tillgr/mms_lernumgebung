@@ -7,10 +7,32 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <canvas id="myCanvas" width="700" height="500" style="border:1px solid #000000;"></canvas>
+    <div id="container" class="container">
+
+      <span class="leftPart">
+        <span class="topPanel">
+          <span class="signalValues">
+            <h5 class="mt-0">Choose signal</h5>
+            <span class="flex-row">
+              <button onclick="selection.changeLeft(); renderPairs()">left</button>
+              <span class="signalBoxes flex-row">
+              </span>
+              <button onclick="selection.changeRight(); renderPairs()">right</button>
+            </span>
+          </span>
+          <span class="signalColors">
+            <h5 class="mt-0">Signal color representation</h5>
+            <div id='board'></div>
+          </span>
+        </span>
+        <canvas id="myCanvas" width="700" height="500" style="border:1px solid #000000;"></canvas>
+      </span>
+      <span id="panel" class="panel"></span>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
     <script src="curve.min.js"></script>
     <script src="transform.js"></script>
     <script src="script.js"></script>
+    <script src="topPanel.js"></script>
   </body>
 </html>
