@@ -303,6 +303,8 @@ window.onload = function() {
           console.log(absoluteArray);
         })
 
+    
+
     function getCircleColumnByX(xValue) {
       return circleData.filter(point => point['x'] == xValue);
     }
@@ -359,8 +361,8 @@ window.onload = function() {
         }
       });
     }
-    var correctArray = []
-    initializeCorrectArray()
+    var correctArray = [];
+    initializeCorrectArray();
     function initializeCorrectArray() {
       for (var i = 0; i <= 0.18; i+=0.02) {
         let min = 210
@@ -372,9 +374,34 @@ window.onload = function() {
           }
         });
         console.log({x: parseFloat(i.toFixed(2)), y: coordinate});
-        correctArray.push({x: i, y: min});
+        console.log("array: "+i+" , "+coordinate);
+        correctArray.push({x: i, y: coordinate});
       }
     }
+    drawLineLinear();	
+     function drawLineLinear(){
+        var correctline = d3.svg.line()
+                          .x(function(d){return d.x;})
+                          .y(function(d){return d.y;})
+                          .interpolate('linear');
+        var lineArray = [
+          {"x": 0, "y": yScale(correctArray[0].y)}, {"x": 17.75, "y": yScale(correctArray[0].y)}, {"x": 17.75, "y": yScale(correctArray[1].y)},
+          {"x": 35.5, "y": yScale(correctArray[1].y)}, {"x": 53.25, "y": yScale(correctArray[1].y)}, {"x": 53.25, "y": yScale(correctArray[2].y)},
+          {"x": 71, "y": yScale(correctArray[2].y)}, {"x": 88.75, "y": yScale(correctArray[2].y)}, {"x": 88.75, "y": yScale(correctArray[3].y)},
+          {"x": 106.5, "y": yScale(correctArray[3].y)}, {"x": 124.25, "y": yScale(correctArray[3].y)}, {"x": 124.25, "y": yScale(correctArray[4].y)},
+          {"x": 142, "y": yScale(correctArray[4].y)}, {"x": 159.75, "y": yScale(correctArray[4].y)}, {"x": 159.75,"y": yScale(correctArray[5].y)},
+          {"x": 177.5,"y": yScale(correctArray[5].y)},{"x": 195.25,"y": yScale(correctArray[5].y)},{"x": 195.25,"y": yScale(correctArray[6].y)},
+          {"x": 213,"y": yScale(correctArray[6].y)},{"x": 230.75,"y": yScale(correctArray[6].y)},{"x": 230.75,"y": yScale(correctArray[7].y)},
+          {"x": 248.5,"y": yScale(correctArray[7].y)},{"x": 266.25,"y": yScale(correctArray[7].y)},{"x": 266.25,"y": yScale(correctArray[8].y)},
+          {"x": 284,"y": yScale(correctArray[8].y)},{"x": 301.75,"y": yScale(correctArray[8].y)},{"x": 301.75,"y": yScale(correctArray[9].y)},
+          {"x": 319.5,"y": yScale(correctArray[9].y)}
+        ];  
+        var lineGraph=main.append("path")
+            .attr("d", correctline(lineArray))
+            .attr("fill", "none")
+            .attr("stroke", "red")
+            .attr("stroke-width", "3px");
+        }
 }
 
 function randomDataset1(){
@@ -384,3 +411,5 @@ function randomDataset1(){
 function randomDataset2(){
     return  Math.floor(Math.random() * 45) +1;
 }
+
+
