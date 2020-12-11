@@ -1,0 +1,65 @@
+---
+title: "5.5 MPEG-1"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<p>In den vorherigen Kapiteln wurden die Prinzipien der MPEG-Videokomprimierung erläutert. Hier sollen nun die
+    spezifischen Eigenschaften des MPEG1-Standards erläutert werden.</p>
+<p>1993 wurde der Standard ISO 11172 verabschiedet. Er schreibt eine Datenrate von 1,5 Mbit/s und variable Qualität vor.
+    MPEG-1 wurde sehr flexibel gehalten, was den Entwurf standardkonformer Dekoder erschwert.</p>
+<p> Constrained Parameter Set:</p>
+<ul>
+    <li>Bildgröße ≤ 720 pixel x 576 Pixel</li>
+    <li>Anzahl von Makroblöcken / Bild: 396</li>
+    <li>Makroblöcke/s: (720/2 - 2*4)/16 * (576/2)/16 * 25 = 396 * 25</li>
+    <li>Bildrate ≤ 30 Bilder/s</li>
+    <li>Bitrate ≤ 1,86 Mbit/s</li>
+    <li>Decoderpuffer ≤ 327 680 bit</li>
+</ul>
+
+<p>Die Erweiterung von MPEG-1 auf das ITU-R-601 Format mit 720 x 576 px Auflösung führte zu <strong>"MPEG-1+"</strong>.
+</p>
+<p>Das <strong>MPEG-1 Audiosignal</strong> benutzt eine Datenreduktion nach dem MUSICAM-Verfahren (Masking Pattern
+    Universal Subband Integrated Coding and Multiplexing, Layer1), welches Teilbandcodierung und Irrelevanzreduktion
+    nutzt.</p>
+
+<p><strong>Bildaufbereitung</strong></p><!--TODO: Fehlende Referenzen-->
+<p>Betrachtet wird ein Bild der Bildsequenz, mit den 3 Ebenen: Luminanz Y und den Farbdifferenzkomponenten Cr und Cb.
+    Die horizontale und vertikale Auflösung von Y beträgt max. 768 x 576 Pixel (bei einem PAL-Vollbild), jedes Pixel
+    wird mit 8 Bit je Ebene kodiert.</p>
+<img src="..."
+     alt="MPEG-Abtastung und Aufteilung in Makroblöcke"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Die einzelnen Abtastwerte werden, wie bei JPEG, zu 8x8-Blöcken zusammengefasst.</p>
+<p>Die Bildinformation wird mit je einem 8x8 Block für Cr und Cb und vier Blöcken für die Luminanz dargestellt, so dass
+    ein Makroblock aus 6 Blöcken der Größe 8x8 gebildet wird. Um die Datenrate von MPEG-1 zu erreichen, wird im
+    Gegensatz zu MPEG-2 das Ausgangsmaterial besonders stark reduziert. Hierzu wird die Video-Sequenz zunächst in das
+    'Standard Input-Format' (SIF) gebracht. Dies ergibt eine Größe von 352 x 288 Pixeln bei einem Colour-Subsampling von
+    4:2:2 und einer Bildfrequenz von 25 Hz.</p>
+<img src="..." alt="MPEG1-Verarbeitung"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+<p>Dies bedeutet i. W. halbe Auflösung im Vergleich zu einem Bild entsprechend der ITU-R 601 Norm. Bei ITU-R 601 ist die
+    Chrominanz horizontal um den Faktor 2 unterabgetastet. Beim SIF-Format ist die Chrominanz in beiden Richtungen
+    unterabgetastet und die Abtastwerte liegen mittig zwischen den Abtastwerten der Luminanz.</p>
+<p>Zur Präsentation des komprimierten Videomaterials muss die vorherige Auflösung wiederhergestellt werden. Dazu werden
+    zwischen den Luminanz- bzw. Chrominanz-Werten Nullwerte eingefügt, und anschließend wird eine gewichtete Mittelung
+    durchgeführt. Gewichte sind die Filterkoeffizienten des Interpolationsfilters. Der Effekt ist, dass z.B. aus der
+    Folge 10,11,12 eine Folge 10, 10.5, 11, 11.5, 12 erzeugt wird. Einfachere Verfahren zur Interpolation arbeiten mit
+    der Wiederholung von Werten.</p>
+
+<p><strong>Bildverarbeitung: Bewegungskompensation und Bildkompression</strong></p>
+<p>Die Entscheidung, wohin sich ein Bildinhalt bewegt, muss auf objektiven Kriterien basieren. Der Video-Enkoder sucht
+    im vorherigen Bild in der Umgebung des Ausgangsblocks nach einem Makroblock, der eine größtmögliche Ähnlichkeit
+    besitzt. Entscheidungskriterium ist z.B. der mittlere quadratische Abstand der Werte der beiden Makroblöcke. D.h.
+    die Quadrate der Differenzen aller Luminanz- und Chrominanzwerte des Originalblocks und des Kandidatenblocks werden
+    innerhalb des Suchbereiches errechnet und summiert.</p>
+<p>Tritt ein Block im nächsten Bild ohne Veränderung auf, ist die Differenz Null. Ansonsten wird vom Enkoder der
+    Bewegungsvektor des Blocks mit dem kleinsten quadratischen Abstand ausgewählt. Die Suche nach dem günstigsten
+    Motion-Vektor kann mit einer Auflösung von einem Pixel oder einem halben Pixel erfolgen. Da der Rechenaufwand sehr
+    erheblich ist, werden unterschiedliche Suchstrategien angewandt.</p>
+<p>So kann beispielsweise zunächst das Gitter der 48x48 ganzzahligen Verschiebung abgesucht werden, um danach die 8
+    benachbarten Positionen mit einem Abstand von einem halben Pixel zu untersuchen.</p>
+<p>Eine weitere Methode benutzt für die Suche zunächst ein grobes Raster mit einem Abstand von mehreren Pixeln, um dann
+    an der günstigsten Position die Suche nach und nach zu verfeinern. Hierdurch werden weniger Suchschritte
+    benötigt.</p>
