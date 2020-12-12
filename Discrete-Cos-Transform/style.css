@@ -50,8 +50,8 @@
 /*Board*/
 
 .square{
-    width: 25px;
-    height: 5px;
+    width: 40px;
+    height: 15px;
     display: inline-block;
     margin: 0;
     /*animation: fadeIn 1s;*/
@@ -59,7 +59,7 @@
 
 #board{
     border: solid 1px black;
-    width: 200px;
+    width: 320px;
     /*height: 200px;*/
     display: inline-flex;
     flex-wrap: wrap;

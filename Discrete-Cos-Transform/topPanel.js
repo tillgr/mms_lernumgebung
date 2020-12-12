@@ -7,11 +7,15 @@ function Selection(){
     //decrement
     this.changeLeft = function (){
         selector > 0 ?  selector -- : selector += 11;
+        current_s = selector + 1;
+        drawPlot();
         /*console.log(selector);*/
     }
     //increment
     this.changeRight = function () {
         selector = (selector+1)%12;
+        current_s = selector + 1;
+        drawPlot();
         /*console.log(selector);*/
     }
     Object.defineProperty(this, 'selector', {
@@ -57,40 +61,21 @@ renderPairs()
 
 //create board
 
-function createBoard(){
+function renderBoard(){
     var board = document.getElementById('board');
+    var cells = board.childNodes;
+    var colors = sfield[current_s].split(',').map(Number).concat(user_sfield);
 
-    var colors = new Array(3);
-    var range = 4
-    var counter = 0;
-
-    function createRandomColors() {
-        for (i = 0 ; i < range; i++) {
-            colors[i] = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+    for (var i = 0; i < 16; ++i) {
+        var el;
+        if (cells.length != 16) {
+            el = document.createElement('SPAN');
+            el.className = 'square';
+            board.appendChild(el);
+        } else {
+            el = cells[i];
         }
-
+        var col = colors[i];
+        el.style.backgroundColor = 'rgb(' + col + ', ' + col + ', ' + col + ')';
     }
-    createRandomColors()
-    function getRandomColor() {
-
-        output = colors[counter];
-        counter = (counter+Math.floor(Math.random()*5))%4;
-
-        return output
-    }
-
-    const renderBoard = () =>{
-        for (var i = 0; i < 24; ++i){
-            var el = document.createElement('SPAN')
-            el.className = 'square'
-            el.style.backgroundColor = getRandomColor()
-            board.appendChild(el)
-        }
-    }
-    renderBoard()
 }
-
-createBoard()
-
-
-
