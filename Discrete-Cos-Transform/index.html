@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
+    <title>Discrete-Cos-Transform</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
@@ -14,10 +14,10 @@
           <span class="signalValues">
             <h5 class="mt-0">Choose signal</h5>
             <span class="flex-row">
-              <button onclick="selection.changeLeft(); renderPairs()">left</button>
+              <button onclick="selection.changeLeft(); renderPairs()" style="font-size: 28px; cursor: pointer;">◄</button>
               <span class="signalBoxes flex-row">
               </span>
-              <button onclick="selection.changeRight(); renderPairs()">right</button>
+              <button onclick="selection.changeRight(); renderPairs()" style="font-size: 28px; cursor: pointer;">►</button>
             </span>
           </span>
           <span class="signalColors">
@@ -25,11 +25,13 @@
             <div id='board'></div>
           </span>
         </span>
-        <canvas id="myCanvas" width="700" height="500" style="border:1px solid #000000;"></canvas>
+        <canvas id="myCanvas" width="700" height="510" style="margin: 26px 25px 0 25px; border:0px solid #777777;"></canvas>
+        <svg id="mySVG" width="750" height="560" style="border:0px solid #000000;"></svg>
       </span>
       <span id="panel" class="panel"></span>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+    <script src="d3.min.js"></script>
     <script src="curve.min.js"></script>
     <script src="transform.js"></script>
     <script src="script.js"></script>
