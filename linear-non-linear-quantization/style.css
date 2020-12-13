@@ -66,7 +66,7 @@ body{
 
   .btnStart{
       position: relative;
-      left: 80%;
+      left: 55%;
       margin: 10px;
   }
 
@@ -74,6 +74,10 @@ body{
     color: #fff;
     background-color: #002557;
     border-color: #002557;
+}
+
+.btnSkipIntro{
+    margin-left: 10px;
 }
 
   .txtIntro{

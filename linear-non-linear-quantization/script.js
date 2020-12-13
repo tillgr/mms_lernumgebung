@@ -38,7 +38,7 @@ function btnResolution(){
     document.getElementById("placeholderResolution").style.display = "none";
     document.getElementById("sidebarResolution").style.color = "#ff3311";
     document.getElementById("sidebarSamplingFrequency").style.display = "block";
-    document.querySelector("#placeholderSamplingFrequency").style.display = "none"
+    document.querySelector("#placeholderSamplingFrequency").style.display = "none";
     document.getElementById("sidebarSamplingFrequency").style.color = "#ff3311";
     document.getElementById("sidebarIntroduction").style.color = "#212529";
     document.getElementById("sidebarStoragefrequency").style.color = "#212529";
@@ -64,6 +64,28 @@ function btnIntroduction(){
     document.getElementById("resolution1").style.display="none";
     document.getElementById('resolution2').style.display ='none';
     document.getElementById('linearQuantisation').style.display = 'none';
+}
+
+function btnSkipIntro(){
+    document.getElementById("sidebarLinear").style.display = "block";
+    document.getElementById("placeholderLinear").style.display = "none";
+    document.getElementById("sidebarLinear").style.color = "#ff3311";
+    document.getElementById("sidebarIntroduction").style.color = "#212529";
+    document.getElementById("sidebarStoragefrequency").style.color = "#212529";
+    document.getElementById("sidebarResolution").style.color = "#212529";
+    document.getElementById("sidebarSamplingFrequency").style.color = "#212529";
+    document.getElementById("sidebarNonlinear").style.color = "#212529";
+    document.getElementById("sidebarEvaluation").style.color = "#212529";
+    document.getElementById("resolution2").style.display = "none";
+    document.getElementById('resolution1').style.display = "none";
+    document.getElementById('intro').style.display = "none";
+    document.getElementById('linearQuantisation').style.display = 'block';
+    document.getElementById("sidebarStoragefrequency").style.display = "block";
+    document.getElementById("placeholderStoragefrequency").style.display = "none";
+    document.getElementById("sidebarResolution").style.display = "block";
+    document.getElementById("placeholderResolution").style.display = "none";
+    document.getElementById("sidebarSamplingFrequency").style.display = "block";
+    document.querySelector("#placeholderSamplingFrequency").style.display = "none";
 }
 
 function randomFrequency(){
