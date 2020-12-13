@@ -212,12 +212,12 @@ body{
     font-weight: bold;
 }
 
-#linearTask{
+.linearTask{
     border: 2px solid #212529;
     border-radius: 5px;
     margin-left: 190px;
     width: 240px;
-    font-size: 23px;
+    font-size: 22px;
     position: absolute;
     margin-top: 20px;
     padding: 10px;
@@ -234,6 +234,10 @@ body{
     height: 520px;
     font-size: 14px;
 
+}
+.nonlinearTask{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 .linearTable{
   margin: 20px auto;

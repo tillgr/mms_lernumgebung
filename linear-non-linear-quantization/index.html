@@ -23,7 +23,7 @@
             <a id="placeholderStoragefrequency" class="placeholder">&nbsp - Speicher- &nbsp&nbspfrequenz</a>
             <a href="#" class="sidebar" id="sidebarLinear" onclick="btnContinueLinear()">&#8226 Lineare Quantisierung</a>
             <a id="placeholderLinear" class="placeholder">&#8226 Lineare Quantisierung</a>
-            <a href="#" class="sidebar" id="sidebarNonlinear">&#8226 Nichtlineare Quantisierung</a>
+            <a href="#" class="sidebar" id="sidebarNonlinear" onclick="btnContinueNonLinear()">&#8226 Nichtlineare Quantisierung</a>
             <a id="placeholderNonlinear" class="placeholder">&#8226 Nichtlineare Quantisierung</a>
             <a href="#" class="sidebar" id="sidebarEvaluation">&#8226 Auswertung</a>
             <a id="placeholderEvaluation" class="placeholder">&#8226 Auswertung</a>
@@ -111,7 +111,7 @@
 
         </div>
         <div id="linearQuantisation">
-          <div id="linearTask">
+          <div id="linearTask" class="linearTask"> 
             <p class="marginTop">Bei der linearen Quantisierung ist das Raster linear eingeteilt.</p>
 
             <p>Bitte klicke auf die Punkte des Rasters um das Signal abzutasten
@@ -119,7 +119,62 @@
                 Beachte dabei, dass ein absoluter Fehler >15 darauf hinweist,
                 dass du den falschen Rasterpunkt gewählt hast.</p>
 
-            <button class="btnBeginLinearQuantisation btn btn-primary" onclick="btnBeginLinearQuantisation()">Quantisieren!</button>
+            <button class="btnBeginLinearQuantisation btn btn-primary" onclick="btnContinueNonLinear()">Quantisieren!</button>
+          </div>
+
+          <div id="linearFormDiagram">
+            <table class="linearTable">
+              <tr>
+                <th>Abweichung absolut</th>
+              </tr>
+              <tr>
+                <td id="linearAbsolute0"></td>
+                <td id="linearAbsolute1"></td>
+                <td id="linearAbsolute2"></td>
+                <td id="linearAbsolute3"></td>
+                <td id="linearAbsolute4"></td>
+                <td id="linearAbsolute5"></td>
+                <td id="linearAbsolute6"></td>
+                <td id="linearAbsolute7"></td>
+                <td id="linearAbsolute8"></td>
+                <td id="linearAbsolute9"></td>
+              </tr>
+            </table>
+            <table class="linearTable">
+              <tr>
+                <th>Abweichung relativ</th>
+              </tr>
+              <tr>
+                <td id="linearRelative0"></td>
+                <td id="linearRelative1"></td>
+                <td id="linearRelative2"></td>
+                <td id="linearRelative3"></td>
+                <td id="linearRelative4"></td>
+                <td id="linearRelative5"></td>
+                <td id="linearRelative6"></td>
+                <td id="linearRelative7"></td>
+                <td id="linearRelative8"></td>
+                <td id="linearRelative9"></td>
+              </tr>
+            </table>
+            <div class="container">
+              <svg width="100%" height="100%"></svg>
+              </svg>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div id="nonlinearQuantisation">
+          <div id="nonlinearTask" class="linearTask">
+            <p class="marginTop">Bei der nichtlinearen Quantisierung ist das Raster logarithmisch eingeteilt.</p>
+            <p class="nonlinearTask">Bitte klicke auf die Punkte des Rasters um das Signal abzutasten
+                und zu quantisieren.
+                Beachte dabei, dass ein absoluter Fehler >halbes Intervall darauf hinweist,
+                dass du den falschen Rasterpunkt gewählt hast.</p>
+
+            <button class="btnBeginLinearQuantisation btn btn-primary" onclick="">Quantisieren!</button>
           </div>
 
           <div id="linearFormDiagram">

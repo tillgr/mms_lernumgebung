@@ -21,6 +21,7 @@ document.getElementById('btnShowCorrectAnswerStorage').style.display = 'none';
 document.getElementById('answerExplanationStorage').style.display = 'none';
 document.querySelector('.btnContinueLinear').style.display = "none";
 document.getElementById('linearQuantisation').style.display = 'none';
+document.getElementById('nonlinearQuantisation').style.display = 'none';
 
 var randomNumber = Math.round(Math.random() * 5000 ) + 18000;
 var correctAnswer = randomNumber * 2;
@@ -50,6 +51,7 @@ function btnResolution(){
     randomFrequency();
     document.getElementById('resolution2').style.display ='none';
     document.getElementById('linearQuantisation').style.display = 'none';
+    document.getElementById('nonlinearQuantisation').style.display = 'none';
 }
 
 function btnIntroduction(){
@@ -64,6 +66,7 @@ function btnIntroduction(){
     document.getElementById("resolution1").style.display="none";
     document.getElementById('resolution2').style.display ='none';
     document.getElementById('linearQuantisation').style.display = 'none';
+    document.getElementById('nonlinearQuantisation').style.display = 'none';
 }
 
 function btnSkipIntro(){
@@ -86,6 +89,7 @@ function btnSkipIntro(){
     document.getElementById("placeholderResolution").style.display = "none";
     document.getElementById("sidebarSamplingFrequency").style.display = "block";
     document.querySelector("#placeholderSamplingFrequency").style.display = "none";
+    document.getElementById('nonlinearQuantisation').style.display = 'none';
 }
 
 function randomFrequency(){
@@ -125,6 +129,7 @@ function btnShowCorrectAnswerResolution1(){
     document.querySelector('.btnsamplingFrequency2').style.display = "block";
     document.querySelector('.btnsamplingFrequency').style.display = "none";
     document.getElementById('linearQuantisation').style.display = 'none';
+    document.getElementById('nonlinearQuantisation').style.display = 'none';
 }
 function btnStoragefrequency(){
     document.getElementById("sidebarStoragefrequency").style.display = "block";
@@ -143,6 +148,7 @@ function btnStoragefrequency(){
     document.getElementById('limitSeconds').innerHTML = randomSecond;
     document.getElementById('limitStorage').innerHTML = randomStorage;
     document.getElementById('linearQuantisation').style.display = 'none';
+    document.getElementById('nonlinearQuantisation').style.display = 'none';
 }
 
 function btnCheckAnswerStorage(){
@@ -206,6 +212,7 @@ function btnShowCorrectAnswerResolution2(){
     document.getElementById('btnShowCorrectAnswerStorage').style.display = "none";
     document.querySelector('.btnContinueStorage').style.display = "none";
     document.getElementById('linearQuantisation').style.display = 'none';
+    document.getElementById('nonlinearQuantisation').style.display = 'none';
 }
 
 function btnContinueLinear(){
@@ -222,6 +229,7 @@ function btnContinueLinear(){
     document.getElementById('resolution1').style.display = "none";
     document.getElementById('intro').style.display = "none";
     document.getElementById('linearQuantisation').style.display = 'block';
+    document.getElementById('nonlinearQuantisation').style.display = 'none';
 }
 window.onload = function() {
     var width = 400, height = 360;
@@ -434,4 +442,20 @@ function randomDataset2(){
     return  Math.floor(Math.random() * 45) +1;
 }
 
+function btnContinueNonLinear(){
+    document.getElementById('nonlinearQuantisation').style.display = 'block';
+    document.getElementById("sidebarNonlinear").style.display = "block";
+    document.getElementById("placeholderNonlinear").style.display = "none";
+    document.getElementById("sidebarNonlinear").style.color = "#ff3311";
+    document.getElementById("sidebarLinear").style.color = "#212529";
+    document.getElementById("sidebarIntroduction").style.color = "#212529";
+    document.getElementById("sidebarStoragefrequency").style.color = "#212529";
+    document.getElementById("sidebarResolution").style.color = "#212529";
+    document.getElementById("sidebarSamplingFrequency").style.color = "#212529";
+    document.getElementById("sidebarEvaluation").style.color = "#212529";
+    document.getElementById("resolution2").style.display = "none";
+    document.getElementById('resolution1').style.display = "none";
+    document.getElementById('intro').style.display = "none";
+    document.getElementById('linearQuantisation').style.display = 'none';
+}
 
