@@ -464,11 +464,13 @@ function btnContinueNonLinear(){
 function diagramNonlinear(){
     var circleData = [];
 
-      for (var xValue = 0; xValue <= 0.18; xValue+=0.02) {
-        for (var i = 1; i <= 210; i+=i*5-5) {
-          circleData.push({x: xValue, y: i, isRed: false})
-        }
+    var yValues = [0,2,5,9,14,20,28,40];
+
+    for (var xValue = 0; xValue <= 0.18; xValue+=0.02) {
+      for (var i = 0; i < yValues.length; i++) {
+        circleData.push({x: xValue, y: (5*yValues[i]), isRed: false})
       }
+    }
     var width = 400, height = 360;
     var padding = { top: 40, right: 40, bottom: 40, left: 40 };
     var main = d3.select('.container #nonlinear').append('g')
