@@ -231,20 +231,21 @@ function btnContinueLinear(){
     document.getElementById('linearQuantisation').style.display = 'block';
     document.getElementById('nonlinearQuantisation').style.display = 'none';
 }
+var dataset = [
+  {x: 0, y: 100}, {x: 0.02, y: randomDataset1()},
+  {x: 0.04, y: randomDataset1()}, {x: 0.06, y: randomDataset1()},
+  {x: 0.08, y: randomDataset1()}, {x: 0.1, y: randomDataset1()},
+  {x: 0.12, y: 20}, {x: 0.14, y: randomDataset2()},
+  {x: 0.16, y: randomDataset2()}, {x: 0.18, y: randomDataset2()}
+];
+
 window.onload = function() {
     var width = 400, height = 360;
     var padding = { top: 40, right: 40, bottom: 40, left: 40 };
     var main = d3.select('.container svg').append('g')
             .classed('main', true)
             .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
-    var dataset = [
-        {x: 0, y: 100}, {x: 0.02, y: randomDataset1()},
-        {x: 0.04, y: randomDataset1()}, {x: 0.06, y: randomDataset1()},
-        {x: 0.08, y: randomDataset1()}, {x: 0.1, y: randomDataset1()},
-        {x: 0.12, y: 20}, {x: 0.14, y: randomDataset2()},
-        {x: 0.16, y: randomDataset2()}, {x: 0.18, y: randomDataset2()}
-    ];
-
+    
     var circleData = [];
 
     for (var xValue = 0; xValue <= 0.18; xValue+=0.02) {
@@ -457,5 +458,100 @@ function btnContinueNonLinear(){
     document.getElementById('resolution1').style.display = "none";
     document.getElementById('intro').style.display = "none";
     document.getElementById('linearQuantisation').style.display = 'none';
+    diagramNonlinear();
+}
+
+function diagramNonlinear(){
+    var circleData = [];
+
+      for (var xValue = 0; xValue <= 0.18; xValue+=0.02) {
+        for (var i = 1; i <= 210; i+=i*5-5) {
+          circleData.push({x: xValue, y: i, isRed: false})
+        }
+      }
+    var width = 400, height = 360;
+    var padding = { top: 40, right: 40, bottom: 40, left: 40 };
+    var main = d3.select('.container #nonlinear').append('g')
+            .classed('main', true)
+            .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
+    var xScale = d3.scale.linear()
+                  .domain(d3.extent(dataset, function(d) {
+                      return d.x;
+                  }))
+    .range([0, width - padding.left - padding.right]);
+    var yScale = d3.scale.linear()
+            .domain([0, 210])
+            .range([height - padding.top - padding.bottom, 0]);
+    var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient('bottom');
+    var yAxis = d3.svg.axis()
+            .scale(yScale)
+            .orient('left')
+            .tickValues([10,25,45,70,100,140,200]);
+    main.append('g')
+            .attr('class', 'axis')
+            .attr('transform', 'translate(0,' + (height - padding.top - padding.bottom) + ')')
+            .call(xAxis)
+        .append("text")
+            .attr("x","335")
+            .attr("y","30")
+            .attr("fill", "#002557")
+            .text("ms");
+    main.append('g')
+            .attr('class', 'axis')
+            .call(yAxis)
+        .append("text")
+            .attr("x","-30")
+            .attr("y","-20")
+            .attr("fill", "#002557")
+            .text("mV");
+    var line = d3.svg.line()
+    .x(function(d) {
+        return xScale(d.x)
+    })
+    .y(function(d) {
+        return yScale(d.y);
+    })
+    .interpolate('linear');
+    main.append('path')
+            .attr('class', 'line')
+            .attr('d', line(dataset));
+    var yAxisGrid = yAxis.ticks(7)
+            .tickSize((width-padding.left-padding.right), 0, 0)
+            .tickFormat("")
+            .orient("right");
+    var xAxisGrid = xAxis.ticks(9)
+            .tickSize(-((height - padding.top - padding.bottom)), 0, 0)
+            .tickFormat("")
+            .orient("top");
+    main.append("g")
+            .classed("y",true)
+            .classed("grid",true)
+            .call(yAxisGrid)
+    main.append("g")
+            .classed('x', true)
+            .classed('grid', true)
+            .call(xAxisGrid);
+    var circles = main.selectAll("circle")
+            .data(circleData)
+            .enter()
+            .append("circle");
+    var circleAttributes = circles
+            .attr('class', 'click-circle')
+            .attr("cx", function(d) {
+              return xScale(d.x);
+            })
+            .attr("cy", function(d) {
+              return yScale(d.y);
+            })
+            .attr("r", "4px")
+            .style("fill",  "grey")
+            .on("click", function(point) {
+              setCircleColumnGreyByX(Object.values(point)[0]);
+              setRedOnCircleData(Object.values(point)[0], Object.values(point)[1], true);
+              updateArrays();
+              console.log(absoluteArray);
+            })
 }
 
