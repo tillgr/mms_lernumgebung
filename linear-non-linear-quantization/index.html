@@ -119,7 +119,17 @@
                 Beachte dabei, dass ein absoluter Fehler >15 darauf hinweist,
                 dass du den falschen Rasterpunkt gewählt hast.</p>
 
-            <button class="btnBeginLinearQuantisation btn btn-primary" onclick="btnContinueNonLinear()">Quantisieren!</button>
+            <button id="btnCheckLinear" class="btnBeginLinearQuantisation btn btn-primary" onclick="btnCheckLinear()">Quantisieren!</button>
+          </div>
+          <div id="linearTaskEnd" class="linearTaskEnd"> 
+            <p class="marginTop">Es fällt auf, dass der absolute Fehler im wesentlichen konstant bleibt.</p>
+
+            <p>Der relative Fehler gibt das Verhältnis der Abweichung zum
+              Signalwert an und ist ein Maß für das Rauschen. Dabei sieht man,
+              dass speziell für kleine Signalwerte der relative Fehler recht groß wird
+              und somit das Rauschen das Signal an diesen Stellen überdecken kann.
+            </p>
+            <button id="btnBeginNonLinear" class="linearButtonContinue btn btn-primary" onclick="btnContinueNonLinear()">Weiter</button>
           </div>
 
           <div id="linearFormDiagram">

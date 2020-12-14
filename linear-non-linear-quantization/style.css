@@ -223,6 +223,21 @@ body{
     padding: 10px;
     line-height: 140%;
 }
+
+.linearTaskEnd{
+    border: 2px solid #212529;
+    border-radius: 5px;
+    margin-left: 190px;
+    width: 240px;
+    font-size: 1.24em;
+    position: absolute;
+    margin-top: 20px;
+    padding: 10px;
+    line-height: 140%;
+}
+.linearButtonContinue{
+    margin-left:5rem;
+}
 .btnBeginLinearQuantisation{
     margin-left: 60px;
 }

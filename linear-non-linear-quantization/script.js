@@ -22,6 +22,7 @@ document.getElementById('answerExplanationStorage').style.display = 'none';
 document.querySelector('.btnContinueLinear').style.display = "none";
 document.getElementById('linearQuantisation').style.display = 'none';
 document.getElementById('nonlinearQuantisation').style.display = 'none';
+document.getElementById('linearTaskEnd').style.display = 'none';
 
 var randomNumber = Math.round(Math.random() * 5000 ) + 18000;
 var correctAnswer = randomNumber * 2;
@@ -461,16 +462,20 @@ function btnContinueNonLinear(){
     diagramNonlinear();
 }
 
-function diagramNonlinear(){
-    var circleData = [];
+function circleDataNonLinear(){
+  var circleData = [];
 
-    var yValues = [0,2,5,9,14,20,28,40];
+  var yValues = [0,2,5,9,14,20,28,40];
 
-    for (var xValue = 0; xValue <= 0.18; xValue+=0.02) {
-      for (var i = 0; i < yValues.length; i++) {
-        circleData.push({x: xValue, y: (5*yValues[i]), isRed: false})
-      }
+  for (var xValue = 0; xValue <= 0.18; xValue+=0.02) {
+    for (var i = 0; i < yValues.length; i++) {
+      circleData.push({x: xValue, y: (5*yValues[i]), isRed: false})
     }
+  }
+  return circleData;
+}
+
+function diagramNonlinear(){ 
     var width = 400, height = 360;
     var padding = { top: 40, right: 40, bottom: 40, left: 40 };
     var main = d3.select('.container #nonlinear').append('g')
@@ -536,7 +541,7 @@ function diagramNonlinear(){
             .classed('grid', true)
             .call(xAxisGrid);
     var circles = main.selectAll("circle")
-            .data(circleData)
+            .data(circleDataNonLinear())
             .enter()
             .append("circle");
     var circleAttributes = circles
@@ -557,3 +562,8 @@ function diagramNonlinear(){
             })
 }
 
+function btnCheckLinear(){
+  //TODO: quantisieren und arrays vergleichen
+  document.getElementById('linearTaskEnd').style.display = 'block';
+  document.getElementById('linearTask').style.display = 'none';
+}
