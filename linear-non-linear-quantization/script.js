@@ -391,8 +391,11 @@ window.onload = function() {
           // TODO: hier berechnungen machen
           point['y'] = getRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))['y'];
           if(dataset.find(val => val.x === point.x).y){
-            var number = Math.abs(dataset.find(val => val.x === point.x).y-point.y)
-            document.getElementById('linearAbsolute'+point.x).innerHTML= number; 
+            var numberA = Math.abs(dataset.find(val => val.x === point.x).y-point.y)
+            document.getElementById('linearAbsolute'+point.x).innerHTML= numberA; 
+            var numberR = Math.floor((numberA/dataset.find(val => val.x === point.x).y)*100);
+            console.log(numberR);
+            document.getElementById('linearRelative'+point.x).innerHTML= numberR+"%";
           }
         }
       });
