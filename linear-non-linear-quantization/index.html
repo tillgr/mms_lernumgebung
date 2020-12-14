@@ -111,17 +111,18 @@
 
         </div>
         <div id="linearQuantisation">
-          <div id="linearTask" class="linearTask"> 
-            <p class="marginTop">Bei der linearen Quantisierung ist das Raster linear eingeteilt.</p>
+          <div id="linearTask" class="linearTask">
+            <p class="marginTop" id="linearText1">Bei der linearen Quantisierung ist das Raster linear eingeteilt.</p>
 
-            <p>Bitte klicke auf die Punkte des Rasters um das Signal abzutasten
+            <p id="linearText2">Bitte klicke auf die Punkte des Rasters um das Signal abzutasten
                 und zu quantisieren.
                 Beachte dabei, dass ein absoluter Fehler >15 darauf hinweist,
                 dass du den falschen Rasterpunkt gewählt hast.</p>
+            <p id="linearErrorMessage">Du hast entweder nicht die alle Punkte oder einige falsch gesezt!</p>
 
             <button id="btnCheckLinear" class="btnBeginLinearQuantisation btn btn-primary" onclick="btnCheckLinear()">Quantisieren!</button>
           </div>
-          <div id="linearTaskEnd" class="linearTaskEnd"> 
+          <div id="linearTaskEnd" class="linearTaskEnd">
             <p class="marginTop">Es fällt auf, dass der absolute Fehler im wesentlichen konstant bleibt.</p>
 
             <p>Der relative Fehler gibt das Verhältnis der Abweichung zum
@@ -131,7 +132,7 @@
             </p>
             <button id="btnBeginNonLinear" class="linearButtonContinue btn btn-primary" onclick="btnContinueNonLinear()">Weiter</button>
           </div>
-     
+
           <div id="linearFormDiagram">
             <table class="linearTable">
               <tr>
