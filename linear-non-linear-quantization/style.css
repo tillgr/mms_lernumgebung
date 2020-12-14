@@ -224,6 +224,9 @@ body{
     line-height: 140%;
 }
 
+#linearErrorMessage{
+  color: red;
+}
 .linearTaskEnd{
     border: 2px solid #212529;
     border-radius: 5px;
@@ -253,6 +256,10 @@ body{
 .btnBeginLinearQuantisation{
     margin-left: 60px;
 }
+#btnShowCorrectAnswerLinear{
+  margin-top: 20px;
+  margin-left: 85px;
+}
 #linearFormDiagram{
 
     margin-left: 470px;
@@ -265,6 +272,10 @@ body{
 .nonlinearTask{
     margin-bottom: 1rem;
     margin-top: 1rem;
+}
+.nonlinearTaskEnd{
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 .linearTable{
   margin: 20px auto;

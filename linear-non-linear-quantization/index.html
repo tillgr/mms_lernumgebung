@@ -121,6 +121,7 @@
             <p id="linearErrorMessage">Du hast entweder nicht die alle Punkte oder einige falsch gesezt!</p>
 
             <button id="btnCheckLinear" class="btnBeginLinearQuantisation btn btn-primary" onclick="btnCheckLinear()">Quantisieren!</button>
+            <button id="btnShowCorrectAnswerLinear" class="btn btn-primary" onclick="btnShowCorrectAnswerLinear()">Lösung</button>
           </div>
           <div id="linearTaskEnd" class="linearTaskEnd">
             <p class="marginTop">Es fällt auf, dass der absolute Fehler im wesentlichen konstant bleibt.</p>
@@ -130,7 +131,7 @@
               dass speziell für kleine Signalwerte der relative Fehler recht groß wird
               und somit das Rauschen das Signal an diesen Stellen überdecken kann.
             </p>
-            <button id="btnBeginNonLinear" class="linearButtonContinue btn btn-primary" onclick="btnContinueNonLinear()">Weiter</button>
+            <button id="btnBeginNonLinear" class="linearButtonContinue btn btn-primary" onclick="btnContinueNonLinear()">Auswertung</button>
           </div>
 
           <div id="linearFormDiagram">
@@ -171,7 +172,7 @@
               </tr>
             </table>
             <div class="container">
-              <svg width="100%" height="100%"></svg>
+              <svg id="linearSVG" width="100%" height="100%"></svg>
               </svg>
 
             </div>
@@ -186,19 +187,19 @@
                 und zu quantisieren.
                 Beachte dabei, dass ein absoluter Fehler >halbes Intervall darauf hinweist,
                 dass du den falschen Rasterpunkt gewählt hast.</p>
-
-            <button class="btnBeginLinearQuantisation btn btn-primary" onclick="btnCheckNonlinear()">Quantisieren!</button>
+            <p id="nonlinearErrorMessage">Du hast entweder nicht die alle Punkte oder einige falsch gesezt!</p>
+            <button class="btnBeginLinearQuantisation btn btn-primary" onclick="">Quantisieren!</button>
+            <button id="btnShowCorrectAnswerNoninear" class="btn btn-primary" onclick="btnShowCorrectAnswerNoninear()">Lösung</button>
           </div>
-          <div id="nonlinearTaskEnd" class="nonlinearTaskEnd">
-            <p class="marginTop">Es fällt auf, dass im Gegensatz zur linearen Quantisierung die kleinen Signalwerte
-              durch das logarithmische Raster wesentlich genauer quantisiert werden. Dadaurch verringert sich der relative Fehler für diese Werte erheblich.
-            </p>
-            <p class="nonlinearTask">Das Rauschen kann diese Signalabschnitte also nicht mehr überdecken.</p>
-            <p class="nonlinearTask">Um einen Vergleich Deiner durchgeführten linearen & nichtlinearen
-              Quantisierung anzusehen, klicke bitte auf 'Auswertung'.
-            </p>
 
-            <button class="btnBeginLinearQuantisation btn btn-primary" onclick="showEvaluation()">Auswertung</button>
+          <div id="nonlinearTaskEnd" class="nonlinearTaskEnd">
+            <p class="marginTop">Es fällt auf, dass im Gegensatz zur linearen Quantisierung die kleinen Signalwerte durch das
+                logarithmische Raster wesentlich genauer quantisiert werden. Dadurch verringert sich der relative Fehler
+                für diese Werte erheblich.</p>
+
+            <p>Das Rauschen kann diese Signalabschnitte also nicht mehr überdecken.</p>
+            <p>Um einen vergleich deiner durchgeführten linearen & nichtlinearen Quantisierung anzusehen, klicke bitte auf "Auswertung".</p>
+            <button id="btnBeginNonLinear" class="linearButtonContinue btn btn-primary" onclick="btnContinueNonLinear()">Weiter</button>
           </div>
 
           <div id="linearFormDiagram">
@@ -246,7 +247,7 @@
         </div>
         <div id="evaluation">
           <div id="linearTask" class="linearTask">
-            <p class="marginTop" id="linearText1">In der Gegenüberstellung der roten linearen und der blauen nichtlinearen 
+            <p class="marginTop" id="linearText1">In der Gegenüberstellung der roten linearen und der blauen nichtlinearen
               Quantisierungskurve wird deutlich, dass der relative Fehler (Maß für das Rauschen) für kleine Signalwerte
               durch die nichtlineare Quantisierung minimiert werden kann.
             </p>

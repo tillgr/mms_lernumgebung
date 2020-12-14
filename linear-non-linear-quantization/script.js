@@ -38,10 +38,6 @@ var storageAnswer = Math.floor(availableStorage / samples);
 var storage_Byte = randomStorage * 1024;
 var storage_bit = storage_Byte * 8;
 
-var correctArrayGlobal = [];
-var absoluteArrayGobal = [];
-
-var boolLiear;
 
 function btnResolution() {
   document.getElementById("sidebarResolution").style.display = "block";
@@ -102,7 +98,10 @@ function btnSkipIntro() {
   document.querySelector("#placeholderSamplingFrequency").style.display = "none";
   document.getElementById('nonlinearQuantisation').style.display = 'none';
   document.getElementById('linearErrorMessage').style.display = 'none';
+
   document.getElementById('evaluation').style.display = 'none';
+  document.getElementById('btnShowCorrectAnswerLinear').style.display = 'none';
+
 }
 
 function randomFrequency() {
@@ -248,7 +247,11 @@ function btnContinueLinear() {
   document.getElementById('linearQuantisation').style.display = 'block';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
   document.getElementById('linearErrorMessage').style.display = 'none';
+
   document.getElementById('evaluation').style.display = 'none';
+
+  document.getElementById('btnShowCorrectAnswerLinear').style.display = 'none';
+
 }
 var dataset = [{
     x: 0,
@@ -286,7 +289,9 @@ var dataset = [{
     y: randomDataset2()
   }
 ];
+function diagramLinear(){
 
+}
   var width = 400,
     height = 360;
   var padding = {
@@ -295,7 +300,7 @@ var dataset = [{
     bottom: 40,
     left: 40
   };
-  var main = d3.select('.container svg').append('g')
+  var main = d3.select('.container #linearSVG').append('g')
     .classed('main', true)
     .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
 
@@ -409,6 +414,7 @@ var dataset = [{
     circles.filter(function(d) {
       return d['isRed'] == false;
     }).style("fill", "grey");
+
   }
 
   function setRedOnCircleData(x, y, boolRed) {
@@ -517,9 +523,9 @@ var dataset = [{
     return circleData.filter(point => point['isRed'] == true)
   }
 
-  function checkSolution() {
+  function checkSolution(array) {
     var hash = {}
-    correctArray.forEach(point => {
+    array.forEach(point => {
       hash[[point['x'], point['y']]] = true;
     });
     getAllRedCircle().forEach(point => {
@@ -672,25 +678,28 @@ function btnContinueNonLinear() {
   document.getElementById('resolution1').style.display = "none";
   document.getElementById('intro').style.display = "none";
   document.getElementById('linearQuantisation').style.display = 'none';
+
   document.getElementById('evaluation').style.display = 'none';
+
+  document.getElementById('nonlinearErrorMessage').style.display = 'none';
+  document.getElementById('btnShowCorrectAnswerNoninear').style.display = 'none';
+  document.getElementById('nonlinearTaskEnd').style.display = 'none';
+
   diagramNonlinear();
 }
 
-function circleDataNonLinear() {
-  var circleData = [];
+var circleDataNonLinear = [];
 
-  var yValues = [0, 2, 5, 9, 14, 20, 28, 40];
+var yValues = [0, 2, 5, 9, 14, 20, 28, 40];
 
-  for (var xValue = 0; xValue <= 0.18; xValue += 0.02) {
-    for (var i = 0; i < yValues.length; i++) {
-      circleData.push({
-        x: xValue,
-        y: (5 * yValues[i]),
-        isRed: false
-      })
-    }
+for (var xValue = 0; xValue <= 0.18; xValue += 0.02) {
+  for (var i = 0; i < yValues.length; i++) {
+    circleDataNonLinear.push({
+      x: parseFloat(xValue.toFixed(2)),
+      y: (5 * yValues[i]),
+      isRed: false
+    })
   }
-  return circleData;
 }
 
 function diagramNonlinear() {
@@ -765,7 +774,7 @@ function diagramNonlinear() {
     .classed('grid', true)
     .call(xAxisGrid);
   var circles = main.selectAll("circle")
-    .data(circleDataNonLinear())
+    .data(circleDataNonLinear)
     .enter()
     .append("circle");
   var circleAttributes = circles
@@ -782,23 +791,157 @@ function diagramNonlinear() {
       setCircleColumnGreyByX(Object.values(point)[0]);
       setRedOnCircleData(Object.values(point)[0], Object.values(point)[1], true);
       updateArrays();
+      console.log(correctArrayNonlinear);
+      console.log(nonlinearArray);
     })
 
-}
-// window.addEventListener("load", function(){
-//   console.log(correctArrayGlobal);
-//   console.log(absoluteArrayGobal);
-// });
+  function getCircleColumnByX(xValue) {
+    return circleDataNonLinear.filter(point => point['x'] == xValue);
+  }
 
+  function setCircleColumnGreyByX(x) {
+    getCircleColumnByX(x).forEach((point) => {
+      setRedOnCircleData(Object.values(point)[0], Object.values(point)[1], false);
+
+    });
+  }
+
+  function updateCircleDataView() {
+    circles.filter(function(d) {
+      return d['isRed'] == true;
+    }).style("fill", "red");
+    circles.filter(function(d) {
+      return d['isRed'] == false;
+    }).style("fill", "grey");
+
+  }
+
+  function setRedOnCircleData(x, y, boolRed) {
+    circleDataNonLinear.forEach((point) => {
+      if (Object.values(point)[0] == x && Object.values(point)[1] == y) {
+        point['isRed'] = boolRed;
+      }
+    });
+    updateCircleDataView();
+  }
+
+  function getRedCircleInColumn(array) {
+    return array.find(point => point['isRed'] == true);
+  }
+
+  function isRedCircleInColumn(array) {
+    let bool = false;
+    array.forEach((point) => {
+      if (point['isRed'] == true) {
+        bool = true;
+        return false;
+      }
+    });
+    return bool;
+  }
+  var nonlinearArray = [{
+      x: 0.00,
+      y: null
+    },
+    {
+      x: 0.02,
+      y: null
+    },
+    {
+      x: 0.04,
+      y: null
+    },
+    {
+      x: 0.06,
+      y: null
+    },
+    {
+      x: 0.08,
+      y: null
+    },
+    {
+      x: 0.10,
+      y: null
+    },
+    {
+      x: 0.12,
+      y: null
+    },
+    {
+      x: 0.14,
+      y: null
+    },
+    {
+      x: 0.16,
+      y: null
+    },
+    {
+      x: 0.18,
+      y: null
+    }
+  ];
+
+  function updateArrays() {
+    nonlinearArray.forEach((point) => {
+      if (isRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))) {
+        // TODO: hier berechnungen machen
+        point['y'] = getRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))['y'];
+        if (dataset.find(val => val.x === point.x).y) {
+          var numberA = Math.abs(dataset.find(val => val.x === point.x).y - point.y)
+          document.getElementById('linearAbsolute' + point.x).innerHTML = numberA;
+          var numberR = Math.floor((numberA / dataset.find(val => val.x === point.x).y) * 100);
+          document.getElementById('linearRelative' + point.x).innerHTML = numberR + "%";
+        }
+      }
+    });
+  }
+  var correctArrayNonlinear = [];
+  initializeCorrectArray();
+
+  function initializeCorrectArray() {
+    for (var i = 0; i <= 0.18; i += 0.02) {
+
+      let min = 210
+      let coordinate;
+      i = parseFloat(i.toFixed(2))
+      getCircleColumnByX(i).forEach((point) => {
+        if (min > Math.abs(point['y'] - dataset.find(point2 => point2['x'] == i)['y'])) {
+          min = Math.abs(point['y'] - dataset.find(point2 => point2['x'] == i)['y']);
+          coordinate = point['y']
+        }
+      });
+      correctArrayNonlinear.push({
+        x: i,
+        y: coordinate,
+        isRed: true
+      });
+    }
+  }
+
+  function getAllRedCircle() {
+    return circleDataNonLinear.filter(point => point['isRed'] == true)
+  }
+
+
+
+}
+
+
+function btnShowCorrectAnswerLinear(){
+  document.getElementById('linearTaskEnd').style.display = 'block';
+  document.getElementById('linearTask').style.display = 'none';
+  drawLineLinear();
+}
 function btnCheckLinear() {
-  if (checkSolution()) {
-    document.getElementById('linearTaskEnd').style.display = 'block';
-    document.getElementById('linearTask').style.display = 'none';
-    drawLineLinear();
+  //TODO: quantisieren und arrays vergleichen
+  if (checkSolution(correctArray)) {
+    btnShowCorrectAnswerLinear();
+
   }else {
     document.getElementById('linearText1').style.display = 'none';
     document.getElementById('linearText2').style.display = 'none';
     document.getElementById('linearErrorMessage').style.display = 'block';
+    document.getElementById('btnShowCorrectAnswerLinear').style.display = 'block';
   }
 }
 
@@ -898,5 +1041,5 @@ function showEvaluation(){
     .classed('x', true)
     .classed('grid', true)
     .call(xAxisGridE);
-  
+
 }
