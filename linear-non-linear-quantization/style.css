@@ -235,6 +235,18 @@ body{
     padding: 10px;
     line-height: 140%;
 }
+
+.nonlinearTaskEnd{
+    border: 2px solid #212529;
+    border-radius: 5px;
+    margin-left: 190px;
+    width: 240px;
+    font-size: 1.1em;
+    position: absolute;
+    margin-top: 20px;
+    padding: 10px;
+    line-height: 140%;
+}
 .linearButtonContinue{
     margin-left:5rem;
 }
@@ -291,4 +303,12 @@ body{
 
 .click-circle:hover{
     cursor: pointer;
+}
+
+#redLinear{
+    color: #ff3311;
+}
+
+#blueNonlinear{
+    color: #054faf;
 }

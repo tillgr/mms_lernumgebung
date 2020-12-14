@@ -25,8 +25,8 @@
             <a id="placeholderLinear" class="placeholder">&#8226 Lineare Quantisierung</a>
             <a href="#" class="sidebar" id="sidebarNonlinear" onclick="btnContinueNonLinear()">&#8226 Nichtlineare Quantisierung</a>
             <a id="placeholderNonlinear" class="placeholder">&#8226 Nichtlineare Quantisierung</a>
-            <a href="#" class="sidebar" id="sidebarEvaluation">&#8226 Auswertung</a>
-            <a id="placeholderEvaluation" class="placeholder">&#8226 Auswertung</a>
+            <a href="#" class="sidebar" id="sidebarEvaluation" onclick="showEvaluation()">&#8226 Auswertung</a>
+            <a id="placeholderEvaluation" class="placeholder" >&#8226 Auswertung</a>
         </div>
         <div id="intro">
             <p class="txtIntro">Bei der Digitalisierung werden zeit-
@@ -187,7 +187,18 @@
                 Beachte dabei, dass ein absoluter Fehler >halbes Intervall darauf hinweist,
                 dass du den falschen Rasterpunkt gewählt hast.</p>
 
-            <button class="btnBeginLinearQuantisation btn btn-primary" onclick="">Quantisieren!</button>
+            <button class="btnBeginLinearQuantisation btn btn-primary" onclick="btnCheckNonlinear()">Quantisieren!</button>
+          </div>
+          <div id="nonlinearTaskEnd" class="nonlinearTaskEnd">
+            <p class="marginTop">Es fällt auf, dass im Gegensatz zur linearen Quantisierung die kleinen Signalwerte
+              durch das logarithmische Raster wesentlich genauer quantisiert werden. Dadaurch verringert sich der relative Fehler für diese Werte erheblich.
+            </p>
+            <p class="nonlinearTask">Das Rauschen kann diese Signalabschnitte also nicht mehr überdecken.</p>
+            <p class="nonlinearTask">Um einen Vergleich Deiner durchgeführten linearen & nichtlinearen
+              Quantisierung anzusehen, klicke bitte auf 'Auswertung'.
+            </p>
+
+            <button class="btnBeginLinearQuantisation btn btn-primary" onclick="showEvaluation()">Auswertung</button>
           </div>
 
           <div id="linearFormDiagram">
@@ -228,6 +239,62 @@
             <div class="container">
               <svg id="nonlinear" width="100%" height="100%"></svg>
               </svg>
+            </div>
+
+          </div>
+
+        </div>
+        <div id="evaluation">
+          <div id="linearTask" class="linearTask">
+            <p class="marginTop" id="linearText1">In der Gegenüberstellung der roten linearen und der blauen nichtlinearen 
+              Quantisierungskurve wird deutlich, dass der relative Fehler (Maß für das Rauschen) für kleine Signalwerte
+              durch die nichtlineare Quantisierung minimiert werden kann.
+            </p>
+            <button id="btnCheckLinear" class="btnBeginLinearQuantisation btn btn-primary" onclick="">Neustart</button>
+          </div>
+          <div id="linearFormDiagram">
+            <table class="linearTable">
+              <tr>
+                <th colspan="11">Abweichung relativ - <span id="redLinear">lineare Quantisierung</span></th>
+                <th>&#216</th>
+              </tr>
+              <tr>
+                <td id="Linear0"></td>
+                <td id="Linear0.02"></td>
+                <td id="Linear0.04"></td>
+                <td id="Linear0.06"></td>
+                <td id="Linear0.08"></td>
+                <td id="Linear0.09"></td>
+                <td id="Linear0.1"></td>
+                <td id="Linear0.12"></td>
+                <td id="Linear0.14"></td>
+                <td id="Linear0.16"></td>
+                <td id="Linear0.18"></td>
+                <td id="averageLinear"></td>
+              </tr>
+            </table>
+            <table class="linearTable">
+              <tr>
+                <th colspan="11">Abweichung relativ - <span id="blueNonlinear">nichtlineare Quantisierung</span></th>
+                <th>&#216</th>
+              </tr>
+              <tr>
+                <td id="Nonlinear0"></td>
+                <td id="Nonlinear0.02"></td>
+                <td id="Nonlinear0.04"></td>
+                <td id="Nonlinear0.04"></td>
+                <td id="Nonlinear0.06"></td>
+                <td id="Nonlinear0.08"></td>
+                <td id="Nonlinear0.1"></td>
+                <td id="Nonlinear0.12"></td>
+                <td id="Nonlinear0.14"></td>
+                <td id="Nonlinear0.16"></td>
+                <td id="Nonlinear0.18"></td>
+                <td id="averageNonlinear"></td>
+              </tr>
+            </table>
+            <div class="container">
+              <svg width="100%" height="100%" id="elavuationDiagram"></svg>
 
             </div>
 

@@ -23,6 +23,9 @@ document.querySelector('.btnContinueLinear').style.display = "none";
 document.getElementById('linearQuantisation').style.display = 'none';
 document.getElementById('nonlinearQuantisation').style.display = 'none';
 document.getElementById('linearTaskEnd').style.display = 'none';
+document.getElementById('nonlinearTaskEnd').style.display = 'none';
+document.getElementById('evaluation').style.display = 'none';
+
 
 var randomNumber = Math.round(Math.random() * 5000) + 18000;
 var correctAnswer = randomNumber * 2;
@@ -58,6 +61,7 @@ function btnResolution() {
   document.getElementById('resolution2').style.display = 'none';
   document.getElementById('linearQuantisation').style.display = 'none';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'none';
 }
 
 function btnIntroduction() {
@@ -73,6 +77,7 @@ function btnIntroduction() {
   document.getElementById('resolution2').style.display = 'none';
   document.getElementById('linearQuantisation').style.display = 'none';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'none';
 }
 
 function btnSkipIntro() {
@@ -97,6 +102,7 @@ function btnSkipIntro() {
   document.querySelector("#placeholderSamplingFrequency").style.display = "none";
   document.getElementById('nonlinearQuantisation').style.display = 'none';
   document.getElementById('linearErrorMessage').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'none';
 }
 
 function randomFrequency() {
@@ -137,6 +143,7 @@ function btnShowCorrectAnswerResolution1() {
   document.querySelector('.btnsamplingFrequency').style.display = "none";
   document.getElementById('linearQuantisation').style.display = 'none';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'none';
 }
 
 function btnStoragefrequency() {
@@ -157,6 +164,7 @@ function btnStoragefrequency() {
   document.getElementById('limitStorage').innerHTML = randomStorage;
   document.getElementById('linearQuantisation').style.display = 'none';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'none';
 }
 
 function btnCheckAnswerStorage() {
@@ -221,6 +229,7 @@ function btnShowCorrectAnswerResolution2() {
   document.querySelector('.btnContinueStorage').style.display = "none";
   document.getElementById('linearQuantisation').style.display = 'none';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'none';
 }
 
 function btnContinueLinear() {
@@ -239,6 +248,7 @@ function btnContinueLinear() {
   document.getElementById('linearQuantisation').style.display = 'block';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
   document.getElementById('linearErrorMessage').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'none';
 }
 var dataset = [{
     x: 0,
@@ -662,6 +672,7 @@ function btnContinueNonLinear() {
   document.getElementById('resolution1').style.display = "none";
   document.getElementById('intro').style.display = "none";
   document.getElementById('linearQuantisation').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'none';
   diagramNonlinear();
 }
 
@@ -780,7 +791,6 @@ function diagramNonlinear() {
 // });
 
 function btnCheckLinear() {
-  //TODO: quantisieren und arrays vergleichen
   if (checkSolution()) {
     document.getElementById('linearTaskEnd').style.display = 'block';
     document.getElementById('linearTask').style.display = 'none';
@@ -790,6 +800,103 @@ function btnCheckLinear() {
     document.getElementById('linearText2').style.display = 'none';
     document.getElementById('linearErrorMessage').style.display = 'block';
   }
+}
 
+function btnCheckNonlinear(){
+//TODO: quantisieren und arrays vergleichen
+  document.getElementById('nonlinearTaskEnd').style.display = 'block';
+  document.getElementById('nonlinearTask').style.display = 'none';
+}
 
+function showEvaluation(){
+  document.getElementById('evaluation').style.display='block';
+  document.getElementById('nonlinearTaskEnd').style.display = 'none';
+  document.getElementById('nonlinearTask').style.display = 'none';
+  document.getElementById('placeholderEvaluation').style.display = 'none';
+  document.getElementById('sidebarEvaluation').style.display = "block";
+  document.getElementById('sidebarEvaluation').style.color = "#ff3311";
+  document.getElementById("sidebarLinear").style.color = "#212529";
+  document.getElementById("sidebarIntroduction").style.color = "#212529";
+  document.getElementById("sidebarStoragefrequency").style.color = "#212529";
+  document.getElementById("sidebarResolution").style.color = "#212529";
+  document.getElementById("sidebarSamplingFrequency").style.color = "#212529";
+  document.getElementById("sidebarNonlinear").style.color = "#212529";
+  document.getElementById("nonlinearQuantisation").style.display = 'none';
+  document.getElementById('intro').style.display = "none";
+  document.getElementById("resolution1").style.display = "none";
+  document.getElementById('resolution2').style.display = 'none';
+  drawLineLinear();
+
+  var widthE = 400,
+    heightE = 360;
+  var paddingE = {
+    top: 40,
+    right: 40,
+    bottom: 40,
+    left: 40
+  };
+  var mainE = d3.select('.container #elavuationDiagram').append('g')
+    .classed('main', true)
+    .attr('transform', "translate(" + paddingE.top + ',' + paddingE.left + ')');
+  var xScaleE = d3.scale.linear()
+    .domain(d3.extent(dataset, function(d) {
+      return d.x;
+    }))
+    .range([0, widthE - paddingE.left - paddingE.right]);
+  var yScaleE = d3.scale.linear()
+    .domain([0, 210])
+    .range([heightE - paddingE.top - paddingE.bottom, 0]);
+  var xAxisE = d3.svg.axis()
+    .scale(xScaleE)
+    .orient('bottom');
+  var yAxisE = d3.svg.axis()
+    .scale(yScaleE)
+    .orient('left')
+    .tickValues([30, 60, 90, 120, 150, 180, 210]);
+  mainE.append('g')
+    .attr('class', 'axis')
+    .attr('transform', 'translate(0,' + (heightE - paddingE.top - paddingE.bottom) + ')')
+    .call(xAxisE)
+    .append("text")
+    .attr("x", "335")
+    .attr("y", "30")
+    .attr("fill", "#002557")
+    .text("ms");
+
+  mainE.append('g')
+    .attr('class', 'axis')
+    .call(yAxisE)
+    .append("text")
+    .attr("x", "-30")
+    .attr("y", "-20")
+    .attr("fill", "#002557")
+    .text("mV");
+  var lineE = d3.svg.line()
+    .x(function(d) {
+      return xScaleE(d.x)
+    })
+    .y(function(d) {
+      return yScaleE(d.y);
+    })
+    .interpolate('linear');
+  mainE.append('path')
+    .attr('class', 'line')
+    .attr('d', lineE(dataset));
+  var yAxisGridE = yAxis.ticks(7)
+    .tickSize((widthE - paddingE.left - paddingE.right), 0, 0)
+    .tickFormat("")
+    .orient("right");
+  var xAxisGridE = xAxisE.ticks(9)
+    .tickSize(-((heightE - paddingE.top - paddingE.bottom)), 0, 0)
+    .tickFormat("")
+    .orient("top");
+  mainE.append("g")
+    .classed("y", true)
+    .classed("grid", true)
+    .call(yAxisGridE)
+  mainE.append("g")
+    .classed('x', true)
+    .classed('grid', true)
+    .call(xAxisGridE);
+  
 }
