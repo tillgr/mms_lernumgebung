@@ -384,12 +384,16 @@ window.onload = function() {
       {x:0.16, y:null},
       {x:0.18, y:null}
     ];
-
+    
     function updateArrays(){
       absoluteArray.forEach((point) => {
         if (isRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))) {
           // TODO: hier berechnungen machen
-          point['y'] = getRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))['y']
+          point['y'] = getRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))['y'];
+          if(dataset.find(val => val.x === point.x).y){
+            var number = Math.abs(dataset.find(val => val.x === point.x).y-point.y)
+            document.getElementById('linearAbsolute'+point.x).innerHTML= number; 
+          }
         }
       });
     }

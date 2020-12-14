@@ -257,7 +257,8 @@ body{
 .linearTable{
   margin: 20px auto;
   width: 435px;
-  padding-left: 40px;
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-bottom: 10px;
 }
 .linearTable th{
