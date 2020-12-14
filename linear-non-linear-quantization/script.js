@@ -246,12 +246,12 @@ window.onload = function() {
     var main = d3.select('.container svg').append('g')
             .classed('main', true)
             .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
-    
+
     var circleData = [];
 
     for (var xValue = 0; xValue <= 0.18; xValue+=0.02) {
       for (var yValue = 210; yValue >= 0; yValue-=30) {
-        circleData.push({x: xValue, y: yValue, isRed: false})
+        circleData.push({x: parseFloat(xValue.toFixed(2)), y: yValue, isRed: false})
       }
     }
     var xScale = d3.scale.linear()
@@ -335,7 +335,7 @@ window.onload = function() {
           console.log(absoluteArray);
         })
 
-    
+
 
     function getCircleColumnByX(xValue) {
       return circleData.filter(point => point['x'] == xValue);
@@ -384,7 +384,7 @@ window.onload = function() {
       {x:0.16, y:null},
       {x:0.18, y:null}
     ];
-    
+
     function updateArrays(){
       absoluteArray.forEach((point) => {
         if (isRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))) {
@@ -392,7 +392,7 @@ window.onload = function() {
           point['y'] = getRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))['y'];
           if(dataset.find(val => val.x === point.x).y){
             var numberA = Math.abs(dataset.find(val => val.x === point.x).y-point.y)
-            document.getElementById('linearAbsolute'+point.x).innerHTML= numberA; 
+            document.getElementById('linearAbsolute'+point.x).innerHTML= numberA;
             var numberR = Math.floor((numberA/dataset.find(val => val.x === point.x).y)*100);
             console.log(numberR);
             document.getElementById('linearRelative'+point.x).innerHTML= numberR+"%";
@@ -404,11 +404,13 @@ window.onload = function() {
     initializeCorrectArray();
     function initializeCorrectArray() {
       for (var i = 0; i <= 0.18; i+=0.02) {
+
         let min = 210
         let coordinate;
+        i = parseFloat(i.toFixed(2))
         getCircleColumnByX(i).forEach((point) => {
-          if (min > Math.abs(point['y'] - dataset.find(point2 => point2['x'] == i.toFixed(2))['y'])) {
-            min = Math.abs(point['y'] - dataset.find(point2 => point2['x'] == i.toFixed(2))['y']);
+          if (min > Math.abs(point['y'] - dataset.find(point2 => point2['x'] == i)['y'])) {
+            min = Math.abs(point['y'] - dataset.find(point2 => point2['x'] == i)['y']);
             coordinate = point['y']
           }
         });
@@ -417,7 +419,26 @@ window.onload = function() {
         correctArray.push({x: i, y: coordinate});
       }
     }
-    drawLineLinear();	
+    function getAllRedCircle() {
+      return circleData.filter(point => point['isRed'] == true)
+    }
+
+    function checkSolution() {
+      var hash = {}
+      correctArray.forEach(point => {
+        hash[[point['x'], point['y']]] = true;
+      });
+      getAllRedCircle().forEach(point => {
+        hash[[point['x'], point['y']]] = true;
+      });
+
+      if (Object.keys(hash).length == 10 && getAllRedCircle().length == 10) {
+        return true;
+      } else {
+        return false
+      }
+    }
+    drawLineLinear();
      function drawLineLinear(){
         var correctline = d3.svg.line()
                           .x(function(d){return d.x;})
@@ -434,7 +455,7 @@ window.onload = function() {
           {"x": 248.5,"y": yScale(correctArray[7].y)},{"x": 266.25,"y": yScale(correctArray[7].y)},{"x": 266.25,"y": yScale(correctArray[8].y)},
           {"x": 284,"y": yScale(correctArray[8].y)},{"x": 301.75,"y": yScale(correctArray[8].y)},{"x": 301.75,"y": yScale(correctArray[9].y)},
           {"x": 319.5,"y": yScale(correctArray[9].y)}
-        ];  
+        ];
         var lineGraph=main.append("path")
             .attr("d", correctline(lineArray))
             .attr("fill", "none")
@@ -482,7 +503,7 @@ function circleDataNonLinear(){
   return circleData;
 }
 
-function diagramNonlinear(){ 
+function diagramNonlinear(){
     var width = 400, height = 360;
     var padding = { top: 40, right: 40, bottom: 40, left: 40 };
     var main = d3.select('.container #nonlinear').append('g')
