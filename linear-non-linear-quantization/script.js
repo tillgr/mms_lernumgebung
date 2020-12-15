@@ -1,3 +1,8 @@
+/*
+
+INIT
+
+*/
 document.getElementById("sidebarIntroduction").style.color = "#ff3311";
 document.getElementById("sidebarResolution").style.display = "none";
 document.getElementById("sidebarSamplingFrequency").style.display = "none";
@@ -38,6 +43,11 @@ var storageAnswer = Math.floor(availableStorage / samples);
 var storage_Byte = randomStorage * 1024;
 var storage_bit = storage_Byte * 8;
 
+/*
+
+Start Resolution at sampling frequenz
+
+*/
 
 function btnResolution() {
   document.getElementById("sidebarResolution").style.display = "block";
@@ -60,6 +70,12 @@ function btnResolution() {
   document.getElementById('evaluation').style.display = 'none';
 }
 
+/*
+
+Start at Introduction
+
+*/
+
 function btnIntroduction() {
   document.getElementById("intro").style.display = "block";
   document.getElementById("sidebarIntroduction").style.color = "#ff3311";
@@ -76,6 +92,12 @@ function btnIntroduction() {
   document.getElementById('evaluation').style.display = 'none';
 }
 
+/*
+
+Skip Resolutiontasks
+
+*/
+
 function btnSkipIntro() {
   document.getElementById("sidebarLinear").style.display = "block";
   document.getElementById("placeholderLinear").style.display = "none";
@@ -90,6 +112,8 @@ function btnSkipIntro() {
   document.getElementById('resolution1').style.display = "none";
   document.getElementById('intro').style.display = "none";
   document.getElementById('linearQuantisation').style.display = 'block';
+  document.getElementById('linearText1').style.display = 'block';
+  document.getElementById('linearText2').style.display = 'block';
   document.getElementById("sidebarStoragefrequency").style.display = "block";
   document.getElementById("placeholderStoragefrequency").style.display = "none";
   document.getElementById("sidebarResolution").style.display = "block";
@@ -191,16 +215,11 @@ function btnCheckAnswerStorage() {
     document.getElementById('answerStorage').innerHTML = storageAnswer;
     document.querySelector('.btnContinueLinear').style.display = "block";
     document.querySelector('.btnContinueStorage').style.display = "none";
-
   } else {
-
     document.getElementById('errorMessageResolution2_2').style.display = 'block';
     document.getElementById('storageInput').innerHTML = inputStorage;
     document.getElementById('storageAnswer').value = '';
     document.getElementById('btnShowCorrectAnswerStorage').style.display = 'block';
-
-
-
   }
 }
 
@@ -245,6 +264,8 @@ function btnContinueLinear() {
   document.getElementById('resolution1').style.display = "none";
   document.getElementById('intro').style.display = "none";
   document.getElementById('linearQuantisation').style.display = 'block';
+  document.getElementById('linearText1').style.display = 'block';
+  document.getElementById('linearText2').style.display = 'block';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
   document.getElementById('linearErrorMessage').style.display = 'none';
 
@@ -253,6 +274,7 @@ function btnContinueLinear() {
   document.getElementById('btnShowCorrectAnswerLinear').style.display = 'none';
 
 }
+
 var dataset = [{
     x: 0,
     y: 100
@@ -723,31 +745,6 @@ for (var xValue = 0; xValue <= 0.18; xValue += 0.02) {
 var graph = d3.select('.container #nonlinear').append('g')
     .classed('graph', true)
     .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
-function diagramNonlinear() {
-  var width = 400,
-    height = 360;
-  var padding = {
-    top: 40,
-    right: 40,
-    bottom: 40,
-    left: 40
-  };
-
-  var xScale = d3.scale.linear()
-    .domain(d3.extent(dataset, function(d) {
-      return d.x;
-    }))
-    .range([0, width - padding.left - padding.right]);
-  var yScale = d3.scale.linear()
-    .domain([0, 210])
-    .range([height - padding.top - padding.bottom, 0]);
-  var xAxis = d3.svg.axis()
-    .scale(xScale)
-    .orient('bottom');
-  var yAxis = d3.svg.axis()
-    .scale(yScale)
-    .orient('left')
-    .tickValues([10, 25, 45, 70, 100, 140, 200]);
   graph.append('g')
     .attr('class', 'axis')
     .attr('transform', 'translate(0,' + (height - padding.top - padding.bottom) + ')')
@@ -765,6 +762,7 @@ function diagramNonlinear() {
     .attr("y", "-20")
     .attr("fill", "#002557")
     .text("mV");
+function diagramNonlinear() {
   var line = d3.svg.line()
     .x(function(d) {
       return xScale(d.x)
@@ -1077,7 +1075,6 @@ function btnShowCorrectAnswerLinear(){
   document.getElementById('linearTaskEnd').style.display = 'block';
   document.getElementById('linearTask').style.display = 'none';
   drawLineLinear();
-
 }
 function btnCheckLinear() {
   //TODO: quantisieren und arrays vergleichen
