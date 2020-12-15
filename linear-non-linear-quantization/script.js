@@ -1192,31 +1192,8 @@ function fillTableEval(){
     document.getElementById('nonlinearAbsolute' + point.x).innerHTML = numberA;
   }
 }
-function btnStartAgain(){
-  document.getElementById("sidebarIntroduction").style.color = "#ff3311";
-  document.getElementById("sidebarResolution").style.display = "none";
-  document.getElementById("sidebarSamplingFrequency").style.display = "none";
-  document.getElementById("sidebarStoragefrequency").style.display = "none";
-  document.getElementById("sidebarLinear").style.display = "none";
-  document.getElementById("sidebarNonlinear").style.display = "none";
-  document.getElementById("sidebarEvaluation").style.display = "none";
-  document.getElementById('resolution1').style.display = "none";
-  document.getElementById('errorMessageResolution1_1').style.display = "none";
-  document.getElementById('errorMessageResolution1_2').style.display = "none";
-  document.querySelector('.btnShowCorrectAnswer').style.display = "none";
-  document.getElementById('answerExplanationResolution1_1').style.display = "none";
-  document.getElementById('answerExplanationResolution1_2').style.display = "none";
-  document.querySelector('.btnsamplingFrequency2').style.display = "none";
-  document.getElementById('answerIsCorrectSampling').style.display = "none";
-  document.getElementById('resolution2').style.display = 'none';
-  document.getElementById('errorMessageResolution2_1').style.display = 'none';
-  document.getElementById('errorMessageResolution2_2').style.display = 'none';
-  document.getElementById('answerIsCorrectStorage').style.display = 'none';
-  document.getElementById('btnShowCorrectAnswerStorage').style.display = 'none';
-  document.getElementById('answerExplanationStorage').style.display = 'none';
-  document.querySelector('.btnContinueLinear').style.display = "none";
-  document.getElementById('linearQuantisation').style.display = 'none';
-  document.getElementById('nonlinearQuantisation').style.display = 'none';
-  document.getElementById('linearTaskEnd').style.display = 'none';
-  document.getElementById('evaluation').style.display = 'none';
+
+function btnRestart(){
+  location.reload();
+
 }
