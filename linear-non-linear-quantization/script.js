@@ -678,7 +678,29 @@ function randomDataset1() {
 function randomDataset2() {
   return Math.floor(Math.random() * 45) + 1;
 }
-
+function btnJumpToNonLinear() {
+  document.getElementById('nonlinearQuantisation').style.display = 'block';
+  document.getElementById("nonlinearTask").style.display = "block";
+  document.getElementById("nonlinearText1").style.display = "block";
+  document.getElementById("nonlinearText2").style.display = "block";
+  document.getElementById("sidebarNonlinear").style.display = "block";
+  document.getElementById("placeholderNonlinear").style.display = "none";
+  document.getElementById("sidebarNonlinear").style.color = "#ff3311";
+  document.getElementById("sidebarLinear").style.color = "#212529";
+  document.getElementById("sidebarIntroduction").style.color = "#212529";
+  document.getElementById("sidebarStoragefrequency").style.color = "#212529";
+  document.getElementById("sidebarResolution").style.color = "#212529";
+  document.getElementById("sidebarSamplingFrequency").style.color = "#212529";
+  document.getElementById("sidebarEvaluation").style.color = "#212529";
+  document.getElementById("resolution2").style.display = "none";
+  document.getElementById('resolution1').style.display = "none";
+  document.getElementById('intro').style.display = "none";
+  document.getElementById('linearQuantisation').style.display = 'none';
+  document.getElementById('nonlinearErrorMessage').style.display = 'none';
+  document.getElementById('btnShowCorrectAnswerNoninear').style.display = 'none';
+  document.getElementById('nonlinearTaskEnd').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'none';
+}
 function btnContinueNonLinear() {
   document.getElementById('nonlinearQuantisation').style.display = 'block';
   document.getElementById("nonlinearTask").style.display = "block";
