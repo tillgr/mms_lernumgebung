@@ -483,6 +483,7 @@ function diagramLinear(){
   ];
 
   function updateArrays() {
+    var arraynumR = [];
     absoluteArray.forEach((point) => {
       if (isRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))) {
         // TODO: hier berechnungen machen
@@ -491,7 +492,17 @@ function diagramLinear(){
           var numberA = Math.abs(dataset.find(val => val.x === point.x).y - point.y)
           document.getElementById('linearAbsolute' + point.x).innerHTML = numberA;
           var numberR = Math.floor((numberA / dataset.find(val => val.x === point.x).y) * 100);
+          arraynumR.push(numberR);
+          var sum =0;
+          var average = 0;
+          for(var j=0; j< arraynumR.length; j++){
+            sum = sum+arraynumR[j];
+            average = Math.round(sum/arraynumR.length);
+          }
+          console.log("average: "+ average);
           document.getElementById('linearRelative' + point.x).innerHTML = numberR + "%";
+          document.getElementById('Linear' + point.x).innerHTML = numberR + "%";
+          document.getElementById("averageLinear").innerHTML = average+"%";
         }
       }
     });
@@ -890,6 +901,7 @@ function diagramNonlinear() {
   ];
 
   function updateArrays() {
+    var arraynumR = [];
     nonlinearArray.forEach((point) => {
       if (isRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))) {
         // TODO: hier berechnungen machen
@@ -898,7 +910,17 @@ function diagramNonlinear() {
           var numberA = Math.abs(dataset.find(val => val.x === point.x).y - point.y)
           document.getElementById('linearAbsolute' + point.x).innerHTML = numberA;
           var numberR = Math.floor((numberA / dataset.find(val => val.x === point.x).y) * 100);
-          document.getElementById('linearRelative' + point.x).innerHTML = numberR + "%";
+          arraynumR.push(numberR);
+          var sum =0;
+          var average = 0;
+          for(var j=0; j< arraynumR.length; j++){
+            sum = sum+arraynumR[j];
+            average = Math.round(sum/arraynumR.length);
+          }
+          console.log("average: "+ average);
+          document.getElementById('nonlinearRelative' + point.x).innerHTML = numberR + "%";
+          document.getElementById('Nonlinear' + point.x).innerHTML = numberR + "%";
+          document.getElementById("averageNonlinear").innerHTML = average+"%";
         }
       }
     });
@@ -1055,6 +1077,7 @@ function btnShowCorrectAnswerLinear(){
   document.getElementById('linearTaskEnd').style.display = 'block';
   document.getElementById('linearTask').style.display = 'none';
   drawLineLinear();
+
 }
 function btnCheckLinear() {
   //TODO: quantisieren und arrays vergleichen
@@ -1163,7 +1186,12 @@ var eval = d3.select('.container #elavuationDiagram').append('g')
     .classed('grid', true)
     .call(xAxisGrid);
 
-
+function fillTableEval(){
+  for(var i=0; i<dataset.length;i++){
+    var numberA = Math.abs(dataset[i].y-correctArray[i].y);
+    document.getElementById('nonlinearAbsolute' + point.x).innerHTML = numberA;
+  }
+}
 function btnStartAgain(){
   document.getElementById("sidebarIntroduction").style.color = "#ff3311";
   document.getElementById("sidebarResolution").style.display = "none";
