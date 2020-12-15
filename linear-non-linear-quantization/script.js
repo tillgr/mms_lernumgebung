@@ -665,6 +665,9 @@ function randomDataset2() {
 
 function btnContinueNonLinear() {
   document.getElementById('nonlinearQuantisation').style.display = 'block';
+  document.getElementById("nonlinearTask").style.display = "block";
+  document.getElementById("nonlinearText1").style.display = "block";
+  document.getElementById("nonlinearText2").style.display = "block";
   document.getElementById("sidebarNonlinear").style.display = "block";
   document.getElementById("placeholderNonlinear").style.display = "none";
   document.getElementById("sidebarNonlinear").style.color = "#ff3311";
@@ -701,7 +704,9 @@ for (var xValue = 0; xValue <= 0.18; xValue += 0.02) {
     })
   }
 }
-
+var graph = d3.select('.container #nonlinear').append('g')
+    .classed('graph', true)
+    .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
 function diagramNonlinear() {
   var width = 400,
     height = 360;
@@ -711,9 +716,7 @@ function diagramNonlinear() {
     bottom: 40,
     left: 40
   };
-  var main = d3.select('.container #nonlinear').append('g')
-    .classed('main', true)
-    .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
+
   var xScale = d3.scale.linear()
     .domain(d3.extent(dataset, function(d) {
       return d.x;
@@ -729,7 +732,7 @@ function diagramNonlinear() {
     .scale(yScale)
     .orient('left')
     .tickValues([10, 25, 45, 70, 100, 140, 200]);
-  main.append('g')
+  graph.append('g')
     .attr('class', 'axis')
     .attr('transform', 'translate(0,' + (height - padding.top - padding.bottom) + ')')
     .call(xAxis)
@@ -738,7 +741,7 @@ function diagramNonlinear() {
     .attr("y", "30")
     .attr("fill", "#002557")
     .text("ms");
-  main.append('g')
+  graph.append('g')
     .attr('class', 'axis')
     .call(yAxis)
     .append("text")
@@ -754,7 +757,7 @@ function diagramNonlinear() {
       return yScale(d.y);
     })
     .interpolate('linear');
-  main.append('path')
+  graph.append('path')
     .attr('class', 'line')
     .attr('d', line(dataset));
   var yAxisGrid = yAxis.ticks(7)
@@ -765,15 +768,15 @@ function diagramNonlinear() {
     .tickSize(-((height - padding.top - padding.bottom)), 0, 0)
     .tickFormat("")
     .orient("top");
-  main.append("g")
+  graph.append("g")
     .classed("y", true)
     .classed("grid", true)
     .call(yAxisGrid)
-  main.append("g")
+  graph.append("g")
     .classed('x', true)
     .classed('grid', true)
     .call(xAxisGrid);
-  var circles = main.selectAll("circle")
+  var circles = graph.selectAll("circle")
     .data(circleDataNonLinear)
     .enter()
     .append("circle");
@@ -921,6 +924,117 @@ function diagramNonlinear() {
   function getAllRedCircle() {
     return circleDataNonLinear.filter(point => point['isRed'] == true)
   }
+}
+function drawLineNonlinear() {
+  var correctline = d3.svg.line()
+    .x(function(d) {
+      return d.x;
+    })
+    .y(function(d) {
+      return d.y;
+    })
+    .interpolate('nonlinear');
+  var lineArray = [{
+      "x": 0,
+      "y": yScale(correctArrayNonlinear[0].y)
+    }, {
+      "x": 17.75,
+      "y": yScale(correctArrayNonlinear[0].y)
+    }, {
+      "x": 17.75,
+      "y": yScale(correctArrayNonlinear[1].y)
+    },
+    {
+      "x": 35.5,
+      "y": yScale(correctArrayNonlinear[1].y)
+    }, {
+      "x": 53.25,
+      "y": yScale(correctArrayNonlinear[1].y)
+    }, {
+      "x": 53.25,
+      "y": yScale(correctArrayNonlinear[2].y)
+    },
+    {
+      "x": 71,
+      "y": yScale(correctArrayNonlinear[2].y)
+    }, {
+      "x": 88.75,
+      "y": yScale(correctArrayNonlinear[2].y)
+    }, {
+      "x": 88.75,
+      "y": yScale(correctArrayNonlinear[3].y)
+    },
+    {
+      "x": 106.5,
+      "y": yScale(correctArrayNonlinear[3].y)
+    }, {
+      "x": 124.25,
+      "y": yScale(correctArrayNonlinear[3].y)
+    }, {
+      "x": 124.25,
+      "y": yScale(correctArrayNonlinear[4].y)
+    },
+    {
+      "x": 142,
+      "y": yScale(correctArrayNonlinear[4].y)
+    }, {
+      "x": 159.75,
+      "y": yScale(correctArrayNonlinear[4].y)
+    }, {
+      "x": 159.75,
+      "y": yScale(correctArrayNonlinear[5].y)
+    },
+    {
+      "x": 177.5,
+      "y": yScale(correctArrayNonlinear[5].y)
+    }, {
+      "x": 195.25,
+      "y": yScale(correctArrayNonlinear[5].y)
+    }, {
+      "x": 195.25,
+      "y": yScale(correctArrayNonlinear[6].y)
+    },
+    {
+      "x": 213,
+      "y": yScale(correctArrayNonlinear[6].y)
+    }, {
+      "x": 230.75,
+      "y": yScale(correctArrayNonlinear[6].y)
+    }, {
+      "x": 230.75,
+      "y": yScale(correctArrayNonlinear[7].y)
+    },
+    {
+      "x": 248.5,
+      "y": yScale(correctArrayNonlinear[7].y)
+    }, {
+      "x": 266.25,
+      "y": yScale(correctArrayNonlinear[7].y)
+    }, {
+      "x": 266.25,
+      "y": yScale(correctArrayNonlinear[8].y)
+    },
+    {
+      "x": 284,
+      "y": yScale(correctArrayNonlinear[8].y)
+    }, {
+      "x": 301.75,
+      "y": yScale(correctArrayNonlinear[8].y)
+    }, {
+      "x": 301.75,
+      "y": yScale(correctArrayNonlinear[9].y)
+    },
+    {
+      "x": 319.5,
+      "y": yScale(correctArrayNonlinear[9].y)
+    }
+  ];
+  var lineGraph = graph.append("path")
+    .attr("d", correctline(lineArray))
+    .attr("fill", "none")
+    .attr("stroke", "#054faf")
+    .attr("stroke-width", "3px");
+}
 
 
 

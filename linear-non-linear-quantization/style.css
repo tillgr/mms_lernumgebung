@@ -224,6 +224,18 @@ body{
     line-height: 140%;
 }
 
+.nonlinearTask{
+    border: 2px solid #212529;
+    border-radius: 5px;
+    margin-left: 190px;
+    width: 240px;
+    font-size: 22px;
+    position: absolute;
+    margin-top: 20px;
+    padding: 10px;
+    line-height: 140%;
+}
+
 #linearErrorMessage{
   color: red;
 }
