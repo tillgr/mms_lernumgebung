@@ -828,7 +828,7 @@ function diagramNonlinear() {
   function updateCircleDataView() {
     circles.filter(function(d) {
       return d['isRed'] == true;
-    }).style("fill", "red");
+    }).style("fill", "#054faf");
     circles.filter(function(d) {
       return d['isRed'] == false;
     }).style("fill", "grey");
@@ -1192,7 +1192,6 @@ function fillTableEval(){
     document.getElementById('nonlinearAbsolute' + point.x).innerHTML = numberA;
   }
 }
-
 function btnRestart(){
   location.reload();
 
