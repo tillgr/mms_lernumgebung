@@ -650,6 +650,11 @@ function diagramLinear(){
       .attr("fill", "none")
       .attr("stroke", "red")
       .attr("stroke-width", "3px");
+      var lineGraph = eval.append("path")
+      .attr("d", correctline(lineArray))
+      .attr("fill", "none")
+      .attr("stroke", "red")
+      .attr("stroke-width", "3px");
   }
 
 
@@ -1034,6 +1039,11 @@ function drawLineNonlinear() {
     .attr("fill", "none")
     .attr("stroke", "#054faf")
     .attr("stroke-width", "3px");
+    var lineGraph = eval.append("path")
+    .attr("d", correctline(lineArray))
+    .attr("fill", "none")
+    .attr("stroke", "#054faf")
+    .attr("stroke-width", "3px");
 }
 
 
@@ -1080,80 +1090,105 @@ function showEvaluation(){
   document.getElementById("sidebarNonlinear").style.color = "#212529";
   document.getElementById("nonlinearQuantisation").style.display = 'none';
   document.getElementById('intro').style.display = "none";
-  document.getElementById("resolution1").style.display = "none";
-  document.getElementById('resolution2').style.display = 'none';
-  drawLineLinear();
+  document.getElementById('linearQuantisation').style.display = 'none';
+  document.getElementById('nonlinearErrorMessage').style.display = 'none';
+  document.getElementById('btnShowCorrectAnswerNoninear').style.display = 'none';
+  document.getElementById('nonlinearTaskEnd').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'block';
 
-  var widthE = 400,
-    heightE = 360;
-  var paddingE = {
-    top: 40,
-    right: 40,
-    bottom: 40,
-    left: 40
-  };
-  var mainE = d3.select('.container #elavuationDiagram').append('g')
-    .classed('main', true)
-    .attr('transform', "translate(" + paddingE.top + ',' + paddingE.left + ')');
-  var xScaleE = d3.scale.linear()
+}
+
+var eval = d3.select('.container #elavuationDiagram').append('g')
+    .classed('eval', true)
+    .attr('transform', "translate(" + padding.top + ',' + padding.left + ')');
+
+  var xScale = d3.scale.linear()
     .domain(d3.extent(dataset, function(d) {
       return d.x;
     }))
-    .range([0, widthE - paddingE.left - paddingE.right]);
-  var yScaleE = d3.scale.linear()
+    .range([0, width - padding.left - padding.right]);
+  var yScale = d3.scale.linear()
     .domain([0, 210])
-    .range([heightE - paddingE.top - paddingE.bottom, 0]);
-  var xAxisE = d3.svg.axis()
-    .scale(xScaleE)
+    .range([height - padding.top - padding.bottom, 0]);
+  var xAxis = d3.svg.axis()
+    .scale(xScale)
     .orient('bottom');
-  var yAxisE = d3.svg.axis()
-    .scale(yScaleE)
+  var yAxis = d3.svg.axis()
+    .scale(yScale)
     .orient('left')
     .tickValues([30, 60, 90, 120, 150, 180, 210]);
-  mainE.append('g')
+  eval.append('g')
     .attr('class', 'axis')
-    .attr('transform', 'translate(0,' + (heightE - paddingE.top - paddingE.bottom) + ')')
-    .call(xAxisE)
+    .attr('transform', 'translate(0,' + (height - padding.top - padding.bottom) + ')')
+    .call(xAxis)
     .append("text")
     .attr("x", "335")
     .attr("y", "30")
     .attr("fill", "#002557")
     .text("ms");
 
-  mainE.append('g')
+  eval.append('g')
     .attr('class', 'axis')
-    .call(yAxisE)
+    .call(yAxis)
     .append("text")
     .attr("x", "-30")
     .attr("y", "-20")
     .attr("fill", "#002557")
     .text("mV");
-  var lineE = d3.svg.line()
+  var line = d3.svg.line()
     .x(function(d) {
-      return xScaleE(d.x)
+      return xScale(d.x)
     })
     .y(function(d) {
-      return yScaleE(d.y);
+      return yScale(d.y);
     })
     .interpolate('linear');
-  mainE.append('path')
+  eval.append('path')
     .attr('class', 'line')
-    .attr('d', lineE(dataset));
-  var yAxisGridE = yAxis.ticks(7)
-    .tickSize((widthE - paddingE.left - paddingE.right), 0, 0)
+    .attr('d', line(dataset));
+  var yAxisGrid = yAxis.ticks(7)
+    .tickSize((width - padding.left - padding.right), 0, 0)
     .tickFormat("")
     .orient("right");
-  var xAxisGridE = xAxisE.ticks(9)
-    .tickSize(-((heightE - paddingE.top - paddingE.bottom)), 0, 0)
+  var xAxisGrid = xAxis.ticks(9)
+    .tickSize(-((height - padding.top - padding.bottom)), 0, 0)
     .tickFormat("")
     .orient("top");
-  mainE.append("g")
+  eval.append("g")
     .classed("y", true)
     .classed("grid", true)
-    .call(yAxisGridE)
-  mainE.append("g")
+    .call(yAxisGrid)
+  eval.append("g")
     .classed('x', true)
     .classed('grid', true)
-    .call(xAxisGridE);
+    .call(xAxisGrid);
 
+
+function btnStartAgain(){
+  document.getElementById("sidebarIntroduction").style.color = "#ff3311";
+  document.getElementById("sidebarResolution").style.display = "none";
+  document.getElementById("sidebarSamplingFrequency").style.display = "none";
+  document.getElementById("sidebarStoragefrequency").style.display = "none";
+  document.getElementById("sidebarLinear").style.display = "none";
+  document.getElementById("sidebarNonlinear").style.display = "none";
+  document.getElementById("sidebarEvaluation").style.display = "none";
+  document.getElementById('resolution1').style.display = "none";
+  document.getElementById('errorMessageResolution1_1').style.display = "none";
+  document.getElementById('errorMessageResolution1_2').style.display = "none";
+  document.querySelector('.btnShowCorrectAnswer').style.display = "none";
+  document.getElementById('answerExplanationResolution1_1').style.display = "none";
+  document.getElementById('answerExplanationResolution1_2').style.display = "none";
+  document.querySelector('.btnsamplingFrequency2').style.display = "none";
+  document.getElementById('answerIsCorrectSampling').style.display = "none";
+  document.getElementById('resolution2').style.display = 'none';
+  document.getElementById('errorMessageResolution2_1').style.display = 'none';
+  document.getElementById('errorMessageResolution2_2').style.display = 'none';
+  document.getElementById('answerIsCorrectStorage').style.display = 'none';
+  document.getElementById('btnShowCorrectAnswerStorage').style.display = 'none';
+  document.getElementById('answerExplanationStorage').style.display = 'none';
+  document.querySelector('.btnContinueLinear').style.display = "none";
+  document.getElementById('linearQuantisation').style.display = 'none';
+  document.getElementById('nonlinearQuantisation').style.display = 'none';
+  document.getElementById('linearTaskEnd').style.display = 'none';
+  document.getElementById('evaluation').style.display = 'none';
 }
