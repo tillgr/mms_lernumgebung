@@ -1,3 +1,24 @@
 baseURL = "http://localhost:1313/"
 title = "Medien und Medienströme"
-theme = "mmsTheme"
+theme = "hugo-theme-techdoc"
+
+[params]
+
+	description = "Lernumgebung 2.0"
+	github_repository = "https://git.imld.de/teaching/kp-mi/kp-mi-20/lern-mms"
+	version = "0.0"
+	menu_style = "slide-menu"
+	custom_font_color = "#fff"
+	custom_background_color = "#7791c5"
+
+[menu]
+	[[menu.main]]
+		name = "Home"
+		url = "/"
+		weight = 1
+
+	[[menu.main]]
+		name = "Professur für Multimedia-Technologie"
+		url = "https://mt.inf.tu-dresden.de/"
+		weight = 2
+

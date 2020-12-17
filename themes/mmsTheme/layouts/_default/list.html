@@ -1,9 +1,0 @@
-{{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ range .Pages.ByTitle }}
-    <article>
-      <h2>{{ .Title }}</h2>
-      <p>{{ .Content }}</p>
-    </article>
-  {{ end }}
-{{ end }}
