@@ -1,0 +1,95 @@
+---
+title: "4.8 JPEG 2000"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<p>Die ISO Joint Photographic Experts Group (JPEG, ISO/IEC JTC1 SC29 WG) und die Digital Imaging Group (DIG) entwickeln
+    einen neuen Standard für Bild-Formate und -Kompression. Der ISO 15444 Standard wird vorraussichtlich 2001 verfügbar
+    sein; eine erste Version gibt es seit Anfang 2000.</p>
+
+<p><strong>Aufbau des Standards</strong></p>
+<p>(Stand 05/2001)</p>
+<p>ISO/IEC 15444, ITU-T Rec. T.800 </p>
+<ul>
+    <li>Part 1, JPEG 2000 Image Coding System (Kern, minimal File Format): Final Committee Draft</li>
+    <li>Part 2, Extensions (i.w. erweiterte Kodierung, Kompression):Final Com. Draft</li>
+    <li>Part 3, Motion JPEG 2000: Comittee Draft</li>
+    <li>Part 4, Conformance: Committee Draft</li>
+    <li>Part 5, Reference software (aktuell Java, C): Final Committee Draft</li>
+    <li>Part 6, Compound Image file format (für Druck- und Fax-Anwendungen):Comittee Draft</li>
+</ul>
+
+<p><strong>Warum ein neuer Standard?</strong></p>
+<p>Zum einen sollte eine Kompression mit kleinen Bitraten (z.B. unter 0.25 bpp [Bits per Pixel]) unterstützt werden. Zum
+    zweiten sollte eine Kompression von computergenerierten Bildern möglich sein; JPEG war nur für natürliche Bilder
+    ausgelegt. Außerdem sollte die Übertragung über gestörte Kanäle verbessert werden, da die Bildqualität von JPEG
+    durch Bit-Fehlern stark beeinträchtigt wird.</p>
+<p>Für JPEG 2000 wird die Wavelet-Transformation verwendet. Damit wird eine bessere Bildqualität bei höherer Kompression
+    erreicht. Es gibt neue Merkmale wie Skalierbarkeit und Region-of-Interest. Das Verfahren findet v.a. im Internet, in
+    Bildarchiven, bei medizinischen Bildern, in der digitalen Fotogtafie und anderen Einsatzmöglichkeiten Anwendung.</p>
+{{% image "Bildkompression/8/3_8_1_jpeg_wavelet.jpg" "" "Abb. 4.8-0 Vergleich zwischen einem wavelet-komprimierten Bild (rechts) und einem JPEG-komprimierten Bild (Mitte). Das Original-Bild (links) ist ein TIFF-Bild" %}}
+
+<h2>4.8.1 Wesentliche Eigenschaften</h2>
+<p>Die Bilder werden progressiv geladen, d.h. sie werden zunächst recht grob dargestellt und dann schrittweise
+    verfeinert. Dadurch können die Nutzer das Bild bereits bei weniger als 10% der Bildinformation bewerten. Durch die
+    Nutzung der Wavelet-Technologie sind die Bilder skalierbar in Größe und Qualität. Die Bilder werden adaptiv
+    dargestellt. Es ist verlustfreie und verlustbehaftete Kompression möglich. Es sind natürlichfarbige und bitonale
+    Bilder darstellbar.</p>
+
+<p><strong>Kompressionsverfahren</strong></p>
+<p>Bei JPEG 2000 wird die Wavelet-Transformation angewendet. Ein Bild kann in Blöcke (zu 1 bis 232-1 Pixel) aufgeteilt
+    werden, was als <strong>tiling</strong> bezeichnet wird. Diese Blöcke werden dann bei der Kompression wie
+    eigenständige Bilder behandelt. Tiling reduziert den Speicherbedarf und ist Grundlage für die Extraktion bestimmter
+    Bildbereiche (Region of Interests).</p>
+{{% image "Bildkompression/8/subbaender.gif" "" "Abb. 4.8-1  Unterteilung eines Bildes in Subbänder" %}}
+
+<p>Die Quantisierung erfolgt nach</p>
+<!--TODO: Formeln shortcode-->
+
+<p>wobei c(u,v) einen Wavelet-Koeffizienten, und c<sub>q</sub>(u,v) den quantisierten Wert+ darstellt. Mit q wird die
+    Quantisierung eingestellt, und kann je Subband festgelegt werden.</p>
+<p>Die Kompression komplexer Dokumente (compound components) ist möglich.</p>
+<p>Das Verfahren verwendet ein flexibles Fileformat (codestream). Dies gestattet einen wahlfreien Zugriff und partielle
+    Aktualisierungen. Der Codestream besteht aus einer Sequenz von Boxen (Bild + Metadaten).</p>
+{{% image "Bildkompression/8/3_8_2_jpeg2000_progressives_laden.jpg" "" "Abb. 4.8-2 Ein Beispiel für das progressive Laden eines mit Kompressionsfaktor 50:1 komprimierten Bildes" %}}
+
+<p class="small">Von links oben nach rechts unten:<br>
+  Zeitpunkt 1: 1.324 bytes geladen (500:1 Kompression),<br>
+  Zeitpunkt 2: 2.652 bytes geladen (250:1 Kompression),<br>
+  Zeitpunkt 3: 13.268 bytes geladen (50:1 Kompression),<br>
+  unkomprimiertes Originalbild mit 649 kByte
+</p>
+
+<p>Der Nutzer kann Bildteile mit höherer Qualität oder Priorität als andere Bildteile definieren (Region of Interest).
+    Die Organisation des Bitstroms erfolgt so, dass diese Teile vorrangig dekodiert werden.</p>
+<p>Es können mehrere Farbmodelle verwendet werden, z.B. können sowohl RGB-, CMYK- als auch LAB-Farbmodelle gleichzeitig
+    in einer Bilddatei enthalten sein. Der Bitstrom enthält die volle ICC Profile Information (International Color
+    Consortium), so dass ein nahtloser Übergang zwischen den Modellen möglich ist.</p>
+{{% image "Bildkompression/8/jpeg2000_farbsystem.gif" "" "Abb. 4.8-3  Das JPEG 2000 Farbsystem" %}}
+
+<p>Das Farbsystem besteht aus 2 Teilen:</p>
+<ul>
+    <li>Teil 1: sRGB (standardisiertes RGB) + Simple ICC</li>
+    <li>Teil 2: mehrere Farbmodelle + ICC-Profile</li>
+</ul>
+
+<p>Die Informationen in der Meta-Daten-Architektur zu den "Intellectual Property Rights" wie im IPTC Standard sind ein
+    Teil der Bilddatei.</p>
+<p>Im JPEG 2000-Verfahren wurde die Fehlerrobustheit erhöht, was z.B. bei mobiler Übertragung von Vorteil ist.</p>
+<p>Mit JPEG 2000 wird die Kompression über alle Bereiche von mindesten 20-30% verbessert.</p>
+{{% image "Bildkompression/8/3_8_3_jpeg2000_region-of-interest.jpg" "" "Abb. 4.8-4 Ein Beispiel für eine Region of Interest: Ein 100:1 komprimiertes Bild, wobei das Gebiet in dem Rechteck mit höherer Qualität kodiert wurde (linkes Bild, 7.864 bytes).Rechts befindet sich das unkomprimierte Originalbild (768 KByte)" %}}
+
+<h2>4.8.2 File-Format </h2>
+<p>Die Dateien bilden eine Sequenz von Boxes. Eine Box enthält sowohl Bild- wie auch Meta-Daten. Die Reihenfolge liegt
+    nicht fest. Auf die Boxes kann wahlfrei zugegriffen werden. Der Codestrom kann fragmentiert sein. Die Fragmente
+    können verteilt sein. Es werden weitere File-Informatinen gespeichert, z.B. eine File-Signatur, die
+    Farbraumspezifikation, die Komponentenordnung, die räumliche Auflösung.</p>
+<p>Die Meta-Daten befinden sich in eigenen Boxes. Es gibt die UUID-Boxes (Universal Unique Identifier, statisch
+    definiert) und XML-Boxes (selbstdefininiert).</p>
+{{% image "Bildkompression/8/3_8_4_jpeg2000_box-struktur.gif" "" "Abb. 4.8-5 JPEG2000-File-Format und Box-Struktur" %}}
+{{% image "Bildkompression/8/3_8_5_jpeg2000_fragmentierung.gif" "" "Abb. 4.8-6 JPEG 2000 - Fragmentierung" %}}
+
+<p><strong>Weiterführende Links</strong></p>
+<!--TODO: Fehlende Referenzen-->
+<!--TODO: Fehlende Referenzen-->

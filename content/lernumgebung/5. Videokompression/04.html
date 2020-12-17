@@ -1,0 +1,444 @@
+---
+title: "5.4  MPEG Video-Kompression "
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<p>Die 'Moving Picture Experts Group' (MPEG) spezifiziert mehrere ISO Standards zur digitalen Bewegtbilddarstellung.</p>
+<p>Derzeit existieren die Standards, MPEG-1 (ISO/IEC 11172), MPEG-2 (ISO/ICE 13818), MPEG-4, MPEG-7 und MPEG21.</p>
+<ul>
+    <li>MPEG-1 (Nov. 92):<br/>
+        Standard zum Speichern und Wiederauffinden von Video (und Audio)<br/>
+        Anwendung: Kodierung von digitalem Audio und Video (z.B. auf CD)<br/>
+        konstante Datenrate von max. 1,856 MBit/s
+    </li>
+    <li>MPEG-2 (Nov. 94):<br/>
+        Standard für digitales Fernsehen<br/>
+        variable Datenrate, hohe Audio-/Video-Qualität<br/>
+        Unterstützung von interlaced Video, Unterstützung von interaktivem TV
+    </li>
+    <li>MPEG-4 Multi Viewpoint Scences:<br/>
+        Standard für komplexe Multimedia-Anwendungen<br/>
+        für D-TV, interaktive Graphik- und Multimedia-Anwendungen (fürs WWW)
+    </li>
+    <li>MPEG-7 Multimedia Content Description Interface:<br/>
+        Standard für Informationssuchsysteme<br/>
+        Beschreibung der Daten (Metadaten)<br/>
+        spezifiziert einen Satz von Deskriptoren zur Beschreibung verschiedener Typen multimedialer Informationen.
+    </li>
+    <li>MPEG-21 Multimedia Framework:<br/>
+        Erweiterung von MPEG-7<br/>
+        beschreibt alle Komponenten und deren Beziehungen, um Multimediaressourcen über verschiedene Netzwerke und
+        Geräte hinweg nutzen zu können.<br/>
+        beschreibt nicht nur Inhalte und deren Beziehungen, sondern auch Geräte, Netzwerke, Protokolle, Repräsentation
+        der Inhalte.
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<p>Gegenüberstellung von MPEG-1 und -2 (wichtigste Kenngrößen):</p>
+<!--TODO: Tabelle shortcode-->
+
+<p>Ziel der Entwicklung von MPEG war, die Einschränkungen der anderen Verfahren zu umgehen und eine generische Norm zu
+    entwickeln, die eine Nutzung in verschiedenen Anwendungen möglich macht.</p>
+
+<h2>5.4.1 MPEG-Anwendungen</h2>
+<p>MPEG-1 findet Anwendung im PC- und Unterhaltungsmarkt. Die Übertragungsrate liegt bei ca. 1,5 MBit/s (192 KByte/s)
+    und orientiert sich an der von single-speed CD-ROM Laufwerken. Typische Anwendungen: Video-CD, CD-i, CD-Karaoke,
+    Interaktive Spiele, Computer Aided Training, Point-of-Information.</p>
+<p>MPEG-2 wurde im Hinblick auf das digitale Fernsehen definiert und unterstützt das Zeilensprungverfahren
+    <!--TODO: Fehlende Referenzen-->. Es unterstützt größere, vom Videomaterial sich dynamisch ändernde
+    Übertragungsraten. Es wird z.B. beim Satelliten-Fernsehen, bei Video on Demand-Anwendungen über Breitbandkabel und
+    bei DVD-Video angewendet. Das Kompressionsverfahren ist im Prinzip identisch mit dem von MPEG-1, Verbesserungen
+    erfolgten lediglich in Details.</p>
+<p>Um die Anwendungsmöglichkeiten möglichst wenig einzugrenzen, wurden Kompromisse im Bereich der Verfahren gemacht. So
+    sollten folgende Funktionen innerhalb der Norm möglich sein:</p>
+<ul>
+    <li>wahlfreier Zugriff innerhalb des digitalen Videos</li>
+    <li>schnelles Vor- und Rückwärtssuchen, reverse play</li>
+    <li>Audio-visuelle Synchronisation</li>
+    <li>Fehlertoleranz</li>
+    <li>Toleranz gegenüber (De-/) Kodierungsverzögerungen</li>
+    <li>Editierbarkeit</li>
+    <li>Formatflexibilität (in Größe und Bildwiederholfrequenz)</li>
+</ul>
+
+<h2>5.4.2 MPEG Schichten</h2>
+<p>MPEG beschreibt neben dem Kompressionsverfahren auch, wie komprimierte Video- und Audio-Daten zu einem Bitstrom
+    zusammengefasst werden. Es besteht deshalb aus einer System- und einer Kompressionsschicht. Diese Schichten haben
+    ihrerseits wieder Teilschichten.</p>
+
+<p><strong>Systemschicht:</strong></p>
+<p>Definiert, auf welche Weise Bitströme von Video- und Audio-Daten sowie optional private Daten zu einem einzigen
+    Bitstrom zusammengefasst werden. Außerdem werden Zeitmarken (Presentation Time Stamps) für die synchronisierte
+    Wiedergabe von Bild und Ton bereitgestellt.</p>
+{{% image "Videokompression/4/4_4_1_mpeg-schichten.gif" "" "Abb. 5.4-0 MPEG-Schichten" %}}
+
+<p>Der maximale Abstand zwischen zwei Synchronisationspunkten beträgt 0,7 Sekunden.</p>
+<p>Die Systemschicht ist unterteilt in den Pack- und Packet-Layer. Ein Pack besteht aus einer Sequenz von Packets.
+    Packets enthalten neben den Header-Informationen nur Daten einer Art, also entweder Audio-, Video-Daten oder private
+    Daten. Diese Daten werden von den Kompressionsschichten für Video und Audio codiert und zur Übertragung in die
+    Packets eingefügt.</p>
+
+<h2>5.4.3 Prinzipien der MPEG-Videokompression </h2>
+<p>Die MPEG-Videokompression lässt sich in die folgenden Schritte einteilen:</p>
+<ul>
+    <li>Video-Vorverarbeitung<!--TODO: Fehlende Referenzen--><br/>
+        Reduzierung der räumlichen Auflösung
+    </li>
+    <li>Bewegungskompensation<!--TODO: Fehlende Referenzen--><br/>
+        Reduktion der zeitlichen Redundanz durch Ausnutzung der Ähnlichkeit aufeinander folgender Bilder
+    </li>
+    <li>Transformationskodierung<!--TODO: Fehlende Referenzen--><br/>
+        Verringerung der räumliche Redundanz (bezogen auf die menschliche Wahrnehmung) durch DCT und Quantisierung
+    </li>
+    <li>Entropiekodierung<!--TODO: Fehlende Referenzen--><br/>
+        Verlustfreie Kompression der Datenmenge
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<h3 class="h4">5.4.3.1 Videovorverarbeitung</h3>
+<p>Bei der Videovorverarbeitung wird das analoge Videosignal digitalisiert und bestimmten Formaten angepasst.</p>
+<p>Handelt es sich z.B. um ein FBAS-Signal, so besteht es aus den RGB-Signalkomponenten AR, AG, AB. Aus diesen Signalen
+    werden ein Helligkeitssignal Y und zwei Farbdifferenzsignale Cb und Cr berechnet (siehe Farbinformation
+    <!--TODO: Fehlende Referenzen--> im Videosignal).</p>
+
+<h4 class="h5">Digitalisierung eines Signals nach ITU-R BT 601.5 (CCIR601)</h4>
+<p>Um analoge Signale zu digitalisieren, müssen sie normiert werden, d.h., dass sie sich nur in einem fest definierten
+    Wertebereich bewegen. Der Standard schreibt vor, dass die Luminanz- und Farbdifferenzsignale jeweils in einem
+    Bereich von 1 Volt liegen. Die lineare Quantisierung erfolgt mit 8 oder 10 Bit.</p>
+<p>Das folgende Bild beschreibt die im Standard festgelegten Randparameter der Digitalisierung der analogen Luminanz-
+    und Farbdifferenzsignale.</p>
+{{% image "Videokompression/4/4_4_2_randparameter_der_digitalisierung.gif" "" "Abb. 5.4-1 Randparameter der Digitalisierung bei ITU-R BT 601" %}}
+
+<p>Luminanzsignale werden in 220 Werte aufgeteilt. Z.B. ist L-Wert 16 als Schwarz definiert, L-Wert 235 ist definiert
+    als Weiß. L-Wert 1 und 255 dienen der Synchronisation. Die Chrominanzsignale werden in 224 Werte aufgeteilt. C-Wert
+    128 ist definiert als 0 Wert.</p>
+<p>Diese Zusammenhänge werden in einer Formel ausgedrückt, mit der man zu den analogen RGB-Werten die digitalen
+    Signalkomponenten Y, Cr und Cb ermitteln kann:</p>
+<!--TODO: Shortcode Formeln-->
+
+<h4 class="h5">Digitalisierung einer Bildschirm-Zeile</h4>
+<p>Die Abtastung einer PAL-Zeile mit einer Frequenz von 13,5 MHz wird in dem folgenden Bild dargestellt:</p>
+{{% image "Videokompression/4/4_4_3_abtastung_einer_zeile.gif" "" "Abb. 5.4-2 Abtastung einer Zeile bei ITU-R BT 601" %}}
+
+<p>In der Abblidung ist zu sehen, dass es doppelt so viele Luminanzabtastungen (Samples) gibt wie Chrominanzabtastungen
+    je Zeile (dargestellt durch die durchnummerierten Kästchen). Daher resultiert die Bezeichnung 4:2:2. Denn zu je 2
+    Chrominanzsamples gibt es 4 Luminanzsamples. Eine Zeile wird 864 mal auf Luminanzwerte abgetastet und 432 mal auf
+    Chrominanz, wobei anzumerken ist, dass es sowohl bei PAL wie auch bei NTSC (13,5Mhz 4:2:2) nur 720 aktive Luminanz-
+    und 360 aktive Chrominanzsamples pro Zeile gibt, d.h. Samples, die den aktiven Bildbereich beschreiben. (Siehe auch
+    Kapitel Digitalisierung analoger Video-Signale<!--TODO: Fehlende Referenzen--> !)</p>
+<p>Die Abtastung wird für jede der 625 PAL-Zeilen ausgeführt. Daraus resultiert eine Datenmenge von:</p>
+
+<p>( 864 + 2 * 432) * 8Bit * 625 ~ 8,64 MBit je Frame bei 25 Hz → 27 MB/s </p>
+
+<h3 class="h4">5.4.3.2 MPEG-Bildtypen</h3>
+<p>Bei der Bildkompression wird zwischen den folgenden 4 Bildtypen unterschieden:</p>
+{{% image "Videokompression/4/4_4_7_i-p-b-bilder.gif" "" "Abb. 5.4-3 Aufbau eines MPEG-Stromes aus I-, P-, B-Bildern" %}}
+
+<ul>
+    <li><strong>I-Bild</strong> <em>Intra Coded Picture</em>:<br/>
+        wird wie ein Standbild kodiert, d.h. im Wesentlichen nach den bei JPEG<!--TODO: Fehlende Referenzen-->
+        verwendeten Methoden.<br/>
+        Die DC-Koeffizienten werden differenzkodiert, wobei Codeworte variabler Länge verwendet werden. Die
+        AC-Koeffizienten werden Zickzack-sortiert<!--TODO: Fehlende Referenzen--> , mittels Run-Length-Encoding
+        <!--TODO: Fehlende Referenzen--> kodiert und in einem Kodewort variabler Länge gespeichert. Es werden zwei Arten
+        von Makroblöcken verwendet: Einige enthalten ausschließlich die kodierten Daten, andere zusätzlich einen
+        Parameter zur Skalierung der ab dann zu verwendenden Quantisierungskennlinie.
+    </li>
+    <li><strong>P-Bild</strong> <em>Predictive Coded Picture</em>:<br/>
+        benötigt zur Kodierung Informationen des vorangegangenen I- bzw. P-Bildes und zur Dekodierung die des letzten I-
+        und aller vorangegangenen P-Bilder.<br/>
+        P-Bilder nutzen die Tatsache, dass Bereiche benachbarter Bilder durch Verschiebung ähnlich sind. Zur Ermittlung
+        der Bewegungsvektoren werden verschiedene Suchverfahren<!--TODO: Fehlende Referenzen--> angewendet, z.B. Full
+        Search Blockmatching oder hierarchische Verfahren. Die Makroblöcke werden mittels Differenzmethode mit
+        anschließender DCT<!--TODO: Fehlende Referenzen--> transformiert. Der DC-Koeffizient wird DPCM-kodiert
+        <!--TODO: Fehlende Referenzen--> . Die AC-Koeffizienten werden quantisiert und anschließend mittels RLC
+        <!--TODO: Fehlende Referenzen--> und Huffman-Algorithmus<!--TODO: Fehlende Referenzen--> kodiert. Zusätzlich
+        wird der Bewegungsvektor gespeichert.
+    </li>
+    {{% image "Videokompression/4/4_4_8_bewegungskompensation.gif" "" "Abb. 5.4-4 Bewegungskompensation" %}}
+    <li><strong>B-Bild</strong> <em>Bidirectionally Predictive Coded Picture</em>:<br/>
+        Benötigt zur Kodierung bzw. Dekodierung Informationen des vorangegangenen und des nachfolgenden I- oder
+        P-Bildes.<br/>
+        Ein B-Bild ermöglicht den größten Kompressionsfaktor von den 3 Bildtypen. B-Bilder können nicht als
+        Referenzbilder dienen. Die Reihenfolge der Anzeige einer Bilderfolge mit B-Bildern (z.B. IBP) unterscheidet sich
+        von der Reihenfolge, in der die Bilder kodiert sind (z.B. IPB), da zum Dekodieren (und Anzeigen) der B-Bilder
+        auch Informationen der nachfolgenden I- und P-Bilder notwendig sind. B-Bilder verwenden die Differenzkodierung
+        zum vorangegangenen und nachfolgenden I- oder P-Bild. Die Quantisierung und Entropie-Kodierung der Makroblöcke
+        erfolgt wie bei P-Bild-spezifischen Makroblöcken. Zur Bewegungskompensation wird der aktuell zu untersuchende
+        Makroblock mit Blöcken des vorherigen und folgenden I- oder P-Bildes verglichen.<br/>
+        Zusätzlich können Makroblöcke aus beiden Referenzbildern interpoliert und mit dem aktuellen Makroblock
+        verglichen werden. Besteht der am besten passende Makroblock nur aus einem Bild, ist die Vorgehensweise wie bei
+        P-Bildern. Entstand der Makroblock jedoch durch Interpolation, werden beide Bewegungsvektoren kodiert, der
+        interpolierte mit dem aktuellen Makroblock differenzkodiert und DCT-kodiert.
+    </li>
+    <li><strong>D-Bilder</strong> <em>DC Coded Picture</em>:<br/>
+        Dient dem schnellen Vorlauf. Es werden nur die Unterschiede zwischen zwei Frames, d.h. die DC-Koeffizienten bei
+        Vernachlässigung der AC-Koeffizienten kodiert.
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<p>Die Reihenfolge der Bilder wird von der Anwendung festgelegt. Für praktische Anwendungen hat sich z.B. die Folge
+    IBBPBBPBBI.... herausgestellt. Man bezeichnet dies als Group of Picture GoP. Ein wahlfreier Zugriff bedingt somit
+    die Dekodierung von 9 Einzelbildern (ca. 330 ms). MPEG-1 arbeitet mit konstanter Datenrate:</p>
+<p>Droht der Ausgangspuffer des Enkoders vollzulaufen, weil z.B. ein sehr lebhafter Bildinhalt mit vielen hohen
+    Frequenzen kodiert wird oder weil die Prädiktion wegen eines beschränkten Suchbereiches versagt, so wird die
+    Quantisierung vergröbert. Entspannt sich die Situation, so wird die Quantisierung verkleinert und damit die
+    Bildqualität erhöht.</p>
+
+<h3 class="h4">5.4.3.3 Bewegungskompensation</h3>
+<h4 class="h5">Grundprinzipien</h4>
+<p>MPEG nutzt die Tatsache, dass in Folgen bewegter Bilder zwischen aufeinanderfolgenden Bildern große Ähnlichkeit
+    besteht - sieht man von Szenenwechseln ab. Dies ist an dem sich im folgenden Bild von links nach rechts bewegenden
+    Fahrzeug erkennbar.</p>
+{{% image "Videokompression/4/4_4_4_mpeg_motion_compensation.jpg" "" "Abb. 5.4-5 Beispiel zweier sich ähnelnder Bilder im MPEG-Strom" %}}
+
+<p>Zentraler Teil von MPEG ist die sog. 'Motion Compensation'. Vereinfacht gesagt, wird die Bewegung eines Bildobjektes
+    (Pixel-Block) durch einen Vektor beschrieben, z.B. durch die Angabe, dass sich ein Objekt von einem Bild zum
+    nächsten um x Pixel nach rechts und y Pixel nach oben bewegt hat. Die Erkennung von Objekten der realen Welt ist in
+    der Praxis zu aufwändig. Statt dessen werden sog. Makroblöcke genutzt. Durch Grundrauschen unterscheidet sich ein
+    Makroblock mehr oder weniger vom vorhergehenden. Sind die Unterschiede signifikant, wird neben dem Motion-Vektor
+    auch ein Differenzbild codiert. Benachbarte Bilder besitzen i. Allg. starke Ähnlichkeiten, d.h. Bereiche
+    korrelieren. Man unterscheidet 4 verschiedene Bildtypen, die unterschiedlich stark voneinander abhängen:</p>
+<ul>
+    <li>I-Bild <em>(intra-coded)</em>:<br/>
+        I-Bilder sind nur durch die Transformationscodierung<!--TODO: Fehlende Referenzen--> komprimiert, d.h. es werden
+        keine Abhängigkeiten zu anderen Bildern genutzt.
+    </li>
+    <li>P-Bilder <em>(predictive coded)</em><br/>
+        es werden Informationen des vorangegangenen I- oder P-Bildes zur Bewegungsabschätzung genutzt.
+    </li>
+    <li>B-Bilder <em>(bidirectionally predictive coded)</em><br/>
+        benötigt zur Kodierung und Dekodierung Informationen vorangegangener und nachfolgender I- und P-Bilder
+    </li>
+    <li>D-Bilder <em>(DC coded)</em><br/>
+        für schnellen Vor- und Rücklauf<br/>
+        Es werden nur die Unterschiede zwischen zwei Bildern, d.h. es werden nur die DC-Koeffizienten
+        <!--TODO: Fehlende Referenzen--> gespeichert, nicht die AC-Koeffizienten<!--TODO: Fehlende Referenzen--> .
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<h4 class="h5">Bewegungsabschätzung</h4>
+<p>Es liegt die Idee zugrunde, nur die Unterschiede zwischen Bildern durch Differenzblöcke zu kodieren. Diese
+    Untersuchung wird auf Basis der Makroblöcke von 16x16 Pixeln vorgenommen. Dies allein ist jedoch nicht ausreichend,
+    da z.B. beim Schwenk oder Zoom ganze Bildinhalte verschoben werden. Deshalb werden zusätzlich Bewegungsvektoren
+    kodiert. Das Finden der Bewegungsvektoren ist sehr aufwändig, deshalb nimmt man an, ein gesuchter Bezugsblock liegt
+    in der Nähe.</p>
+{{% image "Videokompression/4/4_4_5_mpeg_bewegegungsabschaetzung.gif" "" "Abb. 5.4-6 Prinzip der Bewegungsabschätzung bei MPEG" %}}
+
+<p>Jeder Block wird mit seinem Vorgänger aus dem vorherigen Bild verglichen. Wird eine bestimmte Ähnlichkeitsschwelle
+    überschritten, dann ist die Abweichung zwischen den Blöcken so gering, dass eine Intra-Kodierung ausreicht.
+    Ansonsten wird ein Blockvergleich durchgeführt und der Bewegungsvektor und der Differenzblock gespeichert.</p>
+
+<h4 class="h5">Blockvergleichs-Algorithmen</h4>
+<p>Ein Maß für die Ähnlichkeit von Blöcken ist der Mittelwert der absoluten Differenz:</p>
+<!--TODO: Shortcode Formeln-->
+<p>Es wird ein Schwellwert t festgelegt:</p>
+<!--TODO: Shortcode Formeln-->
+
+<p>Die Funktion ord() liefert 1, wenn der Funktionswert ≤t ist, sonst null. Das bedeutet, je höher die Summe ist, desto
+    ähnlicher sind die Pixelblöcke.</p>
+<p>Es wird der Block eines anderen Makroblocks im vorherigen I- oder P-Bildes ermittelt, der dem zu kodierenden am
+    ähnlichsten ist. Die Größe des Suchbereiches (Bewegungsvektors) und der Algorithmus zur Ermittlung der
+    Bewegungsvektoren ist im Standard nicht festgelegt. Es werden verschiedene Suchstrategien benutzt. Z.B. wird
+    zunächst das Gitter der ganzzahligen Verschiebungen eines Makroblocks abgesucht (Gitternetz von 48x48 Pixeln), dann
+    die 8 benachbarten Positionen mit einem Abstand von einem halben Pixel.</p>
+<p>Andere Verfahren verwenden eine heuristische, zweidimensionale logarithmische Suche, indem der Pfad der größten
+    Ähnlichkeit verfolgt wird.</p>
+{{% image "Videokompression/4/4_4_6_heuristische_suche.gif" "" "Abb. 5.4-7 Demonstration der logarithmischen Suche" %}}
+
+<p>Im obigen Bild wird der Suchbereich S dargestellt. Die Kreise repräsentieren Makroblöcke, die Nummern
+    Verarbeitungsschritte. In S/2 Schritten wird nach einem ähnlichen Bock im vorangegangenen Bild gesucht. Der obere
+    Block war am ähnlichsten. Die Suche wird nun für diesen Block als Mittelpunkt wiederholt. Der rechte Block war der
+    ähnlichste. Für diesen wird die Suche wiederholt. Stimmt der mittlere Bock am besten überein, wird die Schrittweite
+    halbiert und wieder der erste Schritt wiederholt. Ist die Schrittweite nur noch 1, werden alle 8 umliegenden Blöcke
+    untersucht. Zu dem ähnlichsten Bock wird der Bewegungsvektor ermittelt.</p>
+
+<h3 class="h5">5.4.3.4 Transformationskodierung, Quantisierung und Entropie-Kodierung</h3>
+<p>Die I-Bilder und die Differenzblöcke werden wie beim JPEG-Verfahren<!--TODO: Fehlende Referenzen--> kodiert. Es wird
+    die Diskrete Kosinustransformation DCT<!--TODO: Fehlende Referenzen--> auf die 8x8-Pixelblöcke angewandt.</p>
+<p>Anschließend werden die entstehenden Koeffizienten quantisiert, wobei das psycho-visuelle Modell des Menschen
+    zugrunde gelegt wird. Dieses besagt, dass der Mensch bestimmte Komponenten eines Bildes nicht wahrnehmen kann. Diese
+    können weggelassen werden. Entsprechend des psycho-visuellen Modells gibt es eine vom MPEG-Konsortium empfohlene
+    Quantisierungsmatrix. Die MPEG-Enkoder weisen z.T. erhebliche Qualitätsunterschiede auf, da sie unterschiedliche
+    psycho-visuelle Modelle und dementsprechend unterschiedliche Quantisierungsmatrizen verwenden.</p>
+<p>Vor einer GoP können 2 Quantisierungsmatrizen definiert werden, eine für intraframe, die andere für
+    interframe-kodierte Makroblöcke. Die Quantisierung der intraframe-kodierten DC-Koeffizienten ist fest. In jedem
+    Slice<!--TODO: Fehlende Referenzen--> kann ein ganzzahliger Quantisierungsfaktor (1...31) zur globalen Quantisierung
+    vorgegeben werden. Jeder Quantisierungsfaktor behält seine Gültigkeit, bis er überschrieben wird. Die globale
+    Quantisierung dient der Kontrolle der Datenrate.</p>
+<p>Die transformierten und quantisierten Koeffizienten sind in der 8x8-Matrix gespeichert. Wie bei JPEG werden sie durch
+    Zig-Zag-Scanning<!--TODO: Fehlende Referenzen--> sortiert und anschließend entropiekodiert.</p>
+<p>Bei der anschließenden Entropie-Kodierung werden die Koeffizienten der DCT<!--TODO: Fehlende Referenzen--> wie bei
+    JPEG<!--TODO: Fehlende Referenzen--> kodiert. Die Bewegungsvektoren werden zunächst differenzkodiert und
+    anschließend nach dem Huffman-Algorithmus<!--TODO: Fehlende Referenzen--> kodiert.</p>
+
+<h2>5.4.4 Struktur eines MPEG-Videostreams</h2>
+<p>Die MPEG-Syntax beschreibt, wie die zur Verfügung stehenden Daten hierarchisch in Schichten angeordnet und
+    miteinander verknüpft werden. Folgende Schichten werden unterschieden.</p>
+<!--TODO: Tabelle shortcode-->
+
+<ul>
+    <li><strong>Video Sequenz</strong>: Beschreibt eine oder mehrere Gruppen von Bildern, für die die gleichen
+        Steuerparameter gelten. Diese Schicht steuert u.a. die Zwischenspeicherung der Daten.
+    </li>
+    <li><strong>Group of Picture</strong>: Serie von Bildern, von denen zumindest eines ein I-Bild ist, d.h. hier wird
+        wahlfreier Zugriff auf alle Bilder der Gruppe möglich.
+    </li>
+    <li><strong>Picture</strong>: Es kann sich um ein I-, P-, B- oder D-Bild handeln.</li>
+    <li><strong>Slice</strong>: Anzahl von Makroblöcken, für die z.B. die Skalierung der DCT-Quantisierung gleich ist.
+    </li>
+    <li><strong>Makroblock</strong>: 16 x 16 Pixel für Luminanz, 8 x 8 Pixel für C<sub>r</sub> und C<sub>b</sub></li>
+    <li><strong>Block</strong>: 8 x 8 Pixel für Luminanz und Chrominanz.</li>
+</ul>
+
+<p><strong>Blockebene</strong></p>
+<p>Auf der Blockebene wird ein Block von 8 x 8 Pixeln mit Original- bzw. Differenzbildinformation in Form von
+    quantisierten und Huffman-kodierten DCT-Koeffizienten dargestellt. Differenzwerte werden in einer anderen Art und
+    Weise quantisiert, da die psychovisuellen Gewichtsfunktionen für die Differenzen zweier realer Bilder keine
+    wesentliche Bedeutung haben. Für die Differenzbilder wird eine Quantisierungskennlinie verwendet, die um den
+    Nullwert herum in einem doppelt so breiten Intervall wie an allen anderen Stellen den Wert Null erzeugt. Das
+    bedeutet in der Praxis, dass bei nur geringen Unterschieden von Helligkeit und Farbsättigung kein Unterschied
+    kodiert wird.</p>
+
+<p><strong>Makroblockebene</strong></p>
+{{% image "Videokompression/4/mpeg-blockebene.gif" "" "Abb. 5.4-8  Aufbau eines Makroblocks in Abhängigkeit des Abtastformats" %}}
+
+<p>Hier wird beschrieben, wo der Makroblock im Bild liegt und um welche Art von Makroblock es sich handelt (I, B oder
+    P). Der Enkoder hat bei P und B-Bildern eine Reihe von Entscheidungen auf der Makroblock-Ebene zu treffen, die
+    wesentlich sind für die Datenmenge des kodierten Bildes. Bei P-Bildern ist zunächst festzulegen, ob Motion
+    Compensation angewendet wird. Danach ist zu entscheiden, ob der Makroblock intrakodiert wird. Falls ein Suchvektor
+    verwendet wird, ist zu klären, ob ein Differenzbild kodiert wird.</p>
+<p>Bei B-Bildern ergeben sich 3 Möglichkeiten für den Makroblock.</p>
+<ul>
+    <li>Die Ableitung aus zurückliegenden Referenzbildern</li>
+    <li>Die Ableitung aus zukünftigen Referenzbildern</li>
+    <li>eine Kombination beider Möglichkeiten (Average), wobei die Luminanzwerte im Enkoder durch Mittelung errechnet
+        werden.
+    </li>
+</ul>
+
+<p>Der Enkoder hat zu entscheiden, ob intra- oder intraframekodiert wird. Zudem hat er die Möglichkeit, die
+    Quantisierungsmatrix mit einem Faktor zu multiplizieren, um gröbere oder feinere Quantisierungsstufen zu erhalten
+    und so je nach Bildinhalt den Datenbedarf für den Makroblock zu variieren. Dies ist um so wichtiger, als der Enkoder
+    dafür sorgen muss, dass nicht mehr Bits pro Sekunde generiert werden, als der Dekoder später verarbeiten kann bzw.
+    als über den Kommunikationskanal übertragen werden können.</p>
+
+<p><strong>Slice-Ebene</strong></p>
+<p>Slices sind Streifen von aufeinanderfolgenden Makroblöcken. Ein Dekoder kann jeden Slice für sich dekodieren, ohne
+    auf andere Slices zurückgreifen zu müssen. Auf diese Weise wird verhindert, dass sich bei Übertragungsfehlern eine
+    Störung über das ganze Bild fortsetzt. Mit Beginn eines neuen Slices, das auf das fehlerhafte folgt, werden wieder
+    korrekte Daten geliefert. Slices müssen nicht an der rechten oder linken Bildkante beginnen, sondern können mit
+    beliebig positionierten Makroblöcken beginnen oder aufhören.</p>
+{{% image "Videokompression/4/4_4_9_mpeg_slices.gif" "" "Abb. 5.4-9 Aufteilung eines MPEG-kodierten Bildes in Slices" %}}
+
+<p><strong>Picture-Ebene</strong></p>
+<p>Die Picture-Ebene enthält alle notwendigen Informationen, um ein Bild zu dekodieren. Der Header kennzeichnet, als
+    wievieltes Bild der entsprechenden Group of Pictures (GOP) das Bild dargestellt werden soll. Diese Angabe ist
+    notwendig, da wegen der Rückwärtsbezüge bei B-Bildern der Dekoder die Bilder in einer anderen Reihenfolge benötigt,
+    als es der natürlichen Reihenfolge entspricht. Außerdem wird beschrieben, um welche Art von Bild (I, B oder P) es
+    sich handelt und mit welcher Genauigkeit (0,5 oder 1 Pixel) die Suchvektoren dargestellt werden.</p>
+
+<p><strong>Group-of-Picture-Ebene (GOP)</strong></p>
+<p>In der GOP-Ebene wird eine beliebige Anzahl von Bildern in natürlicher Abfolge zu Gruppen von Bildern
+    zusammengefasst. In jeder Gruppe muss mindestens ein I-kodiertes Bild enthalten sein. Sogenannte geschlossene
+    Gruppen können dekodiert werden, ohne dass für die Motion Compensation auf die vorherige GOP Bezug genommen wird.
+    Der GOP-Header spezifiziert u.a., ob vom Standard oder vom Anwender definierte Quantisierungsmatrizen genutzt
+    werden. Der Enkoder kann diese Informationen vor jeder Bildgruppe wiederholen, um einen wahlfreien Zugriff zu
+    erleichtern. Die Änderung der Quantisierungsmatrizen ist möglich.</p>
+
+<p><strong>Sequence-Layer</strong></p>
+<p>Hier werden mehrere Bildgruppen zusammengefasst. Der Header speichert allgemeine Parameter wie: Bild-Breite und
+    -Höhe, Bildformat (z.B. 4:3), Bildwiederholrate (pps), Bit-Rate oder Puffergröße.</p>
+
+<p><strong>Systemdefinition</strong></p>
+<p>Die Systemdefinition spezifiziert das Zusammenfassen (Multiplexen) der Datenströme, die Initialisierung der Uhren und
+    das Buffermanagement. Sie enthält Marken zur Synchronisation von Video- und Audiostrom.</p>
+
+<h2>5.4.5 Anwendungsspezifische Parameter</h2>
+<p>MPEG ist eine generische Norm, die eine Nutzung in verschiedenen Anwendungen vorsieht. Jede Anwendung hat besondere
+    Spezifika und Beschränkungen, weshalb verschiedene Parameter der MPEG-Kodierung von der Anwendung vorgegeben werden
+    können.</p>
+<p>Von der Anwendung vorgegebene Parameter:</p>
+<ul>
+    <li>Länge und Struktur der GoP</li>
+    <li>Bildgröße</li>
+    <li>Maximale Datenrate</li>
+    <li>Suchbereich für die Bewegungskompensation</li>
+    <li>Quantisierungsmatrizen für intra- und interframe-kodierte Blöcke</li>
+</ul>
+
+<p><strong>Aufbau einer Group of Pictures</strong></p>
+<p>Innerhalb einer Group of Pictures (GoP) kann die Anzahl und Reihenfolge von I-, P- und B-Bildern unterschiedlich
+    gewählt werden. Die Anzahl der Bilder pro GoP sei N, der Abstand zwischen zwei P-Bildern sei M.</p>
+<!--TODO: Tabelle shortcode-->
+
+<p>Bei niedrigen Bitraten und hohen Kompressionsrate wird N = 12, M = 3 gewählt. Dies erlaubt jedoch nur in Abständen
+    von 480 ms Zugriff auf intracodierte Bilder (Vollbilder).</p>
+
+<p><strong>Beispiel Ermittlung der Datenrate:</strong></p>
+<p>MPEG-2 Signal mit N = 12, M = 3</p>
+<p>Ausgangssituation: Die Netto-Bitrate eines DSC-270 Mbps Signal ist 207,36 Mbps bei 10 bit Codierung bzw. 165,8 Mbps
+    bei 8 bit-Codierung. Die Datenmenge eines Teilbildes bei 4:2:2-Abtastung errechnet sich wiefolgt:</p>
+<p>Y: 720 x 576 Pixel/Bild x 8 bit/Pixel = 3,317 Mbit/Bild<br/>
+    C<sub>B</sub> und C<sub>R</sub>: 360 x 288 Pixel/Bild x 8 bit/Pixel = 0,829 Mbit/Bild<br/>
+    Ergibt 3,317 + 0,829 + 0,829 = 4,975 Mbit/Bild. <br/>
+    Die unkomprimierte Bitrate bei 25 Bilder/s liegt also bei 25 x 4,975 = 124,4 Mbps.<br/>
+    Nach Datenreduktion ergibt sich (aus statistischer Auswertung von Bildmaterial) im Mittel ein Datenaufkommen
+    von ca. 800 kbit pro I-Bild , ca. 200 kbit pro P-Bild und ca. 80 kbit pro B-Bild. Die Datenmenge dieser GoP
+    (I-B-B-P-B-B-P-B-B-P-B-B) beläuft sich also auf 1 x 0,8 + 3 x 0,2 + 8 x 0,08 Mbit= 2,04 Mbit. Die mittlere
+    komprimierte Bitrate über 12 Bilder (480 ms) ist somit 2,04 Mbit/ 0,48 s = 4,25 Mbps.
+</p><!--TODO: Formatierung-->
+
+<h2>5.4.6 MPEG Video-Enkoder</h2>
+{{% image "Videokompression/4/mpeg-video-encoder.gif" "" "Abb. 5.4-10  Aufbau eines MPEG-Videoenkoders, DCT = Discrete Cosinus Transformation, RLC = Run Lenght Coding, VLC = Variable Length Coding" %}}
+
+<p><strong>Vorverarbeitung:</strong> Das Eingangssignal wird 4:2:2 oder 4:2:0 abgetastet, und jeder Pixelwert einem
+    Macroblock und Block zugeordnet.</p>
+<p><strong>P- und B-Bilder:</strong>Die für die Bewegungsabschätzung erforderliche Ermittlung des ähnlichsten
+    Macroblocks erfolgt durch Vergleich des aktuellen Bildes mit der Prädiktion des vorhergehenden. Aus dem Ergebnis
+    folgt die Bestimmung des Bewegungsvektors. Es folgt die Bildung des Differenzblocks und die Zuführung der Werte zur
+    DCT, Quantisierung und Kodierung (RLC + VLC). Die Prädiktion baut sich aus den gespeicherten I-/P-Bildern und deren
+    inversen DCT und Quantisierung auf.</p>
+<p>Vom Ausgangspuffer erfolgt Steuerung des Quantisierungsfaktors (Rate Control).</p>
+<p><strong>Metadaten</strong> über Art der Prädiktion, sowie die Bewegungsvektoren werden nach VLC dem Multiplexer
+    zugeführt und in den Ausgangsstrom eingeführt.</p>
+
+<h2>5.4.7 MPEG-Dekoder</h2>
+<p>Ein MPEG-Dekoder besteht i. W. aus vier Komponenten.</p>
+{{% image "Videokompression/4/mpeg-video-decoder.gif" "" "Abb. 5.4-11 MPEG-Dekoder" %}}
+
+<p>Der Systemdekoder teilt den MPEG-Bitstrom in drei Teilströme auf (Video, Audio. Synchronisierung). Im Video-Dekoder
+    werden die Bilddaten entsprechend der MPEG-Syntax entschlüsselt und dargestellt. Gleiches erfolgt im Audio-Dekoder
+    mit den Audio-Daten. Die Synchronisation zwischen den zwei Hauptströmen erfolgt durch die Time Presentation
+    Stamps.</p>
+<p>MPEG-Dekoder benötigen wesentlich weniger Rechenleistung als Enkoder, da rechenintensivste Schritte, wie z.B. die
+    Ermittlung der Bewegungsvektoren, entfallen.</p>
+
+<p><strong>Aufbau eines MPEG-Enkoders</strong></p>
+<p>'Real Time MPEG Enkoding' benötigt hohe Rechnerleistung. Deshalb ist i. Allg. spezielle Hardware notwendig. Beispiel
+    hierfür ist der 'Video Risc Processors' (VRP) CL-4000 von C-Cube.</p>
+{{% image "Videokompression/4/4_4_11_risc_cpu.gif" "" "Abb. 5.4-12 Aufbau des Video Risc Processor von C-Cube" %}}
+
+<p>Der VRP bietet die Möglichkeit der Mikrokode-Programmierung, so dass neben MPEG-1/2 auch JPEG und H.261 unterstützt
+    werden können. Der Baustein verarbeitet im Enkoder-Modus digitales Video im YCrCb 4:2:2-Format. In diesem Modus wird
+    in Video-Port A je nach der Auflösung des Quellmaterials entschieden, ob ein Datenstrom unverändert durchgelassen
+    oder eine Anpassung der Auflösung auf das CIF-Format vorgenommen wird. Der Motion Estimator führt, unter Kontrolle
+    des Mikroprogramms als Coprozessor, die Ermittlung des günstigsten Suchvektors durch. Die RISC-CPU ist für die DCT
+    und Quantisierung zuständig. Im Anschluss daran wird die Huffman-Kodierung im Variable Length Coder (VLC)
+    durchgeführt.</p>
+<p>In umgekehrter Betriebsweise (MPEG-Dekoder) nimmt der VLC zunächst die Dekodierung des Huffman-Kodes vor. Die CPU
+    führt dann die inversen Schritte wie inverse Quantisierung, inverse DCT und Motion Compensation durch. Am Ausgang
+    (Port B) kann optional ein Interpolationsfilter eingeschaltet werden, das aus CIF- oder QSIF-Daten Zeilen mit bis zu
+    720 Pixeln pro Zeile generiert. Im DRAM werden neben dem Mikrokode die komprimierten Ausgangsbilder und die
+    Referenzbilder für die Ermittlung der Verschiebungsvektoren (also I- oder P-Bilder) gespeichert. Die Rechenleistung
+    des 'Motion Estimators' beträgt zwei Milliarden Operationen pro Sekunde.</p>
+<p>Eine qualitativ hochwertige 'Motion Compensation' erfordert einen hohen Rechenaufwand, so dass die zu komprimierenden
+    Bilder in mehrere waagerechte Streifen aufgeteilt werden. Dies gilt im Besonderen für MPEG-2. Pro Streifen wird dann
+    ein Enkoder eingesetzt. Diese Streifen müssen sich in vertikaler Richtung um den Suchbereich überlappen oder die
+    Dekoder müssen die Daten, die der einzelne Dekoder nicht selber besitzt, untereinander austauschen.</p>
+
+<h4 class="h5">Weiterführende Links</h4>
+<p>MPEG Homepage</p><!--TODO: Fehlende Referenzen-->
+<p>MPEG FAQ</p><!--TODO: Fehlende Referenzen-->
+<p>MPEG Org.; MPEG Video Resources and Software</p><!--TODO: Fehlende Referenzen-->

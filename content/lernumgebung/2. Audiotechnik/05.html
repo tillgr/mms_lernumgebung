@@ -1,0 +1,217 @@
+---
+title: "2.5 Mehrkanal-Audioformate"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<h2>2.5.1 Dolby Stereo</h2>
+<p>Dolby Stereo ist seit Ende der 70er Jahre auf dem Markt. Es enthält eine analoge Tonspur zwischen Bild und
+    Perforationslöchern. Aus zwei Tonspuren (links und rechts) können zwei weitere (Center und Surround) mittels
+    Matrixverfahren dekodiert werden.</p>
+<p>Das <strong>Dolby-Stereo-System</strong> zeichnet folgende Vorgehensweise bei der Behandlung des Surround-Kanals aus:
+</p>
+<p>
+    Es werden mit einem sog. Bandpass-Filter (BPF) die Höhen des Surround-Signals bei rund 7 Kilohertz abgesenkt und
+    tiefe Töne unterhalb von 100 Hertz (Hz) abgeschnitten. Grund für die Kappung der Höhe ist, dass Dolby Stereo im Kino
+    nicht über diskrete, also vollständig voneinander getrennte Kanäle verfügt. Bei schlecht gewarteten Kinoprojektoren
+    können Ungenauigkeiten bei der Abtastung des Films auftreten, die zu Übersprechen, d.h. Durchschlagens eines Kanals
+    auf einen anderen, führen und sich besonders bei hohen Tönen störend bemerkbar machen. Der Filter dämpft nun
+    Zischlaute, die entstehen, wenn sich der Centerkanal und der Surroundkanal beeinflussen.</p>
+<p>Die Beschränkung auf Töne oberhalb von 100 Hz ermöglicht daneben den Einsatz kleiner Effektboxen.</p>
+<p>Schließlich wird beim Surroundkanal eine (abgeschwächte) Dolby-B-Rauschunterdrückung für sehr leise Szenen
+    eingesetzt.</p>
+
+<h2>2.5.2 Dolby Surround</h2>
+<p>Dolby Surround ist die Heimversion des ursprünglichen analogen Dolby Multichannel Film Sound Format. Ein Dolby
+    Surround Soundtrack enthält 4 Audiokanäle: links, center, rechts und surround. Der Surround-Kanal ist ein
+    kombiniertes Signal für hinten links und rechts. Es wird phasenverschoben in die beiden vorderen Kanäle kodiert.
+    Diese Kanäle werden in zwei Audiotracks kodiert. Diese zwei Tracks können dann mittels Stereo-Verfahren übertragen
+    (TV) oder gespeichert (Videoband) werden. Beim Abspielen werden mittels eines Decoders die ursprünglichen 4 Kanäle
+    wieder erzeugt und vermitteln den Surroundklang. Die Raumklanginformation ist nicht vollständig rekonstruierbar,
+    deshalb wird der Surroundkanal in den Höhen gedämpft und verzögert wiedergegeben.</p>
+
+{{% image "Audiotechnik/5/1_5_1a_surround.gif" "" "Abb. 2.5-0 Prinzip des Dolby Surround" %}}
+
+<h2>2.5.3 Dolby Surround Pro Logic</h2>
+<p>Anfangs nahmen Dolby Surround Decoder das gesamte Programm im normalen Stereo-Verfahren für links und rechts auf. Das
+    Surroundsignal wurde durch einen einfachen passiven Matrixdecoder für die Surround-Lautsprecher berechnet. Dolby
+    Surround Pro Logic wurde später entwickelt, um einen zusätzlichen separaten Center Kanal aufzunehmen, der Dialoge
+    und andere zentrale Sounds in der Nähe des Bildschirms abspielt. So verwendet Dolby Pro Logic drei Lautsprecher im
+    Frontbereich (links, center, rechts) und zwei Surround-Lautsprecher an der Seite. Dolby Pro Logic unterstützt
+    außerdem eine bessere Trennung zwischen allen Kanälen für eine bessere Soundlokalisierung.</p>
+
+{{% image "Audiotechnik/5/1_5_1b_dspl-kodierung.gif" "" "Abb. 2.5-1 Dolby Surround Pro Logic Kodierung" %}}
+
+<p>Die Kodierung erfolgt folgendermaßen (0,7 entspricht -3 dB):</p>
+<p>Lt := L + 0,7 * C + 0,7 * S</p>
+<p>Rt := R + 0,7 * C + 0,7 * S</p>
+<p>Da das menschliche Ohr Geräusche mit steigender Frequenz besser orten kann, wird der Surroundkanal in den Höhen
+    gedämpft und verzögert wiedergegeben, was den Raumeindruck verstärkt. Die Vorteile dieses Verfahrens sind, dass nur
+    zwei Kanäle zu übertragen sind, dass die vorhandenen Verteilungswege (Film, Rundfunk, CD) genutzt werden können und
+    dass das Verfahren kompatibel zu Stereoanlagen ist. Nachteilig ist, dass die kodierte Information nicht vollständig
+    rekonstruierbar ist. Aufgrund seiner besseren Leistung und ständig sinkenden Kosten ist Dolby Pro Logic heute der
+    Standard in allen Home Theater Systemen.</p>
+
+<h2>2.5.4 Dolby Digital (AC 3)</h2>
+<p>AC-3 ist der vom ATSC (Advanced Television Systems Committee) verabschiedete Standard A52. Es wurde von Dolby
+    Laboratories entwickelt und ist eine spezifische Version von Dolby. Der Algorithmus und das psychoakustische Modell
+    sind Firmengeheimnis. Es ist in Kinos, bei Laserdiscs und im US Satellitenfernsehen
+    gebräuchlich.</p><!--TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/5/1_5_1_dolby_digital_in_the_cinema.gif" "" "Abb. 2.5-2 Dolby Digital in the cinema" %}}
+
+<p>Zur Abmischung im Tonstudio liegen fünf Signale vor: vorn-links (front-left), vorn-rechts (front-right), Mitte
+    (center), Links-Surround (left-surround) und Rechts-Surround (right-surround). </p>
+<p>Center- und Surroundsignale werden um 3dB abgesenkt. Danach wird das Center-Signal den beiden Hauptkanälen zu
+    gleichen Teilen zugemischt, das Surround-Signal wird dem linken Kanal mit +90 Grad Phase und dem rechten Kanal mit
+    -90 Grad Phase hinzugefügt.</p>
+<p>Das Mitten-Signal befindet sich genau zwischen den Frontboxen, während das Surround-Signal diffus und damit nicht
+    ortbar wiedergegeben werden, da die Membrane der beide Boxen entgegengesetzt schwingen.</p>
+<p>Der Frequenzumfang der 5 Richtungskanäle beträgt 3-20 kHz, der Subwoofer bietet tiefe Frequenzen bis 120 Hz. Es wird
+    nur ein Basskanal verwendet, da tiefe Frequenzen nur schlecht geortet werden können und die volle Bandbreite nicht
+    benötigt wird. Man spricht daher auch von einem 5.1-Format.</p>
+<p>Als Kompressionsverfahren wird AC3 (AC steht für Audio Coding) verwendet. AC3 nutzt die Linkpsychoakustische
+    Verdeckung<!--TODO: Missing Hyperlink--> . Der Dynamikumfang beträgt 20 Bit und es verwendet Abtastraten von 44,1
+    und 48 kHz. </p>
+
+{{% image "Audiotechnik/5/1_5_3_dolby_digital_in_the_home.gif" "" "Abb. 2.5-3 Dolby Digital in the home" %}}
+
+<p>AC-3 liefert perfekte Kanaltrennung zwischen allen Kanälen über den vollen
+    Frequenzumfang.</p><!--TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/5/1_5_4_ac3_satellite_audio_transmission.gif" "" "Abb. 2.5-4 AC3 Audio Satellitenübertragung" %}}
+{{% image "Audiotechnik/5/1_5_5_ac3_synchronization_frame.gif" "" "Abb. 2.5-5 AC-3 Synchronisationsframe" %}}
+
+<p>Eine typische Anwendung des AC-3 Algorithmus ist die Übertragung eines PCM Audio-Datenstroms bestehend aus 5+1
+    Kanälen mit ca. 5 Mbps (6 channels × 48 kHz × 18 bits = 5.184 Mbps) in einem 384 kbps seriellen Bit-Strom. Der AC-3
+    Datenstrom besteht aus einer Sequenz von Synchronisations-Frames, wobei jeder Frame 6 kodierte Audioblöcke (AB) mit
+    jeweils 256 Audio-Samples enthält.</p>
+<p>Ein Header (SI) am Beginn eines jeden Frames dient der Synchronisation. Der diesem folgende 'Bit Stream Header' (BSH)
+    enthält Parameter, die die Kodierung und den Datenstrom beschreiben. Das Ende eines jeden Frames bilden ein 'error
+    check field' mit CRC-Daten (cyclic redundancy check) zur Fehlererkennung.</p>
+
+{{% image "Audiotechnik/5/1_5_6_dolby_digital_filmspuren.gif" "" "Abb. 2.5-6 Dolby Digital Filmspuren" %}}
+{{% image "Audiotechnik/5/1_5_7_prinzip_ac3decoder.gif" "" "Abb. 2.5-7 Prinzip des AC-3-Encoders" %}}
+
+<p>'Dolby Stereo Digital' basiert auf dem AC-3 Kodierungsverfahren und ist kompatibel zur analogen Stereo-Lichttonspur
+    und dem dafür optimierten SR-Rauschunterdrückungsverfahren.</p>
+
+<h2>2.5.5 Dolby Digital Surround Ex</h2>
+<p>Dolby Digital-Surround Ex für den privaten Bereich stellt zwei unabhängige Surround-Kanäle mit gleichem Klangumfang
+    sowie die drei Frontkanäle bereit. Zusätzlich wird ein Center-Surround eingeführt, der hinter dem Zuhörer platziert
+    wird. Dieser zusätzliche Kanal wird in Matrixkodierung in den beiden Surroundkanälen Links und Rechts verschachtelt.
+    Ein entsprechender Decoder filtert diese Information wieder heraus und gibt sie auf die hinteren Lautsprecher
+    weiter.</p>
+<p>Das Mehrkanal-Verfahren komprimiert die PCM Daten. Dadurch wird eine äußerst niedrige Datenrate erreicht:</p>
+<ul>
+    <li>
+        Je nach Komplexität des Signals werden zwischen 64 und 448 kbps für 5+1 Kanäle benötigt, im Durchschnitt 384
+        kbps.
+    </li>
+</ul>
+
+<p>Bei 2-Kanal Stereo, mit oder ohne Dolby-Surround Codierung, beträgt die Datenrate durchschnittlich 192 kbit/sec.</p>
+
+<h2>2.5.6 MPEG-Verfahren</h2>
+<p>In der ISO und der International Electrotechnical Commission (IEC) beschäftigt sich innerhalb des technischen
+    Komittees JTC 1 'Information technology' das Unterkomitee SC 29 'Coded representation of audio, picture, multimedia
+    and hypermedia information' mit der Entwicklung der unter MPEG bekannten
+    Standards.</p><!--TODO: Fehlende Referenzen-->
+<p>U.a. beschäftigt sich das Unterkomitee mit: </p>
+<ul>
+    <li>MPEG-1: Standard zur komprimierten Darstellung von Zweikanal-Audiosignalen mit einer Abtastrate von 32, 44.1
+        oder 48 kHz bei Bitraten von 64-384 kbps und 16 Bit Quantisierung (Nov. 92)
+    </li>
+    <li>MPEG-2: variable Datenrate, hohe Audio-/Video-Qualität (Nov. 94)</li>
+    <li>MPEG-4: für D-TV, interaktive Graphik- und Multimedia-Anwendungen (fürs WWW); Seit 02.1999 ist Vers. 1
+        standardisiert. Die abwärtskompatible Version 2 ist seit 2000 standardisiert. Einige spezielle Dinge sind jedoch
+        noch in Bearbeitung.
+    </li>
+    <li>MPEG-7: z.Z. in Diskussion; Ziel 'Multimedia Content Description Interface'; spezifiziert einen Satz von
+        Deskriptoren zur Beschreibung verschiedener Typen multimedialer Informationen.
+    </li>
+    <li>Legt neben dem Kompressionsverfahren auch Systemeigenschaften fest, z.B. ISO 11172-1: System; ISO 11172-2:
+        Video; ISO 11172-3: Audio; ISO 13813-3 Audio-2
+    </li>
+</ul>
+
+<h5>MPEG2 - Audio</h5>
+<p>MPEG2 Audio ist ein digitales Mehrkanal-Tonverfahren mit Datenkompression</p><!--TODO: Formatierung-->
+<p>Die Datenrate für 5+1 Kanäle reicht hier von 32 bis 912 kbps, im Durchschnitt von 384
+    kbps.</p><!--TODO: Formatierung-->
+<p>Das MPEG-2 Format ermöglicht optional auch 7+1 Kanäle, 5 vor und zwei hinter dem Zuhörer, dessen praktischer Einsatz
+    im privaten Bereich jedoch fraglich ist.</p><!--TODO: Formatierung-->
+
+<h2>2.5.7 Digital Theater Sound (DTS)</h2>
+<p>Es werden 5.1 Kanäle verwendet für links, Mitte, rechts, hinten links, hinten rechts und Subwoofer (DTS-6). Durch
+    eine höhere Datenrate wird eine noch bessere Klangqualität möglich. Die digitalen, komprimierten Audiodaten werden
+    nicht auf dem Film, sondern auf zwei CD-ROMs oder DVDs mit zusammen 200 Minuten Ton gespeichert. Die ersten
+    DTS-Decoder verfügten über zwei CD-ROM-Laufwerke, neuere über mehr.</p>
+<p>Zur Synchronisation des Tons mit dem Film ist der Film mit einem optischen DTS-Timecode ausgestattet. Zum Timecode
+    existiert auf dem Film weiterhin ein analoger Lichtton (meist im DTS -Stereo-Format). Fällt der DTS-Ton aus, wird
+    automatisch auf den analogen Ton zurückgeschaltet.</p>
+<p>Verwendung auf DVD:<br/> Alle Kanäle haben eine Auflösung von 20 Bit. Die fünf Hauptkanäle bieten einen
+    Frequenzbereich von 20 Hz bis 20 kHz, der Subwoofer-Kanal 20 bis 80 Hz. Die Dynamik liegt bei 96 dB.
+</p><!--TODO: Formatierung-->
+<p>Fast alle neuen Filme liegen heute in Dolby Digital und DTS-Digital vor. Ein Transfer der Sounddaten von einem ins
+    andere System ist möglich. Die Multichannel Technik in Verbindung mit LPCM bedingt die Kompression der Audiodaten.
+    Es wird eine 4:1 Kompression verwendet. Das Verfahren ist ein Coherent Acoustic Algorithmus. Der DTS-Dekoder enthält
+    keinen festen Algorithmus, sondern liest die nötigen Informationen aus dem Datenstrom, d.h. das Verfahren kann
+    kontinuierlich weiterentwickelt werden. "Jurassic Park" war der erste diese Technologie nutzende Film.</p>
+<p>Im Jahre 2000 wurde eine Erweiterung von DTS eingeführt: DTS Extended Surround (DTS-ES). Dabei ist zusätzlich ein
+    diskreter hinterer Center-Kanal möglich, d.h. es ist ein 6.1-Format. Die Wiedergabe auf 5.1-Systemen ist möglich;
+    dabei werden alle Kanäle etwas stärker komprimiert.</p>
+
+<h5>Weiterführende Links</h5>
+<p>Digital Theater Soundsystem - Homepage</p><!--TODO: Fehlende Referenzen-->
+
+<h2>2.5.8 Sony Dynamic Digital Sound (SDDS)</h2>
+<p>Sony Dynamic Digital Sound (SDDS) verwendet acht Kanäle für links, halblinks, Mitte, halbrechts, rechts, hinten
+    links, hinten rechts und Subwoofer.</p><!--TODO: Fehlende Referenzen-->
+<p>Als Kompressionsverfahren wird ATRAC (Adaptive Transform Acoustic Coding) verwendet. Es ermöglicht, verglichen mit
+    der CD, eine Reduktion der Datenmenge auf ein Fünftel, ohne hörbaren Qualitätsverlust. Dies wird durch die
+    Ausnutzung Linkpsychoakustischer Effekte<!--TODO: Missing Hyperlink--> wie Hörschwelle und Verdeckungseffekt
+    erreicht. Speziell der Dynamikumfang des Systems konnte durch die Anwendung einer Gleitkommadarstellung für die
+    Signalamplituden stark verbessert werden, und liegt damit weit über dem möglichen Dynamikumfang der
+    herkömmlichen CD.</p>
+<p>Nachteile des SDDS-Verfahrens:</p>
+<ul>
+    <li>Nur wenige Kinos sind zur Zeit mit SDDS ausgestattet bzw. nutzen die beiden zusätzlichen Kanäle gegenüber Dolby
+        Digital nicht, da die nötigen Lautsprecher nicht vorhanden sind.
+    </li>
+    <li>Wie bei Dolby Digital und DTS ist weiterhin ein analoger Lichtton vorhanden, auf den zurückgeschaltet wird, wenn
+        der SDDS-Ton einmal ausfällt.
+    </li>
+    <li>Sehr niedrige Filmkopiergeschwindigkeit (< 24 Bps)</li>
+</ul>
+<p>Alle Kanäle haben eine Auflösung von 16 Bit. Die sieben Hauptkanäle bieten einen Frequenzbereich von 20 Hz bis 20
+    kHz. Die Dynamik liegt bei über 90 dB. Das System kann mit verschiedenen Kanalkonfigurationen umgehen und
+    interpoliert etwaige zusätzliche oder fehlende Kanäle selbständig. Die digitale Information wird auf beiden Seiten
+    des Films außerhalb der Führungslöcher angebracht und bewahrt die optischen Spuren. Dadurch ist das System
+    abwärtskompatibel mit existierenden optischen Dolby Surround Systemen.</p>
+
+<h2>2.5.9 THX-Standard</h2>
+<p>THX der Firma Lucasfilm Ltd. ist kein Aufzeichnungs- bzw. Wiedergabeverfahren, sondern eine Qualitätsanforderung an
+    das Kino. Um das THX-Gütesiegel zu erhalten, müssen viele Auflagen erfüllt werden. Einige Beispiele dafür sind:
+    Geringer Nachhall im Kinosaal, kleiner Störgeräuschpegel (incl. Störungen die von außen kommen - z.B.Eisenbahn),
+    spezielle Anforderungen an die Saalarchitektur und dessen Einrichtung, genau abgestimmte Raumakustik. Erst wenn alle
+    Auflagen erfüllt sind, kann THX gegen Bezahlung einer Lizenzgebühr beantragt werden. Eine jährliche kostenpflichtige
+    Kontrolle stellt sicher, dass auch später die Bestimmungen noch eingehalten werden. Der Lohn dieses Aufwands ist das
+    werbewirksame THX - Logo in Verbindung mit dem THX - Trailer.</p>
+<p>George Lucas ärgerte sich Ende der 70er Jahre über den schlechten Sound in den amerikanischen Kinos, deren Betreiber
+    für das 1976 eingeführte Dolby Stereo zum vorhandenen Uralt-Lautsprecher einfach einen zweiten dazustellten und noch
+    ein paar Surround-Lautsprecher irgendwie an die Wände montierten. Auch waren die Dolby-Anlagen oft falsch bedient,
+    von verpolten oder vertauschten Lautsprecherkabeln bis zu falsch eingeregelten Mitten- oder Surround-Kanälen. Am
+    Ende blieb vom Original-Fimsound oft nicht mehr viel übrig. Daher ließ George Lucas den Toningenieur Tomlinson
+    Holman nach Verbesserungsmöglichkeiten forschen, woraus sich die Abkürzung THX für die daraus gewonnenen Ergebnisse
+    ergab (Tomlinson Holman Experiment). Diese reichten von der Einführung einer Absorberwand hinter der Leinwand bis
+    zur Normierung der Wiedergabelautstärke.</p>
+<p>In der THX-Spezifikation wurden alle Eventualitäten festgelegt: Dolby-Decoder, Verstärker, Verbindungskabel und
+    Lautsprecher müssen von THX Lucasfilms zugelassen sein, damit das Kino die begehrte THX-Plakette tragen darf. Gerade
+    im Bassbereich werden mit bis zu 110 dB(a) bei 30 Hz erhebliche Anforderungen gestellt, die nur leistungsfähige
+    Subwoofersysteme erfüllen können. Auch die Abstrahlcharakteristik der Lautsprecher ist wichtig: Während die drei
+    Frontlautsprecher klar zu orten sein sollen, ist dies bei den Surround-Lautsprechern nicht erwünscht, damit wirklich
+    Surround-Sound entsteht. Während im Kino deshalb eine ganze Surround-Lautsprechergalerie montiert wird, kann dies
+    für den Heimgebrauch mit zwei gegenphasig in einem Gehäuse betriebenen Lautsprechersystemen erreicht werden, die
+    jeweils links und rechts vom Zuschauer aufgestellt werden: Der Zuschauer sitzt so genau auf der "Nullinie" des
+    Direktschalls und bekommt den Surround-Sound nur indirekt über Wandreflektionen zu hören.</p>

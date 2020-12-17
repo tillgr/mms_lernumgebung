@@ -1,0 +1,94 @@
+---
+title: "2.4 Audiosignal-Formate"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<h2>2.4.1 Pulse Code Modulation</h2>
+<p>Die Pulse Code Modulation <strong>PCM</strong> ist ein Aufzeichnungsformat für Audiosamples. Das Signal wird in
+    gleichmäßigen
+    Abständen abgetastet und so in Spannungsimpulse (Pulse) umgewandelt. Jeder Impuls wird in einen digitalen Wert
+    umgewandelt (Code).</p>
+<ul>
+    <li>16 Bit Kodierung, d.h. 2^16 = 65536 Werte darstellbar</li><!--TODO: Formatierung-->
+    <li>Datenrate für Stereosignal bei einer CD-DA</li><!--TODO: Formeln shortcode-->
+    <li>Ein CD-DA Sektor umfasst 98 Frames zu 24 PCM-Samples = 2352 Byte</li>
+    <li>75 Sektoren = 75 X 2352 Byte = 176400 Byte = 1 Sekunde Musik</li>
+</ul>
+
+<p>Bei Stereo-Samples werden der rechte und der linke Kanal verschachtelt (interleaved) abgespeichert.</p>
+
+<h2>2.4.2 Linear Pulse Code Modulation</h2>
+<p>Linear Pulse Code Modulation <strong>LPCM</strong> entspricht im Prinzip der von CD-DA, jedoch sind folgende
+    Qualitätsstufen definiert,</p>
+
+<ul>
+    <li>Abtastfrequenzen von 48 kHz oder 96 kHz und Quantisierungen von 16, 20 oder 24 Bit, d.h. die CD-DA Qualität
+        (44,1 kHz) wird nicht unterstützt.
+    </li>
+    <li>Da die Datenkapazität für den Audio-Teil auf 6,144 Mbps beschränkt ist, ergeben sich folgenden Möglichkeiten:
+    </li>
+    <!--TODO: Tabelle shortcode-->
+    <li>Bei 96 kHz werden nur zwei Kanäle unterstützt.
+    </li>
+</ul>
+
+<h2>2.4.3 Differential Pulse Code Modulation</h2>
+<p><strong>DPCM</strong> = Differential Pulse Code Modulation</p>
+<p>{S} sei die Folge digitaler Signalwerte = {S 0, S 1, S 2, ..., S i}. Die DPCM nutzt zur Kompression die statistische
+    Abhängigkeit zwischen benachbarten Signalwerten. Zu jedem Abtastwert S i kann aus den vorhergehenden Werten ein
+    Schätzwert X i = a 1 S i-1, a 2 S i-2, ..., a n S i-n erzeugt werden. Dieser wird auch als Prädiktor bezeichnet.
+    Zwischen Sender und Empfänger wird jeweils nur die Differenz aus Prädiktor und Originalwert d i = S i - X i
+    übertragen. </p><!--TODO: Formatierung-->
+<p>Der Empfänger rekonstruiert einen Näherungswert s i für den Originalwert S i aus der empfangenen Differenz d i und
+    einem Schätzwert, der auf die gleiche Art und Weise wie beim Sender aus den vorangegangenen Werten s i-1, s i-2, ...
+    , s i-n berechnet wurde. </p><!--TODO: Formatierung-->
+<p>s i = d i + x i mit x i = a 1 s i-1 + a 2 s i-2 + ... + a n s i-n</p><!--TODO: Formatierung-->
+<p>a 1, a 2, ..., a n sind die Prädikatorkoeffizienten. Wird nur ein Prädiktorkoeffizient benutzt (n = 1), so bezeichnet
+    man diese spezielle Form der DPCM auch als Delta-Modulation. </p><!--TODO: Formatierung-->
+
+{{% image "Audiotechnik/4/1_4_1_prinzip_der_dpcm.gif" "" "Abb. 2.4-0 Prinzip der DPCM" %}}
+
+<h2>2.4.4 Adaptive Different Pulse Code Modulation</h2>
+<p><strong>ADPCM</strong> = Adaptive Different Pulse Code Modulation ITU G.721, G.722</p>
+
+<p>Bei DPCM ist die Anzahl der Bits, mit der d i übertragen wird, fest. Ist die Differenz zwischen zwei Abtastwerten
+    sehr groß, entsteht ein Fehler. Dieses Problem wird mit ADPCM dadurch gelöst, dass die Skalierung des Wertebereiches
+    dynamisch angepasst wird.</p>
+<p>
+    Bei leisen Audiosequenzen ist die Einteilung der Abtastwerte fein, bei lauten Stellen wird sie dynamisch an den
+    großen Wertebereich angepasst. Ein Problem sind dabei sich in ihrer Lautstärke schnell ändernde Sequenzen. Die
+    Skalierung wird deshalb in kurzen Zeitabschnitten, z.B. alle 30ms neu berechnet.</p>
+
+<h5>Verschiedene Audio-Qualitäten</h5>
+<!--TODO: Tabelle shortcode-->
+
+<h2>2.4.5 Anwendung der verschiedenen Verfahren bei CD und DVD</h2>
+<h4>2.4.5.1 Anwendung bei CD</h4>
+<p>Auf CDs werden die verschiedenen Verfahren der LinkPulse Code Modulation (PCM)<!--TODO: Missing Hyperlink--> mit
+    einer Abtastfrequenz von 44,1 kHz verwendet.</p>
+<p>LinkADPCM-Formate<!--TODO: Missing Hyperlink--> für CD-ROM XA:</p>
+<!--TODO: Tabelle shortcode-->
+
+<h4>2.4.5.2 Anwendung bei DVD</h4>
+<p><strong>DVD Audio-Formate</strong></p><!--TODO: Formatierung-->
+<p>Für Video (DVD-Video) wie auch Audio DVDs (DVD-Audio) wurden verschiedene Audio-Formate festgelegt. Die hohe
+    Kapazität des Mediums DVD ermöglicht die Speicherung verschiedener Kanäle unterschiedlicher Formate. Es gibt 12 cm
+    wie auch 8 cm DVDs, jeweils 1,2 mm dick. Diese können ein- oder doppelseitig bespielt sein, jede Seite kann zwei
+    Informationsebenen enthalten. Die Kapazitäten sind:</p>
+<!--TODO: Tabelle shortcode-->
+
+<p>Die Spielzeitangaben beziehen sich auf eine durchschnittliche Video-Datenrate von 3,5 Mbps, was einer sehr guten
+    Bildqualität bei einem durchschnittlichen Film entspricht. Da die maximale Datenrate der DVD 9,8 Mbps beträgt,
+    stehen max. 6,144 Mbps für Audio sowie 0,04 Mbps. für Untertitel zur Verfügung.</p>
+
+<p><strong>Mehrkanal-Ton bei DVD-Video:</strong></p>
+<p>Die drei primären Audio-Formate der DVD-Video sind LinkPCM<!--TODO: Missing Hyperlink--> , LinkDolby Digital
+    <!--TODO: Missing Hyperlink--> und LinkMPEG-Audio<!--TODO: Missing Hyperlink--> . Optional sind
+    LinkDTS und LinkSDDS. Beide erfordern externe Decoder. Auf bis zu 8 unabhängigen Tonspuren können diese
+    Audio-Formate und/oder unterschiedlichen Synchronisations-Fassungen (englisch, deutsch etc.) des Films abgelegt
+    werden. Der Zuschauer kann somit die gewünschte Sprachversion oder das gewünschte Audio-Format selbst wählen. Im
+    Bereich des Mehrkanaltons für europäische PAL-DVDs gab es 1997 einige Unstimmigkeiten. Zunächst war bei der
+    Verwendung von Mehrkanalton MPEG2 Pflicht. Aufgrund von Verzögerungen bei der Optimierung von MPEG2 ist seit Ende
+    1997 diese Bestimmung aufgehoben. Europäische Produzenten können ihre DVDs nun entweder mit Dolby Digital (AC3) oder
+    mit MPEG2 versehen.</p>

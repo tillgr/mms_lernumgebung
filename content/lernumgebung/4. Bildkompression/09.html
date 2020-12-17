@@ -1,0 +1,21 @@
+---
+title: "4.9 Vergleich von Bildkompressionsverfahren"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<p>Bildkompressionsverfahren lassen sich über die Qualität eines durch sie komprimierten Bildes vergleichen. Kenngröße
+    für die Bildqualität ist die sogenannte Peak Signal to Noise Ratio (PSNR). Als "peak" - d.h. als stärkstes
+    auftretendes Signal - wird bei einer Quantisierung von 8 bit der Wert 255 angesetzt. Das Rauschen ("noise")
+    entspricht dem Fehler zwischen dem Original f und der Rekonstruktion r.</p>
+<!--TODO: Shortcode Formeln-->
+<!--TODO: Shortcode Formeln-->
+<!--TODO: Shortcode Formeln-->
+
+<p>Leider beschreibt PSNR die subjektiv empfundene Bildqualität oft nur unzureichend.</p>
+<p>Vergleich der Verfahren für ein Beispielbild: In Abhängigkeit von der Kompressionsrate (k) - PSNR =
+    f(Kompressionsrate k) - liefert das JPEG-Verfahren für 5 > k < 20 gute Ergebnisse; die Wavelet-Kompression ist das
+    beste Verfahren für k < 5, k > 70; die Fraktale HV ist für k > 20 besser als Wavelets. Im Allgemeinen ist das
+    Wavelet-Verfahren der Fraktalen Kompression bei großen Kompressionsraten überlegen</p>
+
+{{% image "Bildkompression/9/vgl_kompression.gif" "" "Abb. 4.9-0  Vergleich von JPEG, Fraktaler Kompression und Wavelet-Transformation" %}}
