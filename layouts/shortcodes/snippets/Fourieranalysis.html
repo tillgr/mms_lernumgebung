@@ -6,16 +6,140 @@
 	</header>
 	<div class="content">
 
-			<div class="mb-3" id="button_wrapper">
+			<div class="left-col" id="button_wrapper">
 				<button id="buttonSineWave" class="btn btn-outline-primary">Sinus</button>
 				<button id="buttonCosineWave" class="btn btn-outline-primary">Cosinus</button>
 				<button id="buttonSawWave" class="btn btn-outline-primary">Sägezahn</button>
 				<button id="buttonSquareWave" class="btn btn-outline-primary">Rechteck</button>
 				<button id="buttonTriangleWave" class="btn btn-outline-primary">Dreieck</button>
 				<button id="buttonGraetzSine" class="btn btn-outline-primary">Graetz-Sinus</button>
+				<button class="btn btn-outline-danger" id="buttonResetWave">Reset</button>
 			</div>
 
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
+
+			<div class="right-col">
+				<div id="graph1_wrapper">
+					<svg id="svg_graph1"></svg>
+				</div>
+				<div class="slider-wrapper">
+					<!--sliders_a-->
+					<div id="sliders_a_wrapper" class="slider-group">
+						<div class="slider_and_textfield">
+							<span class="small">sin(x)</span>
+							<!--<button id="button_up_a_1">˄</button>-->
+							<input class="form-control-range" id="slider_a_0" type="range" orient="vertical" min="-99" max="99" value="0">
+							<!--<button id="button_down_a_1">&#709;</button>-->
+							<input class="form-control" id="text_field_a_0" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">sin(2x)</span>
+							<input class="form-control-range" id="slider_a_1" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_a_1" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">sin(3x)</span>
+							<input class="form-control-range" id="slider_a_2" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_a_2" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">sin(4x)</span>
+							<input class="form-control-range" id="slider_a_3" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_a_3" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">sin(5x)</span>
+							<input class="form-control-range" id="slider_a_4" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_a_4" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">sin(6x)</span>
+							<input class="form-control-range" id="slider_a_5" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_a_5" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">sin(7x)</span>
+							<input class="form-control-range" id="slider_a_6" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_a_6" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">sin(8x)</span>
+							<input class="form-control-range" id="slider_a_7" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_a_7" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">sin(9x)</span>
+							<input class="form-control-range" id="slider_a_8" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_a_8" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">sin(10x)</span>
+							<input class="form-control-range" id="slider_a_9" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_a_9" type="number" min="-99" max="99">
+						</div>
+					</div>
+					<hr>
+
+					<!--sliders_b-->
+					<div id="sliders_b_wrapper" class="slider-group">
+						<div class="slider_and_textfield">
+							<span class="small">cos(x)</span>
+							<input class="form-control-range" id="slider_b_0" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_b_0" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">cos(2x)</span>
+							<input class="form-control-range" id="slider_b_1" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_b_1" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">cos(3x)</span>
+							<input class="form-control-range" id="slider_b_2" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_b_2" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">cos(4x)</span>
+							<input class="form-control-range" id="slider_b_3" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_b_3" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">cos(5x)</span>
+							<input class="form-control-range" id="slider_b_4" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_b_4" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">cos(6x)</span>
+							<input class="form-control-range" id="slider_b_5" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_b_5" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">cos(7x)</span>
+							<input class="form-control-range" id="slider_b_6" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_b_6" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">cos(8x)</span>
+							<input class="form-control-range" id="slider_b_7" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_b_7" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">cos(9x)</span>
+							<input class="form-control-range" id="slider_b_8" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_b_8" type="number" min="-99" max="99">
+						</div>
+						<div class="slider_and_textfield">
+							<span class="small">cos(10x)</span>
+							<input class="form-control-range" id="slider_b_9" type="range" orient="vertical" min="-99" max="99" value="0">
+							<input class="form-control" id="text_field_b_9" type="number" min="-99" max="99">
+						</div>
+
+					</div>
+				</div>
+				<div id="graph2_wrapper">
+					<svg id="svg_graph2"></svg>
+				</div>
+			</div>
+
+			<!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
 			  <li class="nav-item">
 			    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Graph</a>
 			  </li>
@@ -25,134 +149,21 @@
 			</ul>
 			<div class="tab-content" id="myTabContent">
 			  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-					<div id="graph1_wrapper">
-						<svg id="svg_graph1"></svg>
-					</div>
+
 			  </div>
 			  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-					<div id="graph2_wrapper">
-						<svg id="svg_graph2"></svg>
-					</div>
+
 			  </div>
 			</div>
 			<hr/>
 
 			<div id="reset_button_wrapper">
 				<button class="btn btn-outline-danger" id="buttonResetWave">Reset</button>
-			</div>
+			</div> -->
 
 			<div id="middle_section">
 
-				<!--sliders_a-->
-				<div id="sliders_a_wrapper">
-					<div class="slider_and_textfield">
-						<span>sin(x)</span>
-						<!--<button id="button_up_a_1">˄</button>-->
-						<input class="form-control-range" id="slider_a_0" type="range" min="-99" max="99" value="0">
-						<!--<button id="button_down_a_1">&#709;</button>-->
-						<input class="form-control" id="text_field_a_0" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>sin(2x)</span>
-						<input class="form-control-range" id="slider_a_1" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_a_1" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>sin(3x)</span>
-						<input class="form-control-range" id="slider_a_2" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_a_2" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>sin(4x)</span>
-						<input class="form-control-range" id="slider_a_3" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_a_3" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>sin(5x)</span>
-						<input class="form-control-range" id="slider_a_4" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_a_4" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>sin(6x)</span>
-						<input class="form-control-range" id="slider_a_5" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_a_5" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>sin(7x)</span>
-						<input class="form-control-range" id="slider_a_6" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_a_6" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>sin(8x)</span>
-						<input class="form-control-range" id="slider_a_7" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_a_7" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>sin(9x)</span>
-						<input class="form-control-range" id="slider_a_8" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_a_8" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>sin(10x)</span>
-						<input class="form-control-range" id="slider_a_9" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_a_9" type="number" min="-99" max="99">
-					</div>
-				</div>
 
-				<!--sliders_b-->
-				<div id="sliders_b_wrapper">
-					<div class="slider_and_textfield">
-						<span>cos(x)</span>
-						<input class="form-control-range" id="slider_b_0" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_b_0" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>cos(2x)</span>
-						<input class="form-control-range" id="slider_b_1" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_b_1" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>cos(3x)</span>
-						<input class="form-control-range" id="slider_b_2" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_b_2" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>cos(4x)</span>
-						<input class="form-control-range" id="slider_b_3" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_b_3" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>cos(5x)</span>
-						<input class="form-control-range" id="slider_b_4" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_b_4" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>cos(6x)</span>
-						<input class="form-control-range" id="slider_b_5" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_b_5" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>cos(7x)</span>
-						<input class="form-control-range" id="slider_b_6" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_b_6" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>cos(8x)</span>
-						<input class="form-control-range" id="slider_b_7" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_b_7" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>cos(9x)</span>
-						<input class="form-control-range" id="slider_b_8" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_b_8" type="number" min="-99" max="99">
-					</div>
-					<div class="slider_and_textfield">
-						<span>cos(10x)</span>
-						<input class="form-control-range" id="slider_b_9" type="range" min="-99" max="99" value="0">
-						<input class="form-control" id="text_field_b_9" type="number" min="-99" max="99">
-					</div>
-
-				</div>
 			</div>
 	</div>
 </div>
