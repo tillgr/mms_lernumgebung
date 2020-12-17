@@ -29,16 +29,44 @@ draft: true
 <p><strong>Zweidimensionale lineare Filter</strong></p>
 <p>Der Filterprozeß wird auf eine meist quadratische Umgebung um einen zentralen Punkt bezogen.</p>
 <!--TODO: Formeln shortcode-->
-<img src="..." alt="Originalbild"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<img src="..." alt="Ost-Gradienten (x-Richtung)"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<div class="row">
+  <div class="col">
+    {{% image "Bildkompression/4/3_4_1_originalbild.jpg" "" "Abb. 4.4-0 Originalbild" %}}
+  </div>
+  <div class="col">
+    {{% image "Bildkompression/4/3_4_2_ost-gradienten.jpg" "" "Abb. 4.4-1  Ost-Gradienten (x-Richtung)" %}}
+  </div>
+</div>
 
 <p>Der Grauwert fjk an der Stelle (j,k) wird unter Verwendung der Matrix der Gewichtskoeffizienten hmn in die Grauwerte
     gjk überführt. Für p = q = 1 erhält man eine 3 x 3 Matrix. z. B. (siehe <!--TODO: Fehlende Referenzen-->, Bild 8.2
     und 8.3).</p><!--TODO: Formatierung-->
-<p>Ost-Gradiente =</p><!--TODO: Formeln shortcode-->
-<p>Laplace-Filter =</p><!--TODO: Formeln shortcode-->
-<img src="..." alt="Nord-Gradient (Y-Richtung)"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<img src="..." alt="Laplace-Filter"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<p>Ost-Gradiente =
+{{% formula %}}
+    \begin{pmatrix}
+    -1 & 1 & 1 \\
+    -1 & -2 & 1 \\
+    -1 & 1 & 1 \\
+    \end{pmatrix}
+{{%/ formula %}}
+</p><!--TODO: Formeln shortcode-->
+<p>Laplace-Filter =
+{{% formula %}}
+    \begin{pmatrix}
+    0 & -1 & 0 \\
+    -1 & 4 & -1 \\
+    0 & -1 & 0 \\
+    \end{pmatrix}
+{{%/ formula %}}
+</p>
+<div class="row">
+  <div class="col">
+    {{% image "Bildkompression/4/3_4_3_nord-gradienten.jpg" "" "Abb. 4.4-2 Nord-Gradient (Y-Richtung)" %}}
+  </div>
+  <div class="col">
+    {{% image "Bildkompression/4/3_4_4_laplace-filter.jpg" "" "Abb. 4.4-3 Laplace-Filter" %}}
+  </div>
+</div>
 
 <h2>4.4.2 Diskrete Cosinus-Transformation </h2>
 <p>Verlustbehaftete Kompressionsverfahren haben das Ziel, in der Bearbeitungsphase Bildinformationen in wichtige und

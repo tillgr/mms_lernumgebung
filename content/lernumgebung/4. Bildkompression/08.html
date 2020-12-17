@@ -28,8 +28,7 @@ draft: true
 <p>Für JPEG 2000 wird die Wavelet-Transformation verwendet. Damit wird eine bessere Bildqualität bei höherer Kompression
     erreicht. Es gibt neue Merkmale wie Skalierbarkeit und Region-of-Interest. Das Verfahren findet v.a. im Internet, in
     Bildarchiven, bei medizinischen Bildern, in der digitalen Fotogtafie und anderen Einsatzmöglichkeiten Anwendung.</p>
-<img src="..."
-     alt="Vergleich zwischen einem wavelet-komprimierten Bild (rechts) und einem JPEG-komprimierten Bild (Mitte). Das Original-Bild (links) ist ein TIFF-Bild"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/8/3_8_1_jpeg_wavelet.jpg" "" "Abb. 4.8-0 Vergleich zwischen einem wavelet-komprimierten Bild (rechts) und einem JPEG-komprimierten Bild (Mitte). Das Original-Bild (links) ist ein TIFF-Bild" %}}
 
 <h2>4.8.1 Wesentliche Eigenschaften</h2>
 <p>Die Bilder werden progressiv geladen, d.h. sie werden zunächst recht grob dargestellt und dann schrittweise
@@ -43,7 +42,7 @@ draft: true
     werden, was als <strong>tiling</strong> bezeichnet wird. Diese Blöcke werden dann bei der Kompression wie
     eigenständige Bilder behandelt. Tiling reduziert den Speicherbedarf und ist Grundlage für die Extraktion bestimmter
     Bildbereiche (Region of Interests).</p>
-<img src="..." alt="Unterteilung eines Bildes in Subbänder"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/8/subbaender.gif" "" "Abb. 4.8-1  Unterteilung eines Bildes in Subbänder" %}}
 
 <p>Die Quantisierung erfolgt nach</p>
 <!--TODO: Formeln shortcode-->
@@ -53,15 +52,21 @@ draft: true
 <p>Die Kompression komplexer Dokumente (compound components) ist möglich.</p>
 <p>Das Verfahren verwendet ein flexibles Fileformat (codestream). Dies gestattet einen wahlfreien Zugriff und partielle
     Aktualisierungen. Der Codestream besteht aus einer Sequenz von Boxen (Bild + Metadaten).</p>
-<img src="..."
-     alt="Ein Beispiel für das progressive Laden eines mit Kompressionsfaktor 50:1 komprimierten Bildes (von oben links nach rechts unten):"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/8/3_8_2_jpeg2000_progressives_laden.jpg" "" "Abb. 4.8-2 Ein Beispiel für das progressive Laden eines mit Kompressionsfaktor 50:1 komprimierten Bildes" %}}
+
+<p class="small">Von links oben nach rechts unten:<br>
+  Zeitpunkt 1: 1.324 bytes geladen (500:1 Kompression),<br>
+  Zeitpunkt 2: 2.652 bytes geladen (250:1 Kompression),<br>
+  Zeitpunkt 3: 13.268 bytes geladen (50:1 Kompression),<br>
+  unkomprimiertes Originalbild mit 649 kByte
+</p>
 
 <p>Der Nutzer kann Bildteile mit höherer Qualität oder Priorität als andere Bildteile definieren (Region of Interest).
     Die Organisation des Bitstroms erfolgt so, dass diese Teile vorrangig dekodiert werden.</p>
 <p>Es können mehrere Farbmodelle verwendet werden, z.B. können sowohl RGB-, CMYK- als auch LAB-Farbmodelle gleichzeitig
     in einer Bilddatei enthalten sein. Der Bitstrom enthält die volle ICC Profile Information (International Color
     Consortium), so dass ein nahtloser Übergang zwischen den Modellen möglich ist.</p>
-<img src="..." alt="Das JPEG 2000 Farbsystem"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/8/jpeg2000_farbsystem.gif" "" "Abb. 4.8-3  Das JPEG 2000 Farbsystem" %}}
 
 <p>Das Farbsystem besteht aus 2 Teilen:</p>
 <ul>
@@ -73,8 +78,7 @@ draft: true
     Teil der Bilddatei.</p>
 <p>Im JPEG 2000-Verfahren wurde die Fehlerrobustheit erhöht, was z.B. bei mobiler Übertragung von Vorteil ist.</p>
 <p>Mit JPEG 2000 wird die Kompression über alle Bereiche von mindesten 20-30% verbessert.</p>
-<img src="..."
-     alt="Ein Beispiel für eine Region of Interest: Ein 100:1 komprimiertes Bild, wobei das Gebiet in dem Rechteck mit höherer Qualität kodiert wurde (linkes Bild, 7.864 bytes).Rechts befindet sich das unkomprimierte Originalbild (768 KByte) "><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/8/3_8_3_jpeg2000_region-of-interest.jpg" "" "Abb. 4.8-4 Ein Beispiel für eine Region of Interest: Ein 100:1 komprimiertes Bild, wobei das Gebiet in dem Rechteck mit höherer Qualität kodiert wurde (linkes Bild, 7.864 bytes).Rechts befindet sich das unkomprimierte Originalbild (768 KByte)" %}}
 
 <h2>4.8.2 File-Format </h2>
 <p>Die Dateien bilden eine Sequenz von Boxes. Eine Box enthält sowohl Bild- wie auch Meta-Daten. Die Reihenfolge liegt
@@ -83,8 +87,8 @@ draft: true
     Farbraumspezifikation, die Komponentenordnung, die räumliche Auflösung.</p>
 <p>Die Meta-Daten befinden sich in eigenen Boxes. Es gibt die UUID-Boxes (Universal Unique Identifier, statisch
     definiert) und XML-Boxes (selbstdefininiert).</p>
-<img src="..." alt="JPEG2000-File-Format und Box-Struktur"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<img src="..." alt="JPEG 2000 - Fragmentierung"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/8/3_8_4_jpeg2000_box-struktur.gif" "" "Abb. 4.8-5 JPEG2000-File-Format und Box-Struktur" %}}
+{{% image "Bildkompression/8/3_8_5_jpeg2000_fragmentierung.gif" "" "Abb. 4.8-6 JPEG 2000 - Fragmentierung" %}}
 
 <p><strong>Weiterführende Links</strong></p>
 <!--TODO: Fehlende Referenzen-->

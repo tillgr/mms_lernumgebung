@@ -96,7 +96,7 @@ draft: true
     enthält einen Header, der Inhalt und Position beschreibt, z.B. Informationen wie die I, B und P Frames zu
     rekonstruieren sind. </p>
 <p>Über den Extension Start Code im Frame Header können beliebige Daten angehängt werden.</p>
-<img src="..." alt=" Aufbau eines elementaren Videostroms"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/6/es-aufbau.gif" "" "Abb. 5.6-0  Aufbau eines elementaren Videostroms" %}}
 
 <p>Für elementare Videoströme sind folgende Abstraktionsebenen (Layer) definiert:</p>
 <ul>
@@ -123,8 +123,7 @@ draft: true
 <p>Die ES werden dabei in Pakete unterschiedlicher Länge zerlegt (Packetized ES). Eine PES-Paket enthält also nur Audio-
     oder Video-Daten (z.B. komprimiertes Teilbild). Der System-Header eines PES-Pakets enthält systemspezifische
     Informationen über den Datenstrom (z.B Bildrate, Audiosamplingrate).</p>
-<img src="..."
-     alt="Aufbau eines Packetized Elementary Stream -Pakets"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/6/es-packetized.gif" "" "Abb. 5.6-1  Aufbau eines Packetized Elementary Stream -Pakets" %}}
 
 <p>Wegen der relativ langen Pakete des PS ist seine Anwendung auf quasi-fehlerfreie Übertragung beschränkt.</p>
 <p><strong>Transport Stream</strong> (TS) dienen der Übertragung von Daten über Verteilnetze (WAN, Satelliten-,
@@ -133,13 +132,13 @@ draft: true
 <p>Wegen spezifischer Übertragungsfehler besteht ein TS aus kurzen Paketen (188 Byte). Ein TS-Paket besteht aus einem 4
     Byte Header, einem 184 Byte Adaption Field und dem Payload (Nutzlast), und ist auf eine Signalkomponente (Audio,
     Video,...) beschränkt. Das Adaption Field ist optional; enthält z.B. Program Clock Referende (PCR).</p>
-<img src="..." alt="Aufbau eines Transport-Streams-Pakets"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/6/ts-paket.gif" "" "Abb. 5.6-2  Aufbau eines Transport-Streams-Pakets" %}}
 
 <p>Aus mehreren TS bildet der Service-Mux das in das (TV-) Verteilnetz eingespeiste Progamm-Bouquet (Sende MPEG-2 TS).
     Dieser kann bestehen aus festen Bitraten einzelner Programme, sogenannter statischer Multiplex, oder in Grenzen
     schwankenden Bitrate, je Programminhalt mit fester Gesamtbitrate. Der Vorteil dieses Verfahrens ist, das die
     Bilddynamik ohne zu starke Qualitätsverluste (Quantisierung) ausgeglichen werden kann.</p>
-<img src="..." alt=" Multiplexing mehrerer Transportströme"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/6/ts-multiplexing.gif" "" "Abb. 5.6-3  Multiplexing mehrerer Transportströme" %}}
 
 <p>Die Zuordnung eines Pakets zu einem Programm erfolgt über die Paket ID (PID) im TS-Header. Die Synchronisation der
     Datenströme im En- und Decoder geschieht über eine Systemuhr (STC) auf beiden Seiten.</p>

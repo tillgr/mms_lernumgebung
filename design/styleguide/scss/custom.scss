@@ -25,6 +25,10 @@ pre {
   padding: 1rem;
 }
 
+ul {
+  padding-left: 2rem;
+}
+
 .MathJax {
   text-align: left !important;
 }
@@ -39,6 +43,8 @@ pre {
 }
 
 .mms-sidenav {
+  overflow-y: scroll;
+
   @media screen and (min-width: 768px) {
     position: sticky;
     top: 3.5rem;

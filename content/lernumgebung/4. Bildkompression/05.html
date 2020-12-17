@@ -83,7 +83,7 @@ draft: true
 
 <h2>4.5.2 Verlustbehaftetes JPEG-Verfahren</h2>
 <!--TODO: Applet JPEG Kompression-->
-<img src="..." alt="Arbeitsschritte bei JPEG"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/5/3_5_1_bildkompression_arbeitsschritte.gif" "" "Abb. 4.5-0 Arbeitsschritte bei JPEG" %}}
 
 <h3 class="h4">4.5.2.1 JPEG Bildaufbereitung</h3>
 <p>Wegen der Forderung nach Unabhängigkeit von Bildgröße, Seitenverhältnis, Pixelzahl, etc. wird unterstellt, das ein
@@ -94,7 +94,7 @@ draft: true
 <p>Jede Ebene C<sup>i</sup> besteht aus einer rechtwinkligen Anordnung von X<sup>i</sup> * Y<sup>i</sup> Pixel. DVI
     verwendete z.B. YUV-Farbilder aus 3 Ebenen mit Y<sup>1</sup> = 4 * Y<sup>2</sup> = 4 * Y<sup>3</sup>; X<sup>1</sup>
     = 4 * X<sup>2</sup> = 4 * X<sup>3</sup>.</p>
-<img src="..." alt="Bildebenen"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/5/3_5_2_bildebenen.gif" "" "Abb. 4.5-1 Bildebenen" %}}
 
 <p>Jedes Pixel wird mit p Bit dargestellt, der Werteraum ist 2<sup>p</sup>-1. Die Pixel aller Ebenen haben gleiche
     Bit-Tiefe.</p>
@@ -152,7 +152,7 @@ draft: true
 <p>Für das folgende Bild gilt z.B.</p>
 <p></p>
 <p></p>
-<img src="..." alt="Beispiele für MCUs"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/5/3_5_3_mcu.gif" "" "Abb. 4.5-2 Beispiele für MCUs" %}}
 
 <h3 class="h4">4.5.2.2 Bildverarbeitung</h3>
 <p>Im Folgenden wird die Bildverarbeitung für den sequentiellen DCT-basierten Mode beschrieben.</p>
@@ -198,10 +198,10 @@ draft: true
     für die höheren. Man nutzt dabei die Schwäche des menschlichen Auges aus.</p>
 <p>Bei Implementierungen von JPEG kann man eine gewünschte Kompressionsrate (oder Bildqualität) als Parameter k
     einstellen, bei der folgenden Kompression werden dann einfach die Quantisierungsfaktoren entsprechend skaliert.</p>
-<img src="..." alt="Wirkung der Quantisierung bei JPEG"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/5/3_5_4_jpeg.gif" "" "Abb. 4.5-3  Wirkung der Quantisierung bei JPEG" %}}
 
 <p><strong>Kodierung der Koeffizienten</strong></p>
-<img src="..." alt="Die 64 Koeffizienten"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/5/3_5_5_koeffizienten.gif" "" "Abb. 4.5-4  Die 64 Koeffizienten" %}}
 
 <p>Um zu veranschaulichen, wie die Basisblöcke aussehen, nach denen die Koeffizienten der DCT-Darstellung entwickelt
     werden, dient die Abbildung von Graustufenbildern:</p>
@@ -213,7 +213,7 @@ draft: true
         Wert) kodiert, gefolgt von den Koeffizienten mit höheren Frequenzen, von denen die meisten i.allg. Null sind.
     </li>
 </ul>
-<img src="..." alt="Zick-Zack-Sortierung und Quantisierung"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/5/3_5_6_jpeg_quantisierung.gif" "" "Abb. 4.5-5  Zick-Zack-Sortierung und Quantisierung" %}}
 
 <h3 class="h4">4.5.2.4 Entropiekompression der Daten</h3>
 <p>Das Ergebnis der bisher beschriebenen Verfahren enthält noch Redundanzen, die durch folgende nachgeschaltete
@@ -261,15 +261,13 @@ draft: true
 </ul>
 
 <h3 class="h4">4.5.2.5 Vergleich JPEG-Kodierter Bilder</h3>
-<img src="..." alt="JPEG - verlustfreie Kompression"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<img src="..." alt=" JPEG mit Kompressionsfaktor von ca. 1:7"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/5/3_5_7_jpeg01.jpg" "" "Abb. 4.5-6  JPEG - verlustfreie Kompression" %}}
+{{% image "Bildkompression/5/3_5_8_jpeg03.jpg" "" "Abb. 4.5-7  JPEG mit Kompressionsfaktor von ca. 1:7" %}}
 
 <p>Die folgenden Bilder zeigen, dass JPEG nicht für alle Arten von Bildern geeignet ist. Es ist geeignet für Bilder mit
     sanften Farbverläufen, nicht jedoch für Bilder mit scharfen Kanten und aprupten Farbübergängen.</p>
-<img src="..."
-     alt="Verlustfreie JPEG-Kompression bei einem nicht für JPEG geeigneten Bild"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<img src="..."
-     alt="Kompressionsrate von ca. 1:5 bei einem nicht für JPEG geeigneten Bild"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/5/3_5_9_jpeg02.jpg" "" "Abb. 4.5-8  Verlustfreie JPEG-Kompression bei einem nicht für JPEG geeigneten Bild" %}}
+{{% image "Bildkompression/5/3_5_10_jpeg04.jpg" "" "Abb. 4.5-9  Kompressionsrate von ca. 1:5 bei einem nicht für JPEG geeigneten Bild" %}}
 
 <p>Die Bilder zeigen, dass JPEG für Bilder mit kontinuierlichem Farbverlauf geeignet ist. Für Bilder mit harten Kanten
     ist es ungeeignet.</p>

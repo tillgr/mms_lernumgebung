@@ -16,7 +16,8 @@ draft: true
     auf die Information. Die Anzahl der Kennungen ist nicht begrenzt. Eine Datei kann mehrere durch Zeiger verkettete
     IFDs enthalten, die dann jeweils eine andere Version des Bildes, z.B. unterschiedlicher Auflösung, beschreiben. Die
     Anzahl Bits pro Pixel und die Belegung der Bits definieren den kodierten Farbwert.</p>
-<img src="..." alt="TIFF-Dateiformat"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Bildformate/7/2_6_1_tiff-dateiformat.gif" "" "Abb. 3.7-0 TIFF-Dateiformat" %}}
 
 <p>Beispiel:<br/>
     1 bit/Pixel = ein Pixel kann schwarz oder weiß sein;<br/>
@@ -105,7 +106,8 @@ draft: true
     PNG unterstützt keine Animationen, hierzu wurde das MNG-Format (Multiple-image Network Graphics) entwickelt.</p>
 <p>Die Stärken von GIF liegen bei geringer Anzahl von Farben, großen einfarbigen Flächen, vertikal abgestuften
     Farbverläufen.</p>
-<img src="..." alt="Transparente Farben"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Bildformate/7/2_6_2_transparente_farbe.gif" "" "Abb. 3.7-1 Transparente Farben" %}}
 
 <p>Eine Farbe des Bildes kann als 'Hintergrundfarbe' definiert werden. Diese (Cyan im linken Bild) wird bei der
     Wiedergabe durch die Farbe des Hintergrundes ersetzt.</p>
@@ -152,8 +154,8 @@ draft: true
 <p>Das PNG-Format kann leicht erweitert werden, ohne dabei die Austauschfähigkeit zu verlieren. Die wesentlichen
     Eigenschaften insbesondere im Vergleich zu GIF sind:</p>
 <ul>
-    <li>
-        <ul>GIF-Eigenschaften, die auch in PNG enthalten sind:
+    <li>GIF-Eigenschaften, die auch in PNG enthalten sind:
+        <ul>
             <li>Bilder mit Farbindizes bis zu 256 Farben.</li>
             <li>Serialisierbarkeit (streamability): Dateien können seriell gelesen und geschrieben werden.</li>
             <li>Inkrementelles Anzeigen: Eine entsprechend vorbereitete Datei kann während der Übertragung dargestellt
@@ -189,14 +191,54 @@ draft: true
         </ul>
     </li>
 </ul>
-<img src="..."
-     alt="Demonstration der Transparenzeigenschaften verschiedener Bildformate:"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<img src="..."
-     alt="Demonstration der Transparenzeigenschaften verschiedener Bildformate:"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+<!-- TODO: transform to table shortcode? -->
+<div style="overflow-x: scroll; width: 100%;">
+  <table class="table table-bordered" aria-hidden="true">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th>PNG 24 Bit</th>
+        <th>PNG 8 Bit</th>
+        <th>GIF</th>
+        <th>JPEG</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background-color: #000">
+        <td class="text-light">Schwarzer Hintergrund</td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse_png24_schwarz.jpg" alt=""></td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse_8.png" alt=""></td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse.gif" alt=""></td>
+        <td class="p-0" style="background-color:#b1c7e3"><img src="../../../images/Bildformate/7/ellipse.jpg" alt=""></td>
+      </tr>
+      <tr>
+        <td>Weißer Hintergrund</td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse_png24_weiss.jpg" alt=""></td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse_8.png" alt=""></td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse.gif" alt=""></td>
+        <td class="p-0" style="background-color:#b1c7e3"><img src="../../../images/Bildformate/7/ellipse.jpg" alt=""></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="small">Abb. 3.6.3 - Demonstration der Transparenzeigenschaften verschiedener Bildformate</p>
+
+<p>Erläuterung zu Abb. 3.6.3:</p>
+<p><strong>PNG 24</strong> bietet sehr gute Transparenzeigenschaften. Während GIF nur eine Farbe transparent darstellen kann, erlaubt
+    PNG 24 8-Bit-Alpha-Kanäle, also z.B. auch Halbtransparenz und somit weiche Kanten auf jedem Hintergrund. Anmerkung:
+    In Abb. 3.6.3 sind die Transparenzeigenschaften von PNG 24 mit JPEG-Dateien simuliert, da viele Browser und
+    Bildbetrachter das Format leider nicht korrekt darstellen.</p>
+<p><strong>PNG 8 und GIF</strong> können nur eine Farbe transparent darstellen. So muss bereits bei Erstellung des
+    Bildes berücksichtigt werden, auf welchem Hintergrund das Bild später dargestellt werden soll, um weiche Kanten zu
+    erhalten und "Kranzeffekte" zu vermeiden. Die oben dargestellten GIF und PNG 8 Bilder sind für schwarzen Hintergrund
+    ausgelegt, so dass auf weissem Hintergrund ein unschöner Rand entsteht. </p>
+<p>Das <strong>JPEG-Format</strong> kennt keine Transparenz. Es muss immer ein Hintergrund definiert werden.</p>
+
+{{% image "Bildformate/7/ellipse_maske.gif" "" "Abb. 3.6.3.a - Transparenzmaske, die den Bildern in Abb. 3.6.3 zugrunde liegt, wobei die schwarze Fläche als transparent definiert ist." %}}
 
 <p>Abb. 3.6.3 zeigt die Wirkung des Alphakanals bei Verwendung einer Maske bei den verschiedenen Bildformaten. In der
     oberen Spalte ist der Tabellenhintergrund schwarz, in der unteren weiss gewählt. Die Hintergrundfarbe der Bilder
-    wurde wenn möglich durch die Transparenzmaske in Abb. 2.6.3.a definiert.</p>
+    wurde wenn möglich durch die Transparenzmaske in Abb. 3.6.3.a definiert.</p>
 
 <p><strong>Aufbau einer PNG-Datei:</strong></p>
 <p>Jede PNG-Datei besteht aus einer Signatur und einer Folge beliebig vieler Blöcke, sogenannter Chunks. Die Signatur
@@ -269,7 +311,7 @@ draft: true
     wurde 1977 ohne Huffman-Kodierung von Lempel und Ziv vorgestellt und 1978 zur Erkennung von Mustern in einem Text
     beschrieben. Terry Welch stellte daraufhin eine Methode zur Implementierung des Algorithmus vor, die zum
     patentierten LZW-Kompressionsalgorithmus führte.</p>
-<img src="..." alt="Mona Lisa ohne Filter"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildformate/7/2_6_4_mona_lisa_ohne_filter.gif" "" "Abb. 3.7-2 Mona Lisa ohne Filter" %}}
 
 <p><strong>Filter</strong></p>
 <p>Zur Optimierung der Kompression kann ein Bild zuvor gefiltert werden. Die PNG-Spezifikation beschreibt fünf
@@ -278,7 +320,7 @@ draft: true
 <p>Beim Dekodieren verwendet der Decoder zum Dekodieren eines Pixels die Informationen des vorangegangenen Pixels
     derselben Zeile, des darüberliegenden Pixels der vorangegangenen Zeile und das Pixel links neben dem vorangegangenen
     Pixel. Das bedeutet, dass mindestens die vorangegangene dekodierte Zeile vom Decoder gespeichert werden muss.</p>
-<img src="..." alt="Mona Lisa mit Sub-Filter"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildformate/7/2_6_5_mona_lisa_mi_sub-filter.gif" "" "Abb. 3.7-3 Mona Lisa mit Sub-Filter" %}}
 
 <ul>
     <li><strong>Typ 1: Sub</strong>

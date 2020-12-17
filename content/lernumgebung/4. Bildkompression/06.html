@@ -9,7 +9,7 @@ draft: true
     Meeresküsten oder Blätter von Pflanzen. Solche sich wiederholenden Muster kann man nutzen, wenn man ein
     umfangreiches Gebilde durch ein kleines Erzeugersystem darstellen möchte. Die Abbildung zeigt einen Farn, der durch
     die wiederholte Anwendung von vier affinen Abbildungen entstanden ist.</p>
-<img src="..." alt=" Farn mit Selbstähnlichkeit"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/6/3_6_1_farn_mit_selbstaehnlichkeit.gif" "" "Abb. 4.6-0  Farn mit Selbstähnlichkeit" %}}
 
 <p>So ist die Idee der Fractal Image Compression (FIC) entstanden. Ein Bild wird durch eine iterierte Funktion
     beschrieben. Dabei werden die im Bild vorhandenen Selbstähnlichkeiten ausgenutzt. Details des Bildes sind
@@ -60,7 +60,7 @@ draft: true
     Ursprungsbild um einen Faktor verkleinern und an eine bestimmte Stelle kopieren. Der Kopierer bekommt ein beliebiges
     Bild als Eingabe und gibt die Überlagerung aller verkleinerten Bilder, wie in untenstehender Graphik dargestellt,
     aus.</p>
-<img src="..." alt="Kopiermaschine"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/6/3_6_2_kopiermaschine.gif" "" "Abb. 4.6-1 Kopiermaschine" %}}
 
 <p>Die Kopiermaschine ermöglicht folgende Einstellungen:</p>
 <ul>
@@ -68,13 +68,13 @@ draft: true
     <li>Verkleinerungsfaktor für jedes Linsensystem und</li>
     <li>Anordnung (Position) der verkleinerten Bilder bei der Ausgabe.</li>
     <li>Grundidee: Nutzung der Ausgabe der MRCM wieder als Eingabe.</li>
-    <img src="..." alt="Prinzip der Kopiermaschine"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+    {{% image "Bildkompression/6/3_6_3_prinzip_der_kopiermaschine.gif" "" "Abb. 4.6-2 Prinzip der Kopiermaschine" %}}
 </ul>
 
 <p>Beispiel:</p>
 <p>Eine MRCM sei so konfiguriert, daß sie das Quellbild auf 25% verkleinert und es jeweils oben in die Mitte und unten
     links sowie unten rechts kopiert.</p>
-<img src="..." alt="Das Sirpinski-Dreieck aus"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/6/3_6_4_sirpinski_dreieck.gif" "" "Abb. 4.6-3 Das Sirpinski-Dreieck aus" %}}
 
 <p>Bei verschiedenen Eingaben und gleicher Transformationsvorschrift ergibt sich obenstehendes Bild. Jede Eingabe führt
     bei dieser MRCM nach endlich vielen Iterationsschritten zum gleichen Ergebnis, dem Sirpinski-Dreieck, einem der
@@ -100,7 +100,7 @@ draft: true
     <li>IFS<!--TODO: Fehlende Referenzen--> erzeugen fraktale Bilder, die ähnlich den natürlichen sind.</li>
     <li>Die IFS-Repräsentation eines Bildes ist kompakt.</li>
     <li>Beispiel:</li>
-    <img src="..." alt="Fraktaler Baum aus"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+    {{% image "Bildkompression/6/3_6_5_fraktaler_baum.gif" "" "Abb. 4.6-4 Fraktaler Baum aus" %}}
 </ul>
 
 <p>Die IFS, die den oben dargestellten fraktalen Baum erzeugt, besteht z.B. aus den folgenden vier Transformationen:</p>
@@ -114,7 +114,7 @@ draft: true
 
 <h2>4.6.2 Kompressionsverfahren</h2>
 <p>Fraktale Kompression ist der inverse Prozeß zu IFS<!--TODO: Fehlende Referenzen--></p>
-<img src="..." alt="Finden von Selbstähnlichkeiten aus"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/6/3_6_6_finden_von_selbstaenlichkeiten.gif" "" "Abb. 4.6-5 Finden von Selbstähnlichkeiten aus" %}}
 
 <p>Zu einem gegebenen Bild soll eine Funktion gefunden werden, die bei Iteration das Bild möglichst gut annähert. Dazu
     muß im Bild nach Selbstähnlichkeiten gesucht werden, also nach Teilbildern, die anderen Teilbildern möglichst
@@ -158,8 +158,7 @@ draft: true
         immer kleinere Quadrate unterteilt. Der Vorteil dieser Methode ist: Die Zuordnung größerer Areale mit wenig
         Detailinformation geschieht schnell bei nur geringem Speicherverbrauch.
     </li>
-    <img src="..." alt="Partitionierung nach Quadraten und Quadtree-Verfahren aus">
-    <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+    {{% image "Bildkompression/6/3_6_7_patritionierung_nach_quadraten_und_quadtree_verfahren.gif" "" "Abb. 4.6-6 Partitionierung nach Quadraten und Quadtree-Verfahren aus" %}}
     <li>HV: Beim HV-Verfahren wird zunächst das gesamte Bild als ein Domain-Block betrachtet. Im weiteren Verlauf wird
         das Bild immer weiter in Rechtecke unterteilt. Ein Rechteck wird immer an einer vom Bildinhalt abhängigen Stelle
         in zwei Rechtecke geteilt.
@@ -168,6 +167,7 @@ draft: true
         Dreiecke unterteilt. Mit dieser Methode findet man besser zueinander passende Blöcke. Die Berechnung der
         Transformationen ist jedoch aufwändiger.
     </li>
+    {{% image "Bildkompression/6/3_6_8_partitionierung_in_rechtecke_und_dreiecke.gif" "" "Abb. 4.6-7 Partitionierung in Rechtecke und Dreiecke aus" %}}
 </ul>
 
 <p>Bei der Unterteilung wird das Bild zunächst in große Rangeblöcke aufgeteilt. Blöcke mit großer Dynamik werden weiter
@@ -257,14 +257,14 @@ draft: true
 <h2>4.6.3 Dekompressionsprozess</h2>
 <p>Die Dekompression beginnt gewöhnlich damit, daß der Bildspeicher einheitlich auf einen mittleren Grauwert gesetzt
     wird. Dies stellt das Ausgangsbild (seed image) dar.</p>
-<img src="..." alt="Dekomprimierung eines fraktalen Bildes mit unterschiedlichem seed image aus">
+{{% image "Bildkompression/6/3_6_9_dekomprimierung_eines_fraktalen_bildes_mit_unterschiedlichem_seed_image.gif" "" "Abb. 4.6-8 Dekomprimierung eines fraktalen Bildes mit unterschiedlichem seed image aus" %}}
 <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
 
 <p>Auf den Bildspeicher werden dann die Transformationen angewandt, d.h. die Pixel eines jeden Range-Blockes werden je
     Iteration ausgehend vom jeweiligen Domain-Block und der Transformationsvorschrift wi in neue Werte überführt. Das
     Ergebnis wird als Eingabe für den nächsten Iterationsschritt verwandt. Nach der zweiten Iteration kann man i.allg.
     schon das Originalbild erahnen, nach der vierten Iteration ist es meist schon sehr gut wiedergegeben.</p>
-<p>Abb. 3.6.9 illustriert den Dekompressionsprozess der zwei Bilder 'Vogel' und 'Kameramann'
+<p>Abb. 4.6.9 illustriert den Dekompressionsprozess der zwei Bilder 'Vogel' und 'Kameramann'
     <!--TODO: Fehlende Referenzen--></p>
 <ul>
     <li>Jedes Bild hat eine Größe von 256 x 256 Pixeln mit 8 Bit pro Pixel.</li>
@@ -277,9 +277,9 @@ draft: true
     </li>
     <li>So kann auch mit einem vollständigen schwarzen oder auch weißen Bild begonnen werden.</li>
 </ul>
-<img src="..." alt="Seedimage (oben lins) und das Aussehen des Bildes nach 1, 2, und 3 Iterationsschritten aus">
+{{% image "Bildkompression/6/3_6_10_bild_nach_iterations.gif" "" "Abb. 4.6-9 Seedimage (oben lins) und das Aussehen des Bildes nach 1, 2, und 3 Iterationsschritten aus" %}}
 <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<img src="..." alt="Konvergenzprozeß bei unterschiedlichen Ausgangsbildern aus">
+{{% image "Bildkompression/6/3_6_11_konvergenzprozess_bei_unterschiedlichen_ausgangsbildern.gif" "" "Abb. 4.6-10 Konvergenzprozeß bei unterschiedlichen Ausgangsbildern aus" %}}
 <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
 
 <p>Die obenstehende Graphik zeigt den Konvergenzprozeß abhängig vom Ausgangsbild.<!--TODO: Fehlende Referenzen--></p>
@@ -353,9 +353,7 @@ draft: true
 <ul>
     <li>Die Komprimierung ist sehr rechenintensiv und aufwändig.</li>
 </ul>
-<img src="..."
-     alt="Im linken Originalbild wird bei Vergrößerungen die Pixelstruktur deutlich, während das rechte, fraktal komprimierte Bild auch bei Vergrößerungen gute Ergebnisse zeigt.">
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/6/3_6_12_vergleich_vergroesse.jpg" "" "Abb. 4.6-11 Im linken Originalbild wird bei Vergrößerungen die Pixelstruktur deutlich, während das rechte, fraktal komprimierte Bild auch bei Vergrößerungen gute Ergebnisse zeigt." %}}
 
 <h2>4.6.6 Programm FRACOMP</h2>
 <p>Unterstützt werden die IFS<!--TODO: Fehlende Referenzen--> und QIF-Transformation.</p>
@@ -367,12 +365,12 @@ draft: true
     entsprechenden Helligkeits- und Kontrastinformation eine Transformation. Wurde für jeden Rangeblock im Bild die
     Transformation gefunden, so wurde der fraktale Code vollständig erzeugt und kann dann gespeichert werden.</p>
 <p>QIF-Transformationen:</p>
-<img src="..." alt="Aufteilung in Domain-Blöcke"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/6/3_6_13_aufteilung_in_domainenbloecke.jpg" "" "Abb. 4.6-12 Aufteilung in Domain-Blöcke" %}}
 
 <p>Dieses Verfahren ist trickreicher. Das schon vorbearbeitete Bild und die möglichen Domänenblöcke, die sich auf einem
     einstellbaren Gitter befinden, werden klassifiziert (max. 72 Klassen). Dann werden zu jedem Rangeblock nur
     Domänenblöcke der entsprechenden Klasse verglichen, was die Laufzeit erheblich verkürzt.</p>
-<img src="..." alt="Aufteilung in Rangeblöcke"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/6/3_6_14_aufteilung_in_rangebloecke.gif" "" "Abb. 4.6-13 Aufteilung in Rangeblöcke" %}}
 
 <p>Ist die Übereinstimmung zwischen Range- und Domänenblock nicht gut genug (wie gut sie sein soll, ist einstellbar), so
     wird rekursiv der Rangeblock in seine Quadranten geteilt und der Range-Domänenblockvergleich beginnt bei den
@@ -381,7 +379,7 @@ draft: true
 <p>Eine Visualisierung der Transformationen ist durch die Menüpunkte 'QIF-/IFS-<strong>Transformationen
     anzeigen</strong>' möglich. Es wird ein neues Fenster eröffnet, das die Rangeblockaufteilung des Bildes zeigt. Die
     schwarzen Blöcke zeigen diejenigen Transformationen, welche den Skalierungsfaktor Null besitzen.</p>
-<img src="..." alt="Anzeige des Programmes fracomp"><!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/6/3_6_15_anzeige_des_programmes_fracomp.gif" "" "Abb. 4.6-14 Anzeige des Programmes fracomp" %}}
 
 <p>Transformationen sind fest mit dem dazugehörenden Bild verbunden. Hierdurch kann ein QIF - oder IFS-<strong>Fehlerbild</strong>
     erzeugt werden.</p>
