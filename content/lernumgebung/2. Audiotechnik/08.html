@@ -55,7 +55,8 @@ draft: true
     <li>MIDI - OUT Senden von MIDI - Signalen</li><!--TODO: Formatierung-->
     <li>MIDI - THRU Weiterleitung der am MIDI - IN Eingang ankommenden Signale</li><!--TODO: Formatierung-->
 </ul>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/8/1_8_1_midi-schaltung.gif" "" "Abb. 2.8-0 MIDI-Schaltung" %}}
 
 <p>Es wird eine Stromschleife mit 0 - 5 V und 5 mA verwendet ("Strom an" logische 0). Die Anstiegs und Abfallzeiten der
     Optokoppler (zur galvanischen Trennung) müssen kleiner als 2 µs sein. Das bedeutet, das Kabel darf nicht länger als
@@ -64,7 +65,8 @@ draft: true
 <h5>Gerätekopplungen</h5>
 <p>Eine Reihenschaltung von mehr als 3 Geräten wird nicht empfohlen, da die Zeitverzögerungen zu groß werden können. Es
     wird eine MIDI-THRU-BOX genutzt.</p>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/8/1_8_2_midi_thru_box.gif" "" "Abb. 2.8-1 Verwendung der MIDI-THRU-Box" %}}
 
 <p>Jedes MIDI-Gerät bekommt eine Kanalnummer und reagiert nur auf Nachrichten, die für diesen Kanal bestimmt sind
     (Geräte können auch auf mehreren Kanälen empfangen).</p>
@@ -255,7 +257,8 @@ draft: true
     <li>Ein Event ist eine Sequenz von MIDI Kommandos.</li>
     <li>Vor jedem Event steht ein Delta-Time-Wert, der den Zeitabstand bis zum nächsten Event definiert.</li>
 </ul>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/8/1_8_2b_standard-midi-file.gif" "" "Abb. 2.8-2 Das Standard MIDI-file-Format SMF" %}}
 
 <h2>1.8.4 MIDI Sequenzerprogramm</h2>
 <p>Beispiel: <strong>MIDI Connection</strong></p>
@@ -267,7 +270,8 @@ draft: true
 
 <p><strong>MIDI-Band</strong> dient dem Komponieren und Ausprobieren neuer Songs.</p>
 <p>Es stellt eine "Band" zur Verfügung, die den eingegebenen Song begleiten kann.</p>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/8/1_8_3_midi-connection_midi-band.gif" "" "Abb. 2.8-3 MIDI connection - MIDI Band" %}}
 
 <p>Der Song wird durch die Eingabe von Akkorden (Noten) in die vorgezeichneten Takte definiert. Die Noten können auch
     über ein angeschlossenes Keyboard eingespielt werden.</p>
@@ -280,7 +284,8 @@ draft: true
     Mehrspuren-Tonbandgerät (bis 64 Spuren), in dem eine Vielzahl von Instrumenten gemischt werden können. Mit MIDI-Band
     erstellte Songs können übernommen und weiterbearbeitet werden. Es können Aufnahmen aus externen MIDI-Geräten
     übernommen werden.</p>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/8/1_8_4_midi_connection_midi-tape.gif" "" "Abb. 2.8-4 MIDI-Connection MIDI-Tape" %}}
 
 <p>Der Import von MIDI-Dateien ist auch als ASCII-Text möglich. Eine Sample-Datei (beliebiges *.WAV-Format) kann
     parallel zu den MIDI-Spuren abgespielt, jedoch nicht gemischt werden. Jeder Spur kann ein Instrument zugeordnet

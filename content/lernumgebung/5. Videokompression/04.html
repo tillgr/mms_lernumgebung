@@ -71,7 +71,7 @@ draft: true
 <p>Definiert, auf welche Weise Bitströme von Video- und Audio-Daten sowie optional private Daten zu einem einzigen
     Bitstrom zusammengefasst werden. Außerdem werden Zeitmarken (Presentation Time Stamps) für die synchronisierte
     Wiedergabe von Bild und Ton bereitgestellt.</p>
-<img src="..." alt="MPEG-Schichten"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/4_4_1_mpeg-schichten.gif" "" "Abb. 5.4-0 MPEG-Schichten" %}}
 
 <p>Der maximale Abstand zwischen zwei Synchronisationspunkten beträgt 0,7 Sekunden.</p>
 <p>Die Systemschicht ist unterteilt in den Pack- und Packet-Layer. Ein Pack besteht aus einer Sequenz von Packets.
@@ -108,8 +108,7 @@ draft: true
     Bereich von 1 Volt liegen. Die lineare Quantisierung erfolgt mit 8 oder 10 Bit.</p>
 <p>Das folgende Bild beschreibt die im Standard festgelegten Randparameter der Digitalisierung der analogen Luminanz-
     und Farbdifferenzsignale.</p>
-<img src="..."
-     alt="Randparameter der Digitalisierung bei ITU-R BT 601"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/4_4_2_randparameter_der_digitalisierung.gif" "" "Abb. 5.4-1 Randparameter der Digitalisierung bei ITU-R BT 601" %}}
 
 <p>Luminanzsignale werden in 220 Werte aufgeteilt. Z.B. ist L-Wert 16 als Schwarz definiert, L-Wert 235 ist definiert
     als Weiß. L-Wert 1 und 255 dienen der Synchronisation. Die Chrominanzsignale werden in 224 Werte aufgeteilt. C-Wert
@@ -120,7 +119,7 @@ draft: true
 
 <h4 class="h5">Digitalisierung einer Bildschirm-Zeile</h4>
 <p>Die Abtastung einer PAL-Zeile mit einer Frequenz von 13,5 MHz wird in dem folgenden Bild dargestellt:</p>
-<img src="..." alt="Abtastung einer Zeile bei ITU-R BT 601"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/4_4_3_abtastung_einer_zeile.gif" "" "Abb. 5.4-2 Abtastung einer Zeile bei ITU-R BT 601" %}}
 
 <p>In der Abblidung ist zu sehen, dass es doppelt so viele Luminanzabtastungen (Samples) gibt wie Chrominanzabtastungen
     je Zeile (dargestellt durch die durchnummerierten Kästchen). Daher resultiert die Bezeichnung 4:2:2. Denn zu je 2
@@ -134,8 +133,7 @@ draft: true
 
 <h3 class="h4">5.4.3.2 MPEG-Bildtypen</h3>
 <p>Bei der Bildkompression wird zwischen den folgenden 4 Bildtypen unterschieden:</p>
-<img src="..."
-     alt="Aufbau eines MPEG-Stromes aus I-, P-, B-Bildern"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/4_4_7_i-p-b-bilder.gif" "" "Abb. 5.4-3 Aufbau eines MPEG-Stromes aus I-, P-, B-Bildern" %}}
 
 <ul>
     <li><strong>I-Bild</strong> <em>Intra Coded Picture</em>:<br/>
@@ -158,7 +156,7 @@ draft: true
         <!--TODO: Fehlende Referenzen--> und Huffman-Algorithmus<!--TODO: Fehlende Referenzen--> kodiert. Zusätzlich
         wird der Bewegungsvektor gespeichert.
     </li>
-    <img src="..." alt="Bewegungskompensation"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+    {{% image "Videokompression/4/4_4_8_bewegungskompensation.gif" "" "Abb. 5.4-4 Bewegungskompensation" %}}
     <li><strong>B-Bild</strong> <em>Bidirectionally Predictive Coded Picture</em>:<br/>
         Benötigt zur Kodierung bzw. Dekodierung Informationen des vorangegangenen und des nachfolgenden I- oder
         P-Bildes.<br/>
@@ -193,8 +191,7 @@ draft: true
 <p>MPEG nutzt die Tatsache, dass in Folgen bewegter Bilder zwischen aufeinanderfolgenden Bildern große Ähnlichkeit
     besteht - sieht man von Szenenwechseln ab. Dies ist an dem sich im folgenden Bild von links nach rechts bewegenden
     Fahrzeug erkennbar.</p>
-<img src="..."
-     alt="Beispiel zweier sich ähnelnder Bilder im MPEG-Strom"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/4_4_4_mpeg_motion_compensation.jpg" "" "Abb. 5.4-5 Beispiel zweier sich ähnelnder Bilder im MPEG-Strom" %}}
 
 <p>Zentraler Teil von MPEG ist die sog. 'Motion Compensation'. Vereinfacht gesagt, wird die Bewegung eines Bildobjektes
     (Pixel-Block) durch einen Vektor beschrieben, z.B. durch die Angabe, dass sich ein Objekt von einem Bild zum
@@ -227,7 +224,7 @@ draft: true
     da z.B. beim Schwenk oder Zoom ganze Bildinhalte verschoben werden. Deshalb werden zusätzlich Bewegungsvektoren
     kodiert. Das Finden der Bewegungsvektoren ist sehr aufwändig, deshalb nimmt man an, ein gesuchter Bezugsblock liegt
     in der Nähe.</p>
-<img src="..." alt="Prinzip der Bewegungsabschätzung bei MPEG"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/4_4_5_mpeg_bewegegungsabschaetzung.gif" "" "Abb. 5.4-6 Prinzip der Bewegungsabschätzung bei MPEG" %}}
 
 <p>Jeder Block wird mit seinem Vorgänger aus dem vorherigen Bild verglichen. Wird eine bestimmte Ähnlichkeitsschwelle
     überschritten, dann ist die Abweichung zwischen den Blöcken so gering, dass eine Intra-Kodierung ausreicht.
@@ -248,7 +245,7 @@ draft: true
     die 8 benachbarten Positionen mit einem Abstand von einem halben Pixel.</p>
 <p>Andere Verfahren verwenden eine heuristische, zweidimensionale logarithmische Suche, indem der Pfad der größten
     Ähnlichkeit verfolgt wird.</p>
-<img src="..." alt="Demonstration der logarithmischen Suche"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/4_4_6_heuristische_suche.gif" "" "Abb. 5.4-7 Demonstration der logarithmischen Suche" %}}
 
 <p>Im obigen Bild wird der Suchbereich S dargestellt. Die Kreise repräsentieren Makroblöcke, die Nummern
     Verarbeitungsschritte. In S/2 Schritten wird nach einem ähnlichen Bock im vorangegangenen Bild gesucht. Der obere
@@ -257,7 +254,7 @@ draft: true
     halbiert und wieder der erste Schritt wiederholt. Ist die Schrittweite nur noch 1, werden alle 8 umliegenden Blöcke
     untersucht. Zu dem ähnlichsten Bock wird der Bewegungsvektor ermittelt.</p>
 
-<h4 class="h5">5.4.3.4 Transformationskodierung, Quantisierung und Entropie-Kodierung</h4>
+<h3 class="h5">5.4.3.4 Transformationskodierung, Quantisierung und Entropie-Kodierung</h3>
 <p>Die I-Bilder und die Differenzblöcke werden wie beim JPEG-Verfahren<!--TODO: Fehlende Referenzen--> kodiert. Es wird
     die Diskrete Kosinustransformation DCT<!--TODO: Fehlende Referenzen--> auf die 8x8-Pixelblöcke angewandt.</p>
 <p>Anschließend werden die entstehenden Koeffizienten quantisiert, wobei das psycho-visuelle Modell des Menschen
@@ -305,8 +302,7 @@ draft: true
     kodiert wird.</p>
 
 <p><strong>Makroblockebene</strong></p>
-<img src="..."
-     alt="Aufbau eines Makroblocks in Abhängigkeit des Abtastformats"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/mpeg-blockebene.gif" "" "Abb. 5.4-8  Aufbau eines Makroblocks in Abhängigkeit des Abtastformats" %}}
 
 <p>Hier wird beschrieben, wo der Makroblock im Bild liegt und um welche Art von Makroblock es sich handelt (I, B oder
     P). Der Enkoder hat bei P und B-Bildern eine Reihe von Entscheidungen auf der Makroblock-Ebene zu treffen, die
@@ -334,8 +330,7 @@ draft: true
     Störung über das ganze Bild fortsetzt. Mit Beginn eines neuen Slices, das auf das fehlerhafte folgt, werden wieder
     korrekte Daten geliefert. Slices müssen nicht an der rechten oder linken Bildkante beginnen, sondern können mit
     beliebig positionierten Makroblöcken beginnen oder aufhören.</p>
-<img src="..."
-     alt="Aufteilung eines MPEG-kodierten Bildes in Slices"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/4_4_9_mpeg_slices.gif" "" "Abb. 5.4-9 Aufteilung eines MPEG-kodierten Bildes in Slices" %}}
 
 <p><strong>Picture-Ebene</strong></p>
 <p>Die Picture-Ebene enthält alle notwendigen Informationen, um ein Bild zu dekodieren. Der Header kennzeichnet, als
@@ -396,7 +391,7 @@ draft: true
 </p><!--TODO: Formatierung-->
 
 <h2>5.4.6 MPEG Video-Enkoder</h2>
-<img src="..." alt="Aufbau eines MPEG-Videoenkoders"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/mpeg-video-encoder.gif" "" "Abb. 5.4-10  Aufbau eines MPEG-Videoenkoders, DCT = Discrete Cosinus Transformation, RLC = Run Lenght Coding, VLC = Variable Length Coding" %}}
 
 <p><strong>Vorverarbeitung:</strong> Das Eingangssignal wird 4:2:2 oder 4:2:0 abgetastet, und jeder Pixelwert einem
     Macroblock und Block zugeordnet.</p>
@@ -411,7 +406,7 @@ draft: true
 
 <h2>5.4.7 MPEG-Dekoder</h2>
 <p>Ein MPEG-Dekoder besteht i. W. aus vier Komponenten.</p>
-<img src="..." alt="MPEG-Dekoder"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/mpeg-video-decoder.gif" "" "Abb. 5.4-11 MPEG-Dekoder" %}}
 
 <p>Der Systemdekoder teilt den MPEG-Bitstrom in drei Teilströme auf (Video, Audio. Synchronisierung). Im Video-Dekoder
     werden die Bilddaten entsprechend der MPEG-Syntax entschlüsselt und dargestellt. Gleiches erfolgt im Audio-Dekoder
@@ -423,7 +418,7 @@ draft: true
 <p><strong>Aufbau eines MPEG-Enkoders</strong></p>
 <p>'Real Time MPEG Enkoding' benötigt hohe Rechnerleistung. Deshalb ist i. Allg. spezielle Hardware notwendig. Beispiel
     hierfür ist der 'Video Risc Processors' (VRP) CL-4000 von C-Cube.</p>
-<img src="..." alt="Aufbau des Video Risc Processor von C-Cube"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/4/4_4_11_risc_cpu.gif" "" "Abb. 5.4-12 Aufbau des Video Risc Processor von C-Cube" %}}
 
 <p>Der VRP bietet die Möglichkeit der Mikrokode-Programmierung, so dass neben MPEG-1/2 auch JPEG und H.261 unterstützt
     werden können. Der Baustein verarbeitet im Enkoder-Modus digitales Video im YCrCb 4:2:2-Format. In diesem Modus wird

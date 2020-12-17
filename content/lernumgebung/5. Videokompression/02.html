@@ -20,7 +20,7 @@ draft: true
     Chrominanz-Signale C<sub>B</sub> und C<sub>R</sub> halbiert sich die Abtast- und Datenrate auf 6,75 MHz bzw. 54
     Mbit/s. Die Datenrate für RGB-Übertragung (4:4:4 Format) beträgt damit 324 Mbit/s, für YC<sub>B</sub>C<sub>R</sub>-Übertragung
     (4:2:2) 216 Mbit/s.</p><!--TODO: Formatierung-->
-<img src="..." alt="Analog/Digital-wandlung"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/2/4_2_1_analog-digital-wandlung.gif" "" "Abb. 5.2-0 Analog/Digital-wandlung" %}}
 
 <p>Die Bildung des <strong>Zeitmultiplexsignals</strong> erfolgt über bitparallele Aufteilung des Signals auf N
     Leitungen, welches über einen Wandler am Ausgang seriell als digitales, serielles Komponentensignal DSC (Digital
@@ -55,7 +55,7 @@ draft: true
 <p>Die Reduzierung der Vertikalauflösung beim Halbbildverfahren führt zu sichtbarem Chrominanz-Zeilenflimmern. Um dies
     zu verhindern, wird aus 4 Chrominanz-Abtastwerten der geometrisch übereinander liegenden Zeilen des 1. und 2.
     Halbbildes jeweils ein Mittelwert berechnet und den umgebenden Y-Werten zugeordnet.</p><!--TODO: Formatierung-->
-<img src="..." alt="Raster bei der 4:2:0-Abtastung"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/2/4-2-0-abtastung.gif" "" "Abb. 5.2-1  Raster bei der 4:2:0-Abtastung" %}}
 
 <p><strong>SIF-Format:(Source Intermediate Format)</strong></p>
 <p>Weitere Reduktion der spatialen (räumlichen) Auflösung auf die halbe Anzahl an Abtastwerten in Verbindung mit einer
@@ -112,16 +112,14 @@ draft: true
     Frequenzressourcen geplant.</p>
 <p>Das folgende Bild zeigt die Belegung des UHF-Bereiches (Ultra High Frequency, Kanäle 22 bis 69) in Europa mit
     Fernsehsendern.</p>
-<img src="..."
-     alt="Belegung des UHF-Bereiches mit Fernsehsendern"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/2/4_2_2_uhf-bereich.gif" "" "Abb. 5.2-2 Belegung des UHF-Bereiches mit Fernsehsendern" %}}
 
 <p>Bis zum Jahre 2008 werden die Kanäle ab Kanal 62 bis in allen Regionen für DVB zur Verfügung stehen. Bis 2020 sollen
     weitere Bereiche des UHF-Bereiches durch DVB belegt werden.</p>
 <p>Weniger problematisch als die terrestrische Übertragung ist die Übertragung per Satellit oder im Kabel. Deshalb steht
     die Übertragung per Satellit oder im Kabel im Mittelpunkt der Einführungsstrategie von DVB in Europa.</p>
 <p>Das folgende Bild zeigt ein mögliches Szenario:</p>
-<img src="..."
-     alt="Mögliches Szenario der Satellitenübertragung"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Videokompression/2/4_2_3_satellitenuebertragung.gif" "" "Abb. 5.2-3 Mögliches Szenario der Satellitenübertragung" %}}
 
 <p>Nach der Zusammenführung einzelner datenreduzierter Mediensignale zu den Programmen 1 bis n werden diese in einen
     Medienstrom (Datencontainer) vereinigt und nach geeigneter Verarbeitung dem Satelliten-Uplink zugeführt. Der

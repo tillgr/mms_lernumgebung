@@ -42,7 +42,7 @@ draft: true
     Anzahl etwa gleich sein sollte. Linke Zweige werden mit '0' und rechte Zweige mit '1' bewertet.</p>
 
 <p><strong><u>Beispiel:</u></strong></p>
-<img src="..." alt="Prinzip des Shannon-Fano-Algorithmus"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/2/3_2_1_shannon-fano.gif" "" "Abb. 4.2-0 Prinzip des Shannon-Fano-Algorithmus" %}}
 <ul>
     <li>Es ergibt sich folgende Kodierung bzw. folgender Speicherbedarf von 89 bit</li>
 </ul>
@@ -53,7 +53,7 @@ draft: true
 <p>Für jedes Zeichen einer Datenmenge wird die Wahrscheinlichkeit (Häufigkeit) des Auftretens ermittelt. Die Kodierung
     erfolgt mit variabler Länge (Anzahl der Bits). Das am häufigsten auftretende Zeichen erhält das kürzeste
     Codewort.</p>
-<img src="..." alt="Prinzip der Huffman-Kodierung"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/2/3_2_2_huffmann-kodierung.gif" "" "Abb. 4.2-1 Prinzip der Huffman-Kodierung" %}}
 
 <p>Dieser Algorithmus verfolgt einen Bottom-Up-Ansatz:</p>
 <ol>
@@ -230,7 +230,7 @@ draft: true
     { B1 , ..., Bn} 4 oder mehr aufeinander folgende Bytes identisch (Bx = Bx+1 = ...= Bx+i), so wird diese Folge
     ersetzt durch { B1, ...., M ,i, Bx , ....}. Dabei ist M ein spezielles Markierungsbyte, i die Anzahl gleicher,
     aufeinanderfolgender Bytes.</p><!--TODO: Formatierung-->
-<img src="..." alt="Prinzip der Run-Length-Kodierung"> <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Bildkompression/2/3_2_3_lauflaengenkodierung.gif" "" "Abb. 4.2-2 Prinzip der Run-Length-Kodierung" %}}
 <!--TODO: Applet Lauflängenkodierung-->
 
 <p>Im praktischen Einsatz gibt es verschiedene Möglichkeiten die Markierung und die Anzahl der Wiederholungen zu

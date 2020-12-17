@@ -10,7 +10,8 @@ draft: true
 <h2>2.7.1 ADSR-Modell</h2>
 <p>Die Entstehung eines Tones kann mit dem ADSR-Modell (Attack, Decay, Sustain, Release) beschrieben werden. Es
     beschreibt die Entstehungsweise des Tones bei den meisten natürlichen Musikinstrumenten.</p>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/7/1_1_6_adsr_phasen.gif" "" "Abb. 2.7-0 ADSR-Phasen" %}}
 
 <h5>Attack Phase A:</h5><!--TODO: Formatierung-->
 <p>Beim Anschlagen der Taste (Anblasen einer Flöte, Streichen eines Bogens) steigt die Lautstärke in 3-10 ms auf ihr
@@ -31,7 +32,8 @@ draft: true
     Für die Analyse und Bearbeitung der Audiosequenzen ist die Veränderung der Wellenform und Spektraldichte in jeder
     Phase des Klanges wichtiger als die Nachahmung des Amplitudenverhaltens. Als Beispiel diene die Analyse eines
     Orgelklanges.</p>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/7/1_1_7_phasen_der_schwingung_eines_orgelklanges.gif" "" "Abb. 2.7-1 Phasen der Schwingung eines Orgelklanges" %}}
 
 <p>Attack Phase: Das Signal ist sehr chaotisch und ungeordnet, es klingt wie Rauschen. Die hochfrequenten Anteile haben
     relativ große Energieanteile. Die Amplitude vergrößert sich relativ schnell und erreicht ihr Maximum in etwa 3-10
@@ -45,7 +47,8 @@ draft: true
 <h2>2.7.2 Synthesizer und deren Komponenten</h2>
 <p>Ein Synthesizer ist ein elektronisches Gerät zur Erzeugung von Klängen, bestehend aus Oszillatoren, Filtern und
     Verstärkern.</p>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/7/aufbau_synt.gif" "" "Abb. 2.7-2  Aufbau eines Synthesizers" %}}
 
 <p>Ein Oszillator liefert Signal, das mit Filtern und Verstärkern in seiner spektralen Zusammensetzung und in seinem
     Pegelverlauf variiert wird. Die Variation wird von außen (u.a.) durch einen LFO = Low Frequency Oszillator
@@ -101,7 +104,8 @@ draft: true
 <p>Es werden die Frequenzanteile in einem Band durchgelassen bzw. gesperrt.</p>
 <!--TODO: Audio shortcode-->
 <!--TODO: Audio shortcode-->
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/7/1_2_9_filter.gif" "" "Abb. 2.7-3 Filterkurven" %}}
 
 <p>Eine wichtige Eigenschaft ist die Linearität von Filtern. Wenn die Übertragungsfunktion des Filters ist, dann
     bedeutet Linearität:</p><!-- TODO: Formelzeichen-->
@@ -150,12 +154,14 @@ draft: true
         Empfindlichkeit auf Variationen in den Koeffizienten ist ebenfalls gering.
     </li>
 </ul>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/7/1_2_10_grundaufbau_eines_fir_filters.gif" "" "Abb. 2.7-4 Grundaufbau eines FIR-Filters" %}}
 
 <h5>IIR Filter</h5>
 <p>'Infinite Impuls Response' Filter sind rekursive LTI Systeme, die das Signal vom Ausgang des Filters rückkoppeln, um
     die gewünschte Eigenschaft des Signals mit weniger Elementen effizienter auszufiltern.</p>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/7/1_2_11_grundaufbau_eines_iir_filters.gif" "" "Abb. 2.7-5 Grundaufbau eines IIR-Filters" %}}
 
 <p>Durch die Rückkopplung entsteht am Ausgang des Filters beim Zufügen eines -Signals eine unendliche Impulsantwort. Die
     Zusammenhänge zwischen den Filterkoeffizienten und der Impulsantwort sind bei den IIR Filtern wesentlich
@@ -249,7 +255,9 @@ draft: true
         </ul>
     </li>
     <li><strong>Zeit-Verschiebungseffekte:</strong><br/>benutzen zeitverzögerte Signale:
-        <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+        {{% image "Audiotechnik/7/1_2_12_wirkung_der_schallverzoegerung.gif" "" "Abb. 2.7-6 Wirkung der Schallverzögerung" %}}
+
         <ul>
             <li>Effekte sind: GlossarDelay<!--TODO: Missing Hyperlink--> , GlossarEcho<!--TODO: Missing Hyperlink--> ,
                 GlossarReverb<!--TODO: Missing Hyperlink--> , GlossarFlanger<!--TODO: Missing Hyperlink--> und
@@ -307,7 +315,9 @@ draft: true
     Instrumentenklängen. Yamaha entwickelte den ersten Synthesizer OPL2. Heute ist OPL3 der de facto Standard. Der
     FM-Synthesizer generiert eine Sinuswelle mit konstanter, hoher Frequenz und konstanter Lautstärke, die sogenannte
     Trägerwelle. Zu dieser mixt er die niederfrequente Schwingung des Modulators.</p>
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/7/1_1_8_frequent_modulation_s.gif" "" "Abb. 2.7-7 Prinzip der Frequenzmodulationssynthese" %}}
+
 <p>Das Signal folgt der nichtlinearen Gleichung: </p>
 <!--TODO: Formeln shortcode-->
 <p>
@@ -333,7 +343,8 @@ draft: true
     stellt.</i></p>
 <p>Beeinflussbare Parameter sind: Lautstärke (Amplitudenmodulation, Tremolo), Tonhöhe (FM, Vibrato) oder
     Filterabschaltfrequenz (Filtermodulation, Wah-Effekt). </p><!--TODO: Formatierung-->
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/7/sampling.gif" "" "Abb. 2.7-8 Sampling Synthese" %}}
 
 <h5></h5>
 <p>Bei der Granularsynthese wird ein beliebiges Schallsignal in kurze (ms) Abschnitte (Grains) unterteilt. Diese Grains
@@ -349,4 +360,5 @@ draft: true
 <p>Bei diesem Verfahren wird das Klangverhalten der Musikinstrumente durch komplexe mathematische Gleichungen
     nachgebildet und akustisch simuliert. Damit wird ein naturgetreuer Klang möglich. Es ist jedoch eine sehr hohe
     Rechenleistung nötig.</p><!--TODO: Formatierung-->
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+{{% image "Audiotechnik/7/soundkartenschema.gif" "" "Abb. 2.7-9  Aufbauschema einer Soundkarte" %}}

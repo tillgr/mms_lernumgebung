@@ -9,8 +9,8 @@ draft: true
     Frequenz und hängt von der Ausbreitungssgeschwindigkeit der Welle ab. Die Amplitude bestimmt die Lautstärke des
     Signals und wird in Dezibel [dB] gemessen.</p>
 
-<!--TODO: Image shortcode TODO:Fehlende Referenzen-->
-<!--TODO: Image shortcode TODO:Fehlende Referenzen-->
+{{% image "Audiotechnik/2/1_1_1a_frequenz_wellenlaenge.gif" "Wellenlänge und Amplitude eines analogen Audisignals" "Abb. 2.2-0 Wellenlänge und Amplitude eines analogen Audiosignals" %}}
+{{% image "Audiotechnik/2/1_1_1b_typische_frequenzbereiche.gif" "Typische Frequenzbereiche" "Abb. 2.2-1 Typische Frequenzbereiche" %}}
 
 <h5>Klang:</h5>
 <p>Als Klang bezeichnet man ein beliebiges Audiosignal.</p>
@@ -36,9 +36,9 @@ draft: true
 <p>Obertöne mit ganzzahligem Verhältnis heißen "Harmonische". Es wird zwischen geraden und ungeraden Harmonischen
     unterschieden.</p>
 
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Audiotechnik/2/1_1_2_entstehung_einer_schwingung_mit_einer_harmonischen.gif" "" "Abb. 2.2-2  Entstehung einer Schwingung mit einer Harmonischen" %}}
+{{% image "Audiotechnik/2/1_1_3_entstehung_einer_schwingung_mit_einer_ungeraden_harmonischen.gif" "" "Abb. 2.2-3  Enstehung einer Schwingung mit einer ungeraden Harmonischen" %}}
+{{% image "Audiotechnik/2/1_1_4_entstehung_einer_schwingung_mit_nichthamonischen_obertoenen.gif" "" "Abb. 2.2-4  Enstehung einer Schwingung mit nichtharmonischen Obertönen" %}}
 
 <p>Hörbeispiele:</p><!--TODO:Formatierung-->
 <!--TODO: Audio shortcode-->
@@ -51,6 +51,7 @@ draft: true
     Luftsäule (Blasinstrument). Die Klangfarbe wird vom Material des Instrumentes beeinflusst (Blech-, Holzinstrumente).
     Beispiel: Saiteninstrument</p><!--TODO: Fehlende Referenzen-->
 
+{{% image "Audiotechnik/2/1_1_5_schwingung_einer_saite.gif" "" "Abb. 2.2-5  Schwingung einer Saite" %}}
 <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
 
 <p>Zu Beginn entstehen in der Saite Oszillationen verschiedenster Frequenzen, wobei die mit einer nicht ganzzahligen
@@ -102,7 +103,7 @@ draft: true
     Cosinusfunktionen mit der n-fachen Frequenz () bilden. Dabei ist der Offset. Die Berechnung der unendlichen Reihen
     und wird als Fourier-Transformation gekennzeichnet:</p> <!-- TODO: Formelzeichen-->
 <!--TODO: Formeln shortcode-->
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Audiotechnik/2/1_2_6_darstellung_der_koeffizienten_als_vektor.gif" "Diagramm mit Vektordarstellung" "Abb. 2.2-6 Darstellung der Koeffizienten als Vektor" %}}
 
 <p>Koeffizienten und können als Vektor aufgefasst werden, wodurch sie durch einen Winkel und eine Intensität dargestellt
     werden können. Dies hat den Vorteil, dass die Intensität des Vektors die Amplitude des Frequenzanteils der Funktion
@@ -139,14 +140,14 @@ draft: true
     Reihen und . Die Zusammenhänge sollen an einem Ausschnitt einer Orgelsequenz erläutert
     werden:</p><!-- TODO: Formelzeichen-->
 
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Audiotechnik/2/1_2_7_schwingung_einer_orgelsequenz.gif" "Amplitude bei einem Orgelton" "Abb. 2.2-7 Schwingung einer Orgelsequenz" %}}
 
 <p>Das Ergebnis der DFT ist als diskretes Spektrum dieses Klanges im folgenden Diagramm dargestellt. Es sind der
     Grundton und einige Harmonische zu erkennen. Man sieht, dass die einzelnen Spitzen in Abständen, die ein
     ganzzahliges der niedrigsten Frequenz darstellen, verteilt sind. Das ist ein Zeichen für die Glossar Konsonanz
     <!--TODO: Missing Hyperlink--> dieses Klanges.</p>
 
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Audiotechnik/2/1_2_8_frequenzspektrum_des_orgelklanges.gif" "" "Abb. 2.2-8 Frequenzspektrum des Orgelklanges" %}}
 
 <p>Die Formel für die DFT lässt sich auch in Matrixform darstellen:</p>
 <!--TODO: Formeln shortcode-->
@@ -161,8 +162,8 @@ draft: true
 <p>Der <strong>Frequenzgang</strong> lässt sich als Ua = f (Ue) beschreiben; f gibt Aufschluss über Nichtlineare
     Verzerrung, Clipping, Zeit- und Frequenzbereich. </p><!-- TODO: Formelzeichen-->
 
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Audiotechnik/2/frequenzgang_a.gif" "" "Abb. 2.2-9 Übertragungssystem mit Begrenzung" %}}
+{{% image "Audiotechnik/2/frequenzgang_b.gif" "" "Abb. 2.2-10 Lineare Verzerrung durch die Begrenzung" %}}
 
 <p>Der <strong>Klirrfaktor</strong> k ist das Maß für die Obertöne (Harmonische); er ermittelt sich aus der Gleichung
     (1.20), wobei das Ausgangsignal Ua z.B. die Grundschwingung U1 und deren Obertöne (U2, U3, ...) umfasst.
@@ -210,8 +211,8 @@ draft: true
 <p>Hörbeispiele:</p><!--TODO: Formatierung-->
 <!--TODO: Audio shortcode-->
 
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
-<!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+{{% image "Audiotechnik/2/1_2_1_schwingung_des_original_musikstuecks.gif" "" "Abb. 2.2-11 Schwingung des Original-Musikstücks" %}}
+{{% image "Audiotechnik/2/1_2_2_musikstueck_mit_dc_offset.gif" "" "Abb. 2.2-12 Musikstück mit DC-offset" %}}
 
 <h5>Hintergrundrauschen:</h5>
 <p>Hintergrundrauschen bezeichnet alle stochastischen und statistisch nichtdeterminierbaren Störungen. Es ist die am
@@ -247,12 +248,14 @@ draft: true
         <!--TODO: Missing Hyperlink--> ist frequenzunabhängig. Die Rauschanteile im Signal verringern den Dynamikumfang
         und verschlechtern die Qualität des Signals. Weißes Rauschen lässt sich nicht vollständig vermeiden. Es sind
         aber trotzdem einige Maßnahmen zur Verringerung des Rauschens möglich.
-        <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+        {{% image "Audiotechnik/2/1_2_3_schwingung_des_weissen_rauschens.gif" "" "Abb. 2.2-13 Schwingung des weißen Rauschens" %}}
     </li>
     <li><strong>Stoßrauschen</strong> entsteht in bestimmten Halbleitern oder bei Fehlern im Kristallgitter eines
         Bauteils. Stoßrauschen ist, wie in der Abbildung dargestellt, im Allgemeinen durch weißes Rauschen überlagert
         und für Audiosignale nur von geringer Bedeutung. Die Signal- und Pausendauer ist exponentiell verteilt.
-        <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
+
+        {{% image "Audiotechnik/2/1_2_4_schwingung_des_stossrauschens.gif" "" "Abb. 2.2-14  Schwingung des Stoßrauschens" %}}
     </li>
     <li><strong>Funkelrauschen</strong> entsteht durch thermische Bewegungen der Ladungsträger in aktiven Bauteilen
         (Halbleitern), hat stochastischen Charakter und unterscheidet sich von dem weißen Rauschen nur durch seine
@@ -280,8 +283,9 @@ draft: true
         konstant ist. Das bedeutet eine Spektralverteilung proportional zu 1/f. Mit ihm werden sehr gut die
         Eigenschaften des Systems bei natürlichen Audiosignalen nachgebildet, da bei ihnen die Spektralenergie mit
         steigender Frequenz meistens fallend ist.
+
+        {{% image "Audiotechnik/2/1_2_5_schwingung_des_rosa_rauschens.gif" "" "Abb. 2.2-15 Schwingung des Rosa Rauschens" %}}
     </li>
-    <!--TODO: Image shortcode TODO: Fehlende Referenzen-->
     <li>
         <strong>Braunes Rauschen</strong> entspricht der Brownschen Bewegung der Atome. Das Signal hat zu einem
         Zeitpunkt t die gleiche Wahrscheinlichkeit, sich in beide Richtungen auszubreiten. Für die Systemanalyse ist es

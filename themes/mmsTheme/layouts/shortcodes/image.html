@@ -1,1 +1,5 @@
-<img src="img/{{ .Get 0 }}" alt="{{ .Get 1 }}" class="img-thumbnail">
+{{ $url := (print "images/" (.Get 0)) }}
+<figure class="mb-3">
+  <img src="{{ $url | absURL }}" alt="{{ .Get 1 }}" class="">
+  <figcaption class="small">{{ .Get 2 }}</figcaption>
+</figure>
