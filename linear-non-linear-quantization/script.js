@@ -23,9 +23,7 @@ document.querySelector('.btnContinueLinear').style.display = "none";
 document.getElementById('linearQuantisation').style.display = 'none';
 document.getElementById('nonlinearQuantisation').style.display = 'none';
 document.getElementById('linearTaskEnd').style.display = 'none';
-document.getElementById('nonlinearTaskEnd').style.display = 'none';
 document.getElementById('evaluation').style.display = 'none';
-
 
 var randomNumber = Math.round(Math.random() * 5000) + 18000;
 var correctAnswer = randomNumber * 2;
@@ -98,10 +96,8 @@ function btnSkipIntro() {
   document.querySelector("#placeholderSamplingFrequency").style.display = "none";
   document.getElementById('nonlinearQuantisation').style.display = 'none';
   document.getElementById('linearErrorMessage').style.display = 'none';
-
-  document.getElementById('evaluation').style.display = 'none';
   document.getElementById('btnShowCorrectAnswerLinear').style.display = 'none';
-
+  document.getElementById('evaluation').style.display = 'none';
 }
 
 function randomFrequency() {
@@ -142,7 +138,6 @@ function btnShowCorrectAnswerResolution1() {
   document.querySelector('.btnsamplingFrequency').style.display = "none";
   document.getElementById('linearQuantisation').style.display = 'none';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
-  document.getElementById('evaluation').style.display = 'none';
 }
 
 function btnStoragefrequency() {
@@ -228,7 +223,6 @@ function btnShowCorrectAnswerResolution2() {
   document.querySelector('.btnContinueStorage').style.display = "none";
   document.getElementById('linearQuantisation').style.display = 'none';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
-  document.getElementById('evaluation').style.display = 'none';
 }
 
 function btnContinueLinear() {
@@ -247,11 +241,8 @@ function btnContinueLinear() {
   document.getElementById('linearQuantisation').style.display = 'block';
   document.getElementById('nonlinearQuantisation').style.display = 'none';
   document.getElementById('linearErrorMessage').style.display = 'none';
-
-  document.getElementById('evaluation').style.display = 'none';
-
   document.getElementById('btnShowCorrectAnswerLinear').style.display = 'none';
-
+  document.getElementById('evaluation').style.display = 'none';
 }
 var dataset = [{
     x: 0,
@@ -719,15 +710,15 @@ function btnContinueNonLinear() {
   document.getElementById('resolution1').style.display = "none";
   document.getElementById('intro').style.display = "none";
   document.getElementById('linearQuantisation').style.display = 'none';
-
-  document.getElementById('evaluation').style.display = 'none';
-
   document.getElementById('nonlinearErrorMessage').style.display = 'none';
   document.getElementById('btnShowCorrectAnswerNoninear').style.display = 'none';
   document.getElementById('nonlinearTaskEnd').style.display = 'none';
-
+  //TODO: zeichnet diagramm mehrfach, außerhalb der Funktion verschwinden kreise
   diagramNonlinear();
+  document.getElementById('evaluation').style.display = 'none';
 }
+
+var correctArrayNonlinear = [];
 
 var circleDataNonLinear = [];
 
@@ -833,7 +824,6 @@ function diagramNonlinear() {
       setRedOnCircleData(Object.values(point)[0], Object.values(point)[1], true);
       updateArrays();
       console.log(correctArrayNonlinear);
-      console.log(nonlinearArray);
     })
 
   function getCircleColumnByX(xValue) {
@@ -930,7 +920,7 @@ function diagramNonlinear() {
         point['y'] = getRedCircleInColumn(getCircleColumnByX(Object.values(point)[0]))['y'];
         if (dataset.find(val => val.x === point.x).y) {
           var numberA = Math.abs(dataset.find(val => val.x === point.x).y - point.y)
-          document.getElementById('linearAbsolute' + point.x).innerHTML = numberA;
+          document.getElementById('nonlinearAbsolute' + point.x).innerHTML = numberA;
           var numberR = Math.floor((numberA / dataset.find(val => val.x === point.x).y) * 100);
           arraynumR.push(numberR);
           var sum =0;
@@ -947,7 +937,7 @@ function diagramNonlinear() {
       }
     });
   }
-  var correctArrayNonlinear = [];
+
   initializeCorrectArray();
 
   function initializeCorrectArray() {
@@ -969,9 +959,24 @@ function diagramNonlinear() {
       });
     }
   }
+}
+function getAllRedCircleNonlinear() {
+  return circleDataNonLinear.filter(point => point['isRed'] == true)
+}
+function checkSolutionNonlinear(array) {
+  var hash = {}
+  array.forEach(point => {
+    hash[[point['x'], point['y']]] = true;
+  });
+  getAllRedCircleNonlinear().forEach(point => {
+    hash[[point['x'], point['y']]] = true;
+  });
 
-  function getAllRedCircle() {
-    return circleDataNonLinear.filter(point => point['isRed'] == true)
+  if (Object.keys(hash).length == 10 && getAllRedCircle().length == 10) {
+    return true;
+  } else {
+    booLinear = true;
+    return false
   }
 }
 function drawLineNonlinear() {
@@ -1091,9 +1096,21 @@ function drawLineNonlinear() {
 }
 
 
-
+function btnShowCorrectAnswerNoninear(){
+  document.getElementById('nonlinearTaskEnd').style.display = 'block';
+  document.getElementById('nonlinearTask').style.display = 'none';
+  drawLineNonlinear();
 }
-
+function btnCheckNonlinear(){
+  if (checkSolutionNonlinear(correctArrayNonlinear)) {
+      btnShowCorrectAnswerNoninear();
+  }else {
+    document.getElementById('nonlinearText1').style.display = 'none';
+    document.getElementById('nonlinearText2').style.display = 'none';
+    document.getElementById('nonlinearErrorMessage').style.display = 'block';
+    document.getElementById('btnShowCorrectAnswerNoninear').style.display = 'block';
+  }
+}
 
 function btnShowCorrectAnswerLinear(){
   document.getElementById('linearTaskEnd').style.display = 'block';
@@ -1113,27 +1130,19 @@ function btnCheckLinear() {
     document.getElementById('btnShowCorrectAnswerLinear').style.display = 'block';
   }
 }
-
-function btnCheckNonlinear(){
-//TODO: quantisieren und arrays vergleichen
-  document.getElementById('nonlinearTaskEnd').style.display = 'block';
-  document.getElementById('nonlinearTask').style.display = 'none';
-}
-
-function showEvaluation(){
-  document.getElementById('evaluation').style.display='block';
-  document.getElementById('nonlinearTaskEnd').style.display = 'none';
-  document.getElementById('nonlinearTask').style.display = 'none';
-  document.getElementById('placeholderEvaluation').style.display = 'none';
-  document.getElementById('sidebarEvaluation').style.display = "block";
-  document.getElementById('sidebarEvaluation').style.color = "#ff3311";
+function btnContinueEvaluation(){
+  document.getElementById('nonlinearQuantisation').style.display = 'none';
+  document.getElementById("sidebarEvaluation").style.display = "block";
+  document.getElementById("placeholderEvaluation").style.display = "none";
+  document.getElementById("sidebarNonlinear").style.color = "#212529";
   document.getElementById("sidebarLinear").style.color = "#212529";
   document.getElementById("sidebarIntroduction").style.color = "#212529";
   document.getElementById("sidebarStoragefrequency").style.color = "#212529";
   document.getElementById("sidebarResolution").style.color = "#212529";
   document.getElementById("sidebarSamplingFrequency").style.color = "#212529";
-  document.getElementById("sidebarNonlinear").style.color = "#212529";
-  document.getElementById("nonlinearQuantisation").style.display = 'none';
+  document.getElementById("sidebarEvaluation").style.color = "#ff3311";
+  document.getElementById("resolution2").style.display = "none";
+  document.getElementById('resolution1').style.display = "none";
   document.getElementById('intro').style.display = "none";
   document.getElementById('linearQuantisation').style.display = 'none';
   document.getElementById('nonlinearErrorMessage').style.display = 'none';

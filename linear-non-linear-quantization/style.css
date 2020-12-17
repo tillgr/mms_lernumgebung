@@ -239,6 +239,9 @@ body{
 #linearErrorMessage{
   color: red;
 }
+#nonlinearErrorMessage{
+  color: red;
+}
 .linearTaskEnd{
     border: 2px solid #212529;
     border-radius: 5px;
@@ -272,6 +275,10 @@ body{
   margin-top: 20px;
   margin-left: 85px;
 }
+#btnShowCorrectAnswerNoninear{
+  margin-top: 20px;
+  margin-left: 85px;
+}
 #linearFormDiagram{
 
     margin-left: 470px;
@@ -280,6 +287,13 @@ body{
     height: 520px;
     font-size: 14px;
 
+}
+#nonlinearFormDiagram{
+  margin-left: 470px;
+  width: 410px;
+  position:absolute;
+  height: 520px;
+  font-size: 14px;
 }
 .nonlinearTask{
     margin-bottom: 1rem;
@@ -296,7 +310,17 @@ body{
   padding-right: 1rem;
   padding-bottom: 10px;
 }
+.nonlinearTable{
+  margin: 20px auto;
+  width: 435px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 10px;
+}
 .linearTable th{
+  border-bottom: 2px solid #212529;
+}
+.nonlinearTable th {
   border-bottom: 2px solid #212529;
 }
 .container{
