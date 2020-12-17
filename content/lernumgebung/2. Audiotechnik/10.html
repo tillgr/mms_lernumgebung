@@ -1,0 +1,437 @@
+---
+title: "2.10 Kompressionsverfahren"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<h2>1.10.1 Psychoakustische Effekte</h2>
+<p>Audio-Kompressionsverfahren basieren auf der Ausnutzung psychoakustischer Phänomene. Eine ausführliche Abhandlung
+    hierüber findet sich in<!--TODO: Fehlende Referenzen--> , eine Diskussion über Anwendungen und
+    Anwendbarkeit der Psychoakustik in der Audiosignalverarbeitung in<!--TODO: Fehlende Referenzen--> .</p>
+<p>Die wichtigsten Phänomene sind:<!--TODO: Fehlende Referenzen--></p>
+<ul>
+    <li><strong>Maskierungseffekt</strong>, der die Verdeckung eines bestimmten Zieltons durch einen Maskierungston oder
+        einfach
+        Maskierer bedeutet. Alltägliche Beispiele für den Maskierungseffekt stellen Unterhaltungen zweier oder mehrerer
+        Personen, gestört von lauten Nebengeräuschen, wie z.B. Verkehrslärm, dar. In diesen Fällen muss zur Fortsetzung
+        der Unterhaltung die Lautstärke kurzzeitig angehoben werden.
+    </li>
+    <li><strong>Absolute Hörschwelle</strong> oder Ruhehörschwelle der menschlichen Wahrnehmung. Sie drückt aus, wie
+        laut ein Ton in
+        Abhängigkeit seiner Frequenz sein muss, damit er gerade noch wahrgenommen wird. Er wird als Mittelwert über
+        einer Reihe von Versuchsergebnissen mit verschiedenen Versuchspersonen bestimmt. Daher kann es zu individuellen
+        Abweichungen kommen.
+    </li>
+</ul>
+
+<p><strong>Absolute Hörschwelle</strong></p>
+{{% image "Audiotechnik/10/1_6_1_ruhehoerschwelle.gif" "" "Abb. 2.10-0 Menschliche Ruhehörschwelle" %}}
+
+<p>Obenstehendes Diagramm zeigt den Schalldruckpegel unterhalb dessen vom Menschen nichts mehr wahrgenommen wird.
+    Die absolute Hörschwelle wird in Dezibel relativ zu einem Referenzschalldruckpegel von 2 x 10-5 Pascal
+    angegeben. Sie ist beim Menschen noch von einigen anderen Parametern abhängig, z.B.</p>
+<ul>
+    <li>steigt die Ruhehörschwelle insbesondere in hohen Frequenzbereichen mit wachsendem Alter deutlich an.
+    </li>
+    <li>mit Gehörschäden kann sie an den verschiedensten Stellen stark vom durchschnittlichen Wert abweichen.
+    </li>
+    <li>Training auf bestimmte Situationen und Testtöne kann dazu führen, dass bestimmte Töne gut und andere
+        nicht mehr wahrgenommen werden.
+    </li>
+    <li>ein zu starker Schalldruckpegel, z.B. beim Besuch eines lauten Konzerts, kann zur Folge haben, dass die
+        absolute Hörschwelle der Lautstärke angeglichen wird (Schutzmechanismus).
+    </li>
+</ul>
+
+<p><strong>Maskierung</strong></p>
+<p>Die folgende Abbildung zeigt qualitativ den Wirkungsbereich eines Maskierers, der in Zeit und Frequenz an der Stelle
+    des angegebenen Punktes lokalisiert ist. </p>
+
+{{% image "Audiotechnik/10/1_6_2_maskierbereiche.gif" "" "Abb. 2.10-1 Maskierbereiche" %}}
+
+<p>Die biologische Erklärung des Effektes der Maskierung ist: In Anwesenheit eines Maskierers werden bestimmte Stellen
+    der Basilarmembran im Innenohr in Schwingung versetzt. Diese Schwingungen werden durch induzierte Schwerbewegungen
+    der Haarfortsätze der Sinneszellen im Cortischen Organ schließlich in nervöse Reize umgewandelt.</p>
+
+{{% image "Audiotechnik/10/1_6_3_aufbau_der_schnecke_inneren_ohr.gif" "" "Abb. 2.10-2 Aufbau der Schnecke im menschlichen Ohr" %}}
+{{% image "Audiotechnik/10/1_6_4_basalmebrane.gif" "" "Abb. 2.10-3 Aufbau der Basalmembran" %}}
+
+<p>Ein in einer gewissen Zeit-Frequenz-Umgebung vorliegender Zielton wird dann überdeckt, wenn er zu wenig Energie
+    besitzt, um die Sinneszellen noch stärker zu erregen. Die Maskierungsbereiche können in 3 Klassen eingeteilt
+    werden:</p>
+<ul>
+    <li><strong>Rückwärtsmaskierung</strong> oder Premasking beschreibt, dass Stimuli, die zeitlich vor dem
+        Maskierungston präsentiert
+        werden, in gewissem Umfang von diesem verdeckt werden. Sie ist auf ca. 10-20 ms beschränkt.
+    </li>
+    <li><p><strong>Simultane Maskierung</strong> beschreibt die Verdeckung anderer Frequenzkomponenten durch den
+        Maskierungston während der
+        Maskierungston existiert. Die folgende Abbildung zeigt den vertikalen Schnitt durch die Abb. 2.10-1
+        Maskierbereiche. Charakteristisch ist der Verlauf der Maskierungsschwelle, die angibt, wie laut ein Ton einer
+        anderen Frequenz sein darf, um gerade noch maskiert zu werden.</p>
+
+        {{% image "Audiotechnik/10/1_6_5_verlauf_der_maskierungsschwelle.gif" "" "Abb. 2.10-4 Verlauf der Maskierungsschwelle" %}}
+    </li>
+    <li><strong>Vorwärtsmaskierung</strong> oder Postmasking beschreibt, dass Stimuli, die zeitlich nach dem
+        Maskierungston präsentiert
+        werden, in gewissem Umfang von diesem verdeckt werden. Der Effekt ist stärker ausgeprägt als die
+        Rückwärtsmaskierung und kann sich auf ca. 200 ms erstrecken.
+    </li>
+</ul>
+<p>Diese Bereiche sind nicht scharf abgegrenzt, sondern eher als Hauptrichtungen des in Abb. 2.10-2 Maskierbereiche
+    wiedergegebenen Maskierungsbereichs zu sehen. In dieser Abbildung fehlt der Verlauf der Maskierungsintensität. Er
+    ist qualitativ in Abb. 2.10-4 Verlauf der Maskierungsschwelle dargestellt. Die dargestellte Maskierungsschwelle gibt
+    den Effekt wieder, dass bei simultaner Maskierung Komponenten höherer Frequenzen als der Maskierungston stärker
+    überdeckt werden als niedrigere. Dieser Effekt ist jedoch auch stark abhängig von der absoluten Frequenz.</p>
+<p>Eine wichtige Rolle spielt zudem die Art des Maskierungstons. Unterschieden wird zwischen tonalen und nichttonalen
+    Maskierern. Die Begriffe tonal und nichttonal zielen dabei auf das ungefähre Aussehen des Spektrums bzw. der
+    Fouriertransformierten des jeweiligen Tons. Nichttonale oder rauschartige Komponenten weisen ein flaches Spektrum
+    auf, dagegen besitzen starke harmonische oder tonale Anteile ausgeprägte Maxima innerhalb des Spektrums. Da
+    nichttonale Maskierer simultan an einem bestimmten Punkt der Zeit-Frequenz-Ebene auftretende Töne besser überdecken
+    als tonale Maskierer, wird bei der Codierung i. Allg. die stark vergröbernde Annahme gemacht, dass nichttonale
+    Maskierer um einen bestimmten (festen) Pegel besser maskieren als tonale.</p>
+<p>Der psychoakustische Gruppierungseffekt besagt, dass die menschliche Wahrnehmung Töne benachbarter Frequenzen in
+    bestimmtem Umfang zusammenfasst. Dies bedeutet, dass Maskierer sich primär nur innerhalb bestimmter Frequenzgruppen,
+    der sog. kritischen Bänder, auswirken. Deshalb wird in Audiocodierern eine Signalanalyse gezielt bez. dieser
+    Frequenzgruppen durchgeführt. Abb. 2.10-4 zeigt die Grenzen eines kritischen Bandes. Die Breite der kritischen
+    Bänder ist frequenzabhängig und kann experimentell ermittelt werden. Bildet man durch Aneinanderreihung von Bändern
+    kritischer Bandbreite eine Einteilung der Frequenzachse, erhält man die Barkskala.</p>
+<!--TODO: Tabelle shortcode-->
+
+<p>Eine konservative Wahl der Maskierungsschwelle für ein kritisches Band stellt die in Abb. 2.10-4 eingezeichnete
+    minimale Maskierungsschwelle dar. Zudem sind in der Abb. der Signal-Rauschabstand, der
+    Signal-Maskierungsschwellenabstand (SMR, Signal-to-Mask Ratio) und der Maskierungsschwellen-Rauschabstand (NMR,
+    Noise-to-Mask Ratio) eingezeichnet.</p>
+
+<p><strong>Globale Maskierungsschwelle</strong></p>
+<p>In Musik- oder Sprachsignalen hat man es i. Allg. nie mit isolierten Maskierern zu tun. Psychoakustische Modelle
+    liefern insgesamt eine globale Maskierungsschwelle für einen bestimmten Signalblock. Da psychoakustische Phänomene
+    sich hauptsächlich auf die Frequenzbreite und nicht auf die absolute Position des Bandes beziehen, ist die
+    Unterteilung in feste kritische Bänder in gewisser Weise willkürlich. Es wird deshalb sowohl die Maskierungsschwelle
+    eines Maskierers für sein jeweiliges kritisches Band als auch dessen maskierende Wirkung auf die benachbarten Bänder
+    in folgenden Schritten berechnet (Spreading-Funktion):</p>
+<ul>
+    <li>Spektralanalyse des Signalblocks</li>
+    <li>Evtl. Einbeziehung von Informationen vorheriger Blöcke</li>
+    <li>Identifizierung möglicher Maskierer</li>
+    <li>Ihre Klassifizierung in tonale und nichttonale Maskierer</li>
+    <li>Aufteilung in relevante und nicht relevante Maskierer</li>
+    <li>Berechnung der individuellen Spreading- und Maskierungsfunktionen.</li>
+    <li>Kombination der individuellen Maskierungsfunktionen zur globalen Maskierungsschwelle.</li>
+    <li>Einbeziehung der Ruhehörschwelle in die Maskierungsschwelle. Dies ist besonders bei hohen Frequenzen
+        erforderlich.
+    </li>
+    <li>Berechnung des SMR aus der Maskierungsschwelle und der Signalenergie für eine geeignete Subbandaufteilung</li>
+</ul>
+
+<p>Die folgenden Verfahren nutzen die psychoakustische Kodierung:</p>
+<!--TODO: Tabelle shortcode-->
+
+<h2>1.10.2 MPEG-Audiokompression (Grundlagen für MPEG1 und MPEG2)</h2>
+<p>Die Moving Pictures Experts Group besteht seit 1988 und erarbeitet Kompressionsstandards für Video- und Audiodaten.
+    Die Grundzüge für MPEG1 und MPEG2 sind identisch. Wesentliche Unterschiede bestehen lediglich in den Kanalzahlen und
+    den Abtastraten. Sowohl MPEG1 als auch MPEG2 bestehen aus 3 verschiedenen Layern. Alle Layer verwenden PCM-Signale
+    und arbeiten nach gleichem (Perceptual Coding) Schema. Eine mehrphasige (polyphase) Filterbank zerlegt den
+    Datenstrom mit der Fouriertransformation (FFT) in 32 Freqeuenz-/Subbänder gleicher Breite (625 Hz). Dies stellt eine
+    Approximation an die 27 kritischen Bänder des menschlichen Ohres dar. Das Psychoakkustische Modell ist die
+    eigentliche Schlüsselkomponente des Enkodierers. Je Subband wird ermittelt, wie starkt die simultane und zeitliche
+    Maskierung ist. Die Bänder, die oberhalb dieser Maskierungsschwelle liegen, werden quantisiert und kodiert. Signale
+    unterhalb der Schwelle werden entfernt. </p>
+<ul>
+    <li><strong>Layer I Simultanverdeckung</strong><br/>Layer I beinhaltet das Aufsplitten des Audio-Signals in 32
+        Frequenzbänder. Wenn die Energie eines Bandes kleiner ist als der Maskierungs-Schwellwert eines Nachbar-Bandes,
+        wird dieses Band nicht kodiert. Anderenfalls werden die Koeffizienten quantisiert. Die Quantisierung wird so
+        gewählt, dass die durch sie verursachte Störung kleiner als der Maskierungsfaktor ist (1 Bit Quantisierung
+        entspricht 6 dB Störung). Die Maskierung steuert die Quantisierung. Layer I kann für Bitraten von 192 kbps pro
+        Audiokanal verwendet werden. Layer I wird bei Philips DCC eingesetzt.<br/><!--TODO: Formatierung-->
+        Beispiel: Simultanverdeckung:
+        <!--TODO: Tabelle shortcode-->
+        <br/>
+        <br/>
+        Level von 8. Band = 60 dB,<br/>
+        Maskierungs-Schwellwert für 7. Band = 12 dB,<br/>
+        für 9. Band = 15 dB<br/>
+        Level 7. Bandes = 10 dB ( < 12 dB ) => ignoriere;<br/>
+        Level 9. Bandes = 40 dB ( > 15 dB ) => kodiere<br/>
+        => Quantisierung so wählen, dass der Quantisierungsfehler kleiner als 2 Bits (=12 dB) bleibt<br/>
+        <!--TODO: Formatierung-->
+    </li>
+    <li><strong>Layer II Temporärverdeckung</strong><br/>Wie bei Layer I wird die Simultanverdeckung verwendet, um
+        Teilbänder in benachbarten Frames auszumaskieren. Es wird angenommen, dass ein Teilband seine Nachbarbänder im
+        vorhergehenden und nachfolgenden Frame ausmaskieren kann.<br> Zudem bietet Layer II eine zusätzliche Kodierung
+        der Bit-Allokation, der Skalierungsfaktoren und der Samples. Es ermöglicht Bitraten von 128 kbps pro Kanal und
+        wird eingesetzt bei CD-I und Video-CD.<!--TODO: Formatierung-->
+    </li>
+    <li><strong>Layer III differenzierte Nutzung psychoakustischer Eigenschaften</strong><br/>Die Kontrastwahrnehmung
+        des Gehörs reduziert sich mit der Frequenz des Signals. In Layer I und II wird der Frequenzbereich des
+        Eingangssignals gleichmäßig auf 32 Bänder verteilt. In Layer III werden die Frequenzen so aufgeteilt, dass alle
+        Bänder gleich viel zur Wahrnehmung beitragen. Layer III erhöht die Frequenzauflösung und Entropiekodierung der
+        quantisierten Werte. Diese Layer bietet Bitraten von 64 kbps pro Kanal.<br/>Es wird die Einheit "Bark" (benannt
+        nach Barkhausen) eingeführt: 1 Bark = Breite eines kritischen Bandes. Für Frequenzen unter 500 Hz gilt: 1 Bark ≈
+        Frequenz/100; für Frequenzen über 500 Hz: 1 Bark ≈ 9 + 4 log (Frequenz/100). Neben den Mechanismen aus den Layer
+        I und II erfolgt außerdem eine differerentielle Kodierung von Stereo-Signalen, d.h. Kanal 2 wird relativ zu
+        Kanal 1 kodiert. Schließlich führt Layer III eine Huffmann-Kodierung<!--TODO: Fehlende Referenzen--> ein. Der
+        Layer3 wird auch als MP3
+        bezeichnet ind ist als ISO-MPEG Audio Layer-3 (IS 11172-3 und IS 138-3) standardisiert. MP3 ist ein
+        Audio-Kodierverfahren zur Komprimierung von Sound-Dateien in CD-Qualität mit einem Faktor von 12 bei sehr
+        geringem Qualitätsverlust. Entwickelt wurde dieses Verfahren 1987 am Fraunhofer-Institut in Erlangen (IIS) im
+        Rahmen eines EUREKA-Projektes. Entgegen den vorausgegangenen, einfacheren Kompressionsverfahren MPEG Layer 2 und
+        Layer-1 war hier nicht die verfügbare Rechenleistung, sondern der erreichbare Kompressionsfaktor entscheidender
+        Entwicklungsschwerpunkt. Die Kompressionsrate lässt sich auf 1:10 bis 1:12 ohne merkliche Qualitätseinbußen
+        steigern. So kann beispielsweise der komprimierte Audiodatenstrom einer CD in Echtzeit über eine 128 kBit/s
+        schnelle ISDN-Leitung übertragen werden. Ursprünglich für den Einsatz bei Videokonferenzen und im
+        Digital-Fernsehen (DVB) vorgesehen, setzte es sich zur Übertragung von Livereportagen bei Radiosendern und
+        später im Internet durch.<br/><!--TODO: Formatierung-->
+        <strong>MP3-Kodierung: Spezifische Merkmale</strong><br/><!--TODO: Formatierung-->
+
+        {{% image "Audiotechnik/10/1_6_9b_prinzip-mp3-kodierun.gif" "" "Abb. 2.10-5 Prinzip der MP3-Kodierung" %}}
+
+        Die Hybridfilterbank besteht aus einer modifizierten Diskreten Cosinus-Tranformation (MDCT) und einer
+        Polyphasenfilterbank (wegen der Kompatibilität zu den Codecs der Layer-1 und -2). Beim Joint Stereo Coding wird
+        die Redundanz von Kanälen genutzt. Bei der Quantisierung wird ein System 2 aus zwei verschachtelten Schleifen
+        verwendet. Die eigentliche Quantisierung erfolgt mit einem Potenz-Quantisierer, der große Werte automatisch
+        weniger genau kodiert, bei gleichzeitiger Geräuschreduktion. Bei der Kodierung werden die quantifizierten Werte
+        Huffman-kodiert. Zusätzlich werden effiziente Tabellen verwendet. In der inneren Iterationsschleife können durch
+        Veränderung der Schwellwerte die Quantisierungsschritte erhöht werden, bis die erforderliche Bitrate klein genug
+        ist ("Rate-Schleife"). In der äußeren Iterationsschleife (Störgeräuschkontrolle / Verzerrung) werden zur
+        Beschränkung des Quantisierungsrauschens auf die Maskierungsgrenze Skalierungsfaktoren je Skalierungsfaktorband
+        angewandt.<br/><!--TODO: Formatierung-->
+        Bei Verringerung der Qualitätsansprüche können mit dem Layer-3 wesentlich höhere Kompressionsraten erreicht
+        werden, so dass MP3 sich gut für Übertragung im Internet eignet<!--TODO: Fehlende Referenzen--> .
+    </li><!--TODO: Formatierung-->
+</ul><!--TODO: Formatierung-->
+
+<h2>1.10.3 MPEG1-Audio</h2>
+<p>MPEG 1 wurde 1993 verabschidet (ISO/IEC 11172-3). Es beinhaltet Audio- und Video-Kompression und bietet eine
+    konstante Datenrate von 1,5 Mbit/s. Der Standard definiert das Format des Audio-Bitstroms und die Funktion des
+    Dekoders, nicht aber den Encoder.</p>
+
+<p><strong>Prinzip der Datenreduktion</strong></p>
+
+{{% image "Audiotechnik/10/1_6_6_prinzip_der_audiokomprimierung.gif" "" "Abb. 2.10-6 Prinzip der Audiokomprimierung" %}}
+
+<p>MPEG-1 Audio-Kompression</p>
+<p>Zur verlustbehafteten Kompression des Audio-Signals müssen alle Informationen, die von uns nicht wahrgenommen werden
+    können, aus diesem entfernt werden. Basis sind die Verdeckungs-Effekte. Um zu bestimmen, welche Informationen
+    verdeckt werden, wird das Spektrum des Signals betrachtet. Je 32 Abtastwerte werden mit Hilfe der 'Diskreten Kosinus
+    Transformation' (Spezialfall der Fouriertransformation) in den Frequenzbereich transformiert. Jeder Abtastwert
+    entspricht einem Frequenzband (Subband) von 625 Hz Breite, wodurch der (menschliche) Hörbereich von ca. 20 kHz
+    vollständig abgedeckt wird.</p>
+
+{{% image "Audiotechnik/10/1_6_7_verdeckungsfunktion.gif" "" "Abb. 2.10-7 Verdeckungsfunktion aus" %}}
+
+<p>Hiervon wird mit Hilfe des sog. psychoakustischen Modells die Verdeckungsfunktion der einzelnen Subbänder und unter
+    Berücksichtigung von Wechselwirkungen die resultierende Verdeckungsfunktion abgeleitet. Informationen, die unterhalb
+    dieser Kurve liegen, werden vom Gehör nicht wahrgenommen.</p>
+<p>Der erste Schritt der Reduktion besteht darin, alle Subbänder wegzulassen, deren Pegel unterhalb der
+    Verdeckungsfunktion liegen.</p>
+<ul>
+    <li>Beispiel: Im oberen Bereich von Sub-Band 8 liegt der o.g. 1 KHz Ton mit einer Lautstärke von 60dB. Der Coder
+        berechnet nun den 'masking effect' und stellt fest, dass der 'masking threshold' (Maskierungs Schwellenwert) für
+        das 8. Sub-Band 35dB unter diesem Ton liegt. Daraus resultiert eine benötigte SN-Ratio von 60dB-35dB = 25dB, was
+        einer Abtastwertgröße von 4 bit entspricht.
+    </li>
+    <li>Zusätzlich treten noch in allen neben dem Sub-Band 8 liegenden Bändern Maskierungseffekte auf, die mit dem
+        Abstand zum Ursprungsband abnehmen. Diese Beeinflussung der Bänder untereinander wird von den Coding-Routinen
+        ebenfalls berücksichtigt, was die Berechnungen komplex macht.
+    </li>
+</ul>
+
+<p>Eine weitere Reduktion basiert auf der Quantisierung: Jedes weggelassene Bit in der Auflösung ergibt 6 dB Rauschen.
+    Die Auflösung kann nun solange reduziert werden, wie das dadurch entstehende Quantisierungsrauschen verdeckt
+    wird.</p>
+<ul>
+    <li>Wenn ein Subband z.B. 30 dB verdeckt, könnten die unteren 5 Bits eingespart werden. Konkret werden sie auf Null
+        gesetzt und bei der Speicherung weggelassen, da sie keine Information enthalten (1101101011 → 1101100000 →
+        11011).
+    </li>
+</ul>
+
+<p>Von den 16 Bits bleiben in dem Beispiel 5 übrig. Um aus diesen das originale Datenwort zu rekonstruieren, ist ein
+    Skalierfaktor notwendig, der die Bits verschiebt (11011 → 1101100000). Da die Werte keine feste Stellenzahl mehr
+    haben, muss die aktuelle Wortlänge (im Beispiel 5) ebenfalls gespeichert werden = Bit Allocation. Um den durch
+    Scalefactor und Bit Allocation bedingten Overhead zu begrenzen, gelten diese für 12 Abtastwerte pro Subband.</p>
+<p>Der nächste vom Coder berücksichtigte Effekt ist das sog. Pre- & Postmasking. Findet in einem Soundsignal ein großer
+    Sprung in der Lautstärke statt (min. 30 dB), so tritt ein Premasking Effekt auf, der um 2 bis 5 ms maskiert, sowie
+    ein Postmasking Effekt, der bis zu 100 ms abdecken kann.</p>
+<p>Eine weitere Möglichkeit besteht im Weglassen der oberen Frequenz- bzw. Subbänder, was jedoch klangliche
+    Veränderungen zur Folge hat (dumpfer Klang). Für Sprachübertragung beispielsweise ist eine obere Grenzfrequenz von
+    ca. 3 kHz ausreichend (Telefon-Standard), so dass die ursprünglichen 32 Subbänder auf 5 reduziert werden.</p>
+<p> Der letzte Schritt ist die Entropie-Kodierung bzw. das sog. Huffman-Coding<!--TODO: Fehlende Referenzen--> . Es
+    ersetzt lange, häuftiger
+    vorkommende Datenketten durch kürzere und speichert diese Zuweisung nur einmal ab. Sie arbeitet verlustfrei und ist
+    auch die Basis für bekannte Kompressionsalgorithmen wie ZIP, LHA, RAR, usw.</p>
+<p>Der Kodierer hat folgende Struktur:<!--TODO: Fehlende Referenzen--></p>
+{{% image "Audiotechnik/10/1_6_8_schema_des_kodierers_fuer_mpeg1.gif" "" "Abb. 2.10-8 Schema des Kodierers für MPEG1" %}}
+<ul>
+    <li>Das Signal wird durch eine Filterbank in 32 Teilbänder aufgespalten, wobei nach Normierung der verschiedenen
+        Pegel in den Teilbändern mittels der Skalenfaktoren jedes Teilband einzeln mit einer dynamisch veränderlichen
+        Auflösung zwischen zwei und 15 Bit (von ursprünglich 16 Bit) quantisiert wird.
+    </li>
+    <li>Die dazu erforderliche dynamische Bitzuweisung für die Teilbänder erfolgt an Hand eines psychoakustischen
+        Modells im Kodierer. Die hierfür erforderliche, möglichst präzise Auflösung des Spektrums wird mittels einer
+        schnellen Fouriertransformation (FFT) periodisch aus dem unkodierten Signals gewonnen. Zusammen mit den bereits
+        errechneten Skalenfaktoren kann so die dynamische Bitzuweisung erfolgen. Abschließend werden alle angefallenen
+        Bits zusammen mit weiteren Steuerinformationen gemultiplext und rahmenweise ausgegeben. Der dabei in dem wenige
+        100 Bytes lange Rahmen enthaltene Header dient unter anderem zur Synchronisation auf den fortlaufenden
+        Datenstrom.
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<p>Auf diese Weise werden Kompressionraten von mindestens 6:1 erreicht, bei stärkerer Kompression (max. 22:1) macht sich
+    das Quantisierungsrauschen allmählich bemerkbar. Der Audiostrom wird in Frames, diese in 'Audio Access Units'
+    (kleinste mögliche Audiosequenz komprimierter Daten, 8.7 ms Spieldauer bei 44.1 KHz) und diese wiederum in Slots (1
+    bzw. 4 Byte) unterteilt. Die Bitrate ist geringer als bei CD-DA (ca. 1.4 MBit/s) und reicht für Stereo von 64 bis
+    448 KBit/s bei etwa CD-DA Qualität.</p>
+
+{{% image "Audiotechnik/10/1_6_9a_datenstromzerlegung.gif" "" "Abb. 2.10-9 Schema des Kodierers für MPEG1" %}}
+
+<p>MPEG1-Audio definiert drei Coder/Decoder, die als Layer I-III bezeichnet werden. Die Encoder sind hierarchisch
+    kompatibel, so dass der Decoder des Layer n in der Lage ist, Signale der Layer n und darunter zu dekodieren. Die
+    Komplexität der Coder und Decoder steigt mit der Ziffer der Layer.</p>
+
+<h2>1.10.4 MPEG2-Audio</h2>
+<p>MPEG-2-Audio ist ein digitales Mehrkanal-Tonverfahren (5 + 1) mit Kompression. Die Datenrate liegt zwischen 32 und
+    912 kbit/s; der Durchschnitt bei 384 kbit/s. Das Verfahren ist abwärtskompatibel zum 2-kanaligen
+    MPEG-1-Standard.</p>
+
+<p><strong>Audiokomponenten des MPEG-2 Standards:</strong></p>
+<ul>
+    <li>BCC (Backwards Compatible Coding) <!--TODO: Fehlende Referenzen-->und</li>
+    <li>ACC (Advanced Audio Coding)<!--TODO: Fehlende Referenzen--></li>
+</ul>
+
+<p><strong>BCC-Datenströme</strong></p>
+<p>sind wechselseitig kompatibel zu MPEG-1, d.h. Decoder des einen Standards können aus dem Datenstrom des anderen
+    Standards stets ein sinnvolles Signal reproduzieren. Es ist ein ähnliches Format wie MPEG-1 Layer 3 aber mit
+    3/2-Mehrkanal-Erweiterung (vorn 3, hinten 2 Kanäle). Es ist ebenfalls abwärtskompatibel für ein
+    2/0-Stereosignal.</p>
+
+<p><strong>AAC-Datenströme</strong></p>
+<p>Die Rückwärtskompatibilität stellte sich als hinderlich beim Erreichen niedriger Datenraten in der gewünschten
+    Qualität heraus und beim gleichzeitigen Ausnutzen von Maskierungseffekten mehrerer Kanäle sind teilweise Artefakte
+    hörbar (sog. unmasking effects). So wurde 1997 der nicht mehr zu MPEG-1 kompatible AAC-Standard entwickelt. Die
+    Kompressionsraten lassen sich bei Mehrkanalton nicht mehr so einfach mit den Standardkompressionsraten vergleichen,
+    da durch Ausnutzung von Redundanzen innerhalb der Bänder extreme Einsparungen verzeichnet werden können.
+    Umfangreiche Hörtests haben gezeigt, dass der AAC bei der Codierung von 5 Kanälen voller Bandbreite bei Bitraten von
+    bis zu 256 kbps eine Qualität liefert, die i.w. nicht vom Original zu unterscheiden ist. AAC arbeitet mit einer
+    adaptiven Blocktransformation, benutzt eine bessere Filterbank und Zeitauflösung (temporal noise shaping). Es
+    verwendet zusätzliche Bitraten bis zu 16 kbit/s pro Kanal.<br/>
+    Der MPEG Audio Standard ermöglicht folgende Kompressionsraten bei annähernd CD-DA Qualität
+</p><!--TODO: Formatierung-->
+<!--TODO: Tabelle shortcode-->
+
+<p><strong>MPEG 2 Audio Bitstream Format</strong></p>
+<p>Ein MPEG-Audio-Bitstream ist in kleinere Stücke (Frames) unterteilt. Frames sind unabhängig, haben einen Kopf
+    (header), an den sich die Audio-Informatinen anschließen, aber keinen Dateikopf.</p>
+
+{{% image "Audiotechnik/10/1_6_9a_mpeg-2-audio-frames.gif" "" "Abb. 2.10-10 Aufbau eines MPEG-2-Audio-Frames" %}}
+
+<p>CRC = Cyclic Redundancy Check</p>
+<p>BAL = Bit Allocation = 4 bits pro Subband = Zahl der Bits für Kodierung des Subb.</p>
+<p>SCF = Scale factors = 6 bits pro Subband = Verhältnis des max. Wertes zur Bitzahl</p>
+<p>Ancillary data = untergeordnete / Mehrkanal-Daten</p>
+<p>MC = Mehrkanaldaten</p>
+<p>Layer 1 = per Frame 384 PCM samples zu 48 kHz =>je Frame 8 ms Audio</p>
+
+<p><strong>MPEG2-Audio Kodierer für MPEG Layer 2</strong> haben folgende Struktur und Funktionsweise:</p>
+<p>Die Steigerung der Kompression ohne merkliche Qualitätseinbußen gegenüber Layer-1 wird durch bessere Ausnutzung der
+    Eigenschaften des psychoakustischen Modells erreicht. Hierzu werde Blöcke von 36 statt 12 PCM-Abtastwerten innerhalb
+    eines Zyklus betrachtet. Dies hat zur Folge, dass zeitliche Verdeckungseffekte innerhalb eines Blocks berücksichtigt
+    werden, so dass es notwendig wird, je nach Signal mehrere zeitlich aufeinanderfolgende Skalierungsfaktoren innerhalb
+    eines Blocks zu verwenden. Hierzu erfolgt bei Layer-2 eine dynamische Zuweisung dieser Faktoren zu den verschiedenen
+    Teilbändern. Zudem arbeitet die FFT zur Speisung des psychoakustischen Modells nun mit der doppelten Auflösung, um
+    eine genauere Abschätzung der notwendigen Quantisierungsstufen zu ermitteln.</p>
+
+{{% image "Audiotechnik/10/1_6_9_schema_des_kodierers_fuer_mpeg2_layer2.gif" "" "Abb. 2.10-11 Schema des Kodierers für MPEG2 Layer2" %}}
+
+<p>Hochfrequente Signalanteile werden gezielt mit weniger Quantisierungsabstufungen behandelt, da hier die Signalenergie
+    sehr viel geringer ist - womit sich in Kombination mit dem Packen der kodierten Bits die Datenrate weiter reduzieren
+    lässt.</p>
+
+<p><strong>Kodierer für MPEG2 Layer-3</strong> haben dagegen folgende Struktur:</p>
+
+{{% image "Audiotechnik/10/1_6_10_schema_des_kodierers_fuer_mpeg2_layer3.gif" "" "Abb. 2.10-12 Schema des Kodierers für MPEG2 Layer3" %}}
+
+<p>Beim MPEG2 Layer 3 erfolgt eine weitere Verfeinerung der Kompression, indem nun nicht mehr in 32, sondern 576 nicht
+    gleichbreite Teilbänder aufgespalten wird. Anschließend wird in Anlehnung an das menschliche Gehör nicht mehr linear
+    quantisiert, sondern nach entsprechenden Kennlinien. <br/> Schließlich sorgt eine Huffman-Kodierung für eine
+    Unterdrückung redundanter Bits im Datenstrom.</p><!--TODO: Formatierung-->
+
+<h3 class="h4">Weiterführende Links</h3><!--TODO: Formatierung-->
+
+<h2>1.10.5 MPEG-4</h2>
+<p>Ziel von MPEG-4 ist die Darstellung elementarer Medien (engl. Media Objects), deren Zusammenfassung zu sog.
+    audiovisuellen Szenen und einer möglichen benutzerseitigen Interaktion hiermit.</p>
+<p>Elementare Medien können hierbei beliebige visuelle, auditive oder audiovisuelle Daten sein. Diese können wiederum
+    entweder natürlich oder synthetisch erzeugt worden sein. Insgesamt soll hiermit eine einheitliche Darstellungsweise
+    für audiovisuelle Komponenten oder Szenarien in der Multimedialandschaft geschaffen werden.</p>
+<p>Ein typisches Beispiel ist ein Moderator in einem Raum mit verschiedenen Einrichtungsgegenständen vor einer Leinwand.
+    Die einzeln zu verarbeitenden Objekte sind: der Moderator, der Hintergrund, die Sprache, die Einrichtungsgegenstände
+    und die Videosequenzen auf der Leinwand.</p>
+<p>MPEG-4 stellt eine Menge von Technologien bereit, um die Anforderungen von Autoren, Providern und Endnutzern zu
+    erfüllen.</p>
+<ul>
+    <li>Für Autoren werden Funktionalitäten bereitgestellt, die eine bessere Wiederverwendbarkeit gestatten. Es gibt
+        eine größere Flexibilität bei der Verwendung unterschiedlicher Technologien wie digitales Fernsehen, animierte
+        Grafiken und WWW. Weiterhin ist es möglich, Urheberrechte besser zu verwalten und zu wahren.
+    </li>
+    <li>Für Netzwerk Service Provider stellt MPEG-4 Transportmechanismen mit generischen Dienstgüte-Deskriptoren für
+        verschiedene Medien bereit.
+    </li>
+    <li>Für Endnutzer bietet MPEG-4 Möglichkeiten der Interaktion mit den Inhalten in dem Rahmen, den der Autor
+        vorgegeben hat.
+    </li>
+</ul>
+
+<p>Da eine komplexitäts- oder qualitätsbasierte Skalierung wünschenswert ist, kapselt MPEG-4 verschiedene bekannte und
+    einige noch zu nominierende Standards.</p>
+<p>Bei Audio soll so zwischen der Verwendung von (natürlich erzeugten) Signalen mit Bitraten von 2 bis über 64 kbps
+    ausgewählt werden können. Darüber hinaus ist für sehr niedrige Bitraten eine Schnittstelle für synthetische
+    Audiosignale vorgesehen.</p>
+<p>Bei natürlich erzeugten Audiosignale wird der Bitratenbereich von den in folgender Abb. dargestellten drei
+    Codecfamilien abgedeckt:</p>
+<ul>
+    <li>parametrische Coder</li>
+    <li>CELP (Code Excited Linear Prediction) Coder und</li>
+    <li>T/F- (Time/Frequency) Codecs.</li>
+</ul>
+
+{{% image "Audiotechnik/10/1_6_11_mpeg4_codec_familien.gif" "" "Abb. 2.10-13 MPEG4-Codec-Familien" %}}
+
+<p><strong>Parametrische Coder</strong></p>
+<p>Die HVXC Decoder (harmonic vector excitation coding) erlauben das Dekodieren von Sprachsignalen mit 2 Kbps bis 6
+    Kbps. Die individuellen Line Decoder sind für das Dekodieren von Signalen, die keine Sprache repräsentieren, wie
+    z.B. Musik, mit Bitraten von 4 Kbps und höher. Beide Arten von Dekodern gestatten die Veränderung der
+    Geschwindigkeit und Tonhöhe während des Dekodierens. Sie können kombiniert werden, um eine größere Anzahl von
+    Signalen und Bitraten abzudecken.</p>
+
+<p><strong>CELP Codierung</strong></p>
+<p>CELP Codierer bieten die nächst höhere Stufe von Bitraten im Vergleich mit parametrischen Codierern. Sie gestatten
+    Bitraten von 6 bis 24 Kbps. Gegenüber den parametrischen Codieren bieten sie folgende Vorteile:</p>
+<ul>
+    <li>geringere Verzögerung (15-40 ms algorithmische Verzögerung im Vergleich zu 90 ms bei den parametrischen
+        Codieren)
+    </li>
+    <li>höhere Leistung bei höheren Bitraten.</li>
+</ul>
+
+<p>Das Besondere der CELP-Codierung in MPEG-4 ist die Skalierbarkeit der Audio-Bandbreite, der Bitrate und der
+    Verzögerung.</p>
+
+<p><strong>T/F-Coder</strong></p>
+<p>Das Eingangssignal dieses Codierschemas wird zunächst in seine spektralen Komponenten transformiert. Die Bitrate
+    reicht von 16 Kbps für 7 kHz Audio bis zu mehr als 64 Kbps pro Audio-Kanal für CD-Qualität. Es sind die von MPEG-2
+    bekannten Transformationscodierverfahren MPEG-AAC und TwinVQ vorgesehen.</p>
+
+<p><strong>Synthetischen Audiokomponenten</strong></p>
+<p>bestehen neben der Text-zu-Sprachsynthese und der Grundfunktionalität einer Wavetable-Synthese im Stile von MIDI
+    <!--TODO: Fehlende Referenzen--> aus einem Structured Audio-Teil.</p>
+<p>Hier wird es ermöglicht, mit einer standardisierten Sprache (der Structured Audio Orchestral Language, SAOL)
+    Algorithmen zur Erzeugung beliebiger synthetischer Musiksignale anzugeben. Ein MPEG-4-fähiges Wiedergabegerät wird
+    somit "Noten"-Befehle, die in einer 'Structured Audio Score Language' (SASL) formuliert werden, zu Audiosignalen
+    verarbeiten können. Im grundlegenden Unterschied zu MIDI ist hierdurch das erzeugte digitale Audiosignal an jedem
+    MPEG-4 Decoder eindeutig festgelegt und nicht individuellen Synthesevorgängen unterworfen.Verfahren für das
+    'Structured Audio Coding' sind Gegenstand aktueller Forschung.</p>
+<p>Anders als bei MPEG-1 und 2 standardisiert MPEG-4 keine (Codier- oder) Decodiertechniken.</p>
+<p>Mehr Informationen zu MPEG-4 im Kapitel MPEG<!--TODO: Fehlende Referenzen--></p>

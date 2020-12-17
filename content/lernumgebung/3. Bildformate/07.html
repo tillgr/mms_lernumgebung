@@ -1,0 +1,387 @@
+---
+title: "3.7 Bilddateiformate"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<h2>3.7.1 TIFF: Tag Image File Format</h2>
+<p>TIFF wurde von der Firma Aldus in Zusammenarbeit mit anderen Herstellern als Dateiformat i.w. für Desktop Publishing
+    Anwendungen entwickelt. Ziel war ein Standard zur Digitalisierung, Bearbeitung und zum Austausch von Bild-Daten
+    zwischen den verschiedensten Anwendungen. TIFF wurde für verschiedene Arten von Bildern wie Graustufen- und
+    Farbbilder mit verschiedenen Auflösungen entwickelt. Es ist jedoch auch möglich, mehrere Versionen, z.B.
+    verschiedene Auflösungen des selben Bildes in einer Datei abzulegen. Die Struktur ist offen für zukünftige
+    Erweiterungen. Anwendungen ignorieren ihnen unbekannte Kennungen.</p>
+<p>TIFF besitzt keine feste Dateiorganisation, wie z.B. das PCX-Format. Attribute werden über Kennungen in der Image
+    File Directory (IFD) beschrieben. Sie beinhalten Name und Größe der Information sowie deren Wert oder einen Zeiger
+    auf die Information. Die Anzahl der Kennungen ist nicht begrenzt. Eine Datei kann mehrere durch Zeiger verkettete
+    IFDs enthalten, die dann jeweils eine andere Version des Bildes, z.B. unterschiedlicher Auflösung, beschreiben. Die
+    Anzahl Bits pro Pixel und die Belegung der Bits definieren den kodierten Farbwert.</p>
+
+{{% image "Bildformate/7/2_6_1_tiff-dateiformat.gif" "" "Abb. 3.7-0 TIFF-Dateiformat" %}}
+
+<p>Beispiel:<br/>
+    1 bit/Pixel = ein Pixel kann schwarz oder weiß sein;<br/>
+    24 bit/Pixel = Pixel nimmt Farbwert aus 16,7 Mill. Farbtönen an.
+</p><!--TODO: Formatierung-->
+<p>Optional können TIFF Bilder auch komprimiert gespeichert werden mit Pack-Bit-Kodierung, FAX-Komprimierung oder
+    LZW-Komprimierung.</p>
+<p>Header: erste 8 Bytes der Datei =<br/>
+    2 Byte: Order-Kennung: Intel, Motorola<br/>
+    2 Byte: Versions-Nr.<br/>
+    4 Byte: Pointer auf ersten IFD
+</p><!--TODO: Formatierung-->
+<p>IFD = Image File Directory Block</p><!--TODO: Formatierung-->
+<p> Die Beschreibungsdaten der Bildattribute können sich an beliebiger Stelle innerhalb der TIFF-Datei befinden, der IFD
+    ermöglicht den Zugriff auf diese Daten. Mehrere IFDs sind über Zeiger verkettet.</p><!--TODO: Formatierung-->
+<!--TODO: Tabelle shortcode-->
+
+<p>Tag = Struktur zur Aufnahme von Informationen über Bilddaten Ein Tag ist 12 Bytes lang und enthält die
+    bildbeschreibenden Informationen wie z.B. Bildabmessung oder Pixelauflösung.</p>
+<!--TODO: Tabelle shortcode-->
+
+<p><strong>Tag-Typen:</strong></p>
+<p>Innerhalb eines IFD werden Tags in aufsteigender Nummernfolge abgelegt. Neben öffentlich dokumentierten (public) Tags
+    kann jeder Hersteller auch eigene Tag-Typen (private) benutzen (Typ-Wert von 8000h oder größer). Beispiele
+    öffentlicher Tags sind:</p>
+<ul>
+    <li>Image Organisation Tags: z.B.
+        <p>ImageWidth, ImageLength, XResolution, YResolution, Orientation.</p>
+    </li>
+    <li>Image Pointer Tags: z.B.
+        <p>StripOffset, StripByteCounter, RowsPerStrip.</p>
+    </li>
+    <li>Pixel Description Tags: z.B.
+        <p>SamplesPerPixel, BitsPerSample, CellWidth, CellLength.</p>
+    </li>
+    <li>Data Compression Tags: Compression, Group3Options.</li>
+    <li>Document & Scanner Description Tags: z.B.
+        <p>DocumentName, PageName, XPosition, YPosition, ScannerModel.</p>
+    </li>
+    <li>Storage Management Tags: z.B. FreeOffsets, FreeByteCounter.</li>
+</ul>
+
+<p>Zu den Daten werden gespeichert:</p>
+<ul>
+    <li>ImageWidth</li>
+    <li>X-Resolution</li>
+    <li>Y-Resolution</li>
+    <li>Orientation</li>
+    <li>BitPerSample</li>
+</ul>
+
+<p><strong>Strips:</strong></p>
+<p>Große Images können in 'Streifen' gespeichert werden, um so Hauptspeicherbeschränkungen (z.B. 640K) zu umgehen.</p>
+
+<h2>3.7.2 GIF: Graphics Interchange Format</h2>
+<p>GIF wurde 1987 von der Firma CompuServe entwickelt. Es ist hardwareunabhängig und ist für den Austausch von
+    Grafikdaten gedacht.</p>
+<p>GIF87a erlaubt folgende Möglichkeiten:</p>
+<ul>
+    <li>LZW komprimierte Bilder, erlauben eine schnelle Bildwiedergabe.</li>
+    <li>Mehrere Bilder pro Datei, Auflösung bis zu 16000 x 16000 Pixel mit bis zu 256 aus 16 Mio. möglichen Farben.</li>
+    <li>Positionieren der Bilder in einem logischen Bildschirmbereich. GIF-Bilder können beliebige Formen haben. Zwar
+        bleibt das eigentliche Bild rechteckig, beliebige Teile lassen sich jedoch durch 'transparente Farbe' unsichtbar
+        machen.
+    </li>
+    <li>Interlacing (Modus der Bildwiedergabe, bei dem immer nur die Zeilen eines Halbbildes (also nur jede zweite Zeile
+        des Gesamtbildes) geschrieben bzw. abgetastet werden. Die Zeilen des darauffolgenden Halbbildes werden dann in
+        die verbleibenden Lücken des ersten Halbbildes geschrieben.)
+    </li>
+    <li>Transparente Farbe einsetzbar, aber ohne Umwege können nur harte Übergänge (transparent - nicht transparent)
+        erzeugt werden.
+    </li>
+</ul>
+
+<p>Das GIF Bildformat benutzt den LZW (LZ78) Kompressionsalgorithmus, den es in den Versionen LZ77 und LZ78 gibt. LZW
+    steht für Lempel, Ziv und Welch, den Entwicklern der Algorithmen. LZ78 ist durch ein Patent von Unisys Corp
+    geschützt.</p>
+<ul>
+    <li>Kommerzielle Anbieter, müssen den Algorithmus lizenzieren, Endbenutzer, Online-Dienste und Organisationen, die
+        keinen Gewinn erzielen, nicht.
+    </li>
+    <li>Lizenzgebühr: für Internetsoftware 0,45% des Verkaufspreises, mindestens 0,15 US$</li>
+</ul>
+
+<p>Um die Gebühr zu umgehen, wurde von der 'Portable Network Graphics Group' (PNG) ein alternatives Format entwickelt.
+    PNG unterstützt keine Animationen, hierzu wurde das MNG-Format (Multiple-image Network Graphics) entwickelt.</p>
+<p>Die Stärken von GIF liegen bei geringer Anzahl von Farben, großen einfarbigen Flächen, vertikal abgestuften
+    Farbverläufen.</p>
+
+{{% image "Bildformate/7/2_6_2_transparente_farbe.gif" "" "Abb. 3.7-1 Transparente Farben" %}}
+
+<p>Eine Farbe des Bildes kann als 'Hintergrundfarbe' definiert werden. Diese (Cyan im linken Bild) wird bei der
+    Wiedergabe durch die Farbe des Hintergrundes ersetzt.</p>
+<p>Aktuelles Bildformat ist GIF89a, es basiert auf GIF87a und unterstützt zusätzlich:</p>
+<ul>
+    <li>warten auf Benutzereingaben,</li>
+    <li>Transparenz einer Farbe,</li>
+    <li>nicht sichtbare Kommentarzeilen,</li>
+    <li>Angabe einer Zeitverzögerung bis zur Anzeige des nächsten Frames (in 1/100stel Sekunden),</li>
+    <li>Anzeige von Textzeilen,</li>
+    <li>variables Entfernen von Bildern nach der Anzeige.</li>
+</ul>
+
+<p>Animierte GIF Bilder entstehen durch Anwendung der GIF89a Spezifikation, d.h. das Speichern mehrerer Einzelbilder
+    unter Angabe einer Verzögerungszeit, mit welcher diese dann angezeigt werden.</p>
+<p>Interlaced GIF: Während des Ladens wird ein Bild zunächst in einer Grobansicht dargestellt, die sich dann immer mehr
+    verfeinert.</p>
+<p>GIF89a Dateien bestehen aus den Komponenten: Dateikopf, logischer Rahmenbeschreibungsblock, optionaler LOOP Block,
+    Sequenz von Grafiken, GIF Trailer</p>
+<!--TODO: Tabelle shortcode-->
+
+<ul>
+    <li><strong>Logical Screen Descriptor Block:</strong>
+        <p>Der LSD enthält die Daten des logischen Bildschirms, z.B. den Darstellungsbereich des Ausgabegerätes. Die
+            Angaben beziehen sich nicht auf absolute Koordinaten des Ausgabegerätes, sondern z.B. auf
+            Fensterkoordinaten.</p></li>
+    <li><strong>Global Color Map Block:</strong>
+        <p>Der GCM-Block dient der genauen Farbwiedergabe und wird für alle Bilder benutzt, die keine Local Color Map
+            verwenden. Die hier gespeicherte Farbtabelle enthält 2<sup>Anzahl Bit pro Pixel</sup> Einträge. Jeder
+            Eintrag besteht aus 3 Bytes, mit den jeweiligen Intensitäten der drei Grundfarben Rot, Grün und Blau. Die
+            Farbtabelle enthält somit 256 von 16 Millionen möglichen Farbwerten.</p></li>
+    <li><strong>Extension Block: </strong>
+        <p> Der Extension Block enthält Informationen über das bilderzeugende Gerät, die benutzte Software, Daten zum
+            Bildaufbau, etc.</p></li>
+    <li><strong>Image Descriptor Block (IDB):</strong>
+        <p>Jedes in der GIF-Datei abgespeicherte Bild besteht aus einem IDB, einer optionalen Local Color Table und den
+            eigentlichen Bild-Daten. Der IDB enthält Informationen z.B. zu den Bildabmessungen und Bildkoordinaten.</p>
+    </li>
+</ul>
+
+<h2>3.7.3 PNG: Portable Network Graphics</h2>
+<p>PNG<!--TODO:Fehlende Referenzen--> wurde 1995 entwickelt, stellt i.w. die Antwort auf die Lizenzprobleme mit GIF
+    dar, versucht bekannte GIF-Schwächen zu beseitigen und dient der verlustlosen Speicherung von Einzelbildern.</p>
+<p>Das PNG-Format kann leicht erweitert werden, ohne dabei die Austauschfähigkeit zu verlieren. Die wesentlichen
+    Eigenschaften insbesondere im Vergleich zu GIF sind:</p>
+<ul>
+    <li>GIF-Eigenschaften, die auch in PNG enthalten sind:
+        <ul>
+            <li>Bilder mit Farbindizes bis zu 256 Farben.</li>
+            <li>Serialisierbarkeit (streamability): Dateien können seriell gelesen und geschrieben werden.</li>
+            <li>Inkrementelles Anzeigen: Eine entsprechend vorbereitete Datei kann während der Übertragung dargestellt
+                werden, so dass man sehr schnell das Bild in grober Auflösung hat, welches dann schrittweise verfeinert
+                wird.
+            </li>
+            <li>Transparenz: Teile des Bildes können als transparent markiert werden, um z.B. ein nicht-rechteckiges
+                Bild zu erzeugen.
+            </li>
+            <li>Zusatzinformation: Textuelle Kommentare und andere Daten können in der Bilddatei gespeichert werden.
+            </li>
+            <li>Unabhängig von Hardware und Betriebssystem.</li>
+            <li>Effektive, verlustfreie Kompression.</li>
+        </ul>
+    </li>
+    <li>Eigenschaften von PNG, die in GIF nicht enthalten sind:
+        <ul>
+            <li>Echtfarbenbilder mit bis zu 48 Bit pro Bildpunkt.</li>
+            <li>Graustufenbilder mit bis zu 16 Bit pro Bildpunkt.</li>
+            <li>Kompletter Alpha-Kanal, d.h. allgemeine Transparenz-Maske (damit ist auch abgestufte Transparenz
+                möglich).
+            </li>
+            <li>Gamma-Information wird mitgespeichert, damit läßt sich die Helligkeit und der Kontrast so anpassen, dass
+                das Bild auf verschiedenen Systemen in gleicher Weise angezeigt wird.
+            </li>
+            <li>Zuverlässiges Erkennen beschädigter Dateien.</li>
+            <li>Arbeitet ebenfalls mit verlustfreier Kompression, die jedoch effizienter als bei GIF und lizenzfrei
+                ist.
+            </li>
+            <li>Progressive Bildanzeige: GIF verfeinert ein Bild Zeile für Zeile, PNG zeigt dagegen ein Bild in Blöcken
+                an, die abwechselnd entlang der Reihen und Zeilen verfeinert werden (Adam7-Verfahren).
+            </li>
+        </ul>
+    </li>
+</ul>
+<!-- TODO: transform to table shortcode? -->
+<div style="overflow-x: scroll; width: 100%;">
+  <table class="table table-bordered" aria-hidden="true">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th>PNG 24 Bit</th>
+        <th>PNG 8 Bit</th>
+        <th>GIF</th>
+        <th>JPEG</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background-color: #000">
+        <td class="text-light">Schwarzer Hintergrund</td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse_png24_schwarz.jpg" alt=""></td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse_8.png" alt=""></td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse.gif" alt=""></td>
+        <td class="p-0" style="background-color:#b1c7e3"><img src="../../../images/Bildformate/7/ellipse.jpg" alt=""></td>
+      </tr>
+      <tr>
+        <td>Weißer Hintergrund</td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse_png24_weiss.jpg" alt=""></td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse_8.png" alt=""></td>
+        <td class="p-0"><img src="../../../images/Bildformate/7/ellipse.gif" alt=""></td>
+        <td class="p-0" style="background-color:#b1c7e3"><img src="../../../images/Bildformate/7/ellipse.jpg" alt=""></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="small">Abb. 3.6.3 - Demonstration der Transparenzeigenschaften verschiedener Bildformate</p>
+
+<p>Erläuterung zu Abb. 3.6.3:</p>
+<p><strong>PNG 24</strong> bietet sehr gute Transparenzeigenschaften. Während GIF nur eine Farbe transparent darstellen kann, erlaubt
+    PNG 24 8-Bit-Alpha-Kanäle, also z.B. auch Halbtransparenz und somit weiche Kanten auf jedem Hintergrund. Anmerkung:
+    In Abb. 3.6.3 sind die Transparenzeigenschaften von PNG 24 mit JPEG-Dateien simuliert, da viele Browser und
+    Bildbetrachter das Format leider nicht korrekt darstellen.</p>
+<p><strong>PNG 8 und GIF</strong> können nur eine Farbe transparent darstellen. So muss bereits bei Erstellung des
+    Bildes berücksichtigt werden, auf welchem Hintergrund das Bild später dargestellt werden soll, um weiche Kanten zu
+    erhalten und "Kranzeffekte" zu vermeiden. Die oben dargestellten GIF und PNG 8 Bilder sind für schwarzen Hintergrund
+    ausgelegt, so dass auf weissem Hintergrund ein unschöner Rand entsteht. </p>
+<p>Das <strong>JPEG-Format</strong> kennt keine Transparenz. Es muss immer ein Hintergrund definiert werden.</p>
+
+{{% image "Bildformate/7/ellipse_maske.gif" "" "Abb. 3.6.3.a - Transparenzmaske, die den Bildern in Abb. 3.6.3 zugrunde liegt, wobei die schwarze Fläche als transparent definiert ist." %}}
+
+<p>Abb. 3.6.3 zeigt die Wirkung des Alphakanals bei Verwendung einer Maske bei den verschiedenen Bildformaten. In der
+    oberen Spalte ist der Tabellenhintergrund schwarz, in der unteren weiss gewählt. Die Hintergrundfarbe der Bilder
+    wurde wenn möglich durch die Transparenzmaske in Abb. 3.6.3.a definiert.</p>
+
+<p><strong>Aufbau einer PNG-Datei:</strong></p>
+<p>Jede PNG-Datei besteht aus einer Signatur und einer Folge beliebig vieler Blöcke, sogenannter Chunks. Die Signatur
+    dient der Identifizierung einer PNG-Datei, während in den Chunks die Bildinformationen gespeichert werden. Jeder
+    Chunk enthält eine spezielle Art von Information, z.B. die Bildpunkte, textuelle Kommentare oder Farbtabellen.</p>
+<!--TODO: Tabelle shortcode-->
+
+<p><strong>Signatur:</strong></p>
+<ul>
+    <li>Die ersten 8 Byte identifizieren eine PNG-Datei und dienen gleichzeitig dazu, Übertragungsfehler zu entdecken.
+    </li>
+    <li>Byte 1 sollte ein nicht-ASCII Zeichen sein, damit reine Text-Dateien nicht fälschlicherweise als PNG-Datei
+        identifiziert werden.
+    </li>
+    <li>Byte 2 bis 4 benennen das Format.</li>
+    <li>Byte 5 und 6 bestehen aus einer CR-LF (carriage return - line feed) Kombination, die z.B. unter MS-DOS das Ende
+        einer Textzeile kennzeichnet.
+    </li>
+    <li>Byte 7 besteht aus dem Zeichen Control-Z, Byte 8 aus LF und hat i.w. die gleiche Aufgabe wie Byte 5 und 6.</li>
+</ul>
+
+<p><strong>Chunks:</strong></p>
+<ul>
+    <li> Enthalten alle in einer PNG-Datei gespeicherten Informationen. Unterschiedliche Informationen werden in
+        verschiedenen Chunks gespeichert. Jeder Chunk besteht aus vier Komponenten:
+        <!--TODO: Tabelle shortcode-->
+    </li>
+    <li><strong>Typ: </strong>
+        <p>4 Byte, legt fest, wie die Daten im Chunk zu interpretieren sind.</p>
+        <ul>
+            <li><em>Chunk-Name</em>
+                <p>Unterliegt Regeln, die es einem Programm erlauben, auch unbekannte Chunks zu handhaben</p>
+            </li>
+            <li><em>Verzichtbarkeits Bit (ancillary bit):</em>
+                <p>Ist dieses Bit gesetzt, so handelt es sich um einen Zusatzchunk, andernfalls um einen unverzichtbaren
+                    Chunk. Letztere enthalten Informationen, die zur korrekten Darstellung eines Bildes notwendig
+                    sind</p>
+            </li>
+            <li><em>Privat Bit (private bit):</em>
+                <p>Anwendungen, die eine PNG-Datei um eigene Chunks erweitern, müssen dieses Bit setzen. Dadurch wird
+                    gewährleistet, dass es zu keinen Namenskonflikten zwischen offiziellen und privaten Chunks
+                    kommt.</p>
+            </li>
+            <li><em>Kopier Bit (safe-to-copy bit):</em>
+                <p>Regelt, ob unbekannte Chunks bei Modifikation des Bildes kopiert werden dürfen oder nicht.</p>
+            </li>
+        </ul>
+    </li>
+    <li><strong>Daten:</strong>
+        <p>Hier stehen die eigentlichen Daten. Wie die Daten zu interpretieren sind, hängt vom Typ des Chunks ab.</p>
+    </li>
+    <li><strong>CRC</strong> (Cyclic Redundancy Check):
+        <p>Am Ende eines Chunks ist eine 4 Byte CRC-Prüfsumme gespeichert, die nach den standardisierten CRC-Methoden
+            berechnet wird.</p>
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<p><strong>Zusatzchunks:</strong></p>
+<ul>
+    <li>Sie enthalten weitere Informationen, die zur eigentlichen Darstellung des Bildes nicht unbedingt erforderlich
+        sind. Beispiele sind:
+        <!--TODO: Tabelle shortcode-->
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<p><strong>Kompression</strong></p>
+<p>Es wird der Deflate/Inflate-Algorithmus von Phil Katz (Programm PKZIP) verwendet. Dabei werden in einem max. 32 kb
+    großen Gleitfenster, das über die Eingabedaten geschoben wird, Datenmuster gesucht, die dann nach dem
+    Huffman-Verfahren kodiert werden. Das Bild lässt sich danach ohne Verluste wieder rekonstruieren. Diese Methode
+    wurde 1977 ohne Huffman-Kodierung von Lempel und Ziv vorgestellt und 1978 zur Erkennung von Mustern in einem Text
+    beschrieben. Terry Welch stellte daraufhin eine Methode zur Implementierung des Algorithmus vor, die zum
+    patentierten LZW-Kompressionsalgorithmus führte.</p>
+{{% image "Bildformate/7/2_6_4_mona_lisa_ohne_filter.gif" "" "Abb. 3.7-2 Mona Lisa ohne Filter" %}}
+
+<p><strong>Filter</strong></p>
+<p>Zur Optimierung der Kompression kann ein Bild zuvor gefiltert werden. Die PNG-Spezifikation beschreibt fünf
+    verschiedene Filteralgorithmen. Die Filterung wird jeweils auf die Bytes einer Bildzeile angewandt (unabhängig von
+    Farbtyp, Bittiefe, etc). Der Filtertyp kann nach jeder Zeile wechseln.</p>
+<p>Beim Dekodieren verwendet der Decoder zum Dekodieren eines Pixels die Informationen des vorangegangenen Pixels
+    derselben Zeile, des darüberliegenden Pixels der vorangegangenen Zeile und das Pixel links neben dem vorangegangenen
+    Pixel. Das bedeutet, dass mindestens die vorangegangene dekodierte Zeile vom Decoder gespeichert werden muss.</p>
+{{% image "Bildformate/7/2_6_5_mona_lisa_mi_sub-filter.gif" "" "Abb. 3.7-3 Mona Lisa mit Sub-Filter" %}}
+
+<ul>
+    <li><strong>Typ 1: Sub</strong>
+        <p>Zu jedem Byte einer Zeile wird die Differenz dieses Bytes mit dem entsprechenden Vorgängerbyte berechnet.</p>
+        <ul>
+            <li>Sub(x) = Raw(x) - Raw(x-bpp)</li>
+            <li>Raw(x) bezeichnet die Bytes einer Zeile vor der Filterung. bpp ist die Anzahl Bytes pro Bildpunkt. Es
+                werden also immer die korrespondierenden Farbwerte subtrahiert.
+            </li>
+        </ul>
+    </li>
+    <li><strong>Typ 2: Up</strong>
+        <p> Entspricht dem Sub-Filter, mit dem Unterschied, dass nicht das linke Vorgängerbyte benutzt wird, sondern das
+            Byte der Vorgängerzeile an der gleichen Position.</p>
+        <ul>
+            <li>Up(x) = Raw(x) - Prior(x)</li>
+            <li>Prior(x) bezeichnet die unmittelbar vorangegangene ungefilterte Bildzeile.</li>
+        </ul>
+    </li>
+    <li><strong>Typ 3: Average</strong>
+        <p>Dieser Filtertyp berechnet die Differenz zwischen dem ungefilterten Wert des Bildpunktes und dem Durchschnitt
+            des linken und oberen Bildpunktes.</p>
+        <ul>
+            <li>Average(x) =</li>
+            <li>Raw(x) - [Raw(x - bpp) + Prior(x)]/2</li>
+            <li>Raw(x), Prior(x) und bpp wie bei Filtertyp 1 und 2.</li>
+        </ul>
+    </li>
+    <li><strong>Typ 4: Paeth</strong>
+        <p>Der Paeth-Filter berechnet die Differenz zu einem der drei benachbarten Bildpunkte links, oben und links
+            oben. Welcher Punkt tatsächlich verwendet wird, wird von einer Funktion PaethPredictor abgeschätzt, die aus
+            den drei Nachbarpunkten eine einfache lineare Funktion berechnet und denjenigen Punkt zurückgibt, der am
+            nächsten an dem berechneten Wert liegt.</p>
+        <ul>
+            <li>Paeth(x) = Raw(x) - PaethPredictor( Raw(x-bpp), Prior(x), Prior(x-pbb))</li>
+        </ul>
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<p>Nachteil von PNG ist die Beschränkung auf ein Bild pro Datei. Damit können keine Animationen erstellt werden.
+    Animationen sollten durch das MNG-Format möglich werden.</p>
+
+<h2>3.7.4 BMP (BitMap)</h2>
+<p>BMP ist das Windows-Standardformat. Es sind Farbtiefen von 1, 4, 8 und 24 bit pro Pixel möglich. Es erfolgt keine
+    Kompression.</p>
+
+<h2>3.7.5 PICT (Picture)</h2>
+<p>PICT ist das Macintosh-Format für alle Auflösungen und für Farbtiefen bis 24 bit, plus optional 8 bit
+    Alpha-Kanal.</p>
+
+<h2>3.7.6 PSD (Photshop Document)</h2>
+<p>PSD speichert Ebenen, max. 25 Kanäle und Beschneidungspfade. Auch Einstellungsebenen enthalten Bildkorrekturen wie
+    Tonwert- und Farbkorrekturen. Indizierte Farben im RGB-, CMYK-Modus und Graustufen mit 8 / 16 bit Farbtiefe sind
+    möglich. Die Konvertierung in andere Formate ist nach Reduzierung auf eine Ebene (Hintergrundebene) möglich.</p>
+
+<h2>3.7.7 JPEG (Joint Photographers Expert Group)</h2>
+<p>Mittels des JPEG-Formats können Bilder mit verlustfreier und verlustbehafteter Komprimierung (typisch 1:20)
+    gespeichert werden. Zusätzlich können separierte CMYK-Bilddaten, ICC-Profil und Beschneidungspfade enthalten
+    sein.</p>
+<p>Für detaillierte Informationen zum Dateiformat siehe Kapitel JPEG Interchange Format<!--TODO:Fehlende Referenzen-->
+    und JPEG2000 Fileformat<!--TODO:Fehlende Referenzen-->!</p>
+
+<h2>3.7.8 Übersicht Bildformate</h2>
+<!--TODO: Tabelle shortcode-->
