@@ -5,30 +5,218 @@ draft: true
 ---
 
 <h2>2.6.1 Windows WAV-Fomat</h2>
-<p>Das Wav-Format ist eine Implementierung des RIFF (Resource Interchange File Format). Das RIFF-Format ist im
-    wesentlichen ein Formatrahmen, in dem verschiedene Daten wie Graphik oder Audio gespeichert werden.</p>
+<p>
+  Das Wav-Format ist eine Implementierung des RIFF (Resource Interchange File
+  Format). Das RIFF-Format ist im wesentlichen ein Formatrahmen, in dem
+  verschiedene Daten wie Graphik oder Audio gespeichert werden.
+</p>
 <p>Die Struktur einer WAV-Datei ist:</p>
 <p>Der Begriff Chunk bezeichnet einen Datenblock mit definierter Aufgabe.</p>
 <p>WAV-Header:</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="650"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="#788499"
+  align="center"
+>
+  <tbody>
+    <tr bgcolor="#B4C6E6">
+      <th width="124">Offset</th>
+
+      <th width="124">Bytes</th>
+
+      <th width="389">Bemerkung</th>
+    </tr>
+
+    <tr align="center" bgcolor="#ffffff">
+      <td width="124">00H</td>
+
+      <td width="124">4</td>
+
+      <td width="389">CHUNK-Name 'RIFF'</td>
+    </tr>
+
+    <tr align="center" bgcolor="f2f7ff">
+      <td width="124">04H</td>
+
+      <td width="124">4</td>
+
+      <td width="389">CHUNK-Länge (04H)</td>
+    </tr>
+
+    <tr align="center" bgcolor="#ffffff">
+      <td width="124">08H</td>
+
+      <td width="124">4</td>
+
+      <td width="389">RIFF-Type 'WAVE'</td>
+    </tr>
+  </tbody>
+</table>
 <p>Format-CHUNK:</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="650"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="#788499"
+  align="center"
+>
+  <tbody>
+    <tr bgcolor="#B4C6E6">
+      <th width="124">Offset</th>
+
+      <th width="124">Bytes</th>
+
+      <th width="389">Bemerkung</th>
+    </tr>
+
+    <tr align="center" bgcolor="#ffffff">
+      <td width="124">00H</td>
+
+      <td width="124">4</td>
+
+      <td width="389">CHUNK-Name 'FMT'</td>
+    </tr>
+
+    <tr align="center" bgcolor="f2f7ff">
+      <td width="124">04H</td>
+
+      <td width="124">4</td>
+
+      <td width="389">CHUNK-Länge (10H)</td>
+    </tr>
+
+    <tr align="center" bgcolor="#ffffff">
+      <td width="124">08H</td>
+
+      <td width="124">2</td>
+
+      <td width="389">Format-Typ: 0 = Mono; 1 = Stereo</td>
+    </tr>
+
+    <tr align="center" bgcolor="f2f7ff">
+      <td width="124">0AH</td>
+
+      <td width="124">2</td>
+
+      <td width="389">Kanalzahl</td>
+    </tr>
+
+    <tr align="center" bgcolor="#ffffff">
+      <td width="124">0CH</td>
+
+      <td width="124">4</td>
+
+      <td width="389">Sample Rate (in Hertz)</td>
+    </tr>
+
+    <tr align="center" bgcolor="f2f7ff">
+      <td width="124">10H</td>
+
+      <td width="124">4</td>
+
+      <td width="389">Bytes pro Sekunde</td>
+    </tr>
+
+    <tr align="center" bgcolor="#ffffff">
+      <td width="124">14H</td>
+
+      <td width="124">2</td>
+
+      <td width="389">
+        Bytes per Sample: 1 = 8 Bit Mono; 2 = 8 Bit Stereo oder 16 Bit Mono;
+      </td>
+    </tr>
+
+    <tr align="center" bgcolor="f2f7ff">
+      <td width="124">16H</td>
+
+      <td width="124">2</td>
+
+      <td width="389">Bits per Sample (8, 12 oder 16)</td>
+    </tr>
+  </tbody>
+</table>
 <p>Data-Chunk:</p>
-<!--TODO: Tabelle shortcode-->
-<p>Die Interpretation der Daten erfolgt über den FMT-CHUNK. Bei Audio sind die Daten sequentiell abgelegt. Bei
-    Stereo-Aufzeichnungen werden die Werte für den linken und rechten Kanal wechselweise gespeichert.</p>
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="650"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="#788499"
+  align="center"
+>
+  <tbody>
+    <tr bgcolor="#B4C6E6">
+      <th width="124">Offset</th>
+
+      <th width="124">Bytes</th>
+
+      <th width="389">Bemerkung</th>
+    </tr>
+
+    <tr align="center" bgcolor="#ffffff">
+      <td width="124">00H</td>
+
+      <td width="124">4</td>
+
+      <td width="389">CHUNK-Name 'data'</td>
+    </tr>
+
+    <tr align="center" bgcolor="f2f7ff">
+      <td width="124">04H</td>
+
+      <td width="124">4</td>
+
+      <td width="389">CHUNK-Länge</td>
+    </tr>
+
+    <tr align="center" bgcolor="#ffffff">
+      <td width="124">08H</td>
+
+      <td width="124">n</td>
+
+      <td width="389">Datenbereich</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  Die Interpretation der Daten erfolgt über den FMT-CHUNK. Bei Audio sind die
+  Daten sequentiell abgelegt. Bei Stereo-Aufzeichnungen werden die Werte für den
+  linken und rechten Kanal wechselweise gespeichert.
+</p>
 
 <h2>2.6.2 AIFF (Audio Interchange File Format)</h2>
 <p>Das AIFF-Format verwendet die Dateinamenerweiterungen .aif, .aiff, .aifc.</p>
-<p>Es wurde von Apple Computer entwickelt. Es besteht mindestens aus einem Form-Chunk, einem Common-Chunk und mehreren
-    Sound-Data-Chunks. Zusätzlich können Marker-Chunks, Comment-Chunks und Instrument-Chunks integriert sein.</p>
+<p>
+  Es wurde von Apple Computer entwickelt. Es besteht mindestens aus einem
+  Form-Chunk, einem Common-Chunk und mehreren Sound-Data-Chunks. Zusätzlich
+  können Marker-Chunks, Comment-Chunks und Instrument-Chunks integriert sein.
+</p>
 <p>Der Form-Chunk beschreibt die Größe und das Format der Datei.</p>
-<p>Der Common-Chunk beschreibt die Anzahl der Kanäle, die Zahl der Sample Frames, die Samplerate und die Wortbreite der
-    Sound Data Chunks.</p>
-<p>Ein Sound-Data-Chunk enthält Sample Frames, die die Samples für bis zu 6 Audiokanäle enthalten. Marker-Chunks,
-    Comment-Chunks und Instrument-Chunks ermöglichen die Integration von MIDI-Daten, Sample-Player-Daten und
-    zusätzlichen benutzerdefinierten Informationen.</p>
+<p>
+  Der Common-Chunk beschreibt die Anzahl der Kanäle, die Zahl der Sample Frames,
+  die Samplerate und die Wortbreite der Sound Data Chunks.
+</p>
+<p>
+  Ein Sound-Data-Chunk enthält Sample Frames, die die Samples für bis zu 6
+  Audiokanäle enthalten. Marker-Chunks, Comment-Chunks und Instrument-Chunks
+  ermöglichen die Integration von MIDI-Daten, Sample-Player-Daten und
+  zusätzlichen benutzerdefinierten Informationen.
+</p>
 
 <h5>C-AIFF Format</h5>
-<p>Das C-AIFF ist eine Erweiterung des AIFF zur Speicherung kodierter Audiodaten. Unter anderem können µ-law, A-law
-    (z.B. Telefonkodierung) und ADPCM kodierte Daten gespeichert werden. </p>
+<p>
+  Das C-AIFF ist eine Erweiterung des AIFF zur Speicherung kodierter Audiodaten.
+  Unter anderem können µ-law, A-law (z.B. Telefonkodierung) und ADPCM kodierte
+  Daten gespeichert werden.
+</p>
