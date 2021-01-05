@@ -49,92 +49,82 @@ draft: true
 <!--TODO: Formatierung-->
 
 <p>Gegenüberstellung von MPEG-1 und -2 (wichtigste Kenngrößen):</p>
-<!--TODO: Tabelle styling-->
-<table
-  width="616"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
-  summary=""
->
+
+<table class="table table-bordered">
   <tbody>
-    <tr bgcolor="#b4c6e6">
-      <th width="158">
-        <div align="left">Parameter</div>
+    <tr>
+      <th>
+        <div>Parameter</div>
       </th>
-
-      <th width="192">
-        <div align="left">MPEG-1</div>
+      <th>
+        <div>MPEG-1</div>
       </th>
-
-      <th width="253">
-        <div align="left">MPEG-2</div>
+      <th>
+        <div>MPEG-2</div>
       </th>
     </tr>
+    <tr>
+      <td>Video Datenrate</td>
 
-    <tr bgcolor="#ffffff">
-      <td width="158">Video Datenrate</td>
+      <td>1.5 Mbit/s (1.4-1.77)</td>
 
-      <td width="192">1.5 Mbit/s (1.4-1.77)</td>
-
-      <td width="253">2 - 80 Mbit/s (Mainlevel 4 - 10 Mbit/s)</td>
+      <td>2 - 80 Mbit/s (Mainlevel 4 - 10 Mbit/s)</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="158">Audio Datenrate</td>
+    <tr>
+      <td>Audio Datenrate</td>
 
-      <td width="192">64 / 96 / 128 / 192 kbit/s</td>
+      <td>64 / 96 / 128 / 192 kbit/s</td>
 
-      <td width="253">64 / 96 / 128 / 192 kbit/s</td>
+      <td>64 / 96 / 128 / 192 kbit/s</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td width="158">Verzögerung</td>
+    <tr>
+      <td>Verzögerung</td>
 
-      <td width="192">max. 150 ms</td>
+      <td>max. 150 ms</td>
 
-      <td width="253">max. 150 ms</td>
+      <td>max. 150 ms</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="158">Jitter</td>
+    <tr>
+      <td>Jitter</td>
 
-      <td width="192">max. 5 - 10 ms</td>
+      <td>max. 5 - 10 ms</td>
 
-      <td width="253">max. 5 - 10 ms</td>
+      <td>max. 5 - 10 ms</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td width="158">max. Bildgröße</td>
+    <tr>
+      <td>max. Bildgröße</td>
 
-      <td width="192">max. 786 x 576</td>
+      <td>max. 786 x 576</td>
 
-      <td width="253">max. 16383 x 16383</td>
+      <td>max. 16383 x 16383</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="158">Bildfrequenz</td>
+    <tr>
+      <td>Bildfrequenz</td>
 
-      <td width="192">30 Hz</td>
+      <td>30 Hz</td>
 
-      <td width="253">24,60 Hz</td>
+      <td>24,60 Hz</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td width="158">Audio Abtastfrequenz</td>
+    <tr>
+      <td>Audio Abtastfrequenz</td>
 
-      <td width="192">32 / 44.1 / 48kHz</td>
+      <td>32 / 44.1 / 48kHz</td>
 
-      <td width="253">16 / 22.05 / 24 / 32 / 44.1 / 48 kHz</td>
+      <td>16 / 22.05 / 24 / 32 / 44.1 / 48 kHz</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="158">Audio Kodierung</td>
+    <tr>
+      <td>Audio Kodierung</td>
 
-      <td width="192">16 bit</td>
+      <td>16 bit</td>
 
-      <td width="253">16 Bit</td>
+      <td>16 Bit</td>
     </tr>
   </tbody>
 </table>
@@ -546,38 +536,29 @@ draft: true
   in Schichten angeordnet und miteinander verknüpft werden. Folgende Schichten
   werden unterschieden.
 </p>
-<!--TODO: Tabelle styling-->
-<table
-  width="178"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
-  summary=""
->
+
+<table class="table table-bordered">
   <tbody>
-    <tr bgcolor="#ffffff">
-      <td width="173">Sequence Layer</td>
+    <tr>
+      <td>Sequence Layer</td>
+    </tr>
+    <tr>
+      <td>Group-of-Picture Layer</td>
+    </tr>
+    <tr>
+      <td>Picture Layer</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="173">Group-of-Picture Layer</td>
+    <tr>
+      <td>Slice Layer</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td width="173">Picture Layer</td>
+    <tr>
+      <td>Macro Layer</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="173">Slice Layer</td>
-    </tr>
-
-    <tr bgcolor="#ffffff">
-      <td width="173">Macro Layer</td>
-    </tr>
-
-    <tr bgcolor="#f2f7ff">
-      <td width="173">Block Layer</td>
+    <tr>
+      <td>Block Layer</td>
     </tr>
   </tbody>
 </table>
@@ -728,23 +709,15 @@ draft: true
   I-, P- und B-Bildern unterschiedlich gewählt werden. Die Anzahl der Bilder pro
   GoP sei N, der Abstand zwischen zwei P-Bildern sei M.
 </p>
-<!--TODO: Tabelle styling-->
-<table
-  summary=""
-  width="600"
-  border="0"
-  bgcolor="#788499"
-  cellpadding="2"
-  cellspacing="1"
->
+
+<table class="table table-bordered">
   <tbody>
-    <tr style="text-align: center" bgcolor="#b4c6e9">
+    <tr style="text-align: center">
       <td>N</td>
       <td>M</td>
       <td colspan="2">Bildsequenz</td>
     </tr>
-
-    <tr bgcolor="#f2f7ff" style="text-align: center">
+    <tr style="text-align: center">
       <td rowspan="2">12</td>
       <td rowspan="2">3</td>
       <td>Cod.</td>
@@ -754,16 +727,14 @@ I<sub>0</sub> B<sub>1</sub> B<sub>2</sub> P<sub>3</sub> B<sub>4</sub> B<sub>5</s
         >
       </td>
     </tr>
-
-    <tr bgcolor="#ffffff" style="text-align: center">
+    <tr style="text-align: center">
       <td>Übtr.</td>
       <td style="text-align: left">
         <pre> 
     <sub> </sub>    I<sub>0</sub> P<sub>3</sub> B<sub>1</sub> B<sub>2</sub> P<sub>6</sub> B<sub>4</sub> B<sub>5</sub> P<sub>9</sub> B<sub>7</sub> <sub> </sub>B<sub>8</sub> <sub> </sub>I<sub>12</sub> B<sub>10</sub> B<sub>11</sub> ...</pre>
       </td>
     </tr>
-
-    <tr bgcolor="#f2f7ff" style="text-align: center">
+    <tr style="text-align: center">
       <td rowspan="2">12</td>
       <td rowspan="2">3</td>
       <td>Cod.</td>
@@ -773,8 +744,7 @@ I<sub>0</sub> B<sub>1</sub> P<sub>2</sub> B<sub>3</sub> P<sub>4</sub> B<sub>5</s
         >
       </td>
     </tr>
-
-    <tr bgcolor="#ffffff" style="text-align: center">
+    <tr style="text-align: center">
       <td>Übtr.</td>
       <td style="text-align: left">
         <pre> 

@@ -13,179 +13,155 @@ draft: true
 <p>Die Struktur einer WAV-Datei ist:</p>
 <p>Der Begriff Chunk bezeichnet einen Datenblock mit definierter Aufgabe.</p>
 <p>WAV-Header:</p>
-<!--TODO: Tabelle styling-->
-<table
-  summary=""
-  width="650"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
-  align="center"
->
+
+<table class="table table-bordered">
   <tbody>
-    <tr bgcolor="#B4C6E6">
-      <th width="124">Offset</th>
+    <tr>
+      <th>Offset</th>
 
-      <th width="124">Bytes</th>
+      <th>Bytes</th>
 
-      <th width="389">Bemerkung</th>
+      <th>Bemerkung</th>
     </tr>
 
-    <tr align="center" bgcolor="#ffffff">
-      <td width="124">00H</td>
+    <tr>
+      <td>00H</td>
 
-      <td width="124">4</td>
+      <td>4</td>
 
-      <td width="389">CHUNK-Name 'RIFF'</td>
+      <td>CHUNK-Name 'RIFF'</td>
     </tr>
 
-    <tr align="center" bgcolor="f2f7ff">
-      <td width="124">04H</td>
+    <tr>
+      <td>04H</td>
 
-      <td width="124">4</td>
+      <td>4</td>
 
-      <td width="389">CHUNK-Länge (04H)</td>
+      <td>CHUNK-Länge (04H)</td>
     </tr>
 
-    <tr align="center" bgcolor="#ffffff">
-      <td width="124">08H</td>
+    <tr>
+      <td>08H</td>
 
-      <td width="124">4</td>
+      <td>4</td>
 
-      <td width="389">RIFF-Type 'WAVE'</td>
+      <td>RIFF-Type 'WAVE'</td>
     </tr>
   </tbody>
 </table>
 <p>Format-CHUNK:</p>
-<!--TODO: Tabelle styling-->
-<table
-  summary=""
-  width="650"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
-  align="center"
->
+
+<table class="table table-bordered" >
   <tbody>
-    <tr bgcolor="#B4C6E6">
-      <th width="124">Offset</th>
+    <tr>
+      <th>Offset</th>
 
-      <th width="124">Bytes</th>
+      <th>Bytes</th>
 
-      <th width="389">Bemerkung</th>
+      <th>Bemerkung</th>
     </tr>
 
-    <tr align="center" bgcolor="#ffffff">
-      <td width="124">00H</td>
+    <tr>
+      <td>00H</td>
 
-      <td width="124">4</td>
+      <td>4</td>
 
-      <td width="389">CHUNK-Name 'FMT'</td>
+      <td>CHUNK-Name 'FMT'</td>
     </tr>
 
-    <tr align="center" bgcolor="f2f7ff">
-      <td width="124">04H</td>
+    <tr>
+      <td>04H</td>
 
-      <td width="124">4</td>
+      <td>4</td>
 
-      <td width="389">CHUNK-Länge (10H)</td>
+      <td>CHUNK-Länge (10H)</td>
     </tr>
 
-    <tr align="center" bgcolor="#ffffff">
-      <td width="124">08H</td>
+    <tr>
+      <td>08H</td>
 
-      <td width="124">2</td>
+      <td>2</td>
 
-      <td width="389">Format-Typ: 0 = Mono; 1 = Stereo</td>
+      <td>Format-Typ: 0 = Mono; 1 = Stereo</td>
     </tr>
 
-    <tr align="center" bgcolor="f2f7ff">
-      <td width="124">0AH</td>
+    <tr>
+      <td>0AH</td>
 
-      <td width="124">2</td>
+      <td>2</td>
 
-      <td width="389">Kanalzahl</td>
+      <td>Kanalzahl</td>
     </tr>
 
-    <tr align="center" bgcolor="#ffffff">
-      <td width="124">0CH</td>
+    <tr>
+      <td>0CH</td>
 
-      <td width="124">4</td>
+      <td>4</td>
 
-      <td width="389">Sample Rate (in Hertz)</td>
+      <td>Sample Rate (in Hertz)</td>
     </tr>
 
-    <tr align="center" bgcolor="f2f7ff">
-      <td width="124">10H</td>
+    <tr>
+      <td>10H</td>
 
-      <td width="124">4</td>
+      <td>4</td>
 
-      <td width="389">Bytes pro Sekunde</td>
+      <td>Bytes pro Sekunde</td>
     </tr>
 
-    <tr align="center" bgcolor="#ffffff">
-      <td width="124">14H</td>
+    <tr>
+      <td>14H</td>
 
-      <td width="124">2</td>
+      <td>2</td>
 
-      <td width="389">
+      <td>
         Bytes per Sample: 1 = 8 Bit Mono; 2 = 8 Bit Stereo oder 16 Bit Mono;
       </td>
     </tr>
 
-    <tr align="center" bgcolor="f2f7ff">
-      <td width="124">16H</td>
+    <tr>
+      <td>16H</td>
 
-      <td width="124">2</td>
+      <td>2</td>
 
-      <td width="389">Bits per Sample (8, 12 oder 16)</td>
+      <td>Bits per Sample (8, 12 oder 16)</td>
     </tr>
   </tbody>
 </table>
 <p>Data-Chunk:</p>
-<!--TODO: Tabelle styling-->
-<table
-  summary=""
-  width="650"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
-  align="center"
->
+
+<table class="table table-bordered">
   <tbody>
-    <tr bgcolor="#B4C6E6">
-      <th width="124">Offset</th>
+    <tr>
+      <th>Offset</th>
 
-      <th width="124">Bytes</th>
+      <th>Bytes</th>
 
-      <th width="389">Bemerkung</th>
+      <th>Bemerkung</th>
     </tr>
 
-    <tr align="center" bgcolor="#ffffff">
-      <td width="124">00H</td>
+    <tr>
+      <td>00H</td>
 
-      <td width="124">4</td>
+      <td>4</td>
 
-      <td width="389">CHUNK-Name 'data'</td>
+      <td>CHUNK-Name 'data'</td>
     </tr>
 
-    <tr align="center" bgcolor="f2f7ff">
-      <td width="124">04H</td>
+    <tr>
+      <td>04H</td>
 
-      <td width="124">4</td>
+      <td>4</td>
 
-      <td width="389">CHUNK-Länge</td>
+      <td>CHUNK-Länge</td>
     </tr>
 
-    <tr align="center" bgcolor="#ffffff">
-      <td width="124">08H</td>
+    <tr>
+      <td>08H</td>
 
-      <td width="124">n</td>
+      <td>n</td>
 
-      <td width="389">Datenbereich</td>
+      <td>Datenbereich</td>
     </tr>
   </tbody>
 </table>

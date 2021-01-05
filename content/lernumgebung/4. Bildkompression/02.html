@@ -42,42 +42,35 @@ draft: true
   Die Algorithmen werden mit folgendem einfachen Beispiel erläutert, das von
   folgender Häufigkeitsverteilung ausgeht:
 </p>
-<!--TODO: Tabelle styling-->
-<table
-  width="450"
-  border="0"
-  cellspacing="1"
-  cellpadding="2"
-  bgcolor="#788499"
-  summary=""
->
+
+<table class="table table-bordered">
   <tbody>
     <tr>
-      <th bgcolor="#b4c6e9" width="100">Symbol</th>
+      <th>Symbol</th>
 
-      <td bgcolor="#ffffff" align="center" width="70">A</td>
+      <td>A</td>
 
-      <td bgcolor="#ffffff" align="center" width="70">B</td>
+      <td>B</td>
 
-      <td bgcolor="#ffffff" align="center" width="70">C</td>
+      <td>C</td>
 
-      <td bgcolor="#ffffff" align="center" width="70">D</td>
+      <td>D</td>
 
-      <td bgcolor="#ffffff" align="center" width="70">E</td>
+      <td>E</td>
     </tr>
 
     <tr>
-      <th bgcolor="#b4c6e9" width="100">Anzahl</th>
+      <th>Anzahl</th>
 
-      <td bgcolor="#f2f7ff" align="center" width="70">15</td>
+      <td>15</td>
 
-      <td bgcolor="#f2f7ff" align="center" width="70">7</td>
+      <td>7</td>
 
-      <td bgcolor="#f2f7ff" align="center" width="70">6</td>
+      <td>6</td>
 
-      <td bgcolor="#f2f7ff" align="center" width="70">6</td>
+      <td>6</td>
 
-      <td bgcolor="#f2f7ff" align="center" width="70">5</td>
+      <td>5</td>
     </tr>
   </tbody>
 </table>
@@ -90,42 +83,37 @@ draft: true
   Wird für die häufigsten Symbole ein kürzerer, für die seltenen ein längerer
   Code verwendet, so ergibt sich ein Speicherbedarf von:
 </p>
-<!--TODO: Tabelle styling-->
+
 <table
-  width="450"
-  border="0"
-  cellspacing="1"
-  cellpadding="2"
-  bgcolor="#788499"
-  summary=""
+class="table table-bordered"
 >
   <tbody>
-    <tr bgcolor="#ffffff">
-      <th bgcolor="#b4c6e9" width="100">Symbol</th>
+    <tr>
+      <th>Symbol</th>
 
-      <td width="70" align="center" valign="middle">A</td>
+      <td>A</td>
 
-      <td width="70" align="center" valign="middle">B</td>
+      <td>B</td>
 
-      <td width="70" align="center" valign="middle">C</td>
+      <td>C</td>
 
-      <td width="70" align="center" valign="middle">D</td>
+      <td>D</td>
 
-      <td width="70" align="center" valign="middle">E</td>
+      <td>E</td>
     </tr>
 
     <tr>
-      <th bgcolor="#b4c6e9" width="100">Code</th>
+      <th>Code</th>
 
-      <td align="center" valign="middle" bgcolor="#f2f7ff">0</td>
+      <td>0</td>
 
-      <td align="center" valign="middle" bgcolor="#f2f7ff">10</td>
+      <td>10</td>
 
-      <td align="center" valign="middle" bgcolor="#f2f7ff">11</td>
+      <td>11</td>
 
-      <td align="center" valign="middle" bgcolor="#f2f7ff">110</td>
+      <td>110</td>
 
-      <td align="center" valign="middle" bgcolor="#f2f7ff">111</td>
+      <td>111</td>
     </tr>
   </tbody>
 </table>
@@ -156,18 +144,12 @@ draft: true
     Es ergibt sich folgende Kodierung bzw. folgender Speicherbedarf von 89 bit
   </li>
 </ul>
-<!--TODO: Tabelle styling-->
+
 <table
-  width="392"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
-  summary=""
+class="table table-bordered"
 >
   <tbody>
-    <tr bgcolor="#b4c6e9">
-      <th>Symbol</th>
+    <trh>
 
       <th>Anzahl</th>
 
@@ -178,7 +160,7 @@ draft: true
       <th>Anzahl bits</th>
     </tr>
 
-    <tr align="center" valign="middle" bgcolor="#ffffff">
+    <tr>
       <td>A</td>
 
       <td>15</td>
@@ -190,7 +172,7 @@ draft: true
       <td>30</td>
     </tr>
 
-    <tr align="center" valign="middle" bgcolor="#f2f7ff">
+    <tr>
       <td>B</td>
 
       <td>7</td>
@@ -202,7 +184,7 @@ draft: true
       <td>14</td>
     </tr>
 
-    <tr align="center" valign="middle" bgcolor="#ffffff">
+    <tr>
       <td>C</td>
 
       <td>6</td>
@@ -214,7 +196,7 @@ draft: true
       <td>12</td>
     </tr>
 
-    <tr align="center" valign="middle" bgcolor="#f2f7ff">
+    <tr>
       <td>D</td>
 
       <td>6</td>
@@ -226,7 +208,7 @@ draft: true
       <td>18</td>
     </tr>
 
-    <tr align="center" valign="middle" bgcolor="#ffffff">
+    <tr>
       <td>E</td>
 
       <td>5</td>
@@ -332,59 +314,53 @@ draft: true
         Codewort auf Bitebene definiert. Häufig vorkommende Werte erhalten
         kürzere Codewörter, z.B.
       </li>
-      <!--TODO: Tabelle styling-->
+
       <table
-        width="270"
-        border="0"
-        cellspacing="1"
-        cellpadding="1"
-        bgcolor="#788499"
-        summary=""
+      class="table table-bordered"
       >
         <tbody>
-          <tr align="center" valign="middle" bgcolor="#b4c6e9">
-            <th width="184">
+          <tr4">
               Anzahl schwarzer<br />
               Punkte
             </th>
 
-            <th width="66">Code</th>
+            <th>Code</th>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#ffffff">
-            <td width="184">1</td>
+          <tr>
+            <td>1</td>
 
-            <td width="66">010</td>
+            <td>010</td>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#f2f7ff">
-            <td width="184">2</td>
+          <tr>
+            <td>2</td>
 
-            <td width="66">11</td>
+            <td>11</td>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#ffffff">
-            <td width="184">3</td>
+          <tr>
+            <td>3</td>
 
-            <td width="66">10</td>
+            <td>10</td>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#f2f7ff">
-            <td width="184">...</td>
+          <tr>
+            <td>...</td>
 
-            <td width="66">...</td>
+            <td>...</td>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#ffffff">
-            <td width="184">62</td>
+          <tr>
+            <td>62</td>
 
-            <td width="66">000001100110</td>
+            <td>000001100110</td>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#f2f7ff">
-            <td width="184">63</td>
+          <tr>
+            <td>63</td>
 
-            <td width="66">000001100111</td>
+            <td>000001100111</td>
           </tr>
         </tbody>
       </table>
@@ -398,59 +374,50 @@ draft: true
         Es sind 28 weitere Gruppen definiert, mit 64, 128, ... bis 1728
         aufeinander folgenden Punkten, z.B.
       </li>
-      <!--TODO: Tabelle styling-->
-      <table
-        width="270"
-        border="0"
-        cellspacing="1"
-        cellpadding="1"
-        bgcolor="#788499"
-        summary=""
-      >
+      <table class="table table-bordered">
         <tbody>
-          <tr align="center" valign="middle" bgcolor="#b4c6e9">
-            <th width="145">
+          <tr5">
               Anzahl schwarzer<br />
               Punkte
             </th>
 
-            <th width="102">Code</th>
+            <th>Code</th>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#ffffff">
-            <td width="145">64</td>
+          <tr>
+            <td>64</td>
 
-            <td width="102">0000001111</td>
+            <td>0000001111</td>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#f2f7ff">
-            <td width="145">128</td>
+          <tr>
+            <td>128</td>
 
-            <td width="102">000011001000</td>
+            <td>000011001000</td>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#ffffff">
-            <td width="145">192</td>
+          <tr>
+            <td>192</td>
 
-            <td width="102">000011001001</td>
+            <td>000011001001</td>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#f2f7ff">
-            <td width="145">...</td>
+          <tr>
+            <td>...</td>
 
-            <td width="102">...</td>
+            <td>...</td>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#ffffff">
-            <td width="145">1664</td>
+          <tr>
+            <td>1664</td>
 
-            <td width="102">0000001100100</td>
+            <td>0000001100100</td>
           </tr>
 
-          <tr align="center" valign="middle" bgcolor="#f2f7ff">
-            <td width="145">1728</td>
+          <tr>
+            <td>1728</td>
 
-            <td width="102">0000001100101</td>
+            <td>0000001100101</td>
           </tr>
         </tbody>
       </table>
@@ -498,59 +465,51 @@ draft: true
 <ul>
   <li>mögliche Zeichenketten: ABA und Hallo.</li>
   <li>Zuordnung der Kodierung in folgender Tabelle:</li>
-  <!--TODO: Tabelle styling-->
-  <table
-    width="270"
-    border="0"
-    cellspacing="1"
-    cellpadding="1"
-    bgcolor="#788499"
-    summary=""
-  >
+  
+  <table class="table table-bordered">
     <tbody>
-      <tr align="center" valign="middle" bgcolor="#b4c6e9">
-        <th width="145">
+      <tr5">
           Anzahl schwarzer<br />
           Punkte
         </th>
 
-        <th width="102">Code</th>
+        <th>Code</th>
       </tr>
 
-      <tr align="center" valign="middle" bgcolor="#ffffff">
-        <td width="145">64</td>
+      <tr>
+        <td>64</td>
 
-        <td width="102">0000001111</td>
+        <td>0000001111</td>
       </tr>
 
-      <tr align="center" valign="middle" bgcolor="#f2f7ff">
-        <td width="145">128</td>
+      <tr>
+        <td>128</td>
 
-        <td width="102">000011001000</td>
+        <td>000011001000</td>
       </tr>
 
-      <tr align="center" valign="middle" bgcolor="#ffffff">
-        <td width="145">192</td>
+      <tr>
+        <td>192</td>
 
-        <td width="102">000011001001</td>
+        <td>000011001001</td>
       </tr>
 
-      <tr align="center" valign="middle" bgcolor="#f2f7ff">
-        <td width="145">...</td>
+      <tr>
+        <td>...</td>
 
-        <td width="102">...</td>
+        <td>...</td>
       </tr>
 
-      <tr align="center" valign="middle" bgcolor="#ffffff">
-        <td width="145">1664</td>
+      <tr>
+        <td>1664</td>
 
-        <td width="102">0000001100100</td>
+        <td>0000001100100</td>
       </tr>
 
-      <tr align="center" valign="middle" bgcolor="#f2f7ff">
-        <td width="145">1728</td>
+      <tr>
+        <td>1728</td>
 
-        <td width="102">0000001100101</td>
+        <td>0000001100101</td>
       </tr>
     </tbody>
   </table>

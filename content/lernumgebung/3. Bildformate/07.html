@@ -55,17 +55,10 @@ draft: true
   Daten. Mehrere IFDs sind über Zeiger verkettet.
 </p>
 <!--TODO: Formatierung-->
-<!--TODO: Tabelle styling-->
-<table
-  summary=""
-  width="350"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
->
+
+<table class="table table-bordered">
   <tbody>
-    <tr bgcolor="B4C6E9">
+    <tr>
       <th>Offset</th>
 
       <th>Byte</th>
@@ -73,50 +66,50 @@ draft: true
       <th>Bedeutung</th>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td align="center">00H</td>
+    <tr>
+      <td>00H</td>
 
-      <td align="center">2</td>
+      <td>2</td>
 
       <td>Zahl der Tag-Einträge</td>
     </tr>
 
-    <tr bgcolor="f2f7ff">
-      <td align="center">02H</td>
+    <tr>
+      <td>02H</td>
 
-      <td align="center">12</td>
+      <td>12</td>
 
       <td>Tag 0</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td align="center">0EH</td>
+    <tr>
+      <td>0EH</td>
 
-      <td align="center">12</td>
+      <td>12</td>
 
       <td>Tag 1</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td align="center">...</td>
+    <tr>
+      <td>...</td>
 
-      <td align="center">&nbsp;</td>
+      <td>&nbsp;</td>
 
       <td>&nbsp;</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td align="center">...</td>
+    <tr>
+      <td>...</td>
 
-      <td align="center">12</td>
+      <td>12</td>
 
       <td>Tag n</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td align="center">...</td>
+    <tr>
+      <td>...</td>
 
-      <td align="center">4</td>
+      <td>4</td>
 
       <td>POINT auf nächsten IFD Block</td>
     </tr>
@@ -128,17 +121,10 @@ draft: true
   Bytes lang und enthält die bildbeschreibenden Informationen wie z.B.
   Bildabmessung oder Pixelauflösung.
 </p>
-<!--TODO: Tabelle styling-->
-<table
-  summary=""
-  width="350"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
->
+
+<table class="table table-bordered">
   <tbody>
-    <tr bgcolor="B4C6E9">
+    <tr>
       <th>Offset</th>
 
       <th>Byte</th>
@@ -146,18 +132,18 @@ draft: true
       <th>Bedeutung</th>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td align="center">00H</td>
+    <tr>
+      <td>00H</td>
 
-      <td align="center">2</td>
+      <td>2</td>
 
       <td>Tag-Type</td>
     </tr>
 
-    <tr bgcolor="f2f7ff">
-      <td align="center">02H</td>
+    <tr>
+      <td>02H</td>
 
-      <td align="center">2</td>
+      <td>2</td>
 
       <td>
         Datentyp:<br />
@@ -166,18 +152,18 @@ draft: true
       </td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td align="center">04H</td>
+    <tr>
+      <td>04H</td>
 
-      <td align="center">4</td>
+      <td>4</td>
 
       <td>Länge des Datenbereiches</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td align="center">08H</td>
+    <tr>
+      <td>08H</td>
 
-      <td align="center">4</td>
+      <td>4</td>
 
       <td>POINT auf Datenbereich</td>
     </tr>
@@ -322,114 +308,109 @@ draft: true
   Rahmenbeschreibungsblock, optionaler LOOP Block, Sequenz von Grafiken, GIF
   Trailer
 </p>
-<!--TODO: Tabelle styling-->
+
 <table
-  summary=""
-  width="400"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="788499"
+class="table table-bordered"
 >
   <tbody>
-    <tr bgcolor="b4c6e9">
-      <th width="96">Offset</th>
+    <tr>
+      <th>Offset</th>
 
-      <th width="60">Byte</th>
+      <th>Byte</th>
 
-      <th width="231">Bedeutung</th>
+      <th>Bedeutung</th>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td width="96" align="center">00h</td>
+    <tr>
+      <td>00h</td>
 
-      <td width="60" align="center">3</td>
+      <td>3</td>
 
-      <td width="231">Signatur 'GIF'</td>
+      <td>Signatur 'GIF'</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="96" align="center">03h</td>
+    <tr>
+      <td>03h</td>
 
-      <td width="60" align="center">3</td>
+      <td>3</td>
 
-      <td width="231">GIF-Version, z.B. 87a, 89a</td>
+      <td>GIF-Version, z.B. 87a, 89a</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td width="96" align="center">06h</td>
+    <tr>
+      <td>06h</td>
 
-      <td width="60" align="center">7</td>
+      <td>7</td>
 
-      <td width="231">Logical Screen Descriptor Block</td>
+      <td>Logical Screen Descriptor Block</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="96" align="center">0Dh</td>
+    <tr>
+      <td>0Dh</td>
 
-      <td width="60" align="center">N</td>
+      <td>N</td>
 
-      <td width="231">Global Color Map (optional)</td>
+      <td>Global Color Map (optional)</td>
     </tr>
 
-    <tr bgcolor="b4c6e9">
+    <tr>
       <td colspan="3">
         <i>Für jedes in der GIF-Datei gespeicherte Bild folgt:</i>
       </td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td width="96" align="center">...</td>
+    <tr>
+      <td>...</td>
 
-      <td width="60" align="center">N</td>
+      <td>N</td>
 
-      <td width="231">Extension Block (optional)</td>
+      <td>Extension Block (optional)</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="96" align="center">...</td>
+    <tr>
+      <td>...</td>
 
-      <td width="60" align="center">N</td>
+      <td>N</td>
 
-      <td width="231">Image Descriptor Block</td>
+      <td>Image Descriptor Block</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td width="96" align="center">...</td>
+    <tr>
+      <td>...</td>
 
-      <td width="60" align="center">N</td>
+      <td>N</td>
 
-      <td width="231">Local Color Map (optional)</td>
+      <td>Local Color Map (optional)</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="96" align="center">...</td>
+    <tr>
+      <td>...</td>
 
-      <td width="60" align="center">N</td>
+      <td>N</td>
 
-      <td width="231">Raster Data Block</td>
+      <td>Raster Data Block</td>
     </tr>
 
-    <tr bgcolor="b4c6e9">
+    <tr>
       <td colspan="3">
         <i>Nach dem letzten Raster Data Block:</i>
       </td>
     </tr>
 
-    <tr bgcolor="#ffffff">
-      <td width="96" align="center">...</td>
+    <tr>
+      <td>...</td>
 
-      <td width="60" align="center">N</td>
+      <td>N</td>
 
-      <td width="231">Extension Block (optional)</td>
+      <td>Extension Block (optional)</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
-      <td width="96" align="center">...</td>
+    <tr>
+      <td>...</td>
 
-      <td width="60" align="center">1</td>
+      <td>1</td>
 
-      <td width="231">Terminator (3BH)</td>
+      <td>Terminator (3BH)</td>
     </tr>
   </tbody>
 </table>
@@ -635,30 +616,22 @@ draft: true
   Jeder Chunk enthält eine spezielle Art von Information, z.B. die Bildpunkte,
   textuelle Kommentare oder Farbtabellen.
 </p>
-<!--TODO: Tabelle styling-->
-<table
-  summary=""
-  width="280"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
-  align="center"
->
+
+<table class="table table-bordered">
   <tbody>
-    <tr bgcolor="ffffff" align="center">
+    <tr>
       <td>Signatur</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff" align="center">
+    <tr>
       <td>Chunk 1</td>
     </tr>
 
-    <tr bgcolor="ffffff" align="center">
+    <tr>
       <td>...</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff" align="center">
+    <tr>
       <td>Cunk n</td>
     </tr>
   </tbody>
@@ -691,36 +664,28 @@ draft: true
     Enthalten alle in einer PNG-Datei gespeicherten Informationen.
     Unterschiedliche Informationen werden in verschiedenen Chunks gespeichert.
     Jeder Chunk besteht aus vier Komponenten:
-    <!--TODO: Tabelle styling-->
-    <table
-      summary=""
-      width="280"
-      border="0"
-      cellspacing="1"
-      cellpadding="1"
-      bgcolor="#788499"
-      align="center"
-    >
+    
+    <table class="table table-bordered">
       <tbody>
-        <tr bgcolor="ffffff" align="center">
+        <tr>
           <td>
             Länge: 4 Byte Integer-Zahl, die die Länge des Datenteils enthält
           </td>
         </tr>
 
-        <tr bgcolor="#f2f7ff" align="center">
+        <tr>
           <td>Typ</td>
         </tr>
 
-        <tr bgcolor="ffffff" align="center">
+        <tr>
           <td>Daten</td>
         </tr>
 
-        <tr bgcolor="#f2f7ff" align="center">
+        <tr>
           <td>...</td>
         </tr>
 
-        <tr bgcolor="#ffffff" align="center">
+        <tr>
           <td>CRC</td>
         </tr>
       </tbody>
@@ -785,18 +750,10 @@ draft: true
   <li>
     Sie enthalten weitere Informationen, die zur eigentlichen Darstellung des
     Bildes nicht unbedingt erforderlich sind. Beispiele sind:
-    <!--TODO: Tabelle styling-->
-    <table
-      summary=""
-      width="550"
-      border="0"
-      cellspacing="1"
-      cellpadding="2"
-      bgcolor="#788499"
-      align="center"
-    >
+
+    <table class="table table-bordered">
       <tbody>
-        <tr bgcolor="#b4c6e9">
+        <tr>
           <th>Typ</th>
 
           <th>Bezeichnung</th>
@@ -804,7 +761,7 @@ draft: true
           <th>Funktion</th>
         </tr>
 
-        <tr bgcolor="#ffffff">
+        <tr>
           <td>bKGD</td>
 
           <td>Background Color</td>
@@ -812,7 +769,7 @@ draft: true
           <td>Enthält eine Hintergrundfarbe</td>
         </tr>
 
-        <tr bgcolor="#f2f7ff">
+        <tr>
           <td>cHRM</td>
 
           <td>Primary Chromaticities and White Point</td>
@@ -820,7 +777,7 @@ draft: true
           <td>Enthält Angaben für eine geräteunabhängige Farbdarstellung.</td>
         </tr>
 
-        <tr bgcolor="#ffffff">
+        <tr>
           <td>gAMA</td>
 
           <td>Image Gamma</td>
@@ -828,7 +785,7 @@ draft: true
           <td>Enthält den Gamma-Wert des Bildes</td>
         </tr>
 
-        <tr bgcolor="#f2f7ff">
+        <tr>
           <td>hIST</td>
 
           <td>Image Histogram</td>
@@ -836,7 +793,7 @@ draft: true
           <td>Enthält Häufigkeit der verwendeten Farben</td>
         </tr>
 
-        <tr bgcolor="#ffffff">
+        <tr>
           <td>pHYs</td>
 
           <td>Physical Pixel Dimensions</td>
@@ -844,7 +801,7 @@ draft: true
           <td>Enthält phys. Größe des Bildes</td>
         </tr>
 
-        <tr bgcolor="#f2f7ff">
+        <tr>
           <td>sBIT</td>
 
           <td>Significant Bits</td>
@@ -852,7 +809,7 @@ draft: true
           <td>Enthält Anzahl der ursprünglich verwendeten Bits</td>
         </tr>
 
-        <tr bgcolor="#ffffff">
+        <tr>
           <td>tEXt</td>
 
           <td>Textual Data</td>
@@ -860,7 +817,7 @@ draft: true
           <td>Enthält textuelle Informationen</td>
         </tr>
 
-        <tr bgcolor="#f2f7ff">
+        <tr>
           <td>tIME</td>
 
           <td>Image Last-Modification Time</td>
@@ -868,7 +825,7 @@ draft: true
           <td>Zeitangabe der letzten Änderung des Bildes</td>
         </tr>
 
-        <tr bgcolor="#ffffff">
+        <tr>
           <td>tRNS</td>
 
           <td>Transparency</td>
@@ -876,7 +833,7 @@ draft: true
           <td>Enthält Angaben für einfache Transparenz</td>
         </tr>
 
-        <tr bgcolor="#f2f7ff">
+        <tr>
           <td>zTXt</td>
 
           <td>Compressed Textual Data</td>
@@ -884,7 +841,7 @@ draft: true
           <td>Komprimierte Textdaten</td>
         </tr>
 
-        <tr bgcolor="#ffffff">
+        <tr>
           <td>oFFs</td>
 
           <td>Image Offset</td>
@@ -892,7 +849,7 @@ draft: true
           <td>Bildposition auf einer Seite/Bildschirm/...</td>
         </tr>
 
-        <tr bgcolor="#f2f7ff">
+        <tr>
           <td>sCAL</td>
 
           <td>Physical Scale of Image Subject</td>
@@ -900,7 +857,7 @@ draft: true
           <td>Maßstab des Bildes in Meter oder Grad</td>
         </tr>
 
-        <tr bgcolor="#ffffff">
+        <tr>
           <td>gIFg</td>
 
           <td>GIF Graphic Control Extensions</td>
@@ -908,7 +865,7 @@ draft: true
           <td>Gewährt Kompatibilität zu GIF89a</td>
         </tr>
 
-        <tr bgcolor="#f2f7ff">
+        <tr>
           <td>gIFt</td>
 
           <td>GIF Plain Text Extension</td>
@@ -916,7 +873,7 @@ draft: true
           <td>Gewährt Kompatibilität zu GIF89a</td>
         </tr>
 
-        <tr bgcolor="#ffffff">
+        <tr>
           <td>gIFx</td>
 
           <td>GIF Application Extension</td>
@@ -924,7 +881,7 @@ draft: true
           <td>Gewährt Kompatibilität zu GIF89a</td>
         </tr>
 
-        <tr bgcolor="#f2f7ff">
+        <tr>
           <td>fRAc</td>
 
           <td>Fractal Image Parameters</td>
@@ -1071,10 +1028,10 @@ draft: true
 </p>
 
 <h2>3.7.8 Übersicht Bildformate</h2>
-<!--TODO: Tabelle styling-->
-<table>
+
+<table class="table table-bordered">
   <tbody>
-    <tr bgcolor="#b4c6e9">
+    <tr>
       <th>Format</th>
       <th>ICC-Profil</th>
       <th>Farbtiefe</th>
@@ -1084,7 +1041,7 @@ draft: true
       <th>Komprimierung</th>
     </tr>
 
-    <tr bgcolor="#ffffff">
+    <tr>
       <td>BMP</td>
       <td>nein</td>
       <td>8 bit</td>
@@ -1094,7 +1051,7 @@ draft: true
       <td>RLC (RLE)</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
+    <tr>
       <td>EPS</td>
       <td>ja</td>
       <td>8 bit</td>
@@ -1104,7 +1061,7 @@ draft: true
       <td>JPEG</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
+    <tr>
       <td>FlashPix</td>
       <td>ja</td>
       <td>8 bit</td>
@@ -1114,7 +1071,7 @@ draft: true
       <td>ja</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
+    <tr>
       <td>GIF</td>
       <td>nein</td>
       <td>256 Farb.</td>
@@ -1124,7 +1081,7 @@ draft: true
       <td>LZW</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
+    <tr>
       <td>PhotoCD</td>
       <td>ja</td>
       <td>8 bit</td>
@@ -1134,7 +1091,7 @@ draft: true
       <td>ja</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
+    <tr>
       <td>PDF</td>
       <td>ja</td>
       <td>8 bit</td>
@@ -1144,7 +1101,7 @@ draft: true
       <td>ja</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
+    <tr>
       <td>PNG</td>
       <td>ja</td>
       <td>16 bit</td>
@@ -1154,7 +1111,7 @@ draft: true
       <td>ja</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
+    <tr>
       <td>TGA</td>
       <td>nein</td>
       <td>8 bit</td>
@@ -1164,7 +1121,7 @@ draft: true
       <td>RLC (RLE)</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
+    <tr>
       <td>JPEG</td>
       <td>ja</td>
       <td>8 bit</td>
@@ -1174,7 +1131,7 @@ draft: true
       <td>ja</td>
     </tr>
 
-    <tr bgcolor="#f2f7ff">
+    <tr>
       <td>TIFF</td>
       <td>ja</td>
       <td>16 bit</td>
@@ -1184,7 +1141,7 @@ draft: true
       <td>LZW, JPEG</td>
     </tr>
 
-    <tr bgcolor="#ffffff">
+    <tr>
       <td>PSD</td>
       <td>ja</td>
       <td>16 bit</td>

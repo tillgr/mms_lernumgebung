@@ -368,43 +368,30 @@ draft: true
   Levels beziehen sich auf die Werte der Hauptparameter (z.B. Bildformat, Anzahl
   horizontaler und vertikaler Pixel, max. Bitrate).
 </p>
-<!--TODO: Tabelle styling-->
-<table
-  summary=""
-  width="700"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
->
+
+<table class="table table-bordered">
   <tbody>
-    <tr bgcolor="#b4c6e9" align="left">
+    <tr>
       <th width="25%">Level</th>
-
       <th width="50%">Max. Anzahl Pixel pro Bild x Bildwiederholfrequenz</th>
-
       <th width="25%">Max. Bitrate in Mbps</th>
     </tr>
-
-    <tr bgcolor="#ffffff" align="left">
+    <tr>
       <td>Low (LL)</td>
       <td>352 x 288 x 25 bzw. 352 x 240 x 30</td>
       <td>4</td>
     </tr>
-
-    <tr bgcolor="#f2f7ff" align="left">
+    <tr>
       <td>Main (ML)</td>
       <td>720 x 576 x 25 bzw. 720 x 480 x 30</td>
       <td>15 bzw. 20 (mit HP)</td>
     </tr>
-
-    <tr bgcolor="#ffffff" align="left">
+    <tr>
       <td>High 1440 (H14L)</td>
       <td>1440 x 1152 x 25 bzw. 1440 x 1080 x 30</td>
       <td>60 bzw. 80 (mit HP)</td>
     </tr>
-
-    <tr bgcolor="#f2f7ff" align="left">
+    <tr>
       <td>High (HL)</td>
       <td>71920 x 1152 x 25 bzw. 1920 x 1080 x 30</td>
       <td>80 bzw. 100 (mit HP)</td>
@@ -425,122 +412,79 @@ draft: true
   Level).
 </p>
 <p>Profile-Level-Organisation bei MPEG-2 (nur europäische Pixel-Werte)</p>
-<!--TODO: Tabelle styling-->
-<table
-  summary=""
-  width="700"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
->
+<table class="table table-bordered">
   <tbody>
-    <tr bgcolor="#b4c6e9" align="center">
-      <th width="130" rowspan="2" bgcolor="#ffffff">
+    <tr>
+      <th rowspan="2">
         Max. Anzahl Pixel<br />
         Max. Bitrate
       </th>
-
-      <th width="70" rowspan="2">
+      <th rowspan="2">
         <b>Level</b>
       </th>
-
       <th colspan="5"><b>Profile</b> (Abtastformate)</th>
     </tr>
-
-    <tr bgcolor="#b4c6e9" align="center">
-      <th width="80">Simple (4:2:0)</th>
-
-      <th width="80">Main (4:2:0)</th>
-
-      <th width="80">SNR Scalable (4:2:0)</th>
-
-      <th width="80">Spatial Scalable (4:2:0)</th>
-
-      <th width="80">High (4:2:2)</th>
+    <tr>
+      <th>Simple (4:2:0)</th>
+      <th>Main (4:2:0)</th>
+      <th>SNR Scalable (4:2:0)</th>
+      <th>Spatial Scalable (4:2:0)</th>
+      <th>High (4:2:2)</th>
     </tr>
-
-    <tr bgcolor="#ffffff" align="center">
-      <td align="left">
+    <tr>
+      <td>
         1920 x 1125 x 25<br />
         80 (100) Mbps
       </td>
-
-      <td bgcolor="#b4c6e9">
+      <td>
         <b>High</b>
       </td>
-
       <td>&nbsp;</td>
-
       <td>MP @ HL</td>
-
       <td>&nbsp;</td>
-
       <td>&nbsp;</td>
-
       <td>HP @ HL</td>
     </tr>
-
-    <tr bgcolor="#f2f7ff" align="center">
-      <td align="left">
+    <tr>
+      <td>
         1440 x 1125 x 25<br />
         60 (80) Mbps
       </td>
-
-      <td bgcolor="#b4c6e9">
+      <td>
         <b>High 1440</b>
       </td>
-
       <td>&nbsp;</td>
-
       <td>MP @ H14L</td>
-
       <td>&nbsp;</td>
-
       <td>SSP @ H14L</td>
-
       <td>HP @ H14L</td>
     </tr>
-
-    <tr bgcolor="#ffffff" align="center">
-      <td align="left">
+    <tr>
+      <td>
         725 x 576 x 25<br />
         15 (20) Mbps
       </td>
-
-      <td bgcolor="#b4c6e9">
+      <td>
         <b>Main</b>
       </td>
-
       <td>SP @ ML</td>
-
       <td>MP @ ML</td>
-
       <td>SNRP @ ML</td>
-
       <td>&nbsp;</td>
-
       <td>HP @ ML</td>
     </tr>
-
-    <tr bgcolor="#f2f7ff" align="center">
-      <td align="left">
+    <tr>
+      <td>
         352 x 288 x 25<br />
         4 Mbps
       </td>
-
-      <td bgcolor="#b4c6e9">
+      <td>
         <b>Low</b>
       </td>
-
       <td>&nbsp;</td>
-
       <td>MP @ LL</td>
-
       <td>SNRP @ LL</td>
-
       <td>&nbsp;</td>
-
       <td>&nbsp;</td>
     </tr>
   </tbody>
