@@ -1,0 +1,20 @@
+.table th {
+    background-color: #002557;
+    border: #002557 1px solid;
+    color: white;
+    text-align: center;
+}
+
+.table tr:not(:first-child) td {
+    vertical-align: middle;
+}
+
+.table td {
+    text-align: center;
+}
+
+.table td, 
+.table th {
+    white-space: nowrap;
+    width: 1%;
+}
