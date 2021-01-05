@@ -4,231 +4,560 @@ date: 2020-10-12T09:49:41+02:00
 draft: true
 ---
 
-<p>In den vorherigen Kapiteln wurden zuerst die Prinzipien der MPEG-Videokomprimierung erläutert, um dann auf die
-    speziellen Eigenschaften des MPEG1-Standards einzugehen. Dieses Kapitel thematisiert die spezifischen Eigenschaften
-    des MPEG2-Standards.</p>
+<p>
+  In den vorherigen Kapiteln wurden zuerst die Prinzipien der
+  MPEG-Videokomprimierung erläutert, um dann auf die speziellen Eigenschaften
+  des MPEG1-Standards einzugehen. Dieses Kapitel thematisiert die spezifischen
+  Eigenschaften des MPEG2-Standards.
+</p>
 
 <h2>5.6.1 MPEG-2 Features</h2>
-<p>MPEG-2 erlaubt variable Datenraten bei konstanter Bildqualität (z.B. für digitales TV) bis zu 100 Mbps; typisch sind
-    3 bis 10 Mbps. Die Kodierung der Audio- und Videodaten erfolgt prinzipiell gleich wie bei MPEG-1. Es unterstützt
-    verschiedenste Auflösungen, z.B. ITU-R 601 4:2:2, 4:4:4 wie auch 4:2:0. Das SIF-Format entspricht dem low-Level von
-    MPEG-2 mit einer Datenrate von 4 Mbps.</p>
-<p><strong>Räumliche Skalierung</strong> ermöglicht die Dekompression mit unterschiedlicher horizontaler und vertikaler
-    Auflösung, d.h.
-    im selben Datenstrom können z.B. Bilder mit 352 x 288 (H.261) und 704 x 576 Pixel (CCIR 601) enthalten sein.</p>
-<p>Vier Auflösungen sind definiert: <strong>low</strong> (352 x 240), <strong>main</strong> (720 x 480), <strong>high-1440</strong>
-    (1440 x 1152) und <strong>high</strong> (1920 x 1080). Low garantiert die Kompatibilität zu MPEG-1.
-</p><!--TODO: Formatierung-->
-<p>Die <strong>Bildrate</strong> kann skaliert werden (Anzahl Vollbilder pro Sekunde). Dies ist bei MPEG-I über die
-    D-Bilder definiert.</p>
-<p>Es kann zwischen <strong>Vollbild</strong> (progressive scan) und <strong>Zeilensprungverfahren</strong> (interlace)
-    gewählt werden.</p>
-<p>Die <strong>Amplituden-Skalierung</strong> ermöglicht unterschiedliche Bittiefen bzw. Auflösung der Quantisierung der
-    DCT-Koeffizienten.</p>
-<p>Die <strong>Bewegungsabschätzung</strong> (motion-compensation) arbeitet mit 10x10 Pixelblöcken; d.h. das Bild wird
-    in 10x10 px Blöcke unterteilt, dann wird in den anderen Bildern der ähnlichste Block gesucht, nur der
-    Bewegungsvektor und die Differenz gespeichert.</p>
+<p>
+  MPEG-2 erlaubt variable Datenraten bei konstanter Bildqualität (z.B. für
+  digitales TV) bis zu 100 Mbps; typisch sind 3 bis 10 Mbps. Die Kodierung der
+  Audio- und Videodaten erfolgt prinzipiell gleich wie bei MPEG-1. Es
+  unterstützt verschiedenste Auflösungen, z.B. ITU-R 601 4:2:2, 4:4:4 wie auch
+  4:2:0. Das SIF-Format entspricht dem low-Level von MPEG-2 mit einer Datenrate
+  von 4 Mbps.
+</p>
+<p>
+  <strong>Räumliche Skalierung</strong> ermöglicht die Dekompression mit
+  unterschiedlicher horizontaler und vertikaler Auflösung, d.h. im selben
+  Datenstrom können z.B. Bilder mit 352 x 288 (H.261) und 704 x 576 Pixel (CCIR
+  601) enthalten sein.
+</p>
+<p>
+  Vier Auflösungen sind definiert: <strong>low</strong> (352 x 240),
+  <strong>main</strong> (720 x 480), <strong>high-1440</strong> (1440 x 1152)
+  und <strong>high</strong> (1920 x 1080). Low garantiert die Kompatibilität zu
+  MPEG-1.
+</p>
+<!--TODO: Formatierung-->
+<p>
+  Die <strong>Bildrate</strong> kann skaliert werden (Anzahl Vollbilder pro
+  Sekunde). Dies ist bei MPEG-I über die D-Bilder definiert.
+</p>
+<p>
+  Es kann zwischen <strong>Vollbild</strong> (progressive scan) und
+  <strong>Zeilensprungverfahren</strong> (interlace) gewählt werden.
+</p>
+<p>
+  Die <strong>Amplituden-Skalierung</strong> ermöglicht unterschiedliche
+  Bittiefen bzw. Auflösung der Quantisierung der DCT-Koeffizienten.
+</p>
+<p>
+  Die <strong>Bewegungsabschätzung</strong> (motion-compensation) arbeitet mit
+  10x10 Pixelblöcken; d.h. das Bild wird in 10x10 px Blöcke unterteilt, dann
+  wird in den anderen Bildern der ähnlichste Block gesucht, nur der
+  Bewegungsvektor und die Differenz gespeichert.
+</p>
 <p>Die Genauigkeit der Bewegungsvektoren wurde auf halbe Bildpunkte erhöht.</p>
-<p>MPEG-2 unterstützt die <strong>Mehrkanal-Audio-Kodierung</strong>, d.h. neben den beiden Stereokanälen wird der
-    Mitten-Frontkanal und zwei Raumklangkanäle unterstützt.</p>
-<p>MPEG-2 unterstützt die Definition von <strong>Profilen und Levels</strong>.</p>
+<p>
+  MPEG-2 unterstützt die <strong>Mehrkanal-Audio-Kodierung</strong>, d.h. neben
+  den beiden Stereokanälen wird der Mitten-Frontkanal und zwei Raumklangkanäle
+  unterstützt.
+</p>
+<p>
+  MPEG-2 unterstützt die Definition von <strong>Profilen und Levels</strong>.
+</p>
 
 <h2>5.6.2 MPEG-2 Standards</h2>
-<p>Der MPEG-2 Standard wurde 1994 als ISO/IEC 13818 verabschiedet und besteht aus 9 Teilen: </p>
+<p>
+  Der MPEG-2 Standard wurde 1994 als ISO/IEC 13818 verabschiedet und besteht aus
+  9 Teilen:
+</p>
 <ul>
-    <li>MPEG-2 Systems (ISO/IEC DIS 13818-1)<br/>
-        Spezifiziert das Paketieren und Multiplexing verschiedener MPEG-2 konformen Bitstreams
-    </li>
-    <li>MPEG-2 Video (ISO/IEC DIS 13818-2)<br/>
-        Spezifiziert die Video-Bitstreams und das Zusammenspiel Encoder/Decoder
-    </li>
-    <li>MPEG-2 Audio (ISO/IEC 13818-3:1995)<br/>
-        Hier wird die generische Codierung von Audio und Zusatzinformationen spezifiziert
-    </li>
-    <li>MPEG-2 Conformance (ISO/IEC DIS 13818-4)<br/>
-        Richtlinien zum Test, ob Encoder/Decoder die geforderten Richtlinien von MPEG-2 erfüllen
-    </li>
-    <li>MPEG-2 Software Simulation (ISO/IEC DTR 13818-5)<br/>
-        Standardisierung einer vollständigen Software Simulation der MPEG-2 Teile
-    </li>
-    <li>MPEG-2 Digital Storage Media (ISO/IEC IS 13818-6)<br/>
-        Spezifikation, wie MPEG-2 Datenströme auf Festspeicher geschrieben werden
-    </li>
-    <li>MPEG-2 Extension real time interface for systems decoders (ISO/IEC IS 13818-9)<br/>
-        Erweiterung für Real time interfaces
-    </li>
-</ul><!--TODO: Formatierung-->
+  <li>
+    MPEG-2 Systems (ISO/IEC DIS 13818-1)<br />
+    Spezifiziert das Paketieren und Multiplexing verschiedener MPEG-2 konformen
+    Bitstreams
+  </li>
+  <li>
+    MPEG-2 Video (ISO/IEC DIS 13818-2)<br />
+    Spezifiziert die Video-Bitstreams und das Zusammenspiel Encoder/Decoder
+  </li>
+  <li>
+    MPEG-2 Audio (ISO/IEC 13818-3:1995)<br />
+    Hier wird die generische Codierung von Audio und Zusatzinformationen
+    spezifiziert
+  </li>
+  <li>
+    MPEG-2 Conformance (ISO/IEC DIS 13818-4)<br />
+    Richtlinien zum Test, ob Encoder/Decoder die geforderten Richtlinien von
+    MPEG-2 erfüllen
+  </li>
+  <li>
+    MPEG-2 Software Simulation (ISO/IEC DTR 13818-5)<br />
+    Standardisierung einer vollständigen Software Simulation der MPEG-2 Teile
+  </li>
+  <li>
+    MPEG-2 Digital Storage Media (ISO/IEC IS 13818-6)<br />
+    Spezifikation, wie MPEG-2 Datenströme auf Festspeicher geschrieben werden
+  </li>
+  <li>
+    MPEG-2 Extension real time interface for systems decoders (ISO/IEC IS
+    13818-9)<br />
+    Erweiterung für Real time interfaces
+  </li>
+</ul>
+<!--TODO: Formatierung-->
 
-<p>Die beiden Teile <em>System</em> und <em>Video</em> werden in den folgenden Unterkapiteln ausführlicher vorgestellt.
+<p>
+  Die beiden Teile <em>System</em> und <em>Video</em> werden in den folgenden
+  Unterkapiteln ausführlicher vorgestellt.
 </p>
 
 <h2>5.6.3 MPEG-2 System</h2>
-<p>MPEG-2 <em>System</em> baut auf MPEG-1 auf, und definiert die Erweiterung des Multiplex-Datenstroms mit Programm- und
-    Transport-Datenstrom. Es gibt also drei Arten von Datenströmen; nämlich <strong>Elementare</strong>- (ES, Video- und
-    Audiodaten), <strong>Programm</strong>-(PS) und <strong>Transportströme</strong> (TS). Hierbei werden nicht exakte
-    Code-Prozeduren, sondern syntaktische und semantische Regeln für die Generierung der Bitströme festgelegt.</p>
+<p>
+  MPEG-2 <em>System</em> baut auf MPEG-1 auf, und definiert die Erweiterung des
+  Multiplex-Datenstroms mit Programm- und Transport-Datenstrom. Es gibt also
+  drei Arten von Datenströmen; nämlich <strong>Elementare</strong>- (ES, Video-
+  und Audiodaten), <strong>Programm</strong>-(PS) und
+  <strong>Transportströme</strong> (TS). Hierbei werden nicht exakte
+  Code-Prozeduren, sondern syntaktische und semantische Regeln für die
+  Generierung der Bitströme festgelegt.
+</p>
 
-<p>Die Syntax beschreibt eine <strong>Pack Layer</strong> und eine <strong>Packet Strukture</strong>, in der definiert
-    wird, wie die Video- und Audiodaten im Multiplexstrom geordnet werden. Eine Folge von Paketen bildet ein
-    <em>Pack</em> mit Startcode und generellen Informationen über den Bitstrom, z.B. der absoluten Zeitbasis (System
-    Clock Referenz, SCR). Die SCR hat bei MPEG-1 eine Frequenz von 90KHz, bei MPEG-2 von 27 MHz.</p>
-<p>Jedem <em>Paket</em> gehen Header- und Descriptor-Daten voraus, z.B. Decodier- (Decoder TS, DTS) und
-    Wiedergabezeitpunkt (Presentation Time Stamps, PTS) mit der durch SCR bestimmten Zeitbasis.</p>
-<p>Die <strong>Time Stamps</strong> werden im Packetizer dem Datenstrom hinzugefügt. Sie benötigen eine Referenz Clock
-    (Program Clock Reference, PCR), welche im Multiplexer hinzugefügt wird. Z.B. muss ein Dekoder B-Frames vom vorigen
-    I-/P- und folgenden P-Frames rekonstruieren; Zugriff und Auswahl der richtigen Bilder erfolgt mit Hilfe der time
-    stamps. MPEG2-System unterscheidet zwischen Decode Time Stamp (DTS), welcher anzeigt, wann ein Frame zu dekodieren
-    ist, und Presentation Time Stamp (PTS), der kennzeichnet, wann der Frame anzuzeigen ist.</p>
-<p><strong>Packetized Elementary Streams</strong> (PES) enthalten Pakete, die aus Elementary Streams und
-    Header-Informationen, z.B. Time Stamps, bestehen. Tritt ein Fehler im PES Header auf, wird das ganze Paket
-    verworfen.</p>
-<p><strong>Multiplexing</strong> dient dem Zweck mehrere Eingangsströme zu einem Ausgangsstrom zu vereinen. MPEG2 kennt
-    zwei Multiplexing-Prinzipien:<br/>
-    Das <em>Time Division Multiplexing</em>, bei dem jedem Eingangsstrom ein fester Zeitbereich zugewiesen wird, und das
-    <em>Packet Multiplexing</em>, welches meistens verwendet wird.
-</p><!--TODO: Formatierung-->
+<p>
+  Die Syntax beschreibt eine <strong>Pack Layer</strong> und eine
+  <strong>Packet Strukture</strong>, in der definiert wird, wie die Video- und
+  Audiodaten im Multiplexstrom geordnet werden. Eine Folge von Paketen bildet
+  ein <em>Pack</em> mit Startcode und generellen Informationen über den
+  Bitstrom, z.B. der absoluten Zeitbasis (System Clock Referenz, SCR). Die SCR
+  hat bei MPEG-1 eine Frequenz von 90KHz, bei MPEG-2 von 27 MHz.
+</p>
+<p>
+  Jedem <em>Paket</em> gehen Header- und Descriptor-Daten voraus, z.B. Decodier-
+  (Decoder TS, DTS) und Wiedergabezeitpunkt (Presentation Time Stamps, PTS) mit
+  der durch SCR bestimmten Zeitbasis.
+</p>
+<p>
+  Die <strong>Time Stamps</strong> werden im Packetizer dem Datenstrom
+  hinzugefügt. Sie benötigen eine Referenz Clock (Program Clock Reference, PCR),
+  welche im Multiplexer hinzugefügt wird. Z.B. muss ein Dekoder B-Frames vom
+  vorigen I-/P- und folgenden P-Frames rekonstruieren; Zugriff und Auswahl der
+  richtigen Bilder erfolgt mit Hilfe der time stamps. MPEG2-System unterscheidet
+  zwischen Decode Time Stamp (DTS), welcher anzeigt, wann ein Frame zu
+  dekodieren ist, und Presentation Time Stamp (PTS), der kennzeichnet, wann der
+  Frame anzuzeigen ist.
+</p>
+<p>
+  <strong>Packetized Elementary Streams</strong> (PES) enthalten Pakete, die aus
+  Elementary Streams und Header-Informationen, z.B. Time Stamps, bestehen. Tritt
+  ein Fehler im PES Header auf, wird das ganze Paket verworfen.
+</p>
+<p>
+  <strong>Multiplexing</strong> dient dem Zweck mehrere Eingangsströme zu einem
+  Ausgangsstrom zu vereinen. MPEG2 kennt zwei Multiplexing-Prinzipien:<br />
+  Das <em>Time Division Multiplexing</em>, bei dem jedem Eingangsstrom ein
+  fester Zeitbereich zugewiesen wird, und das <em>Packet Multiplexing</em>,
+  welches meistens verwendet wird.
+</p>
+<!--TODO: Formatierung-->
 
 <p><strong>Streams</strong></p>
-<p>MPEG2-System definiert 3 Arten von Datenströmen, nämlich Elementare- (ES), Programm- (PS) und Transportströme
-    (TS).</p>
-<p><strong>Elementary Streams</strong> (ES) sind Ausgangsströme des Audio- bzw. Video-Encoders. Sie fassen Blöcke,
-    Slices, Frames etc. zusammen, enthalten jedoch keine Timing- oder Programminformation. Jedes Slice, Frame und GoP
-    enthält einen Header, der Inhalt und Position beschreibt, z.B. Informationen wie die I, B und P Frames zu
-    rekonstruieren sind. </p>
-<p>Über den Extension Start Code im Frame Header können beliebige Daten angehängt werden.</p>
-{{% image "Videokompression/6/es-aufbau.gif" "" "Abb. 5.6-0  Aufbau eines elementaren Videostroms" %}}
+<p>
+  MPEG2-System definiert 3 Arten von Datenströmen, nämlich Elementare- (ES),
+  Programm- (PS) und Transportströme (TS).
+</p>
+<p>
+  <strong>Elementary Streams</strong> (ES) sind Ausgangsströme des Audio- bzw.
+  Video-Encoders. Sie fassen Blöcke, Slices, Frames etc. zusammen, enthalten
+  jedoch keine Timing- oder Programminformation. Jedes Slice, Frame und GoP
+  enthält einen Header, der Inhalt und Position beschreibt, z.B. Informationen
+  wie die I, B und P Frames zu rekonstruieren sind.
+</p>
+<p>
+  Über den Extension Start Code im Frame Header können beliebige Daten angehängt
+  werden.
+</p>
+{{% image "Videokompression/6/es-aufbau.gif" "" "Abb. 5.6-0 Aufbau eines
+elementaren Videostroms" %}}
 
-<p>Für elementare Videoströme sind folgende Abstraktionsebenen (Layer) definiert:</p>
+<p>
+  Für elementare Videoströme sind folgende Abstraktionsebenen (Layer) definiert:
+</p>
 <ul>
-    <li><strong>Sequence Layer:</strong> Definiert Basis-Parameter, z.B. Abtastraster, Auflösung, Seitenverhältnis,
-        Bitrate, min. Eingangspuffer, Quantisierungsmatrix
-    </li>
-    <li><strong>GoP Layer:</strong> Beschreibt die Prädiktion einer Gruppe</li>
-    <li><strong>Picture Layer:</strong> Bildtyp (I,P,B,D), Position innerhalb der GoP, Codierung, Voll-/Halbbild, ...
-    </li>
-    <li><strong>Slice Layer:</strong> Ein Slice wird aus einer Folge von Makroblöcken gebildet. Die Gesamtheit der
-        Slices überdeckt das komplette Teilbild. Position innerhalb eines Bildes und Zahl der Blöcke
-    </li>
-    <li><strong>Macroblock Layer:</strong> Basis für bewegungskompensierte Prädiktion; Übertragung der
-        Bewegungsvektoren; meist 16 x 16 Pixel der Y-Ebene
-    </li>
-    <li><strong>Block Layer:</strong> Definiert die Koeffizienten der DCT für 8 x 8 Pixel Blöcke. Bei P-und B-Bildern
-        handelt es sich um den Differenzblock
-    </li>
+  <li>
+    <strong>Sequence Layer:</strong> Definiert Basis-Parameter, z.B.
+    Abtastraster, Auflösung, Seitenverhältnis, Bitrate, min. Eingangspuffer,
+    Quantisierungsmatrix
+  </li>
+  <li><strong>GoP Layer:</strong> Beschreibt die Prädiktion einer Gruppe</li>
+  <li>
+    <strong>Picture Layer:</strong> Bildtyp (I,P,B,D), Position innerhalb der
+    GoP, Codierung, Voll-/Halbbild, ...
+  </li>
+  <li>
+    <strong>Slice Layer:</strong> Ein Slice wird aus einer Folge von
+    Makroblöcken gebildet. Die Gesamtheit der Slices überdeckt das komplette
+    Teilbild. Position innerhalb eines Bildes und Zahl der Blöcke
+  </li>
+  <li>
+    <strong>Macroblock Layer:</strong> Basis für bewegungskompensierte
+    Prädiktion; Übertragung der Bewegungsvektoren; meist 16 x 16 Pixel der
+    Y-Ebene
+  </li>
+  <li>
+    <strong>Block Layer:</strong> Definiert die Koeffizienten der DCT für 8 x 8
+    Pixel Blöcke. Bei P-und B-Bildern handelt es sich um den Differenzblock
+  </li>
 </ul>
 
-<p><strong>Program Stream</strong> (PS) entstehen aus Multiplexing von Video- und Audio-Elementarströmen (ES) und
-    Datenströmen in einen Bitstrom, wobei Video- und Audio-Streams eine gemeinsame Zeitbasis (SCR) haben. Datenströme
-    können beliebige alphanumerischen Zeichen enthalten; z.B. Teletext.</p>
-<p>Die ES werden dabei in Pakete unterschiedlicher Länge zerlegt (Packetized ES). Eine PES-Paket enthält also nur Audio-
-    oder Video-Daten (z.B. komprimiertes Teilbild). Der System-Header eines PES-Pakets enthält systemspezifische
-    Informationen über den Datenstrom (z.B Bildrate, Audiosamplingrate).</p>
-{{% image "Videokompression/6/es-packetized.gif" "" "Abb. 5.6-1  Aufbau eines Packetized Elementary Stream -Pakets" %}}
+<p>
+  <strong>Program Stream</strong> (PS) entstehen aus Multiplexing von Video- und
+  Audio-Elementarströmen (ES) und Datenströmen in einen Bitstrom, wobei Video-
+  und Audio-Streams eine gemeinsame Zeitbasis (SCR) haben. Datenströme können
+  beliebige alphanumerischen Zeichen enthalten; z.B. Teletext.
+</p>
+<p>
+  Die ES werden dabei in Pakete unterschiedlicher Länge zerlegt (Packetized ES).
+  Eine PES-Paket enthält also nur Audio- oder Video-Daten (z.B. komprimiertes
+  Teilbild). Der System-Header eines PES-Pakets enthält systemspezifische
+  Informationen über den Datenstrom (z.B Bildrate, Audiosamplingrate).
+</p>
+{{% image "Videokompression/6/es-packetized.gif" "" "Abb. 5.6-1 Aufbau eines
+Packetized Elementary Stream -Pakets" %}}
 
-<p>Wegen der relativ langen Pakete des PS ist seine Anwendung auf quasi-fehlerfreie Übertragung beschränkt.</p>
-<p><strong>Transport Stream</strong> (TS) dienen der Übertragung von Daten über Verteilnetze (WAN, Satelliten-,
-    Kabelkanäle, terrestrische-). Ein TS enthält meist die Daten mehrerer Programme, welche im TS-Multiplex
-    zusammengefügt werden.</p>
-<p>Wegen spezifischer Übertragungsfehler besteht ein TS aus kurzen Paketen (188 Byte). Ein TS-Paket besteht aus einem 4
-    Byte Header, einem 184 Byte Adaption Field und dem Payload (Nutzlast), und ist auf eine Signalkomponente (Audio,
-    Video,...) beschränkt. Das Adaption Field ist optional; enthält z.B. Program Clock Referende (PCR).</p>
-{{% image "Videokompression/6/ts-paket.gif" "" "Abb. 5.6-2  Aufbau eines Transport-Streams-Pakets" %}}
+<p>
+  Wegen der relativ langen Pakete des PS ist seine Anwendung auf
+  quasi-fehlerfreie Übertragung beschränkt.
+</p>
+<p>
+  <strong>Transport Stream</strong> (TS) dienen der Übertragung von Daten über
+  Verteilnetze (WAN, Satelliten-, Kabelkanäle, terrestrische-). Ein TS enthält
+  meist die Daten mehrerer Programme, welche im TS-Multiplex zusammengefügt
+  werden.
+</p>
+<p>
+  Wegen spezifischer Übertragungsfehler besteht ein TS aus kurzen Paketen (188
+  Byte). Ein TS-Paket besteht aus einem 4 Byte Header, einem 184 Byte Adaption
+  Field und dem Payload (Nutzlast), und ist auf eine Signalkomponente (Audio,
+  Video,...) beschränkt. Das Adaption Field ist optional; enthält z.B. Program
+  Clock Referende (PCR).
+</p>
+{{% image "Videokompression/6/ts-paket.gif" "" "Abb. 5.6-2 Aufbau eines
+Transport-Streams-Pakets" %}}
 
-<p>Aus mehreren TS bildet der Service-Mux das in das (TV-) Verteilnetz eingespeiste Progamm-Bouquet (Sende MPEG-2 TS).
-    Dieser kann bestehen aus festen Bitraten einzelner Programme, sogenannter statischer Multiplex, oder in Grenzen
-    schwankenden Bitrate, je Programminhalt mit fester Gesamtbitrate. Der Vorteil dieses Verfahrens ist, das die
-    Bilddynamik ohne zu starke Qualitätsverluste (Quantisierung) ausgeglichen werden kann.</p>
-{{% image "Videokompression/6/ts-multiplexing.gif" "" "Abb. 5.6-3  Multiplexing mehrerer Transportströme" %}}
+<p>
+  Aus mehreren TS bildet der Service-Mux das in das (TV-) Verteilnetz
+  eingespeiste Progamm-Bouquet (Sende MPEG-2 TS). Dieser kann bestehen aus
+  festen Bitraten einzelner Programme, sogenannter statischer Multiplex, oder in
+  Grenzen schwankenden Bitrate, je Programminhalt mit fester Gesamtbitrate. Der
+  Vorteil dieses Verfahrens ist, das die Bilddynamik ohne zu starke
+  Qualitätsverluste (Quantisierung) ausgeglichen werden kann.
+</p>
+{{% image "Videokompression/6/ts-multiplexing.gif" "" "Abb. 5.6-3 Multiplexing
+mehrerer Transportströme" %}}
 
-<p>Die Zuordnung eines Pakets zu einem Programm erfolgt über die Paket ID (PID) im TS-Header. Die Synchronisation der
-    Datenströme im En- und Decoder geschieht über eine Systemuhr (STC) auf beiden Seiten.</p>
+<p>
+  Die Zuordnung eines Pakets zu einem Programm erfolgt über die Paket ID (PID)
+  im TS-Header. Die Synchronisation der Datenströme im En- und Decoder geschieht
+  über eine Systemuhr (STC) auf beiden Seiten.
+</p>
 
 <p><strong>Programmspezifische Informationen (MPEG-2 Tabellen)</strong></p>
-<p>Programmspezifische Informationen (PSI) und Angaben über die Struktur eines Transport Streams werden im PSI-Feld
-    gespeichert (z.B. aus wie viel und welchen Elementary Streams ein Programm zusammengesetzt ist).</p>
-<p>MPEG-2 verwendet für die Übertragung von PSI Tabellen. Folgende Tabellen sind spezifiziert:</p>
+<p>
+  Programmspezifische Informationen (PSI) und Angaben über die Struktur eines
+  Transport Streams werden im PSI-Feld gespeichert (z.B. aus wie viel und
+  welchen Elementary Streams ein Programm zusammengesetzt ist).
+</p>
+<p>
+  MPEG-2 verwendet für die Übertragung von PSI Tabellen. Folgende Tabellen sind
+  spezifiziert:
+</p>
 <ul>
-    <li><strong>Program Association Table (PAT):</strong> Anzahl der im TS enthaltenen Programme mit Verweis auf die
-        jeweilige Program Map Table
-    </li>
-    <li><strong>Program Map Table (PMT):</strong> Vorhanden je Programm im Mux-Datenstrom; enthält die Liste aller Paket
-        IDs der Elementary Streams die dem jeweiligem Programm angehören
-    </li>
+  <li>
+    <strong>Program Association Table (PAT):</strong> Anzahl der im TS
+    enthaltenen Programme mit Verweis auf die jeweilige Program Map Table
+  </li>
+  <li>
+    <strong>Program Map Table (PMT):</strong> Vorhanden je Programm im
+    Mux-Datenstrom; enthält die Liste aller Paket IDs der Elementary Streams die
+    dem jeweiligem Programm angehören
+  </li>
 </ul>
 
-<p>Nicht im MPEG-2 sondern im DVB-Standard sind spezifiziert: </p>
+<p>Nicht im MPEG-2 sondern im DVB-Standard sind spezifiziert:</p>
 <ul>
-    <li><strong>Conditional Access Table (CAT):</strong> Enthält Informationen zum Entschlüsseln der für Pay-TV
-        übertragenen Datensätze (wenn wenigstens ein Programm verschlüsselt ist)
-    </li>
-    <li><strong>Network Information Table (NIT):</strong> Angaben zum Frequenzband, Orbitposition des Satelliten,
-        Transpondernummer, Kanalbandbreite oder Symbolrate
-    </li>
-    <li>Zusätzliche <strong>DVB-Tabellen:</strong> Bouquet Association Table, Service DescriptionTable, Event
-        Information Table, Time and Date Table oder Running Status Table
-    </li>
+  <li>
+    <strong>Conditional Access Table (CAT):</strong> Enthält Informationen zum
+    Entschlüsseln der für Pay-TV übertragenen Datensätze (wenn wenigstens ein
+    Programm verschlüsselt ist)
+  </li>
+  <li>
+    <strong>Network Information Table (NIT):</strong> Angaben zum Frequenzband,
+    Orbitposition des Satelliten, Transpondernummer, Kanalbandbreite oder
+    Symbolrate
+  </li>
+  <li>
+    Zusätzliche <strong>DVB-Tabellen:</strong> Bouquet Association Table,
+    Service DescriptionTable, Event Information Table, Time and Date Table oder
+    Running Status Table
+  </li>
 </ul>
 
 <h2>5.6.4 MPEG-2 Video</h2>
-<p>MPEG-2 <em>Video</em> definiert verschiedene Qualitätsebenen für komprimierte Videobilder, nämlich <em>Low</em>-
-    (LDTV), <em>Standard</em>- (SDTV) und <em>High Definition Television</em> (HDTV).</p>
-<p>Um effiziente Implementierungen des Standards zu ermöglichen, und maximale Austauschbarkeit bei gleichzeitig
-    vertretbarem Aufwand bei der (De-) Codierung zu erreichen, wurde eine Konfiguration mit Profiles und Levels
-    definiert. Durch sie lässt sich der Funktionsumfang eines Decoders auf die von der Anwendung erhobenen
-    Qualitätsanforderungen begrenzen.</p>
-
-<p><strong>Profiles</strong></p>
-<p>Profile geben indirekt die Codierungstechnik an, z.B. Chrominanzauflösung und Skalierbarkeit. Folgende Profile sind
-    definiert:</p>
-
-<p><strong>Simple/Main Profile</strong>: Geringe Encoding/Decoding Verzögerung für Echtzeit-Umgebungen; dient der
-    Abwärtskompatibilität zu MPEG-1. Die Abtastung des Videosignals erfolgt bei beiden Profilen im 4:2:0 Format, wobei
-    beim Simple Profile (SP) keine bidirektionale Prädiktion, und beim Main Profile (MP) keine Skalierbarkeit vorgesehen
-    ist. Es werden keine Angaben über Bitraten gemacht.<br/>
-    Anwendung: TV/HDTV, Kabel / Satelliten TV Übertragung, Computer, Entertainment</p><!--TODO: Formatierung-->
-<p><strong>SNR Scalable Profile</strong> (SNR = signal-to-noise ratio): Entspricht Main Profile mit
-    signal-to-noise-ratio-Skalierung; z.B. können zwei Datenströme mit gleicher örtlicher Auflösung und
-    unterschiedlicher Quantisierung (Qualität) erzeugt werden. Das SNR-Profile definiert 2 Video-Level unterschiedlicher
-    Qualität (720x576x30 [Pixel/Zeile, Zeilen/Bild, Bilder/Sekunde] mit 15 Mbps und 352x288x30 mit 4 Mbps Datenrate) bei
-    flexibler Bitrate und Kodierung im 4:2:0 Format.<br/>
-    Dieses Profil ermöglicht preiswerte Realisierungen im Basis Layer. Die zeitliche Skalierung erfolgt mit Enhancement
-    Layer durch zusätzliche B-Frames.<br/>
-    Anwendung: Endverbraucher TV
-</p><!--TODO: Formatierung-->
-
-<p><strong>Spatial Scalable Profile</strong> (SSP): Entspricht Main Profile mit Auflösungs-Skalierung; z.B. um aus einem
-    HDTV- ein SDTV-Signal zu erzeugen.<br/>
-    Das Spatial Profile definiert 3 Video-Level: 1440x1152x60 mit 60 Mbps und die des SNR Scalable Profils. Die
-    Abtastung erfolgt im 4:2:0 Format. Die Skalierung der Qualität erfolgt durch Anzahl der P-Frames.<br/>
-    Jede Ebene ist flexibel in der Bitratenzuweisung.<br/>
-    Anwendung: HDTV mit Abwärtskompatibilität zu TV
+<p>
+  MPEG-2 <em>Video</em> definiert verschiedene Qualitätsebenen für komprimierte
+  Videobilder, nämlich <em>Low</em>- (LDTV), <em>Standard</em>- (SDTV) und
+  <em>High Definition Television</em> (HDTV).
+</p>
+<p>
+  Um effiziente Implementierungen des Standards zu ermöglichen, und maximale
+  Austauschbarkeit bei gleichzeitig vertretbarem Aufwand bei der (De-) Codierung
+  zu erreichen, wurde eine Konfiguration mit Profiles und Levels definiert.
+  Durch sie lässt sich der Funktionsumfang eines Decoders auf die von der
+  Anwendung erhobenen Qualitätsanforderungen begrenzen.
 </p>
 
-<p><strong>High Profile</strong> (HP): Bietet den gesamten Funktionsumfang der anderen Profile mit Skalierbarkeit bei
-    gleichzeitig besserer 4:2:2 Abtastung.<br/>
-    Das High Profile definiert 3 Video-Level: 1920x1152x60 mit 100 Mbps, 1440x1152x60 mit 80 Mbps und 720x576x30 mit 20
-    Mbps, bei flexibler Bitrate je Ebene.<br/>
-    Anwendung: professionelle Studioanwendungen - Durch hohe Qualität und hohe Bandbreite sind Implementierungen
-    kostenaufwendig
+<p><strong>Profiles</strong></p>
+<p>
+  Profile geben indirekt die Codierungstechnik an, z.B. Chrominanzauflösung und
+  Skalierbarkeit. Folgende Profile sind definiert:
+</p>
+
+<p>
+  <strong>Simple/Main Profile</strong>: Geringe Encoding/Decoding Verzögerung
+  für Echtzeit-Umgebungen; dient der Abwärtskompatibilität zu MPEG-1. Die
+  Abtastung des Videosignals erfolgt bei beiden Profilen im 4:2:0 Format, wobei
+  beim Simple Profile (SP) keine bidirektionale Prädiktion, und beim Main
+  Profile (MP) keine Skalierbarkeit vorgesehen ist. Es werden keine Angaben über
+  Bitraten gemacht.<br />
+  Anwendung: TV/HDTV, Kabel / Satelliten TV Übertragung, Computer, Entertainment
+</p>
+<!--TODO: Formatierung-->
+<p>
+  <strong>SNR Scalable Profile</strong> (SNR = signal-to-noise ratio):
+  Entspricht Main Profile mit signal-to-noise-ratio-Skalierung; z.B. können zwei
+  Datenströme mit gleicher örtlicher Auflösung und unterschiedlicher
+  Quantisierung (Qualität) erzeugt werden. Das SNR-Profile definiert 2
+  Video-Level unterschiedlicher Qualität (720x576x30 [Pixel/Zeile, Zeilen/Bild,
+  Bilder/Sekunde] mit 15 Mbps und 352x288x30 mit 4 Mbps Datenrate) bei flexibler
+  Bitrate und Kodierung im 4:2:0 Format.<br />
+  Dieses Profil ermöglicht preiswerte Realisierungen im Basis Layer. Die
+  zeitliche Skalierung erfolgt mit Enhancement Layer durch zusätzliche
+  B-Frames.<br />
+  Anwendung: Endverbraucher TV
+</p>
+<!--TODO: Formatierung-->
+
+<p>
+  <strong>Spatial Scalable Profile</strong> (SSP): Entspricht Main Profile mit
+  Auflösungs-Skalierung; z.B. um aus einem HDTV- ein SDTV-Signal zu erzeugen.<br />
+  Das Spatial Profile definiert 3 Video-Level: 1440x1152x60 mit 60 Mbps und die
+  des SNR Scalable Profils. Die Abtastung erfolgt im 4:2:0 Format. Die
+  Skalierung der Qualität erfolgt durch Anzahl der P-Frames.<br />
+  Jede Ebene ist flexibel in der Bitratenzuweisung.<br />
+  Anwendung: HDTV mit Abwärtskompatibilität zu TV
+</p>
+
+<p>
+  <strong>High Profile</strong> (HP): Bietet den gesamten Funktionsumfang der
+  anderen Profile mit Skalierbarkeit bei gleichzeitig besserer 4:2:2
+  Abtastung.<br />
+  Das High Profile definiert 3 Video-Level: 1920x1152x60 mit 100 Mbps,
+  1440x1152x60 mit 80 Mbps und 720x576x30 mit 20 Mbps, bei flexibler Bitrate je
+  Ebene.<br />
+  Anwendung: professionelle Studioanwendungen - Durch hohe Qualität und hohe
+  Bandbreite sind Implementierungen kostenaufwendig
 </p>
 
 <p><strong>Levels</strong></p>
-<p>Levels beziehen sich auf die Werte der Hauptparameter (z.B. Bildformat, Anzahl horizontaler und vertikaler Pixel,
-    max. Bitrate).</p>
-<!--TODO: Tabelle shortcode-->
+<p>
+  Levels beziehen sich auf die Werte der Hauptparameter (z.B. Bildformat, Anzahl
+  horizontaler und vertikaler Pixel, max. Bitrate).
+</p>
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="700"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="#788499"
+>
+  <tbody>
+    <tr bgcolor="#b4c6e9" align="left">
+      <th width="25%">Level</th>
 
-<p>LL bezieht sich auf die die SIF-Auflösung. ML berücksichtigt volle Auflösung bei SDTV (IRU-R 601). Bei HDTV wurden
-    H14L und HL definiert, um eine stufenweise Einführung von HDTV zu ermöglichen.</p>
+      <th width="50%">Max. Anzahl Pixel pro Bild x Bildwiederholfrequenz</th>
+
+      <th width="25%">Max. Bitrate in Mbps</th>
+    </tr>
+
+    <tr bgcolor="#ffffff" align="left">
+      <td>Low (LL)</td>
+      <td>352 x 288 x 25 bzw. 352 x 240 x 30</td>
+      <td>4</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" align="left">
+      <td>Main (ML)</td>
+      <td>720 x 576 x 25 bzw. 720 x 480 x 30</td>
+      <td>15 bzw. 20 (mit HP)</td>
+    </tr>
+
+    <tr bgcolor="#ffffff" align="left">
+      <td>High 1440 (H14L)</td>
+      <td>1440 x 1152 x 25 bzw. 1440 x 1080 x 30</td>
+      <td>60 bzw. 80 (mit HP)</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" align="left">
+      <td>High (HL)</td>
+      <td>71920 x 1152 x 25 bzw. 1920 x 1080 x 30</td>
+      <td>80 bzw. 100 (mit HP)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  LL bezieht sich auf die die SIF-Auflösung. ML berücksichtigt volle Auflösung
+  bei SDTV (IRU-R 601). Bei HDTV wurden H14L und HL definiert, um eine
+  stufenweise Einführung von HDTV zu ermöglichen.
+</p>
 
 <p><strong>Profile-Level-Organisation</strong></p>
-<p>Notwendige und sinnvolle Kombinationen aus Profile und Level sind in der nachfolgenden Tabelle dargestellt (@ steht
-    für die Verbindung von Profile und Level).</p>
+<p>
+  Notwendige und sinnvolle Kombinationen aus Profile und Level sind in der
+  nachfolgenden Tabelle dargestellt (@ steht für die Verbindung von Profile und
+  Level).
+</p>
 <p>Profile-Level-Organisation bei MPEG-2 (nur europäische Pixel-Werte)</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="700"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="#788499"
+>
+  <tbody>
+    <tr bgcolor="#b4c6e9" align="center">
+      <th width="130" rowspan="2" bgcolor="#ffffff">
+        Max. Anzahl Pixel<br />
+        Max. Bitrate
+      </th>
 
-<p>Bei Fernsehproduktion im Studio hat sich ein eigener Standard (MP@ML 4:2:2, 50 Mbps) etabliert.</p>
-<p>Rundfunk-Fernsehen in Europa nutzt aktuell ML bei SDTV (625 Zeilen, 50 Hz, Zeilensprung), zukünftig H14L und HL. Für
-    Rundfunk-Fernsehen in den USA sind seit 1996 vom FCC 18 Parameter-Kombinationen im ML, H14L und HL für SDTV und HDTV
-    definiert, welche bereits von verschieden Rundfunkanstalten angeboten werden.</p>
-<p>In der Computer-Industrie nutzt das "Digital-TV Team" (HP, MS, Intel) eine Untermenge des FCC-Vorschlags ATSC
-    (AdvancesTelevision Systems Committee).</p>
+      <th width="70" rowspan="2">
+        <b>Level</b>
+      </th>
+
+      <th colspan="5"><b>Profile</b> (Abtastformate)</th>
+    </tr>
+
+    <tr bgcolor="#b4c6e9" align="center">
+      <th width="80">Simple (4:2:0)</th>
+
+      <th width="80">Main (4:2:0)</th>
+
+      <th width="80">SNR Scalable (4:2:0)</th>
+
+      <th width="80">Spatial Scalable (4:2:0)</th>
+
+      <th width="80">High (4:2:2)</th>
+    </tr>
+
+    <tr bgcolor="#ffffff" align="center">
+      <td align="left">
+        1920 x 1125 x 25<br />
+        80 (100) Mbps
+      </td>
+
+      <td bgcolor="#b4c6e9">
+        <b>High</b>
+      </td>
+
+      <td>&nbsp;</td>
+
+      <td>MP @ HL</td>
+
+      <td>&nbsp;</td>
+
+      <td>&nbsp;</td>
+
+      <td>HP @ HL</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" align="center">
+      <td align="left">
+        1440 x 1125 x 25<br />
+        60 (80) Mbps
+      </td>
+
+      <td bgcolor="#b4c6e9">
+        <b>High 1440</b>
+      </td>
+
+      <td>&nbsp;</td>
+
+      <td>MP @ H14L</td>
+
+      <td>&nbsp;</td>
+
+      <td>SSP @ H14L</td>
+
+      <td>HP @ H14L</td>
+    </tr>
+
+    <tr bgcolor="#ffffff" align="center">
+      <td align="left">
+        725 x 576 x 25<br />
+        15 (20) Mbps
+      </td>
+
+      <td bgcolor="#b4c6e9">
+        <b>Main</b>
+      </td>
+
+      <td>SP @ ML</td>
+
+      <td>MP @ ML</td>
+
+      <td>SNRP @ ML</td>
+
+      <td>&nbsp;</td>
+
+      <td>HP @ ML</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" align="center">
+      <td align="left">
+        352 x 288 x 25<br />
+        4 Mbps
+      </td>
+
+      <td bgcolor="#b4c6e9">
+        <b>Low</b>
+      </td>
+
+      <td>&nbsp;</td>
+
+      <td>MP @ LL</td>
+
+      <td>SNRP @ LL</td>
+
+      <td>&nbsp;</td>
+
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Bei Fernsehproduktion im Studio hat sich ein eigener Standard (MP@ML 4:2:2, 50
+  Mbps) etabliert.
+</p>
+<p>
+  Rundfunk-Fernsehen in Europa nutzt aktuell ML bei SDTV (625 Zeilen, 50 Hz,
+  Zeilensprung), zukünftig H14L und HL. Für Rundfunk-Fernsehen in den USA sind
+  seit 1996 vom FCC 18 Parameter-Kombinationen im ML, H14L und HL für SDTV und
+  HDTV definiert, welche bereits von verschieden Rundfunkanstalten angeboten
+  werden.
+</p>
+<p>
+  In der Computer-Industrie nutzt das "Digital-TV Team" (HP, MS, Intel) eine
+  Untermenge des FCC-Vorschlags ATSC (AdvancesTelevision Systems Committee).
+</p>
