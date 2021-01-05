@@ -181,8 +181,8 @@ draft: true
   Außerdem werden Zeitmarken (Presentation Time Stamps) für die synchronisierte
   Wiedergabe von Bild und Ton bereitgestellt.
 </p>
-{{% image "Videokompression/4/4_4_1_mpeg-schichten.gif" ""
-"Abb. 5.4-0 MPEG-Schichten" %}}
+{{% image url="Videokompression/4/4_4_1_mpeg-schichten.gif"
+caption="Abb. 5.4-0 MPEG-Schichten" %}}
 
 <p>
   Der maximale Abstand zwischen zwei Synchronisationspunkten beträgt 0,7
@@ -246,8 +246,8 @@ draft: true
   Das folgende Bild beschreibt die im Standard festgelegten Randparameter der
   Digitalisierung der analogen Luminanz- und Farbdifferenzsignale.
 </p>
-{{% image "Videokompression/4/4_4_2_randparameter_der_digitalisierung.gif" ""
-"Abb. 5.4-1 Randparameter der Digitalisierung bei ITU-R BT 601" %}}
+{{% image url="Videokompression/4/4_4_2_randparameter_der_digitalisierung.gif"
+caption="Abb. 5.4-1 Randparameter der Digitalisierung bei ITU-R BT 601" %}}
 
 <p>
   Luminanzsignale werden in 220 Werte aufgeteilt. Z.B. ist L-Wert 16 als Schwarz
@@ -267,8 +267,8 @@ draft: true
   Die Abtastung einer PAL-Zeile mit einer Frequenz von 13,5 MHz wird in dem
   folgenden Bild dargestellt:
 </p>
-{{% image "Videokompression/4/4_4_3_abtastung_einer_zeile.gif" ""
-"Abb. 5.4-2 Abtastung einer Zeile bei ITU-R BT 601" %}}
+{{% image url="Videokompression/4/4_4_3_abtastung_einer_zeile.gif"
+caption="Abb. 5.4-2 Abtastung einer Zeile bei ITU-R BT 601" %}}
 
 <p>
   In der Abblidung ist zu sehen, dass es doppelt so viele Luminanzabtastungen
@@ -293,8 +293,8 @@ draft: true
 <p>
   Bei der Bildkompression wird zwischen den folgenden 4 Bildtypen unterschieden:
 </p>
-{{% image "Videokompression/4/4_4_7_i-p-b-bilder.gif" ""
-"Abb. 5.4-3 Aufbau eines MPEG-Stromes aus I-, P-, B-Bildern" %}}
+{{% image url="Videokompression/4/4_4_7_i-p-b-bilder.gif"
+caption="Abb. 5.4-3 Aufbau eines MPEG-Stromes aus I-, P-, B-Bildern" %}}
 
 <ul>
   <li>
@@ -327,8 +327,8 @@ draft: true
     und Huffman-Algorithmus<!--TODO: Fehlende Referenzen-->
     kodiert. Zusätzlich wird der Bewegungsvektor gespeichert.
   </li>
-  {{% image "Videokompression/4/4_4_8_bewegungskompensation.gif" ""
-  "Abb. 5.4-4 Bewegungskompensation" %}}
+  {{% image url="Videokompression/4/4_4_8_bewegungskompensation.gif"
+  caption="Abb. 5.4-4 Bewegungskompensation" %}}
   <li>
     <strong>B-Bild</strong>
     <em>Bidirectionally Predictive Coded Picture</em>:<br />
@@ -384,8 +384,8 @@ draft: true
   Szenenwechseln ab. Dies ist an dem sich im folgenden Bild von links nach
   rechts bewegenden Fahrzeug erkennbar.
 </p>
-{{% image "Videokompression/4/4_4_4_mpeg_motion_compensation.jpg" ""
-"Abb. 5.4-5 Beispiel zweier sich ähnelnder Bilder im MPEG-Strom" %}}
+{{% image url="Videokompression/4/4_4_4_mpeg_motion_compensation.jpg"
+caption="Abb. 5.4-5 Beispiel zweier sich ähnelnder Bilder im MPEG-Strom" %}}
 
 <p>
   Zentraler Teil von MPEG ist die sog. 'Motion Compensation'. Vereinfacht
@@ -438,8 +438,8 @@ draft: true
   ist sehr aufwändig, deshalb nimmt man an, ein gesuchter Bezugsblock liegt in
   der Nähe.
 </p>
-{{% image "Videokompression/4/4_4_5_mpeg_bewegegungsabschaetzung.gif" ""
-"Abb. 5.4-6 Prinzip der Bewegungsabschätzung bei MPEG" %}}
+{{% image url="Videokompression/4/4_4_5_mpeg_bewegegungsabschaetzung.gif"
+caption="Abb. 5.4-6 Prinzip der Bewegungsabschätzung bei MPEG" %}}
 
 <p>
   Jeder Block wird mit seinem Vorgänger aus dem vorherigen Bild verglichen. Wird
@@ -475,8 +475,8 @@ draft: true
   Andere Verfahren verwenden eine heuristische, zweidimensionale logarithmische
   Suche, indem der Pfad der größten Ähnlichkeit verfolgt wird.
 </p>
-{{% image "Videokompression/4/4_4_6_heuristische_suche.gif" ""
-"Abb. 5.4-7 Demonstration der logarithmischen Suche" %}}
+{{% image url="Videokompression/4/4_4_6_heuristische_suche.gif"
+caption="Abb. 5.4-7 Demonstration der logarithmischen Suche" %}}
 
 <p>
   Im obigen Bild wird der Suchbereich S dargestellt. Die Kreise repräsentieren
@@ -604,8 +604,8 @@ draft: true
 </p>
 
 <p><strong>Makroblockebene</strong></p>
-{{% image "Videokompression/4/mpeg-blockebene.gif" ""
-"Abb. 5.4-8 Aufbau eines Makroblocks in Abhängigkeit des Abtastformats" %}}
+{{% image url="Videokompression/4/mpeg-blockebene.gif"
+caption="Abb. 5.4-8 Aufbau eines Makroblocks in Abhängigkeit des Abtastformats" %}}
 
 <p>
   Hier wird beschrieben, wo der Makroblock im Bild liegt und um welche Art von
@@ -646,8 +646,8 @@ draft: true
   müssen nicht an der rechten oder linken Bildkante beginnen, sondern können mit
   beliebig positionierten Makroblöcken beginnen oder aufhören.
 </p>
-{{% image "Videokompression/4/4_4_9_mpeg_slices.gif" ""
-"Abb. 5.4-9 Aufteilung eines MPEG-kodierten Bildes in Slices" %}}
+{{% image url="Videokompression/4/4_4_9_mpeg_slices.gif"
+caption="Abb. 5.4-9 Aufteilung eines MPEG-kodierten Bildes in Slices" %}}
 
 <p><strong>Picture-Ebene</strong></p>
 <p>
@@ -784,8 +784,8 @@ I<sub>0</sub> B<sub>1</sub> P<sub>2</sub> B<sub>3</sub> P<sub>4</sub> B<sub>5</s
 <!--TODO: Formatierung-->
 
 <h2>5.4.6 MPEG Video-Enkoder</h2>
-{{% image "Videokompression/4/mpeg-video-encoder.gif" ""
-"Abb. 5.4-10 Aufbau eines MPEG-Videoenkoders, DCT = Discrete Cosinus Transformation, RLC = Run Lenght Coding, VLC = Variable Length Coding" %}}
+{{% image url="Videokompression/4/mpeg-video-encoder.gif"
+caption="Abb. 5.4-10 Aufbau eines MPEG-Videoenkoders, DCT = Discrete Cosinus Transformation, RLC = Run Lenght Coding, VLC = Variable Length Coding" %}}
 
 <p>
   <strong>Vorverarbeitung:</strong> Das Eingangssignal wird 4:2:2 oder 4:2:0
@@ -811,8 +811,8 @@ I<sub>0</sub> B<sub>1</sub> P<sub>2</sub> B<sub>3</sub> P<sub>4</sub> B<sub>5</s
 
 <h2>5.4.7 MPEG-Dekoder</h2>
 <p>Ein MPEG-Dekoder besteht i. W. aus vier Komponenten.</p>
-{{% image "Videokompression/4/mpeg-video-decoder.gif" ""
-"Abb. 5.4-11 MPEG-Dekoder" %}}
+{{% image url="Videokompression/4/mpeg-video-decoder.gif"
+caption="Abb. 5.4-11 MPEG-Dekoder" %}}
 
 <p>
   Der Systemdekoder teilt den MPEG-Bitstrom in drei Teilströme auf (Video,
@@ -833,8 +833,8 @@ I<sub>0</sub> B<sub>1</sub> P<sub>2</sub> B<sub>3</sub> P<sub>4</sub> B<sub>5</s
   spezielle Hardware notwendig. Beispiel hierfür ist der 'Video Risc Processors'
   (VRP) CL-4000 von C-Cube.
 </p>
-{{% image "Videokompression/4/4_4_11_risc_cpu.gif" ""
-"Abb. 5.4-12 Aufbau des Video Risc Processor von C-Cube" %}}
+{{% image url="Videokompression/4/4_4_11_risc_cpu.gif"
+caption="Abb. 5.4-12 Aufbau des Video Risc Processor von C-Cube" %}}
 
 <p>
   Der VRP bietet die Möglichkeit der Mikrokode-Programmierung, so dass neben
