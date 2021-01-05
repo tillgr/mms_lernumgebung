@@ -223,15 +223,13 @@ class="table table-bordered"
 >
   <tbody>
     <tr style="text-align: center">
-      <td></td>
-      <td></td>
+      <td colspan="2"></td>
       <td>525 Zeilen/60 Hz</td>
       <td>625 Zeilen/50 Hz</td>
     </tr>
 
     <tr style="text-align: center">
-      <td style="text-align: left">Zeilendauer</td>
-      <td></td>
+      <td colspan="2" style="text-align: left">Zeilendauer</td>
       <td>63,55 µs</td>
       <td>64 µs</td>
     </tr>
@@ -274,8 +272,7 @@ class="table table-bordered"
     </tr>
 
     <tr style="text-align: center">
-      <td style="text-align: left">Codierung</td>
-      <td></td>
+      <td colspan="2" text-align: left">Codierung</td>
       <td colspan="2">gleichmäßige Quantisierung mit 8 Bit</td>
     </tr>
 
@@ -573,15 +570,7 @@ class="table table-bordered"
   einer Wortgrenze; bei ungerader Länge wird ein Füllbyte angehängt.
 </p>
 
-<!--TODO Tabelle styling-->
-<table
-  summary=""
-  width="530"
-  border="0"
-  cellspacing="1"
-  cellpadding="1"
-  bgcolor="#788499"
->
+<table class="table table-bordered">
   <tbody>
     <tr>
       <th>
@@ -592,7 +581,7 @@ class="table table-bordered"
         <div>Bytes</div>
       </th>
 
-      <th width="269">
+      <th>
         <div>RIFF Header Struktur: Bedeutung</div>
       </th>
     </tr>
@@ -602,7 +591,7 @@ class="table table-bordered"
 
       <td>4</td>
 
-      <td width="269">Signatur 'RIFF'</td>
+      <td>Signatur 'RIFF'</td>
     </tr>
 
     <tr>
@@ -610,7 +599,7 @@ class="table table-bordered"
 
       <td>4</td>
 
-      <td width="269">Dateigröße in Byte</td>
+      <td>Dateigröße in Byte</td>
     </tr>
 
     <tr>
@@ -618,7 +607,7 @@ class="table table-bordered"
 
       <td>4</td>
 
-      <td width="269">RIFF-Typ: String, z.B. 'AVI '</td>
+      <td>RIFF-Typ: String, z.B. 'AVI '</td>
     </tr>
 
     <tr>
@@ -626,7 +615,7 @@ class="table table-bordered"
 
       <td>&nbsp;</td>
 
-      <td width="269">&nbsp;</td>
+      <td>&nbsp;</td>
     </tr>
   </tbody>
 </table>
