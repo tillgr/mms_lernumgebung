@@ -4,309 +4,1379 @@ date: 2020-10-12T09:49:41+02:00
 draft: true
 ---
 
-<p>MIDI ist ein Standard für Musik- und Soundeffekte. Einen entscheidenden Impuls zur Entwicklung der MIDI-Schnittstelle
-    gaben neben den Synthesizerherstellern auch eine große Zahl von Musikern. 1982 fand die NAMM-Show (North American
-    Music Manufacturers Show) statt. Das war ein Treffen der Hersteller von elektronischen Musikinstrumenten (Roland,
-    Oberheim Electronics, Sequential Circuits) zur Festlegung eines Kommunikationsstandards elektrischer
-    Musikinstrumente. Dieser sollte Folgendes ermöglichen:</p>
+<p>
+  MIDI ist ein Standard für Musik- und Soundeffekte. Einen entscheidenden Impuls
+  zur Entwicklung der MIDI-Schnittstelle gaben neben den Synthesizerherstellern
+  auch eine große Zahl von Musikern. 1982 fand die NAMM-Show (North American
+  Music Manufacturers Show) statt. Das war ein Treffen der Hersteller von
+  elektronischen Musikinstrumenten (Roland, Oberheim Electronics, Sequential
+  Circuits) zur Festlegung eines Kommunikationsstandards elektrischer
+  Musikinstrumente. Dieser sollte Folgendes ermöglichen:
+</p>
 <ul>
-    <li>zentrale Steuerung von Synthesizern und Effektgeräten.</li>
-    <li>Tonerzeugung und auch Kommunikation zwischen den Geräten ( Synchronisation, Geräteeinstellungen u.s.w.)</li>
-    <li>Unterstützung polyphoner Instrumente</li>
-    <li>Übertragung von Tonattributen (z.B. Anschlagdynamik)</li>
+  <li>zentrale Steuerung von Synthesizern und Effektgeräten.</li>
+  <li>
+    Tonerzeugung und auch Kommunikation zwischen den Geräten ( Synchronisation,
+    Geräteeinstellungen u.s.w.)
+  </li>
+  <li>Unterstützung polyphoner Instrumente</li>
+  <li>Übertragung von Tonattributen (z.B. Anschlagdynamik)</li>
 </ul>
 
-<p>Zur NAMM-Show 1983 wurden erste MIDI - Geräte von Roland und Sequential Circuits vorgestellt. Zur Vermeidung von
-    Substandards wurde die IMA (International MIDI Association, USA) mit folgenden Aufgaben gegründet:</p>
+<p>
+  Zur NAMM-Show 1983 wurden erste MIDI - Geräte von Roland und Sequential
+  Circuits vorgestellt. Zur Vermeidung von Substandards wurde die IMA
+  (International MIDI Association, USA) mit folgenden Aufgaben gegründet:
+</p>
 <ul>
-    <li>Kontrolle der Einhaltung der MIDI-Spezifikation.</li>
-    <li>Herausgabe von Erweiterungen des Standards.</li>
+  <li>Kontrolle der Einhaltung der MIDI-Spezifikation.</li>
+  <li>Herausgabe von Erweiterungen des Standards.</li>
 </ul>
 
 <p>Die MIDI Spezifikation legt fest:</p>
 <ul>
-    <li>Verkabelung und Hardware zum Anschluss elektronischer Musikinstrumente:<br/>asynchrone serielle
-        Schnittstelle<br/>31,25 KBit/s<br/>5poliger DIN St.
-    </li><!--TODO: Formatierung-->
-    <li>Kommunikationsprotokoll zur Steuerung von und zum Datenaustausch zwischen Musikinstrumenten</li>
-    <li>MIDI-Meldungen sind im wesentlichen digitale Beschreibungen von Partituren: Instrument, Noten, Zeitangaben,
-        Partimento, Tonhöhenbeugungen
-    </li>
+  <li>
+    Verkabelung und Hardware zum Anschluss elektronischer Musikinstrumente:<br />asynchrone
+    serielle Schnittstelle<br />31,25 KBit/s<br />5poliger DIN St.
+  </li>
+  <!--TODO: Formatierung-->
+  <li>
+    Kommunikationsprotokoll zur Steuerung von und zum Datenaustausch zwischen
+    Musikinstrumenten
+  </li>
+  <li>
+    MIDI-Meldungen sind im wesentlichen digitale Beschreibungen von Partituren:
+    Instrument, Noten, Zeitangaben, Partimento, Tonhöhenbeugungen
+  </li>
 </ul>
 
-<p>Ein Synthesizer ist ein elektronisches Gerät zur Erzeugung von Musik und Geräuschen.</p>
-<p>Ein Sequenzer ist ein Programm zum Aufzeichnen, Wiedergeben und Editieren elektronischer Musik.</p>
-<p>Derzeit haben praktisch alle elektronischen Musikinstrumente eine MIDI-Schnittstelle, aber auch andere Geräte, wie
-    z.B. Lichtanlagen können eine MIDI-Schnittstelle beinhalten. MIDI verwendet ein extrem kompaktes Datenformat; Musik
-    wird mit weniger als 1 Kbit/s verarbeitet.</p>
+<p>
+  Ein Synthesizer ist ein elektronisches Gerät zur Erzeugung von Musik und
+  Geräuschen.
+</p>
+<p>
+  Ein Sequenzer ist ein Programm zum Aufzeichnen, Wiedergeben und Editieren
+  elektronischer Musik.
+</p>
+<p>
+  Derzeit haben praktisch alle elektronischen Musikinstrumente eine
+  MIDI-Schnittstelle, aber auch andere Geräte, wie z.B. Lichtanlagen können eine
+  MIDI-Schnittstelle beinhalten. MIDI verwendet ein extrem kompaktes
+  Datenformat; Musik wird mit weniger als 1 Kbit/s verarbeitet.
+</p>
 
 <h2>2.8.1 Technische Spezifikation</h2>
 
-<p>MIDI verwendet eine serielle unidirektionale Schnittstelle im asynchronen Modus.</p>
+<p>
+  MIDI verwendet eine serielle unidirektionale Schnittstelle im asynchronen
+  Modus.
+</p>
 <p>Bitformat:</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table summary="" width="400" border="2" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr align="center">
+      <td>1 Start Bit</td>
 
-<p>MIDI begrenzt die pro Sekunde anschlagbaren Töne auf 31.250 Baud / 10 Bit = 3.125 pro Sekunde.</p>
-<p>Ein Befehl zum Senden eines Tones umfasst 2 Byte (im Running - Status) Das heisst, 1.562 Töne können pro Sekunde
-    angeschlagen werden.</p>
+      <td>8 Daten Bits</td>
+
+      <td>1 Stop Bit</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  MIDI begrenzt die pro Sekunde anschlagbaren Töne auf 31.250 Baud / 10 Bit =
+  3.125 pro Sekunde.
+</p>
+<p>
+  Ein Befehl zum Senden eines Tones umfasst 2 Byte (im Running - Status) Das
+  heisst, 1.562 Töne können pro Sekunde angeschlagen werden.
+</p>
 <p>MIDI Stecker:</p>
 <ul>
-    <li>MIDI - IN Empfang von MIDI - Signalen</li><!--TODO: Formatierung-->
-    <li>MIDI - OUT Senden von MIDI - Signalen</li><!--TODO: Formatierung-->
-    <li>MIDI - THRU Weiterleitung der am MIDI - IN Eingang ankommenden Signale</li><!--TODO: Formatierung-->
+  <li>MIDI - IN Empfang von MIDI - Signalen</li>
+  <!--TODO: Formatierung-->
+  <li>MIDI - OUT Senden von MIDI - Signalen</li>
+  <!--TODO: Formatierung-->
+  <li>
+    MIDI - THRU Weiterleitung der am MIDI - IN Eingang ankommenden Signale
+  </li>
+  <!--TODO: Formatierung-->
 </ul>
 
-{{% image "Audiotechnik/8/1_8_1_midi-schaltung.gif" "" "Abb. 2.8-0 MIDI-Schaltung" %}}
+{{% image "Audiotechnik/8/1_8_1_midi-schaltung.gif" ""
+"Abb. 2.8-0 MIDI-Schaltung" %}}
 
-<p>Es wird eine Stromschleife mit 0 - 5 V und 5 mA verwendet ("Strom an" logische 0). Die Anstiegs und Abfallzeiten der
-    Optokoppler (zur galvanischen Trennung) müssen kleiner als 2 µs sein. Das bedeutet, das Kabel darf nicht länger als
-    15 m sein.</p>
+<p>
+  Es wird eine Stromschleife mit 0 - 5 V und 5 mA verwendet ("Strom an" logische
+  0). Die Anstiegs und Abfallzeiten der Optokoppler (zur galvanischen Trennung)
+  müssen kleiner als 2 µs sein. Das bedeutet, das Kabel darf nicht länger als 15
+  m sein.
+</p>
 
 <h5>Gerätekopplungen</h5>
-<p>Eine Reihenschaltung von mehr als 3 Geräten wird nicht empfohlen, da die Zeitverzögerungen zu groß werden können. Es
-    wird eine MIDI-THRU-BOX genutzt.</p>
+<p>
+  Eine Reihenschaltung von mehr als 3 Geräten wird nicht empfohlen, da die
+  Zeitverzögerungen zu groß werden können. Es wird eine MIDI-THRU-BOX genutzt.
+</p>
 
-{{% image "Audiotechnik/8/1_8_2_midi_thru_box.gif" "" "Abb. 2.8-1 Verwendung der MIDI-THRU-Box" %}}
+{{% image "Audiotechnik/8/1_8_2_midi_thru_box.gif" ""
+"Abb. 2.8-1 Verwendung der MIDI-THRU-Box" %}}
 
-<p>Jedes MIDI-Gerät bekommt eine Kanalnummer und reagiert nur auf Nachrichten, die für diesen Kanal bestimmt sind
-    (Geräte können auch auf mehreren Kanälen empfangen).</p>
+<p>
+  Jedes MIDI-Gerät bekommt eine Kanalnummer und reagiert nur auf Nachrichten,
+  die für diesen Kanal bestimmt sind (Geräte können auch auf mehreren Kanälen
+  empfangen).
+</p>
 <p>Nachteile der Spezifikation:</p>
 <ul>
-    <li>Im Ruhezustand fließt kein Strom. Dies erschwert die Fehlererkennung z.B. bei Kabelbruch.</li>
-    <li>Der niedrige Stromwert (5 mA) stellt hohe Anforderungen an die Optokoppler.</li>
-    <li>Die Baudrate von 31.250 ist ein unüblicher Wert.</li>
+  <li>
+    Im Ruhezustand fließt kein Strom. Dies erschwert die Fehlererkennung z.B.
+    bei Kabelbruch.
+  </li>
+  <li>
+    Der niedrige Stromwert (5 mA) stellt hohe Anforderungen an die Optokoppler.
+  </li>
+  <li>Die Baudrate von 31.250 ist ein unüblicher Wert.</li>
 </ul>
 
 <p>Anforderungen an MIDI-Geräte</p>
 <ul>
-    <li>STIMMEN: Ein Soundmodul muss mindestens 24-stimmig sein, also 24 Noten zugleich wiedergeben</li>
-    <li>KANÄLE: Klangerzeuger müssen auf allen 16 MIDI-Kanälen empfangen und 16 unterschiedliche Sounds gleichzeitig
-        wiedergeben können.
-    </li>
-    <li>INSTRUMENTE: Es sind mindestens 128 Instrumenten-Klänge nach der "GMIDI Instrument Patch Map" festgelegt,
-        geordnet in Gruppen zu je acht Sounds. Jede Gruppe repräsentiert einen Klangcharakter
-    </li>
-    <li>KANAL-MELDUNGEN: GMIDI-kompatible Tonerzeuger müssen bestimmte MIDI-Nachrichten verstehen und auswerten. Hierzu
-        gehören z.B. die Controller Modulation, Main Volume, Pan, Expression usw.
-    </li>
-    <li>WEITERE MELDUNGEN: Es müssen alle "General MIDI Level 1 System Messages" interpretiert werden.
-    </li>
+  <li>
+    STIMMEN: Ein Soundmodul muss mindestens 24-stimmig sein, also 24 Noten
+    zugleich wiedergeben
+  </li>
+  <li>
+    KANÄLE: Klangerzeuger müssen auf allen 16 MIDI-Kanälen empfangen und 16
+    unterschiedliche Sounds gleichzeitig wiedergeben können.
+  </li>
+  <li>
+    INSTRUMENTE: Es sind mindestens 128 Instrumenten-Klänge nach der "GMIDI
+    Instrument Patch Map" festgelegt, geordnet in Gruppen zu je acht Sounds.
+    Jede Gruppe repräsentiert einen Klangcharakter
+  </li>
+  <li>
+    KANAL-MELDUNGEN: GMIDI-kompatible Tonerzeuger müssen bestimmte
+    MIDI-Nachrichten verstehen und auswerten. Hierzu gehören z.B. die Controller
+    Modulation, Main Volume, Pan, Expression usw.
+  </li>
+  <li>
+    WEITERE MELDUNGEN: Es müssen alle "General MIDI Level 1 System Messages"
+    interpretiert werden.
+  </li>
 </ul>
 
-<!--TODO: Tabelle shortcode-->
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="313"
+  border="0"
+  cellspacing="1"
+  cellpadding="2"
+  bgcolor="788499"
+>
+  <tbody>
+    <tr bgcolor="b4c6e9">
+      <th width="103">Inst. #</th>
+
+      <th width="199">Instrumente der Gruppe 1</th>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td width="103">1.</td>
+
+      <td width="199">Acoustic Grand Piano</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td width="103">2.</td>
+
+      <td width="199">Bright Acoustic Piano</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td width="103">3.</td>
+
+      <td width="199">Electric Grand Piano</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td width="103">4.</td>
+
+      <td width="199">Honky-Tonk Piano</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td width="103">5.</td>
+
+      <td width="199">Electric Piano 1</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td width="103">6.</td>
+
+      <td width="199">Electric Piano 2</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td width="103">7.</td>
+
+      <td width="199">Harpsichord</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td width="103">8.</td>
+
+      <td width="199">Clavi</td>
+    </tr>
+  </tbody>
+</table>
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="540"
+  border="0"
+  cellspacing="1"
+  cellpadding="2"
+  bgcolor="788499"
+>
+  <tbody>
+    <tr bgcolor="b4c6e9">
+      <th width="81">Inst. #</th>
+
+      <th width="165">Family</th>
+
+      <th width="81">Inst. #</th>
+
+      <th width="192">Family</th>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td width="81">1-8</td>
+
+      <td width="165">Piano</td>
+
+      <td width="81">56-72</td>
+
+      <td width="192">Reed</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td width="81">9-16</td>
+
+      <td width="165">Chromatic Percussion</td>
+
+      <td width="81">73-80</td>
+
+      <td width="192">Pipe</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td width="81">17-24</td>
+
+      <td width="165">Organ</td>
+
+      <td width="81">80-88</td>
+
+      <td width="192">Synth Lead</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td width="81">25-32</td>
+
+      <td width="165">Guitar</td>
+
+      <td width="81">89-96</td>
+
+      <td width="192">Synth Pad</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td width="81">33-42</td>
+
+      <td width="165">Bass</td>
+
+      <td width="81">97-104</td>
+
+      <td width="192">Synth Effects</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td width="81">43-50</td>
+
+      <td width="165">Strings</td>
+
+      <td width="81">105-112</td>
+
+      <td width="192">Ethnic</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td width="81">51-58</td>
+
+      <td width="165">Ensemble</td>
+
+      <td width="81">113-120</td>
+
+      <td width="192">Percussive</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td width="81">59-64</td>
+
+      <td width="165">Brass</td>
+
+      <td width="81">121-128</td>
+
+      <td width="192">Sound Effects</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2>2.8.2 MIDI - Befehle</h2>
 <h5>Datenformate</h5>
-<p>MIDI - Befehle (MIDI-Nachrichten, MIDI-Meldungen) bestehen in einfachster Form aus:</p>
+<p>
+  MIDI - Befehle (MIDI-Nachrichten, MIDI-Meldungen) bestehen in einfachster Form
+  aus:
+</p>
 <p>1 bis 3 Byte, erstes = Statusbyte; folgende = Datenbytes</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="540"
+  border="0"
+  cellspacing="1"
+  cellpadding="2"
+  bgcolor="788499"
+  align="center"
+>
+  <tbody>
+    <tr>
+      <th colspan="10" bgcolor="b4c6e9">Status- und Daten - Byte</th>
+    </tr>
 
-<p>Controller-Meldungen benötigen 2 Datenbytes. Systemexklusive Nachrichten haben ein besonderes Format und können eine
-    unbegrenzte Anzahl von Datenbytes transportieren.</p>
-<p>Das Statusbyte steht meist für den auszuführenden Befehl (z.B. "Ton an"). Es bestimmt den Kanal, auf dem der Befehl
-    gesendet wird (Bit 0 - 3 16 Kanäle).</p>
-<p>Das Datenbyte enthält die Parameter für den auszuführenden Befehl (z.B. Lautstärke des Tones). Es gibt die Anzahl der
-    Bytes an. Das ist abhängig von der Art des Statusbytes. Im Running Status behält ein Gerät den aktuellen Status bis
-    ein neues Statusbyte eintrifft.</p>
+    <tr bgcolor="b4c6e9">
+      <th width="190">Bit</th>
+
+      <th width="20">7</th>
+
+      <th width="20">6</th>
+
+      <th width="20">5</th>
+
+      <th width="20">4</th>
+
+      <th width="20">3</th>
+
+      <th width="20">2</th>
+
+      <th width="20">1</th>
+
+      <th width="20">0</th>
+
+      <th width="190">&nbsp;</th>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td width="190">Status-Byte</td>
+
+      <td width="20">1</td>
+
+      <td width="20">s</td>
+
+      <td width="20">s</td>
+
+      <td width="20">s</td>
+
+      <td width="20">s</td>
+
+      <td width="20">s</td>
+
+      <td width="20">s</td>
+
+      <td width="20">s</td>
+
+      <td width="190">Bit 7 (8.Bit) immer 1</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td width="190">Daten-Byte</td>
+
+      <td width="20">0</td>
+
+      <td width="20">d</td>
+
+      <td width="20">d</td>
+
+      <td width="20">d</td>
+
+      <td width="20">d</td>
+
+      <td width="20">d</td>
+
+      <td width="20">d</td>
+
+      <td width="20">d</td>
+
+      <td width="190">Bit 7 (8.Bit) immer 0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Controller-Meldungen benötigen 2 Datenbytes. Systemexklusive Nachrichten haben
+  ein besonderes Format und können eine unbegrenzte Anzahl von Datenbytes
+  transportieren.
+</p>
+<p>
+  Das Statusbyte steht meist für den auszuführenden Befehl (z.B. "Ton an"). Es
+  bestimmt den Kanal, auf dem der Befehl gesendet wird (Bit 0 - 3 16 Kanäle).
+</p>
+<p>
+  Das Datenbyte enthält die Parameter für den auszuführenden Befehl (z.B.
+  Lautstärke des Tones). Es gibt die Anzahl der Bytes an. Das ist abhängig von
+  der Art des Statusbytes. Im Running Status behält ein Gerät den aktuellen
+  Status bis ein neues Statusbyte eintrifft.
+</p>
 <p>Beispiel: zwei Note-On</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="500"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  align="center"
+  bgcolor="788499"
+>
+  <tbody>
+    <tr bgcolor="b4c6e9" align="center">
+      <th colspan="5">Running-Status</th>
+    </tr>
 
-<p>Der erste Befehl schlägt auf Kanal 4 den Ton c1 an, der zweite bewirkt für den selben Ton ein Note-Off, da das 2.
-    Datenbyte 0 ist. Im Running Staus ist der zweite Befehl, d.h. das Status-Byte '93h', nicht mehr notwendig.</p>
+    <tr bgcolor="b4c6e9" align="center">
+      <th>&nbsp;</th>
+
+      <th>Status</th>
+
+      <th>Daten</th>
+
+      <th>Status</th>
+
+      <th>Daten</th>
+    </tr>
+
+    <tr bgcolor="#ffffff" align="center">
+      <td>normal</td>
+
+      <td>93h</td>
+
+      <td>3Ch 7Fh</td>
+
+      <td>93h</td>
+
+      <td>3Ch 00h</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff" align="center">
+      <td>Running-Status</td>
+
+      <td>93h</td>
+
+      <td>3Ch 7Fh</td>
+
+      <td>&nbsp;</td>
+
+      <td>3Ch 00h</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Der erste Befehl schlägt auf Kanal 4 den Ton c1 an, der zweite bewirkt für den
+  selben Ton ein Note-Off, da das 2. Datenbyte 0 ist. Im Running Staus ist der
+  zweite Befehl, d.h. das Status-Byte '93h', nicht mehr notwendig.
+</p>
 
 <h5>Ausgewählte MIDI - Befehle</h5>
-<p>MIDI Nachrichten sind entweder Kanalnachrichten (Channel Messages) oder Systemnachrichten (System Messages).</p>
+<p>
+  MIDI Nachrichten sind entweder Kanalnachrichten (Channel Messages) oder
+  Systemnachrichten (System Messages).
+</p>
 <p>Kanalnachrichten sind entweder</p>
 <ul>
-    <li>Channel Voice Messages: Befehle zur Tonerzeugung oder</li>
-    <li>Channel Mode Messages: allg. Steuerbefehle</li>
+  <li>Channel Voice Messages: Befehle zur Tonerzeugung oder</li>
+  <li>Channel Mode Messages: allg. Steuerbefehle</li>
 </ul>
 
 <p>Systemnachrichten sind</p>
 <ul>
-    <li>System Common Messages: wirken auf alle Geräte</li>
-    <li>Realtime Messages: dienen zur Synchronisation</li>
-    <li>System Exclusive Messages: für gerätespezifische Übertragung</li>
+  <li>System Common Messages: wirken auf alle Geräte</li>
+  <li>Realtime Messages: dienen zur Synchronisation</li>
+  <li>System Exclusive Messages: für gerätespezifische Übertragung</li>
 </ul>
 
-<h5>Channel Voice Messages: </h5>
-<p>Werden in der Regel durch das Bespielen einer Tastatur oder eines anderen Controllers erzeugt, können jedoch auch zur
-    Steuerung von z.B. Lichtreglern benutzt werden.</p>
+<h5>Channel Voice Messages:</h5>
+<p>
+  Werden in der Regel durch das Bespielen einer Tastatur oder eines anderen
+  Controllers erzeugt, können jedoch auch zur Steuerung von z.B. Lichtreglern
+  benutzt werden.
+</p>
 <p>Anschlagen eines Tons</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="500"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="788499"
+  align="center"
+>
+  <tbody>
+    <tr>
+      <th colspan="4" bgcolor="b4c6e9">Ton an (Note on)</th>
+    </tr>
 
-<p>Das zweite Datenbyte (v = Velocity) misst, wie schnell eine Taste gedrückt wird und ist damit ein Maß für den
-    Anschlag.</p>
-<p>Controller-Befehle der Cannel Voice Messages dienen der Beeinflussung eines Instrumentes durch von der Tastatur
-    unabhängige Spielhilfen, wie z.B. Änderung der Lautstärke, Beeinflussung der Klangfarbe oder Steuerung von
-    Effekten.</p>
-<!--TODO: Tabelle shortcode-->
+    <tr bgcolor="ffffff" align="center">
+      <th>Syntax</th>
+
+      <td>9nh</td>
+
+      <td>kk</td>
+
+      <td>vv</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff" align="center">
+      <th>Bedeutung</th>
+
+      <td>Status+Kanal</td>
+
+      <td>Tonhöhe</td>
+
+      <td>Anschlagstärke</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Das zweite Datenbyte (v = Velocity) misst, wie schnell eine Taste gedrückt
+  wird und ist damit ein Maß für den Anschlag.
+</p>
+<p>
+  Controller-Befehle der Cannel Voice Messages dienen der Beeinflussung eines
+  Instrumentes durch von der Tastatur unabhängige Spielhilfen, wie z.B. Änderung
+  der Lautstärke, Beeinflussung der Klangfarbe oder Steuerung von Effekten.
+</p>
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="500"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="788499"
+  align="center"
+>
+  <tbody>
+    <tr>
+      <th colspan="4" bgcolor="b4c6e9">Controller-Änderungen</th>
+    </tr>
+
+    <tr bgcolor="ffffff" align="center">
+      <th>Syntax</th>
+
+      <td>Bnh</td>
+
+      <td>cc</td>
+
+      <td>vv</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff" align="center">
+      <th>Bedeutung</th>
+
+      <td>Status+Kanal</td>
+
+      <td>Controller-ID</td>
+
+      <td>Wert</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>Beispiele:</p>
 <ul>
-    <li>Sound- und Effekt-Controller:
-        <ul>
-            <li>Variieren der Klangfarbe durch Rückkopplung.</li>
-            <li>Regeln der Tiefpassfilter für Klangbrillianz.</li>
-            <li>Änderungen des Ein- und Ausklangverhaltens.</li>
-        </ul>
-    </li>
-    <li>Daten-Controller:
-        <ul>
-            <li>Data increment bzw. decrement Dient dem Erhöhen bzw. Erniedrigen von Datenwerten.</li>
-        </ul>
-    </li>
-    <li>Parameter-Controller:
-        <ul>
-            <li>Dienen der Steuerung beliebiger Sound- und Effektparameter, z.B. der Tonhöhenbeugung oder
-                Feinabstimmung.
-            </li>
-        </ul>
-    </li>
+  <li>
+    Sound- und Effekt-Controller:
+    <ul>
+      <li>Variieren der Klangfarbe durch Rückkopplung.</li>
+      <li>Regeln der Tiefpassfilter für Klangbrillianz.</li>
+      <li>Änderungen des Ein- und Ausklangverhaltens.</li>
+    </ul>
+  </li>
+  <li>
+    Daten-Controller:
+    <ul>
+      <li>
+        Data increment bzw. decrement Dient dem Erhöhen bzw. Erniedrigen von
+        Datenwerten.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Parameter-Controller:
+    <ul>
+      <li>
+        Dienen der Steuerung beliebiger Sound- und Effektparameter, z.B. der
+        Tonhöhenbeugung oder Feinabstimmung.
+      </li>
+    </ul>
+  </li>
 </ul>
 
-<h5>Channel Mode Messages </h5>
+<h5>Channel Mode Messages</h5>
 <p>Steuern vor allem die grundsätzlichen Spielmöglichkeiten der MIDI Modes.</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="470"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="788499"
+  align="center"
+>
+  <tbody>
+    <tr bgcolor="b4c6e9">
+      <th colspan="3">Channel - Mode IDs</th>
+    </tr>
 
-<p>Im Omni Mode = on verarbeitet das Gerät alle Meldungen unabhängig von der Kanal-Nr. im Statusbyte. Bei Omni Mode =
-    off reagiert es nur auf Kanalmeldungen.</p>
-<p>Im Mono Mode = on wird nur eine Note pro Kanal gespielt. Dieser Mode hat historische Gründe, da die ersten
-    Synthesizer monohpon waren. Moderne Synthesizer sind nicht nur polyphon, ein Gerät kann wie ein Orchester aus
-    mehreren Synthesizern im sog. Multi-Mode arbeiten.</p>
+    <tr bgcolor="b4c6e9">
+      <th>&nbsp;</th>
+
+      <th>ID</th>
+
+      <th>Bedeutung</th>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>All Sound Off</td>
+
+      <td>78h</td>
+
+      <td>alle Klänge ausschalten</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>Reset All Controllers</td>
+
+      <td>79h</td>
+
+      <td>Rücksetzen aller Controller</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>Local Control</td>
+
+      <td>7Ah</td>
+
+      <td>Abschalten der Gerätecontroller</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>All Notes Off</td>
+
+      <td>7Bh</td>
+
+      <td>Abschalten aller Noten</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>Omni Mode On</td>
+
+      <td>7Dh</td>
+
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>Mono Mode On</td>
+
+      <td>7Eh</td>
+
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>Poly Mode On</td>
+
+      <td>7Fh</td>
+
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Im Omni Mode = on verarbeitet das Gerät alle Meldungen unabhängig von der
+  Kanal-Nr. im Statusbyte. Bei Omni Mode = off reagiert es nur auf
+  Kanalmeldungen.
+</p>
+<p>
+  Im Mono Mode = on wird nur eine Note pro Kanal gespielt. Dieser Mode hat
+  historische Gründe, da die ersten Synthesizer monohpon waren. Moderne
+  Synthesizer sind nicht nur polyphon, ein Gerät kann wie ein Orchester aus
+  mehreren Synthesizern im sog. Multi-Mode arbeiten.
+</p>
 <p>Im Poly Mode = on kann das Instrument mehrere Töne gleichzeitig spielen.</p>
-<p>Nach Einstellung dieser Parameter werden 4 verschiedene MIDI-Modes unterschieden.</p>
-<!--TODO: Tabelle shortcode-->
+<p>
+  Nach Einstellung dieser Parameter werden 4 verschiedene MIDI-Modes
+  unterschieden.
+</p>
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="470"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="788499"
+  align="center"
+>
+  <tbody>
+    <tr bgcolor="b4c6e9">
+      <th colspan="3">Channel - Mode IDs</th>
+    </tr>
 
-<h5>Systembefehle (System Common Messages) </h5>
-<p>Systembefehle sind allgemeine Nachrichten, die ohne Rücksicht auf die Kanal-Nr. an alle Geräte im MIDI-System
-    gesendet werden.</p>
-<p>Der <em>Song Position Pointer</em> (SPP) markiert eine Stelle im MIDI - Song. Er wird bei der Wiedergabe erhöht und
-    zeigt auf die zu spielende Stelle.</p>
+    <tr bgcolor="b4c6e9">
+      <th>&nbsp;</th>
+
+      <th>ID</th>
+
+      <th>Bedeutung</th>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>All Sound Off</td>
+
+      <td>78h</td>
+
+      <td>alle Klänge ausschalten</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>Reset All Controllers</td>
+
+      <td>79h</td>
+
+      <td>Rücksetzen aller Controller</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>Local Control</td>
+
+      <td>7Ah</td>
+
+      <td>Abschalten der Gerätecontroller</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>All Notes Off</td>
+
+      <td>7Bh</td>
+
+      <td>Abschalten aller Noten</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>Omni Mode On</td>
+
+      <td>7Dh</td>
+
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>Mono Mode On</td>
+
+      <td>7Eh</td>
+
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>Poly Mode On</td>
+
+      <td>7Fh</td>
+
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5>Systembefehle (System Common Messages)</h5>
+<p>
+  Systembefehle sind allgemeine Nachrichten, die ohne Rücksicht auf die
+  Kanal-Nr. an alle Geräte im MIDI-System gesendet werden.
+</p>
+<p>
+  Der <em>Song Position Pointer</em> (SPP) markiert eine Stelle im MIDI - Song.
+  Er wird bei der Wiedergabe erhöht und zeigt auf die zu spielende Stelle.
+</p>
 <p><em>Song Select</em> wählt einen von 128 Songs eines Sequenzers aus.</p>
-<p><em>End of System Exclusive (EOX)</em> ist ein Flag, das das Ende einer systemexklusiven Übertragung anzeigt.
-</p><!--TODO: Formatierung-->
+<p>
+  <em>End of System Exclusive (EOX)</em> ist ein Flag, das das Ende einer
+  systemexklusiven Übertragung anzeigt.
+</p>
+<!--TODO: Formatierung-->
 
 <h5>Real-Time-Messages</h5>
-<p>werden hauptsächlich zur Synchronisation von Synthesizern, Drum-Maschinen und vergleichbaren Geräten genutzt.</p>
-<p>Um ein möglichst genaues Timing zu ermöglichen, können sie an jeder Stelle im MIDI-Datenstrom eingefügt werden (auch
-    zwischen Status- und Datenbyte). Sie gelten für alle MIDI-Kanäle und bestehen nur aus dem Statusbyte.</p>
+<p>
+  werden hauptsächlich zur Synchronisation von Synthesizern, Drum-Maschinen und
+  vergleichbaren Geräten genutzt.
+</p>
+<p>
+  Um ein möglichst genaues Timing zu ermöglichen, können sie an jeder Stelle im
+  MIDI-Datenstrom eingefügt werden (auch zwischen Status- und Datenbyte). Sie
+  gelten für alle MIDI-Kanäle und bestehen nur aus dem Statusbyte.
+</p>
 <p>Beispiele:</p>
 <ul>
-    <li>Start-Befehl Spielen der aktuellen Sequenz von Position 0</li>
-    <li>Stop-Befehl Anhalten der aktuellen Sequenz</li>
-    <li>Continue-Befehl Fortfahren mit unterbrochener Sequenz</li>
-</ul><!--TODO: Formatierung-->
+  <li>Start-Befehl Spielen der aktuellen Sequenz von Position 0</li>
+  <li>Stop-Befehl Anhalten der aktuellen Sequenz</li>
+  <li>Continue-Befehl Fortfahren mit unterbrochener Sequenz</li>
+</ul>
+<!--TODO: Formatierung-->
 
 <h5>System-Exclusive-Befehle</h5>
-<p>ermöglichen die Weiterentwicklung der Instrumente bei vorgegebenem MIDI-Standard (Implementierung von Befehlen, die
-    nicht der MIDI-Norm entsprechen).</p>
-<!--TODO: Tabelle shortcode-->
+<p>
+  ermöglichen die Weiterentwicklung der Instrumente bei vorgegebenem
+  MIDI-Standard (Implementierung von Befehlen, die nicht der MIDI-Norm
+  entsprechen).
+</p>
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="500"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="788499"
+  align="center"
+>
+  <tbody>
+    <tr>
+      <th colspan="10" bgcolor="b4c6e9">SysEx - Befehl</th>
+    </tr>
 
-<p>Die Instrumente entscheiden über die Hersteller-ID, ob die Daten angenommen werden können.</p>
+    <tr bgcolor="ffffff">
+      <td>Statusbyte:</td>
+
+      <td width="20" align="center">1</td>
+
+      <td width="20" align="center">1</td>
+
+      <td width="20" align="center">1</td>
+
+      <td width="20" align="center">1</td>
+
+      <td width="20" align="center">0</td>
+
+      <td width="20" align="center">0</td>
+
+      <td width="20" align="center">0</td>
+
+      <td width="20" align="center">0</td>
+
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td bgcolor="f2f7ff">1. Datenbyte:</td>
+
+      <td width="20" align="center">0</td>
+
+      <td width="20" align="center">i</td>
+
+      <td width="20" align="center">i</td>
+
+      <td width="20" align="center">i</td>
+
+      <td width="20" align="center">i</td>
+
+      <td width="20" align="center">i</td>
+
+      <td width="20" align="center">i</td>
+
+      <td width="20" align="center">i</td>
+
+      <td>Hersteller - ID</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>2. Datenbyte:</td>
+
+      <td width="20" align="center">0</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td>MIDI - Daten</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>...</td>
+
+      <td width="20" align="center">&nbsp;</td>
+
+      <td width="20" align="center">&nbsp;</td>
+
+      <td width="20" align="center">&nbsp;</td>
+
+      <td width="20" align="center">&nbsp;</td>
+
+      <td width="20" align="center">&nbsp;</td>
+
+      <td width="20" align="center">&nbsp;</td>
+
+      <td width="20" align="center">&nbsp;</td>
+
+      <td width="20" align="center">&nbsp;</td>
+
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>n. Datenbyte:</td>
+
+      <td width="20" align="center">0</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td width="20" align="center">d</td>
+
+      <td>MIDI - Daten</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>n+1. Byte:</td>
+
+      <td width="20" align="center">1</td>
+
+      <td width="20" align="center">1</td>
+
+      <td width="20" align="center">1</td>
+
+      <td width="20" align="center">1</td>
+
+      <td width="20" align="center">0</td>
+
+      <td width="20" align="center">1</td>
+
+      <td width="20" align="center">1</td>
+
+      <td width="20" align="center">1</td>
+
+      <td>EOX - Anweisung</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Die Instrumente entscheiden über die Hersteller-ID, ob die Daten angenommen
+  werden können.
+</p>
 <p>Beispiel: In MIDI nicht enthaltene herstellerspezifische Befehle</p>
 <ul>
-    <li>Sample Dump: Übertragung von Sample Daten.</li>
-    <li>File Dump: Übertragung von Files zwischen Geräten.</li>
+  <li>Sample Dump: Übertragung von Sample Daten.</li>
+  <li>File Dump: Übertragung von Files zwischen Geräten.</li>
 </ul>
 
 <h5>Real Time Universal System Exclusive</h5>
 <p>ist ein MIDI-Time-Code zur Synchronisation von Geräten.</p>
-<p>MIDI verwendet ein taktbezogenes (relatives) Zeitmaß in PPQ (Pulse per Quarternote). Die MIDI-Norm definiert die
-    MIDI-Clock-Rate bzw. Timing-Clock-Rate mit 24 Ticks (Puls) pro Viertelnote. Pro Viertel wird 24mal der Befehl
-    'Timing Clock' gesendet, unabhängig von der Dauer einer Viertelnote. Moderne Sequenzer arbeiten mit einer höheren
-    zeitlichen Auflösung pro Viertelnote, die Werte liegen zwischen 48 und 480. Midi-Befehle ordnen sich also in die
-    gerasterte Zeitachse ein.</p>
+<p>
+  MIDI verwendet ein taktbezogenes (relatives) Zeitmaß in PPQ (Pulse per
+  Quarternote). Die MIDI-Norm definiert die MIDI-Clock-Rate bzw.
+  Timing-Clock-Rate mit 24 Ticks (Puls) pro Viertelnote. Pro Viertel wird 24mal
+  der Befehl 'Timing Clock' gesendet, unabhängig von der Dauer einer
+  Viertelnote. Moderne Sequenzer arbeiten mit einer höheren zeitlichen Auflösung
+  pro Viertelnote, die Werte liegen zwischen 48 und 480. Midi-Befehle ordnen
+  sich also in die gerasterte Zeitachse ein.
+</p>
 <p>Beispiel:</p>
 <ul>
-    <li>120 PPQ; 60 Bpm (Taktmaß: Beats bzw. Schläge pro Minute; je Viertelnote ein Schlag) 1 Viertelnote = 1 s, 1 Puls
-        = 1/120 s,
-    </li>
-    <li>Änderung des Tempos auf 15 Bpm 1 Viertelnote = 4 s, 1 Puls = 1 / 30 s,</li>
-    <li>Das Tempo ist völlig variabel. Es tritt nur eine Änderung des Zeitmaßstabes auf. Alle Proportionalitäten und
-        Tonhöhen bleiben erhalten.
-    </li>
-</ul><!--TODO: Formatierung-->
+  <li>
+    120 PPQ; 60 Bpm (Taktmaß: Beats bzw. Schläge pro Minute; je Viertelnote ein
+    Schlag) 1 Viertelnote = 1 s, 1 Puls = 1/120 s,
+  </li>
+  <li>
+    Änderung des Tempos auf 15 Bpm 1 Viertelnote = 4 s, 1 Puls = 1 / 30 s,
+  </li>
+  <li>
+    Das Tempo ist völlig variabel. Es tritt nur eine Änderung des Zeitmaßstabes
+    auf. Alle Proportionalitäten und Tonhöhen bleiben erhalten.
+  </li>
+</ul>
+<!--TODO: Formatierung-->
 
-<h5>Anpassen des MIDI Time Code MTC an die SMPTE-Norm (Society of Motion Picture and Television Engineers)</h5>
-<p>SMPTE ist eine Synchronisationsnorm des Audio- und Videobereiches. Als Maß werden verwendet: Stunden, Minuten,
-    Sekunden und Frames.</p>
+<h5>
+  Anpassen des MIDI Time Code MTC an die SMPTE-Norm (Society of Motion Picture
+  and Television Engineers)
+</h5>
+<p>
+  SMPTE ist eine Synchronisationsnorm des Audio- und Videobereiches. Als Maß
+  werden verwendet: Stunden, Minuten, Sekunden und Frames.
+</p>
 <p>Es werden 2 Befehlsformen verwendet: Long Format, Short Format.</p>
 <p>Der Typ bestimmt die Anzahl der Frames/s (24, 25, 30 Frames/s)</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="500"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  align="center"
+  bgcolor="788499"
+>
+  <tbody>
+    <tr bgcolor="b4c6e9" align="center">
+      <td colspan="10">
+        <b>MTC Long Format</b>
+      </td>
+    </tr>
 
-<p>Das Short Format ähnelt dem Long Format. Es werden aber nur noch die Sekunden und Frames übertragen (6 Bytes).</p>
+    <tr bgcolor="ffffff">
+      <td>Statusbyte</td>
+
+      <td width="20">1</td>
+
+      <td width="20">1</td>
+
+      <td width="20">1</td>
+
+      <td width="20">1</td>
+
+      <td width="20">0</td>
+
+      <td width="20">0</td>
+
+      <td width="20">0</td>
+
+      <td width="20">0</td>
+
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>1. Datenbyte</td>
+
+      <td>0</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>Befehls-ID</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>2. Datenbyte</td>
+
+      <td>0</td>
+
+      <td>0</td>
+
+      <td>0</td>
+
+      <td>0</td>
+
+      <td>0</td>
+
+      <td>0</td>
+
+      <td>1</td>
+
+      <td>0</td>
+
+      <td>Long Format</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>3. Datenbyte</td>
+
+      <td>0</td>
+
+      <td>0</td>
+
+      <td>0</td>
+
+      <td>h</td>
+
+      <td>h</td>
+
+      <td>h</td>
+
+      <td>h</td>
+
+      <td>h</td>
+
+      <td>Stunden</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>4. Datenbyte</td>
+
+      <td>0</td>
+
+      <td>0</td>
+
+      <td>m</td>
+
+      <td>m</td>
+
+      <td>m</td>
+
+      <td>m</td>
+
+      <td>m</td>
+
+      <td>m</td>
+
+      <td>Minuten</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>5. Datenbyte</td>
+
+      <td>0</td>
+
+      <td>0</td>
+
+      <td>s</td>
+
+      <td>s</td>
+
+      <td>s</td>
+
+      <td>s</td>
+
+      <td>s</td>
+
+      <td>s</td>
+
+      <td>Sekunden</td>
+    </tr>
+
+    <tr bgcolor="ffffff">
+      <td>6. Datenbyte</td>
+
+      <td>0</td>
+
+      <td>t</td>
+
+      <td>t</td>
+
+      <td>f</td>
+
+      <td>f</td>
+
+      <td>f</td>
+
+      <td>f</td>
+
+      <td>f</td>
+
+      <td>Typ, Frame</td>
+    </tr>
+
+    <tr bgcolor="f2f7ff">
+      <td>Schlussbyte</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>0</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>1</td>
+
+      <td>EOX</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Das Short Format ähnelt dem Long Format. Es werden aber nur noch die Sekunden
+  und Frames übertragen (6 Bytes).
+</p>
 <p>Das Long Format wird nur einmal in der Minute benutzt.</p>
 
 <h2>1.8.3 Speicherung von MIDI-Daten im SMF-Dateiformat</h2>
-<p>SMF (Standard MIDI File-Format) Dateien bestehen aus einer Sequenz von Header- und Track-Chunks (Blöcke).</p>
-<p>Der <strong>Header</strong> enthält den MIDI-Typ, die Zahl der Tracks und das Time Format (MTC).</p>
+<p>
+  SMF (Standard MIDI File-Format) Dateien bestehen aus einer Sequenz von Header-
+  und Track-Chunks (Blöcke).
+</p>
+<p>
+  Der <strong>Header</strong> enthält den MIDI-Typ, die Zahl der Tracks und das
+  Time Format (MTC).
+</p>
 <ul>
-    <li>Type 0: ein Sound Track<br/>
-        Type 1: n Tracks für verschiedene Instrumente<br/>
-        Type 2: Tracks = komplette Abschnitte von Musikstücken
-    </li>
-    <li>Time Format:<br/>
-        Ticks per Quarter (Zeitraster, z.B. 500.000ms pro Viertelnote)
-    </li>
-</ul><!--TODO: Formatierung-->
+  <li>
+    Type 0: ein Sound Track<br />
+    Type 1: n Tracks für verschiedene Instrumente<br />
+    Type 2: Tracks = komplette Abschnitte von Musikstücken
+  </li>
+  <li>
+    Time Format:<br />
+    Ticks per Quarter (Zeitraster, z.B. 500.000ms pro Viertelnote)
+  </li>
+</ul>
+<!--TODO: Formatierung-->
 
-<p>Ein <strong>Track-Chunk</strong> ist eine Sequenz von Meta-Events mit konstantem Tempo.</p>
+<p>
+  Ein <strong>Track-Chunk</strong> ist eine Sequenz von Meta-Events mit
+  konstantem Tempo.
+</p>
 <ul>
-    <li>Ein Event ist eine Sequenz von MIDI Kommandos.</li>
-    <li>Vor jedem Event steht ein Delta-Time-Wert, der den Zeitabstand bis zum nächsten Event definiert.</li>
+  <li>Ein Event ist eine Sequenz von MIDI Kommandos.</li>
+  <li>
+    Vor jedem Event steht ein Delta-Time-Wert, der den Zeitabstand bis zum
+    nächsten Event definiert.
+  </li>
 </ul>
 
-{{% image "Audiotechnik/8/1_8_2b_standard-midi-file.gif" "" "Abb. 2.8-2 Das Standard MIDI-file-Format SMF" %}}
+{{% image "Audiotechnik/8/1_8_2b_standard-midi-file.gif" ""
+"Abb. 2.8-2 Das Standard MIDI-file-Format SMF" %}}
 
 <h2>1.8.4 MIDI Sequenzerprogramm</h2>
 <p>Beispiel: <strong>MIDI Connection</strong></p>
-<p>ist ein professionelles Musikprogramm auf MIDI-Basis mit umfangreichen Bearbeitungsmöglichkeiten. Es arbeitet je nach
-    Anforderung mit beliebigen MIDI-Geräten. Der Anschluss von Drumcomputer und Synthesizer ist möglich.</p>
-<p>Die Neukomposition eines Songs wird durch das Generieren einer "Begleitband" (MIDI-Band) unterstützt. Es können
-    Notenblätter und MIDI-Informationen ausgegeben werden. MIDI Connection besteht aus den Programmteilen MIDI-Band und
-    dem Sequencer MIDI-Tape zum Bearbeiten der Musikstücke.</p><!--TODO: Formatierung-->
+<p>
+  ist ein professionelles Musikprogramm auf MIDI-Basis mit umfangreichen
+  Bearbeitungsmöglichkeiten. Es arbeitet je nach Anforderung mit beliebigen
+  MIDI-Geräten. Der Anschluss von Drumcomputer und Synthesizer ist möglich.
+</p>
+<p>
+  Die Neukomposition eines Songs wird durch das Generieren einer "Begleitband"
+  (MIDI-Band) unterstützt. Es können Notenblätter und MIDI-Informationen
+  ausgegeben werden. MIDI Connection besteht aus den Programmteilen MIDI-Band
+  und dem Sequencer MIDI-Tape zum Bearbeiten der Musikstücke.
+</p>
+<!--TODO: Formatierung-->
 
-<p><strong>MIDI-Band</strong> dient dem Komponieren und Ausprobieren neuer Songs.</p>
-<p>Es stellt eine "Band" zur Verfügung, die den eingegebenen Song begleiten kann.</p>
+<p>
+  <strong>MIDI-Band</strong> dient dem Komponieren und Ausprobieren neuer Songs.
+</p>
+<p>
+  Es stellt eine "Band" zur Verfügung, die den eingegebenen Song begleiten kann.
+</p>
 
-{{% image "Audiotechnik/8/1_8_3_midi-connection_midi-band.gif" "" "Abb. 2.8-3 MIDI connection - MIDI Band" %}}
+{{% image "Audiotechnik/8/1_8_3_midi-connection_midi-band.gif" ""
+"Abb. 2.8-3 MIDI connection - MIDI Band" %}}
 
-<p>Der Song wird durch die Eingabe von Akkorden (Noten) in die vorgezeichneten Takte definiert. Die Noten können auch
-    über ein angeschlossenes Keyboard eingespielt werden.</p>
-<p>Mit Hilfe von Arrangiersymbolen ist eine Unterteilung des Songs in mehrere Abschnitte (z.B. Intro, Repeat Begin/End,
-    Fine, ...) möglich. Je nach Musikrichtung können verschiedene Styles der Band eingestellt werden (z.B. Blues, Jazz,
-    Walzer, Country, Hard Rock, ...). Die Definition von nutzerdefinierten Styles ist möglich.</p>
+<p>
+  Der Song wird durch die Eingabe von Akkorden (Noten) in die vorgezeichneten
+  Takte definiert. Die Noten können auch über ein angeschlossenes Keyboard
+  eingespielt werden.
+</p>
+<p>
+  Mit Hilfe von Arrangiersymbolen ist eine Unterteilung des Songs in mehrere
+  Abschnitte (z.B. Intro, Repeat Begin/End, Fine, ...) möglich. Je nach
+  Musikrichtung können verschiedene Styles der Band eingestellt werden (z.B.
+  Blues, Jazz, Walzer, Country, Hard Rock, ...). Die Definition von
+  nutzerdefinierten Styles ist möglich.
+</p>
 
 <p><strong>MIDI-Tape</strong></p>
-<p>stellt einen Sequencer zur Verfügung, mit dem Musikstücke abgemischt werden können und simuliert ein
-    Mehrspuren-Tonbandgerät (bis 64 Spuren), in dem eine Vielzahl von Instrumenten gemischt werden können. Mit MIDI-Band
-    erstellte Songs können übernommen und weiterbearbeitet werden. Es können Aufnahmen aus externen MIDI-Geräten
-    übernommen werden.</p>
+<p>
+  stellt einen Sequencer zur Verfügung, mit dem Musikstücke abgemischt werden
+  können und simuliert ein Mehrspuren-Tonbandgerät (bis 64 Spuren), in dem eine
+  Vielzahl von Instrumenten gemischt werden können. Mit MIDI-Band erstellte
+  Songs können übernommen und weiterbearbeitet werden. Es können Aufnahmen aus
+  externen MIDI-Geräten übernommen werden.
+</p>
 
-{{% image "Audiotechnik/8/1_8_4_midi_connection_midi-tape.gif" "" "Abb. 2.8-4 MIDI-Connection MIDI-Tape" %}}
+{{% image "Audiotechnik/8/1_8_4_midi_connection_midi-tape.gif" ""
+"Abb. 2.8-4 MIDI-Connection MIDI-Tape" %}}
 
-<p>Der Import von MIDI-Dateien ist auch als ASCII-Text möglich. Eine Sample-Datei (beliebiges *.WAV-Format) kann
-    parallel zu den MIDI-Spuren abgespielt, jedoch nicht gemischt werden. Jeder Spur kann ein Instrument zugeordnet
-    werden. Die zu spielende Musik kann in allen nur denkbaren Möglichkeiten variiert werden (Tonart, Note,
-    Geschwindigkeit, Lautstärke usw.).</p>
+<p>
+  Der Import von MIDI-Dateien ist auch als ASCII-Text möglich. Eine Sample-Datei
+  (beliebiges *.WAV-Format) kann parallel zu den MIDI-Spuren abgespielt, jedoch
+  nicht gemischt werden. Jeder Spur kann ein Instrument zugeordnet werden. Die
+  zu spielende Musik kann in allen nur denkbaren Möglichkeiten variiert werden
+  (Tonart, Note, Geschwindigkeit, Lautstärke usw.).
+</p>
 
 <h2>1.8.5 Fazit zu General MIDI</h2>
-<p>General MIDI ist ein grundlegendes, bewährtes Konzept, das jedoch eine zu geringe Auswahl an Instrumenten und Klängen
-    bietet. Die Qualität der Geräte und MIDI-Sequenzen ist sehr unterschiedlich. Erweiterungen sind: Rolan GS (128 x 128
-    Intrumenten-Bänke, Effekte), General MIDI 2, Yamaha XG, DLS (Downloadable Sounds, Soundfonds).</p>
+<p>
+  General MIDI ist ein grundlegendes, bewährtes Konzept, das jedoch eine zu
+  geringe Auswahl an Instrumenten und Klängen bietet. Die Qualität der Geräte
+  und MIDI-Sequenzen ist sehr unterschiedlich. Erweiterungen sind: Rolan GS (128
+  x 128 Intrumenten-Bänke, Effekte), General MIDI 2, Yamaha XG, DLS
+  (Downloadable Sounds, Soundfonds).
+</p>
 
 <h2>1.8.6 XG: eXtended General MIDI</h2>
-<p>XG arbeitet mindestens 32-stimmig. Es verwendet zusätzliche Instrumente ("Bänke") und ist abwärtskompatibel. Es
-    bietet zusätzliche Drum-Sets auf beliebigen MIDI-Kanälen: "Analog", "Latin", "Jungle". Es können flexible Effekte
-    benutzt werden, z.B. Hall und Chorus mit vielen feineren Varianten. Es gibt zusätzliche Variations-Effekte und
-    Eingänge für externe Signale.</p>
+<p>
+  XG arbeitet mindestens 32-stimmig. Es verwendet zusätzliche Instrumente
+  ("Bänke") und ist abwärtskompatibel. Es bietet zusätzliche Drum-Sets auf
+  beliebigen MIDI-Kanälen: "Analog", "Latin", "Jungle". Es können flexible
+  Effekte benutzt werden, z.B. Hall und Chorus mit vielen feineren Varianten. Es
+  gibt zusätzliche Variations-Effekte und Eingänge für externe Signale.
+</p>
 <p>XG-Effekte sind in 3 Gruppen eingeteilt:</p>
 <ul>
-    <li>Reverb (8 Typen, hall, room)</li>
-    <li>Chorus (8 Typen, chorus, flanger)</li>
-    <li>Variation (35 Typen, rotary speaker, tremolo, amp simulator, auto-wah, distortion)</li>
+  <li>Reverb (8 Typen, hall, room)</li>
+  <li>Chorus (8 Typen, chorus, flanger)</li>
+  <li>
+    Variation (35 Typen, rotary speaker, tremolo, amp simulator, auto-wah,
+    distortion)
+  </li>
 </ul>
-<p>Variationseffekte können entweder auf einzelne Kanäle oder auf das gesamte System angewandt werden. Alle 3 Gruppen
-    können gleichzeitig und in Echtzeit genutzt werden.</p>
+<p>
+  Variationseffekte können entweder auf einzelne Kanäle oder auf das gesamte
+  System angewandt werden. Alle 3 Gruppen können gleichzeitig und in Echtzeit
+  genutzt werden.
+</p>
