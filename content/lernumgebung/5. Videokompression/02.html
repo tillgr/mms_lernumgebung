@@ -5,236 +5,1189 @@ draft: true
 ---
 
 <h2>5.2.1 Digitalisierung analoger Video-Signale</h2>
-<p>Am Eingang liegen analoge R, G, B Farbwertsignale (z.B. einer Kamera) an, welche in eine Luminanz- und zwei
-    Chrominanzkomponenten Y=f(R,G,B), C<sub>B</sub> f(Y,B) und C<sub>R</sub>x=f(Y,R) überführt werden.
-</p><!--TODO: Formatierung-->
+<p>
+  Am Eingang liegen analoge R, G, B Farbwertsignale (z.B. einer Kamera) an,
+  welche in eine Luminanz- und zwei Chrominanzkomponenten Y=f(R,G,B), C<sub
+    >B</sub
+  >
+  f(Y,B) und C<sub>R</sub>x=f(Y,R) überführt werden.
+</p>
+<!--TODO: Formatierung-->
 <!--TODO: Shortcode Formeln-->
 
-<p>Es folgt die <strong>A/D-Wandlung</strong> (Abtastung) in digitale Komponentensignale Y, C<sub>B</sub>, C<sub>R</sub>.
-    Die genormte Abtastfrequenz (ITU 601) für R-, G-, B- oder Y-Basisbandsignale beträgt 13,5 MHz. Die Quantisierung
-    erfolgt mit b = 8 Bit, woraus eine Bandbreite von 108 Mbit/s für jedes Signal resultiert.
-</p><!--TODO: Formatierung-->
-<p>A/D-Wandlung: Das analoge Eingangssignal u(t) wird einer Kette von 2<sup>b</sup> - 1 Komparatoren zugeführt, die ihre
-    Vergleichspannung von einem Spannungsteiler erhalten. Die 2<sup>b</sup> - 1 Ausgangswerte der Komparatoren
-    repräsentieren den digitalen Wert, der durch den Koder in einen Binärcode mit b Bits umgesetzt wird. Für
-    Chrominanz-Signale C<sub>B</sub> und C<sub>R</sub> halbiert sich die Abtast- und Datenrate auf 6,75 MHz bzw. 54
-    Mbit/s. Die Datenrate für RGB-Übertragung (4:4:4 Format) beträgt damit 324 Mbit/s, für YC<sub>B</sub>C<sub>R</sub>-Übertragung
-    (4:2:2) 216 Mbit/s.</p><!--TODO: Formatierung-->
-{{% image "Videokompression/2/4_2_1_analog-digital-wandlung.gif" "" "Abb. 5.2-0 Analog/Digital-wandlung" %}}
+<p>
+  Es folgt die <strong>A/D-Wandlung</strong> (Abtastung) in digitale
+  Komponentensignale Y, C<sub>B</sub>, C<sub>R</sub>. Die genormte
+  Abtastfrequenz (ITU 601) für R-, G-, B- oder Y-Basisbandsignale beträgt 13,5
+  MHz. Die Quantisierung erfolgt mit b = 8 Bit, woraus eine Bandbreite von 108
+  Mbit/s für jedes Signal resultiert.
+</p>
+<!--TODO: Formatierung-->
+<p>
+  A/D-Wandlung: Das analoge Eingangssignal u(t) wird einer Kette von 2<sup
+    >b</sup
+  >
+  - 1 Komparatoren zugeführt, die ihre Vergleichspannung von einem
+  Spannungsteiler erhalten. Die 2<sup>b</sup> - 1 Ausgangswerte der Komparatoren
+  repräsentieren den digitalen Wert, der durch den Koder in einen Binärcode mit
+  b Bits umgesetzt wird. Für Chrominanz-Signale C<sub>B</sub> und C<sub>R</sub>
+  halbiert sich die Abtast- und Datenrate auf 6,75 MHz bzw. 54 Mbit/s. Die
+  Datenrate für RGB-Übertragung (4:4:4 Format) beträgt damit 324 Mbit/s, für
+  YC<sub>B</sub>C<sub>R</sub>-Übertragung (4:2:2) 216 Mbit/s.
+</p>
+<!--TODO: Formatierung-->
+{{% image "Videokompression/2/4_2_1_analog-digital-wandlung.gif" "" "Abb. 5.2-0
+Analog/Digital-wandlung" %}}
 
-<p>Die Bildung des <strong>Zeitmultiplexsignals</strong> erfolgt über bitparallele Aufteilung des Signals auf N
-    Leitungen, welches über einen Wandler am Ausgang seriell als digitales, serielles Komponentensignal DSC (Digital
-    SerialComponents) mit 270 Mbps anliegt.</p>
+<p>
+  Die Bildung des <strong>Zeitmultiplexsignals</strong> erfolgt über
+  bitparallele Aufteilung des Signals auf N Leitungen, welches über einen
+  Wandler am Ausgang seriell als digitales, serielles Komponentensignal DSC
+  (Digital SerialComponents) mit 270 Mbps anliegt.
+</p>
 
 <h3 class="h5">Abtastformate</h3>
-<p>Die angegebenen Verhältnisse besagen die Zuordnung der Chrominanz- Abtastung C<sub>B</sub> und C<sub>R</sub> zu den
-    Y-Abtastwerten (Y:C<sub>B</sub>:C<sub>R</sub>), und beziehen sich auf den Basiswert 3,375 MHz; 4:2:2 bedeutet
-    Abtastung von Y mit 4 x 3,375 MHz = 13,5 MHz und CB sowie CR mit jeweils 2 x 3,375 MHz = 6,75 MHz. Die Abtastwerte
-    beziehen sich auf das aktuelle Bild mit n Pixel pro Zeile und z aktiven Zeilen, bei entweder progressiver Abtastung
-    als Vollbild oder Zeilensprungabtastung in 2 Halbbildern.</p><!--TODO: Formatierung-->
-<p>Durch starre Kopplung der Abtastfrequenz mit der Zeilenfrequenz (15,625 KHz bei 625 / 15,734 KHz bei 525 Zeilen)
-    entsteht ein orthogonales Abtastraster, auf dem die Pixel genau übereinander liegen, je Teilbild an gleicher
-    Stelle.</p>
+<p>
+  Die angegebenen Verhältnisse besagen die Zuordnung der Chrominanz- Abtastung
+  C<sub>B</sub> und C<sub>R</sub> zu den Y-Abtastwerten
+  (Y:C<sub>B</sub>:C<sub>R</sub>), und beziehen sich auf den Basiswert 3,375
+  MHz; 4:2:2 bedeutet Abtastung von Y mit 4 x 3,375 MHz = 13,5 MHz und CB sowie
+  CR mit jeweils 2 x 3,375 MHz = 6,75 MHz. Die Abtastwerte beziehen sich auf das
+  aktuelle Bild mit n Pixel pro Zeile und z aktiven Zeilen, bei entweder
+  progressiver Abtastung als Vollbild oder Zeilensprungabtastung in 2
+  Halbbildern.
+</p>
+<!--TODO: Formatierung-->
+<p>
+  Durch starre Kopplung der Abtastfrequenz mit der Zeilenfrequenz (15,625 KHz
+  bei 625 / 15,734 KHz bei 525 Zeilen) entsteht ein orthogonales Abtastraster,
+  auf dem die Pixel genau übereinander liegen, je Teilbild an gleicher Stelle.
+</p>
 
 <p><strong>4:4:4-Format:</strong></p>
-<p>Die Datenrate für RGB-Übertragung (4:4:4 Format) beträgt 324 Mbit/s. Anwendung dieses Verfahrens in der
-    Bildbearbeitung und z.B. in der Medizintechnik; nicht jedoch für TV.</p><!--TODO: Formatierung-->
+<p>
+  Die Datenrate für RGB-Übertragung (4:4:4 Format) beträgt 324 Mbit/s. Anwendung
+  dieses Verfahrens in der Bildbearbeitung und z.B. in der Medizintechnik; nicht
+  jedoch für TV.
+</p>
+<!--TODO: Formatierung-->
 
 <p><strong>4:2:2-Format:</strong></p>
-<p>Für Chrominanz-Signale C<sub>B</sub> und C<sub>R</sub> halbiert sich die Abtast- und Datenrate auf 6,75 MHz bzw. 54
-    Mbit/s; resultierende Bandbreite der YC<sub>B</sub>C<sub>R</sub> -Übertragung (4:2:2) 216 Mbit/s. Anwendung findet
-    dieses Verfahren im Fernseh- und Studiotechnik. Im Gegensatz zum 4:2:2-Studiosignal gibt es keinen
-    4:2:0-Übertragungsstandard, weil dieser auf fiktive "Zwischenzeilen" zurückgreifen würde. Die Bildung des Signals
-    erfolgt durch Berechnung der Chrominanzwerte (Formatkonversion).</p><!--TODO: Formatierung-->
+<p>
+  Für Chrominanz-Signale C<sub>B</sub> und C<sub>R</sub> halbiert sich die
+  Abtast- und Datenrate auf 6,75 MHz bzw. 54 Mbit/s; resultierende Bandbreite
+  der YC<sub>B</sub>C<sub>R</sub> -Übertragung (4:2:2) 216 Mbit/s. Anwendung
+  findet dieses Verfahren im Fernseh- und Studiotechnik. Im Gegensatz zum
+  4:2:2-Studiosignal gibt es keinen 4:2:0-Übertragungsstandard, weil dieser auf
+  fiktive "Zwischenzeilen" zurückgreifen würde. Die Bildung des Signals erfolgt
+  durch Berechnung der Chrominanzwerte (Formatkonversion).
+</p>
+<!--TODO: Formatierung-->
 
 <p><strong>4:1:1-Format:</strong></p>
-<p>Hier wird die horizontale Chrominanz-Auflösung auf 25% reduziert. Anwendung z.B. bei Magnetbandaufzeichnung
-    datenreduzierter Videosignale.</p><!--TODO: Formatierung-->
+<p>
+  Hier wird die horizontale Chrominanz-Auflösung auf 25% reduziert. Anwendung
+  z.B. bei Magnetbandaufzeichnung datenreduzierter Videosignale.
+</p>
+<!--TODO: Formatierung-->
 
 <p><strong>4:2:0-Format:</strong></p>
-<p>Die Reduzierung der Vertikalauflösung beim Halbbildverfahren führt zu sichtbarem Chrominanz-Zeilenflimmern. Um dies
-    zu verhindern, wird aus 4 Chrominanz-Abtastwerten der geometrisch übereinander liegenden Zeilen des 1. und 2.
-    Halbbildes jeweils ein Mittelwert berechnet und den umgebenden Y-Werten zugeordnet.</p><!--TODO: Formatierung-->
-{{% image "Videokompression/2/4-2-0-abtastung.gif" "" "Abb. 5.2-1  Raster bei der 4:2:0-Abtastung" %}}
+<p>
+  Die Reduzierung der Vertikalauflösung beim Halbbildverfahren führt zu
+  sichtbarem Chrominanz-Zeilenflimmern. Um dies zu verhindern, wird aus 4
+  Chrominanz-Abtastwerten der geometrisch übereinander liegenden Zeilen des 1.
+  und 2. Halbbildes jeweils ein Mittelwert berechnet und den umgebenden Y-Werten
+  zugeordnet.
+</p>
+<!--TODO: Formatierung-->
+{{% image "Videokompression/2/4-2-0-abtastung.gif" "" "Abb. 5.2-1 Raster bei der
+4:2:0-Abtastung" %}}
 
 <p><strong>SIF-Format:(Source Intermediate Format)</strong></p>
-<p>Weitere Reduktion der spatialen (räumlichen) Auflösung auf die halbe Anzahl an Abtastwerten in Verbindung mit einer
-    Reduktion der temporalen Auflösung (25 Hz bzw. 29,97 Hz). Beim SIF-Format ist die Chrominanz in beiden Richtungen
-    unterabgetastet und die Abtastwerte liegen mittig zwischen den Abtastwerten der Luminanz.</p>
+<p>
+  Weitere Reduktion der spatialen (räumlichen) Auflösung auf die halbe Anzahl an
+  Abtastwerten in Verbindung mit einer Reduktion der temporalen Auflösung (25 Hz
+  bzw. 29,97 Hz). Beim SIF-Format ist die Chrominanz in beiden Richtungen
+  unterabgetastet und die Abtastwerte liegen mittig zwischen den Abtastwerten
+  der Luminanz.
+</p>
 <p>SIF-Formate für Multimedia-Anwendungen mit einer Auflösung beim</p>
 <ul>
-    <li>625-Zeilensystem: Y = 360 x 288 Pixel, CB bzw. CR= 180 x 144 Pixel</li>
-    <li>525-Zeilensystem: Y = 360 x 240 Pixel, CB bzw. CR= 180 x 120 Pixel</li>
+  <li>625-Zeilensystem: Y = 360 x 288 Pixel, CB bzw. CR= 180 x 144 Pixel</li>
+  <li>525-Zeilensystem: Y = 360 x 240 Pixel, CB bzw. CR= 180 x 120 Pixel</li>
 </ul>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="550"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="#788499"
+>
+  <tbody>
+    <tr bgcolor="#b4c6e9">
+      <th width="60">Abtastung</th>
+
+      <th colspan="2">Y-Signal</th>
+
+      <th colspan="2">
+        C<span class="tiefgestellt">B</span>-, C<span class="tiefgestellt"
+          >R</span
+        >-Signal
+      </th>
+
+      <th width="233">Anwendung</th>
+    </tr>
+
+    <tr bgcolor="#b4c6e9" align="center">
+      <td>&nbsp;</td>
+      <td>horizontal</td>
+      <td>vertikal</td>
+      <td>horizontal</td>
+      <td>vertikal</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr bgcolor="#ffffff" align="center">
+      <td width="60">4:4:4</td>
+      <td width="70">100%</td>
+      <td width="70">100%</td>
+      <td width="70">100%</td>
+      <td width="70">100%</td>
+      <td width="233">
+        <div align="left">Bildbearbeitung; Medizintechnik</div>
+      </td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" align="center">
+      <td width="60">4:2:2</td>
+      <td width="70">100%</td>
+      <td width="70">100%</td>
+      <td width="70">50%</td>
+      <td width="70">100%</td>
+      <td width="233">
+        <div align="left">Fernsehtschnik, Studio</div>
+      </td>
+    </tr>
+
+    <tr bgcolor="#ffffff" align="center">
+      <td width="60">4:1:1</td>
+      <td width="70">100%</td>
+      <td width="70">100%</td>
+      <td width="70">25%</td>
+      <td width="70">100%</td>
+      <td width="233">
+        <div align="left">Datenreduzierte MAZ</div>
+      </td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" align="center">
+      <td width="60">4:2:0</td>
+      <td width="70">100%</td>
+      <td width="70">100%</td>
+      <td width="70">50%</td>
+      <td width="70">50%</td>
+      <td width="233">
+        <div align="left">???</div>
+      </td>
+    </tr>
+
+    <tr bgcolor="#ffffff" align="center">
+      <td width="60">SIF</td>
+      <td width="70">?</td>
+      <td width="70">?</td>
+      <td width="70">?</td>
+      <td width="70">?</td>
+      <td width="233">
+        <div align="left">???</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Digitale Studionorm ITU-R BT.601 bzw. CCIR 601</strong></p>
 <p>ITU: International Telecommunication Union;</p>
 <p>CCIR: Consultative Committee for International Radio</p>
-<p>Die "Recommendation 601: Encoding Parameter of Digital TV for Studios" normiert digitale Videosignale für Studios.
-    Für das amerikanische (525-Zeilen/60 Hz) und europäische (625/50) TV-System gelten weitgehend gemeinsame Parameter.
-    Codiert werden gammakorrigierte Quellsignale A<sub>Y</sub>, A<sub>B-Y</sub> und A<sub>R-Y</sub> bzw. A<sub>R</sub>,
-    A<sub>G</sub> und A<sub>B</sub>. Die Spannung von A<sub>Y</sub> wird auf 0 bis 1,0 Volt (praktisch 0 bis 700 mV),
-    die von A<sub>B-Y</sub> und A<sub>R-Y</sub> auf -0,5 bis +0,5 Volt (bzw. -350 mV bis +350 mV) festgelegt.
-</p><!--TODO: Formatierung-->
-<!--TODO: Tabelle shortcode-->
+<p>
+  Die "Recommendation 601: Encoding Parameter of Digital TV for Studios"
+  normiert digitale Videosignale für Studios. Für das amerikanische
+  (525-Zeilen/60 Hz) und europäische (625/50) TV-System gelten weitgehend
+  gemeinsame Parameter. Codiert werden gammakorrigierte Quellsignale
+  A<sub>Y</sub>, A<sub>B-Y</sub> und A<sub>R-Y</sub> bzw. A<sub>R</sub>, A<sub
+    >G</sub
+  >
+  und A<sub>B</sub>. Die Spannung von A<sub>Y</sub> wird auf 0 bis 1,0 Volt
+  (praktisch 0 bis 700 mV), die von A<sub>B-Y</sub> und A<sub>R-Y</sub> auf -0,5
+  bis +0,5 Volt (bzw. -350 mV bis +350 mV) festgelegt.
+</p>
+<!--TODO: Formatierung-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="600"
+  border="0"
+  bgcolor="#788499"
+  cellpadding="2"
+  cellspacing="1"
+>
+  <tbody>
+    <tr style="text-align: center" bgcolor="#b4c6e9">
+      <td></td>
+      <td></td>
+      <td>525 Zeilen/60 Hz</td>
+      <td>625 Zeilen/50 Hz</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" style="text-align: center">
+      <td bgcolor="#ffffff" style="text-align: left">Zeilendauer</td>
+      <td></td>
+      <td>63,55 µs</td>
+      <td>64 µs</td>
+    </tr>
+
+    <tr bgcolor="#ffffff" style="text-align: center">
+      <td rowspan="2" style="text-align: left">Abtastwerte über Zeilendauer</td>
+      <td>Y</td>
+      <td>858</td>
+      <td>864</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" style="text-align: center">
+      <td>C<sub>R</sub>, C<sub>B</sub></td>
+      <td>429</td>
+      <td>432</td>
+    </tr>
+
+    <tr bgcolor="#ffffff" style="text-align: center">
+      <td rowspan="2" style="text-align: left">Abtastfrequenz</td>
+      <td>Y</td>
+      <td colspan="2">13,5 MHz</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" style="text-align: center">
+      <td>C<sub>R</sub>, C<sub>B</sub></td>
+      <td colspan="2">6,75 MHz</td>
+    </tr>
+
+    <tr bgcolor="#ffffff" style="text-align: center">
+      <td rowspan="2" style="text-align: left">
+        Zahl der Abtastwerte pro aktiver Zeile
+      </td>
+      <td>Y</td>
+      <td colspan="2">720</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" style="text-align: center">
+      <td>C<sub>R</sub>, C<sub>B</sub></td>
+      <td colspan="2">360</td>
+    </tr>
+
+    <tr bgcolor="#ffffff" style="text-align: center">
+      <td style="text-align: left">Codierung</td>
+      <td></td>
+      <td colspan="2">gleichmäßige Quantisierung mit 8 Bit</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" style="text-align: center">
+      <td rowspan="2" bgcolor="#ffffff" style="text-align: left">
+        Bandbreitenbegrenzung
+      </td>
+      <td>Y</td>
+      <td colspan="2">5,75 MHz</td>
+    </tr>
+
+    <tr bgcolor="#ffffff" style="text-align: center">
+      <td>C<sub>R</sub>, C<sub>B</sub></td>
+      <td colspan="2">2,75 MHz</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2>5.2.2 Digitales Fernsehen</h2>
-<p>Die Techniken des digitalen Fernsehens sind: DTVB (Digital TeleVision Broadcasting) bzw. DVB (Digital Video
-    Broadcasting). Deren Ziel ist die Übertragung von digitalisierten Bild-, Ton- und Zusatzinformationen, die auf einem
-    analogen Träger moduliert ausgestrahlt werden. Dazu werden Datencontainer benutzt. In ihnen wird eine maximale
-    Datenmenge pro Zeiteinheit praktisch fehlerfrei übertragen, wobei die Art der Daten keine Rolle spielt, solange sie
-    nach den Regeln des DVB-Standards verpackt und um Zusatzdaten, z.B. Synchronisationsinformationen, ergänzt
-    wurden.</p>
+<p>
+  Die Techniken des digitalen Fernsehens sind: DTVB (Digital TeleVision
+  Broadcasting) bzw. DVB (Digital Video Broadcasting). Deren Ziel ist die
+  Übertragung von digitalisierten Bild-, Ton- und Zusatzinformationen, die auf
+  einem analogen Träger moduliert ausgestrahlt werden. Dazu werden
+  Datencontainer benutzt. In ihnen wird eine maximale Datenmenge pro Zeiteinheit
+  praktisch fehlerfrei übertragen, wobei die Art der Daten keine Rolle spielt,
+  solange sie nach den Regeln des DVB-Standards verpackt und um Zusatzdaten,
+  z.B. Synchronisationsinformationen, ergänzt wurden.
+</p>
 <p>DTVB ermöglicht die</p>
 <ul>
-    <li>Vervielfachung der in einem Übertragungskanal zu übertragenden TV-Programme.</li>
-    <li>Übertragung digitaler Hörfunkprogramme.</li>
-    <li>flexible Wahl der Bild- und Tonqualität, solange die Datenrate die Kanalkapazität nicht überschreitet.</li>
-    <li>Unterstützung von Verschlüsselungsverfahren, z.B. für Pay per View.</li>
+  <li>
+    Vervielfachung der in einem Übertragungskanal zu übertragenden TV-Programme.
+  </li>
+  <li>Übertragung digitaler Hörfunkprogramme.</li>
+  <li>
+    flexible Wahl der Bild- und Tonqualität, solange die Datenrate die
+    Kanalkapazität nicht überschreitet.
+  </li>
+  <li>Unterstützung von Verschlüsselungsverfahren, z.B. für Pay per View.</li>
 </ul>
 
-<p>Die Übertragungsrate (Größe der Datencontainer) ist abhängig vom Übertragungsmedium. Bei Satellitenausstrahlung und
-    Weiterverbreitung im Kabelnetz sind z.B. 40 Mbit/s möglich. Terrestrische Ausstrahlung gestattet 20 Mbit/s. Beim
-    digitalisierten Farbfernsehsignal (ITU-R 601) sind 216 Mbits/s möglich.</p>
+<p>
+  Die Übertragungsrate (Größe der Datencontainer) ist abhängig vom
+  Übertragungsmedium. Bei Satellitenausstrahlung und Weiterverbreitung im
+  Kabelnetz sind z.B. 40 Mbit/s möglich. Terrestrische Ausstrahlung gestattet 20
+  Mbit/s. Beim digitalisierten Farbfernsehsignal (ITU-R 601) sind 216 Mbits/s
+  möglich.
+</p>
 <p>Die Signale müssen komprimiert werden.</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="550"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="#788499"
+>
+  <tbody>
+    <tr bgcolor="#b4c6e9" align="center">
+      <th width="83" rowspan="2">Video-Signal</th>
+
+      <th width="87" rowspan="2">Eingangs-Datenrate</th>
+
+      <th colspan="5">Kompressionsrate</th>
+    </tr>
+
+    <tr bgcolor="#b4c6e9" align="center">
+      <th width="42">S-ISDN (64 Kbps)</th>
+
+      <th width="76">CD-ROM (1,4 Mbps)</th>
+
+      <th width="78">Standard TV (5 Mbps)</th>
+
+      <th width="78">Enhanced TV (9 Mbps)</th>
+
+      <th width="93">HDTV (24Mbps)</th>
+    </tr>
+
+    <tr bgcolor="#ffffff" align="center">
+      <td width="83">SIF (352 x 288 x 1:1)</td>
+
+      <td width="87">30 Mbit/s</td>
+
+      <td width="42">470 : 1</td>
+
+      <td width="76">30 : 1</td>
+
+      <td width="78">&nbsp;</td>
+
+      <td width="78">&nbsp;</td>
+
+      <td width="93">&nbsp;</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff" align="center">
+      <td width="83">ITU-R 601 (720 x 576 x 2:1)</td>
+
+      <td width="87">166 Mbit/s</td>
+
+      <td width="42">&nbsp;</td>
+
+      <td width="76">&nbsp;</td>
+
+      <td width="78">33:1</td>
+
+      <td width="78">18:1</td>
+
+      <td width="93">&nbsp;</td>
+    </tr>
+
+    <tr bgcolor="#ffffff" align="center">
+      <td width="83">HDTV (1440 x 1152 x 2:1)</td>
+
+      <td width="87">663 Mbit/s</td>
+
+      <td width="42">&nbsp;</td>
+
+      <td width="76">&nbsp;</td>
+
+      <td width="78">&nbsp;</td>
+
+      <td width="78">&nbsp;</td>
+
+      <td width="93">28:1</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>Mögliche Übertragungswege für digitales Fernsehen sind:</p>
 <ul>
-    <li>Terrestrische Übertragung</li>
-    <li>Übertragung per Satellit oder</li>
-    <li>Übertragung im Kabel</li>
+  <li>Terrestrische Übertragung</li>
+  <li>Übertragung per Satellit oder</li>
+  <li>Übertragung im Kabel</li>
 </ul>
 
-<p>Bei terrestrischer Übertragung ist das Problem, dass die heute vom analogen Fernsehen belegten Kanäle nicht
-    kurzfristig zur Nutzung durch DVB freigemacht werden können. Langfristig ist eine Umverteilung der
-    Frequenzressourcen geplant.</p>
-<p>Das folgende Bild zeigt die Belegung des UHF-Bereiches (Ultra High Frequency, Kanäle 22 bis 69) in Europa mit
-    Fernsehsendern.</p>
-{{% image "Videokompression/2/4_2_2_uhf-bereich.gif" "" "Abb. 5.2-2 Belegung des UHF-Bereiches mit Fernsehsendern" %}}
+<p>
+  Bei terrestrischer Übertragung ist das Problem, dass die heute vom analogen
+  Fernsehen belegten Kanäle nicht kurzfristig zur Nutzung durch DVB freigemacht
+  werden können. Langfristig ist eine Umverteilung der Frequenzressourcen
+  geplant.
+</p>
+<p>
+  Das folgende Bild zeigt die Belegung des UHF-Bereiches (Ultra High Frequency,
+  Kanäle 22 bis 69) in Europa mit Fernsehsendern.
+</p>
+{{% image "Videokompression/2/4_2_2_uhf-bereich.gif" "" "Abb. 5.2-2 Belegung des
+UHF-Bereiches mit Fernsehsendern" %}}
 
-<p>Bis zum Jahre 2008 werden die Kanäle ab Kanal 62 bis in allen Regionen für DVB zur Verfügung stehen. Bis 2020 sollen
-    weitere Bereiche des UHF-Bereiches durch DVB belegt werden.</p>
-<p>Weniger problematisch als die terrestrische Übertragung ist die Übertragung per Satellit oder im Kabel. Deshalb steht
-    die Übertragung per Satellit oder im Kabel im Mittelpunkt der Einführungsstrategie von DVB in Europa.</p>
+<p>
+  Bis zum Jahre 2008 werden die Kanäle ab Kanal 62 bis in allen Regionen für DVB
+  zur Verfügung stehen. Bis 2020 sollen weitere Bereiche des UHF-Bereiches durch
+  DVB belegt werden.
+</p>
+<p>
+  Weniger problematisch als die terrestrische Übertragung ist die Übertragung
+  per Satellit oder im Kabel. Deshalb steht die Übertragung per Satellit oder im
+  Kabel im Mittelpunkt der Einführungsstrategie von DVB in Europa.
+</p>
 <p>Das folgende Bild zeigt ein mögliches Szenario:</p>
-{{% image "Videokompression/2/4_2_3_satellitenuebertragung.gif" "" "Abb. 5.2-3 Mögliches Szenario der Satellitenübertragung" %}}
+{{% image "Videokompression/2/4_2_3_satellitenuebertragung.gif" "" "Abb. 5.2-3
+Mögliches Szenario der Satellitenübertragung" %}}
 
-<p>Nach der Zusammenführung einzelner datenreduzierter Mediensignale zu den Programmen 1 bis n werden diese in einen
-    Medienstrom (Datencontainer) vereinigt und nach geeigneter Verarbeitung dem Satelliten-Uplink zugeführt. Der
-    Satellit verteilt diese an Direktempfangsanlagen, terrestrische Sender und Kabelkopfstationen. In der
-    Kabelkopfstation werden die Signale demoduliert, dekodiert, die Programme evtl. innerhalb eines Containers neu
-    zusammengestellt und mit dem für das Kabel spezifischen Modulationsverfahren weiterverteilt.</p>
+<p>
+  Nach der Zusammenführung einzelner datenreduzierter Mediensignale zu den
+  Programmen 1 bis n werden diese in einen Medienstrom (Datencontainer)
+  vereinigt und nach geeigneter Verarbeitung dem Satelliten-Uplink zugeführt.
+  Der Satellit verteilt diese an Direktempfangsanlagen, terrestrische Sender und
+  Kabelkopfstationen. In der Kabelkopfstation werden die Signale demoduliert,
+  dekodiert, die Programme evtl. innerhalb eines Containers neu zusammengestellt
+  und mit dem für das Kabel spezifischen Modulationsverfahren weiterverteilt.
+</p>
 
 <h2>5.2.3 Videostandards im Computerbereich</h2>
-<p>Bei der Videoverarbeitung im Rechner wird kein Zeilensprungverfahren angewandt (<strong>non-interlaced</strong>). Die
-    Bildwiederholfrequenz FB ist i. Allg. größer als 70 Hz.</p>
-<p>Zur Darstellung der Farben wird eine <strong>Color Look Up Table (CLUT)</strong> verwendet. Dies ist eine Tabelle mit
-    n Zeilen und drei Spalten mit m-Bit pro Spalte, wobei n << m. Pro Zeile ergibt sich für R, G und B mit jeweils m
-    Farbeinträgen ein Farbraum von 2<sup>3m</sup> Farben. Zu einem Zeitpunkt sind n Farben aus einem Farbraum von 2<sup>3m</sup>
-    Farben darstellbar.</p><!--TODO: Formatierung-->
+<p>
+  Bei der Videoverarbeitung im Rechner wird kein Zeilensprungverfahren angewandt
+  (<strong>non-interlaced</strong>). Die Bildwiederholfrequenz FB ist i. Allg.
+  größer als 70 Hz.
+</p>
+<p>
+  Zur Darstellung der Farben wird eine
+  <strong>Color Look Up Table (CLUT)</strong> verwendet. Dies ist eine Tabelle
+  mit n Zeilen und drei Spalten mit m-Bit pro Spalte, wobei n << m. Pro Zeile
+  ergibt sich für R, G und B mit jeweils m Farbeinträgen ein Farbraum von 2<sup
+    >3m</sup
+  >
+  Farben. Zu einem Zeitpunkt sind n Farben aus einem Farbraum von 2<sup>3m</sup>
+  Farben darstellbar.
+</p>
+<!--TODO: Formatierung-->
 
 <p>Es gibt verschiedene de-facto Video-Standards, z.B.</p>
 <ul>
-    <li><strong>CGA</strong> Color Graphics Adapter<br/>
-        Bildgröße: 320x200 Pixel<br/>
-        Anzahl der verfügbaren Farben: 4<br/>
-        Aufwand zur Darstellung eines Bildes:<br/>
-        320x200Pixel * (2bit/Pixel) / (8bit/Byte) = 16 000 Byte
-    </li>
-    <li><strong>EGA</strong> Enhanced Graphics Adapter<br/>
-        Bildgröße: 640x350 Pixel<br/>
-        Anzahl der verfügbaren Farben: 16<br/>
-        Aufwand zur Darstellung eines Bildes:<br/>
-        640x350Pixel * (4bit/Pixel) / (8bit/Byte) = 112 000 Byte
-    </li>
-    <li><strong>VGA</strong> Video Graphics Array<br/>
-        Bildgröße: 1024x768 Pixel<br/>
-        Anzahl der verfügbaren Farben: 256<br/>
-        Aufwand zur Darstellung eines Bildes:<br/>
-        1024x768 Pixel * (8bit/Pixel) / (8bit/Byte) = 786 432 Byte
-    </li>
-    <li><strong>XGA</strong> Extended Graphics Array<br/>
-        Bildgröße: 640x480 Pixel<br/>
-        Anzahl der verfügbaren Farben: 65536<br/>
-        Aufwand zur Darstellung eines Bildes:<br/>
-        640x480Pixel * (16bit/Pixel) / (8bit/Byte) = 614 400 Byte
-    </li>
-</ul><!--TODO: Formatierung-->
+  <li>
+    <strong>CGA</strong> Color Graphics Adapter<br />
+    Bildgröße: 320x200 Pixel<br />
+    Anzahl der verfügbaren Farben: 4<br />
+    Aufwand zur Darstellung eines Bildes:<br />
+    320x200Pixel * (2bit/Pixel) / (8bit/Byte) = 16 000 Byte
+  </li>
+  <li>
+    <strong>EGA</strong> Enhanced Graphics Adapter<br />
+    Bildgröße: 640x350 Pixel<br />
+    Anzahl der verfügbaren Farben: 16<br />
+    Aufwand zur Darstellung eines Bildes:<br />
+    640x350Pixel * (4bit/Pixel) / (8bit/Byte) = 112 000 Byte
+  </li>
+  <li>
+    <strong>VGA</strong> Video Graphics Array<br />
+    Bildgröße: 1024x768 Pixel<br />
+    Anzahl der verfügbaren Farben: 256<br />
+    Aufwand zur Darstellung eines Bildes:<br />
+    1024x768 Pixel * (8bit/Pixel) / (8bit/Byte) = 786 432 Byte
+  </li>
+  <li>
+    <strong>XGA</strong> Extended Graphics Array<br />
+    Bildgröße: 640x480 Pixel<br />
+    Anzahl der verfügbaren Farben: 65536<br />
+    Aufwand zur Darstellung eines Bildes:<br />
+    640x480Pixel * (16bit/Pixel) / (8bit/Byte) = 614 400 Byte
+  </li>
+</ul>
+<!--TODO: Formatierung-->
 
 <h2>5.2.4 Datei-Format für Video-Daten: AVI</h2>
-<p>AVI leitet sich ab von Audio-Video Interleaved. Interleaved bedeutet, dass Audio- und Videodaten in mehreren
-    verschachtelten Einheiten, sogenannten Streams, gespeichert werden können <!--TODO: Fehlende Referenzen-->Seite
-    459ff.</p>
-<p>Das AVI Dateiformat ist eine spezielle, von Microsoft entwickelte Variante des RIFF (Resource Interchange File)
-    Formates.</p>
-<p>RIFF-Dateien bilden Container, in dem Formate anderer Spezifikationen abgelegt werden. Sie dienen der Speicherung
-    beliebiger Multimedia-Ressourcen und haben z.B. folgende Typenkennung:</p>
-<!--TODO: Tabelle shortcode-->
+<p>
+  AVI leitet sich ab von Audio-Video Interleaved. Interleaved bedeutet, dass
+  Audio- und Videodaten in mehreren verschachtelten Einheiten, sogenannten
+  Streams, gespeichert werden können
+  <!--TODO: Fehlende Referenzen-->Seite 459ff.
+</p>
+<p>
+  Das AVI Dateiformat ist eine spezielle, von Microsoft entwickelte Variante des
+  RIFF (Resource Interchange File) Formates.
+</p>
+<p>
+  RIFF-Dateien bilden Container, in dem Formate anderer Spezifikationen abgelegt
+  werden. Sie dienen der Speicherung beliebiger Multimedia-Ressourcen und haben
+  z.B. folgende Typenkennung:
+</p>
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="292"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="#788499"
+>
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td width="56">.AVI</td>
 
-<p>Die einfachste Form einer AVI Datei stellt die Speicherung der Bildsequenzen eines Videos (video stream) dar.
-    Meistens werden jedoch Audioinformationen mit gespeichert.</p>
-<p>Audio in Stereo-Qualität wird wie bei Mono-Ton in einem Stream gespeichert. Spezielle Multimedia-Sequenzen, z.B. ein
-    MIDI-Track, stellen zusätzliche Datenstreams dar. Es sind Control-Tracks, z.B. zur externen Steuerung eines
-    MCI-Videodisc-Players, möglich. Sie erfordern jedoch spezielle Software.</p>
-<p>Eine RIFF-Datei besteht aus einem Chunk (engl.: Klumpen, Block), der wiederum beliebig viele ineinander
-    verschachtelte Subchunks (lokale Unterblöcke) enthalten kann. Der Aufbau eines (Sub)Chunks besteht aus drei
-    Einträgen:</p>
-<p>Identifikator (ID):
-    Kennzeichnet die Art der Daten bzw. des Blockes und wird als ASCII Zeichen (Character) interpretiert. Ein RIFF Chunk
-    beginnt immer mit `RIFF`, d.h den Bytes 0x52, 0x49, 0x46 und 0x46.</p>
-<p>Länge (L):
-    Die Daten haben eine bestimmte Länge. Chunks beginnen immer auf einer Wortgrenze; bei ungerader Länge wird ein
-    Füllbyte angehängt.</p>
+      <td width="236">Video (Video for Windows)</td>
+    </tr>
 
+    <tr bgcolor="#f2f7ff">
+      <td width="56">.WAV</td>
+
+      <td width="236">Audio Wave (Windows Wave File)</td>
+    </tr>
+
+    <tr bgcolor="#ffffff">
+      <td width="56">.RDI</td>
+
+      <td width="236">Bitmap</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff">
+      <td width="56">.RMI</td>
+
+      <td width="236">MIDI</td>
+    </tr>
+
+    <tr bgcolor="#ffffff">
+      <td width="56">.BND</td>
+
+      <td width="236">Bündel anderer RIFF-Dateien</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Die einfachste Form einer AVI Datei stellt die Speicherung der Bildsequenzen
+  eines Videos (video stream) dar. Meistens werden jedoch Audioinformationen mit
+  gespeichert.
+</p>
+<p>
+  Audio in Stereo-Qualität wird wie bei Mono-Ton in einem Stream gespeichert.
+  Spezielle Multimedia-Sequenzen, z.B. ein MIDI-Track, stellen zusätzliche
+  Datenstreams dar. Es sind Control-Tracks, z.B. zur externen Steuerung eines
+  MCI-Videodisc-Players, möglich. Sie erfordern jedoch spezielle Software.
+</p>
+<p>
+  Eine RIFF-Datei besteht aus einem Chunk (engl.: Klumpen, Block), der wiederum
+  beliebig viele ineinander verschachtelte Subchunks (lokale Unterblöcke)
+  enthalten kann. Der Aufbau eines (Sub)Chunks besteht aus drei Einträgen:
+</p>
+<p>
+  Identifikator (ID): Kennzeichnet die Art der Daten bzw. des Blockes und wird
+  als ASCII Zeichen (Character) interpretiert. Ein RIFF Chunk beginnt immer mit
+  `RIFF`, d.h den Bytes 0x52, 0x49, 0x46 und 0x46.
+</p>
+<p>
+  Länge (L): Die Daten haben eine bestimmte Länge. Chunks beginnen immer auf
+  einer Wortgrenze; bei ungerader Länge wird ein Füllbyte angehängt.
+</p>
+
+<!--TODO Tabelle styling-->
+<table
+  summary=""
+  width="530"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="#788499"
+>
+  <tbody>
+    <tr bgcolor="#B4C6E6">
+      <th width="124">
+        <div align="left">Offset</div>
+      </th>
+
+      <th width="124">
+        <div align="left">Bytes</div>
+      </th>
+
+      <th width="269">
+        <div align="left">RIFF Header Struktur: Bedeutung</div>
+      </th>
+    </tr>
+
+    <tr bgcolor="#ffffff">
+      <td width="124">00H</td>
+
+      <td width="124">4</td>
+
+      <td width="269">Signatur 'RIFF'</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff">
+      <td width="124">04H</td>
+
+      <td width="124">4</td>
+
+      <td width="269">Dateigröße in Byte</td>
+    </tr>
+
+    <tr bgcolor="#ffffff">
+      <td width="124">08H</td>
+
+      <td width="124">4</td>
+
+      <td width="269">RIFF-Typ: String, z.B. 'AVI '</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff">
+      <td width="124">...</td>
+
+      <td width="124">&nbsp;</td>
+
+      <td width="269">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>AVI-Struktur</strong></p>
-<p>Eine AVI-Datei beginnt mit dem RIFF-Header ('RIFF' xx xx xx xx 'AVI '), dem mehrere CHUNKs folgen. Dies ist zunächst
-    ein LIST-CHUNK mit Informationen über die Datenkodierung (LIST CHUNK 'hdrl'), die von einem Chunk mit den
-    eigentlichen Daten (LIST CHUNK 'movi') gefolgt wird. Hieran können sich weitere Sub-CHUNKs mit Daten anschließen.
-    Tritt eine 'idx1'-Signatur auf, ist der Video-Datenbereich beendet und es folgen optionale Indexdefinitionen.</p>
+<p>
+  Eine AVI-Datei beginnt mit dem RIFF-Header ('RIFF' xx xx xx xx 'AVI '), dem
+  mehrere CHUNKs folgen. Dies ist zunächst ein LIST-CHUNK mit Informationen über
+  die Datenkodierung (LIST CHUNK 'hdrl'), die von einem Chunk mit den
+  eigentlichen Daten (LIST CHUNK 'movi') gefolgt wird. Hieran können sich
+  weitere Sub-CHUNKs mit Daten anschließen. Tritt eine 'idx1'-Signatur auf, ist
+  der Video-Datenbereich beendet und es folgen optionale Indexdefinitionen.
+</p>
 <p>Struktur einer AVI-Datei:</p>
 <!--TODO: CODE SAMPLE-->
 
 <p>AVI-Header-CHUNK</p>
-<!--TODO: Tabelle shortcode-->
+<!--TODO: Tabelle styling-->
+<table
+  summary=""
+  width="444"
+  border="0"
+  cellspacing="1"
+  cellpadding="1"
+  bgcolor="#788499"
+>
+  <tbody>
+    <tr bgcolor="#B4C6E6">
+      <th width="124">
+        <div align="left">Offset</div>
+      </th>
+
+      <th width="124">
+        <div align="left">Bytes</div>
+      </th>
+
+      <th width="183">
+        <div align="left">Bemerkungen</div>
+      </th>
+    </tr>
+
+    <tr bgcolor="#ffffff">
+      <td width="124">00H</td>
+
+      <td width="124">4</td>
+
+      <td width="183">CHUNK-Signatur ('LIST')</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff">
+      <td width="124">04H</td>
+
+      <td width="124">4</td>
+
+      <td width="183">Länge des Sub-CHUNK</td>
+    </tr>
+
+    <tr bgcolor="#ffffff">
+      <td width="124">08H</td>
+
+      <td width="124">4</td>
+
+      <td width="183">CHUNK-Typ ('hdrl')</td>
+    </tr>
+
+    <tr bgcolor="#f2f7ff">
+      <td width="124">0CH</td>
+
+      <td width="124">n</td>
+
+      <td width="183">Sub-CHUNKs</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>Eine 'hdrl' Liste besteht aus zwei Subchunks:</p>
 <ul>
-    <li>Der erste (ID 'avih') definiert globale Eigenschaften der AVI-Datei, z.B. enthält der <strong>avih</strong>
-        Sub-CHUNK folgende globale Daten:
-    </li>
-    <!--TODO: Tabelle shortcode-->
-    <li>Der zweite ist ein LIST-Chunk mit dem Type 'strl' (Stream List), der für jeden Stream mindestens zwei Chunks
-        enthält:
-        <ul>
-            <li>'strh' (Stream Header) und</li>
-            <li>'strf' (Stream Format) Chunk.</li>
-            <li><strong>'strd'-Chunk</strong> (Stream Data) kann optional folgen. Dient der Speicherung zusätzlicher
-                Daten, kann z.B. bei installierbarem (De-/) Komprimierer den Initialisierungswert enthalten.
-            </li>
-            <li><strong>'strh'-Chunk:</strong>Speichert Informationen zum Stream, z.B. um welche Art von Daten (Bild
-                oder Ton) es sich handelt, welcher Kompressor benutzt oder mit welcher Rate digitalisiert wurde:
-            </li>
-            <!--TODO: Tabelle shortcode-->
-        </ul>
-    </li>
-    <li>'strf'-Chunk: Speichert das genaue Format des Streams. Für Audio enthält der 'strf'-Chunk z.B. den Typ
-        WAVEFORMATEX, eine Erweiterung des Typs WAVEFORMAT, in der unter Windows PCM Waveform-Daten gespeichert werden.
-        Für Video-Daten gilt z.B.
-    </li>
-    <!--TODO: Tabelle shortcode-->
-    <li>Die der 'strl'-Liste folgenden Chunks in der 'hdrl' Liste sind nicht genauer spezifiziert. Hier steht
-        üblicherweise ein 'JUNK'-Chunk, dessen Länge so gewählt werden kann, dass die Bild- bzw. Tondaten mit einem
-        Vielfachen von 2 KByte beginnen.
-    </li>
-</ul><!--TODO: Formatierung-->
+  <li>
+    Der erste (ID 'avih') definiert globale Eigenschaften der AVI-Datei, z.B.
+    enthält der <strong>avih</strong>
+    Sub-CHUNK folgende globale Daten:
+  </li>
+  <!--TODO: Tabelle styling-->
+  <table
+    summary=""
+    width="493"
+    border="0"
+    cellspacing="1"
+    cellpadding="1"
+    bgcolor="#788499"
+  >
+    <tbody>
+      <tr bgcolor="#B4C6E6">
+        <th width="124">
+          <div align="left">Offset</div>
+        </th>
 
-<p>Nach dem Header folgen im 'movi'-Chunk die eigentlichen Bild- und Tondaten. Diese können Stream für Stream als
-    Subchunks der 'movi'-Liste oder aber ineinander verschachtelt gespeichert sein. Im ersten Fall existiert pro Stream
-    ein Subchunk, im zweiten Fall pro Schachtelung ein LIST-Chunk mit dem Form Typ 'rec '. Die 'movi'-Liste speichert
-    dann die (evtl. komprimierten) Daten für die einzelnen Bilder des Videos, sowie die Audio-Sequenz.</p>
-<p><strong>'idx1' Chunk</strong>: Kann den eigentlichen Daten folgen. In diesem wird eine Liste der verschiedenen Daten
-    Chunks mit deren Lokation festgehalten. Dies ermöglicht der Wiedergabesoftware aus dem AVI-File einzelne Chunks
-    abzuspielen, ohne die Datei langwierig zu durchsuchen.</p>
+        <th width="124">
+          <div align="left">Bytes</div>
+        </th>
+
+        <th width="232">
+          <div align="left">Bemerkungen</div>
+        </th>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="124">00H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Signatur ('avih')</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="124">04H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">CHUNK-Länge</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="124">08H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Time Delay zwischen Frames</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="124">0CH</td>
+
+        <td width="124">4</td>
+
+        <td width="232">AVI Datenrate</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="124">10H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">reserved</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="124">14H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Flags</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="124">18H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Zahl der Frames</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="124">1CH</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Initial Frames</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="124">20H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Zahl der Data-Streams</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="124">24H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Größe des Playback Buffers</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="124">28H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Video Frame Width in Pixel</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="124">2CH</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Video Frame Height in Pixel</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="124">30H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Unit Time Scale</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="124">34H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Playback Datenrate</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="124">38H</td>
+
+        <td width="124">4</td>
+
+        <td width="232">Start-Zeit</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="124">3CH</td>
+
+        <td width="124">4</td>
+
+        <td width="232">AVI Daten CHUNK Größe</td>
+      </tr>
+    </tbody>
+  </table>
+  <li>
+    Der zweite ist ein LIST-Chunk mit dem Type 'strl' (Stream List), der für
+    jeden Stream mindestens zwei Chunks enthält:
+    <ul>
+      <li>'strh' (Stream Header) und</li>
+      <li>'strf' (Stream Format) Chunk.</li>
+      <li>
+        <strong>'strd'-Chunk</strong> (Stream Data) kann optional folgen. Dient
+        der Speicherung zusätzlicher Daten, kann z.B. bei installierbarem (De-/)
+        Komprimierer den Initialisierungswert enthalten.
+      </li>
+      <li>
+        <strong>'strh'-Chunk:</strong>Speichert Informationen zum Stream, z.B.
+        um welche Art von Daten (Bild oder Ton) es sich handelt, welcher
+        Kompressor benutzt oder mit welcher Rate digitalisiert wurde:
+      </li>
+      <!--TODO: Tabelle styling-->
+      <table
+        summary=""
+        width="554"
+        border="0"
+        cellspacing="1"
+        cellpadding="1"
+        bgcolor="#788499"
+      >
+        <tbody>
+          <tr bgcolor="#B4C6E6">
+            <th width="81">
+              <div align="left">Offset</div>
+            </th>
+
+            <th width="81">
+              <div align="left">Bytes</div>
+            </th>
+
+            <th width="379">
+              <div align="left">Bemerkungen</div>
+            </th>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td width="81">00H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Signatur ('strh')</td>
+          </tr>
+
+          <tr bgcolor="#f2f7ff">
+            <td width="81">04H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Länge Sub-CHUNK (38H)</td>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td width="81">08H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Typ: 'vids' / 'auds' (video / audio stream)</td>
+          </tr>
+
+          <tr bgcolor="#f2f7ff">
+            <td width="81">0CH</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Handler: z.B. 'msvc' (für De- / Kompression)</td>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td width="81">10H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Flags</td>
+          </tr>
+
+          <tr bgcolor="#f2f7ff">
+            <td width="81">14H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Reserviert</td>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td width="81">18H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">
+              Frames, vor Initial Frame (nur für Interleaved AVI-Files)
+            </td>
+          </tr>
+
+          <tr bgcolor="#f2f7ff">
+            <td width="81">1CH</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Scale: Zeiteinheit für Wiedergabe</td>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td width="81">20H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Rate</td>
+          </tr>
+
+          <tr bgcolor="#f2f7ff">
+            <td width="81">24H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Start</td>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td width="81">28H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Length</td>
+          </tr>
+
+          <tr bgcolor="#f2f7ff">
+            <td width="81">2CH</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Buffer Size</td>
+          </tr>
+
+          <tr bgcolor="#ffffff">
+            <td width="81">30H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Qualität, die beim Encoding benutzt werden soll</td>
+          </tr>
+
+          <tr bgcolor="#f2f7ff">
+            <td width="81">34H</td>
+
+            <td width="81">4</td>
+
+            <td width="379">Sample Size: Größe eines einzelnen Bildes</td>
+          </tr>
+        </tbody>
+      </table>
+    </ul>
+  </li>
+  <li>
+    'strf'-Chunk: Speichert das genaue Format des Streams. Für Audio enthält der
+    'strf'-Chunk z.B. den Typ WAVEFORMATEX, eine Erweiterung des Typs
+    WAVEFORMAT, in der unter Windows PCM Waveform-Daten gespeichert werden. Für
+    Video-Daten gilt z.B.
+  </li>
+  <!--TODO: Tabelle styling-->
+  <table
+    summary=""
+    width="585"
+    border="0"
+    cellspacing="1"
+    cellpadding="1"
+    bgcolor="#788499"
+  >
+    <tbody>
+      <tr bgcolor="#B4C6E6">
+        <th width="81">
+          <div align="left">Offset</div>
+        </th>
+
+        <th width="81">
+          <div align="left">Bytes</div>
+        </th>
+
+        <th width="386">
+          <div align="left">Bemerkungen</div>
+        </th>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="81">00H</td>
+
+        <td width="81">4</td>
+
+        <td width="386">Header Size</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="81">04H</td>
+
+        <td width="81">4</td>
+
+        <td width="386">Bildbreite in Pixel</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="81">08H</td>
+
+        <td width="81">4</td>
+
+        <td width="386">Bildhöhe in Pixel</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="81">0CH</td>
+
+        <td width="81">2</td>
+
+        <td width="386">Zahl der Planes (Farbebenen)</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="81">0EH</td>
+
+        <td width="81">2</td>
+
+        <td width="386">Bits per Pixel</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="81">10H</td>
+
+        <td width="81">4</td>
+
+        <td width="386">Kompression: 0 = RGB unkomprim., 1 = RLE8, 2 = RLE4</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="81">14H</td>
+
+        <td width="81">4</td>
+
+        <td width="386">Bildgröße in Byte</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="81">18H</td>
+
+        <td width="81">4</td>
+
+        <td width="386">x Pels (Pictur Elements) / Meter: horizontale Aufl.</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="81">1CH</td>
+
+        <td width="81">4</td>
+
+        <td width="386">Y Pels per Meter: vertikale Auflösung</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="81">20H</td>
+
+        <td width="81">4</td>
+
+        <td width="386">Colors used: Zahl der benutzen Farben</td>
+      </tr>
+
+      <tr bgcolor="#ffffff">
+        <td width="81">24H</td>
+
+        <td width="81">4</td>
+
+        <td width="386">Colors Important</td>
+      </tr>
+
+      <tr bgcolor="#f2f7ff">
+        <td width="81">28H</td>
+
+        <td width="81">4 n</td>
+
+        <td width="386">RGB-Quad Struktur: blau, grün, rot, reserv</td>
+      </tr>
+    </tbody>
+  </table>
+  <li>
+    Die der 'strl'-Liste folgenden Chunks in der 'hdrl' Liste sind nicht genauer
+    spezifiziert. Hier steht üblicherweise ein 'JUNK'-Chunk, dessen Länge so
+    gewählt werden kann, dass die Bild- bzw. Tondaten mit einem Vielfachen von 2
+    KByte beginnen.
+  </li>
+</ul>
+<!--TODO: Formatierung-->
+
+<p>
+  Nach dem Header folgen im 'movi'-Chunk die eigentlichen Bild- und Tondaten.
+  Diese können Stream für Stream als Subchunks der 'movi'-Liste oder aber
+  ineinander verschachtelt gespeichert sein. Im ersten Fall existiert pro Stream
+  ein Subchunk, im zweiten Fall pro Schachtelung ein LIST-Chunk mit dem Form Typ
+  'rec '. Die 'movi'-Liste speichert dann die (evtl. komprimierten) Daten für
+  die einzelnen Bilder des Videos, sowie die Audio-Sequenz.
+</p>
+<p>
+  <strong>'idx1' Chunk</strong>: Kann den eigentlichen Daten folgen. In diesem
+  wird eine Liste der verschiedenen Daten Chunks mit deren Lokation
+  festgehalten. Dies ermöglicht der Wiedergabesoftware aus dem AVI-File einzelne
+  Chunks abzuspielen, ohne die Datei langwierig zu durchsuchen.
+</p>
