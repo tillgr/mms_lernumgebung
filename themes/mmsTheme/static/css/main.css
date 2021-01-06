@@ -33,3 +33,7 @@ img.play, img.pause {
     width: 15px;
     height: 15px;
 }
+
+img.play:hover, img.pause:hover {
+    cursor: pointer;
+}

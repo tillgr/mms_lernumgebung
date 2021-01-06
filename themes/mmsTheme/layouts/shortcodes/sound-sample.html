@@ -23,10 +23,14 @@
         play.show();
         audio.pause();
       });
+      audio.addEventListener('ended', () => {
+        play.show();
+        pause.hide();
+      })
     });
   </script>
     <div class="d-flex flex-row justify-content-center align-items-center">
-      <span class="sound-title">{{ .Get "title" }}<small class="text-muted">{{ if isset .Params "ref"}}[{{.Get "ref"}}]{{end}}</small></span>
+      <span class="sound-title text-primary">{{ .Get "title" }}<small class="text-muted">{{ if isset .Params "ref"}}[{{.Get "ref"}}]{{end}}</small></span>
       <img class="play ml-1" id="{{$playId}}" src="/images/sound-samples/play.png" />
       <img class="pause ml-1" id="{{$pauseId}}" src="/images/sound-samples/pause.png" />
     </div>
