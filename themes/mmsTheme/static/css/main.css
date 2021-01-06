@@ -1,3 +1,5 @@
+/* TABLE STYLING */
+
 .table th {
     background-color: #002557;
     border: #002557 1px solid;
@@ -17,4 +19,17 @@
 .table th {
     white-space: nowrap;
     width: 1%;
+}
+
+/* AUDIO STYLING */
+
+.sound-title {
+    color: black;
+}
+
+img.play, img.pause {
+    border: 1px solid black;
+    padding: 2px;
+    width: 15px;
+    height: 15px;
 }
