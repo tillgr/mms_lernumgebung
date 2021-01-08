@@ -1,0 +1,39 @@
+/* TABLE STYLING */
+
+.table th {
+    background-color: #002557;
+    border: #002557 1px solid;
+    color: white;
+    text-align: center;
+}
+
+.table tr:not(:first-child) td {
+    vertical-align: middle;
+}
+
+.table td {
+    text-align: center;
+}
+
+.table td, 
+.table th {
+    white-space: nowrap;
+    width: 1%;
+}
+
+/* AUDIO STYLING */
+
+.sound-title {
+    color: black;
+}
+
+img.play, img.pause {
+    border: 1px solid black;
+    padding: 2px;
+    width: 15px;
+    height: 15px;
+}
+
+img.play:hover, img.pause:hover {
+    cursor: pointer;
+}

@@ -4,160 +4,321 @@ date: 2020-10-12T09:49:44+02:00
 draft: true
 ---
 
-<p>Beinahe alle Ausgabegeräte unterstützen lediglich die Ausgabe in den Primärfarben (Schwarz bei schwarz/weis-Ausgabe,
-    Cyan Magenta, Yellow und evtl. Schwarz bei Farbdruckern). Alle anderen Farben müssen durch geeignete Verfahren
-    simuliert werden.</p>
-<p>Beim Dithern werden dem Betrachter mehr Farben vorgegaukelt, als tatsächlich zu sehen sind bzw. werden verschiedene
-    Graustufen bei monochromer Darstellung erzeugt. Der Effekt wird durch eine bestimmte Anordnung von Punkten erreicht.
-    Dabei wird die Eigenschaft des menschlichen Auges ausgenutzt, das diese Punkte durch mangelnde Auflösungsfähigkeit
-    zu einem Bild zusammenfasst. Der Nachteil des Ditherns hat dem Verfahren seinem Namen gegeben: Gerade Linien
-    erscheinen zittrig (engl. dither).</p>
-<p>Beim Dithern sind alle Punkte gleich groß. Als Rastern bezeichnet man in der Drucktechnik das Verfahren, bei dem
-    unterschiedlich große Punkte verwendet werden. Es werden dabei bis zu 256 unterschiedliche Größen verwendet. Das
-    Rastern erfolgt durch einen RIP (Raster Image Processor) und ermöglicht einen weicheren und homogeneren Eindruck als
-    beim Dithern.</p>
-<p>Historisch gesehen hat sich im Druckwesen eine Erfindung von Georg Meisenbach (1841-1912) durchgesetzt, bei der
-    sogenannte Halbtonwerte durch ein Raster von unterschiedlich großen Punkten erzeugt werden. Dies löste die damals
-    übliche Methode der Holzstichtechnik ab und revolutionierte das Druckwesen.</p>
+<p>
+  Beinahe alle Ausgabegeräte unterstützen lediglich die Ausgabe in den
+  Primärfarben (Schwarz bei schwarz/weis-Ausgabe, Cyan Magenta, Yellow und evtl.
+  Schwarz bei Farbdruckern). Alle anderen Farben müssen durch geeignete
+  Verfahren simuliert werden.
+</p>
+<p>
+  Beim Dithern werden dem Betrachter mehr Farben vorgegaukelt, als tatsächlich
+  zu sehen sind bzw. werden verschiedene Graustufen bei monochromer Darstellung
+  erzeugt. Der Effekt wird durch eine bestimmte Anordnung von Punkten erreicht.
+  Dabei wird die Eigenschaft des menschlichen Auges ausgenutzt, das diese Punkte
+  durch mangelnde Auflösungsfähigkeit zu einem Bild zusammenfasst. Der Nachteil
+  des Ditherns hat dem Verfahren seinem Namen gegeben: Gerade Linien erscheinen
+  zittrig (engl. dither).
+</p>
+<p>
+  Beim Dithern sind alle Punkte gleich groß. Als Rastern bezeichnet man in der
+  Drucktechnik das Verfahren, bei dem unterschiedlich große Punkte verwendet
+  werden. Es werden dabei bis zu 256 unterschiedliche Größen verwendet. Das
+  Rastern erfolgt durch einen RIP (Raster Image Processor) und ermöglicht einen
+  weicheren und homogeneren Eindruck als beim Dithern.
+</p>
+<p>
+  Historisch gesehen hat sich im Druckwesen eine Erfindung von Georg Meisenbach
+  (1841-1912) durchgesetzt, bei der sogenannte Halbtonwerte durch ein Raster von
+  unterschiedlich großen Punkten erzeugt werden. Dies löste die damals übliche
+  Methode der Holzstichtechnik ab und revolutionierte das Druckwesen.
+</p>
 
 <h2>3.3.1 Halbtonverfahren</h2>
-<p><strong>Halbtöne</strong> sind Tönungen, die zwischen einer voll gesättigten Farbe und Weiß liegen.
-    Thermosublimations- und xerographische (Farblaser) Druckverfahren sind in der Lage, ca. 150 Tönungen bzw.
-    Kontraststufen pro Pixel zu erzeugen.</p>
-{{% image "Bildformate/3/2_3_1_halbtoene.gif" "" "Abb. 3.3-0 Halbtöne" %}}
+<p>
+  <strong>Halbtöne</strong> sind Tönungen, die zwischen einer voll gesättigten
+  Farbe und Weiß liegen. Thermosublimations- und xerographische (Farblaser)
+  Druckverfahren sind in der Lage, ca. 150 Tönungen bzw. Kontraststufen pro
+  Pixel zu erzeugen.
+</p>
+{{% image url="Bildformate/3/2_3_1_halbtoene.gif" caption="Abb. 3.3-0 Halbtöne" %}}
 
-<p>Meist wird durch wechselnde Anordnung z.B. schwarzer und weißer Punkte ein Grauton simuliert. Der Grauwert entspricht
-    dem Mischungsverhältnis der Punkte in einem Bereich (Halbtonzelle). Nachteil: feine Strukturen können ausgefranst
-    wirken. Halbtöne können entweder durch Dichteänderung bei gleichbleibender Punktgröße (z.B. bei
-    Thermosublimationsverfahren) oder durch Größenänderung bei gleichbleibender Dichte dargestellt werden (z.B. beim
-    Rasterpunktverfahren oder bei Tintenstrahldrucker).</p>
-<p>Kenngrößen von Druckern: Wiedergabe von Graustufen, mittlere Auflösung der Halbtonzellen, Pixelgröße, kontinuierliche
-    Farbtöne.</p>
-<p>Bei Monitoren werden die Farbwerte durch "Überlagerung" der Grundfarben (RGB) erzeugt.</p>
-{{% image "Bildformate/3/2_3_2_posterisationseffekt.gif" "" "Abb. 3.3-1 Posterisationseffekt" %}}
+<p>
+  Meist wird durch wechselnde Anordnung z.B. schwarzer und weißer Punkte ein
+  Grauton simuliert. Der Grauwert entspricht dem Mischungsverhältnis der Punkte
+  in einem Bereich (Halbtonzelle). Nachteil: feine Strukturen können ausgefranst
+  wirken. Halbtöne können entweder durch Dichteänderung bei gleichbleibender
+  Punktgröße (z.B. bei Thermosublimationsverfahren) oder durch Größenänderung
+  bei gleichbleibender Dichte dargestellt werden (z.B. beim Rasterpunktverfahren
+  oder bei Tintenstrahldrucker).
+</p>
+<p>
+  Kenngrößen von Druckern: Wiedergabe von Graustufen, mittlere Auflösung der
+  Halbtonzellen, Pixelgröße, kontinuierliche Farbtöne.
+</p>
+<p>
+  Bei Monitoren werden die Farbwerte durch "Überlagerung" der Grundfarben (RGB)
+  erzeugt.
+</p>
+{{% image url="Bildformate/3/2_3_2_posterisationseffekt.gif"
+caption="Abb. 3.3-1 Posterisationseffekt" %}}
 
-<p><strong>Posterisation</strong> entsteht, wenn für einen kontinuierlichen Kontrastverlauf nur wenige Graustufen zur
-    Verfügung stehen. Es bilden sich Stufen in der Kontrastdarstellung, die als eine Art Abreißen der Verläufe sichtbar
-    werden. Zur Vermeidung dieses Effektes sind ca. 256 Graustufen ausreichend. Es wird eine Matrix von Punkten in der
-    Halbtonzelle erzeugt. Das Kontrastverhältnis entspricht dem Anteil an Punkten in der Halbtonzelle in Prozent. Wie
-    ruhig und homogen die Grautöne wirken, hängt von der Verteilung der Punkte ab. Die Charakteristik gebündelter
-    Halbton-Dithering-Muster beinhaltet Halbton-Screen-Frequenz, Screen-Winkel, Punktform und Punktgröße.</p>
+<p>
+  <strong>Posterisation</strong> entsteht, wenn für einen kontinuierlichen
+  Kontrastverlauf nur wenige Graustufen zur Verfügung stehen. Es bilden sich
+  Stufen in der Kontrastdarstellung, die als eine Art Abreißen der Verläufe
+  sichtbar werden. Zur Vermeidung dieses Effektes sind ca. 256 Graustufen
+  ausreichend. Es wird eine Matrix von Punkten in der Halbtonzelle erzeugt. Das
+  Kontrastverhältnis entspricht dem Anteil an Punkten in der Halbtonzelle in
+  Prozent. Wie ruhig und homogen die Grautöne wirken, hängt von der Verteilung
+  der Punkte ab. Die Charakteristik gebündelter Halbton-Dithering-Muster
+  beinhaltet Halbton-Screen-Frequenz, Screen-Winkel, Punktform und Punktgröße.
+</p>
 
 <h2>3.3.2 Dithering und Rasterung</h2>
-<p>Echte Halbtonverfahren erzeugen durch hohe Orts- (z.B. 300 dpi) und Farbauflösung (z.B. 256 Grauwerte) eine
-    fotorealistische Bildqualität. Preiswerte Druckverfahren verwenden zur Darstellung von Halbtönen einen binären
-    Druckmodus mit 1 Bit pro Pixel. Soll ein Halbton erzeugt werden, kann dies nur durch abwechselndes Drucken bzw.
-    Nicht-Drucken von Punkten geschehen. Das Kontrastverhältnis bezeichnet den Anteil schwarzer Punkte der Halbtonzelle
-    in Prozent. Wie ruhig oder homogen die Grautöne auf das Auge wirken, hängt von der Verteilung der Punkte ab.</p>
-<p>Ein Grauton mit 50% Kontrast entsteht am besten durch abwechselnde schwarze und weiße Punkte. Nur die schwarzen
-    Punkte werden gesehen. Ihre Anordnung in einer Halbtonzelle bestimmt je Grauton den optischen Eindruck. Dies wird
-    als <strong>Dispersed Dithering</strong> bezeichnet.</p>
+<p>
+  Echte Halbtonverfahren erzeugen durch hohe Orts- (z.B. 300 dpi) und
+  Farbauflösung (z.B. 256 Grauwerte) eine fotorealistische Bildqualität.
+  Preiswerte Druckverfahren verwenden zur Darstellung von Halbtönen einen
+  binären Druckmodus mit 1 Bit pro Pixel. Soll ein Halbton erzeugt werden, kann
+  dies nur durch abwechselndes Drucken bzw. Nicht-Drucken von Punkten geschehen.
+  Das Kontrastverhältnis bezeichnet den Anteil schwarzer Punkte der Halbtonzelle
+  in Prozent. Wie ruhig oder homogen die Grautöne auf das Auge wirken, hängt von
+  der Verteilung der Punkte ab.
+</p>
+<p>
+  Ein Grauton mit 50% Kontrast entsteht am besten durch abwechselnde schwarze
+  und weiße Punkte. Nur die schwarzen Punkte werden gesehen. Ihre Anordnung in
+  einer Halbtonzelle bestimmt je Grauton den optischen Eindruck. Dies wird als
+  <strong>Dispersed Dithering</strong> bezeichnet.
+</p>
 
-{{% image "Bildformate/3/2_3_3_dispersed_dithering.gif" "" "Abb. 3.3-2 Erzeugen von verschiedenen Grautönen beim Dispersed Dithering" %}}
+{{% image url="Bildformate/3/2_3_3_dispersed_dithering.gif"
+caption="Abb. 3.3-2 Erzeugen von verschiedenen Grautönen beim Dispersed Dithering" %}}
 
-<p>Von Grafikprogrammen wird i.allg. nur eine begrenzte Anzahl von Grautönen angeboten. Da sich ein Grauton über eine
-    größere Fläche erstreckt, können die Punkte gleichmäßig über die gesamte Objektfläche verstreut werden.</p>
-<p>Beim <strong>Clustered Dithering</strong> werden dagegen die Rasterpunkte nicht mehr über die Halbtonzelle verstreut,
-    sondern gebündelt, quasi aus der Mitte heraus wachsend, erzeugt.</p>
+<p>
+  Von Grafikprogrammen wird i.allg. nur eine begrenzte Anzahl von Grautönen
+  angeboten. Da sich ein Grauton über eine größere Fläche erstreckt, können die
+  Punkte gleichmäßig über die gesamte Objektfläche verstreut werden.
+</p>
+<p>
+  Beim <strong>Clustered Dithering</strong> werden dagegen die Rasterpunkte
+  nicht mehr über die Halbtonzelle verstreut, sondern gebündelt, quasi aus der
+  Mitte heraus wachsend, erzeugt.
+</p>
 
-{{% image "Bildformate/3/2_3_4_clustered_dithering.gif" "" "Abb. 3.3-3 Clustered dithering" %}}
+{{% image url="Bildformate/3/2_3_4_clustered_dithering.gif"
+caption="Abb. 3.3-3 Clustered dithering" %}}
 
-<p>Dabei unterliegt die Anordnung bestimmten Mustern, die für das Auge die bestmögliche Simulation von Punkten unter den
-    denkbaren Kontrastierungen erreichen sollen. Die Pixel entspringen im Zentrum der Halbtonzelle und werden immer
-    größer, je dunkler ein Grauton sein soll.</p>
+<p>
+  Dabei unterliegt die Anordnung bestimmten Mustern, die für das Auge die
+  bestmögliche Simulation von Punkten unter den denkbaren Kontrastierungen
+  erreichen sollen. Die Pixel entspringen im Zentrum der Halbtonzelle und werden
+  immer größer, je dunkler ein Grauton sein soll.
+</p>
 <ul>
-    <li>Vorteil: Die mit dem Druckprozeß und dem flüssigen Farbstoff verbundenen Ungenauigkeiten können besser
-        ausgeglichen werden und führen zu weniger Halbtonverlusten.
-    </li>
-    <li>Kontrastumfang und Größe der Halbtonzelle wirken gegensätzlich, d.h. je höher der Kontrastumfang, desto größer
-        muß die Halbtonzelle sein. Dies kann dazu führen, dass die Halbtonzellen erkennbar werden.
-    </li>
-    <li>Die Anordnung von Halbtonzellen in 45° mindert dies.</li>
+  <li>
+    Vorteil: Die mit dem Druckprozeß und dem flüssigen Farbstoff verbundenen
+    Ungenauigkeiten können besser ausgeglichen werden und führen zu weniger
+    Halbtonverlusten.
+  </li>
+  <li>
+    Kontrastumfang und Größe der Halbtonzelle wirken gegensätzlich, d.h. je
+    höher der Kontrastumfang, desto größer muß die Halbtonzelle sein. Dies kann
+    dazu führen, dass die Halbtonzellen erkennbar werden.
+  </li>
+  <li>Die Anordnung von Halbtonzellen in 45° mindert dies.</li>
 </ul>
 
-{{% image "Bildformate/3/2_3_5_halbtonzellen_aus_32_pixel_ohne_schrift.gif" "" "Abb. 3.3-4 Halbtonzelle aus 32 Pixel, um 45° gedreht" %}}
+{{% image url="Bildformate/3/2_3_5_halbtonzellen_aus_32_pixel_ohne_schrift.gif"
+caption="Abb. 3.3-4 Halbtonzelle aus 32 Pixel, um 45° gedreht" %}}
 
-<p>Dispersed und Clustered Dithering unterliegen der amplitudenmodulierten Pixelverteilung. Dies besagt, dass der
-    Helligkeitswert eines Bildausschnittes direkt den Halbtonwert bestimmt.</p>
+<p>
+  Dispersed und Clustered Dithering unterliegen der amplitudenmodulierten
+  Pixelverteilung. Dies besagt, dass der Helligkeitswert eines Bildausschnittes
+  direkt den Halbtonwert bestimmt.
+</p>
 
-{{% image "Bildformate/3/2_3_6_frequenzmodulierte_rasterung.jpg" "" "Abb. 3.3-5 Vergleich Frequenzmodulierte Rasterung- Normale Rasterung" %}}
+{{% image url="Bildformate/3/2_3_6_frequenzmodulierte_rasterung.jpg"
+caption="Abb. 3.3-5 Vergleich Frequenzmodulierte Rasterung- Normale Rasterung" %}}
 
-<p>Beim <strong>'Dispersed Dot Diffusion Dithering'</strong> wird eine frequenzmodulierte Pixelverteilung genutzt. Es
-    werden einzelne Pixel in Abhängigkeit vom Helligkeitswert des Bildausschnittes gestreut angeordnet (dispersed). Je
-    dunkler ein Bildelement, um so höher die Dichte der Pixel, also die Frequenz, mit der sie auftreten. Ein in solcher
-    Weise erzeugtes Druckbild sieht aus, als ob die Pixel wie zufällig verteilt sind. Details kommen besser zum
-    Vorschein, die Bildung von Interferenzen auf Grund sich überlagernder Rasterstrukturen werden vermieden. (Moiré =
-    störende Musterbildung, die durch Überlagerung mehrerer Raster bei ungünstigem Rasterwinkel entsteht).</p>
-<p>Der Aufbau der Halbtonzelle hängt von der Farbtiefe pro Pixel ab. Bei 256 Graustufen und einer Ortsauflösung von
-    300dpi gilt der Zusammenhang:</p>
-<!--TODO: Tabelle shortcode-->
+<p>
+  Beim <strong>'Dispersed Dot Diffusion Dithering'</strong> wird eine
+  frequenzmodulierte Pixelverteilung genutzt. Es werden einzelne Pixel in
+  Abhängigkeit vom Helligkeitswert des Bildausschnittes gestreut angeordnet
+  (dispersed). Je dunkler ein Bildelement, um so höher die Dichte der Pixel,
+  also die Frequenz, mit der sie auftreten. Ein in solcher Weise erzeugtes
+  Druckbild sieht aus, als ob die Pixel wie zufällig verteilt sind. Details
+  kommen besser zum Vorschein, die Bildung von Interferenzen auf Grund sich
+  überlagernder Rasterstrukturen werden vermieden. (Moiré = störende
+  Musterbildung, die durch Überlagerung mehrerer Raster bei ungünstigem
+  Rasterwinkel entsteht).
+</p>
+<p>
+  Der Aufbau der Halbtonzelle hängt von der Farbtiefe pro Pixel ab. Bei 256
+  Graustufen und einer Ortsauflösung von 300dpi gilt der Zusammenhang:
+</p>
 
-<p>Bei einer Pixeltiefe von 1Bit wird eine Halbtonzelle von 16x16 Pixel benötigt, um 256 Graustufen drucken zu können.
-    Der Abstand der Halbtonzellen beträgt 16/300". Das entspricht einer Anzahl von 300/16=18,75 Zellen pro Zoll. Da
-    Halbtonzellen stets linear verlaufen, kennzeichnet ihr Abstand die sog. <strong>Rasterlaufweite</strong>, d.h. bei
-    300 dpi und der Pixeltiefe 1 Bit/Pixel beträgt diese 18,75 Zellen bzw. Rasterzeilen pro Zoll (lpi = lines per inch).
-    Bei einer Pixeltiefe von 4 Bit (16 Graustufen darstellbar) verkleinert sich die Matrix auf 4x4 Pixel und die
-    Rasterauflösung wächst auf 75 lpi. Bei einer Tiefe von 8 Bit (256 Graustufen) wird keine Rastermatrix benötigt. Neue
-    Laserdrucker mit 600 bis 1200 dpi verringern die Rasterlaufweite auf ein beim Druck von Zeitschriften übliches Maß.
-    Geht man von einer vorgegebenen Rasterlaufweite, z.B. 300 lpi aus, so muß bei einem Drucker mit 1 bzw. 4 bit
-    Pixeltiefe die Auflösung 300 x 16 = 4800 dpi bzw. 300 x 4 = 1200 dpi betragen. Farbdrucker verwenden häufig eine um
-    45° gedrehte 4 x 4 Rasterung für 32 Graustufen, was für den geforderten Kontrastumfang nicht ausreicht.</p>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th>Pixel</th>
 
-{{% image "Bildformate/3/2_3_7_rasterlaufweite.gif" "" "Abb. 3.3-6 Rasterlaufweite" %}}
+      <th>Matrix</th>
 
-<p>Durch die im Bild dargestellte Rasterstruktur werden zur Grauwertstufenerzeugung vier Halbtonzellen zusammengenommen
-    und so 128 Grautöne erzeugt.</p>
-<p>Die folgenden Bilder zeigen, welche Effekte bei verschieden starkem Dithering bei der Darstellung eines Bildes mit
-    zwei Farben entstehen.</p>
+      <th>Rasterauflösung</th>
+    </tr>
 
-{{% image "Bildformate/3/2_3_8_eis-diffusion-0-dithering.gif" "" "Abb. 3.3-7 0% Dithering" %}}
-{{% image "Bildformate/3/2_3_9_eis-diffusion-50-dithering.gif" "" "Abb. 3.3-8 50% Dithering" %}}
-{{% image "Bildformate/3/2_3_10_eis-diffusion-100-dithering.gif" "" "Abb. 3.3-9 100% Dithering" %}}
+    <tr>
+      <td>1 Bit</td>
 
-<p>Farbdruckertechnologien verwenden die subtraktive Farbmischung sowie physikalische Methoden zur Erzeugung von
-    Halbtönen. Es wird zwischen kontinuierlichen Halbtönen und der Simulation durch Dithering unterschieden.</p>
-<p>Farbmischungen entstehen durch einen Prozeß, in dem die 3 (4) Druckfarben (Prozeßfarben) nacheinander aufgetragen
-    werden. Die subtraktiven Druckfarben (Gelb, Magenta, Cyan) werden aus den 3 additiven Primärfarben (Rot, Grün, Blau)
-    berechnet. Bei hoher Auflösung des Drucksystems und kleinen Pixeln ist es i.allg. nicht zu erkennen, ob die
-    Farbmischung durch übereinander oder nebeneinander angeordnete Farbpixel erzeugt wird. Die Komplementärfarben werden
-    eigentlich nicht wahrgenommen, vielmehr aktiviert Cyan die Rezeptoren für Violettblau und Grün, Magenta die für
-    Violettblau und Orangerot und Gelb die für Orangerot und Grün. Das Gehirn interpretiert aus den Signalen die
-    Mischfarben. Reinheit und Sättigung der Mischfarben Violettblau, Grün und Orangerot sind höher, wenn die Punkte der
-    Druckfarben, die diese Mischung erzeugen, exakt deckungsgleich sind.</p>
-<p>Einfachstes Verfahren zur Simulation von Halbtönen ist das <strong>Dispersed Dithering</strong>, das eine begrenzte
-    Anzahl von Farbtönen erzeugt.</p>
+      <td>16 x 16</td>
 
-{{% image "Bildformate/3/2_3_11_cmy-farbmischung.gif" "" "Abb. 3.3-10 Farbmischung" %}}
+      <td>18,75 lpi</td>
+    </tr>
 
-<p>Farbtöne werden mit selektiver Abstufung erzeugt, d.h. Farbverläufe weisen stets Stufen auf.</p>
-<p>Beispiel: 4 x 4 Matrix erlaubt 16 Halbtöne einer Prozeßfarbe. Die Mischung der drei Prozeßfarben erlaubt 4096
-    Farbtöne. Die Halbtonzellen werden dazu übereinander gedruckt.</p>
-<p><strong>Clustered Dithering</strong>, d.h. gebündelte Anordnung der Pixel innerhalb der Halbtonzelle, erfüllt höhere
-    Ansprüche, wie sie z.B. für stufenlose Farbverläufe oder für natürlichfarbige Bilder notwendig sind.</p>
+    <tr>
+      <td>4 Bit</td>
 
-{{% image "Bildformate/3/2_3_11_rasterwinkel.gif" "" "Abb. 3.3-11 Rasterwinkel" %}}
+      <td>4 x 4</td>
 
-<p>Die geforderte Abbildungsgenauigkeit, Anzahl der Farbtöne, harmonisches Aussehen des Druckbildes und Ungenauigkeiten
-    im Druckprozeß bedingen eine besondere Aufbereitung der separierten Farbauszüge. Indem die Farbauszüge um bestimmte
-    Rasterwinkel gedreht werden, sorgt man für einen kontrollierbaren Moiré-Effekt. Ansonsten würden Unzulänglichkeiten
-    beim Drucken zu Störeffekten führen. Die gebräuchlichsten Rasterwinkel sind 15°, 45° und 75°, wobei der Winkel, der
-    eine grobe Punktstruktur am wenigsten erkennen läßt, der Farbe zugeteilt wird, die am besten wahrgenommen wird. Dies
-    ist meist der Winkel 45° und die Prozeßfarbe Magenta.</p>
+      <td>75 lpi</td>
+    </tr>
 
-{{% image "Bildformate/3/2_3_12_unterschiedliche_pixelanzahl_in_halbtonzellen.gif" "" "Abb. 3.3-12 Unterschiedliche Pixelanzahl in Halbtonzellen" %}}
+    <tr>
+      <td>8 Bit</td>
 
-<p>Die auf diese Weise gedrehten und überlagerten Gitter erzeugen ein gleichmäßiges rosettenartiges Moirémuster. Die
-    Kreuzungspunkte der Gitter entsprechen den Pixeln des Druckers. Angestrebt wird ein Muster, das eine gleichmäßige
-    Farbverteilung erzeugt. Da ein Rasterausgabegerät feste horizontale Auflösungen besitzt, ist die Drehung immer nur
-    in bestimmten Abstufungen möglich. Zellen sind auch bei gedrehter Matrix horizontal / vertikal ausgerichtet, so dass
-    die Pixelzahl der Halbtonzellen abnimmt. Das Arrangement aus Rasterwinkel, Halbtonzelle und Versatz bzw. Drehpunkten
-    der Rastergitter zueinander nennt man <strong>Screening</strong>.</p>
-<p>Die Adobe-Screen-Sets - für Postscript bei Farbausgabegeräten entwickelt - berücksichtigen verschiedene
-    Fehlerquellen. So werden über einen Rasterverlauf Halbtonzellen unterschiedlicher Größe generiert, so dass für
-    diesen Verlauf und nicht für eine einzige Zelle, ein optimaler Rasterwinkel entsteht.</p>
-<p>Die <strong>frequenzmodulierte</strong> Pixelverteilung spielt auch in der Farbreproduktion eine Rolle. Verglichen
-    mit Clustered Dithering sind die Ergebnisse harmonischer und detailgetreuer, vor allem bei begrenzter Auflösung des
-    Ausgabegerätes, wie bei Tintenstrahldruckern. Die 3 Farbauszüge werden ohne Winkelversatz gerastert und so
-    übereinander gedruckt, dass die Pixelverteilung zufällig erscheint. Regelmäßige Strukturen oder Muster sind nicht zu
-    erkennen, Moirébildung wird verhindert, die Farbverläufe weisen keine Stufen auf. Die Detailgenauigkeit ist höher
-    als bei anderen Rasterverfahren.</p>
+      <td>1 x 1</td>
+
+      <td>300 lpi</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Bei einer Pixeltiefe von 1Bit wird eine Halbtonzelle von 16x16 Pixel benötigt,
+  um 256 Graustufen drucken zu können. Der Abstand der Halbtonzellen beträgt
+  16/300". Das entspricht einer Anzahl von 300/16=18,75 Zellen pro Zoll. Da
+  Halbtonzellen stets linear verlaufen, kennzeichnet ihr Abstand die sog.
+  <strong>Rasterlaufweite</strong>, d.h. bei 300 dpi und der Pixeltiefe 1
+  Bit/Pixel beträgt diese 18,75 Zellen bzw. Rasterzeilen pro Zoll (lpi = lines
+  per inch). Bei einer Pixeltiefe von 4 Bit (16 Graustufen darstellbar)
+  verkleinert sich die Matrix auf 4x4 Pixel und die Rasterauflösung wächst auf
+  75 lpi. Bei einer Tiefe von 8 Bit (256 Graustufen) wird keine Rastermatrix
+  benötigt. Neue Laserdrucker mit 600 bis 1200 dpi verringern die
+  Rasterlaufweite auf ein beim Druck von Zeitschriften übliches Maß. Geht man
+  von einer vorgegebenen Rasterlaufweite, z.B. 300 lpi aus, so muß bei einem
+  Drucker mit 1 bzw. 4 bit Pixeltiefe die Auflösung 300 x 16 = 4800 dpi bzw. 300
+  x 4 = 1200 dpi betragen. Farbdrucker verwenden häufig eine um 45° gedrehte 4 x
+  4 Rasterung für 32 Graustufen, was für den geforderten Kontrastumfang nicht
+  ausreicht.
+</p>
+
+{{% image url="Bildformate/3/2_3_7_rasterlaufweite.gif"
+caption="Abb. 3.3-6 Rasterlaufweite" %}}
+
+<p>
+  Durch die im Bild dargestellte Rasterstruktur werden zur
+  Grauwertstufenerzeugung vier Halbtonzellen zusammengenommen und so 128
+  Grautöne erzeugt.
+</p>
+<p>
+  Die folgenden Bilder zeigen, welche Effekte bei verschieden starkem Dithering
+  bei der Darstellung eines Bildes mit zwei Farben entstehen.
+</p>
+
+{{% image url="Bildformate/3/2_3_8_eis-diffusion-0-dithering.gif"
+caption="Abb. 3.3-7 0% Dithering" %}}
+{{% image url="Bildformate/3/2_3_9_eis-diffusion-50-dithering.gif"
+caption="Abb. 3.3-8 50% Dithering" %}}
+{{% image url="Bildformate/3/2_3_10_eis-diffusion-100-dithering.gif"
+caption="Abb. 3.3-9 100% Dithering" %}}
+
+<p>
+  Farbdruckertechnologien verwenden die subtraktive Farbmischung sowie
+  physikalische Methoden zur Erzeugung von Halbtönen. Es wird zwischen
+  kontinuierlichen Halbtönen und der Simulation durch Dithering unterschieden.
+</p>
+<p>
+  Farbmischungen entstehen durch einen Prozeß, in dem die 3 (4) Druckfarben
+  (Prozeßfarben) nacheinander aufgetragen werden. Die subtraktiven Druckfarben
+  (Gelb, Magenta, Cyan) werden aus den 3 additiven Primärfarben (Rot, Grün,
+  Blau) berechnet. Bei hoher Auflösung des Drucksystems und kleinen Pixeln ist
+  es i.allg. nicht zu erkennen, ob die Farbmischung durch übereinander oder
+  nebeneinander angeordnete Farbpixel erzeugt wird. Die Komplementärfarben
+  werden eigentlich nicht wahrgenommen, vielmehr aktiviert Cyan die Rezeptoren
+  für Violettblau und Grün, Magenta die für Violettblau und Orangerot und Gelb
+  die für Orangerot und Grün. Das Gehirn interpretiert aus den Signalen die
+  Mischfarben. Reinheit und Sättigung der Mischfarben Violettblau, Grün und
+  Orangerot sind höher, wenn die Punkte der Druckfarben, die diese Mischung
+  erzeugen, exakt deckungsgleich sind.
+</p>
+<p>
+  Einfachstes Verfahren zur Simulation von Halbtönen ist das
+  <strong>Dispersed Dithering</strong>, das eine begrenzte Anzahl von Farbtönen
+  erzeugt.
+</p>
+
+{{% image url="Bildformate/3/2_3_11_cmy-farbmischung.gif"
+caption="Abb. 3.3-10 Farbmischung" %}}
+
+<p>
+  Farbtöne werden mit selektiver Abstufung erzeugt, d.h. Farbverläufe weisen
+  stets Stufen auf.
+</p>
+<p>
+  Beispiel: 4 x 4 Matrix erlaubt 16 Halbtöne einer Prozeßfarbe. Die Mischung der
+  drei Prozeßfarben erlaubt 4096 Farbtöne. Die Halbtonzellen werden dazu
+  übereinander gedruckt.
+</p>
+<p>
+  <strong>Clustered Dithering</strong>, d.h. gebündelte Anordnung der Pixel
+  innerhalb der Halbtonzelle, erfüllt höhere Ansprüche, wie sie z.B. für
+  stufenlose Farbverläufe oder für natürlichfarbige Bilder notwendig sind.
+</p>
+
+{{% image url="Bildformate/3/2_3_11_rasterwinkel.gif"
+caption="Abb. 3.3-11 Rasterwinkel" %}}
+
+<p>
+  Die geforderte Abbildungsgenauigkeit, Anzahl der Farbtöne, harmonisches
+  Aussehen des Druckbildes und Ungenauigkeiten im Druckprozeß bedingen eine
+  besondere Aufbereitung der separierten Farbauszüge. Indem die Farbauszüge um
+  bestimmte Rasterwinkel gedreht werden, sorgt man für einen kontrollierbaren
+  Moiré-Effekt. Ansonsten würden Unzulänglichkeiten beim Drucken zu Störeffekten
+  führen. Die gebräuchlichsten Rasterwinkel sind 15°, 45° und 75°, wobei der
+  Winkel, der eine grobe Punktstruktur am wenigsten erkennen läßt, der Farbe
+  zugeteilt wird, die am besten wahrgenommen wird. Dies ist meist der Winkel 45°
+  und die Prozeßfarbe Magenta.
+</p>
+
+{{% image
+  url="Bildformate/3/2_3_12_unterschiedliche_pixelanzahl_in_halbtonzellen.gif"
+  caption="Abb. 3.3-12 Unterschiedliche Pixelanzahl in Halbtonzellen" %}}
+
+<p>
+  Die auf diese Weise gedrehten und überlagerten Gitter erzeugen ein
+  gleichmäßiges rosettenartiges Moirémuster. Die Kreuzungspunkte der Gitter
+  entsprechen den Pixeln des Druckers. Angestrebt wird ein Muster, das eine
+  gleichmäßige Farbverteilung erzeugt. Da ein Rasterausgabegerät feste
+  horizontale Auflösungen besitzt, ist die Drehung immer nur in bestimmten
+  Abstufungen möglich. Zellen sind auch bei gedrehter Matrix horizontal /
+  vertikal ausgerichtet, so dass die Pixelzahl der Halbtonzellen abnimmt. Das
+  Arrangement aus Rasterwinkel, Halbtonzelle und Versatz bzw. Drehpunkten der
+  Rastergitter zueinander nennt man <strong>Screening</strong>.
+</p>
+<p>
+  Die Adobe-Screen-Sets - für Postscript bei Farbausgabegeräten entwickelt -
+  berücksichtigen verschiedene Fehlerquellen. So werden über einen Rasterverlauf
+  Halbtonzellen unterschiedlicher Größe generiert, so dass für diesen Verlauf
+  und nicht für eine einzige Zelle, ein optimaler Rasterwinkel entsteht.
+</p>
+<p>
+  Die <strong>frequenzmodulierte</strong> Pixelverteilung spielt auch in der
+  Farbreproduktion eine Rolle. Verglichen mit Clustered Dithering sind die
+  Ergebnisse harmonischer und detailgetreuer, vor allem bei begrenzter Auflösung
+  des Ausgabegerätes, wie bei Tintenstrahldruckern. Die 3 Farbauszüge werden
+  ohne Winkelversatz gerastert und so übereinander gedruckt, dass die
+  Pixelverteilung zufällig erscheint. Regelmäßige Strukturen oder Muster sind
+  nicht zu erkennen, Moirébildung wird verhindert, die Farbverläufe weisen keine
+  Stufen auf. Die Detailgenauigkeit ist höher als bei anderen Rasterverfahren.
+</p>

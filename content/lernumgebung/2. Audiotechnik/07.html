@@ -11,7 +11,7 @@ draft: true
 <p>Die Entstehung eines Tones kann mit dem ADSR-Modell (Attack, Decay, Sustain, Release) beschrieben werden. Es
     beschreibt die Entstehungsweise des Tones bei den meisten natürlichen Musikinstrumenten.</p>
 
-{{% image "Audiotechnik/7/1_1_6_adsr_phasen.gif" "" "Abb. 2.7-0 ADSR-Phasen" %}}
+{{% image url="Audiotechnik/7/1_1_6_adsr_phasen.gif" caption="Abb. 2.7-0 ADSR-Phasen" %}}
 
 <h5>Attack Phase A:</h5><!--TODO: Formatierung-->
 <p>Beim Anschlagen der Taste (Anblasen einer Flöte, Streichen eines Bogens) steigt die Lautstärke in 3-10 ms auf ihr
@@ -33,7 +33,7 @@ draft: true
     Phase des Klanges wichtiger als die Nachahmung des Amplitudenverhaltens. Als Beispiel diene die Analyse eines
     Orgelklanges.</p>
 
-{{% image "Audiotechnik/7/1_1_7_phasen_der_schwingung_eines_orgelklanges.gif" "" "Abb. 2.7-1 Phasen der Schwingung eines Orgelklanges" %}}
+{{% image url="Audiotechnik/7/1_1_7_phasen_der_schwingung_eines_orgelklanges.gif" caption="Abb. 2.7-1 Phasen der Schwingung eines Orgelklanges" %}}
 
 <p>Attack Phase: Das Signal ist sehr chaotisch und ungeordnet, es klingt wie Rauschen. Die hochfrequenten Anteile haben
     relativ große Energieanteile. Die Amplitude vergrößert sich relativ schnell und erreicht ihr Maximum in etwa 3-10
@@ -48,7 +48,7 @@ draft: true
 <p>Ein Synthesizer ist ein elektronisches Gerät zur Erzeugung von Klängen, bestehend aus Oszillatoren, Filtern und
     Verstärkern.</p>
 
-{{% image "Audiotechnik/7/aufbau_synt.gif" "" "Abb. 2.7-2  Aufbau eines Synthesizers" %}}
+{{% image url="Audiotechnik/7/aufbau_synt.gif" caption="Abb. 2.7-2  Aufbau eines Synthesizers" %}}
 
 <p>Ein Oszillator liefert Signal, das mit Filtern und Verstärkern in seiner spektralen Zusammensetzung und in seinem
     Pegelverlauf variiert wird. Die Variation wird von außen (u.a.) durch einen LFO = Low Frequency Oszillator
@@ -91,21 +91,33 @@ draft: true
 
 <h2>2.7.3 Filter</h2>
 <p>Filter entfernen bestimmte Frequenzen vom Original. Die meisten Schnittsysteme bieten die folgenden Filter an. Die
-    Frequenzgänge der 4 wichtigsten Idealfilter Tiefpass, Hochpass, Bandpass und Bandsperre sind ( AudioOriginal (54 KB)
-    <!--TODO: Audio shortcode-->zum Vergleich):</p>
+    Frequenzgänge der 4 wichtigsten Idealfilter Tiefpass, Hochpass, Bandpass und Bandsperre sind:</p>
+<p>Audio zum Vergleich:</p>
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_8_filter_original.mp3" title="Original" %}}
+</div>
 
 <h5>Tiefpass:</h5><!--TODO: Formatierung-->
 <p>Lässt alle Frequenzen durch, die unter einer Grenzfrequenz liegen.</p>
 <!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_9_wirkung_eines_tiefpassfilters.mp3" title="Wirkung eines Tiefpassfilters" %}}
+</div>
 <h5>Hochpass:</h5><!--TODO: Formatierung-->
 <p>Es werden nur hochfrequente Anteile durchgelassen.</p>
 <!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_10_wirkung_eines_hochpassfilters.mp3" title="Wirkung eines Hochpassfilters" %}}
+</div>
 <h5>Bandpass, Bandsperre: </h5><!--TODO: Formatierung-->
 <p>Es werden die Frequenzanteile in einem Band durchgelassen bzw. gesperrt.</p>
 <!--TODO: Audio shortcode-->
-<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_11_wirkung_eines_bandpassfilters.mp3" title="Wirkung eines Bandpassfilters" %}}
+    {{% sound-sample url="Audiotechnik/07/1_2_12_wirkung_eines_bandsperrefilters.mp3" title="Wirkung eines Bandsperrefilters" %}}
+</div>
 
-{{% image "Audiotechnik/7/1_2_9_filter.gif" "" "Abb. 2.7-3 Filterkurven" %}}
+{{% image url="Audiotechnik/7/1_2_9_filter.gif" caption="Abb. 2.7-3 Filterkurven" %}}
 
 <p>Eine wichtige Eigenschaft ist die Linearität von Filtern. Wenn die Übertragungsfunktion des Filters ist, dann
     bedeutet Linearität:</p><!-- TODO: Formelzeichen-->
@@ -155,13 +167,13 @@ draft: true
     </li>
 </ul>
 
-{{% image "Audiotechnik/7/1_2_10_grundaufbau_eines_fir_filters.gif" "" "Abb. 2.7-4 Grundaufbau eines FIR-Filters" %}}
+{{% image url="Audiotechnik/7/1_2_10_grundaufbau_eines_fir_filters.gif" caption="Abb. 2.7-4 Grundaufbau eines FIR-Filters" %}}
 
 <h5>IIR Filter</h5>
 <p>'Infinite Impuls Response' Filter sind rekursive LTI Systeme, die das Signal vom Ausgang des Filters rückkoppeln, um
     die gewünschte Eigenschaft des Signals mit weniger Elementen effizienter auszufiltern.</p>
 
-{{% image "Audiotechnik/7/1_2_11_grundaufbau_eines_iir_filters.gif" "" "Abb. 2.7-5 Grundaufbau eines IIR-Filters" %}}
+{{% image url="Audiotechnik/7/1_2_11_grundaufbau_eines_iir_filters.gif" caption="Abb. 2.7-5 Grundaufbau eines IIR-Filters" %}}
 
 <p>Durch die Rückkopplung entsteht am Ausgang des Filters beim Zufügen eines -Signals eine unendliche Impulsantwort. Die
     Zusammenhänge zwischen den Filterkoeffizienten und der Impulsantwort sind bei den IIR Filtern wesentlich
@@ -256,7 +268,7 @@ draft: true
     </li>
     <li><strong>Zeit-Verschiebungseffekte:</strong><br/>benutzen zeitverzögerte Signale:
 
-        {{% image "Audiotechnik/7/1_2_12_wirkung_der_schallverzoegerung.gif" "" "Abb. 2.7-6 Wirkung der Schallverzögerung" %}}
+        {{% image url="Audiotechnik/7/1_2_12_wirkung_der_schallverzoegerung.gif" caption="Abb. 2.7-6 Wirkung der Schallverzögerung" %}}
 
         <ul>
             <li>Effekte sind: GlossarDelay<!--TODO: Missing Hyperlink--> , GlossarEcho<!--TODO: Missing Hyperlink--> ,
@@ -316,7 +328,7 @@ draft: true
     FM-Synthesizer generiert eine Sinuswelle mit konstanter, hoher Frequenz und konstanter Lautstärke, die sogenannte
     Trägerwelle. Zu dieser mixt er die niederfrequente Schwingung des Modulators.</p>
 
-{{% image "Audiotechnik/7/1_1_8_frequent_modulation_s.gif" "" "Abb. 2.7-7 Prinzip der Frequenzmodulationssynthese" %}}
+{{% image url="Audiotechnik/7/1_1_8_frequent_modulation_s.gif" caption="Abb. 2.7-7 Prinzip der Frequenzmodulationssynthese" %}}
 
 <p>Das Signal folgt der nichtlinearen Gleichung: </p>
 <!--TODO: Formeln shortcode-->
@@ -344,7 +356,7 @@ draft: true
 <p>Beeinflussbare Parameter sind: Lautstärke (Amplitudenmodulation, Tremolo), Tonhöhe (FM, Vibrato) oder
     Filterabschaltfrequenz (Filtermodulation, Wah-Effekt). </p><!--TODO: Formatierung-->
 
-{{% image "Audiotechnik/7/sampling.gif" "" "Abb. 2.7-8 Sampling Synthese" %}}
+{{% image url="Audiotechnik/7/sampling.gif" caption="Abb. 2.7-8 Sampling Synthese" %}}
 
 <h5></h5>
 <p>Bei der Granularsynthese wird ein beliebiges Schallsignal in kurze (ms) Abschnitte (Grains) unterteilt. Diese Grains
@@ -361,4 +373,4 @@ draft: true
     nachgebildet und akustisch simuliert. Damit wird ein naturgetreuer Klang möglich. Es ist jedoch eine sehr hohe
     Rechenleistung nötig.</p><!--TODO: Formatierung-->
 
-{{% image "Audiotechnik/7/soundkartenschema.gif" "" "Abb. 2.7-9  Aufbauschema einer Soundkarte" %}}
+{{% image url="Audiotechnik/7/soundkartenschema.gif" caption="Abb. 2.7-9  Aufbauschema einer Soundkarte" %}}
