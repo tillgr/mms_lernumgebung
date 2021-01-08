@@ -76,14 +76,63 @@ draft: true
     Amplitudenverteilung des Signals erhält man aus der Wahrscheinlichkeitsdichte. Sie zeigt, mit welcher
     Wahrscheinlichkeit die Amplitude den Wert x erreicht.</p>
 
-<!--TODO: Formeln shortcode-->
+{{< formula >}}
+P(\underline{x} = x_i) = p(x_i) = \frac{n_i}{N} \text{ , }
+{{< /formula >}}<!--TODO: Formatierung-->
+{{< formula >}}
+P(x = x_0) = \lim \limits_{\Delta x \to \infty} \frac{p(x_0 < x < (x_0 + \Delta x)}{\Delta x}
+{{< /formula >}}<!--TODO: Formatierung-->
+
 <p>Dabei gilt:</p>
-<!--TODO: Formeln shortcode-->
-<p>Die wichtigsten Parameter sind Erwartungswert E, Median M und Varianz . Erwartungswert oder Mittelwert ist der Wert,
-    um den sich die Funktionswerte mit größter Wahrscheinlichkeit sammeln.</p> <!-- TODO: Formelzeichen-->
-<!--TODO: Formlen shortcode-->
-<p>Die Wurzel aus der Varianz ist die Standardabweichung :</p> <!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+{{< formula >}}
+\sum \limits_{i} p_i = 1 \text{ , }
+{{< /formula >}}<!--TODO: Formatierung-->
+
+{{< formula >}}
+\int \limits_{- \infty}^{+ \infty} P(x) = 1
+{{< /formula >}}<!--TODO: Formatierung-->
+
+<p>Die wichtigsten Parameter sind Erwartungswert E, Median M und Varianz {{< formula >}} \sigma ^2{{< /formula >}}.
+    Erwartungswert oder Mittelwert ist der Wert, um den sich die Funktionswerte mit größter Wahrscheinlichkeit
+    sammeln.</p>
+
+{{< formula >}}
+E(\underline{x}) = \sum \limits_{i} x_i * p(x_i) \text{ , }
+{{< /formula >}}<!--TODO: Formatierung-->
+
+{{< formula >}}
+E(x) = \int \limits_{- \infty}^{+ \infty} x * f(x)\text{d}x
+{{< /formula >}}<!--TODO: Formatierung-->
+
+<p>Der Median ist der Wert der zufälligen Variablen:</p>
+
+{{< formula >}}
+P(f(x) < M) = P(f(x) > M) = 0.5
+{{< /formula >}}<!--TODO: Formatierung-->
+
+<p>Bei einer diskreten Verteilung ist der Median der mittlere Wert aller der Größe nach sortierten Funktionswerte. Die
+    Varianz ist die mittlere quadratische Abweichung vom Mittelwert:</p>
+
+<p>
+    {{< formula >}}
+    \sigma^2 = E[(\underline{x} - E(\underline{x}))^2]
+    {{< /formula >}}<!--TODO: Formatierung-->
+</p>
+
+{{< formula >}}
+\sigma^2 = \sum \limits_{i} (x_i - E(\underline{x}))^2 * p_i \text{ , }
+{{< /formula >}}<!--TODO: Formatierung-->
+
+{{< formula >}}
+\sigma^2 = \int \limits_{-\infty}^{+\infty} (x - E(\underline{x}))^2 * f(x)
+{{< /formula >}}<!--TODO: Formatierung-->
+
+<p>Die Wurzel aus der Varianz ist die Standardabweichung {{< formula >}}\sigma{{< /formula >}}:</p>
+
+{{< formula >}}
+\sigma = \sqrt{\sigma^2}
+{{< /formula >}}<!--TODO: Formatierung-->
+
 <p>Sie ist ein Maß für die Streuung der möglichen Werte der Variablen um den Erwartungswert.</p>
 
 <h4>Fourier Analyse</h4>
@@ -91,54 +140,105 @@ draft: true
     Zeitsignale in eine andere Darstellung überführt. Diese Darstellung lässt die zur Bildung der Signale notwendigen
     Frequenzanteile erkennen. Jede beliebige periodische Funktion kann durch die Summe einer Reihe (Fourier Reihe)
     dargestellt werden. Jede periodische Funktion mit der Kreisfrequenz</p>
-<!--TODO: Formeln shortcode-->
+
+<p>{{< formula >}}
+\omega = 2 \pi * f_0 (f_0 \text{ - Frequenz})
+    {{< /formula >}}</p><!--TODO: Formatierung-->
+
 <p>lässt sich als folgende Summe darstellen:</p>
-<!--TODO: Formeln shortcode-->
+
+<p>{{< formula >}}
+f(\omega_0 * t) = a_0 + \sum \limits_{k=1}^\infty (a_k * \cos(k * \omega_0 * t) + b_k * \sin(k * \omega_0 * t))
+    {{< /formula >}}</p><!--TODO: Formatierung-->
+
 <p>Hierzu gibt es ein Java-Applet, dass grafisch zu verschiedenen Funktionen die zugehörigen Fourierspektren darstellen
     kann.</p>
 
 {{% snippets/Fourieranalysis Fourieranalyse%}}
 
-<p>Mit anderen Worten, man kann jede beliebige periodische Funktion der Frequenz aus der Summe der Sinus- und
-    Cosinusfunktionen mit der n-fachen Frequenz () bilden. Dabei ist der Offset. Die Berechnung der unendlichen Reihen
-    und wird als Fourier-Transformation gekennzeichnet:</p> <!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+<p>Mit anderen Worten, man kann jede beliebige periodische Funktion der Frequenz {{< formula >}} f {{< /formula >}} aus
+    der Summe der Sinus- und Cosinusfunktionen mit der n-fachen Frequenz
+    ({{< formula >}} n \in \mathbb{N}\text{; } n=1 \text{, } \infty{{< /formula >}})
+    bilden. Dabei ist {{< formula >}} a_0 {{< /formula >}} der Offset. Die Berechnung der unendlichen Reihen
+    {{< formula >}} a_i {{< /formula >}} und {{< formula >}} b_i {{< /formula >}} wird als Fourier-Transformation
+    gekennzeichnet:</p>
+
+<p>
+    {{< formula >}} a_k = \frac{1}{\pi} * \int \limits_{0}^{2\pi} f(t) * \cos(k*\omega_0*t) \text{d}t \text{ , } {{< /formula >}}
+    {{< formula >}} b_k = \frac{1}{\pi} * \int \limits_{0}^{2\pi} f(t) * \sin(k*\omega_0*t) \text{d}t {{< /formula >}}
+</p><!--TODO: Formatierung-->
+
+<p>
+    {{< formula >}} \omega = 2\pi * f \Rightarrow f = \frac{\omega}{2\pi}{{< /formula >}}
+</p>
+<p>
+    {{< formula >}} a_k = \frac{1}{\pi} * \int \limits_{0}^{2\pi} f(t) * \cos(k*\frac{\omega}{2\pi}*t) \text{d}t \text{ , } {{< /formula >}}
+    {{< formula >}} b_k = \frac{1}{\pi} * \int \limits_{0}^{2\pi} f(t) * \sin(k*\frac{\omega}{2\pi}*t) \text{d}t {{< /formula >}}
+
+    (1.10)
+</p><!--TODO: Formatierung-->
+
 {{% image "Audiotechnik/2/1_2_6_darstellung_der_koeffizienten_als_vektor.gif" "Diagramm mit Vektordarstellung" "Abb. 2.2-6 Darstellung der Koeffizienten als Vektor" %}}
 
-<p>Koeffizienten und können als Vektor aufgefasst werden, wodurch sie durch einen Winkel und eine Intensität dargestellt
-    werden können. Dies hat den Vorteil, dass die Intensität des Vektors die Amplitude des Frequenzanteils der Funktion
-    bei der Zentralfrequenz und der Winkel die Phasenverschiebung ist.</p> <!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+<p>Die Koeffizienten {{< formula >}} a_k {{< /formula >}} und {{< formula >}} b_k {{< /formula >}} können als Vektor
+    aufgefasst werden, wodurch sie durch einen Winkel und eine Intensität dargestellt werden können. Dies hat den
+    Vorteil, dass die Intensität des Vektors die Amplitude des Frequenzanteils der Funktion bei der Zentralfrequenz
+    {{< formula >}} k_\omega {{< /formula >}} und der Winkel {{< formula >}} \varphi {{< /formula >}} die
+    Phasenverschiebung ist.</p>
 
-<p>Zur weiteren Vereinfachung wird das Zahlenpaar oft als eine komplexe Zahl dargestellt. Dann liefert die Eulersche
-    Gleichung (2.3) eine weitere Basis für die Vereinfachung in der Form:</p> <!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}} A_k = \sqrt{a_k^2 + b_k^2} \text{ , } {{< /formula >}}
+    {{< formula >}} \varphi_k = \arctan(\frac{a_k}{b_k}) {{< /formula >}}
+</p><!--TODO: Formatierung-->
+
+<p>Zur weiteren Vereinfachung wird das Zahlenpaar {{< formula >}} a \text{, } b {{< /formula >}} oft als eine komplexe
+    Zahl {{< formula >}} a + bi {{< /formula >}} dargestellt. Dann liefert die Eulersche Gleichung (2.3) eine weitere
+    Basis für die Vereinfachung in der Form:</p>
+
+<p>
+    {{< formula >}} e^{i\varphi} = \cos(\varphi) + i * \sin(\varphi) {{< /formula >}}
+</p><!--TODO: Formatierung-->
 
 <p>Damit lässt sich die Formel (1.10) wie folgt ausdrücken:</p>
-<!--TODO: Formeln shortcode-->
 
-<p>sind komplexe Zahlen:</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}} f(t) = \sum \limits_{k = - \infty}^{\infty} \underline{X_k} * e^{k\omega_0 t_i} {{< /formula >}}
+</p><!--TODO: Formatierung-->
 
-<p>Die Reihe aller Amplituden stellt das Spektrum der Funktion dar. Das Spektrum einer Funktion ist Ausgangsbasis für
-    viele Anwendungen und Analysen des Signals. Eine verbreitete Anwendungen ist die Datenkompression. Die Berechnung
-    der ursprünglichen Funktion aus den Koeffizienten und erfolgt über die inverse Fourier
-    Transformation.</p><!-- TODO: Formelzeichen-->
-<p>Dient als Ausgangsbasis eine diskrete Funktion, die als Reihe mit der Periode N angegeben ist, wird die Fourier
-    Transformation für diskrete Funktionen, die Diskrete Fourier Transformation (DFT)
-    angewandt.</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+<p>{{< formula >}} \underline{X_k} {{< /formula >}} sind komplexe Zahlen:</p>
+<p>
+    {{< formula >}} \underline{X_k} = \frac{1}{\pi} * \int \limits_{0}^{2\pi} f(t) * e^{-k\omega_0 t_i} \text{d}t {{< /formula >}}
+</p>
+
+<p>Die Reihe aller Amplituden {{< formula >}} A_k {{< /formula >}} stellt das Spektrum der Funktion dar. Das Spektrum
+    einer Funktion ist Ausgangsbasis für viele Anwendungen und Analysen des Signals. Eine verbreitete Anwendungen ist
+    die Datenkompression. Die Berechnung der ursprünglichen Funktion aus den Koeffizienten {{< formula >}} a_k {{< /formula >}}
+    und {{< formula >}} b_k {{< /formula >}} erfolgt über die inverse Fourier Transformation.</p>
+<p>Dient als Ausgangsbasis eine diskrete Funktion, die als Reihe {{< formula >}} \underline{x_k} {{< /formula >}} mit
+    der Periode N angegeben ist, wird die Fourier Transformation für diskrete Funktionen, die Diskrete Fourier
+    Transformation (DFT) angewandt.</p>
+
+<p>
+    {{< formula >}} x_k = \sum \limits_{n=0}^{N-1}(a_k * \sin(n * \frac{2\pi}{N} * k) + b_k + \cos(n * \frac{2\pi}{N} + k)) {{< /formula >}}
+</p>
 
 <p>Die Berechnung der Koeffizienten der DFT lautet:</p>
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}} a_k = \frac{1}{N} \sum \limits_{n=0}^{N-1}(x_k * \sin(n * \frac{2\pi}{N} * k) \text{ , }{{< /formula >}}
+    {{< formula >}} a_k = \frac{1}{N} \sum \limits_{n=0}^{N-1}(x_k * \sin(n * \frac{2\pi}{N} * k){{< /formula >}}
+</p><!--TODO: Formatierung-->
 
 <p>Die beiden Formeln kann man analog zur stetigen Version in der komplexen Form darstellen. Zusätzlich werden die
-    Winkel oft zur Vereinfachung durch ersetzt.</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+    Winkel {{< formula >}} \frac{2\pi}{N} * n * k {{< /formula >}} oft zur Vereinfachung durch
+    {{< formula >}} W_N^{nk} {{< /formula >}} ersetzt.</p>
+<p>
+    {{< formula >}} X_k = \sum \limits_{n=0}^{N-1}(x_n * W_N^{nk}) \text{ , }{{< /formula >}}
+    {{< formula >}} x_k = \sum \limits_{n=0}^{N-1}(X_n * W_N^{-nk}){{< /formula >}}
+</p><!--TODO: Formatierung-->
 
 <p>Sowohl die Ausgangsfunktion wie auch die Fourier-Transformierte sind diskrete Funktionen, ausgedrückt durch die
-    Reihen und . Die Zusammenhänge sollen an einem Ausschnitt einer Orgelsequenz erläutert
-    werden:</p><!-- TODO: Formelzeichen-->
+    Reihen {{< formula >}} x_k {{< /formula >}} und {{< formula >}} X_k {{< /formula >}}. Die Zusammenhänge sollen an
+    einem Ausschnitt einer Orgelsequenz erläutert werden:</p>
 
 {{% image "Audiotechnik/2/1_2_7_schwingung_einer_orgelsequenz.gif" "Amplitude bei einem Orgelton" "Abb. 2.2-7 Schwingung einer Orgelsequenz" %}}
 
@@ -150,27 +250,62 @@ draft: true
 {{% image "Audiotechnik/2/1_2_8_frequenzspektrum_des_orgelklanges.gif" "" "Abb. 2.2-8 Frequenzspektrum des Orgelklanges" %}}
 
 <p>Die Formel für die DFT lässt sich auch in Matrixform darstellen:</p>
-<!--TODO: Formeln shortcode-->
+
+<p>
+    {{< formula >}}
+    \begin{bmatrix}
+    X_0 \\
+    X_1 \\
+    \vdots \\
+    X_{N-1}
+    \end{bmatrix} =
+    \begin{bmatrix}
+    W_N^0 & W_N^0 & \ldots & W_N^0 \\
+    W_N^0 & W_N^1 & \ldots & W_N^{N-1}\\
+    \vdots & \vdots & \ddots & \vdots \\
+    W_N^0 & W_N^{N-1} & \ldots & W_N^{(N-1)(N-1)}
+    \end{bmatrix} *
+    \begin{bmatrix}
+    x_0 \\
+    x_1 \\
+    \vdots \\
+    x_{N-1}
+    \end{bmatrix} =
+    W *
+    \begin{bmatrix}
+    x_0 \\
+    x_1 \\
+    \vdots \\
+    x_{N-1}
+    \end{bmatrix}
+    {{< /formula >}}
+</p>
+
 <p>Die Anzahl der notwendigen Rechenoperationen für die DFT beträgt ca. N² (siehe auch Arbeiten von Cooley
     <!--TODO: Fehlende Referenzen-->)</p>
 
 <h2>2.2.3 Dämpfung, Frequenzgang und Klirrfaktor</h2>
-<p>Das <strong>Dämpfungsmaß</strong> wird durch die Formel (1.19) bestimmt, wobei Ue das Eingangssignal und Ua das
-    Ausgangssignal ist. Ua = Ue / 2 entspricht einer Dämpfung von 6 dB.</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+<p>Das <strong>Dämpfungsmaß</strong> wird durch die Formel (1.19) bestimmt, wobei {{< formula >}} U_e {{< /formula >}} das Eingangssignal und {{< formula >}} U_a {{< /formula >}} das
+    Ausgangssignal ist. {{< formula >}} U_a = U_e / 2 {{< /formula >}} entspricht einer Dämpfung von 6 dB.</p><!-- TODO: Formelzeichen-->
+<p>{{< formula >}} a_d = 20 \log \frac{U_e}{U_a} [dB] {{< /formula >}}</p>
 
-<p>Der <strong>Frequenzgang</strong> lässt sich als Ua = f (Ue) beschreiben; f gibt Aufschluss über Nichtlineare
-    Verzerrung, Clipping, Zeit- und Frequenzbereich. </p><!-- TODO: Formelzeichen-->
+<p>Der <strong>Frequenzgang</strong> lässt sich als {{< formula >}} U_a = f(U_e) {{< /formula >}} beschreiben;
+    {{< formula >}} f {{< /formula >}} gibt Aufschluss über Nichtlineare Verzerrung, Clipping, Zeit- und Frequenzbereich.</p>
 
 {{% image "Audiotechnik/2/frequenzgang_a.gif" "" "Abb. 2.2-9 Übertragungssystem mit Begrenzung" %}}
 {{% image "Audiotechnik/2/frequenzgang_b.gif" "" "Abb. 2.2-10 Lineare Verzerrung durch die Begrenzung" %}}
 
 <p>Der <strong>Klirrfaktor</strong> k ist das Maß für die Obertöne (Harmonische); er ermittelt sich aus der Gleichung
-    (1.20), wobei das Ausgangsignal Ua z.B. die Grundschwingung U1 und deren Obertöne (U2, U3, ...) umfasst.
+    (1.20), wobei das Ausgangsignal {{< formula >}} U_a {{< /formula >}} z.B. die Grundschwingung
+    {{< formula >}} U_1 {{< /formula >}} und deren Obertöne ({{< formula >}} U_2 {{< /formula >}},
+    {{< formula >}} U_3 {{< /formula >}}, ...) umfasst.
 </p><!-- TODO: Formelzeichen-->
 <p>Die <strong>Klirrdämpfung</strong> folgt aus dem Klirrfaktor k. </p>
 
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}} k = \sqrt{\frac{U_2^2 + U_3^2 + \ldots}{U_1^2 + U_2^2 + U_3^2 + \ldots}} {{< /formula >}}
+    {{< formula >}} a_k = 20 * \log(1/k) {{< /formula >}}
+</p>
 
 <h2>2.2.4 Störsignalarten</h2>
 <p>Die Übertragung bzw. Speicherung eines Signals ist stark von der Art des Signals bzw. der in ihm enthaltenen
@@ -255,11 +390,11 @@ draft: true
         Bauteils. Stoßrauschen ist, wie in der Abbildung dargestellt, im Allgemeinen durch weißes Rauschen überlagert
         und für Audiosignale nur von geringer Bedeutung. Die Signal- und Pausendauer ist exponentiell verteilt.
 
-        {{% image "Audiotechnik/2/1_2_4_schwingung_des_stossrauschens.gif" "" "Abb. 2.2-14  Schwingung des Stoßrauschens" %}}
+        {{% image "Audiotechnik/2/1_2_4_schwingung_des_stossrauschens.gif" "" "Abb. 2.2-14 Schwingung des Stoßrauschens" %}}
     </li>
     <li><strong>Funkelrauschen</strong> entsteht durch thermische Bewegungen der Ladungsträger in aktiven Bauteilen
         (Halbleitern), hat stochastischen Charakter und unterscheidet sich von dem weißen Rauschen nur durch seine
-        Glossarspektrale Dichte<!--TODO: Missing Hyperlink-->. Die spektrale Dichte des Funkelrauschens fällt mit
+        Glossarspektrale Dichte<!--TODO: Missing Hyperlink--> . Die spektrale Dichte des Funkelrauschens fällt mit
         steigender Frequenz und zwar etwa 10 dB pro Oktave. Bei Frequenzen ab etwa 2kHz ist das Funkelrauschen durch das
         weiße Rauschen verdeckt. Da die Bewegungen der Elektronen im Halbleiter komplizierter sind als im Leiter, kommt
         es bei dem Funkelrauschen zu Schwankungen in der Verteilung der Amplitudenwerte, so dass man stochastische

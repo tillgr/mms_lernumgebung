@@ -115,7 +115,15 @@ draft: true
     128 ist definiert als 0 Wert.</p>
 <p>Diese Zusammenhänge werden in einer Formel ausgedrückt, mit der man zu den analogen RGB-Werten die digitalen
     Signalkomponenten Y, Cr und Cb ermitteln kann:</p>
-<!--TODO: Shortcode Formeln-->
+<p>
+    {{< formula >}} Y = 219A_Y + 16 {{< /formula >}}
+</p>
+<p>
+    {{< formula >}} C_R = 160(A_R - A_Y) + 128 {{< /formula >}}
+</p>
+<p>
+    {{< formula >}} C_R = 126(A_G - A_Y) + 128 {{< /formula >}}
+</p>
 
 <h4 class="h5">Digitalisierung einer Bildschirm-Zeile</h4>
 <p>Die Abtastung einer PAL-Zeile mit einer Frequenz von 13,5 MHz wird in dem folgenden Bild dargestellt:</p>
@@ -129,7 +137,9 @@ draft: true
     Kapitel Digitalisierung analoger Video-Signale<!--TODO: Fehlende Referenzen--> !)</p>
 <p>Die Abtastung wird für jede der 625 PAL-Zeilen ausgeführt. Daraus resultiert eine Datenmenge von:</p>
 
-<p>( 864 + 2 * 432) * 8Bit * 625 ~ 8,64 MBit je Frame bei 25 Hz → 27 MB/s </p>
+<p>
+    {{< formula >}} (864 + 2 * 432) * 8 \text{Bit} *625 \sim 8,64 \text{MBit} {{< /formula >}} je Frame bei 25 Hz → 27 MB/s
+</p>
 
 <h3 class="h4">5.4.3.2 MPEG-Bildtypen</h3>
 <p>Bei der Bildkompression wird zwischen den folgenden 4 Bildtypen unterschieden:</p>
@@ -232,12 +242,13 @@ draft: true
 
 <h4 class="h5">Blockvergleichs-Algorithmen</h4>
 <p>Ein Maß für die Ähnlichkeit von Blöcken ist der Mittelwert der absoluten Differenz:</p>
-<!--TODO: Shortcode Formeln-->
-<p>Es wird ein Schwellwert t festgelegt:</p>
-<!--TODO: Shortcode Formeln-->
+{{% formulaRow f1 = "\frac{1}{m \cdot n} \sum \limits_{i=1}^{m} \sum \limits_{j=1}^{n} \lvert A(i,j) - B(i,j) \rvert" ref = "1" %}}
+<p>Es wird ein Schwellwert {{< formula >}}t{{< /formula >}} festgelegt:</p>
+{{% formulaRow f1 = "\sum \limits_{i=1}^{m} \sum \limits_{j=1}^{n} \left[ ord( \lvert A(i,j) - B(i,j) \lvert \leq t) \right]" ref = "2" %}}
 
-<p>Die Funktion ord() liefert 1, wenn der Funktionswert ≤t ist, sonst null. Das bedeutet, je höher die Summe ist, desto
-    ähnlicher sind die Pixelblöcke.</p>
+<p>Die Funktion {{< formula >}}ord(){{< /formula >}} liefert 1, wenn der Funktionswert
+    {{< formula >}}\leq t{{< /formula >}} ist, sonst null. Das bedeutet, je höher die Summe ist, desto ähnlicher sind
+    die Pixelblöcke.</p>
 <p>Es wird der Block eines anderen Makroblocks im vorherigen I- oder P-Bildes ermittelt, der dem zu kodierenden am
     ähnlichsten ist. Die Größe des Suchbereiches (Bewegungsvektors) und der Algorithmus zur Ermittlung der
     Bewegungsvektoren ist im Standard nicht festgelegt. Es werden verschiedene Suchstrategien benutzt. Z.B. wird
@@ -288,7 +299,8 @@ draft: true
     <li><strong>Picture</strong>: Es kann sich um ein I-, P-, B- oder D-Bild handeln.</li>
     <li><strong>Slice</strong>: Anzahl von Makroblöcken, für die z.B. die Skalierung der DCT-Quantisierung gleich ist.
     </li>
-    <li><strong>Makroblock</strong>: 16 x 16 Pixel für Luminanz, 8 x 8 Pixel für C<sub>r</sub> und C<sub>b</sub></li>
+    <li><strong>Makroblock</strong>: 16 x 16 Pixel für Luminanz, 8 x 8 Pixel für {{< formula >}}C_r{{< /formula >}} und
+        {{< formula >}}C_b{{< /formula >}}</li>
     <li><strong>Block</strong>: 8 x 8 Pixel für Luminanz und Chrominanz.</li>
 </ul>
 
@@ -373,21 +385,27 @@ draft: true
     gewählt werden. Die Anzahl der Bilder pro GoP sei N, der Abstand zwischen zwei P-Bildern sei M.</p>
 <!--TODO: Tabelle shortcode-->
 
-<p>Bei niedrigen Bitraten und hohen Kompressionsrate wird N = 12, M = 3 gewählt. Dies erlaubt jedoch nur in Abständen
+<p>Bei niedrigen Bitraten und hohen Kompressionsrate wird {{< formula >}}N = 12{{< /formula >}},
+    {{< formula >}}M = 3{{< /formula >}} gewählt. Dies erlaubt jedoch nur in Abständen
     von 480 ms Zugriff auf intracodierte Bilder (Vollbilder).</p>
 
 <p><strong>Beispiel Ermittlung der Datenrate:</strong></p>
-<p>MPEG-2 Signal mit N = 12, M = 3</p>
+<p>MPEG-2 Signal mit {{< formula >}}N = 12{{< /formula >}}, {{< formula >}}M = 3{{< /formula >}}</p>
 <p>Ausgangssituation: Die Netto-Bitrate eines DSC-270 Mbps Signal ist 207,36 Mbps bei 10 bit Codierung bzw. 165,8 Mbps
     bei 8 bit-Codierung. Die Datenmenge eines Teilbildes bei 4:2:2-Abtastung errechnet sich wiefolgt:</p>
-<p>Y: 720 x 576 Pixel/Bild x 8 bit/Pixel = 3,317 Mbit/Bild<br/>
-    C<sub>B</sub> und C<sub>R</sub>: 360 x 288 Pixel/Bild x 8 bit/Pixel = 0,829 Mbit/Bild<br/>
-    Ergibt 3,317 + 0,829 + 0,829 = 4,975 Mbit/Bild. <br/>
-    Die unkomprimierte Bitrate bei 25 Bilder/s liegt also bei 25 x 4,975 = 124,4 Mbps.<br/>
+<p>{{< formula >}}Y{{< /formula >}}:
+    {{< formula >}}720 \times 576 \text{Pixel/Bild} \times 8 \text{bit/Pixel} = 3,317 \text{Mbit/Bild}{{< /formula >}}<br/>
+    {{< formula >}}C_B{{< /formula >}} und {{< formula >}}C_R{{< /formula >}}:
+    {{< formula >}}360 \times 288 \text{Pixel/Bild} \times 8 \text{bit/Pixel} = 0,829 \text{Mbit/Bild}{{< /formula >}}<br/>
+    Ergibt {{< formula >}}3,317 + 0,829 + 0,829 = 4,975 \text{Mbit/Bild} {{< /formula >}}. <br/>
+    Die unkomprimierte Bitrate bei {{< formula >}}25 \text{Bilder/s}{{< /formula >}} liegt also bei
+    {{< formula >}} 25 x 4,975 = 124,4 \text{Mbps}{{< /formula >}}.<br/>
     Nach Datenreduktion ergibt sich (aus statistischer Auswertung von Bildmaterial) im Mittel ein Datenaufkommen
     von ca. 800 kbit pro I-Bild , ca. 200 kbit pro P-Bild und ca. 80 kbit pro B-Bild. Die Datenmenge dieser GoP
-    (I-B-B-P-B-B-P-B-B-P-B-B) beläuft sich also auf 1 x 0,8 + 3 x 0,2 + 8 x 0,08 Mbit= 2,04 Mbit. Die mittlere
-    komprimierte Bitrate über 12 Bilder (480 ms) ist somit 2,04 Mbit/ 0,48 s = 4,25 Mbps.
+    (I-B-B-P-B-B-P-B-B-P-B-B) beläuft sich also auf
+    {{< formula >}}1 \times 0,8 + 3 \times 0,2 + 8 \times 0,08 \text{Mbit} = 2,04 \text{Mbit}{{< /formula >}}. Die
+    mittlere komprimierte Bitrate über 12 Bilder (480 ms) ist somit
+    {{< formula >}}\frac{2,04 \text{Mbit}}{0,48} \text{s} = 4,25 \text{Mbps}{{< /formula >}}.
 </p><!--TODO: Formatierung-->
 
 <h2>5.4.6 MPEG Video-Enkoder</h2>

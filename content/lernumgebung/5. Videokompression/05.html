@@ -10,32 +10,35 @@ draft: true
     MPEG-1 wurde sehr flexibel gehalten, was den Entwurf standardkonformer Dekoder erschwert.</p>
 <p> Constrained Parameter Set:</p>
 <ul>
-    <li>Bildgröße ≤ 720 pixel x 576 Pixel</li>
-    <li>Anzahl von Makroblöcken / Bild: 396</li>
-    <li>Makroblöcke/s: (720/2 - 2*4)/16 * (576/2)/16 * 25 = 396 * 25</li>
-    <li>Bildrate ≤ 30 Bilder/s</li>
-    <li>Bitrate ≤ 1,86 Mbit/s</li>
-    <li>Decoderpuffer ≤ 327 680 bit</li>
+    <li>Bildgröße {{< formula >}}\leq 720 \text{Pixel} \times 576 \text{Pixel}{{< /formula >}}</li>
+    <li>Anzahl von Makroblöcken / Bild: {{< formula >}}396{{< /formula >}}</li>
+    <li>Makroblöcke/s: {{< formula >}}(720/2 - 2*4)/16 * (576/2)/16 * 25 = 396 * 25{{< /formula >}}</li>
+    <li>Bildrate {{< formula >}}\leq 30 \text{Bilder/s}{{< /formula >}}</li>
+    <li>Bitrate {{< formula >}}\leq 1,86 \text{Mbit/s}{{< /formula >}}</li>
+    <li>Decoderpuffer {{< formula >}}\leq 327 680 \text{bit}{{< /formula >}}</li>
 </ul>
 
-<p>Die Erweiterung von MPEG-1 auf das ITU-R-601 Format mit 720 x 576 px Auflösung führte zu <strong>"MPEG-1+"</strong>.
+<p>Die Erweiterung von MPEG-1 auf das ITU-R-601 Format mit {{< formula >}} 720 \times 576 \text{px}{{< /formula >}}
+    Auflösung führte zu <strong>"MPEG-1+"</strong>.
 </p>
 <p>Das <strong>MPEG-1 Audiosignal</strong> benutzt eine Datenreduktion nach dem MUSICAM-Verfahren (Masking Pattern
     Universal Subband Integrated Coding and Multiplexing, Layer1), welches Teilbandcodierung und Irrelevanzreduktion
     nutzt.</p>
 
 <p><strong>Bildaufbereitung</strong></p><!--TODO: Fehlende Referenzen-->
-<p>Betrachtet wird ein Bild der Bildsequenz, mit den 3 Ebenen: Luminanz Y und den Farbdifferenzkomponenten Cr und Cb.
-    Die horizontale und vertikale Auflösung von Y beträgt max. 768 x 576 Pixel (bei einem PAL-Vollbild), jedes Pixel
-    wird mit 8 Bit je Ebene kodiert.</p>
+<p>Betrachtet wird ein Bild der Bildsequenz, mit den 3 Ebenen: Luminanz Y und den Farbdifferenzkomponenten
+    {{< formula >}}C_r{{< /formula >}} und {{< formula >}}C_b{{< /formula >}}. Die horizontale und vertikale Auflösung
+    von {{< formula >}}Y{{< /formula >}} beträgt max. {{< formula >}} 768 \times 576 \text{Pixel}{{< /formula >}} (bei
+    einem PAL-Vollbild), jedes Pixel wird mit {{< formula >}}8 \text{bit}{{< /formula >}} je Ebene kodiert.</p>
 {{% image "Videokompression/5/4_4_12_mpeg_abtastung.gif" "" "Abb. 5.4-6 Prinzip der Bewegungsabschätzung bei MPEG" %}}
 
 <p>Die einzelnen Abtastwerte werden, wie bei JPEG, zu 8x8-Blöcken zusammengefasst.</p>
-<p>Die Bildinformation wird mit je einem 8x8 Block für Cr und Cb und vier Blöcken für die Luminanz dargestellt, so dass
-    ein Makroblock aus 6 Blöcken der Größe 8x8 gebildet wird. Um die Datenrate von MPEG-1 zu erreichen, wird im
-    Gegensatz zu MPEG-2 das Ausgangsmaterial besonders stark reduziert. Hierzu wird die Video-Sequenz zunächst in das
-    'Standard Input-Format' (SIF) gebracht. Dies ergibt eine Größe von 352 x 288 Pixeln bei einem Colour-Subsampling von
-    4:2:2 und einer Bildfrequenz von 25 Hz.</p>
+<p>Die Bildinformation wird mit je einem 8x8 Block für {{< formula >}}C_r{{< /formula >}} und
+    {{< formula >}}C_b{{< /formula >}} und vier Blöcken für die Luminanz dargestellt, so dass ein Makroblock aus 6
+    Blöcken der Größe 8x8 gebildet wird. Um die Datenrate von MPEG-1 zu erreichen, wird im Gegensatz zu MPEG-2 das
+    Ausgangsmaterial besonders stark reduziert. Hierzu wird die Video-Sequenz zunächst in das 'Standard Input-Format'
+    (SIF) gebracht. Dies ergibt eine Größe von 352 x 288 Pixeln bei einem Colour-Subsampling von 4:2:2 und einer
+    Bildfrequenz von 25 Hz.</p>
 {{% image "Videokompression/5/4_4_13_mpeg1_Verarbeitung.gif" "" "Abb. 5.4-6 Prinzip der Bewegungsabschätzung bei MPEG" %}}
 
 <p>Dies bedeutet i. W. halbe Auflösung im Vergleich zu einem Bild entsprechend der ITU-R 601 Norm. Bei ITU-R 601 ist die

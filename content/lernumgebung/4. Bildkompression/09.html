@@ -5,17 +5,18 @@ draft: true
 ---
 
 <p>Bildkompressionsverfahren lassen sich über die Qualität eines durch sie komprimierten Bildes vergleichen. Kenngröße
-    für die Bildqualität ist die sogenannte Peak Signal to Noise Ratio (PSNR). Als "peak" - d.h. als stärkstes
-    auftretendes Signal - wird bei einer Quantisierung von 8 bit der Wert 255 angesetzt. Das Rauschen ("noise")
-    entspricht dem Fehler zwischen dem Original f und der Rekonstruktion r.</p>
-<!--TODO: Shortcode Formeln-->
-<!--TODO: Shortcode Formeln-->
-<!--TODO: Shortcode Formeln-->
+    für die Bildqualität ist die sogenannte Peak Signal to Noise Ratio ({{< formula >}}\text{PSNR}{{< /formula >}}). Als
+    "peak" - d.h. als stärkstes auftretendes Signal - wird bei einer Quantisierung von 8 bit der Wert 255 angesetzt. Das
+    Rauschen ("noise") entspricht dem Fehler zwischen dem Original f und der Rekonstruktion r.</p>
+{{% formulaRow f1 = "\text{PSNR} = 10 \log \frac{\text{peak}^2}{\text{noise}} [db]" f2 = "\text{peak} = \max[f(x,y)]" f3 = "\text{noise} = \frac{1}{N \cdot M} \sum \limits_{i=0}^{N-1} \sum \limits_{j=0}^{M-1} [f(x_i, y_j) - r(x_i, y_j)]^2" %}}
 
-<p>Leider beschreibt PSNR die subjektiv empfundene Bildqualität oft nur unzureichend.</p>
-<p>Vergleich der Verfahren für ein Beispielbild: In Abhängigkeit von der Kompressionsrate (k) - PSNR =
-    f(Kompressionsrate k) - liefert das JPEG-Verfahren für 5 > k < 20 gute Ergebnisse; die Wavelet-Kompression ist das
-    beste Verfahren für k < 5, k > 70; die Fraktale HV ist für k > 20 besser als Wavelets. Im Allgemeinen ist das
-    Wavelet-Verfahren der Fraktalen Kompression bei großen Kompressionsraten überlegen</p>
+<p>Leider beschreibt {{< formula >}}\text{PSNR}{{< /formula >}} die subjektiv empfundene Bildqualität oft nur unzureichend.</p>
+<p>Vergleich der Verfahren für ein Beispielbild: In Abhängigkeit von der Kompressionsrate
+    {{< formula >}}(k){{< /formula >}} - {{< formula >}}\text{PSNR}{{< /formula >}} =
+    {{< formula >}}f(\text{Kompressionsrate } k){{< /formula >}} - liefert das JPEG-Verfahren für
+    {{< formula >}}5 > k > 20{{< /formula >}} gute Ergebnisse; die Wavelet-Kompression ist das beste Verfahren für
+    {{< formula >}}k < 5{{< /formula >}}, {{< formula >}}k > 70{{< /formula >}}; die Fraktale
+    {{< formula >}}\text{HV}{{< /formula >}} ist für {{< formula >}}k > 20{{< /formula >}} besser als Wavelets. Im
+    Allgemeinen ist das Wavelet-Verfahren der Fraktalen Kompression bei großen Kompressionsraten überlegen</p>
 
 {{% image "Bildkompression/9/vgl_kompression.gif" "" "Abb. 4.9-0  Vergleich von JPEG, Fraktaler Kompression und Wavelet-Transformation" %}}

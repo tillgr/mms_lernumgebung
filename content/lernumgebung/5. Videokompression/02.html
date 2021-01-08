@@ -5,21 +5,44 @@ draft: true
 ---
 
 <h2>5.2.1 Digitalisierung analoger Video-Signale</h2>
-<p>Am Eingang liegen analoge R, G, B Farbwertsignale (z.B. einer Kamera) an, welche in eine Luminanz- und zwei
-    Chrominanzkomponenten Y=f(R,G,B), C<sub>B</sub> f(Y,B) und C<sub>R</sub>x=f(Y,R) überführt werden.
-</p><!--TODO: Formatierung-->
-<!--TODO: Shortcode Formeln-->
+<p>Am Eingang liegen analoge {{< formula >}}R{{< /formula >}}, {{< formula >}}G{{< /formula >}},
+    {{< formula >}}B{{< /formula >}} Farbwertsignale (z.B. einer Kamera) an, welche in eine Luminanz- und zwei
+    Chrominanzkomponenten {{< formula >}}Y = f(R,G,B){{< /formula >}}, {{< formula >}}C_B f(Y,B){{< /formula >}} und
+    {{< formula >}}C_R = f(Y,R){{< /formula >}} überführt werden.
+</p>
+<p>
+    {{< formula >}}
+    \begin{pmatrix}
+    Y \\
+    C_B \\
+    C_R
+    \end{pmatrix} = \begin{pmatrix}
+    0,299 & 0,587 & 0,114 \\
+    -0,1687 & -0,3313 & 0,5 \\
+    0,5 & -0,4187 & -0,0813
+    \end{pmatrix}\begin{pmatrix}
+    R \\
+    G \\
+    B
+    \end{pmatrix}
+    {{< /formula >}}
+</p>
 
-<p>Es folgt die <strong>A/D-Wandlung</strong> (Abtastung) in digitale Komponentensignale Y, C<sub>B</sub>, C<sub>R</sub>.
-    Die genormte Abtastfrequenz (ITU 601) für R-, G-, B- oder Y-Basisbandsignale beträgt 13,5 MHz. Die Quantisierung
-    erfolgt mit b = 8 Bit, woraus eine Bandbreite von 108 Mbit/s für jedes Signal resultiert.
+<p>Es folgt die <strong>A/D-Wandlung</strong> (Abtastung) in digitale Komponentensignale
+    {{< formula >}}Y{{< /formula >}}, {{< formula >}}C_B{{< /formula >}}, {{< formula >}}C_R{{< /formula >}}.
+    Die genormte Abtastfrequenz (ITU 601) für {{< formula >}}R{{< /formula >}}-, {{< formula >}}G{{< /formula >}}-,
+    {{< formula >}}B{{< /formula >}}- oder {{< formula >}}Y{{< /formula >}}-Basisbandsignale beträgt 13,5 MHz.
+    Die Quantisierung erfolgt mit {{< formula >}}b = 8{{< /formula >}} Bit, woraus eine Bandbreite von
+    <strong>108 Mbit/s</strong> für jedes Signal resultiert.
 </p><!--TODO: Formatierung-->
-<p>A/D-Wandlung: Das analoge Eingangssignal u(t) wird einer Kette von 2<sup>b</sup> - 1 Komparatoren zugeführt, die ihre
-    Vergleichspannung von einem Spannungsteiler erhalten. Die 2<sup>b</sup> - 1 Ausgangswerte der Komparatoren
-    repräsentieren den digitalen Wert, der durch den Koder in einen Binärcode mit b Bits umgesetzt wird. Für
-    Chrominanz-Signale C<sub>B</sub> und C<sub>R</sub> halbiert sich die Abtast- und Datenrate auf 6,75 MHz bzw. 54
-    Mbit/s. Die Datenrate für RGB-Übertragung (4:4:4 Format) beträgt damit 324 Mbit/s, für YC<sub>B</sub>C<sub>R</sub>-Übertragung
-    (4:2:2) 216 Mbit/s.</p><!--TODO: Formatierung-->
+<p>A/D-Wandlung: Das analoge Eingangssignal {{< formula >}}u(t){{< /formula >}} wird einer Kette von
+    {{< formula >}}2^b - 1{{< /formula >}} Komparatoren zugeführt, die ihre Vergleichspannung von einem Spannungsteiler
+    erhalten. Die {{< formula >}}2^b - 1{{< /formula >}} Ausgangswerte der Komparatoren repräsentieren den digitalen
+    Wert, der durch den Koder in einen Binärcode mit {{< formula >}}b{{< /formula >}} Bits umgesetzt wird. Für
+    Chrominanz-Signale {{< formula >}}C_B{{< /formula >}} und {{< formula >}}C_R{{< /formula >}} halbiert sich die
+    Abtast- und Datenrate auf <strong>6,75 MHz</strong> bzw. <strong>54 Mbit/s</strong>. Die Datenrate für
+    RGB-Übertragung (4:4:4 Format) beträgt damit 324 Mbit/s, für {{< formula >}}Y C_B C_R{{< /formula >}}-Übertragung
+    (4:2:2) <strong>216 Mbit/s</strong>.</p><!--TODO: Formatierung-->
 {{% image "Videokompression/2/4_2_1_analog-digital-wandlung.gif" "" "Abb. 5.2-0 Analog/Digital-wandlung" %}}
 
 <p>Die Bildung des <strong>Zeitmultiplexsignals</strong> erfolgt über bitparallele Aufteilung des Signals auf N
@@ -27,11 +50,15 @@ draft: true
     SerialComponents) mit 270 Mbps anliegt.</p>
 
 <h3 class="h5">Abtastformate</h3>
-<p>Die angegebenen Verhältnisse besagen die Zuordnung der Chrominanz- Abtastung C<sub>B</sub> und C<sub>R</sub> zu den
-    Y-Abtastwerten (Y:C<sub>B</sub>:C<sub>R</sub>), und beziehen sich auf den Basiswert 3,375 MHz; 4:2:2 bedeutet
-    Abtastung von Y mit 4 x 3,375 MHz = 13,5 MHz und CB sowie CR mit jeweils 2 x 3,375 MHz = 6,75 MHz. Die Abtastwerte
-    beziehen sich auf das aktuelle Bild mit n Pixel pro Zeile und z aktiven Zeilen, bei entweder progressiver Abtastung
-    als Vollbild oder Zeilensprungabtastung in 2 Halbbildern.</p><!--TODO: Formatierung-->
+<p>Die angegebenen Verhältnisse besagen die Zuordnung der Chrominanz- Abtastung {{< formula >}}C_B{{< /formula >}} und
+    {{< formula >}}C_R{{< /formula >}} zu den {{< formula >}}Y{{< /formula >}}-Abtastwerten
+    ({{< formula >}}Y{{< /formula >}}: {{< formula >}}C_B{{< /formula >}}:{{< formula >}}C_R{{< /formula >}}), und
+    beziehen sich auf den Basiswert<strong>3,375 MHz</strong>; 4:2:2 bedeutet Abtastung von Y mit
+    {{< formula >}}4 \times 3,375 \text{MHz} = 13,5 \text{MHz}{{< /formula >}} und {{< formula >}}C_B{{< /formula >}}
+    sowie {{< formula >}}C_R{{< /formula >}} mit jeweils
+    {{< formula >}}2 \times 3,375 \text{MHz} = 6,75 \text{MHz}{{< /formula >}}. Die Abtastwerte beziehen sich auf das
+    aktuelle Bild mit {{< formula >}}n{{< /formula >}} Pixel pro Zeile und {{< formula >}}z{{< /formula >}} aktiven
+    Zeilen, bei entweder progressiver Abtastung als Vollbild oder Zeilensprungabtastung in 2 Halbbildern.</p><!--TODO: Formatierung-->
 <p>Durch starre Kopplung der Abtastfrequenz mit der Zeilenfrequenz (15,625 KHz bei 625 / 15,734 KHz bei 525 Zeilen)
     entsteht ein orthogonales Abtastraster, auf dem die Pixel genau übereinander liegen, je Teilbild an gleicher
     Stelle.</p>
@@ -41,9 +68,10 @@ draft: true
     Bildbearbeitung und z.B. in der Medizintechnik; nicht jedoch für TV.</p><!--TODO: Formatierung-->
 
 <p><strong>4:2:2-Format:</strong></p>
-<p>Für Chrominanz-Signale C<sub>B</sub> und C<sub>R</sub> halbiert sich die Abtast- und Datenrate auf 6,75 MHz bzw. 54
-    Mbit/s; resultierende Bandbreite der YC<sub>B</sub>C<sub>R</sub> -Übertragung (4:2:2) 216 Mbit/s. Anwendung findet
-    dieses Verfahren im Fernseh- und Studiotechnik. Im Gegensatz zum 4:2:2-Studiosignal gibt es keinen
+<p>Für Chrominanz-Signale {{< formula >}}C_B{{< /formula >}} und {{< formula >}}C_R{{< /formula >}} halbiert sich die
+    Abtast- und Datenrate auf <strong>6,75 MHz</strong> bzw. <strong>54 Mbit/s</strong>; resultierende Bandbreite der
+    {{< formula >}}YC_BC_R{{< /formula >}} -Übertragung (4:2:2) <strong>216 Mbit/s</strong>. Anwendung findet dieses
+    Verfahren im Fernseh- und Studiotechnik. Im Gegensatz zum 4:2:2-Studiosignal gibt es keinen
     4:2:0-Übertragungsstandard, weil dieser auf fiktive "Zwischenzeilen" zurückgreifen würde. Die Bildung des Signals
     erfolgt durch Berechnung der Chrominanzwerte (Formatkonversion).</p><!--TODO: Formatierung-->
 
@@ -63,8 +91,12 @@ draft: true
     unterabgetastet und die Abtastwerte liegen mittig zwischen den Abtastwerten der Luminanz.</p>
 <p>SIF-Formate für Multimedia-Anwendungen mit einer Auflösung beim</p>
 <ul>
-    <li>625-Zeilensystem: Y = 360 x 288 Pixel, CB bzw. CR= 180 x 144 Pixel</li>
-    <li>525-Zeilensystem: Y = 360 x 240 Pixel, CB bzw. CR= 180 x 120 Pixel</li>
+    <li>{{< formula >}}625{{< /formula >}} - Zeilensysteme: {{< formula >}} Y = 360 \times 288{{< /formula >}} Pixel,
+        {{< formula >}}C_B{{< /formula >}} bzw. {{< formula >}}C_R = 180 \times 144{{< /formula >}} Pixel
+    </li>
+    <li>{{< formula >}}525{{< /formula >}} - Zeilensysteme: {{< formula >}} Y = 360 \times 240{{< /formula >}} Pixel,
+        {{< formula >}}C_B{{< /formula >}} bzw. {{< formula >}}C_R = 180 \times 120{{< /formula >}} Pixel
+    </li>
 </ul>
 <!--TODO: Tabelle shortcode-->
 
@@ -73,9 +105,12 @@ draft: true
 <p>CCIR: Consultative Committee for International Radio</p>
 <p>Die "Recommendation 601: Encoding Parameter of Digital TV for Studios" normiert digitale Videosignale für Studios.
     Für das amerikanische (525-Zeilen/60 Hz) und europäische (625/50) TV-System gelten weitgehend gemeinsame Parameter.
-    Codiert werden gammakorrigierte Quellsignale A<sub>Y</sub>, A<sub>B-Y</sub> und A<sub>R-Y</sub> bzw. A<sub>R</sub>,
-    A<sub>G</sub> und A<sub>B</sub>. Die Spannung von A<sub>Y</sub> wird auf 0 bis 1,0 Volt (praktisch 0 bis 700 mV),
-    die von A<sub>B-Y</sub> und A<sub>R-Y</sub> auf -0,5 bis +0,5 Volt (bzw. -350 mV bis +350 mV) festgelegt.
+    Codiert werden gammakorrigierte Quellsignale {{< formula >}}A_Y{{< /formula >}},
+    {{< formula >}}A_{B-Y}{{< /formula >}} und {{< formula >}}A_{R-Y}{{< /formula >}} bzw.
+    {{< formula >}}A_R{{< /formula >}}, {{< formula >}}A_G{{< /formula >}} und {{< formula >}}A_B{{< /formula >}}. Die
+    Spannung von {{< formula >}}A_Y{{< /formula >}} wird auf 0 bis 1,0 Volt (praktisch 0 bis 700 mV), die von
+    {{< formula >}}A_{B-Y}{{< /formula >}} und {{< formula >}}A_{R-Y}{{< /formula >}} auf -0,5 bis +0,5 Volt (bzw. -350
+    mV bis +350 mV) festgelegt.
 </p><!--TODO: Formatierung-->
 <!--TODO: Tabelle shortcode-->
 
@@ -129,11 +164,16 @@ draft: true
 
 <h2>5.2.3 Videostandards im Computerbereich</h2>
 <p>Bei der Videoverarbeitung im Rechner wird kein Zeilensprungverfahren angewandt (<strong>non-interlaced</strong>). Die
-    Bildwiederholfrequenz FB ist i. Allg. größer als 70 Hz.</p>
+    Bildwiederholfrequenz {{< formula >}}FB{{< /formula >}} ist i. Allg. größer als <strong>70 Hz</strong>.</p>
+<p>Eine wichtige Kenngröße bei der Verarbeitung von Video (und auch Grafik) im Rechner ist die Farbtiefe. Sie wird in
+    <strong>Bit/Pixel</strong> angegeben und gibt an, dass {{< formula >}}2^{\text{Farbtiefe}}{{< /formula >}} Farben
+    darstellbar sind.</p>
 <p>Zur Darstellung der Farben wird eine <strong>Color Look Up Table (CLUT)</strong> verwendet. Dies ist eine Tabelle mit
-    n Zeilen und drei Spalten mit m-Bit pro Spalte, wobei n << m. Pro Zeile ergibt sich für R, G und B mit jeweils m
-    Farbeinträgen ein Farbraum von 2<sup>3m</sup> Farben. Zu einem Zeitpunkt sind n Farben aus einem Farbraum von 2<sup>3m</sup>
-    Farben darstellbar.</p><!--TODO: Formatierung-->
+    n Zeilen und drei Spalten mit {{< formula >}}m{{< /formula >}}-Bit pro Spalte, wobei
+    {{< formula >}}n << m{{< /formula >}}. Pro Zeile ergibt sich für {{< formula >}}R{{< /formula >}},
+    {{< formula >}}G{{< /formula >}} und {{< formula >}}B{{< /formula >}} mit jeweils {{< formula >}}m{{< /formula >}}
+    Farbeinträgen ein Farbraum von {{< formula >}}2^{3m}{{< /formula >}} Farben. Zu einem Zeitpunkt sind n Farben aus
+    einem Farbraum von {{< formula >}}2^{3m}{{< /formula >}} Farben darstellbar.</p><!--TODO: Formatierung-->
 
 <p>Es gibt verschiedene de-facto Video-Standards, z.B.</p>
 <ul>
@@ -141,25 +181,31 @@ draft: true
         Bildgröße: 320x200 Pixel<br/>
         Anzahl der verfügbaren Farben: 4<br/>
         Aufwand zur Darstellung eines Bildes:<br/>
-        320x200Pixel * (2bit/Pixel) / (8bit/Byte) = 16 000 Byte
+        {{< formula >}} 320 \times 200 \text{Pixel} * 2\frac{\text{bit}}{\text{Pixel}} / 8 \frac{\text{bit}}{\text{Byte}} = 16000 {{< /formula >}}
     </li>
     <li><strong>EGA</strong> Enhanced Graphics Adapter<br/>
         Bildgröße: 640x350 Pixel<br/>
         Anzahl der verfügbaren Farben: 16<br/>
         Aufwand zur Darstellung eines Bildes:<br/>
-        640x350Pixel * (4bit/Pixel) / (8bit/Byte) = 112 000 Byte
+        {{< formula >}} 640 \times 350 \text{Pixel} * 4\frac{\text{bit}}{\text{Pixel}} / 8 \frac{\text{bit}}{\text{Byte}} = 112000 {{< /formula >}}
     </li>
     <li><strong>VGA</strong> Video Graphics Array<br/>
         Bildgröße: 1024x768 Pixel<br/>
         Anzahl der verfügbaren Farben: 256<br/>
         Aufwand zur Darstellung eines Bildes:<br/>
-        1024x768 Pixel * (8bit/Pixel) / (8bit/Byte) = 786 432 Byte
+        {{< formula >}} 640 \times 480 \text{Pixel} * 8\frac{\text{bit}}{\text{Pixel}} / 8 \frac{\text{bit}}{\text{Byte}} = 307200 {{< /formula >}}
+    </li>
+    <li><strong>SVGA</strong> Super Video Graphics Array<br/>
+        Bildgröße: 1024x768 Pixel<br/>
+        Anzahl der verfügbaren Farben: 256<br/>
+        Aufwand zur Darstellung eines Bildes:<br/>
+        {{< formula >}} 1024 \times 768 \text{Pixel} * 4\frac{\text{bit}}{\text{Pixel}} / 8 \frac{\text{bit}}{\text{Byte}} = 786432 {{< /formula >}}
     </li>
     <li><strong>XGA</strong> Extended Graphics Array<br/>
         Bildgröße: 640x480 Pixel<br/>
         Anzahl der verfügbaren Farben: 65536<br/>
         Aufwand zur Darstellung eines Bildes:<br/>
-        640x480Pixel * (16bit/Pixel) / (8bit/Byte) = 614 400 Byte
+        {{< formula >}} 640 \times 480 \text{Pixel} * 16\frac{\text{bit}}{\text{Pixel}} / 8 \frac{\text{bit}}{\text{Byte}} = 6144000 {{< /formula >}}
     </li>
 </ul><!--TODO: Formatierung-->
 

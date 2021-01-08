@@ -14,8 +14,9 @@ draft: true
     verschiedenste Auflösungen, z.B. ITU-R 601 4:2:2, 4:4:4 wie auch 4:2:0. Das SIF-Format entspricht dem low-Level von
     MPEG-2 mit einer Datenrate von 4 Mbps.</p>
 <p><strong>Räumliche Skalierung</strong> ermöglicht die Dekompression mit unterschiedlicher horizontaler und vertikaler
-    Auflösung, d.h.
-    im selben Datenstrom können z.B. Bilder mit 352 x 288 (H.261) und 704 x 576 Pixel (CCIR 601) enthalten sein.</p>
+    Auflösung, d.h. im selben Datenstrom können z.B. Bilder mit
+    {{< formula >}}352 \times 288 \text{Pixel}{{< /formula >}} (H.261) und
+    {{< formula >}}704 \times 576 \text{Pixel}{{< /formula >}} (CCIR 601) enthalten sein.</p>
 <p>Vier Auflösungen sind definiert: <strong>low</strong> (352 x 240), <strong>main</strong> (720 x 480), <strong>high-1440</strong>
     (1440 x 1152) und <strong>high</strong> (1920 x 1080). Low garantiert die Kompatibilität zu MPEG-1.
 </p><!--TODO: Formatierung-->
@@ -25,9 +26,10 @@ draft: true
     gewählt werden.</p>
 <p>Die <strong>Amplituden-Skalierung</strong> ermöglicht unterschiedliche Bittiefen bzw. Auflösung der Quantisierung der
     DCT-Koeffizienten.</p>
-<p>Die <strong>Bewegungsabschätzung</strong> (motion-compensation) arbeitet mit 10x10 Pixelblöcken; d.h. das Bild wird
-    in 10x10 px Blöcke unterteilt, dann wird in den anderen Bildern der ähnlichste Block gesucht, nur der
-    Bewegungsvektor und die Differenz gespeichert.</p>
+<p>Die <strong>Bewegungsabschätzung</strong> (motion-compensation) arbeitet mit
+    {{< formula >}}10 \times 10{{< /formula >}} Pixelblöcken; d.h. das Bild wird in
+    {{< formula >}}10 \times 10 \text{ px}{{< /formula >}} Blöcke unterteilt, dann wird in den anderen Bildern der
+    ähnlichste Block gesucht, nur der Bewegungsvektor und die Differenz gespeichert.</p>
 <p>Die Genauigkeit der Bewegungsvektoren wurde auf halbe Bildpunkte erhöht.</p>
 <p>MPEG-2 unterstützt die <strong>Mehrkanal-Audio-Kodierung</strong>, d.h. neben den beiden Stereokanälen wird der
     Mitten-Frontkanal und zwei Raumklangkanäle unterstützt.</p>

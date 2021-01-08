@@ -84,15 +84,15 @@ draft: true
 <p><strong>Mathematische Darstellung</strong></p>
 <p>Die von der MRCM ausgeführten Transformationen sind Drehungen, Spiegelungen, Verschiebungen und Verkleinerungen, also
     affine lineare Transformationen in der Ebene:</p>
-<!--TODO: Formeln shortcode-->
+{{% formulaRow f1 = "\begin{bmatrix} x' \\ y' \end{bmatrix} = \omega_i(\vec{x}) = \omega_i \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} e \\ f \end{pmatrix} = A \vec{x} + T" ref = "3.6.1" %}}
 
 <p>Hierdurch wird ein Punkt (x,y) des ursprünglichen Bildes zu den neuen Koordinaten (x', y') transformiert.</p>
 <p>Die drei Transformationen für das Sierpinski-Dreieck haben folgende Koeffizienten a ... f:</p>
-<!--TODO: Formeln shortcode-->
+{{% formulaRow f1 = "\omega_1 = \begin{bmatrix} 0.5 & 0 & 0 \\ 0 & 0.5 & 0 \end{bmatrix}" f2 = "\omega_2 = \begin{bmatrix} 0.5 & 0 & 0.5 \\ 0 & 0.5 & 0 \end{bmatrix}" f3 = "\omega_3 = \begin{bmatrix} 0.5 & 0 & 0.25 \\ 0 & 0.5 & 0.5 \end{bmatrix}" rel = "3.6.2" %}}
 
 <p>Die ersten vier Koeffizienten sind identisch, was nicht generell der Fall ist. Solange die Determinante kleiner 1
     ist, konvergiert die Transformation gegen den Attraktor:</p>
-<!--TODO: Formeln shortcode-->
+{{% formulaRow f1 = "\lvert ab - cd \rvert < 1.0" ref = "3.6.3" %}}
 
 <p>Die Verwendung von Fraktalen zur Kompression von Bildern basiert auf folgenden Annahmen:</p>
 <ul>
@@ -183,16 +183,19 @@ draft: true
     </li>
 </ul>
 
-<p>Die Transformation hat dann folgende Form, mit <em>z = f(x,y)</em>, <em>S</em> als Kontrast, <em>o</em> als
-    Helligkeit und <em>(x,Y)</em> als Ortsvektor.</p>
-<!--TODO: Formeln shortcode-->
+<p>Die Transformation hat dann folgende Form, mit {{< formula >}}z = f(x,y){{< /formula >}},
+    {{< formula >}}S{{< /formula >}} als Kontrast, {{< formula >}}o{{< /formula >}} als Helligkeit und
+    {{< formula >}}(x,Y){{< /formula >}} als Ortsvektor.</p>
+{{% formulaRow f1 = "\begin{bmatrix} x' \\ y' \\ z' \end{bmatrix} = \omega_i \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} a_i & b_i & 0 \\ c_i & d_i & 0 \\ 0 & 0 & s_i \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} + \begin{pmatrix} e_i \\ f_i \\ o_i \end{pmatrix} = A_i \vec{x} + T_i" ref = "3.6.4" %}}
+
 
 <ul>
-    <li><em>s<sub>i</sub></em> reguliert die Einstellungen des Kontrastes der Luminanz eines Pixels. Bei
-        <em>s<sub>i</sub></em> = 0 wird der Domain-Block schwarz, bei <em>s<sub>i</sub></em> = 1 bleibt er unverändert,
-        zwischen 0 und 1 verliert er und über 1 gewinnt er Kontrast.
+    <li>{{< formula >}}s_i{{< /formula >}} reguliert die Einstellungen des Kontrastes der Luminanz eines Pixels. Bei
+        {{< formula >}}s_i = 0{{< /formula >}} wird der Domain-Block schwarz, bei {{< formula >}}s_i = 1{{< /formula >}}
+        bleibt er unverändert, zwischen 0 und 1 verliert er und über 1 gewinnt er Kontrast.
     </li>
-    <li><em>o<sub>i</sub></em> reguliert die Helligkeit. Positive Werte hellen den Block auf, negative verdunkeln ihn.
+    <li>{{< formula >}}o_i{{< /formula >}} reguliert die Helligkeit. Positive Werte hellen den Block auf, negative
+        verdunkeln ihn.
     </li>
 </ul><!--TODO: Formatierung-->
 
@@ -201,22 +204,23 @@ draft: true
     mit der Methode der kleinsten Quadrate verglichen.</p>
 <ul>
     <li>Die <strong>Anpassung</strong> der Bilder <em>f</em> und <em>g</em> entspricht der Minimierung von</li>
-    <!--TODO: Formeln shortcode-->
-    <li><em>R</em> wird minimal, wenn die partiellen Ableitungen nach <em>s</em> bzw. <em>o</em> null sind. Dies ist der
-        Fall, wenn gilt:
+    {{% formulaRow f1 = "R = \sum \limits_{(x,y) \in I^2} (s \cdot f(x,y) + o - g(x,y))^2" ref = "3.6.5" %}}
+
+    <li>{{< formula >}}R{{< /formula >}} wird minimal, wenn die partiellen Ableitungen nach
+        {{< formula >}}s{{< /formula >}} bzw. {{< formula >}}o{{< /formula >}} null sind. Dies ist der Fall, wenn gilt:
     </li>
-    <!--TODO: Formeln shortcode-->
+    {{% formulaRow f1 = "s = \frac{\left( n^2 \sum \limits_{(x,y) \in I^2} f(x,y) g(x,y) - \sum \limits_{(x,y) \in I^2}f(x,y) \sum \limits_{(x,y) \in I^2}g(x,y) \right)}{\left( n^2 \sum \limits_{(x,y) \in I^2} f(x,y)^2 - \left( \sum \limits_{(x,y) \in I^2} f(x,y) \right)^2 \right)}" ref = "3.6.6" %}}
     <p>und</p>
-    <!--TODO: Formeln shortcode-->
+    {{% formulaRow f1 = "o = \frac{\left( \sum \limits_{(x,y) \in I^2}g(x,y) - s \sum \limits_{(x,y) \in I^2}f(x,y) \right)}{n^2}" ref = "3.6.7" %}}
 </ul>
 
 <p>Der <strong>Abstand</strong> zweier Bilder <em>f</em>, <em>g</em> kann z.B. durch folgende Funktion berechnet werden:
 </p>
 <ul>
     <li>Pixelweise Maximumsfunktion:</li>
-    <!--TODO: Formeln shortcode-->
+    {{% formulaRow f1 = "\delta_1 (f,g) = \sup \limits_{(x,y) \in I^2} \rvert f(x,y) - g(x,y) \lvert" ref = "3.6.8" %}}
     <li>Summe der Beträge aller Pixelabstände:</li>
-    <!--TODO: Formeln shortcode-->
+    {{% formulaRow f1 = "\delta_2 (f,g) = \sum \limits_{(x,y) \in I^2} \frac{\rvert f(x,y) - g(x,y) \lvert}{\lvert I^2 \rvert}" ref = "3.6.9" %}}
 </ul><!--TODO: Formatierung-->
 
 <p><strong>Speicherung des komprimierten Bildes:</strong></p>
@@ -224,10 +228,10 @@ draft: true
     Quadtree kann z.B. mit jeweils einem Bit angegeben werden, ob das jeweilige Quadrat weiter unterteilt wird oder
     nicht.</p>
 <p>Beim HV-Verfahren reicht es, zusätzlich jeweils einen Offset für die Teilungsstelle anzugeben, der dann kleine Werte
-    annimmt. Für jede Transformation sind prinzipiell folgende Werte <em>a<sub>i</sub></em> , <em>b<sub>i</sub></em> ,
-    <em>c<sub>i</sub></em> , <em>d<sub>i</sub></em> , <em>e<sub>i</sub></em> , <em>f<sub>i</sub></em> ,
-    <em>s<sub>i</sub></em> und <em>o<sub>i</sub></em> der obigen Formel zu speichern. Beschränkt man die
-    Transformationen auf</p><!--TODO: Formatierung-->
+    annimmt. Für jede Transformation sind prinzipiell folgende Werte {{< formula >}}a_i{{< /formula >}},
+    {{< formula >}}b_i{{< /formula >}}, {{< formula >}}c_i{{< /formula >}}, {{< formula >}}d_i{{< /formula >}},
+    {{< formula >}}e_i{{< /formula >}}, {{< formula >}}f_i{{< /formula >}}, {{< formula >}}s_i{{< /formula >}} und
+    {{< formula >}}o_i{{< /formula >}} der obigen Formel zu speichern. Beschränkt man die Transformationen auf</p>
 
 <ol>
     <li>Rotation um 0°,</li>
@@ -240,9 +244,11 @@ draft: true
     <li>Spiegeln um die linke Diagonale, und</li>
 </ol>
 
-<p>kennzeichnet diese durch den Parameter mi, so läßt sich die Transformation durch folgenden Satz beschreiben:</p>
-<p><em>w<sub>i</sub></em> = (<em>e<sub>i</sub></em>, <em>f<sub>i</sub></em>, <em>m<sub>i</sub></em>,
-    <em>o<sub>i</sub></em>, <em>s<sub>i</sub></em> )</p>
+<p>kennzeichnet diese durch den Parameter {{< formula >}}m_i{{< /formula >}}, so läßt sich die Transformation durch
+    folgenden Satz beschreiben:</p>
+<p>{{< formula >}}w_i = (e_i{{< /formula >}}, {{< formula >}}f_i{{< /formula >}}, {{< formula >}}m_i{{< /formula >}},
+    {{< formula >}}o_i{{< /formula >}}, {{< formula >}}s_i){{< /formula >}}
+</p>
 <p>Gespeichert werden diese Transformationswerte. Für jede Transformation muß auch gespeichert werden, auf welches
     Teilbild sich die Transformation bezieht. Dies geschieht je nach Partitionierungsverfahren durch eine Zahl oder die
     Koordinaten. Insgesamt ergeben sich i.allg. ca. 31 Bit pro Range-Block. Die Anzahl der Transformationen, die
@@ -286,11 +292,11 @@ draft: true
 <p>Die Kompressionsrate für jedes der beiden Bilder ergibt sich bei Verwendung folgender Werte:</p>
 <ul>
     <li>Ausgangsbildgröße = 256x256x8 bits = 65.536 Bytes</li>
-    <li><em>f<sub>i</sub></em> = 8 bits: 256 horizontale Positionen</li>
-    <li><em>m<sub>i</sub></em> = 8 bits: 256 vertikale Positionen</li>
-    <li><em>s<sub>i</sub></em> = 5 bits: ausreichend nach empirischen Tests</li>
-    <li><em>o<sub>i</sub></em> = 6 bits: ausreichend nach empirischen Tests</li>
-    <li><em>w<sub>i</sub></em> = 32 bits x 1024 Transformationen = 4096 Bytes</li>
+    <li>{{< formula >}}f_i{{< /formula >}} = 8 bits: 256 horizontale Positionen</li>
+    <li>{{< formula >}}m_i{{< /formula >}} = 8 bits: 256 vertikale Positionen</li>
+    <li>{{< formula >}}s_i{{< /formula >}} = 5 bits: ausreichend nach empirischen Tests</li>
+    <li>{{< formula >}}o_i{{< /formula >}} = 6 bits: ausreichend nach empirischen Tests</li>
+    <li>{{< formula >}}w_i{{< /formula >}} = 32 bits x 1024 Transformationen = 4096 Bytes</li>
     <li>Kompressionsrate = 65.536 : 4096 = 16 : 1</li>
 </ul>
 
@@ -303,18 +309,20 @@ draft: true
 <p>Die prinzipielle Vorgehensweise soll an den oben dargestellten Bildern beschrieben werden.</p>
 <p>Partitionierungsverfahren: 'Quadrate fester Größe', 8 x 8 Punkte.</p>
 <ul>
-    <li>Damit wird das Bild in 1024 Range-Blöcke partitioniert: R = {R<sub>1</sub>, ..., R<sub>1024</sub>}.</li>
-    <li>Zudem wird es in 241 x 241 = 58.081 (überlappenden) 16 x 16 Quadrate (Domain-Blöcke) aufgeteilt: D =
-        {D<sub>1</sub>, ...., D<sub>58081</sub>}
+    <li>Damit wird das Bild in 1024 Range-Blöcke partitioniert: {{< formula >}} R = \{R_1, \ldots , R_{1024} \}{{< /formula >}}.</li>
+    <li>Zudem wird es in {{< formula >}} 241 \times 241 = 58.081 {{< /formula >}} (überlappenden)
+        {{< formula >}} 16 \times 16 {{< /formula >}} Quadrate (Domain-Blöcke) aufgeteilt:
+        {{< formula >}} D = \{D_1, \ldots , D_{1024} \}{{< /formula >}}
     </li>
-</ul><!--TODO: Formatierung-->
+</ul>
 
 <p>Durch die Quadrate sind nur Drehungen um 90 Grad und Spiegelungen an der X- oder Y-Achse erlaubt. Der
     Verkleinerungsfaktor wird auf 25% festgelegt, so daß es 8 mögliche Transformationen gibt.</p>
-<p>Nun wird für jedes R<sub>i</sub> das D<sub>i</sub> gesucht, welches am ähnlichsten ist.</p>
+<p>Nun wird für jedes {{< formula >}}R_i{{< /formula >}} das {{< formula >}}D_i{{< /formula >}} gesucht, welches am
+    ähnlichsten ist.</p>
 <ul>
-    <li>Dazu werden R<sub>i</sub> und D<sub>i</sub> in der Größe angepaßt, d.h. es werden aus jedem Pixel 4 Pixel
-        gemacht.
+    <li>Dazu werden {{< formula >}}R_i{{< /formula >}} und {{< formula >}}D_i{{< /formula >}} in der Größe angepaßt,
+        d.h. es werden aus jedem Pixel 4 Pixel gemacht.
     </li>
     <li>Dann werden mit Hilfe der oben angegebenen Formeln die Faktoren für die Helligkeits- und Kontrastanpassung der
         beiden Bilder ermittelt und auf eines der Bilder angewendet.
@@ -322,15 +330,16 @@ draft: true
     <li>Dann kann für jede der 8 möglichen Transformationen der Abstand mit einer der Formeln des einen Bildes zum
         transformierten anderen Bild berechnet werden.
     </li>
-    <li>Von allen D<sub>i</sub> wird dann das D<sub>i</sub> genommen, das dem R<sub>i</sub> mit einer bestimmten
-        Transformation am ähnlichsten ist, und es werden die Parameter gespeichert.
+    <li>Von allen {{< formula >}}R_i{{< /formula >}} wird dann das {{< formula >}}D_i{{< /formula >}} genommen, das dem
+        {{< formula >}}R_i{{< /formula >}} mit einer bestimmten Transformation am ähnlichsten ist, und es werden die
+        Parameter gespeichert.
     </li>
 </ul>
 
-<p>Dies wird für alle Range-Blöcke wiederholt. Es sind damit 1.024 x 58.081 x 8 = 475.799.552 Transformationen und
-    Bildvergleiche notwendig, hinzu kommen 1.024 x 58.081 = 59.474.944 Helligkeits- und Kontrastanpassungen. Der Aufwand
-    ist also trotz der einfachen Voraussetzungen (kleines Graustufenbild, einfachste Partitionierung, starke
-    Einschränkung der erlaubten Quellbereiche) erheblich.</p>
+<p>Dies wird für alle Range-Blöcke wiederholt. Es sind damit {{< formula >}} 1.024 \times 58.081 \times 8 = 475.799.552{{< /formula >}}
+    Transformationen und Bildvergleiche notwendig, hinzu kommen {{< formula >}} 1.024 \times 58.081 \times 8 = 59.474.944{{< /formula >}}
+    Helligkeits- und Kontrastanpassungen. Der Aufwand ist also trotz der einfachen Voraussetzungen (kleines
+    Graustufenbild, einfachste Partitionierung, starke Einschränkung der erlaubten Quellbereiche) erheblich.</p>
 <p>Der allgemeine Kompressions-Algorithmus ist damit:</p>
 <!--TODO: Codesample-->
 
