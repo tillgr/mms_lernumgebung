@@ -20,14 +20,7 @@ draft: true
     Massendichte dM des Mediums, ist aber auch abhängig von der Temperatur
     <!--TODO: Temperaturzeichen TODO: Wikipedialink Temperatur--> des Mediums: </p> <!--TODO: Formatierung-->
 
-<!--TODO: Shortcode Formeln-->
-{{< formula >}}
-v_M = \sqrt{E_M / \varrho_M}
-{{< /formula >}}
-
-{{< formula >}}
-v(t) \approx v(0°C)+0,6*t
-{{< /formula >}}
+{{% formulaRow f1 = "v_M = \sqrt{E_M / \varrho_M}" f2 = "v(t) \approx v(0°C)+0,6*t" ref = "0.1" %}}
 
 <p>Die Schallgeschwindigkeit in Luft beträgt bei 0°C ca. 331 m/s, bei 20°C ca. 343 m/s. In Wasser beträgt sie 1480 m/s,
     in Holz 3350 m/s und in Aluminium 5100 m/s (bei 20°C).</p>
@@ -39,22 +32,15 @@ v(t) \approx v(0°C)+0,6*t
     zu einem Referenzschalldruck p0 (siehe Formel 0.2) und wird in Dezibel [dB] angegeben. Der Referenzschalldruck p0
     entspricht der menschlichen Hörschwelle:</p>
 
-{{< formula >}}
-p_0 = 2*10^{-5}\text{ Pa} = 0 \text{ dB}
-{{< /formula >}}
-
-{{< formula >}}
-L_p = 10 \log_{10}(\frac{p_1^2}{p_0^2}) \text{ dB} = 20 \log_{10}(\frac{p_1}{p_0}) \text{ dB}
-{{< /formula >}}
+{{% formulaRow f1 = "p_0 = 2*10^{-5}\text{ Pa} = 0 \text{ dB}" f2 = "L_p = 10 \log_{10}(\frac{p_1^2}{p_0^2}) \text{ dB} = 20 \log_{10}(\frac{p_1}{p_0}) \text{ dB}" ref = "0.2" %}}
 
 <p>Neben dem Amplitudenwert dient der Energiefluss (<strong>Schallintensität</strong>), gemessen in Watt/m², als Maß für
     eine
     Schallquelle. Bei kugelförmiger Schallabstrahlung gilt, für die Intensität I im Abstand r von der Quelle, mit PQ für
     deren Leistung, die Formel (0.3). </p><!--TODO: Formatierung-->
 
-{{< formula >}}
-I(r) = P_Q / (4 * \pi * r^2)
-{{< /formula >}}
+{{% formulaRow f1 = "I(r) = P_Q / (4 * \pi * r^2)" ref = "0.3" %}}
+
 
 <p>Erfolgt die Schallausbreitung als ebene Welle, so ist I unabhängig von der Entfernung.</p>
 <p>Die Hörschwelle ist die Schallintensität, die in völlig ruhigem Raum gerade noch eine Hörempfindung auslöst. Sie ist
