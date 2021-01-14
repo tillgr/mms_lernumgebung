@@ -43,7 +43,7 @@ draft: true
     Abtast- und Datenrate auf <strong>6,75 MHz</strong> bzw. <strong>54 Mbit/s</strong>. Die Datenrate für
     RGB-Übertragung (4:4:4 Format) beträgt damit 324 Mbit/s, für {{< formula >}}Y C_B C_R{{< /formula >}}-Übertragung
     (4:2:2) <strong>216 Mbit/s</strong>.</p><!--TODO: Formatierung-->
-{{% image "Videokompression/2/4_2_1_analog-digital-wandlung.gif" "" "Abb. 5.2-0 Analog/Digital-wandlung" %}}
+{{% image url = "Videokompression/2/4_2_1_analog-digital-wandlung.gif" alt = "" caption = "Abb. 5.2-0 Analog/Digital-wandlung" %}}
 
 <p>
   Die Bildung des <strong>Zeitmultiplexsignals</strong> erfolgt über
@@ -270,7 +270,7 @@ class="table table-bordered"
     </tr>
 
     <tr style="text-align: center">
-      <td colspan="2" text-align: left">Codierung</td>
+      <td colspan="2" style="text-align:left" >Codierung</td>
       <td colspan="2">gleichmäßige Quantisierung mit 8 Bit</td>
     </tr>
 
@@ -684,153 +684,152 @@ caption="Abb. 5.2-3 Mögliches Szenario der Satellitenübertragung" %}}
     Der erste (ID 'avih') definiert globale Eigenschaften der AVI-Datei, z.B.
     enthält der <strong>avih</strong>
     Sub-CHUNK folgende globale Daten:
+      <table class="table table-bordered">
+          <tbody>
+          <tr>
+              <th>
+                  <div>Offset</div>
+              </th>
+
+              <th>
+                  <div>Bytes</div>
+              </th>
+
+              <th>
+                  <div>Bemerkungen</div>
+              </th>
+          </tr>
+
+          <tr>
+              <td>00H</td>
+
+              <td>4</td>
+
+              <td>Signatur ('avih')</td>
+          </tr>
+
+          <tr>
+              <td>04H</td>
+
+              <td>4</td>
+
+              <td>CHUNK-Länge</td>
+          </tr>
+
+          <tr>
+              <td>08H</td>
+
+              <td>4</td>
+
+              <td>Time Delay zwischen Frames</td>
+          </tr>
+
+          <tr>
+              <td>0CH</td>
+
+              <td>4</td>
+
+              <td>AVI Datenrate</td>
+          </tr>
+
+          <tr>
+              <td>10H</td>
+
+              <td>4</td>
+
+              <td>reserved</td>
+          </tr>
+
+          <tr>
+              <td>14H</td>
+
+              <td>4</td>
+
+              <td>Flags</td>
+          </tr>
+
+          <tr>
+              <td>18H</td>
+
+              <td>4</td>
+
+              <td>Zahl der Frames</td>
+          </tr>
+
+          <tr>
+              <td>1CH</td>
+
+              <td>4</td>
+
+              <td>Initial Frames</td>
+          </tr>
+
+          <tr>
+              <td>20H</td>
+
+              <td>4</td>
+
+              <td>Zahl der Data-Streams</td>
+          </tr>
+
+          <tr>
+              <td>24H</td>
+
+              <td>4</td>
+
+              <td>Größe des Playback Buffers</td>
+          </tr>
+
+          <tr>
+              <td>28H</td>
+
+              <td>4</td>
+
+              <td>Video Frame Width in Pixel</td>
+          </tr>
+
+          <tr>
+              <td>2CH</td>
+
+              <td>4</td>
+
+              <td>Video Frame Height in Pixel</td>
+          </tr>
+
+          <tr>
+              <td>30H</td>
+
+              <td>4</td>
+
+              <td>Unit Time Scale</td>
+          </tr>
+
+          <tr>
+              <td>34H</td>
+
+              <td>4</td>
+
+              <td>Playback Datenrate</td>
+          </tr>
+
+          <tr>
+              <td>38H</td>
+
+              <td>4</td>
+
+              <td>Start-Zeit</td>
+          </tr>
+
+          <tr>
+              <td>3CH</td>
+
+              <td>4</td>
+
+              <td>AVI Daten CHUNK Größe</td>
+          </tr>
+          </tbody>
+      </table>
   </li>
-
-  <table class="table table-bordered">
-    <tbody>
-      <tr>
-        <th>
-          <div>Offset</div>
-        </th>
-
-        <th>
-          <div>Bytes</div>
-        </th>
-
-        <th>
-          <div>Bemerkungen</div>
-        </th>
-      </tr>
-
-      <tr>
-        <td>00H</td>
-
-        <td>4</td>
-
-        <td>Signatur ('avih')</td>
-      </tr>
-
-      <tr>
-        <td>04H</td>
-
-        <td>4</td>
-
-        <td>CHUNK-Länge</td>
-      </tr>
-
-      <tr>
-        <td>08H</td>
-
-        <td>4</td>
-
-        <td>Time Delay zwischen Frames</td>
-      </tr>
-
-      <tr>
-        <td>0CH</td>
-
-        <td>4</td>
-
-        <td>AVI Datenrate</td>
-      </tr>
-
-      <tr>
-        <td>10H</td>
-
-        <td>4</td>
-
-        <td>reserved</td>
-      </tr>
-
-      <tr>
-        <td>14H</td>
-
-        <td>4</td>
-
-        <td>Flags</td>
-      </tr>
-
-      <tr>
-        <td>18H</td>
-
-        <td>4</td>
-
-        <td>Zahl der Frames</td>
-      </tr>
-
-      <tr>
-        <td>1CH</td>
-
-        <td>4</td>
-
-        <td>Initial Frames</td>
-      </tr>
-
-      <tr>
-        <td>20H</td>
-
-        <td>4</td>
-
-        <td>Zahl der Data-Streams</td>
-      </tr>
-
-      <tr>
-        <td>24H</td>
-
-        <td>4</td>
-
-        <td>Größe des Playback Buffers</td>
-      </tr>
-
-      <tr>
-        <td>28H</td>
-
-        <td>4</td>
-
-        <td>Video Frame Width in Pixel</td>
-      </tr>
-
-      <tr>
-        <td>2CH</td>
-
-        <td>4</td>
-
-        <td>Video Frame Height in Pixel</td>
-      </tr>
-
-      <tr>
-        <td>30H</td>
-
-        <td>4</td>
-
-        <td>Unit Time Scale</td>
-      </tr>
-
-      <tr>
-        <td>34H</td>
-
-        <td>4</td>
-
-        <td>Playback Datenrate</td>
-      </tr>
-
-      <tr>
-        <td>38H</td>
-
-        <td>4</td>
-
-        <td>Start-Zeit</td>
-      </tr>
-
-      <tr>
-        <td>3CH</td>
-
-        <td>4</td>
-
-        <td>AVI Daten CHUNK Größe</td>
-      </tr>
-    </tbody>
-  </table>
   <li>
     Der zweite ist ein LIST-Chunk mit dem Type 'strl' (Stream List), der für
     jeden Stream mindestens zwei Chunks enthält:
@@ -846,139 +845,138 @@ caption="Abb. 5.2-3 Mögliches Szenario der Satellitenübertragung" %}}
         <strong>'strh'-Chunk:</strong>Speichert Informationen zum Stream, z.B.
         um welche Art von Daten (Bild oder Ton) es sich handelt, welcher
         Kompressor benutzt oder mit welcher Rate digitalisiert wurde:
+          <table class="table table-bordered">
+              <tbody>
+              <tr>
+                  <th>
+                      <div>Offset</div>
+                  </th>
+
+                  <th>
+                      <div>Bytes</div>
+                  </th>
+
+                  <th>
+                      <div>Bemerkungen</div>
+                  </th>
+              </tr>
+
+              <tr>
+                  <td>00H</td>
+
+                  <td>4</td>
+
+                  <td>Signatur ('strh')</td>
+              </tr>
+
+              <tr>
+                  <td>04H</td>
+
+                  <td>4</td>
+
+                  <td>Länge Sub-CHUNK (38H)</td>
+              </tr>
+
+              <tr>
+                  <td>08H</td>
+
+                  <td>4</td>
+
+                  <td>Typ: 'vids' / 'auds' (video / audio stream)</td>
+              </tr>
+
+              <tr>
+                  <td>0CH</td>
+
+                  <td>4</td>
+
+                  <td>Handler: z.B. 'msvc' (für De- / Kompression)</td>
+              </tr>
+
+              <tr>
+                  <td>10H</td>
+
+                  <td>4</td>
+
+                  <td>Flags</td>
+              </tr>
+
+              <tr>
+                  <td>14H</td>
+
+                  <td>4</td>
+
+                  <td>Reserviert</td>
+              </tr>
+
+              <tr>
+                  <td>18H</td>
+
+                  <td>4</td>
+
+                  <td>
+                      Frames, vor Initial Frame (nur für Interleaved AVI-Files)
+                  </td>
+              </tr>
+
+              <tr>
+                  <td>1CH</td>
+
+                  <td>4</td>
+
+                  <td>Scale: Zeiteinheit für Wiedergabe</td>
+              </tr>
+
+              <tr>
+                  <td>20H</td>
+
+                  <td>4</td>
+
+                  <td>Rate</td>
+              </tr>
+
+              <tr>
+                  <td>24H</td>
+
+                  <td>4</td>
+
+                  <td>Start</td>
+              </tr>
+
+              <tr>
+                  <td>28H</td>
+
+                  <td>4</td>
+
+                  <td>Length</td>
+              </tr>
+
+              <tr>
+                  <td>2CH</td>
+
+                  <td>4</td>
+
+                  <td>Buffer Size</td>
+              </tr>
+
+              <tr>
+                  <td>30H</td>
+
+                  <td>4</td>
+
+                  <td>Qualität, die beim Encoding benutzt werden soll</td>
+              </tr>
+
+              <tr>
+                  <td>34H</td>
+
+                  <td>4</td>
+
+                  <td>Sample Size: Größe eines einzelnen Bildes</td>
+              </tr>
+              </tbody>
+          </table>
       </li>
-
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th>
-              <div>Offset</div>
-            </th>
-
-            <th>
-              <div>Bytes</div>
-            </th>
-
-            <th>
-              <div>Bemerkungen</div>
-            </th>
-          </tr>
-
-          <tr>
-            <td>00H</td>
-
-            <td>4</td>
-
-            <td>Signatur ('strh')</td>
-          </tr>
-
-          <tr>
-            <td>04H</td>
-
-            <td>4</td>
-
-            <td>Länge Sub-CHUNK (38H)</td>
-          </tr>
-
-          <tr>
-            <td>08H</td>
-
-            <td>4</td>
-
-            <td>Typ: 'vids' / 'auds' (video / audio stream)</td>
-          </tr>
-
-          <tr>
-            <td>0CH</td>
-
-            <td>4</td>
-
-            <td>Handler: z.B. 'msvc' (für De- / Kompression)</td>
-          </tr>
-
-          <tr>
-            <td>10H</td>
-
-            <td>4</td>
-
-            <td>Flags</td>
-          </tr>
-
-          <tr>
-            <td>14H</td>
-
-            <td>4</td>
-
-            <td>Reserviert</td>
-          </tr>
-
-          <tr>
-            <td>18H</td>
-
-            <td>4</td>
-
-            <td>
-              Frames, vor Initial Frame (nur für Interleaved AVI-Files)
-            </td>
-          </tr>
-
-          <tr>
-            <td>1CH</td>
-
-            <td>4</td>
-
-            <td>Scale: Zeiteinheit für Wiedergabe</td>
-          </tr>
-
-          <tr>
-            <td>20H</td>
-
-            <td>4</td>
-
-            <td>Rate</td>
-          </tr>
-
-          <tr>
-            <td>24H</td>
-
-            <td>4</td>
-
-            <td>Start</td>
-          </tr>
-
-          <tr>
-            <td>28H</td>
-
-            <td>4</td>
-
-            <td>Length</td>
-          </tr>
-
-          <tr>
-            <td>2CH</td>
-
-            <td>4</td>
-
-            <td>Buffer Size</td>
-          </tr>
-
-          <tr>
-            <td>30H</td>
-
-            <td>4</td>
-
-            <td>Qualität, die beim Encoding benutzt werden soll</td>
-          </tr>
-
-          <tr>
-            <td>34H</td>
-
-            <td>4</td>
-
-            <td>Sample Size: Größe eines einzelnen Bildes</td>
-          </tr>
-        </tbody>
-      </table>
     </ul>
   </li>
   <li>
@@ -986,121 +984,120 @@ caption="Abb. 5.2-3 Mögliches Szenario der Satellitenübertragung" %}}
     'strf'-Chunk z.B. den Typ WAVEFORMATEX, eine Erweiterung des Typs
     WAVEFORMAT, in der unter Windows PCM Waveform-Daten gespeichert werden. Für
     Video-Daten gilt z.B.
+      <table class="table table-bordered">
+          <tbody>
+          <tr>
+              <th>
+                  <div>Offset</div>
+              </th>
+
+              <th>
+                  <div>Bytes</div>
+              </th>
+
+              <th>
+                  <div>Bemerkungen</div>
+              </th>
+          </tr>
+
+          <tr>
+              <td>00H</td>
+
+              <td>4</td>
+
+              <td>Header Size</td>
+          </tr>
+
+          <tr>
+              <td>04H</td>
+
+              <td>4</td>
+
+              <td>Bildbreite in Pixel</td>
+          </tr>
+
+          <tr>
+              <td>08H</td>
+
+              <td>4</td>
+
+              <td>Bildhöhe in Pixel</td>
+          </tr>
+
+          <tr>
+              <td>0CH</td>
+
+              <td>2</td>
+
+              <td>Zahl der Planes (Farbebenen)</td>
+          </tr>
+
+          <tr>
+              <td>0EH</td>
+
+              <td>2</td>
+
+              <td>Bits per Pixel</td>
+          </tr>
+
+          <tr>
+              <td>10H</td>
+
+              <td>4</td>
+
+              <td>Kompression: 0 = RGB unkomprim., 1 = RLE8, 2 = RLE4</td>
+          </tr>
+
+          <tr>
+              <td>14H</td>
+
+              <td>4</td>
+
+              <td>Bildgröße in Byte</td>
+          </tr>
+
+          <tr>
+              <td>18H</td>
+
+              <td>4</td>
+
+              <td>x Pels (Pictur Elements) / Meter: horizontale Aufl.</td>
+          </tr>
+
+          <tr>
+              <td>1CH</td>
+
+              <td>4</td>
+
+              <td>Y Pels per Meter: vertikale Auflösung</td>
+          </tr>
+
+          <tr>
+              <td>20H</td>
+
+              <td>4</td>
+
+              <td>Colors used: Zahl der benutzen Farben</td>
+          </tr>
+
+          <tr>
+              <td>24H</td>
+
+              <td>4</td>
+
+              <td>Colors Important</td>
+          </tr>
+
+          <tr>
+              <td>28H</td>
+
+              <td>4 n</td>
+
+              <td>RGB-Quad Struktur: blau, grün, rot, reserv</td>
+          </tr>
+          </tbody>
+      </table>
   </li>
-
-  <table class="table table-bordered">
-    <tbody>
-      <tr>
-        <th>
-          <div>Offset</div>
-        </th>
-
-        <th>
-          <div>Bytes</div>
-        </th>
-
-        <th>
-          <div>Bemerkungen</div>
-        </th>
-      </tr>
-
-      <tr>
-        <td>00H</td>
-
-        <td>4</td>
-
-        <td>Header Size</td>
-      </tr>
-
-      <tr>
-        <td>04H</td>
-
-        <td>4</td>
-
-        <td>Bildbreite in Pixel</td>
-      </tr>
-
-      <tr>
-        <td>08H</td>
-
-        <td>4</td>
-
-        <td>Bildhöhe in Pixel</td>
-      </tr>
-
-      <tr>
-        <td>0CH</td>
-
-        <td>2</td>
-
-        <td>Zahl der Planes (Farbebenen)</td>
-      </tr>
-
-      <tr>
-        <td>0EH</td>
-
-        <td>2</td>
-
-        <td>Bits per Pixel</td>
-      </tr>
-
-      <tr>
-        <td>10H</td>
-
-        <td>4</td>
-
-        <td>Kompression: 0 = RGB unkomprim., 1 = RLE8, 2 = RLE4</td>
-      </tr>
-
-      <tr>
-        <td>14H</td>
-
-        <td>4</td>
-
-        <td>Bildgröße in Byte</td>
-      </tr>
-
-      <tr>
-        <td>18H</td>
-
-        <td>4</td>
-
-        <td>x Pels (Pictur Elements) / Meter: horizontale Aufl.</td>
-      </tr>
-
-      <tr>
-        <td>1CH</td>
-
-        <td>4</td>
-
-        <td>Y Pels per Meter: vertikale Auflösung</td>
-      </tr>
-
-      <tr>
-        <td>20H</td>
-
-        <td>4</td>
-
-        <td>Colors used: Zahl der benutzen Farben</td>
-      </tr>
-
-      <tr>
-        <td>24H</td>
-
-        <td>4</td>
-
-        <td>Colors Important</td>
-      </tr>
-
-      <tr>
-        <td>28H</td>
-
-        <td>4 n</td>
-
-        <td>RGB-Quad Struktur: blau, grün, rot, reserv</td>
-      </tr>
-    </tbody>
-  </table>
   <li>
     Die der 'strl'-Liste folgenden Chunks in der 'hdrl' Liste sind nicht genauer
     spezifiziert. Hier steht üblicherweise ein 'JUNK'-Chunk, dessen Länge so
