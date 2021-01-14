@@ -5,64 +5,46 @@ draft: true
 ---
 
 <h2>5.7.1 H.261 Standard (Px64 Kodierung)</h2>
-<p>
-  Der Standard H.261 der CCITT (ITU-T) ist der Bewegtbildstandard für
-  ISDN-Übertragungsnetze mit Namen
-  <em>Video Codec for Audiovisual Services at p x 64 KBit/s</em>. Er ist für
-  Dialoganwendungen gedacht,bei denen die Kodierung und Dekodierung des
-  Videostroms in Echtzeit erfolgen muß. Die Signalverzögerung darf 150 ms nicht
-  übersteigen.
-</p>
-<p>
-  H.261 wurde ein Jahr vor MPEG-1 veröffentlicht, und floss in den MPEG-Standard
-  mit ein. Die Videoqualität des Verfahrens entspricht der von VHS, jedoch
-  beschränkt sich die Bildgröße auf ≤ 352 x 288 Pixel bei 30 Hz.
-</p>
+<p>Der Standard H.261 der CCITT (ITU-T) ist der Bewegtbildstandard für ISDN-Übertragungsnetze mit Namen <em>Video Codec
+    for Audiovisual Services at</em> {{< formula >}}p \times 64 \text{KBit/s}{{< /formula >}}. Er ist für
+    Dialoganwendungen gedacht,bei denen die Kodierung und Dekodierung des Videostroms in Echtzeit erfolgen muß. Die
+    Signalverzögerung darf 150 ms nicht übersteigen.</p>
+<p>H.261 wurde ein Jahr vor MPEG-1 veröffentlicht, und floss in den MPEG-Standard mit ein. Die Videoqualität des
+    Verfahrens entspricht der von VHS, jedoch beschränkt sich die Bildgröße auf
+    {{< formula >}}\leq 352 \times 288 \text{Pixel}{{< /formula >}} bei 30 Hz.</p>
 {{% image url="Videokompression/7/h261-videokonferenz.gif"
 caption="Abb. 6.7-0 Videokonferenz: Echtzeit-Videokompression mit H.261" %}}
 
-<p>
-  H.261 ist ein symmetrisches Echtzeitkompressionsverfahren. Die Videorate kann
-  wahlfrei von 40 kbps bis 2 Mbps vorgegeben werden.
-</p>
-<p>Die Datenrate beträgt bei p ISDN B-Kanälen = p x 64 KBit/s</p>
-<!--TODO: Shortcode Formeln-->
+<p>H.261 ist ein symmetrisches Echtzeitkompressionsverfahren. Die Videorate kann wahlfrei von 40 kbps bis 2 Mbps
+    vorgegeben werden.</p>
+<p>Die Datenrate beträgt bei {{< formula >}}p{{< /formula >}} ISDN B-Kanälen
+    {{< formula >}}= p \times 64 \text{KBit/s}, \forall p \in \{1,2, \ldots, 30\}{{< /formula >}}</p>
 
 <p><strong>Bildaufbereitung</strong></p>
-<p>
-  H.261 legt im Gegensatz zum MPEG-Verfahren das Format des zu kodierenden
-  Bildes genau fest. Die Bildsequenz am Eingang des Kodierers beträgt 29,97 Hz ±
-  50 ppm (pictures per minute), non-interlaced; am Ausgang sind geringere
-  Bildsequenzen möglich.
-</p>
-<p>Es sind zwei Auflösungsformate spezifiziert:</p>
+<p>H.261 legt im Gegensatz zum MPEG-Verfahren das Format des zu kodierenden Bildes genau fest. Die Bildsequenz am
+    Eingang des Kodierers beträgt {{< formula >}}29,97 \text{Hz} \pm 50 \text{ppm}{{< /formula >}} (pictures per
+    minute), non-interlaced; am Ausgang sind geringere Bildsequenzen möglich.</p>
+<p>Es sind zwei Auflösungsformate spezifiziert: </p>
 <ul>
-  <li>
-    <strong>CIF</strong> <em>(Common Intermediate Format)</em>: 288 Zeilen zu
-    352 Pixel, Seitenverhältnis 4:3; Auflösungsverhältnis Y:C<sub>R</sub>:C<em
-      >B</em
-    >
-    = 4:2:2. Datenrate eines unkomprimierten CIF-Datenstromes bei 29,97 pps
-    beträgt ca. 36,5 MBit/s. Unterstützung von CIF ist optional.
-  </li>
-  <li>
-    <strong>QCIF</strong> <em>(Quarter CIF)</em>: hat die halbe Auflösung von
-    CIF, d.h. 176 x 144 Pixel für die Y-Ebene, 88 x 72 Pixel je Chrominanzebene.
-    Ein unkomprimierter QCIF-Datenstrom erzeugt bei 29,97 B/s eine Datenrate von
-    ca. 9,1 MBit/s.
-  </li>
-</ul>
-<!--TODO: Formatierung-->
+    <li><strong>CIF</strong> <em>(Common Intermediate Format)</em>: 288 Zeilen zu 352 Pixel, Seitenverhältnis 4:3;
+        Auflösungsverhältnis {{< formula >}}Y{{< /formula >}}:{{< formula >}}C_R{{< /formula >}}:{{< formula >}}C_B{{< /formula >}}
+        = 4:2:2. Datenrate eines unkomprimierten CIF-Datenstromes bei {{< formula >}}29,97 \text{pps}{{< /formula >}}
+        beträgt ca. {{< formula >}}36,5 \text{MBit/s}{{< /formula >}}. Unterstützung von CIF ist optional.
+    </li>
+    <li><strong>QCIF</strong> <em>(Quarter CIF)</em>: hat die halbe Auflösung von CIF, d.h.
+        {{< formula >}}176 \times 144 \text{Pixel}{{< /formula >}} für die {{< formula >}}Y{{< /formula >}}-Ebene,
+        {{< formula >}}88 \times 72 \text{Pixel}{{< /formula >}} je Chrominanzebene. Ein unkomprimierter QCIF-Datenstrom
+        erzeugt bei {{< formula >}}29,97 \text{B/s}{{< /formula >}} eine Datenrate von ca.
+        {{< formula >}}9,1 \text{MBit/s}{{< /formula >}}.
+    </li>
+</ul><!--TODO: Formatierung-->
 
 <p>Alle H.261-Systeme müssen das QCIF-Format unterstützen.</p>
-<p>
-  H.261 unterteilt die Y- wie auch die C<sub>R</sub>- und
-  C<sub>B</sub>-Komponenten in Blöcke zu 8 x 8 Pixeln. Ein Makroblock besteht
-  aus 4 Y- und je einem C<sub>R</sub>- bzw. C<sub>B</sub>-Block.
-  Bildverarbeitung, Quantisierung und Entropiekodierung beziehen sich auf
-  Makroblöcke.
-</p>
-<!--TODO: Formatierung-->
+<p>H.261 unterteilt die {{< formula >}}Y{{< /formula >}}- wie auch die {{< formula >}}C_R{{< /formula >}}- und
+    {{< formula >}}C_B{{< /formula >}}-Komponenten in Blöcke zu {{< formula >}}8 \times 8 \text{Pixeln}{{< /formula >}}.
+    Ein Makroblock besteht aus 4 {{< formula >}}Y{{< /formula >}}- und je einem {{< formula >}}C_R{{< /formula >}}- bzw.
+    {{< formula >}}C_B{{< /formula >}}-Block. Bildverarbeitung, Quantisierung und Entropiekodierung beziehen sich auf
+    Makroblöcke.</p><!--TODO: Formatierung-->
 
 <p><strong>Bildverarbeitung</strong></p>
 {{% image url="Videokompression/7/h261-blocktransformation.gif"
@@ -74,27 +56,21 @@ caption="Abb. 6.7-1 Blocktransformation und Quantisierung bei H.261" %}}
   beliebig zwischen beiden Verfahren gewechselt werden.
 </p>
 <ul>
-  <li>
-    <strong>Intraframe:</strong><br />
-    Nur Daten aus dem jeweils betrachteten Bild werden komprimiert. Für jeden
-    Makroblock und damit jeden 8 x 8 Pixel Block werden die 64 DCT-Koeffizienten
-    bestimmt (wie I-Bild bei MPEG)
-  </li>
-  <li>
-    <strong>Interframe:</strong><br />
-    Daten aus benachbarten Bildern werden benutzt, dies entspricht i. W. dem
-    P-Bild bei MPEG. Zu jedem Makroblock wird wie bei MPEG ein möglichst
-    ähnlicher im vorangegangenem Bild gesucht und ein Differenzmakroblock (DMB)
-    sowie ein optionaler Bewegungsvektor (BV) ermittelt. Der Suchbereich beträgt
-    0 bis 30 Pixel Durchmesser. Die Lage der zu vergleichenden Makroblöcke ist
-    nicht auf die ursprünglichen 16 x 16 Raster beschränkt. Bei Suchbereich = 0
-    erfolgt nur Differenzbildung. BV und DMB werden nach DCT weiter verarbeitet
-    - falls der DMB einen Schwellwert überschreitet - sonst wird nur der BV
-    verarbeitet. Zuletzt kann ein Filter zugeschaltet werden, der hochfrequente
-    Störsignale unterdrückt und dadurch die Bildqualität verbessert.
-  </li>
-</ul>
-<!--TODO: Formatierung-->
+    <li><strong>Intraframe:</strong><br/>
+        Nur Daten aus dem jeweils betrachteten Bild werden komprimiert. Für jeden Makroblock und damit jeden 8 x 8 Pixel
+        Block werden die 64 DCT-Koeffizienten bestimmt (wie I-Bild bei MPEG)
+    </li>
+    <li><strong>Interframe:</strong><br/>
+        Daten aus benachbarten Bildern werden benutzt, dies entspricht i. W. dem P-Bild bei MPEG. Zu jedem Makroblock
+        wird wie bei MPEG ein möglichst ähnlicher im vorangegangenem Bild gesucht und ein Differenzmakroblock (DMB)
+        sowie ein optionaler Bewegungsvektor (BV) ermittelt. Der Suchbereich beträgt 0 bis 30 Pixel Durchmesser. Die
+        Lage der zu vergleichenden Makroblöcke ist nicht auf die ursprünglichen {{< formula >}}16 \times 16{{< /formula >}}
+        Raster beschränkt. Bei Suchbereich = 0 erfolgt nur Differenzbildung. BV und DMB werden nach DCT weiter
+        verarbeitet - falls der DMB einen Schwellwert überschreitet - sonst wird nur der BV verarbeitet. Zuletzt kann
+        ein Filter zugeschaltet werden, der hochfrequente Störsignale unterdrückt und dadurch die Bildqualität
+        verbessert.
+    </li>
+</ul><!--TODO: Formatierung-->
 
 <p><strong>Quantisierung</strong></p>
 <ul>
@@ -148,16 +124,14 @@ caption="Abb. 6.7-1 Blocktransformation und Quantisierung bei H.261" %}}
   bestehend aus 4 Schichten - strukturiert.
 </p>
 <ul>
-  <li>Bild-Schicht: Videoframe-Sequenz</li>
-  <li>Blockgruppen-Schicht: GoP</li>
-  <li>
-    Makroblock-Schicht: 16x16 Y-, je 8x8 Pixel C<sub>R</sub>, C<sub>B</sub>
-  </li>
-  <li>Block-Schicht: 8x8 Pixel Block für DCT</li>
-</ul>
-<!--TODO: Formatierung-->
-{{% image url="Videokompression/7/h261-bildstrom.gif"
-caption="Abb. 6.7-2 Struktur des H.261 Bildstroms" %}}
+    <li>Bild-Schicht: Videoframe-Sequenz</li>
+    <li>Blockgruppen-Schicht: GoP</li>
+    <li>Makroblock-Schicht: {{< formula >}}16 \times 16{{< /formula >}} {{< formula >}}Y{{< /formula >}}-, je
+        {{< formula >}}8 \times 8{{< /formula >}} Pixel {{< formula >}}C_R{{< /formula >}},
+        {{< formula >}}C_B{{< /formula >}}</li>
+    <li>Block-Schicht: {{< formula >}}8 \times 8{{< /formula >}} Pixel Block für DCT</li>
+</ul><!--TODO: Formatierung-->
+{{% image "Videokompression/7/h261-bildstrom.gif" "" "Abb. 6.7-2  Struktur des H.261 Bildstroms" %}}
 
 <h2>6.7.2 H.263 Standard</h2>
 <p>
@@ -168,35 +142,26 @@ caption="Abb. 6.7-2 Struktur des H.261 Bildstroms" %}}
 
 <p><strong>Unterschiede zwischen H.261 und H.263</strong></p>
 <ul>
-  <li>
-    Die <strong>Genauigkeit der Bewegungskompensation</strong> liegt bei H.263
-    bei ½ Pixel im Gegensatz zu 1 Pixel bei H.261
-  </li>
-  <li>
-    Die <strong>Struktur des Datenstroms</strong> ist so optimiert, dass der
-    Coder für niedrigere Bitrate oder bessere Fehlerkorrektur konfiguriert
-    werden kann.Folgende Erweiterungen sind optional, wobei der Decoder dem
-    Encoder signalisiert, welche Optionen er beherrscht
-  </li>
-  <li>
-    <strong>Uneingeschränkte Bewegungsvektoren</strong>, welche auch aus dem
-    Bild hinaus zeigen dürfen, bringen eine signifikante Verbesserung bei
-    kleinen Bildformaten und Bewegungen entlang des Bildrandes
-  </li>
-  <li>
-    <strong>Erweiterte Prädiktion</strong>: überlappende Motion Compensation mit
-    vier 8x8 Pixel Blöcken statt einem 16x16 Block
-  </li>
-  <li>
-    Die syntax-basierte arithmetische <strong>Kodierung</strong> anstatt der
-    Huffman-Kodierung liefert im Mittel weniger Bits
-  </li>
-  <li>
-    <strong>PB-Bilder</strong>: 2 Frames werden als Einheit kodiert . Ein
-    solcher PB-Frame besteht aus dem P-Bild, das durch Prädiktion aus vorherigem
-    P-Bild entstand, und dem B-Bild, das aus dem vorhergegangenen und dem gerade
-    kodierten P-Bild ensteht
-  </li>
+    <li>Die <strong>Genauigkeit der Bewegungskompensation</strong> liegt bei H.263 bei
+        {{< formula >}}\frac{1}{2}{{< /formula >}} Pixel im Gegensatz zu 1 Pixel bei H.261
+    </li>
+    <li>Die <strong>Struktur des Datenstroms</strong> ist so optimiert, dass der Coder für niedrigere Bitrate oder
+        bessere Fehlerkorrektur konfiguriert werden kann.Folgende Erweiterungen sind optional, wobei der Decoder dem
+        Encoder signalisiert, welche Optionen er beherrscht
+    </li>
+    <li><strong>Uneingeschränkte Bewegungsvektoren</strong>, welche auch aus dem Bild hinaus zeigen dürfen, bringen eine
+        signifikante Verbesserung bei kleinen Bildformaten und Bewegungen entlang des Bildrandes
+    </li>
+    <li><strong>Erweiterte Prädiktion</strong>: überlappende Motion Compensation mit vier 8x8 Pixel Blöcken statt einem
+        {{< formula >}}16 \times 16{{< /formula >}} Block
+    </li>
+    <li>Die syntax-basierte arithmetische <strong>Kodierung</strong> anstatt der Huffman-Kodierung liefert im Mittel
+        weniger Bits
+    </li>
+    <li><strong>PB-Bilder</strong>: 2 Frames werden als Einheit kodiert . Ein solcher PB-Frame besteht aus dem P-Bild,
+        das durch Prädiktion aus vorherigem P-Bild entstand, und dem B-Bild, das aus dem vorhergegangenen und dem gerade
+        kodierten P-Bild ensteht
+    </li>
 </ul>
 
 <p><strong>H.263 Bildformate</strong></p>

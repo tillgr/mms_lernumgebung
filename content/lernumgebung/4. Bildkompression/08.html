@@ -45,10 +45,13 @@ draft: true
 {{% image url="Bildkompression/8/subbaender.gif" caption="Abb. 4.8-1  Unterteilung eines Bildes in Subbänder" %}}
 
 <p>Die Quantisierung erfolgt nach</p>
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}} c_q (u,v) = \text{sign} (c(u,v)) \lfloor \frac{\lvert c(u,v)\rvert}{q} \rfloor {{< /formula >}}
+</p>
 
-<p>wobei c(u,v) einen Wavelet-Koeffizienten, und c<sub>q</sub>(u,v) den quantisierten Wert+ darstellt. Mit q wird die
-    Quantisierung eingestellt, und kann je Subband festgelegt werden.</p>
+<p>wobei c(u,v) einen Wavelet-Koeffizienten, und {{< formula >}} c_q (u,v) {{< /formula >}} den quantisierten Wert
+    darstellt. Mit {{< formula >}} q {{< /formula >}} wird die Quantisierung eingestellt, und kann je Subband festgelegt
+    werden.</p>
 <p>Die Kompression komplexer Dokumente (compound components) ist möglich.</p>
 <p>Das Verfahren verwendet ein flexibles Fileformat (codestream). Dies gestattet einen wahlfreien Zugriff und partielle
     Aktualisierungen. Der Codestream besteht aus einer Sequenz von Boxen (Bild + Metadaten).</p>

@@ -34,26 +34,60 @@ draft: true
     </li>
 </ul>
 
-<p><strong>Der YCbCr-Farbraum</strong></p><!--TODO: Formatierung-->
+<p><strong>Der YC<sub>b</sub>C<sub>r</sub>-Farbraum</strong></p><!--TODO: Formatierung-->
 <p>Die vom Auge unterscheidbaren Farben - ca. 8 Millionen Farbtöne - können auf eine Addition der drei Grundfarben
     'Rot', 'Grün' und 'Blau' (RGB) zurückgeführt werden. Monitore erzeugen aus den RGB-Bildern das darzustellende Bild
     (Elektronenstrahl, Phosphorbeschichtung).</p>
-<p>Bei Helligkeit-Farbigkeit-Modellen, z.B. dem YCbCr Modell, werden Farbwerte durch die Grundhelligkeit der Farbe, die
+<p>Bei Helligkeit-Farbigkeit-Modellen, z.B. dem YC<sub>b</sub>C<sub>r</sub> Modell, werden Farbwerte durch die Grundhelligkeit der Farbe, die
     Farbe (Farbart) mit dem größten Anteil (Rot, Grün oder Blau) und die Sättigung der Farbe, z.B. pastell, stark, fast
-    weiß, beschrieben. Beim YCrCb-Modell wird ein RGB-Farbwert in eine Grundhelligkeit Y und zwei Komponenten Cr und Cb
-    aufgeteilt. Cb ist ein Maß für die Abweichung von der 'Mittelfarbe' Grau in Richtung 'Blau'. Cr ist die
+    weiß, beschrieben. Beim YC<sub>r</sub>C<sub>b</sub>-Modell wird ein RGB-Farbwert in eine Grundhelligkeit Y und zwei Komponenten C<sub>r</sub> und C<sub>b</sub>
+    aufgeteilt. C<sub>b</sub> ist ein Maß für die Abweichung von der 'Mittelfarbe' Grau in Richtung 'Blau'. C<sub>r</sub> ist die
     entsprechende Maßzahl für die Differenz zu Rot.</p><!--TODO: Formatierung-->
-<p>Umrechnung von RGB-Farbwerten in den YCbCr-Farbraum:</p><!--TODO: Formatierung-->
-<!--TODO: Formeln shortcode-->
+<p>Umrechnung von RGB-Farbwerten in den YC<sub>b</sub>C<sub>r</sub>-Farbraum:</p>
+<p>
+    {{< formula >}}
+    \begin{pmatrix}
+    Y \\
+    C_b \\
+    C_r
+    \end{pmatrix} = \begin{pmatrix}
+    0.299 & 0.587 & 0.114 \\
+    -0.1687 & -0.3313 & 0.5 \\
+    0.5 & -0.4187 & -0.0813
+    \end{pmatrix}
+    \begin{pmatrix}
+    R \\
+    G \\
+    B
+    \end{pmatrix}
+    {{< /formula >}}
+</p>
 
-<p>Rücktransformation vom YCbCr-Farbraum in RGB-Werte:</p><!--TODO: Formatierung-->
-<!--TODO: Formeln shortcode-->
+<p>Rücktransformation vom YC<sub>b</sub>C<sub>r</sub>-Farbraum in RGB-Werte:</p>
+<p>
+    {{< formula >}}
+    \begin{pmatrix}
+    R \\
+    G \\
+    B
+    \end{pmatrix} = \begin{pmatrix}
+    1 & 0 & 1.402 \\
+    1 & -0.34414 & -0.71414 \\
+    1 & 1.772 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+    Y \\
+    C_b \\
+    C_r
+    \end{pmatrix}
+    {{< /formula >}}
+</p>
 
 <p><strong>Farbsubsampling</strong></p>
-<p>Da das Auge örtliche Unterschiede in Cb und Cr schlechter wahrnimmt als in Y, kann die Ortsauflösung von Cb und Cr
-    gegenüber der von Y reduziert werden. Dies geschieht, indem für kleine Gebiete die Werte Cb und Cr gemittelt werden,
-    anstatt Cb und Cr in jedem Punkt zu kodieren, d.h. man reduziert in den C-Ebenen die Zahl der Punkte. Üblicherweise
-    haben diese Gebiete eine Größe von 2 x 2 Pixeln.</p><!--TODO: Formatierung-->
+<p>Da das Auge örtliche Unterschiede in C<sub>b</sub> und C<sub>r</sub> schlechter wahrnimmt als in Y, kann die Ortsauflösung von C<sub>b</sub> und C<sub>r</sub>
+    gegenüber der von Y reduziert werden. Dies geschieht, indem für kleine Gebiete die Werte C<sub>b</sub> und C<sub>r</sub> gemittelt werden,
+    anstatt C<sub>b</sub> und C<sub>r</sub> in jedem Punkt zu kodieren, d.h. man reduziert in den C-Ebenen die Zahl der Punkte. Üblicherweise
+    haben diese Gebiete eine Größe von 2 x 2 Pixeln.</p>
 
 <p><strong>JPEG-Operationsmodi</strong></p>
 <p>JPEG soll möglichst vielen Anforderungen der Bilddatenkompression gerecht werden. Deshalb wurden folgende
@@ -88,42 +122,53 @@ draft: true
 <h3 class="h4">4.5.2.1 JPEG Bildaufbereitung</h3>
 <p>Wegen der Forderung nach Unabhängigkeit von Bildgröße, Seitenverhältnis, Pixelzahl, etc. wird unterstellt, das ein
     Bild aus 1 bis N < 256 Komponenten bzw. Ebenen besteht. Am gebräuchlichsten sind bei Farbbildern die drei
-    Komponenten Y, Cb, und Cr, es sind aber noch weitere denkbar. Die Auflösung der Farbbestandteile muss nicht gleich
+    Komponenten Y, C<sub>b</sub>, und C<sub>r</sub>, es sind aber noch weitere denkbar. Die Auflösung der Farbbestandteile muss nicht gleich
     sein. Zum Beispiel wird bei 4:2:0 eine vertikale und horizontale Unterabtastung jeweils um den Faktor 2 verwendet,
     sodass die Datenmenge der Farbinformation um den Faktor 4 reduziert wird.</p>
-<p>Jede Ebene C<sup>i</sup> besteht aus einer rechtwinkligen Anordnung von X<sup>i</sup> * Y<sup>i</sup> Pixel. DVI
-    verwendete z.B. YUV-Farbilder aus 3 Ebenen mit Y<sup>1</sup> = 4 * Y<sup>2</sup> = 4 * Y<sup>3</sup>; X<sup>1</sup>
-    = 4 * X<sup>2</sup> = 4 * X<sup>3</sup>.</p>
+<p>Jede Ebene {{< formula >}} C^i {{< /formula >}} besteht aus einer rechtwinkligen Anordnung von {{< formula >}} X^i * Y^i {{< /formula >}} Pixel. DVI
+    verwendete z.B. YUV-Farbilder aus 3 Ebenen mit {{< formula >}} Y^1 = 4 * Y^2 = 4 * Y^3 {{< /formula >}} ;
+    {{< formula >}} X^1 = 4 * X^2 = 4 * X^3 {{< /formula >}}.</p>
 {{% image url="Bildkompression/5/3_5_2_bildebenen.gif" caption="Abb. 4.5-1 Bildebenen" %}}
 
-<p>Jedes Pixel wird mit p Bit dargestellt, der Werteraum ist 2<sup>p</sup>-1. Die Pixel aller Ebenen haben gleiche
+<p>Jedes Pixel wird mit p Bit dargestellt, der Werteraum ist {{< formula >}} 2^p - i {{< /formula >}}. Die Pixel aller Ebenen haben gleiche
     Bit-Tiefe.</p>
 <ul>
     <li>verlustbehaftetes JPEG: 8 bzw. 12 Bit pro Pixel</li>
     <li>verlustfreies JPEG: 2 <= p <= 12 Bit / Pixel</li>
 </ul>
 
-<p>Für jede Komponente werden horizontale und vertikale Auflösungsfaktoren H<sup>i</sup> und V<sup>i</sup> definiert,
-    indem man jeweils das Verhältnis der horizontalen und vertikalen Auflösungen bildet. Ist die Gesamtauflösung des
-    Bildes X und Y, so ergeben sich die Auflösungen der Komponenten i wie folgt:</p>
-<!--TODO: Formeln shortcode-->
+<p>Für jede Komponente werden horizontale und vertikale Auflösungsfaktoren {{< formula >}} H^i {{< /formula >}} und
+    {{< formula >}} V^i {{< /formula >}} definiert, indem man jeweils das Verhältnis der horizontalen und vertikalen
+    Auflösungen bildet. Ist die Gesamtauflösung des Bildes X und Y, so ergeben sich die Auflösungen der
+    Komponenten i wie folgt:</p>
+<p>
+    {{% formulaRow f1 = "X^i = X \cdot \frac{H^i}{H_{max}}" f2 = "Y^i = Y \cdot \frac{V^i}{V_{max}}" %}}
+</p>
 
-<p>Hmax und Vmax sind dabei die größten Werte für Hi und Vi. Diese Auflösungsfaktoren werden für jede Komponente im
+<p>{{< formula >}} H_{max} {{< /formula >}} und {{< formula >}} V_{max} {{< /formula >}} sind dabei die größten Werte für Hi und Vi. Diese Auflösungsfaktoren werden für jede Komponente im
     'frame header' angegeben.</p><!--TODO: Formatierung-->
 <ul>
-    <li>X<sub>max</sub> = Maximum aller X<sup>i</sup> ; Y<sub>max</sub> = Maximum aller Y<sup>i</sup></li>
-    <li>H<sup>i</sup> bzw. V<sup>i</sup>= relative Auflösung, ganzzahlige Werte von 1 bis 4</li>
-    <li>H<sub>max</sub> bzw. V<sub>max</sub> = maximale horizontale bzw. vertikale Auflösung</li>
+    <li>{{< formula >}} X_{max} {{< /formula >}} = Maximum aller {{< formula >}} X^i {{< /formula >}} ;
+        {{< formula >}} Y_{max} {{< /formula >}} = Maximum aller {{< formula >}} Y^i {{< /formula >}}</li>
+    <li>{{< formula >}} H^i {{< /formula >}} bzw. {{< formula >}} V^i {{< /formula >}} = relative Auflösung, ganzzahlige
+        Werte von 1 bis 4</li>
+    <li>{{< formula >}} H_{max} {{< /formula >}} bzw. {{< formula >}} V_{max} {{< /formula >}} = maximale horizontale
+        bzw. vertikale Auflösung</li>
 </ul><!--TODO: Formatierung-->
 
 <p>Beispiel: 3 Ebenen mit</p>
-<p>X<sub>max</sub> = Y<sub>max</sub> = 512 Pixel; H<sup>0</sup> = 4, V<sup>0</sup> =1; H<sup>1</sup> = 2, V<sup>1</sup>
-    = 2; H<sup>2</sup> = 1,</p><!--TODO: Formatierung-->
-<p>V<sup>2</sup> = 1, daraus errechnet sich mit H<sub>max</sub> = 4 und V<sub>max</sub> = 2:
-</p><!--TODO: Formatierung-->
-<p>X<sup>0</sup> = H<sup>0</sup> * X<sub>max</sub> / H<sub>max</sub> = 512; Y0 = V0 * Ymax / Vmax = 256
-</p><!--TODO: Formatierung-->
-<p>X<sup>1</sup> = 2 * 512/4 = 256; Y<sup>1</sup> = 2 * 512/2 = 512; X<sup>2</sup> = 128, Y<sup>2</sup> = 256
+<p>{{< formula >}} X_{max} = Y_{max} = 512 Pixel {{< /formula >}} ; {{< formula >}} H^0 = 4 {{< /formula >}} ,
+    {{< formula >}} V^0 = 1 {{< /formula >}} ; {{< formula >}} H^1 = 2 {{< /formula >}} ,
+    {{< formula >}} V^1 = 2 {{< /formula >}} ; {{< formula >}} H^2 = 1 {{< /formula >}}
+    {{< formula >}} V^2 = 1 {{< /formula >}}
+</p>
+<p>Daraus errechnet sich mit: {{< formula >}} H_{max} = 4 {{< /formula >}} und {{< formula >}} V_{max} = 2 {{< /formula >}} </p>
+<p>
+    {{< formula >}} X^0 = H^0 * X_{max} / H_{max} = 512 {{< /formula >}} ; {{< formula >}} Y^0 = V^0 * Y_{max} / V_{max} = 256 {{< /formula >}}
+</p>
+<p>
+    {{< formula >}} X^1 = 2 * 512 / 4 = 256 {{< /formula >}} ; {{< formula >}} Y^1 = 2 * 512 / 2 = 512 {{< /formula >}}
+    ; {{< formula >}} X^2 = 128 {{< /formula >}} , {{< formula >}} Y^2 = 128 {{< /formula >}}
 </p><!--TODO: Formatierung-->
 
 <p>Zur Kompression werden die Ebenen in Dateneinheiten (DU) zerlegt. Während die DCT-basierten Modi Blöcke zu 8 x 8
@@ -134,8 +179,8 @@ draft: true
 </ul>
 <p>Für die Kodierungsprozeduren können Dateneinheiten zu minimal-kodierten Einheiten (minimal coded units, MCU)
     zusammengefasst werden. Umfasst ein Bild mehrere Komponenten, werden diese überlappt kodiert. Eine MCU ist hier ein
-    Paket mit jeweils H<sup>i</sup> x V<sup>i</sup> Dateneinheiten von jeder Komponente i.</p>
-<p>Reihenfolge der Bearbeitung der Dateneinheiten d<sup>i</sup><sub>uv</sub>:</p>
+    Paket mit jeweils {{< formula >}} V^i \times X^i {{< /formula >}} Dateneinheiten von jeder Komponente i.</p>
+<p>Reihenfolge der Bearbeitung der Dateneinheiten {{< formula >}} d^i_{uv} {{< /formula >}}:</p>
 <ul>
     <li>nicht verschachtelt (<em>non-interleaved</em>): Bearbeitung erfolgt zeilenweise, d.h. von links nach rechts, von
         oben nach unten.
@@ -158,14 +203,37 @@ draft: true
 <p>Im Folgenden wird die Bildverarbeitung für den sequentiellen DCT-basierten Mode beschrieben.</p>
 <p>Die Pixel einer Ebene sind mit p = 8 Bit kodiert. Der Wertebereich von 0 bis 256 wird in das um den Nullpunkt
     symmetrische Intervall (-128, 127) verschoben. Eine Dateneinheit besteht aus 8 x 8 verschobenen Pixelwerten
-    S<sub>yx</sub> , mit x, y &isin; {0, ..., 7}.</p>
+    {{< formula >}} S_{yx} {{< /formula >}} , mit {{< formula >}} x,y \in \{0, \ldots, 7 \} {{< /formula >}}</p>
 
 <p>Es wird die Diskrete Cosinus Transformation DCT (FDCT = Forward Discret Cosinus Transformation
     <!--TODO: Fehlende Referenzen--> ) auf die Dateneinheit angewendet.</p>
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}} S_{uv} = \frac{1}{4} c_u c_v \sum \limits_{x=0}^7 \sum \limits_{y=0}^7 S_{yx} \cos ((2x + 1)u\pi / 16) \cos ((2y + 1)v\pi /16) {{< /formula >}}
+</p>
 
-<p>mit c<sub>u</sub>, c<sub>v</sub> = 1/<!--TODO: Formeln shortcode--> für u, v = 0; sonst c<sub>u</sub>,
-    c<sub>v</sub> = 1.</p>
+<p>mit {{< formula >}} c_{u} {{< /formula >}}, {{< formula >}} c_{v} = \frac{1}{\sqrt{2}} {{< /formula >}} für {{< formula >}} u {{< /formula >}}
+    , {{< formula >}} v = 0 {{< /formula >}}; sonst {{< formula >}} c_{u} {{< /formula >}},
+    {{< formula >}} c_{v} = 1 {{< /formula >}}.</p>
+
+<p>Die {{< formula >}} \cos {{< /formula >}}-Ausdrücke sind von {{< formula >}} S_{yx} {{< /formula >}} unabhängig und
+    können im voraus berechnet werden. Es ergeben sich 64 Koeffizienten {{< formula >}} S_{uv} {{< /formula >}}. Man
+    bezeichnet {{< formula >}} S_{00} {{< /formula >}} als DC-Koeffizient (Gleichspannungskoeffizient). Er bestimmt den
+    Grundfarbton der Dateneinheit. Die übrigen werden AC- Koeffizienten (AC - Wechselspannung) genannt.
+    {{< formula >}} S_{70} {{< /formula >}} steht für die höchste Frequenz und hat das dichteste Muster an
+    Farbänderungen, das in waagrechter Richtung auftritt. S07 hat das dichteste Muster in senkrechter Richtung.
+    {{< formula >}} S_{77} {{< /formula >}} enthält die höchste Farbänderung in der Dateneinheit.</p>
+
+<p>Einschub <strong>Dekodierung</strong></p>
+<p>Die Dekodierung erfolgt durch den Inversen DCT (IDCT) Algorithmus.</p>
+<p>
+    {{< formula >}} S_{xy} = \frac{1}{4} \sum \limits_{u=0}^7 \sum \limits_{v=0}^7 c_u c_v S_{uv} \cos ((2x + 1)u\pi / 16) \cos ((2y + 1)v\pi /16) {{< /formula >}}
+</p>
+
+<p>mit {{< formula >}} c_{u} {{< /formula >}}, {{< formula >}} c_{v} = \frac{1}{\sqrt{2}}{{< /formula >}} für
+    {{< formula >}} u {{< /formula >}}, {{< formula >}} v = 0 {{< /formula >}}; sonst
+    {{< formula >}} c_{u} {{< /formula >}}, {{< formula >}} c_{v} = 1 {{< /formula >}}.</p>
+
+
 <p>Die Berechnung der Koeffizienten ist umfangreich. So benötigt man für einen zu transformierenden Pixelwert 56
     Additionen und 64 Multiplikationen. In <!--TODO: Fehlende Referenzen-->sind schnelle Algorithmen für die DCT
     beschrieben, die u.a. die symmetrischen Eigenschaften der Formeln nutzen.</p>
@@ -182,13 +250,19 @@ draft: true
 <h3 class="h4">4.5.2.3 Quantisierung der DCT-Koeffizienten</h3>
 <p>Das Ziel von JPEG ist es, die Kompressionsrate möglichst frei wählen zu können. Dies wird durch die Quantisierung
     erreicht. Die Quantisierung ist eine Abbildung, die für jedes Pixel eines Blockes durch eine von der Anwendung
-    festgelegte Tabelle mit 64 Einträgen (q<sub>uv</sub>) gesteuert wird.</p>
-<p>Sq<sub>uv</sub> seien quantisierte Koeffizenten; q<sub>uv</sub> seien ganzzahlige 8 Bit Werte; k sei ein frei
-    wählbarer Faktor, der den Kompressionsgrad bestimmt</p>
-<p>Sq<sub>uv</sub> = Runden</p><!--TODO: Formeln shortcode-->
+    festgelegte Tabelle mit 64 Einträgen ({{< formula >}} q_{uv} {{< /formula >}}) gesteuert wird.</p>
+<p>{{< formula >}} Sq_{uv} {{< /formula >}} seien quantisierte Koeffizenten; {{< formula >}} q_{uv} {{< /formula >}}
+    seien ganzzahlige 8 Bit Werte; k sei ein frei wählbarer Faktor, der den Kompressionsgrad bestimmt</p>
+<p>{{< formula >}} Sq_{uv} {{< /formula >}} = Runden
+    {{< formula >}}
+    \begin{pmatrix}
+    \frac{S_{uv}}{k \times q_{uv}}
+    \end{pmatrix}
+    {{< /formula >}}
+</p>
 
 <p>Für die Dequantisierung im Rahmen der Dekompression, gilt:</p>
-<p>Sd<sub>uv</sub> = Sq<sub>uv</sub> * q<sub>uv</sub></p>
+<p>{{< formula >}} Sd_{uv} = Sq_{uv} * q_{uv} {{< /formula >}}</p>
 
 <p>Durch die Transformation entsteht ein Informationsverlust, da die quantisierten Werte nicht den originalen
     Koeffizienten entsprechen. Je größer der Quantisierungsfaktor (k x q<sub>uv</sub>)ist, desto größer ist auch der
@@ -206,9 +280,10 @@ draft: true
 <p>Um zu veranschaulichen, wie die Basisblöcke aussehen, nach denen die Koeffizienten der DCT-Darstellung entwickelt
     werden, dient die Abbildung von Graustufenbildern:</p>
 <ul>
-    <li>Kodierung des DC-Koeffizienten S<sub>00</sub>: Da die Grundfarbe sich nur wenig zwischen benachbarten
-        Dateneinheiten ändert, wird diese Differenz kodiert. DCi = S<sub>i,00</sub> - S<sub>i-1,00</sub></li>
-    <li>Kodierung der AC-Koeffizienten S<sub>uv</sub> für u, v > 0 : Die S<sub>uv</sub> werden gemäß einer
+    <li>Kodierung des DC-Koeffizienten {{< formula >}} S_{00} {{< /formula >}}: Da die Grundfarbe sich nur wenig zwischen benachbarten
+        Dateneinheiten ändert, wird diese Differenz kodiert. {{< formula >}} DC_{i} = S_{i,00} - DC_{i-1,00} {{< /formula >}}</li>
+    <li>Kodierung der AC-Koeffizienten {{< formula >}} S_{uv} {{< /formula >}} für {{< formula >}} u {{< /formula >}},
+        {{< formula >}} v > 0 {{< /formula >}} : Die {{< formula >}} S_{uv} {{< /formula >}} werden gemäß einer
         Zick-Zack-Sequenz sortiert, d.h. zunächst werden die Koeffizienten mit der niedrigeren Frequenz (i.allg. höherem
         Wert) kodiert, gefolgt von den Koeffizienten mit höheren Frequenzen, von denen die meisten i.allg. Null sind.
     </li>
@@ -234,7 +309,15 @@ draft: true
     benötigt. Bei der VLI werden Integerwerte mit variabler Länge kodiert. Allerdings muss die Länge des Wertes bei der
     Codierung mit angeben werden, um die Werte später wieder reproduzieren zu können. Es ergibt sich folgende
     VLI-Darstellung:</p>
-<!--TODO: Formeln shortcode-->
+<p>{{< formula >}} x \cong \text{Bits.Vorzeichen.Code}{{< /formula >}} wobei</p>
+<p><em>Bits </em>{{< formula >}}= \lfloor \log_2 \lvert x \rvert \rfloor + 1 {{< /formula >}} <em>Zahl der anschließenden
+    Bits</em></p>
+<p><em>Vorzeichen</em> {{< formula >}} = 1 {{< /formula >}} <em>falls</em> {{< formula >}} x < 0 {{< /formula >}}
+    <em>sonst</em> {{< formula >}} 0 {{< /formula >}}
+</p>
+<p><em>Code</em> {{< formula >}}= \lvert x \rvert - 2^{\textit{Bits} - 1} {{< /formula >}} <em>die VLI - Codierung von
+    {{< formula >}} x {{< /formula >}}
+</em> </p><!--TODO: Formatierung-->
 
 <p><strong>Huffman-Codierung:</strong></p>
 <p>Die DC- und AC-Werte werden transformiert, um eine für das Huffman-Verfahren günstige Codefolge zu erhalten.</p>

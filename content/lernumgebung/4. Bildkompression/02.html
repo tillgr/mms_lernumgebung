@@ -4,30 +4,23 @@ date: 2020-10-12T09:49:41+02:00
 draft: true
 ---
 
-<p>
-  Verlustfreie Kompressionsverfahren haben das Ziel, durch geeignete Verfahren
-  die Redundanz aus Datenmengen (bei Bildern den Pixelwerten) zu entfernen. Die
-  <em>Kompressionseffizienz (C)</em> errechnet sich aus
-  <em>C = ursprüngliche Größe / komprimierte Größe</em>; die
-  <strong>Redundanz (R)</strong> aus <em>R = 1-1/C</em>. Die Güte eines
-  Kompressionsverfahrens liefert der Vergleich der theoretisch maximalen mit der
-  erreichbaren Kompressionsrate. Nach Shannon's Quellenkodierungstheorem ist es
-  nicht möglich, eine höhere Kompressionseffizienz zu erzielen als die Entropie
-  der Nachrichtenquelle.
-</p>
-<!--TODO: Formeln shortcode-->
-<p>
-  Die Entropie-Kodierung arbeitet verlustfrei. Nach dem Satz von Shannon ist die
-  maximale Entropie H(S) einer Informationsquelle S definiert durch
-</p>
-<!--TODO: Formeln shortcode-->
+<p>Verlustfreie Kompressionsverfahren haben das Ziel, durch geeignete Verfahren die Redundanz aus Datenmengen (bei
+    Bildern den Pixelwerten) zu entfernen. Die <em>Kompressionseffizienz (C)</em> errechnet sich aus
+    {{< formula >}} C {{< /formula >}} <em>= ursprüngliche Größe / komprimierte Größe</em>; die <strong>Redundanz (R)</strong>
+    aus {{< formula >}} R = 1 - 1/C {{< /formula >}}. Die Güte eines Kompressionsverfahrens liefert der Vergleich der
+    theoretisch maximalen mit der erreichbaren Kompressionsrate. Nach Shannon's Quellenkodierungstheorem ist es nicht
+    möglich, eine höhere Kompressionseffizienz zu erzielen als die Entropie der Nachrichtenquelle.</p><!--TODO: Formatierung-->
+<p>Die Entropie-Kodierung arbeitet verlustfrei. Nach dem Satz von Shannon ist die maximale Entropie
+    {{< formula >}} H(S) {{< /formula >}} einer Informationsquelle {{< formula >}} S {{< /formula >}} definiert durch</p>
 
 <p>
-  wobei pi die Wahrscheinlichkeit des Auftretens vom Symbol Si ist; ld(1/pi) ist
-  der Logarithmus zur Basis 2 von 1/pi und gibt an, wieviel Bits benötigt
-  werden, um das Symbol Si zu codieren.
+    {{< formula >}} H(S) = \sum (p_i * \log_{2}(\frac{1}{p_i})) {{< /formula >}}
 </p>
-<!--TODO: Formelzeichen-->
+
+<p>wobei {{< formula >}} p_i {{< /formula >}} die Wahrscheinlichkeit des Auftretens vom Symbol
+    {{< formula >}} S_i {{< /formula >}} ist; {{< formula >}} \log_{2}(1/p_i) {{< /formula >}} ist der Logarithmus zur
+    Basis 2 von {{< formula >}} 1/p_i {{< /formula >}} und gibt an, wieviel Bits benötigt werden, um das Symbol
+    {{< formula >}} S_i {{< /formula >}} zu codieren.</p><!--TODO: Formatierung-->
 
 <p><u>Beispiel:</u></p>
 <ul>
@@ -464,7 +457,7 @@ caption="Abb. 4.2-1 Prinzip der Huffman-Kodierung" %}}
 <ul>
   <li>mögliche Zeichenketten: ABA und Hallo.</li>
   <li>Zuordnung der Kodierung in folgender Tabelle:</li>
-  
+
   <table class="table table-bordered">
     <tbody>
       <tr>

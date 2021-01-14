@@ -12,13 +12,13 @@ draft: true
   Wert umgewandelt (Code).
 </p>
 <ul>
-  <li>16 Bit Kodierung, d.h. 2^16 = 65536 Werte darstellbar</li>
-  <!--TODO: Formatierung-->
-  <li>Datenrate für Stereosignal bei einer CD-DA</li>
-  <!--TODO: Formeln shortcode-->
-  <li>Ein CD-DA Sektor umfasst 98 Frames zu 24 PCM-Samples = 2352 Byte</li>
-  <li>75 Sektoren = 75 X 2352 Byte = 176400 Byte = 1 Sekunde Musik</li>
-</ul>
+    <li>16 Bit Kodierung, d.h. 2^16 = 65536 Werte darstellbar</li>
+    <li>Datenrate für Stereosignal bei einer CD-DA
+        <p>{{< formula >}} 2 * \frac{44100}{\text{s}} * \frac{16 \text{bit}}{8 \frac{\text{bit}}{\text{Byte}}} = 176400 \frac{Byte}{s} \approx 10 \frac{MByte}{min} {{< /formula >}}</p>
+    </li>
+    <li>Ein CD-DA Sektor umfasst 98 Frames zu 24 PCM-Samples = 2352 Byte</li>
+    <li>{{< formula >}} 75 {{< /formula >}} Sektoren = {{< formula >}} 75 * 2352 \text{ Byte} = 176400 \text{ Byte} = 1{{< /formula >}} Sekunde Musik</li>
+</ul><!--TODO: Formatierung-->
 
 <p>
   Bei Stereo-Samples werden der rechte und der linke Kanal verschachtelt
@@ -105,30 +105,21 @@ draft: true
 
 <h2>2.4.3 Differential Pulse Code Modulation</h2>
 <p><strong>DPCM</strong> = Differential Pulse Code Modulation</p>
-<p>
-  {S} sei die Folge digitaler Signalwerte = {S 0, S 1, S 2, ..., S i}. Die DPCM
-  nutzt zur Kompression die statistische Abhängigkeit zwischen benachbarten
-  Signalwerten. Zu jedem Abtastwert S i kann aus den vorhergehenden Werten ein
-  Schätzwert X i = a 1 S i-1, a 2 S i-2, ..., a n S i-n erzeugt werden. Dieser
-  wird auch als Prädiktor bezeichnet. Zwischen Sender und Empfänger wird jeweils
-  nur die Differenz aus Prädiktor und Originalwert d i = S i - X i übertragen.
-</p>
-<!--TODO: Formatierung-->
-<p>
-  Der Empfänger rekonstruiert einen Näherungswert s i für den Originalwert S i
-  aus der empfangenen Differenz d i und einem Schätzwert, der auf die gleiche
-  Art und Weise wie beim Sender aus den vorangegangenen Werten s i-1, s i-2, ...
-  , s i-n berechnet wurde.
-</p>
-<!--TODO: Formatierung-->
-<p>s i = d i + x i mit x i = a 1 s i-1 + a 2 s i-2 + ... + a n s i-n</p>
-<!--TODO: Formatierung-->
-<p>
-  a 1, a 2, ..., a n sind die Prädikatorkoeffizienten. Wird nur ein
-  Prädiktorkoeffizient benutzt (n = 1), so bezeichnet man diese spezielle Form
-  der DPCM auch als Delta-Modulation.
-</p>
-<!--TODO: Formatierung-->
+<p>{S} sei die Folge digitaler Signalwerte = {{< formula >}} {S_0 \text{, } S_1 \text{, } S_2 \text{, } \ldots \text{, } S_i} {{< /formula >}}.
+    Die DPCM nutzt zur Kompression die statistische Abhängigkeit zwischen benachbarten Signalwerten. Zu jedem Abtastwert
+    {{< formula >}} S_i {{< /formula >}} kann aus den vorhergehenden Werten ein Schätzwert
+    {{< formula >}} X_i = a_1 * S_{i-1} \text{, } a_2 * S_{i-2} \text{, } \ldots \text{, } a_n * S_{i-n} {{< /formula >}}
+    erzeugt werden. Dieser wird auch als Prädiktor bezeichnet. Zwischen Sender und Empfänger wird jeweils nur die
+    Differenz aus Prädiktor und Originalwert {{< formula >}} d_i = S_i - X_i {{< /formula >}} übertragen.
+</p><!--TODO: Formatierung-->
+<p>Der Empfänger rekonstruiert einen Näherungswert s i für den Originalwert S i aus der empfangenen Differenz d i und
+    einem Schätzwert, der auf die gleiche Art und Weise wie beim Sender aus den vorangegangenen Werten
+    {{< formula >}} s_{i-1} \text{, } s_{i-2} \text{, } s_{i-2} \text{, } \ldots \text{, } s_{i-n} {{< /formula >}}
+    berechnet wurde. </p><!--TODO: Formatierung-->
+<p> {{< formula >}}s_i = d_i + x_i \text{ mit } x_i = a_1 s_{i-1} + a_2 * s_{i-2} + \ldots + a_n * s_{i-n} {{< /formula >}} </p><!--TODO: Formatierung-->
+<p>{{< formula >}} a_1 \text{, } a_2 \text{, } \ldots \text{, } a_n {{< /formula >}} sind die
+    Prädikatorkoeffizienten. Wird nur ein Prädiktorkoeffizient benutzt (n = 1), so bezeichnet man diese spezielle Form
+    der DPCM auch als Delta-Modulation. </p><!--TODO: Formatierung-->
 
 {{% image url="Audiotechnik/4/1_4_1_prinzip_der_dpcm.gif"
 caption="Abb. 2.4-0 Prinzip der DPCM" %}}
