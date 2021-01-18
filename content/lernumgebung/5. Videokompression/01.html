@@ -4,81 +4,210 @@ date: 2020-10-12T09:49:41+02:00
 draft: true
 ---
 
-<p>Der <strong>Bildaufbau</strong> eines Fernsehbilds erfolgt zeilenweise von links nach rechts. Der Strahl bewegt sich
-    dunkel zurück (<strong>horizontale Austastlücke</strong>). Die Zeilen werden von oben nach unten erzeugt, wobei sich
-    der Strahl dunkel von rechts unten nach links oben bewegt (<strong>vertikale Austastlücke</strong>).</p>
-{{% image "Videokompression/1/4_1_1_aufteilung_des_fernsehbildes.gif" "" "Abb. 5.1-0 Aufbau des Fernsehbildes" %}}
+<p>
+  Der <strong>Bildaufbau</strong> eines Fernsehbilds erfolgt zeilenweise von
+  links nach rechts. Der Strahl bewegt sich dunkel zurück (<strong
+    >horizontale Austastlücke</strong
+  >). Die Zeilen werden von oben nach unten erzeugt, wobei sich der Strahl
+  dunkel von rechts unten nach links oben bewegt (<strong
+    >vertikale Austastlücke</strong
+  >).
+</p>
+{{% image url="Videokompression/1/4_1_1_aufteilung_des_fernsehbildes.gif"
+caption="Abb. 5.1-0 Aufbau des Fernsehbildes" %}}
 
 <p>Um Bild-Sequenzen als solche zu erkennen, sind mindestens 16 Bilder/s notwendig, optimal sind 50 Bilder/s.</p>
 <p>Ein Fernsehbild in Europa besteht aus 625 Zeilen, von denen 575 sichtbar sind. Die Bildwiederholfrequenz beträgt 25
-    Hz. Die Zeit für die Darstellung einer Zeile berechnet sich nach 1s/(25 * 625) = 64 µs.</p>
+    Hz. Die Zeit für die Darstellung einer Zeile berechnet sich nach
+    {{< formula >}} \frac{1\text{s}}{25 * 625} = 64 \mu \text{s}{{< /formula >}}.</p>
 <p>Um ein Flackern des Bilds zu vermeiden, wird ein Trick angewandt: Das <strong>Zeilensprungverfahren
     (interlaced)</strong> , bei dem zunächst alle ungeradzahligen Zeilen und erst danach die geradzahligen Zeilen
     angezeigt werden. Auf diese Weise behalten alle Bilder eine gleichmäßige Helligkeit und dem Menschen werden 50
     Halbbilder angezeigt, was scheinbar zu einer Verdopplung der Bildwiederholfrequenz führt.</p>
 <p>Video-Signale werden über einen einzigen Fernsehkanal übertragen.</p>
-<p><!--TODO: Fehlende Referenzen--> Kapitel 1,<!--TODO: Fehlende Referenzen--> Seite 137ff,
-    <!--TODO: Fehlende Referenzen--> Kapitel 5 </p>
+<p>
+  <!--TODO: Fehlende Referenzen-->
+  Kapitel 1,<!--TODO: Fehlende Referenzen-->
+  Seite 137ff,
+  <!--TODO: Fehlende Referenzen-->
+  Kapitel 5
+</p>
 
 <p><strong>Schwarz-weiß-Fernsehsignal</strong></p>
-<p>Ein Schwarzweiß-Fernsehsignal wird von einem <strong>BAS-Signal</strong> (Bild Austast Synchron Signal) übertragen.
-    Es handelt sich dabei um ein Videosignal mit Austast- und Synchronimpulsen.</p>
+<p>
+  Ein Schwarzweiß-Fernsehsignal wird von einem <strong>BAS-Signal</strong> (Bild
+  Austast Synchron Signal) übertragen. Es handelt sich dabei um ein Videosignal
+  mit Austast- und Synchronimpulsen.
+</p>
 <p>Ein BAS-Videosignal besteht aus folgenden Komponenten:</p>
 <ul>
-    <li>Bild- oder Helligkeitsinformation: B (auch Y- oder Luminanz-Signal)</li>
-    <li>Austastsignal: A</li>
-    <li>Synchronisationszeichen: S</li>
+  <li>Bild- oder Helligkeitsinformation: B (auch Y- oder Luminanz-Signal)</li>
+  <li>Austastsignal: A</li>
+  <li>Synchronisationszeichen: S</li>
 </ul>
-{{% image "Videokompression/1/4_1_2_signalverlauf.gif" "" "Abb. 5.1-1 Zwei mögliche Verläufe eines BAS-Signals" %}}
+{{% image url="Videokompression/1/4_1_2_signalverlauf.gif"
+caption="Abb. 5.1-1 Zwei mögliche Verläufe eines BAS-Signals" %}}
 
-<p><strong>Helligkeits- bzw. Leuchtdichtesignal = Luminanz- oder Y-Signal</strong></p>
+<p>
+  <strong
+    >Helligkeits- bzw. Leuchtdichtesignal = Luminanz- oder Y-Signal</strong
+  >
+</p>
 <ul>
-    <li>Die Kennwerte sind <!--TODO: Fehlende Referenzen-->Seite 147<br/>
-        Bildwiederholfrequenz: 25Hz Dauer eines Vollbildes 40ms<br/>
-        Vertikalfrequenz: 50Hz Dauer eines Halbbildes 20ms<br/>
-        Zeilenfrequenz: 15625 Hz Dauer einer Zeile 64ms
-    </li>
-</ul><!--TODO: Formatierung-->
+  <li>
+    Die Kennwerte sind
+    <!--TODO: Fehlende Referenzen-->Seite 147<br />
+    Bildwiederholfrequenz: 25Hz Dauer eines Vollbildes 40ms<br />
+    Vertikalfrequenz: 50Hz Dauer eines Halbbildes 20ms<br />
+    Zeilenfrequenz: 15625 Hz Dauer einer Zeile 64ms
+  </li>
+</ul>
+<!--TODO: Formatierung-->
 
-<p><strong>Austastsignal:</strong>Nach CCIR normiertes Signal für den (horizontalen und vertikalen) Rücklauf </p>
+<p>
+  <strong>Austastsignal:</strong>Nach CCIR normiertes Signal für den
+  (horizontalen und vertikalen) Rücklauf
+</p>
 <ul>
-    <li>horizontaler Rücklauf: 18% der Zeilendauer (12 µs)</li>
-    <li>vertikaler Rücklauf: 6% der Bilddauer (1,2 ms)</li>
+  <li>horizontaler Rücklauf: 18% der Zeilendauer (12 µs)</li>
+  <li>vertikaler Rücklauf: 6% der Bilddauer (1,2 ms)</li>
 </ul>
 
-<p><strong>Synchronisationsignal:</strong>Gleichlauf zwischen Bildabtastung (Kamera) und Bildaufbau (Monitor).</p>
+<p>
+  <strong>Synchronisationsignal:</strong>Gleichlauf zwischen Bildabtastung
+  (Kamera) und Bildaufbau (Monitor).
+</p>
 <p>Vertikalsynchronisation:</p>
 <ul>
-    <li>5 Vortrabanten (2,35 µs),</li>
-    <li>5 Bildwechselimpulse (27,3 µs),</li>
-    <li>5 Nachtrabanten (2.35 µs)</li>
+  <li>5 Vortrabanten (2,35 µs),</li>
+  <li>5 Bildwechselimpulse (27,3 µs),</li>
+  <li>5 Nachtrabanten (2.35 µs)</li>
 </ul>
-<p>Der zeitliche Abstand dieser Signale entspricht einer halben Zeilenperiode. Durch die Vor- und Nachtrabanten läßt
-    sich der Einfluß der durch das Zeilensprungverfahren zeitlich verschobenen Zeilen aufeinanderfolgender Halbraster
-    auf die vertikale Synchronisierung vermindern.</p>
+<p>
+  Der zeitliche Abstand dieser Signale entspricht einer halben Zeilenperiode.
+  Durch die Vor- und Nachtrabanten läßt sich der Einfluß der durch das
+  Zeilensprungverfahren zeitlich verschobenen Zeilen aufeinanderfolgender
+  Halbraster auf die vertikale Synchronisierung vermindern.
+</p>
 
 <p><strong>Farbinformation im Videosignal</strong></p>
 <p>Die Farbe eines Punktes wird durch ihren Helligkeitswert (Y = Luminanz), die Farbsättigung (FS) und den Farbton (FT)
     ausgedrückt (siehe Kapitel <!--TODO: Fehlende Referenzen-->Grundlagen des Farbeindrucks und Folgende!). Eine Kamera
     erzeugt für den Rot-, Grün- und Blauanteil je eine Spannung mit den Komponenten Y, FS und FT. Die entspricht dem
-    RGB-Signal. Werte R<sub>rot</sub>, G<sub>grün</sub> und B<sub>blau</sub> sind normiert, so dass R + G + B = 1
+    RGB-Signal. Werte {{< formula >}}R_{rot}{{< /formula >}}, {{< formula >}}G_{gruen}{{< /formula >}} und
+    {{< formula >}}B_{blau}{{< /formula >}} sind normiert, so dass {{< formula >}}R + G + B = 1{{< /formula >}}
     neutrales Weiß ergibt. Aus Kompatibilitätsgründen zum Schwarzweiß-System muss das BAS- unabhängig vom RGB-Signal
-    übertragen werden:</p><!--TODO: Formatierung-->
-<p>Y<sub>(weiß)</sub> = 0,3 R<sub>(rot)</sub> + 0,59 G<sub>(grün)</sub> + 0,11 B<sub>(blau)</sub>
+    übertragen werden:
+</p>
+<p>
+    {{< formula >}}Y_{(weiß)} = 0,3R_{rot} + 0,59 G_{(gruen)} + 0,11 B_{(blau)}{{< /formula >}}
 </p><!--TODO: Formatierung-->
 <p>Da das RGB-Signal sehr breitbandig ist, werden neben dem Y-Signal nur Informationen über Farbsättigung und Farbton
     als Farbdifferenzsignal R-Y, G-Y und B-Y übertragen. Um eine Übermodulation des Senders zu vermeiden, werden die
     Farbdifferenzsignale in ihrer Amplitude begrenzt. Das begrenzte Signal R-Y nennt man V und das B-Y-Signal U
     Komponente</p>
-<p>V = 0,877 (R - Y) und U = 0,493 (B - Y)</p>
-<p>Zur Vermeidung gegenseitiger Beeinflussungen, werden U und V zunächst (90° phasenversetzt) auf einen Hilfsträger
-    (F<sub>H</sub>=4,43MHz) moduliert und erst dann mit dem Y (BAS)-Signal gemischt. Dies nennt man FBAS-Signal
-    (Quadraturmodulation). Nach ITU 601 werden die U- und V-Komponenten auch als CR<sub>(rot)</sub> und
-    CB<sub>(blau)</sub> bezeichnet. Zur Synchronisation des Farbdemodulators wird zu Beginn des H-Synchronsignales (S)
-    ein Burst-Signal mit 10 bis 12 Schwingungen des Farbträgersignals übertragen.</p><!--TODO: Formatierung-->
+<p>{{< formula >}}V = 0,877 (R - Y){{< /formula >}} und {{< formula >}}U = 0,493 (B - Y){{< /formula >}}</p>
+<p>Zur Vermeidung gegenseitiger Beeinflussungen, werden {{< formula >}}U{{< /formula >}} und
+    {{< formula >}}V{{< /formula >}} zunächst (90° phasenversetzt) auf einen Hilfsträger
+    ({{< formula >}}{{< /formula >}}F_H = 4,43\text{MHz}) moduliert und erst dann mit dem
+    {{< formula >}}Y{{< /formula >}} (BAS)-Signal gemischt. Dies nennt man FBAS-Signal
+    (Quadraturmodulation). Nach ITU 601 werden die {{< formula >}}U{{< /formula >}}- und
+    {{< formula >}}V{{< /formula >}}-Komponenten auch als {{< formula >}}C_{R(rot)}{{< /formula >}} und
+    {{< formula >}}C_{B(blau)}{{< /formula >}} bezeichnet. Zur Synchronisation des Farbdemodulators wird zu Beginn des
+    H-Synchronsignales ({{< formula >}}S{{< /formula >}}) ein Burst-Signal mit 10 bis 12 Schwingungen des
+    Farbträgersignals übertragen.</p><!--TODO: Formatierung-->
 <p>Für die Übertragung von Farbsignalen kommen zum Einsatz: FBAS, Y/C bzw. S-Video und YUV bzw. YCbCr.</p>
 <p>Komponentensignale:</p>
-<!--TODO: Tabelle shortcode-->
+
+<table
+class="table table-bordered"
+>
+  <tbody>
+    <tr>
+      <th>Video-Signal</th>
+
+      <th colspan="3">Komponenten</th>
+
+      <th>Vorteil</th>
+
+      <th>Nachteil</th>
+    </tr>
+
+    <tr>
+      <td>FBAS</td>
+
+      <td colspan="3">F-BAS</td>
+
+      <td>
+        <div>einfache Verarbeitung, nur ein Übertragungskanal</div>
+      </td>
+
+      <td>
+        <div>
+          Verschachtelung von Y und C führt zu Übersprechproblem
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>YUV</td>
+
+      <td>Y</td>
+
+      <td>U</td>
+
+      <td>V</td>
+
+      <td>
+        <div>kein Übersprechen, breitband. Y-Signal</div>
+      </td>
+
+      <td>
+        <div>3 Signalwege erforderlich</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Y/C</td>
+
+      <td>Y</td>
+
+      <td>Chroma</td>
+
+      <td>&nbsp;</td>
+
+      <td>
+        <div>
+          geringes Übersprechen, einfache Signalverarbeitung
+        </div>
+      </td>
+
+      <td>
+        <div>2 Signalwege</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>RGB</td>
+
+      <td>R</td>
+
+      <td>G</td>
+
+      <td>B</td>
+
+      <td>
+        <div>
+          Hervorragende Signalqualität, exakte Kanaltrennung
+        </div>
+      </td>
+
+      <td>
+        <div>3 breitbandige Signalwege erforderlich</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p><strong>Fernsehnormen</strong></p>
 <p><strong>NTSC</strong>: National Television Systems Committee</p>
@@ -87,15 +216,15 @@ draft: true
     <li>525 Zeilen, 30 Hz Bildwiederholfrequenz
         <p>Quadraturamplitudenmodulation</p>
     </li>
-    <li>F<sub>B</sub> = 60 Hz Bildwiederholfrequenz<br/>
-        z = 525 Zeilenanzahl<br/>
-        F<sub>Z</sub> = 15750 Hz Zeilenfrequenz<br/>
-        F<sub>H</sub> = 3,58 MHz Frequenz in einer Zeile von Bildpunkt zu Bildpunkt
+    <li>{{< formula >}}F_B = 60{{< /formula >}} Hz Bildwiederholfrequenz<br/>
+        {{< formula >}}z = 525{{< /formula >}} Zeilenanzahl<br/>
+        {{< formula >}}F_Z = 15750{{< /formula >}} Hz Zeilenfrequenz<br/>
+        {{< formula >}}F_H = 3,58{{< /formula >}} MHz Frequenz in einer Zeile von Bildpunkt zu Bildpunkt
     </li>
-    <li>Kodierung erfolgt im YIQ-Signal<br/>
-        Y = 0,3 R + 0,59 G + 0,11 B<br/>
-        I = 0,6 R - 0,28 G - 0,32 B<br/>
-        Q = 0,21 R - 0,52 G + 0,31 B
+    <li>Kodierung erfolgt im {{< formula >}}\text{YIQ}{{< /formula >}}-Signal<br/>
+        {{< formula >}}Y = 0,3 R + 0,59 G + 0,11 B{{< /formula >}}<br/>
+        {{< formula >}}I = 0,6 R - 0,28 G - 0,32 B{{< /formula >}}<br/>
+        {{< formula >}}Q = 0,21 R - 0,52 G + 0,31 B{{< /formula >}}
     </li>
     <li>Durch Übertragungsfehler bedingte Phasenabweichungen führen leicht zu Farbverfälschungen.</li>
     <li>Die zur Übertragung von Luminanz- und Chrominanz-Signal notwendige Basisbandbreite beträgt 4,2 MHz.</li>
@@ -103,22 +232,28 @@ draft: true
 
 <p><strong>PAL</strong>: Phase Alternating Line</p>
 <ul>
-    <li>verbreitet in Westeuropa außer Frankreich</li>
-    <li>625 Zeilen, 25 Hz Bildwiederholfrequenz<br/>
-        Quadraturamplituden-Modulation
-    </li>
-    <li>Übertragungsfehler wirken sich auf die Farbsättigung aus, was jedoch als weniger störend empfunden wird als
-        Farbtonfehler.
-    </li>
-</ul><!--TODO: Formatierung-->
+  <li>verbreitet in Westeuropa außer Frankreich</li>
+  <li>
+    625 Zeilen, 25 Hz Bildwiederholfrequenz<br />
+    Quadraturamplituden-Modulation
+  </li>
+  <li>
+    Übertragungsfehler wirken sich auf die Farbsättigung aus, was jedoch als
+    weniger störend empfunden wird als Farbtonfehler.
+  </li>
+</ul>
+<!--TODO: Formatierung-->
 
-{{% image "Videokompression/1/4_1_3_pal.gif" "" "Abb. 5.1-2 Prinzip des PAL" %}}
+{{% image url="Videokompression/1/4_1_3_pal.gif" caption="Abb. 5.1-2 Prinzip des PAL" %}}
 
 <p><strong>SECAM</strong>: Sequentiel Couleur Avec Memoire</p>
 <ul>
-    <li>verbreitet in Frankreich und Osteuropa</li>
-    <li>625 Zeilen, 25 Hz Bildwiederholfrequenz<br/>
-        Frequenzmodulation (Farbdifferenzsignale werden nicht gleichzeitig übertragen, sondern abwechselnd Zeile für
-        Zeile mit Zwischenspeicherung der vorhergehenden Komponente)
-    </li>
-</ul><!--TODO: Formatierung-->
+  <li>verbreitet in Frankreich und Osteuropa</li>
+  <li>
+    625 Zeilen, 25 Hz Bildwiederholfrequenz<br />
+    Frequenzmodulation (Farbdifferenzsignale werden nicht gleichzeitig
+    übertragen, sondern abwechselnd Zeile für Zeile mit Zwischenspeicherung der
+    vorhergehenden Komponente)
+  </li>
+</ul>
+<!--TODO: Formatierung-->

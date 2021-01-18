@@ -11,7 +11,7 @@ draft: true
 <p>Die Entstehung eines Tones kann mit dem ADSR-Modell (Attack, Decay, Sustain, Release) beschrieben werden. Es
     beschreibt die Entstehungsweise des Tones bei den meisten natürlichen Musikinstrumenten.</p>
 
-{{% image "Audiotechnik/7/1_1_6_adsr_phasen.gif" "" "Abb. 2.7-0 ADSR-Phasen" %}}
+{{% image url="Audiotechnik/7/1_1_6_adsr_phasen.gif" caption="Abb. 2.7-0 ADSR-Phasen" %}}
 
 <h5>Attack Phase A:</h5><!--TODO: Formatierung-->
 <p>Beim Anschlagen der Taste (Anblasen einer Flöte, Streichen eines Bogens) steigt die Lautstärke in 3-10 ms auf ihr
@@ -33,7 +33,7 @@ draft: true
     Phase des Klanges wichtiger als die Nachahmung des Amplitudenverhaltens. Als Beispiel diene die Analyse eines
     Orgelklanges.</p>
 
-{{% image "Audiotechnik/7/1_1_7_phasen_der_schwingung_eines_orgelklanges.gif" "" "Abb. 2.7-1 Phasen der Schwingung eines Orgelklanges" %}}
+{{% image url="Audiotechnik/7/1_1_7_phasen_der_schwingung_eines_orgelklanges.gif" caption="Abb. 2.7-1 Phasen der Schwingung eines Orgelklanges" %}}
 
 <p>Attack Phase: Das Signal ist sehr chaotisch und ungeordnet, es klingt wie Rauschen. Die hochfrequenten Anteile haben
     relativ große Energieanteile. Die Amplitude vergrößert sich relativ schnell und erreicht ihr Maximum in etwa 3-10
@@ -48,7 +48,7 @@ draft: true
 <p>Ein Synthesizer ist ein elektronisches Gerät zur Erzeugung von Klängen, bestehend aus Oszillatoren, Filtern und
     Verstärkern.</p>
 
-{{% image "Audiotechnik/7/aufbau_synt.gif" "" "Abb. 2.7-2  Aufbau eines Synthesizers" %}}
+{{% image url="Audiotechnik/7/aufbau_synt.gif" caption="Abb. 2.7-2  Aufbau eines Synthesizers" %}}
 
 <p>Ein Oszillator liefert Signal, das mit Filtern und Verstärkern in seiner spektralen Zusammensetzung und in seinem
     Pegelverlauf variiert wird. Die Variation wird von außen (u.a.) durch einen LFO = Low Frequency Oszillator
@@ -65,14 +65,32 @@ draft: true
     Klangerzeugung.</p>
 <p>In jedem Synthesizer arbeiten Oszillatoren zur Erzeugung von Schwingungen. Dabei wird für jede zu bildende Schwingung
     ein eigener Oszillator benötigt. Die Oszillation lässt sich beschreiben als</p>
-<!--TODO: Formeln shortcode-->
+
+<p>
+{{< formula >}}
+f_0(x) = a_0 * sin(2\pi * x)
+{{< /formula >}}
+</p>
+
 <p>die erste Harmonische hätte die Form </p>
-<!--TODO: Formeln shortcode-->
-<p>und die n-te </p>
-<!--TODO: Formeln shortcode-->
-<p>Bei natürlichen Klängen ist die Folge ai fast immer monoton fallend, wobei a0 die Amplitude der Grundfrequenz am
-    größten ist. Bei natürlichen Quellen besitzen die niedrigen Frequenzen die größte Energie, höhere Frequenzen
-    bestimmen nur die Klangfarbe des Tones. </p>
+
+<p>
+{{< formula >}}
+f_1(x) = a_1 * sin(4\pi * x)
+{{< /formula >}}
+</p>
+
+<p>und die n-te</p>
+
+<p>
+    {{< formula >}}
+    f_n(x) = a_n * sin(n * 2\pi * x)
+    {{< /formula >}}
+</p>
+
+<p>Bei natürlichen Klängen ist die Folge ai fast immer monoton fallend, wobei {{< formula >}} a_0 {{< /formula >}} die
+    Amplitude der Grundfrequenz am größten ist. Bei natürlichen Quellen besitzen die niedrigen Frequenzen die größte
+    Energie, höhere Frequenzen bestimmen nur die Klangfarbe des Tones. </p>
 
 <h5>LFO (Low Frequency Oszillator)</h5>
 <p>Den niederfrequenten Oszillator nutzt man zur kontinuierlichen Einstellung klangbestimmender Parameter wie Amplitude,
@@ -91,31 +109,51 @@ draft: true
 
 <h2>2.7.3 Filter</h2>
 <p>Filter entfernen bestimmte Frequenzen vom Original. Die meisten Schnittsysteme bieten die folgenden Filter an. Die
-    Frequenzgänge der 4 wichtigsten Idealfilter Tiefpass, Hochpass, Bandpass und Bandsperre sind ( AudioOriginal (54 KB)
-    <!--TODO: Audio shortcode-->zum Vergleich):</p>
+    Frequenzgänge der 4 wichtigsten Idealfilter Tiefpass, Hochpass, Bandpass und Bandsperre sind:</p>
+<p>Audio zum Vergleich:</p>
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_8_filter_original.mp3" title="Original" %}}
+</div>
 
 <h5>Tiefpass:</h5><!--TODO: Formatierung-->
 <p>Lässt alle Frequenzen durch, die unter einer Grenzfrequenz liegen.</p>
 <!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_9_wirkung_eines_tiefpassfilters.mp3" title="Wirkung eines Tiefpassfilters" %}}
+</div>
 <h5>Hochpass:</h5><!--TODO: Formatierung-->
 <p>Es werden nur hochfrequente Anteile durchgelassen.</p>
 <!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_10_wirkung_eines_hochpassfilters.mp3" title="Wirkung eines Hochpassfilters" %}}
+</div>
 <h5>Bandpass, Bandsperre: </h5><!--TODO: Formatierung-->
 <p>Es werden die Frequenzanteile in einem Band durchgelassen bzw. gesperrt.</p>
 <!--TODO: Audio shortcode-->
-<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_11_wirkung_eines_bandpassfilters.mp3" title="Wirkung eines Bandpassfilters" %}}
+    {{% sound-sample url="Audiotechnik/07/1_2_12_wirkung_eines_bandsperrefilters.mp3" title="Wirkung eines Bandsperrefilters" %}}
+</div>
 
-{{% image "Audiotechnik/7/1_2_9_filter.gif" "" "Abb. 2.7-3 Filterkurven" %}}
+{{% image url="Audiotechnik/7/1_2_9_filter.gif" caption="Abb. 2.7-3 Filterkurven" %}}
 
-<p>Eine wichtige Eigenschaft ist die Linearität von Filtern. Wenn die Übertragungsfunktion des Filters ist, dann
-    bedeutet Linearität:</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+<p>Eine wichtige Eigenschaft ist die Linearität von Filtern. Wenn die Übertragungsfunktion des Filters
+    {{< formula >}} F(x) {{< /formula >}} ist, dann bedeutet Linearität:</p>
+<p>
+    {{< formula >}}
+    \forall a : F(ax) = aF(x)
+    {{< /formula >}}
+</p>
 
 <p>Vorteile: Ermöglicht einzelne Filter in beliebiger Folge darzustellen, d.h. eine Faltung aus mehreren
     aufeinanderfolgenden linearen Filtern ist kommutativ.</p>
 <p>Die zweite wichtige Eigenschaft der Filter ist die Zeitinvarianz. Sie besagt, dass die Reaktion des Systems auf eine
-    Eingangsfolge unabhängig von der Zeit des Antreffens dieser Folge ist.</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+    Eingangsfolge {{< formula >}} X_i {{< /formula >}} unabhängig von der Zeit des Antreffens dieser Folge ist.</p>
+<p>
+    {{< formula >}}
+    \forall\tau : F(X) \text{; } t = t_0 = F(X) \text{; } t = t_0 + \tau
+    {{< /formula >}}
+</p>
 
 <h5>LTI-Filter</h5>
 <p>LTI-Filter sind Filter, die sowohl linear als auch zeitinvariant sind (linear and time-invariant). Sie haben einige
@@ -125,21 +163,32 @@ draft: true
 <p>In Abhängigkeit davon, ob diese Funktion eine endliche oder eine unendliche Funktion ist, unterteilt man sie in
     FIR-(Finite Impuls Response) und IIR-(Infinite Impuls Response) Filter.</p>
 <p>Das Verhalten eines LTI-Systems wird oft als Differenzengleichung angegeben:</p>
-<!--TODO: Formeln shortcode-->
-<p>Dabei sind: und Eingangs- und Ausgangssignalfolgen; und Parameter, die Eigenschaften des LTI-Systems bestimmen; und
-    bestimmen die Anzahl der von Null verschiedenen Elemente der Folgen und .</p><!-- TODO: Formelzeichen-->
-<p>Die Daten am Ausgang des Filters werden mit Hilfe der Werte am Eingang und der letzten Ausgangswerte
-    berechnet:</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
-<p>Aus dieser Formel lässt sich einfach die Impulsantwort rekursiv berechnen, indem von und von einem -Impuls als
-    Eingabe ausgegangen wird.</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+
+{{% formulaRow f1 = "\sum \limits_{k=0}^N a_k * y * [n-k] = \sum \limits_{i=0}^M b_i * x * [n-i]" ref = "1.21" %}}
+
+<p>Dabei sind: {{< formula >}} x_i {{< /formula >}} und {{< formula >}} y_i {{< /formula >}} Eingangs- und
+    Ausgangssignalfolgen; {{< formula >}} a_i {{< /formula >}} und {{< formula >}} b_i {{< /formula >}} Parameter, die
+    Eigenschaften des LTI-Systems bestimmen; {{< formula >}} N {{< /formula >}} und {{< formula >}} M {{< /formula >}}
+    bestimmen die Anzahl der von Null verschiedenen Elemente der Folgen {{< formula >}} a_i {{< /formula >}} und
+    {{< formula >}} b_i {{< /formula >}} .</p>
+<p>Die Daten am Ausgang des Filters werden mit Hilfe der {{< formula >}} M {{< /formula >}} Werte am Eingang und der
+    {{< formula >}} N {{< /formula >}} letzten Ausgangswerte berechnet:</p>
+
+{{% formulaRow f1 = "y[n] = \frac{1}{b_0}(\sum \limits_{k=0}^M b_k x [n-k] - \sum \limits_{i=0}^N a_i y [n-k])" ref = "1.22" %}}
+
+<p>Aus dieser Formel lässt sich einfach die Impulsantwort {{< formula >}} h[n] {{< /formula >}} rekursiv berechnen,
+    indem von {{< formula >}} y[0] = 0 {{< /formula >}} und von einem {{< formula >}} \delta {{< /formula >}}-Impuls als Eingabe ausgegangen wird.</p><!-- TODO: Formelzeichen-->
+
+{{% formulaRow f1 = "h[n] = \frac{1}{a_0}(b_n - \sum \limits_{i=1}^N a_i h [n-i])" ref = "1.23" %}}
 
 <h5>FIR Filter</h5>
 <p>'Finite Impulse Response' Filter sind ein spezieller Typ der LTI-Filter, bei denen keine Rekursion existiert. Auf die
     Differenzengleichungen (1.21) bis (1.23) angewandt bedeutet dies, dass alle Koeffizienten gleich 0 sind.</p>
-<!--TODO: Formeln shortcode-->
-<!--TODO: Formeln shortcode-->
+
+{{% formulaRow f1 = "y[n] = \sum \limits_{i=0}^N b_i x [n-i]" ref = "1.24" %}}
+
+{{% formulaRow f1 = "h[n] = b_n" ref = "1.25" %}}
+
 <p>Die FIR Filter werden aus folgenden Gründen verwendet:</p>
 <ul>
     <li>FIR Filter mit linearer Phase können einfach entwickelt werden.</li>
@@ -155,13 +204,13 @@ draft: true
     </li>
 </ul>
 
-{{% image "Audiotechnik/7/1_2_10_grundaufbau_eines_fir_filters.gif" "" "Abb. 2.7-4 Grundaufbau eines FIR-Filters" %}}
+{{% image url="Audiotechnik/7/1_2_10_grundaufbau_eines_fir_filters.gif" caption="Abb. 2.7-4 Grundaufbau eines FIR-Filters" %}}
 
 <h5>IIR Filter</h5>
 <p>'Infinite Impuls Response' Filter sind rekursive LTI Systeme, die das Signal vom Ausgang des Filters rückkoppeln, um
     die gewünschte Eigenschaft des Signals mit weniger Elementen effizienter auszufiltern.</p>
 
-{{% image "Audiotechnik/7/1_2_11_grundaufbau_eines_iir_filters.gif" "" "Abb. 2.7-5 Grundaufbau eines IIR-Filters" %}}
+{{% image url="Audiotechnik/7/1_2_11_grundaufbau_eines_iir_filters.gif" caption="Abb. 2.7-5 Grundaufbau eines IIR-Filters" %}}
 
 <p>Durch die Rückkopplung entsteht am Ausgang des Filters beim Zufügen eines -Signals eine unendliche Impulsantwort. Die
     Zusammenhänge zwischen den Filterkoeffizienten und der Impulsantwort sind bei den IIR Filtern wesentlich
@@ -256,7 +305,7 @@ draft: true
     </li>
     <li><strong>Zeit-Verschiebungseffekte:</strong><br/>benutzen zeitverzögerte Signale:
 
-        {{% image "Audiotechnik/7/1_2_12_wirkung_der_schallverzoegerung.gif" "" "Abb. 2.7-6 Wirkung der Schallverzögerung" %}}
+        {{% image url="Audiotechnik/7/1_2_12_wirkung_der_schallverzoegerung.gif" caption="Abb. 2.7-6 Wirkung der Schallverzögerung" %}}
 
         <ul>
             <li>Effekte sind: GlossarDelay<!--TODO: Missing Hyperlink--> , GlossarEcho<!--TODO: Missing Hyperlink--> ,
@@ -316,10 +365,16 @@ draft: true
     FM-Synthesizer generiert eine Sinuswelle mit konstanter, hoher Frequenz und konstanter Lautstärke, die sogenannte
     Trägerwelle. Zu dieser mixt er die niederfrequente Schwingung des Modulators.</p>
 
-{{% image "Audiotechnik/7/1_1_8_frequent_modulation_s.gif" "" "Abb. 2.7-7 Prinzip der Frequenzmodulationssynthese" %}}
+{{% image url="Audiotechnik/7/1_1_8_frequent_modulation_s.gif" caption="Abb. 2.7-7 Prinzip der Frequenzmodulationssynthese" %}}
 
 <p>Das Signal folgt der nichtlinearen Gleichung: </p>
-<!--TODO: Formeln shortcode-->
+
+<p>
+    {{< formula >}}
+    f(t) = a_1 * sin(2\pi * f_1 * t + a_2 * sin(2\pi * f_2 * t))
+    {{< /formula >}}
+</p>
+
 <p>
     Die Veränderungen des Trägers sind durch die Ausgangslautstärke des Modulators einstellbar. In der Praxis wird die
     FM-Synthese mit diversen Rückkopplungsmöglichkeiten verknüpft. Der Klang kann durch einen weiteren Generator mit
@@ -344,7 +399,7 @@ draft: true
 <p>Beeinflussbare Parameter sind: Lautstärke (Amplitudenmodulation, Tremolo), Tonhöhe (FM, Vibrato) oder
     Filterabschaltfrequenz (Filtermodulation, Wah-Effekt). </p><!--TODO: Formatierung-->
 
-{{% image "Audiotechnik/7/sampling.gif" "" "Abb. 2.7-8 Sampling Synthese" %}}
+{{% image url="Audiotechnik/7/sampling.gif" caption="Abb. 2.7-8 Sampling Synthese" %}}
 
 <h5></h5>
 <p>Bei der Granularsynthese wird ein beliebiges Schallsignal in kurze (ms) Abschnitte (Grains) unterteilt. Diese Grains
@@ -361,4 +416,4 @@ draft: true
     nachgebildet und akustisch simuliert. Damit wird ein naturgetreuer Klang möglich. Es ist jedoch eine sehr hohe
     Rechenleistung nötig.</p><!--TODO: Formatierung-->
 
-{{% image "Audiotechnik/7/soundkartenschema.gif" "" "Abb. 2.7-9  Aufbauschema einer Soundkarte" %}}
+{{% image url="Audiotechnik/7/soundkartenschema.gif" caption="Abb. 2.7-9  Aufbauschema einer Soundkarte" %}}

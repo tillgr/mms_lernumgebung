@@ -1,5 +1,5 @@
 ---
-title: "2.3  Digitalisierung"
+title: "2.3  Digitale Audiosignale"
 date: 2020-10-12T09:49:41+02:00
 draft: true
 ---
@@ -10,7 +10,7 @@ draft: true
     das Analogsignal gemessen und diese Messwerte (Samples) sequenziell gespeichert. So erhält man aus einem vorher
     zeit- und wertkontinuierlichen Signal ein zeit- und wertdiskretes Digitalsignal.</p>
 
-{{% image "Audiotechnik/3/1_3_1_ad_da_wandlung.gif" "" "Abb. 2.3-0 A/D-D/A-Wandlung" %}}
+{{% image url="Audiotechnik/3/1_3_1_ad_da_wandlung.gif" caption="Abb. 2.3-0 A/D-D/A-Wandlung" %}}
 
 <h2>2.3.2 Abtasttheorem</h2>
 <p>Nach dem von Shannon und Nyquist formulierten Abtasttheorem kann ein Signal ohne Informationsverlust rekonstruiert
@@ -20,13 +20,13 @@ draft: true
 <p><strong>Abtasttheorem:</strong> Abtastfrequenz > 2 x größte Signalfrequenz</p>
 <p>Bei Nichtbeachtung des Abtasttheorems, d.h. wenn das abzutastende Signal Frequenzen über der halben Abtastfrequenz
     enthält, entstehen bei der Abtastung sogenannte Glossar Aliasfrequenzen. <!--TODO: Missing Hyperlink--></p>
-{{% image "Audiotechnik/3/1_3_2a_aliasingeffekt.gif" "" "Abb. 2.3-1 Aliasingeffekt bei falscher Abtastfrequenz" %}}
+{{% image url="Audiotechnik/3/1_3_2a_aliasingeffekt.gif" caption="Abb. 2.3-1 Aliasingeffekt bei falscher Abtastfrequenz" %}}
 
 <p>Daher wird das Audiosignal vor der AD-Wandlung durch einen bandbreitenbegrenzenden Tiefpassfilter geleitet. Da Filter
     eine begrenzte Flankensteilheit aufweisen, wird die notwendige Dämpfung jedoch erst unterhalb der halben
     Abtastfrequenz erreicht. So wird bei einem 20 kHz-Filter die notwendige Dämpfung bei ca. 22 kHz erreicht, wodurch
     sich eine Abtastfrequenz von 44,1 kHz ergibt.</p>
-{{% image "Audiotechnik/3/1_3_2_signal_spektrum.gif" "" "Abb. 2.3-2  a) Signal/Spektrum Sinuskurve b) Signal/Spektrum Samplepulse c) Signal/Spektrum der gesampleten Sinuskurve" %}}
+{{% image url="Audiotechnik/3/1_3_2_signal_spektrum.gif" caption="Abb. 2.3-2  a) Signal/Spektrum Sinuskurve b) Signal/Spektrum Samplepulse c) Signal/Spektrum der gesampleten Sinuskurve" %}}
 
 <p>Durch Überlagerung des Originalsignals s(t) mit der Abtastfrequenz f A entstehen Summen- und Differenzbänder, die
     sich jeweils an den ganzzahligen Vielfachen der Abtastfrequenz ergeben.</p>
@@ -43,7 +43,7 @@ draft: true
     Amplitudenwelle speichert. Diese Quantisierung legt fest, wie stark man die gemessenen Werte runden muss. Alle
     Messwerte eines Signals, die zwischen den einzelnen Quantisierungsstufen liegen, müssen auf- bzw. abgerundet werden.
     Bei einer Auflösung von 8 Bit können 256 und bei 16 Bit können 65 536 verschiedene Werte unterschieden werden.</p>
-{{% image "Audiotechnik/3/1_3_3_3bit_quantisierung.gif" "" "Abb. 2.3-3 3bit-Quantisierung" %}}
+{{% image url="Audiotechnik/3/1_3_3_3bit_quantisierung.gif" caption="Abb. 2.3-3 3bit-Quantisierung" %}}
 
 <h5>Oversampling</h5>
 <p>Die zwischen zwei Abtastwerten fehlende Information macht sich bei der Demodulation als Rauschen bemerkbar.</p>
@@ -76,10 +76,13 @@ draft: true
 <p>Die Amplitudenwerte werden auf gleich große Intervalle abgebildet, das Quantisierungs-Rauschen ist
     konstant.</p><!--TODO: Formatierung-->
 
-{{% image "Audiotechnik/3/1_3_4_lineare_quantisierung.gif" "" "Abb. 2.3-4 Lineare Quantisierung" %}}
+{{% image url="Audiotechnik/3/1_3_4_lineare_quantisierung.gif" caption="Abb. 2.3-4 Lineare Quantisierung" %}}
 
 <p>Hörbeispiele:</p><!--TODO: Formatierung-->
-<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/03/1_3_1_originalmusikstueck.mp3" title="Originalmusikstück" %}}
+    {{% sound-sample url="Audiotechnik/03/1_3_2_musikstueck_mit_linearem_quantisierungsrauschen.mp3" title="Musikstück mit linearem Quantisierungsrauschen" %}}
+</div>
 
 <p><strong><em>Nichtlineare Quantisierung:</em></strong></p>
 <p>Hier ist diese Skala logarithmisch aufgeteilt, d.h. kleine Pegel werden mit hoher Auflösung und große Pegel mit
@@ -89,30 +92,32 @@ draft: true
 <p>Es ergibt sich insgesamt ein besserer Rauschspannungs-Abstand (SNR), so dass bei der nichtlinearen Quantisierung die
     Auflösung geringer sein kann.</p><!--TODO: Formatierung-->
 
-{{% image "Audiotechnik/3/1_3_5_nichtlineare_quantisierung.gif" "" "Abb. 2.3-5 Nichtlineare Quantisierung" %}}
+{{% image url="Audiotechnik/3/1_3_5_nichtlineare_quantisierung.gif" caption="Abb. 2.3-5 Nichtlineare Quantisierung" %}}
 
 <p>Hörbeispiele:</p><!--TODO: Formatierung-->
-<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/03/1_3_3_musikstueck_mit_nichtlinearem_quantisierungsrauschen.mp3" title="Musikstück mit nichtlinearem Quantisierungsrauschen" %}}
+</div>
 
 <p><strong><em>Beispiel:</em></strong></p><!--TODO: Formatierung-->
 <p>12 Bit nichtlinear entsprechen 16 Bit linear, was u.a. im DAT-Recorder im Longplay-Modus Anwendung findet</p>
 <p>Beim amerikanische Telefonformat µLaw bzw. dem europäische ALaw wird mit 8 Bit nichtlinear quantisiert, was 12 Bit
-    linearer Quantisierung entspricht.</p><!-- TODO: Formelzeichen-->
+    linearer Quantisierung entspricht.</p>
 
-{{% image "Audiotechnik/3/dithering.gif" "" "Abb. 2.3-6 Einfluss des Dithering bei der Quantisierung eines 1 kHz-Audiosignals (Samplingrate 44,1 kHz, Auflösung 16 bit)" %}}
+{{% image url="Audiotechnik/3/dithering.gif" caption="Abb. 2.3-6 Einfluss des Dithering bei der Quantisierung eines 1 kHz-Audiosignals (Samplingrate 44,1 kHz, Auflösung 16 bit)" %}}
 
 <p>TPDF: Triangular Probabilty Density Function </p>
 <p>Nachstehende Abbildung zeigt das bei einer Auflösung von 16, 18 bzw. 20 bit entstehende Quantisierungsrauschen im
     Vergleich zur (durchschnittlichen) Hörschwelle des Menschen.</p>
-{{% image "Audiotechnik/3/quantisierung.gif" "" "Abb. 2.3-7 Quantisierungsrauschen in Abhängigkeit von der Auflösung" %}}
+{{% image url="Audiotechnik/3/quantisierung.gif" caption="Abb. 2.3-7 Quantisierungsrauschen in Abhängigkeit von der Auflösung" %}}
 
 <p>Die Codierung im Übertragungskanal hat einen entscheidenenden Einfluss auf die wahrgenommene Qualität. Je grösser der
     hörbare Rauschanteil ist, um so geringer wird im Allgemeinen die Qualität des Audiosignals beurteilt. Im folgenden
     werden jeweils der Dynamikbereich und das durch die Kanalcodierung entstehende Rauschen von Compact Disc,
     Langspielplatte und UKW-Radio dargestellt.</p>
 
-{{% image "Audiotechnik/3/kodierung_cd.gif" "" "Abb. 2.3-8 Rauschen und Dynamikbereich der CD" %}}
-{{% image "Audiotechnik/3/kodierung_lp.gif" "" "Abb. 2.3-9 Rauschen und Dynamikbereich der LP" %}}
-{{% image "Audiotechnik/3/kodierung_fm.gif" "" "Abb. 2.3-10 Rauschen und Dynamikbereich von UKW-Radio" %}}
+{{% image url="Audiotechnik/3/kodierung_cd.gif" caption="Abb. 2.3-8 Rauschen und Dynamikbereich der CD" %}}
+{{% image url="Audiotechnik/3/kodierung_lp.gif" caption="Abb. 2.3-9 Rauschen und Dynamikbereich der LP" %}}
+{{% image url="Audiotechnik/3/kodierung_fm.gif" caption="Abb. 2.3-10 Rauschen und Dynamikbereich von UKW-Radio" %}}
 
 {{% snippets/LinearNonLinearQuantization "Quantisierung & Digitalisierung von Audiosignalen"%}}

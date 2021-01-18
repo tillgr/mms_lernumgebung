@@ -5,259 +5,697 @@ draft: true
 ---
 
 <p>Verlustfreie Kompressionsverfahren haben das Ziel, durch geeignete Verfahren die Redundanz aus Datenmengen (bei
-    Bildern den Pixelwerten) zu entfernen. Die <em>Kompressionseffizienz (C)</em> errechnet sich aus <em>C =
-        ursprüngliche Größe / komprimierte Größe</em>; die <strong>Redundanz (R)</strong> aus <em>R = 1-1/C</em>. Die
-    Güte eines Kompressionsverfahrens liefert der Vergleich der theoretisch maximalen mit der erreichbaren
-    Kompressionsrate. Nach Shannon's Quellenkodierungstheorem ist es nicht möglich, eine höhere Kompressionseffizienz zu
-    erzielen als die Entropie der Nachrichtenquelle.</p><!--TODO: Formeln shortcode-->
-<p>Die Entropie-Kodierung arbeitet verlustfrei. Nach dem Satz von Shannon ist die maximale Entropie H(S) einer
-    Informationsquelle S definiert durch</p>
-<!--TODO: Formeln shortcode-->
+    Bildern den Pixelwerten) zu entfernen. Die <em>Kompressionseffizienz (C)</em> errechnet sich aus
+    {{< formula >}} C {{< /formula >}} <em>= ursprüngliche Größe / komprimierte Größe</em>; die <strong>Redundanz (R)</strong>
+    aus {{< formula >}} R = 1 - 1/C {{< /formula >}}. Die Güte eines Kompressionsverfahrens liefert der Vergleich der
+    theoretisch maximalen mit der erreichbaren Kompressionsrate. Nach Shannon's Quellenkodierungstheorem ist es nicht
+    möglich, eine höhere Kompressionseffizienz zu erzielen als die Entropie der Nachrichtenquelle.</p><!--TODO: Formatierung-->
+<p>Die Entropie-Kodierung arbeitet verlustfrei. Nach dem Satz von Shannon ist die maximale Entropie
+    {{< formula >}} H(S) {{< /formula >}} einer Informationsquelle {{< formula >}} S {{< /formula >}} definiert durch</p>
 
-<p>wobei pi die Wahrscheinlichkeit des Auftretens vom Symbol Si ist; ld(1/pi) ist der Logarithmus zur Basis 2 von 1/pi
-    und gibt an, wieviel Bits benötigt werden, um das Symbol Si zu codieren.</p><!--TODO: Formelzeichen-->
+<p>
+    {{< formula >}} H(S) = \sum (p_i * \log_{2}(\frac{1}{p_i})) {{< /formula >}}
+</p>
+
+<p>wobei {{< formula >}} p_i {{< /formula >}} die Wahrscheinlichkeit des Auftretens vom Symbol
+    {{< formula >}} S_i {{< /formula >}} ist; {{< formula >}} \log_{2}(1/p_i) {{< /formula >}} ist der Logarithmus zur
+    Basis 2 von {{< formula >}} 1/p_i {{< /formula >}} und gibt an, wieviel Bits benötigt werden, um das Symbol
+    {{< formula >}} S_i {{< /formula >}} zu codieren.</p><!--TODO: Formatierung-->
 
 <p><u>Beispiel:</u></p>
 <ul>
-    <li>Für ein Bild mit gleichverteilten 256 Graustufenwerten gilt pi = 1/256. Es werden 8 Bit zur Codierung der
-        Grauwerte benötigt. Die Entropie des Bildes ist 8.
-    </li>
-</ul><!--TODO: Formatierung-->
-<p>Die Algorithmen werden mit folgendem einfachen Beispiel erläutert, das von folgender Häufigkeitsverteilung
-    ausgeht:</p>
-<!--TODO: Tabelle shortcode-->
+  <li>
+    Für ein Bild mit gleichverteilten 256 Graustufenwerten gilt pi = 1/256. Es
+    werden 8 Bit zur Codierung der Grauwerte benötigt. Die Entropie des Bildes
+    ist 8.
+  </li>
+</ul>
+<!--TODO: Formatierung-->
+<p>
+  Die Algorithmen werden mit folgendem einfachen Beispiel erläutert, das von
+  folgender Häufigkeitsverteilung ausgeht:
+</p>
 
-<p>Ein Code mit fester Wortlänge benötigt 3 bit pro Symbol: (15 + 7 + 6 + 6 + 5)*3 = 39*3 = 117 bit .</p>
-<p>Wird für die häufigsten Symbole ein kürzerer, für die seltenen ein längerer Code verwendet, so ergibt sich ein
-    Speicherbedarf von:</p>
-<!--TODO: Tabelle shortcode-->
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th>Symbol</th>
+
+      <td>A</td>
+
+      <td>B</td>
+
+      <td>C</td>
+
+      <td>D</td>
+
+      <td>E</td>
+    </tr>
+
+    <tr>
+      <th>Anzahl</th>
+
+      <td>15</td>
+
+      <td>7</td>
+
+      <td>6</td>
+
+      <td>6</td>
+
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Ein Code mit fester Wortlänge benötigt 3 bit pro Symbol: (15 + 7 + 6 + 6 +
+  5)*3 = 39*3 = 117 bit .
+</p>
+<p>
+  Wird für die häufigsten Symbole ein kürzerer, für die seltenen ein längerer
+  Code verwendet, so ergibt sich ein Speicherbedarf von:
+</p>
+
+<table
+class="table table-bordered"
+>
+  <tbody>
+    <tr>
+      <th>Symbol</th>
+
+      <td>A</td>
+
+      <td>B</td>
+
+      <td>C</td>
+
+      <td>D</td>
+
+      <td>E</td>
+    </tr>
+
+    <tr>
+      <th>Code</th>
+
+      <td>0</td>
+
+      <td>10</td>
+
+      <td>11</td>
+
+      <td>110</td>
+
+      <td>111</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>15*1 + 7*2 + 6*2 + 6*3 + 5*3 = 15 + 14 + 12 + 18 + 15 = 74 bit</p>
-<p>Mit zunehmender Zahl von Symbolen würde bei diesem Ansatz die Länge der Codeworte rasch steigen. Deshalb werden in
-    der Praxis andere Algorithmen verwendet.</p>
+<p>
+  Mit zunehmender Zahl von Symbolen würde bei diesem Ansatz die Länge der
+  Codeworte rasch steigen. Deshalb werden in der Praxis andere Algorithmen
+  verwendet.
+</p>
 
 <h2>4.2.1 Shannon-Fano-Algorithmus</h2>
-<p>Der Algorithmus arbeitet nach einem Top-Down-Ansatz: Die Symbole werden nach der Häufigkeit ihres Auftretens
-    sortiert. Die Folge der Häufigkeiten wird rekusiv in jeweils zwei Teile geteilt, wobei in jeder Hälfte die Summe der
-    Anzahl etwa gleich sein sollte. Linke Zweige werden mit '0' und rechte Zweige mit '1' bewertet.</p>
+<p>
+  Der Algorithmus arbeitet nach einem Top-Down-Ansatz: Die Symbole werden nach
+  der Häufigkeit ihres Auftretens sortiert. Die Folge der Häufigkeiten wird
+  rekusiv in jeweils zwei Teile geteilt, wobei in jeder Hälfte die Summe der
+  Anzahl etwa gleich sein sollte. Linke Zweige werden mit '0' und rechte Zweige
+  mit '1' bewertet.
+</p>
 
-<p><strong><u>Beispiel:</u></strong></p>
-{{% image "Bildkompression/2/3_2_1_shannon-fano.gif" "" "Abb. 4.2-0 Prinzip des Shannon-Fano-Algorithmus" %}}
+<p>
+  <strong><u>Beispiel:</u></strong>
+</p>
+{{% image url="Bildkompression/2/3_2_1_shannon-fano.gif"
+caption="Abb. 4.2-0 Prinzip des Shannon-Fano-Algorithmus" %}}
 <ul>
-    <li>Es ergibt sich folgende Kodierung bzw. folgender Speicherbedarf von 89 bit</li>
+  <li>
+    Es ergibt sich folgende Kodierung bzw. folgender Speicherbedarf von 89 bit
+  </li>
 </ul>
-<!--TODO: Tabelle shortcode-->
+
+<table class="table table-bordered">
+  <tbody>
+    <trh>
+
+      <th>Anzahl</th>
+
+      <th>ld (1/p)</th>
+
+      <th>Code</th>
+
+      <th>Anzahl bits</th>
+
+      <th>ld (1/p) * |Anzahl bits|</th>
+    </tr>
+
+    <tr>
+      <td>A</td>
+
+      <td>15</td>
+
+      <td>1.38</td>
+
+      <td>00</td>
+
+      <td>30</td>
+    </tr>
+
+    <tr>
+      <td>B</td>
+
+      <td>7</td>
+
+      <td>2.48</td>
+
+      <td>01</td>
+
+      <td>14</td>
+    </tr>
+
+    <tr>
+      <td>C</td>
+
+      <td>6</td>
+
+      <td>2.70</td>
+
+      <td>10</td>
+
+      <td>12</td>
+    </tr>
+
+    <tr>
+      <td>D</td>
+
+      <td>6</td>
+
+      <td>2.70</td>
+
+      <td>110</td>
+
+      <td>18</td>
+    </tr>
+
+    <tr>
+      <td>E</td>
+
+      <td>5</td>
+
+      <td>2.96</td>
+
+      <td>111</td>
+
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
 <!--TODO: Applet ShannonFano-Kodierung-->
 
 <h2>4.2.2 Huffman-Kodierung</h2>
-<p>Für jedes Zeichen einer Datenmenge wird die Wahrscheinlichkeit (Häufigkeit) des Auftretens ermittelt. Die Kodierung
-    erfolgt mit variabler Länge (Anzahl der Bits). Das am häufigsten auftretende Zeichen erhält das kürzeste
-    Codewort.</p>
-{{% image "Bildkompression/2/3_2_2_huffmann-kodierung.gif" "" "Abb. 4.2-1 Prinzip der Huffman-Kodierung" %}}
+<p>
+  Für jedes Zeichen einer Datenmenge wird die Wahrscheinlichkeit (Häufigkeit)
+  des Auftretens ermittelt. Die Kodierung erfolgt mit variabler Länge (Anzahl
+  der Bits). Das am häufigsten auftretende Zeichen erhält das kürzeste Codewort.
+</p>
+{{% image url="Bildkompression/2/3_2_2_huffmann-kodierung.gif"
+caption="Abb. 4.2-1 Prinzip der Huffman-Kodierung" %}}
 
 <p>Dieser Algorithmus verfolgt einen Bottom-Up-Ansatz:</p>
 <ol>
-    <li>Initialisierung: Alle Knoten werden in eine OPEN-Liste sortiert eingetragen, z.B.: A,B,C,D,E.</li>
-    <li>Folgendes wird wiederholt, bis die OPEN-Liste nur noch einen Knoten enthält:
-        <ul>
-            <li>Die beiden Knoten X,Y mit geringster Häufigkeit werden aus der OPEN-Liste genommen und hierfür ein
-                Eltern-Knoten XY erzeugt.
-            </li>
-            <li>Dem neuen Knoten XY wird die Summe der Häufigkeiten seiner beiden Kinder X und Y zugeteilt und in der
-                OPEN-Liste eingetragen.
-            </li>
-            <li>Den beiden Zweigern zu den Kind-Knoten werden die Werte '0' und '1' zugeteilt und sie werden aus der
-                OPEN-Liste gelöscht.
-            </li>
-        </ul>
-    </li>
+  <li>
+    Initialisierung: Alle Knoten werden in eine OPEN-Liste sortiert eingetragen,
+    z.B.: A,B,C,D,E.
+  </li>
+  <li>
+    Folgendes wird wiederholt, bis die OPEN-Liste nur noch einen Knoten enthält:
+    <ul>
+      <li>
+        Die beiden Knoten X,Y mit geringster Häufigkeit werden aus der
+        OPEN-Liste genommen und hierfür ein Eltern-Knoten XY erzeugt.
+      </li>
+      <li>
+        Dem neuen Knoten XY wird die Summe der Häufigkeiten seiner beiden Kinder
+        X und Y zugeteilt und in der OPEN-Liste eingetragen.
+      </li>
+      <li>
+        Den beiden Zweigern zu den Kind-Knoten werden die Werte '0' und '1'
+        zugeteilt und sie werden aus der OPEN-Liste gelöscht.
+      </li>
+    </ul>
+  </li>
 </ol>
 
-<p><u>Beispiel:</u> Für die 8 Quellsymbole 'a' bis 'h' benötigt man i.allg. 3 Bit/Zeichen. Bei der Huffman-Kodierung
-    sind es durchschnittlich nur 1.98 Bit/Zeichen.</p>
-<p>Die Dekodierung des Shannon-Fano- und des Huffman-Algorithmus ist einfach, sofern die Kodierungstabelle vor den Daten
-    übertragen bzw. mit den Daten gespeichert wird.</p>
-<p>Kein Codewort ist Beginn eines anderen, die Kodierung ist eindeutig (Fano-Bedingung) und einfach zu dekodieren (alle
-    Codesymbole sind Blattknoten des Codebaums).</p>
-<p>Wenn Statistiken über die Daten existieren, liefert die Huffman-Kodierung sehr kompakte Daten.</p>
+<p>
+  <u>Beispiel:</u> Für die 8 Quellsymbole 'a' bis 'h' benötigt man i.allg. 3
+  Bit/Zeichen. Bei der Huffman-Kodierung sind es durchschnittlich nur 1.98
+  Bit/Zeichen.
+</p>
+<p>
+  Die Dekodierung des Shannon-Fano- und des Huffman-Algorithmus ist einfach,
+  sofern die Kodierungstabelle vor den Daten übertragen bzw. mit den Daten
+  gespeichert wird.
+</p>
+<p>
+  Kein Codewort ist Beginn eines anderen, die Kodierung ist eindeutig
+  (Fano-Bedingung) und einfach zu dekodieren (alle Codesymbole sind Blattknoten
+  des Codebaums).
+</p>
+<p>
+  Wenn Statistiken über die Daten existieren, liefert die Huffman-Kodierung sehr
+  kompakte Daten.
+</p>
 <!--TODO: Applet Huffman-Kodierung-->
 <!--TODO: Applet Huffman-Kodierung-->
 
 <h2>4.2.3 Pack-Bit-Kodierung</h2>
-<p>Bei der Pack-Bit-Kodierung werden die Bilddaten satzweise gespeichert. Das erste Byte eines Satzes ist der Header,
-    der die Anzahl der nachfolgenden Datenbytes angibt. Es werden folgende Header-Typen unterschieden:</p>
+<p>
+  Bei der Pack-Bit-Kodierung werden die Bilddaten satzweise gespeichert. Das
+  erste Byte eines Satzes ist der Header, der die Anzahl der nachfolgenden
+  Datenbytes angibt. Es werden folgende Header-Typen unterschieden:
+</p>
 <ul>
-    <li><strong>Header 0...7FH</strong> : Satz besteht aus dem Headerbyte und n+1 Datenbytes (n = Wert des Headers): In
-        diesem Fall werden die nachfolgenden Datenbytes (z.B. Farbwert) direkt auf dem Bildschirm ausgegeben
-        (unkomprimierter Satz).
-    </li>
-    <li><strong>Header 81H...FFH</strong> : Dem Headerbyte folgt ein Datenbyte, das dem Farbwert der folgenden n Pixel
-        entspricht. Die Anzahl n entspricht dem Wert des Headers minus 80H (komprimierter Satz).
-    </li>
+  <li>
+    <strong>Header 0...7FH</strong> : Satz besteht aus dem Headerbyte und n+1
+    Datenbytes (n = Wert des Headers): In diesem Fall werden die nachfolgenden
+    Datenbytes (z.B. Farbwert) direkt auf dem Bildschirm ausgegeben
+    (unkomprimierter Satz).
+  </li>
+  <li>
+    <strong>Header 81H...FFH</strong> : Dem Headerbyte folgt ein Datenbyte, das
+    dem Farbwert der folgenden n Pixel entspricht. Die Anzahl n entspricht dem
+    Wert des Headers minus 80H (komprimierter Satz).
+  </li>
 </ul>
 
 <h2>4.2.4 FAX-Komprimierung</h2>
-<p>Die Fax-Komprimierung wird auch als 'Modified Huffman Kompression' für schwarzweisse Bilder bezeichnet.</p>
+<p>
+  Die Fax-Komprimierung wird auch als 'Modified Huffman Kompression' für
+  schwarzweisse Bilder bezeichnet.
+</p>
 <p>Die Fax-Norm definiert 4 Tabellen:</p>
 <ul>
-    <li><strong>'Terminator-Codes' Tabelle:</strong>
-        <ul>
-            <li>Für max. 63 zusammenhängende schwarze Punkte (run length) ist ein Codewort auf Bitebene definiert.
-                Häufig vorkommende Werte erhalten kürzere Codewörter, z.B.
-            </li>
-            <!--TODO: Tabelle shortcode-->
-        </ul>
-    </li>
-    <li><strong>'Make-Up-Codes' Tabelle:</strong> Gilt für mehr als 63 aufeinander folgende Punkte:
-        <ul>
-            <li>Es sind 28 weitere Gruppen definiert, mit 64, 128, ... bis 1728 aufeinander folgenden Punkten, z.B.</li>
-            <!--TODO: Tabelle shortcode-->
-        </ul>
-    </li>
-    <li>Zudem gibt es eine entsprechende 'Terminator-Codes' und 'Make-Up-Codes' Tabelle für nebeneinanderliegende weiße
-        Punkte.
-    </li>
+  <li>
+    <strong>'Terminator-Codes' Tabelle:</strong>
+    <ul>
+      <li>
+        Für max. 63 zusammenhängende schwarze Punkte (run length) ist ein
+        Codewort auf Bitebene definiert. Häufig vorkommende Werte erhalten
+        kürzere Codewörter, z.B.
+      </li>
+
+      <table class="table table-bordered" >
+        <tbody>
+          <tr>
+            <th>
+              Anzahl schwarzer Punkte
+            </th>
+
+            <th>Code</th>
+          </tr>
+
+          <tr>
+            <td>1</td>
+
+            <td>010</td>
+          </tr>
+
+          <tr>
+            <td>2</td>
+
+            <td>11</td>
+          </tr>
+
+          <tr>
+            <td>3</td>
+
+            <td>10</td>
+          </tr>
+
+          <tr>
+            <td>...</td>
+
+            <td>...</td>
+          </tr>
+
+          <tr>
+            <td>62</td>
+
+            <td>000001100110</td>
+          </tr>
+
+          <tr>
+            <td>63</td>
+
+            <td>000001100111</td>
+          </tr>
+        </tbody>
+      </table>
+    </ul>
+  </li>
+  <li>
+    <strong>'Make-Up-Codes' Tabelle:</strong> Gilt für mehr als 63 aufeinander
+    folgende Punkte:
+    <ul>
+      <li>
+        Es sind 28 weitere Gruppen definiert, mit 64, 128, ... bis 1728
+        aufeinander folgenden Punkten, z.B.
+      </li>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>
+              Anzahl schwarzer
+              Punkte
+            </th>
+
+            <th>Code</th>
+          </tr>
+
+          <tr>
+            <td>64</td>
+
+            <td>0000001111</td>
+          </tr>
+
+          <tr>
+            <td>128</td>
+
+            <td>000011001000</td>
+          </tr>
+
+          <tr>
+            <td>192</td>
+
+            <td>000011001001</td>
+          </tr>
+
+          <tr>
+            <td>...</td>
+
+            <td>...</td>
+          </tr>
+
+          <tr>
+            <td>1664</td>
+
+            <td>0000001100100</td>
+          </tr>
+
+          <tr>
+            <td>1728</td>
+
+            <td>0000001100101</td>
+          </tr>
+        </tbody>
+      </table>
+    </ul>
+  </li>
+  <li>
+    Zudem gibt es eine entsprechende 'Terminator-Codes' und 'Make-Up-Codes'
+    Tabelle für nebeneinanderliegende weiße Punkte.
+  </li>
 </ul>
 
 <p><u>Arbeitsweise:</u></p>
-<p>Zunächst werden die Bildpunkte einer Reihe analysiert, indem nach zusammenhängenden Gruppen von weissen bzw.
-    schwarzen Punkten gesucht wird. Die Punktanzahl wird durch dazugehörige Codes zusammengefasst. Punktfolgen zwischen
-    0 und 63 werden direkt mit dem Terminatorcode aus der Tabelle kodiert. Folgen mit mehr als 64 Punkten werden zuerst
-    mit einem Make-up-Code (Tabelleneintrag mit der nächst kleineren Pixelanzahl) eingeleitet; dann folgt der
-    Terminatorcode, in dem die Differenz zum eigentlichen Wert gespeichert wird.</p>
+<p>
+  Zunächst werden die Bildpunkte einer Reihe analysiert, indem nach
+  zusammenhängenden Gruppen von weissen bzw. schwarzen Punkten gesucht wird. Die
+  Punktanzahl wird durch dazugehörige Codes zusammengefasst. Punktfolgen
+  zwischen 0 und 63 werden direkt mit dem Terminatorcode aus der Tabelle
+  kodiert. Folgen mit mehr als 64 Punkten werden zuerst mit einem Make-up-Code
+  (Tabelleneintrag mit der nächst kleineren Pixelanzahl) eingeleitet; dann folgt
+  der Terminatorcode, in dem die Differenz zum eigentlichen Wert gespeichert
+  wird.
+</p>
 
 <p><u>Beispiel:</u></p>
-<p>Gegeben sei eine Folge von 131 Punkten. Die Punktanzahl ist größer als 64, d.h. der nächstkleinere Make-Up-Code ist
-    128, d.h. der Code ist '000011001000'. Die Differenz zu 131 Punkten ist 3, der Terminator-Codes damit '10'.</p>
+<p>
+  Gegeben sei eine Folge von 131 Punkten. Die Punktanzahl ist größer als 64,
+  d.h. der nächstkleinere Make-Up-Code ist 128, d.h. der Code ist
+  '000011001000'. Die Differenz zu 131 Punkten ist 3, der Terminator-Codes damit
+  '10'.
+</p>
 
 <h2>4.2.5 LZW-Komprimierung</h2>
-<p>Die Lempel-Ziv-Welch Komprimierung verwendet adaptive Techniken. Sie nutzt die Tatsache, dass in Bilddaten
-    Wiederholungen von Zeichenketten auftreten. Eine spezielle Version wird bei GIF eingesetzt.</p>
-<p>Der Algorithmus versucht, Teilketten zu finden. Er weist den Ketten jeweils einen Code zu und legt sie in einer
-    Tabelle ab. Gespeichert werden dann nur die Codes.</p>
+<p>
+  Die Lempel-Ziv-Welch Komprimierung verwendet adaptive Techniken. Sie nutzt die
+  Tatsache, dass in Bilddaten Wiederholungen von Zeichenketten auftreten. Eine
+  spezielle Version wird bei GIF eingesetzt.
+</p>
+<p>
+  Der Algorithmus versucht, Teilketten zu finden. Er weist den Ketten jeweils
+  einen Code zu und legt sie in einer Tabelle ab. Gespeichert werden dann nur
+  die Codes.
+</p>
 <p><u>Beispiel:</u></p>
 <p>Datenstrom = ABAHalloABA.</p>
 <ul>
-    <li>mögliche Zeichenketten: ABA und Hallo.</li>
-    <li>Zuordnung der Kodierung in folgender Tabelle:</li>
-    <!--TODO: Tabelle shortcode-->
-    <li>Kodierter Datenstrom: 010</li>
-    <li>Zusätzlich wird häufig das RLC-Verfahren verwendet.</li>
+  <li>mögliche Zeichenketten: ABA und Hallo.</li>
+  <li>Zuordnung der Kodierung in folgender Tabelle:</li>
+
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th>
+          Anzahl schwarzer
+          Punkte
+        </th>
+
+        <th>Code</th>
+      </tr>
+
+      <tr>
+        <td>64</td>
+
+        <td>0000001111</td>
+      </tr>
+
+      <tr>
+        <td>128</td>
+
+        <td>000011001000</td>
+      </tr>
+
+      <tr>
+        <td>192</td>
+
+        <td>000011001001</td>
+      </tr>
+
+      <tr>
+        <td>...</td>
+
+        <td>...</td>
+      </tr>
+
+      <tr>
+        <td>1664</td>
+
+        <td>0000001100100</td>
+      </tr>
+
+      <tr>
+        <td>1728</td>
+
+        <td>0000001100101</td>
+      </tr>
+    </tbody>
+  </table>
+  <li>Kodierter Datenstrom: 010</li>
+  <li>Zusätzlich wird häufig das RLC-Verfahren verwendet.</li>
 </ul>
 
-<p>LZW-Kompression arbeitet mit 'Hash-Tabellen', d.h. die Bezugnahme auf Datensätze einer Tabelle erfolgt über den Index
-    der Tabelle. Eine Hash-Funktion liefert über arithmetische Operationen den Tabellenschlüssel (=Index) auf das
-    Element an der Index-Position.</p>
+<p>
+  LZW-Kompression arbeitet mit 'Hash-Tabellen', d.h. die Bezugnahme auf
+  Datensätze einer Tabelle erfolgt über den Index der Tabelle. Eine
+  Hash-Funktion liefert über arithmetische Operationen den Tabellenschlüssel
+  (=Index) auf das Element an der Index-Position.
+</p>
 <p>Folgendes Beispiel zeigt eine Hash-Tabelle und Hash-Funktion:</p>
 <!--TODO: Codesample-->
 
-<p>Der Zugriff auf die in hashtab abgelegten Werte erfolgt über die Variable i, die innerhalb der Hash-Funktion belegt
-    wurde.</p>
-<p>Zu Beginn der Kompression oder Dekompression wird eine sog. 'String-Tabelle' mit dem Zeichenvorrat initialisiert.</p>
+<p>
+  Der Zugriff auf die in hashtab abgelegten Werte erfolgt über die Variable i,
+  die innerhalb der Hash-Funktion belegt wurde.
+</p>
+<p>
+  Zu Beginn der Kompression oder Dekompression wird eine sog. 'String-Tabelle'
+  mit dem Zeichenvorrat initialisiert.
+</p>
 
 <p><u>Beispiel:</u></p>
-<p>Gegeben sei ein Datenstrom mit 32 Zeichen, die Code-Größe sei 12 Bit, d.h. die String-Tabelle enthält 212 = 4096
-    Werte. Die Tabelle wird mit dem Zeichenvorrat initialisiert. Zeichen 0 wird in String-Tabelle[0], Zeichen1 in
-    String-Tabelle[1], usw. gespeichert. Während des (De-) Kompressionsvorganges wird die String-Tabelle ständig
-    erweitert.</p>
+<p>
+  Gegeben sei ein Datenstrom mit 32 Zeichen, die Code-Größe sei 12 Bit, d.h. die
+  String-Tabelle enthält 212 = 4096 Werte. Die Tabelle wird mit dem
+  Zeichenvorrat initialisiert. Zeichen 0 wird in String-Tabelle[0], Zeichen1 in
+  String-Tabelle[1], usw. gespeichert. Während des (De-) Kompressionsvorganges
+  wird die String-Tabelle ständig erweitert.
+</p>
 
 <p><strong>Kompression:</strong> Es sind zwei Definitionen nötig.</p>
 <ul>
-    <li>Zur Speicherung der Zeichenketten für Vergleichsoperationen wird eine 'Current-Prefix' [.c.] definiert, [.c.]
-        ist eine Zeichenkette.
-        <p>Ferner existiert eine weitere Zeichenkette 'Current-String' [.c.]Z, die die Current-Prefix Zeichenkette und
-            das nächste Zeichen des zu komprimierenden Datenstromes enthält.</p>
-    </li>
-    <li>Enthält die Current-Prefix zu irgend einem Zeitpunkt der Kompression die Zeichenkette 'ABACB' und das nächste
-        Zeichen des Datenstromes sei 'D', dann gilt :
-        <p>[.c.] = ABACB; [.c.]Z = ABACBD</p>
-    </li>
-    <li>Die Kompression erfolgt nach folgendem Schema :
-        <ol>
-            <li>Initialisieren der String-Tabelle.</li>
-            <li>[.c.] sei leer,</li>
-            <li>Z sei das nächste Zeichen im Datenstrom.</li>
-            <li>Prüfen, ob [.c.]Z in der String-Tabelle enthalten ist.</li>
-            <li></li>
-        </ol>
-        <ul>
-            <li>ja: [.c.] [.c.]Z, Gehe zu 3.</li>
-            <li>nein:
-                <p>Speichere [.c.]Z an der nächsten freien Position in der String-Tabelle. Gebe den Index (=Code) für
-                    [.c.] aus [.c.] Z Gehe zu 3.</p>
-            </li>
-        </ul>
-    </li>
-</ul><!--TODO: Formatierung-->
+  <li>
+    Zur Speicherung der Zeichenketten für Vergleichsoperationen wird eine
+    'Current-Prefix' [.c.] definiert, [.c.] ist eine Zeichenkette.
+    <p>
+      Ferner existiert eine weitere Zeichenkette 'Current-String' [.c.]Z, die
+      die Current-Prefix Zeichenkette und das nächste Zeichen des zu
+      komprimierenden Datenstromes enthält.
+    </p>
+  </li>
+  <li>
+    Enthält die Current-Prefix zu irgend einem Zeitpunkt der Kompression die
+    Zeichenkette 'ABACB' und das nächste Zeichen des Datenstromes sei 'D', dann
+    gilt :
+    <p>[.c.] = ABACB; [.c.]Z = ABACBD</p>
+  </li>
+  <li>
+    Die Kompression erfolgt nach folgendem Schema :
+    <ol>
+      <li>Initialisieren der String-Tabelle.</li>
+      <li>[.c.] sei leer,</li>
+      <li>Z sei das nächste Zeichen im Datenstrom.</li>
+      <li>Prüfen, ob [.c.]Z in der String-Tabelle enthalten ist.</li>
+      <li></li>
+    </ol>
+    <ul>
+      <li>ja: [.c.] [.c.]Z, Gehe zu 3.</li>
+      <li>
+        nein:
+        <p>
+          Speichere [.c.]Z an der nächsten freien Position in der
+          String-Tabelle. Gebe den Index (=Code) für [.c.] aus [.c.] Z Gehe zu
+          3.
+        </p>
+      </li>
+    </ul>
+  </li>
+</ul>
+<!--TODO: Formatierung-->
 
 <p><u>Beispiel:</u></p>
-<p>Gegeben sei ein Zeichenvorrat ('A', 'B', 'C', 'D') und die zu komprimierende Zeichensequenz 'ABACABA'.</p>
+<p>
+  Gegeben sei ein Zeichenvorrat ('A', 'B', 'C', 'D') und die zu komprimierende
+  Zeichensequenz 'ABACABA'.
+</p>
 <p>Zunächst ist die String-Tabelle stringtab[] zu initialisieren.</p>
 <ul>
-    <li>stringtab[0] = 'A'; stringtab[1] = 'B';</li>
-    <li>stringtab[2] = 'C'; stringtab[3] = 'D';</li>
+  <li>stringtab[0] = 'A'; stringtab[1] = 'B';</li>
+  <li>stringtab[2] = 'C'; stringtab[3] = 'D';</li>
 </ul>
 
-<p>Zu Beginn der Kompression ist die Current-Prefix curprefix ein leerer String: curprefix = "";. Nun wird das erste
-    Zeichen des Datenstromes empfangen (Z='A'). In Schritt 4. wird das 'A' an curprefix angehängt: curstring =
-    curprefix+Z; und mit der String-Tabelle verglichen. Da curprefix leer ist, enthält curstring nur das Zeichen 'A'.
-    'A' ist in der String-Tabelle enthalten, also wird curprefix=curstring und curprefix enthält nur das 'A'.</p>
-<p>Im nächsten Zeitschritt wird 'B' empfangen. curstring wird damit zu 'AB', was nicht in der String-Tabelle enthalten
-    ist. Also wird die Zeichenkette 'AB' an der ersten freien Position der String-Tabelle abgespeichert: stringtab[4] =
-    curstring;. Der Code (=Index) von 'A' wird ausgegeben (0). Anschließend wird curprefix=Z und enthält damit 'B'. Das
-    folgende Zeichen ist 'A', curstring wird 'BA', was nicht in der String-Tabelle enthalten ist. Somit wird 'BA' an der
-    Position 5 in der String-Tabelle gespeichert und der Code für 'B' ausgeben (1). curprefix wird zu 'A'.</p>
-<p>Das nächste Zeichen ist 'C'. 'AC' ist nicht in der String-Tabelle enthalten, also wird es an der Position 6
-    gespeichert und der Code für 'A' ausgegeben (0). curstring wird 'C'.</p>
-<p>Es folgt ein 'A', 'CA' ist nicht in der String-Tabelle enthalten, daher wird es an der Position 7 in stringtab
-    gespeichert, der Code 2 für 'C' ausgeben und curprefix wird 'A'. Nun wird 'B' empfangen. 'AB' ist in der
-    String-Tabelle enthalten (Position 4) und curprefix wird 'AB'.</p>
-<p>Mit dem nächsten Zeichen ('A') wird curstring zu 'ABA', was nicht in der String-Tabelle enthalten ist. Also wird der
-    Code für 'AB' ausgegeben (4), 'ABA' an der Position 8 in stringtab gespeichert und curprefix wird 'A'.</p>
-<p>Nachdem nun kein weiteres Zeichen mehr folgt, gibt der Kompressor den Code für das letzte 'A' aus (0) und der
-    Kompressionsvorgang ist beendet.</p>
-<p>Aus der Datensequenz 'ABACABA' ist so der komprimierte Code '010240' geworden.</p>
-<p>Der Dekompressions-Vorgang vollzieht sich analog zu Kompression. Auch hier gilt es eine [.c.] und einen [.c.]Z zu
-    definieren.</p>
+<p>
+  Zu Beginn der Kompression ist die Current-Prefix curprefix ein leerer String:
+  curprefix = "";. Nun wird das erste Zeichen des Datenstromes empfangen
+  (Z='A'). In Schritt 4. wird das 'A' an curprefix angehängt: curstring =
+  curprefix+Z; und mit der String-Tabelle verglichen. Da curprefix leer ist,
+  enthält curstring nur das Zeichen 'A'. 'A' ist in der String-Tabelle
+  enthalten, also wird curprefix=curstring und curprefix enthält nur das 'A'.
+</p>
+<p>
+  Im nächsten Zeitschritt wird 'B' empfangen. curstring wird damit zu 'AB', was
+  nicht in der String-Tabelle enthalten ist. Also wird die Zeichenkette 'AB' an
+  der ersten freien Position der String-Tabelle abgespeichert: stringtab[4] =
+  curstring;. Der Code (=Index) von 'A' wird ausgegeben (0). Anschließend wird
+  curprefix=Z und enthält damit 'B'. Das folgende Zeichen ist 'A', curstring
+  wird 'BA', was nicht in der String-Tabelle enthalten ist. Somit wird 'BA' an
+  der Position 5 in der String-Tabelle gespeichert und der Code für 'B' ausgeben
+  (1). curprefix wird zu 'A'.
+</p>
+<p>
+  Das nächste Zeichen ist 'C'. 'AC' ist nicht in der String-Tabelle enthalten,
+  also wird es an der Position 6 gespeichert und der Code für 'A' ausgegeben
+  (0). curstring wird 'C'.
+</p>
+<p>
+  Es folgt ein 'A', 'CA' ist nicht in der String-Tabelle enthalten, daher wird
+  es an der Position 7 in stringtab gespeichert, der Code 2 für 'C' ausgeben und
+  curprefix wird 'A'. Nun wird 'B' empfangen. 'AB' ist in der String-Tabelle
+  enthalten (Position 4) und curprefix wird 'AB'.
+</p>
+<p>
+  Mit dem nächsten Zeichen ('A') wird curstring zu 'ABA', was nicht in der
+  String-Tabelle enthalten ist. Also wird der Code für 'AB' ausgegeben (4),
+  'ABA' an der Position 8 in stringtab gespeichert und curprefix wird 'A'.
+</p>
+<p>
+  Nachdem nun kein weiteres Zeichen mehr folgt, gibt der Kompressor den Code für
+  das letzte 'A' aus (0) und der Kompressionsvorgang ist beendet.
+</p>
+<p>
+  Aus der Datensequenz 'ABACABA' ist so der komprimierte Code '010240' geworden.
+</p>
+<p>
+  Der Dekompressions-Vorgang vollzieht sich analog zu Kompression. Auch hier
+  gilt es eine [.c.] und einen [.c.]Z zu definieren.
+</p>
 <!--TODO: Applet LZW-Kodierung-->
 
 <p><u>weiterführendes Material:</u></p>
 <!--TODO: Fehlende Referenzen-->
 
 <h2>4.2.6 Lauflängenkodierung (RLC = Run-Length Coding)</h2>
-<p>Viele Daten bestehen aus Folgen identischer Bytes. Der Datenumfang lässt sich reduzieren, indem nicht die Bytes
-    selbst, sondern deren Anzahl gespeichert wird. Dies wird Lauflängenkodierung genannt. Sind in einer Folge von Bytes
-    { B1 , ..., Bn} 4 oder mehr aufeinander folgende Bytes identisch (Bx = Bx+1 = ...= Bx+i), so wird diese Folge
-    ersetzt durch { B1, ...., M ,i, Bx , ....}. Dabei ist M ein spezielles Markierungsbyte, i die Anzahl gleicher,
-    aufeinanderfolgender Bytes.</p><!--TODO: Formatierung-->
-{{% image "Bildkompression/2/3_2_3_lauflaengenkodierung.gif" "" "Abb. 4.2-2 Prinzip der Run-Length-Kodierung" %}}
+<p>
+  Viele Daten bestehen aus Folgen identischer Bytes. Der Datenumfang lässt sich
+  reduzieren, indem nicht die Bytes selbst, sondern deren Anzahl gespeichert
+  wird. Dies wird Lauflängenkodierung genannt. Sind in einer Folge von Bytes {
+  B1 , ..., Bn} 4 oder mehr aufeinander folgende Bytes identisch (Bx = Bx+1 =
+  ...= Bx+i), so wird diese Folge ersetzt durch { B1, ...., M ,i, Bx , ....}.
+  Dabei ist M ein spezielles Markierungsbyte, i die Anzahl gleicher,
+  aufeinanderfolgender Bytes.
+</p>
+<!--TODO: Formatierung-->
+{{% image url="Bildkompression/2/3_2_3_lauflaengenkodierung.gif"
+caption="Abb. 4.2-2 Prinzip der Run-Length-Kodierung" %}}
 <!--TODO: Applet Lauflängenkodierung-->
 
-<p>Im praktischen Einsatz gibt es verschiedene Möglichkeiten die Markierung und die Anzahl der Wiederholungen zu
-    codieren. Einige Varianten von RLC fassen die Markierung und die Anzahl der Wiederholungen in einem Byte zusammen.
-    Dabei wird das Setzen eines bestimmten Bit als Markierung und der Wert der restlichen Bit als Anzahl der
-    Wiederholungen interpretiert.</p>
-<p>Andere Varianten reservieren ein ausgewähltes Symbol als Markierungszeichen. In beiden Fällen müssen im
-    Quelldatenstrom auftretende Zeichen, die mit einer Markierung verwechselt werden können, geeignet maskiert werden
-    (z.B. durch Wiederholung oder daurch "Verpacken" in einen eigentlich nicht notwendigen RLC-Satz).</p>
+<p>
+  Im praktischen Einsatz gibt es verschiedene Möglichkeiten die Markierung und
+  die Anzahl der Wiederholungen zu codieren. Einige Varianten von RLC fassen die
+  Markierung und die Anzahl der Wiederholungen in einem Byte zusammen. Dabei
+  wird das Setzen eines bestimmten Bit als Markierung und der Wert der
+  restlichen Bit als Anzahl der Wiederholungen interpretiert.
+</p>
+<p>
+  Andere Varianten reservieren ein ausgewähltes Symbol als Markierungszeichen.
+  In beiden Fällen müssen im Quelldatenstrom auftretende Zeichen, die mit einer
+  Markierung verwechselt werden können, geeignet maskiert werden (z.B. durch
+  Wiederholung oder daurch "Verpacken" in einen eigentlich nicht notwendigen
+  RLC-Satz).
+</p>
 <!--TODO: Fehlende Referenzen-->
 <!--TODO: Applet Lauflängenkodierung-->
 
 <p><strong>RLC bei Color-Map Bildern (Farbpalettenbilder):</strong></p>
-<p>Ein Satz beginnt mit einem Headerbyte, gefolgt von einem oder mehreren Datenbytes, die dem Eintrag in einer
-    Farbtabelle entsprechen. Ist das erste Bit im Header gleich 1, so handelt es sich um einen RLC-Satz. In den 7
-    Restbits (des Headers) ist kodiert, wie oft das folgende Datenbyte kopiert wird.</p>
+<p>
+  Ein Satz beginnt mit einem Headerbyte, gefolgt von einem oder mehreren
+  Datenbytes, die dem Eintrag in einer Farbtabelle entsprechen. Ist das erste
+  Bit im Header gleich 1, so handelt es sich um einen RLC-Satz. In den 7
+  Restbits (des Headers) ist kodiert, wie oft das folgende Datenbyte kopiert
+  wird.
+</p>
 
 <p><u>Beispiel:</u></p>
 <p>Kodierung 83H 02H:</p>
-<p>Es handelt sich um einen RLC-Satz (8xH) mit 3 gleichen Werten (02H), also wird damit die Folge 02H 02H 02H
-    kodiert.</p>
-<p>Ist das erste Bit im Header = 0, dann definieren die restlichen Bits die Anzahl der Folgepixel, deren Werte dem
-    Header folgen.</p>
+<p>
+  Es handelt sich um einen RLC-Satz (8xH) mit 3 gleichen Werten (02H), also wird
+  damit die Folge 02H 02H 02H kodiert.
+</p>
+<p>
+  Ist das erste Bit im Header = 0, dann definieren die restlichen Bits die
+  Anzahl der Folgepixel, deren Werte dem Header folgen.
+</p>
 
 <p><strong>RLC bei RGB Bildern:</strong></p>
-<p>Hier werden im Headerbyte nicht die Anzahl der Folgebytes, sondern die Folgefarbwerte angegeben, die dann aus bis zu
-    4 Bytes bestehen können.</p>
+<p>
+  Hier werden im Headerbyte nicht die Anzahl der Folgebytes, sondern die
+  Folgefarbwerte angegeben, die dann aus bis zu 4 Bytes bestehen können.
+</p>
 
 <p><u>Beispiel:</u></p>
 <p>Der Code eines 24-Bit-Bildes sei: 83H 04H F3H 5AH.</p>
