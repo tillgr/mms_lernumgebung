@@ -11,7 +11,7 @@ function transformation(sfield, transformationMode, quantisefield) {
             if (u == 0) {
                 Cu = 1 / sqrt2;
             } else {
-                Cu = 1;
+                Cu = 1.0;
             }
             sum = 0;
             for (x = 0; x < 8; x++) {
@@ -40,7 +40,8 @@ function transformation(sfield, transformationMode, quantisefield) {
     return cfield;
 }
 
-function backtransformation(usercfield, transformationMode, quantisefield) {
+function backtransformation(usercfield_tmp, transformationMode, quantisefield) {
+    var usercfield = Object.assign([], usercfield_tmp);
     var usersfield = [0, 0, 0, 0, 0, 0, 0, 0];
     var x, u;
     var N = 8;
@@ -49,28 +50,30 @@ function backtransformation(usercfield, transformationMode, quantisefield) {
     var sqrt2 = Math.sqrt(2);
 
     if (transformationMode === 'DCT') {
-        for (u = 0; u <= 7; u++) {
+        // dequantisation
+        for (u = 0; u < 8; u++) {
             usercfield[u * 2] *= quantisefield[u];
         }
 
-        for (x = 0; x <= 7; x++) {
+        // backtransformation
+        for (x = 0; x < 8; x++) {
             sum = 0;
-            for (u = 0; u <= 7; u++) {
+            for (u = 0; u < 8; u++) {
                 if (u == 0) {
                     Cu = 1 / sqrt2;
                 } else {
-                    Cu = 1;
+                    Cu = 1.0;
                 }
-                sum = sum + 0.5 * Cu * usercfield[u * 2] * Math.cos(Cu * (2*x + 1) * u * Math.PI/16);
+                sum += 0.5 * Cu * usercfield[u * 2] * Math.cos(Cu * (2*x + 1) * u * Math.PI/16);
             }
             usersfield[x] = Math.round(sum) + 128;
         }
     } else if (transformationMode === 'DFT') {
-        for (x = 0; x <= 7; x++) {
+        for (x = 0; x < 8; x++) {
             real = 0;
             imagine = 0;
 
-            for (u = 0; u <= 7; u++) {
+            for (u = 0; u < 8; u++) {
                 real += usercfield[u * 2] * Math.cos(2 * Math.PI * x * u/N);
                 imagine += usercfield[u*2 + 1] * Math.sin(2 * Math.PI * x * u/N);
             }

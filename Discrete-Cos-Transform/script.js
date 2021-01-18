@@ -45,7 +45,6 @@ function magic() {
     var q_field = params['q_mode'].split(',').map(Number);
     var cfield = transformation(signal, params['t_mode'], q_field);
     reset(cfield);
-    drawPlot();
 }
 
 // ----------------- GUI -----------------
@@ -74,7 +73,7 @@ var q_mode = {'Do not quantise': '1, 1, 1, 1, 1, 1, 1, 1',
         'JPEG Standard': '16, 11, 10, 16, 24, 40, 51, 61'};
 var user_sfield = [0, 0, 0, 0, 0, 0, 0, 0]
 var user_cfield = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var sliderControllers = new Array(user_cfield.length);
+var slider_controllers = new Array(user_cfield.length);
 
 var params = {
     't_mode': t_mode[0],
@@ -100,7 +99,7 @@ gui.add(params, 'magic');
 
 for (let i = 0; i < 16; i++) {
     params['user_cfield' + i] = user_cfield[i];
-    sliderControllers[i] = gui.add(params, 'user_cfield' + i, -400, 400, 1).onChange((x) => {
+    slider_controllers[i] = gui.add(params, 'user_cfield' + i, -400, 400, 1).onChange((x) => {
         user_cfield[i] = x;
         drawPlot();
     });
@@ -112,8 +111,8 @@ function change_mode(t_mode) {
     } else {
         q_mode_controller.domElement.style.display = "";
     }
-    for (var i = 0; i < sliderControllers.length; i++) {
-        slider_controller = sliderControllers[i];
+    for (var i = 0; i < slider_controllers.length; i++) {
+        slider_controller = slider_controllers[i];
         if (t_mode === 'DCT' && i % 2 === 1) {
             slider_controller.domElement.style.display = "none";
         } else {
@@ -127,10 +126,16 @@ function change_mode(t_mode) {
     reset([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 }
 
-function reset(user_cfield) {
+function reset(user_cfield_new) {
     for (var i = 0; i < user_cfield.length; i++) {
-        sliderControllers[i].setValue(user_cfield[i]);
+        slider_controller = slider_controllers[i]
+        slider_onchange_temp = slider_controller.__onChange
+        slider_controller.__onChange = null
+        slider_controller.setValue(user_cfield_new[i]);
+        user_cfield[i] = user_cfield_new[i]
+        slider_controller.__onChange = slider_onchange_temp
     }
+    drawPlot();
 }
 
 // ----------------- AXES -----------------
@@ -188,6 +193,5 @@ function drawAxes() {
 
 document.addEventListener("DOMContentLoaded", function(){
     change_mode(params['t_mode']);
-    drawPlot();
     drawAxes();
 });
