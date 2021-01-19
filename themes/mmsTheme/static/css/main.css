@@ -22,6 +22,9 @@
 }
 
 /* AUDIO STYLING */
+.sound-sample {
+  display: inline-block;
+}
 
 .sound-title {
   color: black;
