@@ -1,0 +1,313 @@
+<div class="snippet">
+	<header class="bg-primary">
+		<strong class="text-white">{{ .Get 0 }}</strong>
+	</header>
+
+	<div class="content">
+		<div class="left-col sidenav">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<button id="sidebarIntroduction" class="btn btn-link" onclick="switchStep(0)">Einführung</button>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<button id="sidebarSamplingFrequency" class="btn btn-link" onclick="switchStep(1)">Abtast-frequenz</button>
+						</li>
+						<li class="list-group-item">
+							<button id="sidebarStoragefrequency" class="btn btn-link" onclick="switchStep(2)">Speicher-frequenz</button>
+						</li>
+					</ul>
+				</li>
+				<li class="list-group-item">
+					<button id="sidebarLinear" id="sidebarLinear" class="btn btn-link" onclick="switchStep(3)">Lineare Quantisierung</button>
+				</li>
+				<li class="list-group-item">
+					<button id="sidebarNonlinear" id="sidebarNonlinear" class="btn btn-link" onclick="switchStep(4)">Nichtlineare Quantisierung</button>
+				</li>
+				<li class="list-group-item">
+					<button id="sidebarEvaluation" id="sidebarEvaluation" class="btn btn-link" onclick="switchStep(5)">Auswertung</button>
+				</li>
+			</ul>
+		</div>
+		<div class="right-col">
+			<div id="snippet-intro">
+				<p class="txtIntro">Bei der Digitalisierung werden zeit- und wertkontinuierliche Audiosignale in eine zeit- und wertdiskrete Folge umgewandelt. Die Quantisierung besteht in der Darstellung der Messwerte mit endlicher Auflösung, indem sie auf ganzzahlige Binärwerte abgebildet
+					werden. In dieser Übung sollen die relevanten Schritte der Quantisierung durchlaufen werden, um die Unterschiede der linearen und nichtlinearen Vorgehensweise zu erkennen.</p>
+				<button class="btn btn-secondary" onclick="loadStep(3)">Einführung überspringen</button>
+				<button class="btn btn-primary" onclick="loadStep(1)">Start</button>
+			</div>
+
+			<div id="snippet-resolution1">
+				<div class="task">
+					<p>Ein analoges Audiosignal mit einer Grenzfrequenz von <strong id="limitFrequency"></strong> Hz soll abgetastet und digitalisiert werden. Welche Abtastfrequenz muss für eine eindeutige Rekonstruktion des Signals aus den digitalen Daten vorliegen?</p>
+					<div class="form-group">
+						<label for="samplingFrequency">Abtastfrequenz in Hz:</label>
+						<input id="samplingFrequency" class="form-control" type="number" name="samplingFrequency">
+						<div class="validation">
+							<p id="errorMessageResolution1_1" class="text-danger">Nur Zahlen eingeben!</p>
+							<p id="errorMessageResolution1_2" class="text-danger"><strong id="inputSamplingFrequency"></strong> Hz ist Falsch! Bitte beachte das Shannon Theorem!</p>
+						</div>
+					</div>
+					<button class="btn btn-secondary btn-solution" onclick="validateTask1(true)">Lösung</button>
+					<button class="btn btn-primary" onclick="validateTask1(false)">Weiter</button>
+				</div>
+				<div class="solution">
+					<p class="text-success correctAnswer"><strong>Richtig!</strong><p>
+					<p id="answerExplanationResolution1_1">Das Shannon Abtasttheorem sagt aus, dass zur eindeutigen Rekonstruktion eines Signales die Abtastrate mindestens das Doppelte der höchsten im Originalsignal enthaltenen Frequenz(Grenzfrequenz) betragen muss.</p>
+					<p id="answerExplanationResolution1_2">Also: 2 x <strong id="answerLimitFrequency"></strong> Hz = <strong id="answerSamplingFrequency"></strong> Hz</p>
+					<button class="btn btn-primary" onclick="loadStep(2)">Weiter</button>
+				</div>
+			</div>
+
+
+			<div id="snippet-resolution2">
+				<div class="task">
+					<p>Ein analoges Audiosignal der Länge <strong><span id="limitSeconds"></span> s</strong>
+						soll mit einer Frequenz von <strong>44 kHz</strong> abgetastet werden.</p>
+					<p>Dabei soll der Speicherbedarf <strong><span id="limitStorage"></span> KiByte (KibiByte)</strong> nicht überschreiten.</p>
+					<p>Mit wieviel Bit kann maximal quantisiert werden?</p>
+					<div class="form-group">
+						<input class="form-control" type="number" id="storageAnswer"/>
+						<div class="validation">
+							<p id="errorMessageResolution2_1" class="text-danger">Nur Zahlen eingeben!</p>
+							<p id="errorMessageResolution2_2" class="text-danger"><span id="storageInput"></span> bit ist Falsch! Bitte überprüfe deine Rechnung!</p>
+						</div>
+					</div>
+					<button class="btn btn-secondary btn-solution" onclick="validateTask2(true)">Lösung</button>
+					<button class="btn btn-primary" onclick="validateTask2(false)">Weiter</button>
+				</div>
+				<div class="solution">
+					<p class="text-success correctAnswer"><strong>Richtig!</strong><p>
+					<p>Das Audiosignal wird <strong>44000 mal</strong> in der Sekunde abgetastet, es ist
+						<strong><span id="secondsCorrect"></span> s</strong> lang. Daraus ergeben sich
+						<strong>44000 1/s * <span id="secondsCorrect2"></span> s = <span id="samples"></span> Abtastwerte</strong>.</p>
+					<p>Es stehen <strong><span id="storage"></span> KiByte</strong> zur Verfügung. Das sind
+						<strong><span id="storage2"></span> * 1024 = <span id="storage3_Byte"></span> Byte</strong>, was wiederum
+						<strong><span id="storage3_Byte2"></span> * 8 = <span id="storage4_Bit"></span> bit</strong> sind.</p>
+					<p>Wenn es für <strong><span id="samples2"></span> Abstastwerte <span id="storage4_Bit2"></span> bit
+						</strong> zur Verfügung stehen, dann kann jeder Wert mit maximal
+						<strong><span id="storage4_Bit3"></span> / <span id="samples3"></span> >= <span id="answerStorage"></span> bit</strong> gespeichert werden.</p>
+					<button class="btnContinueLinear btn btn-primary" onclick="loadStep(3)">Weiter</button>
+				</div>
+			</div>
+
+
+			<div id="snippet-linearQuantisation">
+				<div class="task">
+					<p>Bei der linearen Quantisierung ist das Raster linear eingeteilt.</p>
+					<p>Bitte klicke auf die Punkte des Rasters um das Signal abzutasten und zu quantisieren. Beachte dabei, dass ein absoluter Fehler >15 darauf hinweist, dass du den falschen Rasterpunkt gewählt hast.</p>
+				</div>
+				<div class="solution">
+					<p class="text-success correctAnswer"><strong>Richtig!</strong><p>
+					<p>Es fällt auf, dass der absolute Fehler im wesentlichen konstant bleibt.</p>
+
+					<p>Der relative Fehler gibt das Verhältnis der Abweichung zum Signalwert an und ist ein Maß für das Rauschen. Dabei sieht man, dass speziell für kleine Signalwerte der relative Fehler recht groß wird und somit das Rauschen das Signal an diesen Stellen
+						überdecken kann.
+					</p>
+				</div>
+				<div id="linearFormDiagram">
+					<div style="overflow-x: scroll; width: 100%;">
+						<table class="table table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th colspan="10">Abweichung absolut</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td id="linearAbsolute0"></td>
+									<td id="linearAbsolute0.02"></td>
+									<td id="linearAbsolute0.04"></td>
+									<td id="linearAbsolute0.06"></td>
+									<td id="linearAbsolute0.08"></td>
+									<td id="linearAbsolute0.1"></td>
+									<td id="linearAbsolute0.12"></td>
+									<td id="linearAbsolute0.14"></td>
+									<td id="linearAbsolute0.16"></td>
+									<td id="linearAbsolute0.18"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div style="overflow-x: scroll; width: 100%;">
+						<table class="table table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th colspan="10">Abweichung relativ</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td id="linearRelative0"></td>
+									<td id="linearRelative0.02"></td>
+									<td id="linearRelative0.04"></td>
+									<td id="linearRelative0.06"></td>
+									<td id="linearRelative0.08"></td>
+									<td id="linearRelative0.1"></td>
+									<td id="linearRelative0.12"></td>
+									<td id="linearRelative0.14"></td>
+									<td id="linearRelative0.16"></td>
+									<td id="linearRelative0.18"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div>
+						<svg id="linearSVG"></svg>
+					</div>
+				</div>
+				<div class="task">
+					<button class="btn btn-secondary btn-solution" onclick="validateTask3(true)">Lösung</button>
+					<button class="btn btn-primary" onclick="validateTask3(false)">Quantisieren!</button>
+					<div class="validation">
+						<p id="linearErrorMessage" class="text-danger">Du hast entweder nicht die alle Punkte oder einige falsch gesezt!</p>
+					</div>
+				</div>
+				<div class="solution">
+					<button id="btnBeginNonLinear" class="linearButtonContinue btn btn-primary" onclick="loadStep(4)">Weiter</button>
+				</div>
+			</div>
+
+
+			<div id="snippet-nonlinearQuantisation">
+				<div class="task">
+					<p>Bei der nichtlinearen Quantisierung ist das Raster logarithmisch eingeteilt.</p>
+					<p>Bitte klicke auf die Punkte des Rasters um das Signal abzutasten und zu quantisieren. Beachte dabei, dass ein absoluter Fehler >halbes Intervall darauf hinweist, dass du den falschen Rasterpunkt gewählt hast.</p>
+				</div>
+
+				<div class="solution">
+					<p class="text-success correctAnswer"><strong>Richtig!</strong><p>
+					<p>Es fällt auf, dass im Gegensatz zur linearen Quantisierung die kleinen Signalwerte durch das logarithmische Raster wesentlich genauer quantisiert werden. Dadurch verringert sich der relative Fehler für diese Werte erheblich.</p>
+
+					<p>Das Rauschen kann diese Signalabschnitte also nicht mehr überdecken.</p>
+					<p>Um einen vergleich deiner durchgeführten linearen & nichtlinearen Quantisierung anzusehen, klicke bitte auf "Auswertung".</p>
+				</div>
+
+				<div id="nonlinearFormDiagram">
+					<div style="overflow-x: scroll; width: 100%;">
+						<table class="table table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th colspan="10">Abweichung absolut</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td id="nonLinearAbsolute0"></td>
+									<td id="nonLinearAbsolute0.02"></td>
+									<td id="nonLinearAbsolute0.04"></td>
+									<td id="nonLinearAbsolute0.06"></td>
+									<td id="nonLinearAbsolute0.08"></td>
+									<td id="nonLinearAbsolute0.1"></td>
+									<td id="nonLinearAbsolute0.12"></td>
+									<td id="nonLinearAbsolute0.14"></td>
+									<td id="nonLinearAbsolute0.16"></td>
+									<td id="nonLinearAbsolute0.18"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div style="overflow-x: scroll; width: 100%;">
+						<table class="table table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th colspan="10">Abweichung relativ</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td id="nonLinearRelative0"></td>
+									<td id="nonLinearRelative0.02"></td>
+									<td id="nonLinearRelative0.04"></td>
+									<td id="nonLinearRelative0.06"></td>
+									<td id="nonLinearRelative0.08"></td>
+									<td id="nonLinearRelative0.1"></td>
+									<td id="nonLinearRelative0.12"></td>
+									<td id="nonLinearRelative0.14"></td>
+									<td id="nonLinearRelative0.16"></td>
+									<td id="nonLinearRelative0.18"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div>
+						<svg id="nonLinearSVG"></svg>
+					</div>
+				</div>
+				<div class="task">
+					<button class="btn btn-secondary btn-solution" onclick="validateTask4(true)">Lösung</button>
+					<button class="btn btn-primary" onclick="validateTask4(false)">Quantisieren!</button>
+					<div class="validation">
+						<p id="nonlinearErrorMessage" class="text-danger">Du hast entweder nicht alle Punkte oder einige falsch gesezt!</p>
+					</div>
+				</div>
+				<div class="solution">
+					<button id="btnContinueEvaluation" class="linearButtonContinue btn btn-primary" onclick="loadStep(5)">Auswertung</button>
+				</div>
+			</div>
+
+
+			<div id="snippet-evaluation">
+				<div>
+					<p class="marginTop" id="linearText1">In der Gegenüberstellung der roten linearen und der blauen nichtlinearen Quantisierungskurve wird deutlich, dass der relative Fehler (Maß für das Rauschen) für kleine Signalwerte durch die nichtlineare Quantisierung minimiert werden kann.</p>
+				</div>
+				<div id="linearFormDiagram">
+					<div style="overflow-x: scroll; width: 100%;">
+						<table class="table table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th colspan="10">Abweichung relativ - <span id="redLinear">lineare Quantisierung</span></th>
+									<th>&#216</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td id="linear0"></td>
+									<td id="linear0.02"></td>
+									<td id="linear0.04"></td>
+									<td id="linear0.06"></td>
+									<td id="linear0.08"></td>
+									<td id="linear0.1"></td>
+									<td id="linear0.12"></td>
+									<td id="linear0.14"></td>
+									<td id="linear0.16"></td>
+									<td id="linear0.18"></td>
+									<td id="linearAverage"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div style="overflow-x: scroll; width: 100%;">
+						<table class="table table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th colspan="10">Abweichung relativ - <span id="blueNonlinear">nichtlineare Quantisierung</span></th>
+									<th>&#216</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td id="nonLinear0"></td>
+									<td id="nonLinear0.02"></td>
+									<td id="nonLinear0.04"></td>
+									<td id="nonLinear0.06"></td>
+									<td id="nonLinear0.08"></td>
+									<td id="nonLinear0.1"></td>
+									<td id="nonLinear0.12"></td>
+									<td id="nonLinear0.14"></td>
+									<td id="nonLinear0.16"></td>
+									<td id="nonLinear0.18"></td>
+									<td id="nonLinearAverage"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="">
+						<svg id="evaluationSVG"></svg>
+					</div>
+					<button id="btnRestart" class="btnBeginLinearQuantisation btn btn-primary" onclick="snippetRestart()">Neustart</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="{{"js/quant.js" | absURL}}"></script>
+</div>
