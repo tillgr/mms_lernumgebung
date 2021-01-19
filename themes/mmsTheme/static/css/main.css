@@ -42,6 +42,13 @@ img.pause:hover {
 
 /* GLOSSAR STYLING */
 
+:target::before {
+  content: "";
+  display: block;
+  height: 60px;
+  margin: -60px 0 0;
+}
+
 .glossar-img {
     width: 15px;
 }
