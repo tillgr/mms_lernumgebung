@@ -1,0 +1,92 @@
+---
+title: "4.1 Übersicht"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+<!-- TODO: Formatierung der Gesamten Seite-->
+
+<p>Durch Kompression der Bilder lässt sich die Datenmenge erheblich reduzieren. Die Kompressionsrate ist dabei abhängig
+    von der Art des Bildes und dem gewählten Kompressionsverfahren:</p>
+<ul>
+    <li>Natürlichfarbene Bilder<br/>
+        bei verlustfreier Kompression: 1:2<br/>
+        bei verlustbehafteter Kompression: 1:30 bis 1:50
+    </li>
+    <li>Computergenerierte Bilder<br/>
+        bei verlustfreier Kompression: < 1:20<br/>
+        bei verlustbehafteter Kompresson: < 1:300
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<p>Als verlustfreie Verfahren sind verbreitet: GIF, PNG, </p>
+<p>als verlustbehaftete Verfahren: JPEG, Fraktale Kompression, Wavelet-Transformation und JPEG 2000, das auf der
+    Wavelet-Transformation beruht.</p>
+
+<p><strong>Anforderungen an Kodierungsverfahren</strong></p>
+<ul>
+    <li>Die Algorithmen sollten zur Dekompression, z.T. auch zur Kompression bestimmte Zeitschranken nicht
+        überschreiten.
+        <ul>
+            <li><strong>Dialog-Modus:</strong> Hier werden symmetrisches Verfahren verwendet. Die Zeiten für Kompression
+                und Dekompression sollten etwa gleich groß sein und die Ende-zu-Ende-Verzögerung sollte 150 ms nicht
+                überschreiten.
+            </li>
+            <li><strong>Abfrage-Modus:</strong> Hier werden symmetrisches Verfahren verwendet. Die Zeiten für
+                Kompression und Dekompression sollten etwa gleich groß sein und die Ende-zu-Ende-Verzögerung sollte 150
+                ms nicht überschreiten.
+            </li>
+        </ul>
+    </li>
+    <li>Die Kompressionsverfahren müssen unabhängig von Bildschirmgröße und -wiederholfrequenz arbeiten.</li>
+    <li>Für Audio und Video sollten verschiedene Datenraten unterschiedlicher Qualität (QoS) gelten.</li>
+    <li>Audio und Video müssen 'exakt' synchronisierbar sein.</li>
+    <li>Die Verfahren sollten einen internationalen, zumindest de-facto Standard darstellen.</li>
+</ul>
+
+<p><strong>Einteilung der Kompressionsverfahren</strong></p>
+<ul>
+    <li><strong>Entropiekodierung:</strong>
+        <ul>
+            <li>verlustfrei</li>
+            <li>die Eigenschaften der Medien bleiben unberücksichtigt, d.h. Daten werden nur als Sequenz von Bytes
+                gesehen.
+            </li>
+        </ul>
+    </li>
+    <li><strong>Quellkodierung:</strong>
+        <ul>
+            <li>verwendet Semantik der zu kodierenden Daten</li>
+            <li>verlustbehaftet, d.h. die dekodierten Daten sind nicht identisch mit den zu kodierenden Daten</li>
+        </ul>
+    </li>
+    <li><strong>Hybride Verfahren:</strong>
+        <ul>
+            <li>sind die in der Multimediatechnik genutzten Verfahren.</li>
+            <li>i.allg. Kombination mehrerer Verfahren (Entropie- und Quellkodierung).</li>
+        </ul>
+    </li>
+</ul>
+{{% image url="Bildkompression/1/3_1_1_kodierungsverfahren.gif" caption="Abb. 4.1-0 Einteilung der Kodierungsverfahren" %}}
+
+<p><strong>Wesentliche Schritte der Datenkompression</strong></p>
+<ol>
+    <li><strong>Datenaufbereitung:</strong> z.B. die Aufteilung eines Bildes in Blöcke von 8 x 8 Pixel mit fester Anzahl
+        Bits per Pixel
+    </li>
+    <li><strong>Datenverarbeitung:</strong> 1. Schritt der eigentlichen Kompression, bei der Bildverarbeitung ist dies
+        z.B. die Transformation vom Zeit- in Frequenzbereich bei der DCT.
+    </li>
+    <li><strong>Quantisierung:</strong> Einschränkung der Genauigkeit (Filterung) der Werte der vorherigen Stufe, z.B.
+        unterschiedliche Behandlung der Werte im transformierten Raum gemäß ihrer Wichtigkeit
+    </li>
+    <li><strong>Entropiekodierung:</strong> verlustfreie Kompression der quantisierten Werte</li>
+</ol>
+<p>Schritt 2 und 3 können iterativ durchlaufen werden (wie bei DPCM) oder können mehrfach nacheinander angewandt werden
+    (z.B. Interframe- und Intraframe-Kodierung bei MPEG oder H.261).</p>
+
+<p><strong>Dekompressionsvorgang:</strong></p>
+<p>Die Dekompression ist der zur Kompression inverse Vorgang. Bei symmetrischer Kodierung erfolgt die Dekompression etwa
+    mit vergleichbarem Aufwand wie die Kompression. Bei asymmetrischer Kodierung benötigt die Dekompression einen
+    wesentlich geringeren Aufwand. Dies ist sinvoll, wenn ein einmal komprimiertes Bild sehr häufig dekomprimiert werden
+    muss.</p>
+{{% image url="Bildkompression/1/3_1_2_schritte_der_kompression.gif" caption="Abb. 4.1-1 Schritte der Kompression" %}}

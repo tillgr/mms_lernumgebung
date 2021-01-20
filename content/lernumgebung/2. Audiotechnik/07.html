@@ -1,0 +1,419 @@
+---
+title: "2.7 Klangsynthese"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<p> Synthese = Zusammenfügen von Teilen, Elementen zu einem Ganzen. Bei der Klangsynthese werden Teile und Elemente
+    eines Klanges zu einem Ganzen zusammengefügt. </p>
+
+<h2>2.7.1 ADSR-Modell</h2>
+<p>Die Entstehung eines Tones kann mit dem ADSR-Modell (Attack, Decay, Sustain, Release) beschrieben werden. Es
+    beschreibt die Entstehungsweise des Tones bei den meisten natürlichen Musikinstrumenten.</p>
+
+{{% image url="Audiotechnik/7/1_1_6_adsr_phasen.gif" caption="Abb. 2.7-0 ADSR-Phasen" %}}
+
+<h5>Attack Phase A:</h5><!--TODO: Formatierung-->
+<p>Beim Anschlagen der Taste (Anblasen einer Flöte, Streichen eines Bogens) steigt die Lautstärke in 3-10 ms auf ihr
+    Maximum an. Es bildet sich der Ton, die Amplitude wächst exponentiell, die Oszillationen sind noch sehr chaotisch
+    und nicht harmonisch sowie reich an Oberwellen. </p>
+<h5>Decay Phase D:</h5><!--TODO: Formatierung-->
+<p>Die Oszillationen ordnen sich, die unharmonischen Obertöne verschwinden, wodurch sich die Amplitude ein wenig
+    verringert. Es kristallisiert sich die Wellenform des Signals heraus. die Attack/Decay-Phase ist besonders wichtig
+    für den Klangeindruck.</p>
+<h5>Sustain Phase S:</h5><!--TODO: Formatierung-->
+<p>Der "saubere" Ton des Instrumentes erklingt, die Wellenform ist konstant, bei einigen Instrumenten fällt die
+    Amplitude, bei anderen ist sie konstant (Saiten-, Blasinstrumente).</p>
+<h5>Release Phase R:</h5><!--TODO: Formatierung-->
+<p>Der Ton klingt aus, der Zeitpunkt entspricht dem Loslassen der Klaviertaste.</p>
+
+<p>Elektronische Instrumente (Synthesizer) erzeugen elektronische Signale, die im Lautsprecher in Töne gewandelt werden.
+    Bei der Klangsynthese wird die ADSR-Methode genutzt, um das Amplitudenverhalten der Musikinstrumente nachzuahmen.
+    Für die Analyse und Bearbeitung der Audiosequenzen ist die Veränderung der Wellenform und Spektraldichte in jeder
+    Phase des Klanges wichtiger als die Nachahmung des Amplitudenverhaltens. Als Beispiel diene die Analyse eines
+    Orgelklanges.</p>
+
+{{% image url="Audiotechnik/7/1_1_7_phasen_der_schwingung_eines_orgelklanges.gif" caption="Abb. 2.7-1 Phasen der Schwingung eines Orgelklanges" %}}
+
+<p>Attack Phase: Das Signal ist sehr chaotisch und ungeordnet, es klingt wie Rauschen. Die hochfrequenten Anteile haben
+    relativ große Energieanteile. Die Amplitude vergrößert sich relativ schnell und erreicht ihr Maximum in etwa 3-10
+    ms.</p>
+<p>In der Decay Phase kristallisiert sich die Wellenform des Signals, die unharmonischen und sehr hohen Obertöne
+    verschwinden, ein klarer Ton mit konstanter Wellenform bildet sich.</p><!--TODO: Formatierung-->
+<p>Die Sustain Phase besitzt in diesem Fall eine konstante Amplitude und Wellenform.</p><!--TODO: Formatierung-->
+<p>Das Ausklingen im Release Abschnitt kann unterschiedlich lang sein (zwischen 1 und 100
+    ms).</p><!--TODO: Formatierung-->
+
+<h2>2.7.2 Synthesizer und deren Komponenten</h2>
+<p>Ein Synthesizer ist ein elektronisches Gerät zur Erzeugung von Klängen, bestehend aus Oszillatoren, Filtern und
+    Verstärkern.</p>
+
+{{% image url="Audiotechnik/7/aufbau_synt.gif" caption="Abb. 2.7-2  Aufbau eines Synthesizers" %}}
+
+<p>Ein Oszillator liefert Signal, das mit Filtern und Verstärkern in seiner spektralen Zusammensetzung und in seinem
+    Pegelverlauf variiert wird. Die Variation wird von außen (u.a.) durch einen LFO = Low Frequency Oszillator
+    gesteuert, weshalb man von CO (Controlled Oszillator), CF (Controlled Filter) und CA (Controlled Amplifier)
+    spricht.</p>
+<p>Erste analoge Synthesizer ab den 1960er-Jahren (R. Moog) von den Firmen Roland, Korg, Yamaha, EMS. Digitale
+    Synthesizer ab 1979 von Fairlight; 1983 DX-7 Synthesizer von Yamaha mit MIDI, 1996 Software Synthesizer (MAX
+    MSP).</p>
+<p>Der Erfolg von Synthesizern hängt von der richtigen Anzahl kontrollierbarer, klangbestimmender Parameter ab.</p>
+
+<h5>Oszillatoren</h5>
+<p>Ein Oszillator erzeugt ein mehr oder minder obertonreiches Signal, das die Grundfrequenz und den Charakter des zu
+    erzeugenden Klangs bestimmt. Aufbau/Funktionsweise des Oszillators ist meist namensgebend für das Verfahren zur
+    Klangerzeugung.</p>
+<p>In jedem Synthesizer arbeiten Oszillatoren zur Erzeugung von Schwingungen. Dabei wird für jede zu bildende Schwingung
+    ein eigener Oszillator benötigt. Die Oszillation lässt sich beschreiben als</p>
+
+<p>
+{{< formula >}}
+f_0(x) = a_0 * sin(2\pi * x)
+{{< /formula >}}
+</p>
+
+<p>die erste Harmonische hätte die Form </p>
+
+<p>
+{{< formula >}}
+f_1(x) = a_1 * sin(4\pi * x)
+{{< /formula >}}
+</p>
+
+<p>und die n-te</p>
+
+<p>
+    {{< formula >}}
+    f_n(x) = a_n * sin(n * 2\pi * x)
+    {{< /formula >}}
+</p>
+
+<p>Bei natürlichen Klängen ist die Folge ai fast immer monoton fallend, wobei {{< formula >}} a_0 {{< /formula >}} die
+    Amplitude der Grundfrequenz am größten ist. Bei natürlichen Quellen besitzen die niedrigen Frequenzen die größte
+    Energie, höhere Frequenzen bestimmen nur die Klangfarbe des Tones. </p>
+
+<h5>LFO (Low Frequency Oszillator)</h5>
+<p>Den niederfrequenten Oszillator nutzt man zur kontinuierlichen Einstellung klangbestimmender Parameter wie Amplitude,
+    Filterfrequenz und Resonanz. Meist ist die LFO-Frequenz kleiner als 20 Hz; wichtig ist die Wellenform (Sinus,
+    Dreieck, Sägezahn).</p>
+
+<h5>Verstärker</h5>
+<p>Der Verstärker bestimmt den Pegelverlauf des Schallsignals. Hierdurch wird nicht nur die Lautstärke, sondern der
+    Gesamtcharakter des Schalls beeinflusst. Wichtig für Klangeindruck ist auch der zeitliche Verlauf des Pegels
+    (Hüllkurve, ADSR).</p>
+
+<h5>Filter</h5>
+<p>Im Allgemeinen soll die Farbe bzw. spektrale Zusammensetzung des Klangs nicht konstant bleiben, weshalb man das
+    Oszillatorsignal anhand von Filtern verändert. Parameter hierbei sind u.a. Grenzfrequenz und Resonanz.(Siehe
+    nächstes Kapitel!)</p>
+
+<h2>2.7.3 Filter</h2>
+<p>Filter entfernen bestimmte Frequenzen vom Original. Die meisten Schnittsysteme bieten die folgenden Filter an. Die
+    Frequenzgänge der 4 wichtigsten Idealfilter Tiefpass, Hochpass, Bandpass und Bandsperre sind:</p>
+<p>Audio zum Vergleich:</p>
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_8_filter_original.mp3" title="Original" %}}
+</div>
+
+<h5>Tiefpass:</h5><!--TODO: Formatierung-->
+<p>Lässt alle Frequenzen durch, die unter einer Grenzfrequenz liegen.</p>
+<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_9_wirkung_eines_tiefpassfilters.mp3" title="Wirkung eines Tiefpassfilters" %}}
+</div>
+<h5>Hochpass:</h5><!--TODO: Formatierung-->
+<p>Es werden nur hochfrequente Anteile durchgelassen.</p>
+<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_10_wirkung_eines_hochpassfilters.mp3" title="Wirkung eines Hochpassfilters" %}}
+</div>
+<h5>Bandpass, Bandsperre: </h5><!--TODO: Formatierung-->
+<p>Es werden die Frequenzanteile in einem Band durchgelassen bzw. gesperrt.</p>
+<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/07/1_2_11_wirkung_eines_bandpassfilters.mp3" title="Wirkung eines Bandpassfilters" %}}
+    {{% sound-sample url="Audiotechnik/07/1_2_12_wirkung_eines_bandsperrefilters.mp3" title="Wirkung eines Bandsperrefilters" %}}
+</div>
+
+{{% image url="Audiotechnik/7/1_2_9_filter.gif" caption="Abb. 2.7-3 Filterkurven" %}}
+
+<p>Eine wichtige Eigenschaft ist die Linearität von Filtern. Wenn die Übertragungsfunktion des Filters
+    {{< formula >}} F(x) {{< /formula >}} ist, dann bedeutet Linearität:</p>
+<p>
+    {{< formula >}}
+    \forall a : F(ax) = aF(x)
+    {{< /formula >}}
+</p>
+
+<p>Vorteile: Ermöglicht einzelne Filter in beliebiger Folge darzustellen, d.h. eine Faltung aus mehreren
+    aufeinanderfolgenden linearen Filtern ist kommutativ.</p>
+<p>Die zweite wichtige Eigenschaft der Filter ist die Zeitinvarianz. Sie besagt, dass die Reaktion des Systems auf eine
+    Eingangsfolge {{< formula >}} X_i {{< /formula >}} unabhängig von der Zeit des Antreffens dieser Folge ist.</p>
+<p>
+    {{< formula >}}
+    \forall\tau : F(X) \text{; } t = t_0 = F(X) \text{; } t = t_0 + \tau
+    {{< /formula >}}
+</p>
+
+<h5>LTI-Filter</h5>
+<p>LTI-Filter sind Filter, die sowohl linear als auch zeitinvariant sind (linear and time-invariant). Sie haben einige
+    spezielle Eigenschaften, die ihre Beschreibung und die Analyse vereinfachen. Die Reaktion eines LTI-Filter auf einen
+    GlossarDirac-Impuls<!--TODO: Missing Hyperlink--> ist die Impulsantwort. LTI-Filter sind durch ihre Impulsantwort
+    vollständig definiert.</p>
+<p>In Abhängigkeit davon, ob diese Funktion eine endliche oder eine unendliche Funktion ist, unterteilt man sie in
+    FIR-(Finite Impuls Response) und IIR-(Infinite Impuls Response) Filter.</p>
+<p>Das Verhalten eines LTI-Systems wird oft als Differenzengleichung angegeben:</p>
+
+{{% formulaRow f1 = "\sum \limits_{k=0}^N a_k * y * [n-k] = \sum \limits_{i=0}^M b_i * x * [n-i]" ref = "1.21" %}}
+
+<p>Dabei sind: {{< formula >}} x_i {{< /formula >}} und {{< formula >}} y_i {{< /formula >}} Eingangs- und
+    Ausgangssignalfolgen; {{< formula >}} a_i {{< /formula >}} und {{< formula >}} b_i {{< /formula >}} Parameter, die
+    Eigenschaften des LTI-Systems bestimmen; {{< formula >}} N {{< /formula >}} und {{< formula >}} M {{< /formula >}}
+    bestimmen die Anzahl der von Null verschiedenen Elemente der Folgen {{< formula >}} a_i {{< /formula >}} und
+    {{< formula >}} b_i {{< /formula >}} .</p>
+<p>Die Daten am Ausgang des Filters werden mit Hilfe der {{< formula >}} M {{< /formula >}} Werte am Eingang und der
+    {{< formula >}} N {{< /formula >}} letzten Ausgangswerte berechnet:</p>
+
+{{% formulaRow f1 = "y[n] = \frac{1}{b_0}(\sum \limits_{k=0}^M b_k x [n-k] - \sum \limits_{i=0}^N a_i y [n-k])" ref = "1.22" %}}
+
+<p>Aus dieser Formel lässt sich einfach die Impulsantwort {{< formula >}} h[n] {{< /formula >}} rekursiv berechnen,
+    indem von {{< formula >}} y[0] = 0 {{< /formula >}} und von einem {{< formula >}} \delta {{< /formula >}}-Impuls als Eingabe ausgegangen wird.</p><!-- TODO: Formelzeichen-->
+
+{{% formulaRow f1 = "h[n] = \frac{1}{a_0}(b_n - \sum \limits_{i=1}^N a_i h [n-i])" ref = "1.23" %}}
+
+<h5>FIR Filter</h5>
+<p>'Finite Impulse Response' Filter sind ein spezieller Typ der LTI-Filter, bei denen keine Rekursion existiert. Auf die
+    Differenzengleichungen (1.21) bis (1.23) angewandt bedeutet dies, dass alle Koeffizienten gleich 0 sind.</p>
+
+{{% formulaRow f1 = "y[n] = \sum \limits_{i=0}^N b_i x [n-i]" ref = "1.24" %}}
+
+{{% formulaRow f1 = "h[n] = b_n" ref = "1.25" %}}
+
+<p>Die FIR Filter werden aus folgenden Gründen verwendet:</p>
+<ul>
+    <li>FIR Filter mit linearer Phase können einfach entwickelt werden.</li>
+    <li>Es existieren rechnerisch effiziente nichtrekursive sowie rekursive Verfahren für die Implementation der FIR
+        Filter.
+    </li>
+    <li>Nichtrekursiv realisierte FIR Filter sind inhärent stabil und frei von "Limit Cycle" Begrenzungen, wenn sie in
+        einem System mit begrenzter Wortlänge implementiert werden.
+    </li>
+    <li>Es existieren gute Entwurfsmethoden für verschiedene Arten von FIR Filter mit beliebigen Spezifikationen.</li>
+    <li>Das Ausgangsrauschen, verursacht durch die Rundungsfehler in einem FIR Filter, ist normalerweise niedrig. Die
+        Empfindlichkeit auf Variationen in den Koeffizienten ist ebenfalls gering.
+    </li>
+</ul>
+
+{{% image url="Audiotechnik/7/1_2_10_grundaufbau_eines_fir_filters.gif" caption="Abb. 2.7-4 Grundaufbau eines FIR-Filters" %}}
+
+<h5>IIR Filter</h5>
+<p>'Infinite Impuls Response' Filter sind rekursive LTI Systeme, die das Signal vom Ausgang des Filters rückkoppeln, um
+    die gewünschte Eigenschaft des Signals mit weniger Elementen effizienter auszufiltern.</p>
+
+{{% image url="Audiotechnik/7/1_2_11_grundaufbau_eines_iir_filters.gif" caption="Abb. 2.7-5 Grundaufbau eines IIR-Filters" %}}
+
+<p>Durch die Rückkopplung entsteht am Ausgang des Filters beim Zufügen eines -Signals eine unendliche Impulsantwort. Die
+    Zusammenhänge zwischen den Filterkoeffizienten und der Impulsantwort sind bei den IIR Filtern wesentlich
+    komplizierter als bei den FIR Filtern. IIR Filter sind im allgemeinen effektiver als die FIR Filter gleicher
+    Ordnung. Dafür ist ihre Entwicklung etwas komplizierter und die Phasenverschiebung sehr komplex.</p>
+<p>Die Anwendung der verschiedenen Audio Filter hängt von der Musikart ab. Rock-, Pop- oder elektronische Musik kann man
+    sich kaum vorstellen ohne den Einsatz von Audio Filtern und Effekten.</p>
+<p>Filter verändern (verzerren) das Audio-Material in einer mehr oder weniger gewünschten Weise. Manche Verzerrungen,
+    die in einer Musikart und bei einem bestimmten Instrument oder Musikstück negativ sind, werden bei einer anderen
+    Musikart, einem anderen Musikstück oder Musikinstrument als willkommen betrachtet.</p>
+<p>Aufnahmemethoden entscheiden u.a. über den Einsatz verschiedener Effekte und Filter. Bei einer Studioaufnahme ist es
+    einfach, akustische oder elektromagnetischen Störungen aber auch Echo- und Hall- Effekte fernzuhalten. Bei
+    Life-Konzerten hat man dagegen mit vielen unerwünschten Einflüssen und Störungen zu rechnen, allerdings ist die
+    Atmosphäre und der räumliche Eindruck zu hören.</p>
+<p>Die Art des Instrumentes oder Gesanges beeinflusst die Wahl der Effekte und Filter. Zum Beispiel entstehen bei
+    elektronischen Instrumenten (E-Gitarre, Synthesizer) keine räumlichen Effekte und müssen künstlich hinzugefügt
+    werden.</p>
+<p>Medien zur zeitlichen und räumlichen Übertragung des Audiomaterials beeinflussen die Verwendung von Filtern.</p>
+<ul>
+    <li>Digitale Medien müssen wegen des GlossarAliasing-Effektes<!--TODO: Missing Hyperlink--> am Eingang und Ausgang
+        über gute GlossarAntialiasing Filter<!--TODO: Missing Hyperlink--> verfügen.
+    </li>
+    <li>Mechanische Medien (Schallplatten) unterliegen Abnutzungserscheinungen und verursachen zusätzliches Rauschen,
+        z.B. Bandrauschen.
+    </li>
+    <li>Übertragungsmedien unterliegen Störungen durch Beschädigungen oder durch Ausfälle in der Übertragung (Drop
+        outs).
+    </li>
+</ul>
+
+<h5>Kriterien zur Charakterisierung von Filter und Effekte:</h5>
+<p>Es gibt Effekte, die bei der Aufnahme verwendet werden, Effekte, die im Studio für die Nachbearbeitung und Aufwertung
+    des Audiomaterials zur Anwendung kommen und Effekte, die nachträglich fehlerhaftes Material korrigieren und
+    verbessern. Man unterscheidet in:</p>
+<ul>
+    <li>Life-Effekte</li>
+    <li>Studio Effekte</li>
+    <li>Korrektur Filter.</li>
+</ul>
+
+<p>Klassifizierung der verschiedenen Effekte und Filter nach ihrer Funktion und Arbeitsweise:</p>
+<ul>
+    <li><strong>auf Lautstärke basierte Effekte:</strong><br/>Tremolo, Compressor, Limiter, Expander und Noise. Sie
+        beeinflussen nur die Lautstärke der Audiosequenz und verändern nicht ihre Wellenform oder Frequenzinhalte.
+        <ul>
+            <li>Tremolo: Dieser Effekt bewirkt eine Schwingung der Amplitude mit einer konstanten Frequenz. Das
+                bedeutet, dass der Ton leicht in der Lautstärke schwankt. Die Stärke diese Schwankung lässt sich auch
+                auswählen.
+            </li>
+            <li>Ein Compressor komprimiert die Schwingungskurve eines Klanges, indem er sie in der Höhe staucht. Die
+                Dynamik wird dadurch kleiner.
+            </li>
+            <li>Ein Limiter schneidet zu laute Stellen eines Klanges ab.</li>
+            <li>Ein Expander zieht die Schwingungskurve eines Klanges in der Höhe auseinander. Die Dynamik des Klanges
+                wird dadurch größer.
+            </li>
+            <li>Ein Noise Gate entfernt sehr leise Stellen eines Klanges.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Wellenform-Verzerrer:</strong><br/>Durch Übersteuern der Verstärker entsteht ein weiches Klipping, das
+        Verzerrungen, die reich an Harmonischen sind, hervorruft. Deswegen unterscheidet man Verzerrer nach der
+        Realisierung des Klippings in symmetrische, unsymmetrische und Verzerrer mit Rechteckwellenform. Musiker
+        unterscheiden oft zwischen Overdrive-, Distorsion- und Fuzz-Effekten.
+        <ul>
+            <li>
+                Overdrive bezeichnet die Effekte, die auch beim Übersteuern eines normalen Röhrenverstärkers entstehen.
+            </li>
+            <li>Distorsion ist hartes Klipping mit sehr reichen Obertönen</li>
+            <li>Fuzz-Effekte verwandeln das Signal in mehr oder weniger genaue Rechteckform.</li>
+            <li>Verzerrer werden fast ausschließlich bei Gitarren, Overdrive-Effekte in Jazz und Blues Musik
+                verwendet.
+            </li>
+        </ul>
+    </li>
+    <li><strong>Frequenzabhängige Filter:</strong><br/>Frequenzabhängige Filter werden meistens mit klassischen FIR- und
+        IIR-Filtern aufgebaut und durch ihre Frequenzantwort definiert. Es gibt Equalizer, Höhen-, Mitten- und
+        Basskontrolle, Resonator, Phasen Verschieber und Wah-Wah-Effekte.
+        <ul>
+            <li>Höhen-, Mitte- und Basskontrolle sind drei Filter mit einstellbarer Filtergüte Q, die drei verschiedene
+                Frequenzen beeinflussen.
+            </li>
+            <li>Equalizer bestehen aus mehreren Filtern, die das ganze hörbare Spektrum abdecken. Man unterscheidet
+                zwischen grafischen und parametrischen Equalizern.
+            </li>
+            <li>Grafische Equalizer teilen jede Oktave auf eine bestimmte Anzahl von Bändern mit festen Mittenfrequenzen
+                auf.
+            </li>
+            <li>Parametrische Equalizer bestehen aus wenigen Filtern, deren Mittenfrequenzen einstellbar sind.</li>
+            <li>Der Wah-Effekt ist ein parametrischer Equalizer mit einstellbarer Mittenfrequenz.</li>
+        </ul>
+    </li>
+    <li><strong>Zeit-Verschiebungseffekte:</strong><br/>benutzen zeitverzögerte Signale:
+
+        {{% image url="Audiotechnik/7/1_2_12_wirkung_der_schallverzoegerung.gif" caption="Abb. 2.7-6 Wirkung der Schallverzögerung" %}}
+
+        <ul>
+            <li>Effekte sind: GlossarDelay<!--TODO: Missing Hyperlink--> , GlossarEcho<!--TODO: Missing Hyperlink--> ,
+                GlossarReverb<!--TODO: Missing Hyperlink--> , GlossarFlanger<!--TODO: Missing Hyperlink--> und
+                GlossarChorus<!--TODO: Missing Hyperlink--></li>
+            <li>Hört man ein akustisches Signal im Raum, dann werden die Signale von Wänden und anderen Objekten
+                reflektiert, das gleiche akustische Signal erreicht so mehrmals mit Zeitverzögerung das Ohr.
+            </li>
+            <li>Diese Effekte verstärken den natürlichen Klang der Instrumente.</li>
+        </ul>
+    </li>
+</ul><!--TODO: Formatierung-->
+
+<h2>2.7.4 Klangsynthese Verfahren</h2>
+
+<p>Die wichtigsten Methoden zur synthetischen Klangerzeugung sind FM-Synthese (Frequenzmodulation), Additive und
+    Subtraktive Synthese, Wavetable-Synthese sowie Acoustic Physical Modeling.</p>
+
+<h5>Additive Synthese:</h5>
+<p>Verschiedene Töne werden addiert und der zeitliche Verlauf mit Hüllkurven gesteuert. Die additive Synthese ist vom
+    Prinzip her die Umkehrung der Fourier-Analyse. Sie bietet theoretisch die Möglichkeit, jeden Ton zu erzeugen. Es
+    bedarf jedoch einer großen Menge an Parametern. Das bedeutet, dass jeder einzelne Teilton von einem eigenen
+    Oszillator erzeugt und mit einer Hüllkurve in seiner Dynamik gesteuert werden muss.</p><!--TODO: Formatierung-->
+
+<h5>Subtraktive Synthese:</h5>
+<p>Aus einer möglichst obertonreichen Schwingung werden Obertöne herausgefiltert, um unterschiedliche Klänge oder
+    Klangverläufe zu erzeugen. Damit dieses Prinzip sinnvoll ist, muss ein relativ komplexes Signal von einem Oszillator
+    oder anderen tongebenden Gerät geliefert werden, damit eine Vielfalt an Klängen und damit Beschneidungen möglich
+    sind. Diese Methode ist klanglich vorhersagbar, da sie einfache Parameter wie Obertonreichtum oder Lautstärke
+    verändert.</p><!--TODO: Formatierung-->
+
+<h5>Wavetable Synthese:</h5>
+<p>Man nimmt die Klänge eines echten Instrumentes im Studio auf, bearbeitet sie je nach Zweck und speichert sie als
+    Klangvorlage. Nicht jeder Ton jedes Instrumentes kann aufgenommen werden. Deshalb berechnet der Soundchip aus einem
+    Grundsample die benötigten Klänge. Die Filteralgorithmen und die Qualität der Samples unterscheiden sich je
+    Hersteller. Je mehr Samples zur Verfügung stehen, desto besser klingen die
+    Instrumente. <br/><i>Das Prinzip der Wavetable-Synthes ist, dass die Wellenform forwährend aus dem Rom ausgelesen
+        und dem DAC zugestellt wird. Dabei werden mehere Wellenformen ausgelesen und zyklisch zugestellt. Meistens wird
+        ein einzelner Ton aufgezeichnet, wobei unterschiedliche Tonhhen durch beschleunigtes oder verlangsamtes
+        Abspielen der Aufzeichnung simuliert wird. Bei größer werdenen Abstand vom Referenzton entsteht ein
+        unnertürlicher Klang, da sich bei echten Instrumenten mit der Tonhöhe auch leicht die Klangfarbe verändert.
+        Daher werden häufig mehere Tonhöhen aufgezeichnet. (Ähnlichkeiten zu Sampling Synthese) Als Parameter lassen
+        sich beeinflussen: </i>Die Lautstärke (Amplitudenmodulation, Tremolo), die Tonhhe (FM, Vibrato) und die
+    Filterabschaltfrequenz (Filtermodulation, Wah-Effekt). </p>
+<p>Beispiel für Klangerzeugung auf Wavetable - Basis: LinkFastTracker
+    <!--TODO: Missing Hyperlink--></p><!--TODO: Formatierung-->
+
+<h5>Waveshaping-Synthese:</h5>
+<p>Durch nichtlineare Verzerrung der Grundwelle werden obertonreiche Signale erzeugt, wobei neue Spektralkomponenten
+    (Teiltöne) entstehen. Nachteil dieser Methode ist, daß die so erzeugten Signale eine eindeutige Periodendauer haben
+    - nämlich ganzzahlige Vielfache der Grundfrequenz. Für die Simulation natürlicher Instrumente reicht das aber nicht
+    aus, da z.B. Schlag- und Blasinstrumente einen gewissen Rauschanteil aufweisen.</p><!--TODO: Formatierung-->
+
+<h5>FM-Synthese:</h5>
+<p>Die Frequenzmodulationssynthese ist ein von Yamaha 1973 entwickeltes Verfahren zur Beschreibung von
+    Instrumentenklängen. Yamaha entwickelte den ersten Synthesizer OPL2. Heute ist OPL3 der de facto Standard. Der
+    FM-Synthesizer generiert eine Sinuswelle mit konstanter, hoher Frequenz und konstanter Lautstärke, die sogenannte
+    Trägerwelle. Zu dieser mixt er die niederfrequente Schwingung des Modulators.</p>
+
+{{% image url="Audiotechnik/7/1_1_8_frequent_modulation_s.gif" caption="Abb. 2.7-7 Prinzip der Frequenzmodulationssynthese" %}}
+
+<p>Das Signal folgt der nichtlinearen Gleichung: </p>
+
+<p>
+    {{< formula >}}
+    f(t) = a_1 * sin(2\pi * f_1 * t + a_2 * sin(2\pi * f_2 * t))
+    {{< /formula >}}
+</p>
+
+<p>
+    Die Veränderungen des Trägers sind durch die Ausgangslautstärke des Modulators einstellbar. In der Praxis wird die
+    FM-Synthese mit diversen Rückkopplungsmöglichkeiten verknüpft. Der Klang kann durch einen weiteren Generator mit
+    niedriger Frequenz verbessert werden. Hinter die Frequenzerzeugung lassen sich Filter schalten, die den Klang weiter
+    verfeinern.</p>
+<p>Mit wenigen Parametern können sehr komplexe Sounds erzeugt werden. Die gezielte Programmierung ist jedoch ohne
+    Kenntnisse von Klangspektren und mathematischem Hintergrund nicht möglich. Die Klangvielfalt steht einem relativ
+    geringen Aufwand gegenüber, so dass sich die FM-Synthese für elektronische Musikinstrumente schnell durchsetzte.
+    Dennoch gibt es gewisse Grenzen, die für bestimmte Klangstrukturen zum Vorschein kommen und eine zufrieden stellende
+    professionelle Nutzung im MIDI-Bereich einschränken. So klingen die Instrumente nicht ganz originalgetreu. Deshalb
+    wurde die FM-Synthese zunehmend durch modernere Verfahren, wie z.B. die Wavetable-Synthese
+    ersetzt.</p><!--TODO: Formatierung-->
+
+<h5>Sampling-Synthese:</h5>
+<p>Bei diesem Verfahren werden Unzulänglichkeiten der anderen Verfahren durch im Studio aufgenommene Klangvorlagen
+    (Samples, digitale PCM - Signale ) von echten Instrumenten beseitigt. Zusätzlich kommen Filteralgorithmen,
+    Verstärkung- und Wiederholung der Samples zur Anwendung. </p>
+<p>Als Faustformel dient: Je mehr Samples, desto besserer Klang. <i>Sample-Synthesizer kann als die Basis für
+    Synthesizer
+    gesehen werden, die sie einen großen Vorrat an notwendigen und häufig genutzten Klangfarben zur Verfügung
+    stellt.</i></p>
+<p>Beeinflussbare Parameter sind: Lautstärke (Amplitudenmodulation, Tremolo), Tonhöhe (FM, Vibrato) oder
+    Filterabschaltfrequenz (Filtermodulation, Wah-Effekt). </p><!--TODO: Formatierung-->
+
+{{% image url="Audiotechnik/7/sampling.gif" caption="Abb. 2.7-8 Sampling Synthese" %}}
+
+<h5></h5>
+<p>Bei der Granularsynthese wird ein beliebiges Schallsignal in kurze (ms) Abschnitte (Grains) unterteilt. Diese Grains
+    werden dann in beliebiger Reihenfolge zu Klängen zusammengesetzt. </p>
+<p>Wiedergabegeschwindigkeit und Tonhöhe werden so voneinander entkoppelt, wobei die Tonhöhe konstant bleibt. Die
+    Schnittstellen zwischen den Grains werden überblendet und die Hüllkurve wird durch Verstärker geformt. Zu lange
+    Grains können leblos/maschinell klingen, zu kurze im Klang der subtraktiven Synthese ähnlich werden –
+    Zufallsmodulation (Länge, Position) kann zu besseren Ergebnissen führen. Das Verfahren eignet sich besonders für
+    experimentelle Klanggestaltung. Parameter: Startposition, Länge, Smooth, Wiedergabegeschwindigkeit
+    (u.A.)</p><!--TODO: Formatierung-->
+
+<h5>Acoustic Physical Modeling:</h5>
+<p>Bei diesem Verfahren wird das Klangverhalten der Musikinstrumente durch komplexe mathematische Gleichungen
+    nachgebildet und akustisch simuliert. Damit wird ein naturgetreuer Klang möglich. Es ist jedoch eine sehr hohe
+    Rechenleistung nötig.</p><!--TODO: Formatierung-->
+
+{{% image url="Audiotechnik/7/soundkartenschema.gif" caption="Abb. 2.7-9  Aufbauschema einer Soundkarte" %}}

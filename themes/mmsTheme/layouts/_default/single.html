@@ -1,24 +1,6 @@
 {{ define "main" }}
-  {{if in .Permalink "lernumgebung"}}
-    <div class="container-fluid">
-      <div class="row flex-xl-nowrap">
-        {{- partial "sidenav.html" . -}}
-        <div class="col-12 col-md-8 col-xl-7 py-3 px-md-5">
-          <article>
-            <h1>{{ .Title }}</h1>
-            <p>{{ .Content }}</p>
-          </article>
-        </div>
-        {{- partial "marginal.html" . -}}
-      </div>
-    </div>
-  {{else}}
-    <div class="container">
-      <article class="mt-3">
-        <h1>{{ .Title }}</h1>
-        <p>{{ .Content }}</p>
-      </article>
-    </div>
-  {{end}}
-
+<article>
+  <h1>{{ .Title }}</h1>
+  <p>{{ .Content }}</p>
+</article>
 {{ end }}

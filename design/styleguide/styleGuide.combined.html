@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="scss/main.css">
 	<link rel="stylesheet" href="scss/custom.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
@@ -79,7 +80,7 @@
 <article class="mt-5">
   <h2>A Formula</h2>
   <p>$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</p>
-  <a href="http://docs.mathjax.org/en/latest/basic/mathematics.html">&raquo; How to use Formulas</a>
+  <a href="http://docs.mathjax.org/en/latest/basic/mathematics.html" target="_blank">&raquo; How to use Formulas</a>
 </article>
 </section> 
 <section id="1.3_Buttons" class="container"> 
@@ -139,35 +140,27 @@
         <input class="form-control" type="text" name="username" value="Street 1" disabled>
       </div>
     </div>
+
     <div class="col-6">
-      <h2>Select</h2>
-      <pre>
+      <h2>Number input</h2>
+      <p>Media Team: The controls don't look very appealing in different browser. However the standard controls are currently not stylable, so we agreed and it being a browser problem and not ours.</p>
+      <pre class="language-html">
 <div class="form-group">
-  <label for="selectControl1">Default</label>
-  <select id="selectControl1" class="form-control">
-    <option value="0">Choose an option</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-  </select>
+  <label for="textInput">Default</label>
+  <input class="form-control" type="number" min="-20" max="500" step="0.1" name="username" value="Street 1">
 </div>
         </pre>
       <div class="form-group">
-        <label for="selectControl1">Default</label>
-        <select id="selectControl1" class="form-control">
-           <option value="0">Choose an option</option>
-           <option value="1">Option 1</option>
-           <option value="2">Option 2</option>
-        </select>
+        <label for="textInput">Default</label>
+        <input class="form-control" type="number" min="-20" max="500" step="0.1" name="username" value="Street 1">
       </div>
       <div class="form-group">
-        <label for="selectControl1">Disabled</label>
-        <select id="selectControl1" class="form-control" disabled>
-           <option value="0">Choose an option</option>
-           <option value="1">Option 1</option>
-           <option value="2">Option 2</option>
-        </select>
+        <label for="">Disabled</label>
+        <input class="form-control" type="number" min="-20" max="500" step="0.1" name="username" value="Street 1" disabled>
       </div>
     </div>
+  </div>
+
   <div class="row mt-5">
     <div class="col-6">
       <h2>Checkbox</h2>
@@ -257,6 +250,35 @@
   </div>
   <div class="row mt-5">
     <div class="col-6">
+      <h2>Select</h2>
+      <pre>
+<div class="form-group">
+  <label for="selectControl1">Default</label>
+  <select id="selectControl1" class="form-control">
+    <option value="0">Choose an option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+  </select>
+</div>
+        </pre>
+      <div class="form-group">
+        <label for="selectControl1">Default</label>
+        <select id="selectControl1" class="form-control">
+           <option value="0">Choose an option</option>
+           <option value="1">Option 1</option>
+           <option value="2">Option 2</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="selectControl1">Disabled</label>
+        <select id="selectControl1" class="form-control" disabled>
+           <option value="0">Choose an option</option>
+           <option value="1">Option 1</option>
+           <option value="2">Option 2</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-6">
       <h2>Range Input</h2>
       <pre>
 <div class="form-group">
@@ -269,6 +291,8 @@
         <input class="form-control-range" id="slider" type="range" name="" min="0" max="100" value="">
       </div>
     </div>
+  </div>
+  <div class="row mt-5">
     <div class="col-6">
       <h2>Help Text</h2>
       <pre>

@@ -1,0 +1,67 @@
+---
+title: "3.5 Ebenen, Kanäle und Masken"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+<!-- TODO: Formatierung der Gesamten Seite-->
+
+<p><strong>(Bearbeitungs-) Ebenen</strong></p>
+<p>Bildeditoren, wie Photoshop, unterstützen die Darstellung von Bildteilen oder Bildern in verschiedenen, sich
+    überlagernden Ebenen.</p>
+
+{{% image url="Bildformate/5/2_4_1_ebenen.jpg" caption="Abb. 3.5-0 Wirkung von Ebenen" %}}
+
+<p><strong>Ebenen</strong> ermöglichen es, spezielle Bildbereiche zu bearbeiten, ohne dass andere Informationen
+    verändert werden. Eine Ebene lässt sich z.B. unabbhängig von anderen verschieben. Alle Ebenen eines Bildes haben die
+    gleiche Anzahl Pixel, Kanäle sowie denselben Bildmodus, z.B. RGB oder CMYK.</p>
+<p> Ebenen können zwischen Dokumenten ausgetauscht werden, z.B. mit Hilfe der Ebenen-Palette. Sie können in ihrer Lage
+    verändert oder vorübergehend ausgeblendet werden.</p>
+
+{{% image url="Bildformate/5/2_4_2_moduswirkungen_auf_ebenen.jpg" caption="Abb. 3.5-1 Moduswirkungen auf Ebenen" %}}
+
+<p>Attribute einer Ebene sind ihr <strong>Deckungsgrad</strong> und der <strong>Ebenen-Modus</strong>. Jeder Ebene kann
+    eine bestimmte Deckungskraft zugeordnet werden. Ebenen-Modi legen fest, wie die Pixel in der Ebene im Verhältnis zu
+    den dahinter liegenden Pixeln anderer Ebenen erscheinen. Eine Ebene besteht aus transparenten, opaken (nicht
+    transparenten) und halbtransparenten Bereichen, aus deren Deckkraft eine Transparenzmaske berechnet wird. Zusätzlich
+    kann eine Ebene auch um eine <strong>Ebenenmaske</strong> ergänzt werden, welche die maskierten Teile der Ebene
+    ausblendet, so dass sie im Gesamtbild nicht mehr sichtbar sind. Sie wirkt wie ein Passepartout aus schwarzer Pappe,
+    das Löcher besitzt, durch die ein darunterliegendes Bild hindurchscheint. Eine Ebenenmaske ist nur in der Ebene
+    wirksam, der sie zugewiesen ist. Andere Ebenen werden von ihr nicht verdeckt.</p>
+
+<p><strong>Kanäle</strong></p>
+<p>Jedes Bild kann ein oder mehrere <strong>Kanäle</strong> enthalten. Ein CMYK-Bild hat z.B. mindestens vier Kanäle,
+    jeweils einen für Cyan, Magenta, Gelb und Schwarz.</p>
+
+<!-- TODO: Flashplayer image? couldnt find it!-->
+
+<p>Außerdem besitzt ein Bilddokument einen Gesamtkanal, der alle Farbinformationen anzeigt. Zudem können weitere Kanäle
+    zum Aufbewahren und Bearbeiten von Masken definiert werden, sog. Alpha-Kanäle. Durch Kanalberechnungen können
+    Pixelwerte aus zwei Kanälen überlagert und mit unterschiedlichen Methoden kombiniert werden.</p>
+<p><strong>Alpha-Kanal:</strong> Ein Erklärungsmodell von Alpha-Kanälen kann sein</p>
+<ul>
+    <li>Ausgangspunkt: Graustufenfoto auf einer Folie und zusätzliche nicht bedruckte Folien, die jeweils einem Kanal
+        entsprechen.
+    </li>
+    <li>Schneidet man in eine Folie ein Loch und legt diese auf die Graustufenfolie, kann im Bereich des Loches das Bild
+        bearbeitet werden, der Rest des Bildes bleibt geschützt. Mit verschiedenen Folien unterschiedlicher Löcher wird
+        der Arbeitsbereich eingeschränkt.
+    </li>
+    <li>Das Graustufenbild entspricht dem Schwarz-Kanal, durchlöcherte Folien einem Alpha-Kanal, der einen gespeicherten
+        Auswahlbereich, eine Maske enthält.
+    </li>
+</ul>
+
+<p>Enthält ein Bild einen Alpha-Kanal, so wird zu jedem einzelnen Bildpunkt zusätzlich ein Alpha-Wert gespeichert. Der
+    Alpha-Kanal kann als Transparenz-Maske angesehen werden. Im Folgenden wird die Anwendung eines Alpha-Kanals
+    demonstriert. Bild (b) enthält den in (c) abgebildeten Alpha-Kanal und wird gegen den Hintergrund (a) dargestellt.
+    Das Ergebnis ist in (d) zu sehen.</p>
+
+{{% image url="Bildformate/5/2_4_4_alpha-kanal_1.jpg" caption="Abb. 3.5-2 Anwendung eines Alphakanals" %}}
+
+<p>Kanäle werden z.B. im TIFF- und PNG-Dateiformat mit den Bilddaten gespeichert. Im JPEG-Format wird kein Alpha-Kanal
+    gespeichert.</p>
+<p>Kanäle werden bei Photoshop in der Kanal-Palette verwaltet, können ein- und ausgeblendet, dupliziert und gemischt
+    werden. Es ist möglich, Farben, Maskierungen und Deckkraft für jeden Kanal festzulegen.</p>
+<p>Jedes Bild kann bis zu 24 Kanäle enthalten.</p>
+
+{{% image url="Bildformate/5/2_4_5_kanalpalette.jpg" caption="Abb. 3.5-3 Kanalpalette" %}}

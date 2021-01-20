@@ -1,0 +1,5 @@
+{{ $url := (print "images/" (.Get "url")) }}
+<figure class="mb-3">
+  <img src="{{ $url | absURL }}" {{ if isset .Params `alt` }}alt="{{ .Get `alt` }}"{{ end }} class="{{ .Get `class` }}">
+  <figcaption class="small">{{ .Get `caption` }}</figcaption>
+</figure>

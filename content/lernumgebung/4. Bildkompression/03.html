@@ -1,0 +1,34 @@
+---
+title: "4.3 Prädiktion oder relative Kodierung"
+date: 2020-10-12T09:49:41+02:00
+draft: true
+---
+
+<h2>4.3.1 Differenzkodierung</h2>
+<p>Unterscheiden sich die Werte einer Folge nur geringfügig voneinander, z.B. die Farbwerte einer homogenen
+    Hintergrundfläche, so bietet sich die Kodierung der Differenz an.</p>
+<p>Bei Bewegtbildsequenzen wird in der zeitlichen Folge die Differenz zwischen benachbarten Frames kodiert.</p>
+{{% image url="Bildkompression/3/3_3_1_differenzkodierung.gif" caption="Abb. 4.3-0 Differenzkodierung" %}}
+
+<h2>4.3.2 Delta Modulation</h2>
+<p>Bei diesem Verfahren handelt es sich um eine Abwandlung der DPCM<!--TODO: Fehlende Referenzen-->, die sich dadurch
+    unterscheidet, dass die benachbarten Abtastwerte nur um die Werte +1 oder -1 von dem realen Abtastwert abweichen
+    können. Für die Kodierung benachbarter Abtastwerte wird lediglich ein Bit verwendet. Es repräsentiert p Stufen.</p>
+<p>Durch eine Erhöhung der Abtastrate können schnelle und hohe Signaländerungen erfasst werden.</p>
+<p><u>Beispiele: p = 3</u></p>
+<ul>
+    <li>unkomprimiert: 112, 114, 117, 115, 111, 109, ....</li>
+    <li>komprimiert: 1, 1, 0, 0, 0, ...</li>
+    <li>dekomprimiert: 112, 115, 118, 115, 112, 109, ...</li>
+</ul>
+{{% image url="Bildkompression/3/3_3_2_deltamodulation.gif" caption="Abb. 4.3-1 Deltamodulation" %}}
+
+<h2>4.3.3 Adaptive Kompression</h2>
+<p>Bei adaptiver Kompression wird das Verfahren an die zu komprimierenden Daten angepasst.</p>
+<p>Adaptive DPCM: <strong>ADPCM</strong></p>
+<p>Der Kodierer dividiert den DPCM-Wert durch eine geeignete Konstante und der Dekoder multipliziert die komprimierten
+    Werte wieder mit dieser Konstante. Für Signale mit großen DPCM-Werten (großer Anteil hoher Frequenzen) wird eine
+    Konstante mit großem Wert gewählt. Damit ergibt sich eine grobe Quantisierung, d.h. niederfrequente Anteile bleiben
+    unberücksichtigt. Bei Signalen mit kleinen DPCM-Werten wird eine kleine Konstante gewählt, d.h. es ergibt sich eine
+    gute Auflösung niederfrequenter Signalanteile. Treten in diesem Fall plötzlich große Werte auf, so entstehen
+    Signalverzerrungen (Slope Overload).</p>

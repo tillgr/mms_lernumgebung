@@ -1,0 +1,7 @@
+{{ if eq (.Get 0) "glossar" }}
+<a href="/glossar/{{ .Get 1 }}">{{ .Get 2 }}</a>
+{{ else if eq (.Get 0) "ext" }}
+<a href="/external/{{ .Get 1 }}">{{ .Get 2 }}</a>
+{{ else if eq (.Get 0) "int" }}
+<a href="/internal/{{ .Get 1 }}">{{ .Get 2 }}</a>
+{{ end }}
