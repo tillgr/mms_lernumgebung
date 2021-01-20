@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!--<script src="d3.min.js"></script>-->
+    <script src="script.js"></script>
+    <title>Applet JPEG Kompression</title>
+</head>
+<body>
+    <main>
+		<div class="applet">
+			<div class="applet_header"></div>
+			<div class="chapter_selection">
+				<div id="selectChapter1div">
+					<img id="svgChapter1" src="svg/chapter1.svg"></img>
+					<h1>Einleitung</h1>
+					<span>JPEG = Kompression durch Irrelevanzreduktion.<br> Das Auge nimmt Helligkeit besser als Farbe wahr.</span>
+				</div>
+				<div id="selectChapter2div">
+					<img id="svgChapter2" src="svg/chapter2.svg"></img>
+					<h1>Bildaufbereitung</h1>
+					<span>Transformation in geeigneteres Farbsystem YCC.<br> Unterabtastung der Farbwerte. Blockbildung.</span>
+				</div>
+				<div id="selectChapter3div">
+					<img id="svgChapter3" src="svg/chapter3.svg"></img>
+					<h1>Diskrete Cosinus-Transformation</h1>
+					<span>Bestimmen des Farbgrundwerts in einem Block<br> und der Abweichungen von diesem.</span>
+				</div>
+				<div id="selectChapter4div">
+					<img id="svgChapter4" src="svg/chapter4.svg"></img>
+					<h1>Quantisierung</h1>
+					<span>Entfernen der irrelevanten Informationen durch<br> Stufenbildung im Wertebereich (verlustbehaftet).</span>
+				</div>
+				<div id="selectChapter5div">
+					<img id="svgChapter5" src="svg/chapter5.svg"></img>
+					<h1>Entropiekodierung</h1>
+					<span>Redundanzreduktion: effizientere Speicherung<br> durch Entfernen von überflüssigen Daten.</span>
+				</div>
+			</div>
+			<div class="section_selection">
+				<div>
+					<button id="buttonSectionSelectionLeft"></button>
+					<span id="current_section_heading">1.1 Bedienungsanleitung</span>
+					<button id="buttonSectionSelectionRight"></button>
+				</div>
+				<div class="section_selection_buttons">
+					<button id="buttonShowSection1" class="buttonSectionSelection"></button>
+					<button id="buttonShowSection2" class="buttonSectionSelection"></button>
+					<button id="buttonShowSection3" class="buttonSectionSelection"></button>
+					<button id="buttonShowSection4" class="buttonSectionSelection"></button>
+				</div>
+			</div>
+			<div id="chapter1" class="chapter1">
+			
+				<div id="section1" class="section1">
+					<h1>Bedienelemente</h1>
+					<p>Mit dieser Lernanwendung soll das JPEG-Kompressionsverfahren anschaulich gemacht werden. Die Bedienelemente werden beim Drücken des Hilfe-Symbols (rechts oben) erklärt.</p>
+					
+					<h1>Auswahl des Bildausschnitts</h1>
+					<p>Das Bild unten soll in der ganzen Lernanwendung als Beispiel dienen. Es gibt zwei Ausschnitte, die verschiedene Typen von Bildern symbolisieren. Sie können in jedem Abschnitt, wo dies sinnvoll ist, mit dem Bild-Button (rechts unten) ausgewählt und umgeschaltet werden.</p>
+					
+					<div>
+						<image src="images/image.png" width="350px" height=""/>
+						<h1>Ausschnitt 1</h1>
+						<p>Natürlichfarbiges Bild mit Farbverläufen und Kanten (standardmäßig ausgewählt)</p>
+						<h1>Ausschnitt 2</h1>
+						<p>Strichzeichnung mit starken Farbkontrasten und harten Kanten</p>
+					</div>
+				</div>
+				
+				<div id="section2" class="section2">
+					<p>Grundlegendes Ziel von JPEG ist die <b>Kompression</b>, das heißt die Verringerung des Speicherplatzbedarfs. Das soll dadurch erreicht werden, dass irrelevante Daten weggelassen werden. </p>
+					<p>Irrelevant sind solche Daten, die vom menschlichen Auge ohnehin nicht wahrgenommen werden bzw. für das Erscheinungsbild nicht so bedeutsam sind. Dieses Vorgehen bezeichnet man daher als <b>Irrelevanzreduktion</b>: Man möchte mit weniger Informationen den gleichen oder einen genügend ähnlichen visuellen Eindruck erzielen (zum Vergleich die zwei Bilder). </p>
+					<figure>
+						<image src="images/image.png" width="300rem" height=""/>
+						<figcaption>unkomprimiertes Bild (82 kB)</figcaption>
+					</figure>
+					<figure>
+						<image src="images/image.png" width="300rem" height=""/>
+						<figcaption>komprimiertes Bild (59 kB)</figcaption>
+					</figure>
+					<p>Dadurch gehen allerdings Informationen unwiederbringlich verloren, das heißt, das JPEG-Kompressionsverfahren ist <b>verlustbehaftet</b>. Optimiert ist das Verfahren für natürlichfarbige Bilder.</p>
+				</div>
+				
+				<div id="section3" class="section3">
+					<p>Beim JPEG-Verfahren wird folgende Erkenntnis aus der Wahrnehmungspsychologie ausgenutzt: <b>das menschliche Auge ist für Helligkeitsunterschiede sensibler als für Farbunterschiede.</b></p>
+					<p>Das kann hier ausprobiert werden:</p>
+					<table>
+						<td>
+							<img id="image_manipulation_example" src="images/image.png" width="350px" height=""/>
+						</td>
+						<td>
+							<div class="image_manipulation_div">
+								<div class="image_manipulation_selection">
+									<div>
+										<input type="radio" id="radioButtonOriginalImage" name="a" value="">
+										<label for="radioButtonOriginalImage">Originalbild</label>
+									</div>
+									<div>
+										<input type="radio" id="radioButtonColorChanged" name="a" value="">
+										<label for="radioButtonColorChanged">Farbe verändert</label>
+									</div>
+									<div>
+										<input type="radio" id="radioButtonBrightnessChanged" name="a" value="">
+										<label for="radioButtonBrightnessChanged">Helligkeit verändert</label>
+									</div>
+								</div>
+								<div class="image_manipulation_text">
+									<span id="image_manipulation_explanation"></span>
+								</div>
+							</div>
+						</td>
+					</table>
+					<p>Daher werden <b>bei den Farbunterschieden Abstriche</b> gemacht (vor allem bei den kleineren), um Speicherplatz zu sparen. Es sollen nur so viele Informationen übrig bleiben, wie nötig sind, um das Bild noch richtig zu verstehen. Die Einschätzung, wann dies noch der Fall ist, kann und muss der Nutzer selbst machen und zwar, indem er den Qualitätsfaktor entsprechend festlegt.</p>
+				</div>
+				
+				<div id="section4" class="section4">
+					<p>Das JPEG-Verfahren ist <b>in vier Phasen gegliedert</b>, in denen man dem Ziel der Irrelevanzreduktion schrittweise näher kommt:</p>
+					<div>
+						<img src="svg/chapter2.svg" width="" height="80px"/>
+						<h1>1. Bildaufbereitung</h1>
+						<p>Zunächst erfolgt die Umwandlung in ein zweckmäßigeres Farbsystem, dann die Unterabtastung der Farbwerte und die Blockbildung</p>
+					</div>
+					<div>
+						<img src="svg/chapter3.svg" width="" height="80px"/>
+						<h1>2. Diskrete Cosinus-Transformation</h1>
+						<p>Diese Phase dient dazu, den Farbgrundwert innerhalb eines Blockes zu bestimmen und die Abweichungen von diesem.</p>
+					</div>
+					<div>
+						<img src="svg/chapter4.svg" width="" height="80px"/>
+						<h1>3. Quantisierung</h1>
+						<p>In diesem Schritt werden die irrelevanten Informationen entfernt und gehen damit unwiederderbringlich verloren.</p>
+					</div>
+					<div>
+						<img src="svg/chapter5.svg" width="" height="80px"/>
+						<h1>4. Entropiekodierung</h1>
+						<p>Zuletzt werden die übrigen Daten effizienter gespeichert, indem redundante, d.h. mehrfach auftretende, Informationen entfernt werden.</p>
+					</div>
+				</div>
+			</div>
+			<div id="image_section_selection">
+				<span>Auswahl Bildausschnitt</span>
+				<div>
+					<img src="images/image.png" width="" height="80px"/>
+					<button id="buttonImageSectionSelection1">1</button>
+					<button id="buttonImageSectionSelection2">2</button>
+				</div>
+				<button id="buttonHideImageSectionSelection"></button>
+			</div>
+			<button id="buttonShowImageSectionSelection">Bild</button>
+			<div id="help">
+				<div id="help_background"></div>
+				<svg>
+					<defs>
+						<marker id="arrow_head" markerWidth="13" markerHeight="13" refX="9" refY="6" orient="auto">
+        					<path d="M2,11 L10,6 L2,2" style="stroke: red; stroke-width: 1px; fill: none;" />
+    					</marker>
+					</defs>
+					<path d="M50,220 L20,170" style="stroke: red; stroke-width: 3px; fill: none; marker-end: url(#arrow_head);"></path>
+					<path d="M500,230 L470,180" style="stroke: red; stroke-width: 3px; fill: none; marker-end: url(#arrow_head);"></path>
+					<path d="M740,560 L770,610" style="stroke: red; stroke-width: 3px; fill: none; marker-end: url(#arrow_head);"></path>
+					<path d="M330,85 L270,85" style="stroke: red; stroke-width: 3px; fill: none; marker-end: url(#arrow_head);"></path>
+					<path d="M470,85 L530,85" style="stroke: red; stroke-width: 3px; fill: none; marker-end: url(#arrow_head);"></path>
+				</svg>
+				<div id="help_text">
+					<span id="help_chapter_selection">Kapitelauswahl</span>
+					<span id="help_sequential_section_selection">sequentielle Abschnittswahl innerhalb eines Kapitels</span>
+					<span id="help_direct_section_selection">direkte Abschnittswahl innerhalb eines Kapitels</span>
+					<span id="help_image_selection">Auswahl des Bildausschnitts, anhand dessen das jeweilige Thema erklärt werden soll</span>
+				</div>
+			</div>
+			<button id="buttonShowHelp">
+				<span id="help_icon">?</span>
+			</button>
+		</div>
+    </main>
+</body>
+</html>

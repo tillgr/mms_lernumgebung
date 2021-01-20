@@ -1,0 +1,374 @@
+.applet {
+	position: relative;
+	width: 50rem;
+	height: 40rem;
+	background-color: white;
+	border: 1px solid black;
+}
+
+.applet_header {
+	width: 100%;
+	height: 2.6rem;
+	background-color: #aaa549;
+	border: 1px solid black;
+}
+
+.chapter_selection {
+	width: 100%;
+	height: 5rem;
+	background-color: #f9f7e2;
+	border: 1px solid black;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.chapter_selection div {
+	width: 4rem;
+	height: 4rem;
+	background-color: yellow;
+	overflow: hidden;
+	transition: width 1s;
+	border: 1px solid #dddddd;
+}
+
+.chapter_selection h1 {
+	display: block;
+	font-size: 1em;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+	white-space: nowrap;
+	margin-left: 4.4rem;
+}
+
+.chapter_selection span {
+	display: block;
+	white-space: nowrap;
+	font-size: 0.8rem;
+	font-stretch: condensed;
+	margin-left: 4.4rem;
+}
+
+.chapter_selection .selected {
+	width: 42%;
+	height: 4rem;
+	background-color: white;
+	transition: width 1s;
+}
+
+.chapter_selection .border_background {
+	background:
+		linear-gradient(to right, black 4px, transparent 4px) 0 0,
+		linear-gradient(to right, black 4px, transparent 4px) 0 100%,
+		linear-gradient(to left, black 4px, transparent 4px) 100% 0,
+		linear-gradient(to left, black 4px, transparent 4px) 100% 100%,
+		linear-gradient(to bottom, black 4px, transparent 4px) 0 0,
+		linear-gradient(to bottom, black 4px, transparent 4px) 100% 0,
+		linear-gradient(to top, black 4px, transparent 4px) 0 100%,
+		linear-gradient(to top, black 4px, transparent 4px) 100% 100%;
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+}
+
+.chapter_selection img {
+	float: left;
+	width: 4rem;
+	height: 4rem;
+	background-color: #eeeeee;
+	border-right: 1px solid #dddddd;
+}
+
+.selected img {
+	fill: #e7e3b5;
+	background-color: #e7e3b5;
+}
+
+.section_selection {
+	width: 100%;
+	height: 2.5rem;
+	background-color: #f7f7ff;
+	border: 1px solid black;
+	line-height: 3rem;
+}
+
+.chapter1 {
+	
+}
+
+.chapter1 div[id^="section"] {
+	margin-left: 2em;
+	margin-right: 2em;
+	margin-top: 1.5em;
+}
+
+.chapter1 h1 {
+	display: block;
+	font-size: 1.3em;
+	margin-top: 0;
+	margin-bottom: 0.67em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
+.image_manipulation_div {
+	padding-left: 2rem;
+	width: 15rem;
+	height: 12rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.image_manipulation_selection {
+	display: flex;
+	flex-direction: column;
+}
+
+.image_manipulation_selection div {
+	padding: 0.5em;
+}
+
+.image_manipulation_text {
+	width: 100%;
+	height: 3rem;
+	padding: 0.5em;
+}
+
+.section_selection {
+	position: relative;
+}
+
+#current_section_heading {
+	position: relative;
+	margin-left: 3.5em;
+}
+
+#buttonSectionSelectionLeft {
+	position: absolute;
+	width: 3em;
+	height: 100%;
+	left: 0;
+}
+
+#buttonSectionSelectionRight {
+	position: absolute;
+	width: 3em;
+	height: 100%;
+	right: 0;
+}
+
+.section_selection_buttons {
+	margin-left: 5%;
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.section_selection_buttons button {
+	width: 20%;
+	height: 0.5em;
+	border: none;
+	cursor: pointer;
+}
+
+.section_selection_buttons .selected {
+	background-color: #444444;
+}
+
+.section1 div {
+	margin-right: 2rem;
+}
+
+.section1 div h1:first-of-type {
+	padding-top: 1rem;
+}
+
+.section1 img {
+	float: left;
+	margin-right: 2rem;
+}
+
+.section2 figure {
+	display: inline-block;
+	text-align: center;
+	margin: 0;
+}
+
+.section2 figure:first-of-type {
+	margin-left: 2rem;
+	margin-right: 2rem;
+}
+
+.section4 div {
+	overflow: hidden;
+}
+
+.section4 img {
+	float: left;
+	height: 80px;
+	margin-right: 1rem;
+	margin-bottom: 1rem;
+}
+
+.section4 h1 {
+	margin-top: 0.5rem;
+	margin-bottom: 0.1rem;
+}
+
+.section4 p {
+	margin-top: 0;
+}
+
+.filter_color {
+	filter: saturate(0.8);
+}
+
+.filter_brightness {
+	filter: brightness(0.9);
+}
+
+#image_section_selection {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	height: 9rem;
+	background-color: white;
+	font-size: 0.8rem;
+}
+
+#image_section_selection div {
+	position: absolute;
+	right: 0;
+	bottom: 1.5rem;
+}
+
+#buttonShowImageSectionSelection {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 2rem;
+	height: 2rem;
+	text-align: center;
+	padding: 0;
+}
+
+#buttonHideImageSectionSelection {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 1.5rem;
+	height: 1.5rem;
+	padding: 0;
+}
+
+#buttonImageSectionSelection1 {
+	background-color: white;
+	opacity: 0.5;
+	position: absolute;
+	top: 1.3rem;
+	left: 0.4rem;
+	width: 2.2rem;
+	height: 1.8rem;
+}
+
+#buttonImageSectionSelection2 {
+	background-color: white;
+	opacity: 0.5;
+	position: absolute;
+	top: 0.8rem;
+	left: 5rem;
+	width: 2.2rem;
+	height: 1.8rem;
+}
+
+#buttonImageSectionSelection1:not(.selected):hover {
+	font-size: 1.2rem;
+	opacity: 1;
+	background-color: transparent;
+}
+
+#buttonImageSectionSelection2:not(.selected):hover {
+	font-size: 1.2rem;
+	opacity: 1;
+	background-color: transparent;
+}
+
+#image_section_selection .selected {
+	font-size: 1.2rem;
+	opacity: 1;
+	background-color: transparent;
+	
+}
+
+#help, #help_background, #help_text, #help svg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+#help_background {
+	background-color: white;
+	opacity: 0.7;
+}
+
+#help svg {
+	z-index: 9999;
+}
+
+#help_text {
+	color: red;
+	z-index: 99999;
+}
+
+#help_chapter_selection {
+	position: absolute;
+	top: 4.5rem;
+	text-align: center;
+	width: 100%;
+}
+
+#help_direct_section_selection {
+	position: absolute;
+	top: 14rem;
+	left: 30rem;
+	width: 15rem;
+}
+
+#help_sequential_section_selection {
+	position: absolute;
+	top: 14rem;
+	left: 1rem;
+	width: 15rem;
+}
+
+#help_image_selection {
+	position: absolute;
+	top: 30rem;
+	left: 30rem;
+	width: 15rem;
+}
+
+#buttonShowHelp {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 99999;
+	padding: 0;
+	width: 1.5rem;
+	height: 2.7rem;
+}
+
+#help_icon {
+	text-align: center;
+}
