@@ -1,5 +1,8 @@
 {{ if eq (.Get 0) "glossar" }}
-<a href="/glossar/{{ .Get 1 }}">{{ .Get 2 }}</a>
+<a href="/glossar/#{{ .Get 1 }}">
+    <img class="glossar-img" src="/icons/glossar.svg" alt="Glossar">
+     {{ .Get 2 }}
+    </a>
 {{ else if eq (.Get 0) "ext" }}
 <a href="/external/{{ .Get 1 }}">{{ .Get 2 }}</a>
 {{ else if eq (.Get 0) "int" }}

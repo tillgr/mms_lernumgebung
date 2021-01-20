@@ -161,7 +161,7 @@ caption="Abb. 2.9-5 Schallausbreitung" %}}
 
 <p>
   Bewegen sich Schallquellen oder der Hörende relativ zueinander, so bezeichnen
-  wir den zu beobachtenden Effekt als GlossarDoppler-Effekt<!--TODO: Missing Hyperlink-->
+  wir den zu beobachtenden Effekt als {{< ref "glossar" "Doppler-Effekt" "Doppler-Effekt" >}}
   . Ausschlaggebend ist, dass die von einem Empfänger registrierte Frequenz
   einer Schallwelle nicht mehr mit der gesendeten Frequenz übereinstimmt. D.h.,
   bewegen sich Schallquelle und Hörer aufeinander zu, so erhöht sich die
@@ -291,8 +291,8 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
   Eine exakte Berechnung des Raumklanges an einem bestimmten Punkt im Raum ist
   durch Nachbildung der in Kapitel 1.9.2 beschriebenen Effekte möglich. Da sich
   Schallwellen wie Lichtwellen ausbreiten und an der Position des Hörers
-  eintreffen, kann man diese Berechnung mit den Verfahren Link Raytracing<!--TODO: Missing Hyperlink-->
-  und Link Radiosity<!--TODO: Missing Hyperlink-->
+  eintreffen, kann man diese Berechnung mit den Verfahren Link Raytracing<!--TODO: Missing Hyperlink site-->
+  und Link Radiosity<!--TODO: Missing Hyperlink site-->
   vergleichen, die aus der 3D-Grafik bekannt sind. Dort beschreibt Radiosity die
   Berechnung von aufgenommener und abgestrahlter Energie an Oberflächen,
   Raytracing ist die Verfolgung von Strahlen und deren Reflektionen (im
@@ -382,7 +382,7 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
   Richtungen gleichzeitig wiedergegeben wird. Um Interferenzeffekte zu
   vermeiden, ist jedoch bei der Auffächerung bzw. der Verwendung mehrerer
   gleichklingender Schallquellen zu beachten, dass die Audiosignale aus den
-  verschiedenen Richtungen dekorreliert<!--TODO: Missing Hyperlink-->
+  verschiedenen Richtungen {{< ref "glossar" "Dekorrelation" "dekorreliert" >}}
   werden müssen.
 </p>
 
@@ -568,7 +568,7 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
   einem größeren Winkel zum Zuhörer als 60° auseinander stehen - selbst wenn das
   Signal gleichermaßen auf die vorderen Kanäle verteilt ist. Auch die exakte
   Trennung der vorderen und hinteren Kanäle aus dem kodierten Signal ist nicht
-  möglich Literatur<!--TODO: Missing Hyperlink-->
+  möglich Literatur<!--TODO: Fehlende Referenzen-->
   . Folglich war dieses System nicht sehr erfolgreich.
 </p>
 
@@ -745,7 +745,7 @@ caption="Abb. 2.9-16 Architektur des auditiven Ein-/Ausgabesystems" %}}
   >
 </p>
 <p>
-  Ein 3D-Audio-Subsystem sollte aus einer DSP-Soundkarte<!--TODO: Missing Hyperlink-->
+  Ein 3D-Audio-Subsystem sollte aus einer {{< ref "glossar" "DSP" "DSP" >}}-Soundkarte
   , der Wiedergabetechnologie und einem 3D-Sound API bestehen. Diese
   Anforderungen können als Richtinien für die Mindestanforderungen an
   interaktive 3D-Audio-Systeme betrachtet werden. Es gibt verschiedene Level;
@@ -946,13 +946,13 @@ caption="Abb. 2.9-17 Einordnung der wichtigsten 3D-Sound-APIs" %}}
   Direct Sound 3D ist ein Microsoft API. Die aktuelle Version DirectX 8.0
   unterstützt die IASIG-Richtlinien Level 2, was z.B. das Abspielen und Mischen
   beliebiger .wav-Quellen und die automatische Verwaltung der Puffer (1
-  Primärpuffer, n Sekundärpuffer) anbelangt. Es verwendet HEL<!--TODO: Fehlende Referenzen-->
-  , eine automatische Sample-Rate-Konvertierung, 3D-Funktionen inclusive HRTF<!--TODO: Missing Hyperlink-->
+  Primärpuffer, n Sekundärpuffer) anbelangt. Es verwendet {{< ref "glossar" "HEL" "HEL" >}}
+  , eine automatische Sample-Rate-Konvertierung, 3D-Funktionen inclusive HRTF<!--TODO: Missing Hyperlink site-->
   . Direct Sound 3D wurde primär für Spiele entwickelt, unterstützt aber
   inzwischen MIDI über DirectMusic.
 </p>
 <p>
-  Eine Direct Sound 3D-Anwendung verwendet das COM<!--TODO: Fehlende Referenzen-->
+  Eine Direct Sound 3D-Anwendung verwendet das {{< ref "glossar" "COM" "COM" >}}
   -Objektmodell. Die prinzipielle Vorgehensweise ist die folgende: Zunächst wird
   ein DirectSound Objekt angelegt. Die Hardware und die
   Lautsprecherkonfiguration (Aufstellwinkel) werden ausgewählt. Es werden
@@ -1075,8 +1075,8 @@ caption="Abb. 2.9-17 Einordnung der wichtigsten 3D-Sound-APIs" %}}
   Es können verschiedene Echo- und Halleffekte global für den Primärpuffer und
   für einzelne DirectSound Quellen eingestellt werden. Es bietet
   Hardwareunterstützung für occlusion
-  <!--TODO: Missing Hyperlink-->
-  und obstruction<!--TODO: Missing Hyperlink-->
+  <!--TODO: Missing Hyperlink site-->
+  und obstruction<!--TODO: Missing Hyperlink site-->
   . Die akustische Umgebung kann modelliert werden, so gibt es diverse Presets
   wie "concert hall" oder "bathroom". Über Hall-Parameter sind die Verzögerung,
   die Intensität der early reflections, die Dichte, das Spektrum und die Dauer
@@ -1090,7 +1090,7 @@ caption="Abb. 2.9-17 Einordnung der wichtigsten 3D-Sound-APIs" %}}
   veröffentlicht. Der Programmcode der Library existiert als Open Source für
   Windows, Mac OS, Unix-Systeme und BeOS. Unter Windows wird auf die DirectSound
   3D-API aufgesetzt. Der erste Code und die Spezifikation sind unter
-  http://www.openal.org/<!--TODO: Missing Hyperlink-->
+  <a href="http://www.openal.org/">http://www.openal.org/</a>
   verfügbar. Open AL integriert in der aktuellen Spezifikation nur
   IASIG-Richtlinien Level 1 Funktionen. Über Extensions sind Erweiterungen
   möglich: z.B. gibt es von Creative Labs ein OpenAL SDK.

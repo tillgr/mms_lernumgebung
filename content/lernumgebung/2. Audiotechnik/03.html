@@ -19,7 +19,7 @@ draft: true
     Verzerrungen in den hohen Frequenzen bemerkbar.</p>
 <p><strong>Abtasttheorem:</strong> Abtastfrequenz > 2 x größte Signalfrequenz</p>
 <p>Bei Nichtbeachtung des Abtasttheorems, d.h. wenn das abzutastende Signal Frequenzen über der halben Abtastfrequenz
-    enthält, entstehen bei der Abtastung sogenannte Glossar Aliasfrequenzen. <!--TODO: Missing Hyperlink--></p>
+    enthält, entstehen bei der Abtastung sogenannte {{< ref "glossar" "Aliasing" "Aliasfrequenzen" >}}.</p>
 {{% image url="Audiotechnik/3/1_3_2a_aliasingeffekt.gif" caption="Abb. 2.3-1 Aliasingeffekt bei falscher Abtastfrequenz" %}}
 
 <p>Daher wird das Audiosignal vor der AD-Wandlung durch einen bandbreitenbegrenzenden Tiefpassfilter geleitet. Da Filter
@@ -34,7 +34,7 @@ draft: true
 <p>Beispiel CD-DA:</p>
 <p>Die obere Grenzfrequenz des menschlichen Ohrs liegt bei 20 kHz, woraus sich eine Abtastfrequenz von 40 kHz ergibt. Da
     viele Instrumente Obertöne weit über dieser Frequenz erzeugen, würden hörbare Verzerrungen entstehen. Die Obertöne
-    müssen deshalb durch ein 20 kHz Tiefpass-Filter (GlossarAnti-Aliasing Filter<!--TODO: Missing Hyperlink--> )
+    müssen deshalb durch ein 20 kHz Tiefpass-Filter ({{< ref "glossar" "Aliasing" "Anti-Aliasing Filter" >}})
     abgeschnitten bzw. begrenzt werden. Durch die begrenzte Flankensteilheit wird die notwendige Dämpfung jedoch erst
     bei ca. 22 kHz erreicht. Bei CD-DA beträgt die Abtastfrequenz deshalb 44,1 kHz.</p>
 
@@ -64,7 +64,7 @@ draft: true
 <p>Die Quantisierungs-Fehler, die durch auf- bzw. abrunden der Messwerte entstehen, sind bei nichtdeterministischen
     Signalen (Musik oder Sprache) von statistischer Natur und machen sich als gleichmäßiges Rauschen (QR) bemerkbar. Ein
     Problem entsteht bei leisen Nutzsignalen, da hier das Quantisierungs-Rauschen im Extremfall das Nutzsignal verdecken
-    kann. Das Quantisierungs-Rauschen verhält sich bei der LinkPCM<!--TODO: Missing Hyperlink--> umgekehrt proportional
+    kann. Das Quantisierungs-Rauschen verhält sich bei der LinkPCM<!--TODO: Missing Hyperlink site--> umgekehrt proportional
     zur Auflösung, d.h. je Bit, um das die Auflösung reduziert wird, was einer Halbierung der Auflösung entspricht,
     erhöht sich das Rauschen um 6 dB. Damit ergibt sich bei einer 16 Bit Auflösung eine Systemdynamik (S/N,
     Signal-to-Noise-Ratio) von SNR = 16 x 6 dB + 2 dB = 98 dB.</p>
@@ -120,4 +120,4 @@ draft: true
 {{% image url="Audiotechnik/3/kodierung_lp.gif" caption="Abb. 2.3-9 Rauschen und Dynamikbereich der LP" %}}
 {{% image url="Audiotechnik/3/kodierung_fm.gif" caption="Abb. 2.3-10 Rauschen und Dynamikbereich von UKW-Radio" %}}
 
-<!--TODO: Applet Digitalisierung und Quantisierung von Audiosignalen-->
+{{% snippets/LinearNonLinearQuantization "Quantisierung & Digitalisierung von Audiosignalen"%}}
