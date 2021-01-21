@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>JPEG</title>
+		<script type="text/javascript" src="d3.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="applet">
+			<div class="header">
+				PLACEHOLDER
+			</div>
+			<div class="selection">
+				<h2 id="chapter_name">3.1 DCT-Übersicht</h2>
+				<button id="select_left"> < </button>
+				<button id="select0"></button>
+				<button id="select1"></button>
+				<button id="select2"></button>
+				<button id="select3"></button>
+				<button id="select4"></button>
+				<button id="select5"></button>
+				<button id="select6"></button>
+				<button id="select_right"> > </button>
+			</div>
+			<div id="chapter0" class="chapter chapter0">
+				<p>
+					Während der Bildaufbereitungsphase erfolgte die Farbraumumwandlung und die Unterabtastung der Farbinformationen.
+					In der Phase der Diskreten Cosinus-Transformation soll bestimmt werden, wie stark die <b>Helligkeits- bzw. Farbunterschiede in einem Block</b> sind, um diese dann in der Quantisierungsphase einschränken zu können.
+				</p>
+				<p>
+					Dazu werden die <b>Blockmatrizen mit Hilfe der Diskreten Cosinus-Transformation (DCT) in eine andere Darstellung umgewandelt</b>, welche nicht mehr die Anordnung der einzelnen Farb- bzw. Helligkeitswerte beschreibt, sondern die Größe der Wertschwankungen und die Verteilung der Schwankungen über den Bildblock.
+					Dies hat den Vorteil, dass die Wertunterschiede strukturierter angeordnet sind und somit auch besser ablesbar und leichter komprimierbar.
+				</p>
+				<p>
+					Mit Hilfe der DCT wird die zweidimensionale Bildfunktion durch die Überlagerung verschiedener Cosinusfunktionen nachgebildet.
+					Das Prinzip soll in diesem Kapitel erklärt werden.
+				</p>
+			</div>
+			<div id="chapter1" class="chapter chapter1" hidden>
+				<p>
+					Jeder 8x8-Pixel Block stellt eine zweidimensionale Funktion <b>f(x,y)=z</b> dar, das heißt eine <b>Zuordnung eines Wertes zu einem Ort</b>.
+				</p>
+				<p>
+					<b>x und y geben einen der 64 Orte</b> in dem 8x8-Pixel Block <b>an</b> und <b>z den Pixelwert</b> an dieser Stelle.
+				</p>
+				<p>
+					Folgende Abbildung zeigt dies am Beispiel eines Y-Blocks (des gewählten Ausschnitts) aus dem letzten Kapitel.
+					Man kann erkennen, dass es sich um eine stufige <b>Rechteckfunktion</b> handelt.
+				</p>
+				<table class="figures">
+					<tr>
+						<td>
+							<p>
+								Blockmatrix (Y-Ebene)
+							</p>
+						</td>
+						<td>
+							<p>
+								Darstellung als graphische Funktion
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<svg id="block_matrix" width="12em" height="12em"></svg>
+						</td>
+						<td>
+							<svg id="rectangle_function" width="12em" height="12em"></svg>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="chapter2" class="chapter chapter2" hidden>
+				<p>
+					Mit Hilfe der Diskreten Cosinus-Transformation werden Rechteckfunktionen durch Überlagerung von verschiedenen Cosinus-Funktionen nachgebildet, d.h. die <b>diskrete Stufenform wird in eine kontinuierliche Wellenform umgewandelt</b>.
+				</p>
+				<p>
+					Für eine eindimensionale Rechteckfunktion kann man sich das folgendermaßen vorstellen:
+					Cosinus-Funktionen mit unterschiedlicher Frequenz und Amplitude werden addiert und bilden die Rechteckfunktion so nach, dass die Werte an den einzelnen Stellen genau übereinstimmen.
+					<b>Aus einer Ort-Werte-Zuordnung z=f(x) wird eine Frequenz-Amplituden-Zuordnung S=F(u)</b>:
+					die Orte im resultierenden Block entsprechen den verwendeten Cosinus-Funktionen verschiedener Frequenz (Basisfunktionen);
+					die Werte entsprechen deren Amplituden (abhängig von den Ausgangswerten).
+				</p>
+				<table class="figures">
+					<col style="width:30%">
+					<col style="width:30%">
+					<col style="width:40%">
+					<tr>
+						<td>
+							<p>
+								<b>Ausgangswerte (Beispiel):</b>
+							</p>
+							<p class="instruction">
+								Maus über Felder bewegen
+							</p>
+							<svg id="function_values" width="6em" height="2em"></svg>
+						</td>
+						<td>
+							<p>
+								<b>Werte nach DCT:</b>
+							</p>
+							<p class="instruction">
+								Maus über Felder bewegen
+							</p>
+							<svg id="function_amplitudes" width="6em" height="2em"></svg>
+						</td>
+						<td rowspan="2">
+							<p>
+								<b>Resultierende Kurve</b>
+								durch Überlagerung (Addition) der Cosinus-Funktionen:
+							</p>
+							<svg id="total_function" width="7.5em" height="7.5em"></svg>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<svg id="rectangle_function_example" width="6em" height="6em"></svg>
+						</td>
+						<td>
+							Basisfunktion:
+							<svg id="basis_function" width="6em" height="5em"></svg>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="chapter3" class="chapter chapter3" hidden>
+				<p>
+					Bei der 2-dimensionalen DCT wird die Ort-Werte-Zuordnung z=f(x,y) durch Überlagerung von 2D-Cosinus-Funktionen in eine <b>Frequenz-Amplituden-Zuordnung S=F(u,v)</b> umgewandelt.
+				</p>
+				<p>
+					Folgende Formel kommt hierbei zur Anwendung:
+				</p>
+				<div>
+					<div class="formular">
+						\[\textcolor{red}{S_{uv}} = F(u,v) = {1 \over 4}c_{u}c_{v}\sum_{x=0}^7 \sum_{y=0}^7 z_{xy}\]
+					</div>
+					<div class="basis_function">
+						\[\cos((2x+1){\textcolor{red}{u} \over 16}\pi)\cos((2y+1){\textcolor{red}{v} \over 16}\pi)\]
+						<p class="instruction">
+							Allgemeine Beschreibung der Basisfunktionen
+						</p>
+					</div>
+				</div>
+				<table style="position:relative; top:-1em;">
+					<tr>
+						<td width="50%">
+							<b><font color="red">S</font> ist die Amplitude</b> (größte Auslenkung) der jeweils durch (u,v) zugeordneten Basisfunktion.
+							<br /><br />
+							Die Amplituden hängen von den Pixelwerten \(z_{xy}\) des Ausgangsblocks ab und geben an, wie stark die Änderung der Pixelwerte ist, die von der jeweiligen Basisfunktion beschrieben wird.
+							Damit beschreiben die 64 resultierenden Amplituden auch, mit welchem Anteil sich diese Basisfunktion bei der Addition aller Funktionen auswirkt.
+						</td>
+						<td>
+							<b><font color="red">u</font> und <font color="red">v</font> bestimmen die Frequenz</b> und damit eine von 64 verwendeten Basisfunktionen.
+							<br /><br /><br />
+							Die Frequenzen geben an, wie häufig bzw. schnell sich die Pixelwerte in einem Block ändern.
+							<br />
+							Es gibt je 8 verschiedene Frequenzen in horizontaler und 8 in vertikaler Richtung.
+							<br />
+							Aus ihrer Kombination ergeben sich 64 verschiedene Funktionen.
+							<br /></br />
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="chapter4" class="chapter chapter4" hidden>
+				<p>
+					<b>u und v bestimmen die Frequenz</b> und damit eine der 64 verwendeten Basisfunktionen.
+					<br />
+					In dieser Abbildung werden einige von diesen dargestellt und beschrieben (rot unterlegt):
+				</p>
+				<table class="figures" style="margin-top:0;">
+					<tr>
+						<td width="50%" align="left">64 Basisfunktionen der DCT (Draufsicht):</td>
+						<td width="50%" align="right">Beschreibung der Basisfunktion:</td>
+					</tr>
+					<tr>
+						<td align="left">
+							<svg id="tile_mask" width="16em" height="16em"></svg>
+						</td>
+						<td align="right">
+							<div id="basis_description" class="description">
+								<p id="basis_description_text"></p>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<div style="width:8em;position:relative;top:-14em;left:16em;" align="center">
+					<p>3D-Darstellung der Basisfunktion:</p>
+					<!--only images, no svg-->
+					<img src="no_function.png" width="128em" height="128em" id="no_function_image" class="basis_function_image" />
+					<img src="function0.png" width="128em" height="128em" id="basis_function_image0" class="basis_function_image" hidden />
+					<img src="function1.png" width="128em" height="128em" id="basis_function_image1" class="basis_function_image" hidden />
+					<img src="function2.png" width="128em" height="128em" id="basis_function_image2" class="basis_function_image" hidden />
+					<img src="function3.png" width="128em" height="128em" id="basis_function_image3" class="basis_function_image" hidden />
+					<img src="function4.png" width="128em" height="128em" id="basis_function_image4" class="basis_function_image" hidden />
+					<img src="function5.png" width="128em" height="128em" id="basis_function_image5" class="basis_function_image" hidden />
+				</div>
+				<table style="position:relative;top:-15em;">
+					<tr>
+						<td width="32.5%"></td>
+						<td width="30%" style="color:#AFAFFF;font-size:12px;text-align:center;">x-Anteil</td>
+						<td width="30%" style="color:#AFAFFF;font-size:12px;text-align:center;">y-Anteil</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td style="color:#AFAFFF;">Gleichung der Basisfunktion:</td>
+						<td>
+							<p id="formular_basis_x">
+								\[\cos((2x+1)\textcolor{red}{{u \over 16}\pi})\]
+							</p>
+						</td>
+						<td>
+							<p id="formular_basis_y">
+								\[\cos((2y+1)\textcolor{red}{{v \over 16}\pi})\]
+							</p>
+						</td>
+						<td id="basis_equals_1" style="padding-left:0.5em;color:#AFAFFF;font-size:20px;visibility:hidden;"><b>= 1<b></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td style="color:#FF0000;font-size:12px;text-align:right;">Frequenz in x-Richtung</td>
+						<td style="color:#FF0000;font-size:12px;text-align:right;">Frequenz in y-Richtung</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<div id="chapter5" class="chapter chapter5" hidden>
+				<p>
+					<b>\(S_{uv}\) gibt die Amplitude</b> von der jeweiligen Basisfunktion an der Stelle (u,v) an.
+					<br /><br />
+					Aus 64 Ausgangswerten ergeben sich für die 64 verschiedenen Basisfunktionen 64 Amplitudenwerte und damit das <b>Resultat der DCT: die Koeffizientenmatrix</b>, eine neue 8x8-Matrix, die bestimmte Vielfache der 64 errechneten Amplitudenwerte enthält, die DCT-Koeffizienten.
+				</p>
+				<p id="formular">
+					\[\mathbf{\textcolor{red}{S_{uv} = F(u,v)}} = {1 \over 4}c_{u}c_{v}\sum_{x=0}^7 \sum_{y=0}^7 z_{xy}\cos((2x+1){u \over 16}\pi)\cos((2y+1){v \over 16}\pi)\]
+				</p>
+				<table class="figures">
+					<tr style="line-height:2em;">
+						<td width="15%">
+							Ausschnitt
+						</td>
+						<td width="48%">
+							Koeffizientenmatrix nach DCT
+						</td>
+						<td>
+							Beschreibung des Koeffizienten:
+						</td>
+					</tr>
+					<tr style="line-height:4em;">
+						<td>
+							<table style="background-color:lightgrey;">
+								<tr>
+									<td width="15%">
+										Y
+									</td>
+									<td>
+										<button id="select_y"></button>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Cb
+									</td>
+									<td>
+										<button id="select_cb"></button>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Cr
+									</td>
+									<td>
+										<button id="select_cr"></button>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<svg id="coefficient_matrix" width="17.5em" height="12em"></svg>
+						</td>
+						<td>
+							<div id="coefficient_description" class="description">
+								<p id="coefficient_description_text"></p>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="chapter6" class="chapter chapter6" hidden>
+				<p>
+					<b>In diesem Kapitel wurde gezeigt, dass jeder beliebige Block eines realen Bildes durch die Überlagerung der 64 DCT-Basisfunktionen mit unterschiedlichen Amplituden zusammengesetzt werden kann.</b>
+				</p>
+				<p>
+					Durch die DCT wird zunächst der mittlere Farbton in einem Block bestimmt und in der Koeffizientenmatrix an der Stelle (0,0) eingetragen.
+					Anschließend werden die Abweichungen von diesem bestimmmt, indem für jede Basisfunktion eine Amplitude errechnet wird.
+				</p>
+				<p>
+					Große, regelmäßige Flächen im Bild resultieren in niedrigen Frequenzen: in der Koeffizientenmatrix sind das die Werte in der linken oberen Hälfte.
+					Ständig wechselnde Details resultieren in hohen Frequenzen: das sind die Werte in der rechten unteren Hälfte.
+				</p>
+				<p>
+					Große Unterschiede in den Pixelwerten schlagen sich in großen Amplituden und damit in großen Koeffizienten nieder, kleine Unterschiede in kleinen Amplituden und kleinen Koeffizienten.
+				</p>
+				<p>
+					<b>Die ursprünglichen Pixelwerte lassen sich aus den DCT-Koeffizienten mit Hilfe der inversen DCT (IDCT) fast exakt wieder berechnen.
+					Aufgrund von Rundungsfehlern ist der Schritt der DCT minimal verlustbehaftet.</b>
+				</p>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="script.js"></script>
+	</body>
+</html>

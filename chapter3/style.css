@@ -1,0 +1,188 @@
+.applet{
+	width: 40em;
+	height: 40em;
+	padding: 0;
+	margin: 0;
+	border: 1px solid black;
+	background-color: white;
+}
+
+.header{
+	height: 15%;
+	border-bottom: 1px solid blue;
+	font-size: 80px;
+	text-align: center;
+}
+
+.selection{
+	height: 4em;
+	text-align: center;
+}
+
+.selection > h2{
+	margin-bottom: 0;
+	font-size: 20px;
+}
+
+.selection > button{
+	width: 11%;
+	height: 5%;
+	position: relative;
+	top: 0.4em;
+	padding-left: 0.05em;
+	padding-right: 0.05em;
+}
+
+.selection > button:hover{
+	height: 30%;
+	background-color: lightgrey;
+}
+
+#select_left{
+	width: 5%;
+	height: 40%;
+	position: relative;
+	top: 0;
+}
+
+#select_right{
+	width: 5%;
+	height: 40%;
+	position: relative;
+	top: 0;
+}
+
+.chapter{
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+.figures{
+	width: 100%;
+	margin-top: -1em;
+	text-align: center;
+}
+
+.instruction{
+	font-size: 8px;
+	color: #AFAFFF;
+}
+
+#basis_function{
+	background-color: #EFEFFF;
+}
+
+.formular{
+	width: 43%;
+	height: 6em;
+	position: relative;
+	top: -2em;
+	display: inline-block;
+	text-align: center;
+}
+
+.basis_function{
+	width: 48%;
+	height: 5em;
+	position: relative;
+	top: 0.75em;
+	display: inline-block;
+	text-align: center;
+	background-color: #EFEFFF;
+}
+
+.basis_function > .instruction{
+	font-size: 14px;
+	position: relative;
+	top: -0.5em;
+}
+
+.description{
+	width: 10.25em;
+	height: 10.25em;
+	color: #8F8FFF;
+	background-color: #EFEFFF;
+	border: 2px solid #AFAFFF;
+}
+
+#tile_mask{
+	background-image: url("dct.png");
+	background-size: 90% 90%;
+	background-position: 2px 2px;
+	background-repeat: no-repeat;
+}
+
+#basis_description{
+	padding: 0.75em;
+	position: relative;
+	top: -1em;
+	line-height: 1em;
+	text-align: left;
+}
+
+#basis_description_text{
+	position: relative;
+	top: -1.5em;
+	font-size: 12px;
+}
+
+.figures > table{
+	width: 90%;
+	height: 90%;
+}
+
+#select_y{
+	width: 4em;
+	height: 3em;
+	position: relative;
+	left: -0.25em;
+	top: 1em;
+	background-image: linear-gradient(105deg, white, black);
+}
+
+#select_cb{
+	width: 4em;
+	height: 3em;
+	position: relative;
+	left: -0.25em;
+	top: 1em;
+	background-image: linear-gradient(105deg, blue, grey);
+}
+
+#select_cr{
+	width: 4em;
+	height: 3em;
+	position: relative;
+	left: -0.25em;
+	top: 1em;
+	background-image: linear-gradient(105deg, red, darkred);
+}
+
+#coefficient_matrix{
+	position: relative;
+	top: 0.75em;
+	left: 0.25em;
+}
+
+#coefficient_description{
+	padding: 0.75em;
+	position: relative;
+	top: -0.1em;
+	left: 0.75em;
+	line-height: 1.1em;
+	text-align: left;
+}
+
+#coefficient_description_text{
+	position: relative;
+	top: -1.5em;
+	font-size: 12px;
+}
+
+#formular_basis_x{
+	border: 2px solid #AFAFFF;
+}
+
+#formular_basis_y{
+	border: 2px solid #AFAFFF;
+}
