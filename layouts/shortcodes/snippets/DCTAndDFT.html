@@ -1,0 +1,48 @@
+<div class="snippet">
+  <header class="bg-primary">
+    <strong class="text-white">{{ .Get 0 }}</strong>
+  </header>
+  <div class="content">
+    <div class="left-col">
+      <div class="form-group">
+        <label for="chooseDataSet">Signaldaten auswählen</label>
+        <select class="form-control" id="chooseDataSet" name="">
+        </select>
+      </div>
+      <div id="visualization" class="signalVisualization">
+        <p class="mb-1">Ausgangssignal</p>
+        <div class="visualOrigin">
+        </div>
+        <p class="mb-1">Ergebnissignal</p>
+        <div class="visualResult">
+        </div>
+      </div>
+      <hr>
+      <div class="controls">
+        <div class="form-group">
+          <label for="transformationType">Transformation</label>
+          <select id="transformationType" class="form-control" name="">
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quantisationType">Quantisierung</label>
+          <select id="quantisationType" class="form-control" name="">
+          </select>
+        </div>
+        <button class="btn btn-primary w-100 mb-2" type="button" name="button" onclick="autoSolve()">Automatisch annähern</button>
+        <button class="btn btn-outline-danger w-100 " type="button" name="button" onclick="resetSliders()">Zurücksetzen</button>
+      </div>
+    </div>
+    <div class="right-col">
+      <svg id="diagramSVG"></svg>
+      <p><strong>Frequenzkoeffizienten</strong><span id="coInterval"></span></p>
+      <div id="userControls" class="slider-wrapper">
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="{{"js/dct_dft/data.js" | absURL}}"></script>
+  <script type="text/javascript" src="{{"js/dct_dft/visualization.js" | absURL}}"></script>
+  <script type="text/javascript" src="{{"js/dct_dft/main.js" | absURL}}"></script>
+  <script type="text/javascript" src="{{"js/dct_dft/transform.js" | absURL}}"></script>
+  <script type="text/javascript" src="{{"js/dct_dft/graph.js" | absURL}}"></script>
+</div>
