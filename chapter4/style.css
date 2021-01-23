@@ -1,0 +1,262 @@
+#quantisation{
+  background: lightgrey;
+  color: #002557;
+}
+.header{
+    background: #002557;
+    width: 900px;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    font-family: "Open Sans",sans-serif;
+}
+.title{
+    margin: 0;
+    padding-top: 20px;
+}
+#menu{
+  margin: 0;
+  padding: 10px;
+}
+.menu{
+  color: lightgrey;
+  font-size:14px;
+  vertical-align:middle;
+  padding: 11px;
+  height: 20px;
+  text-decoration: none;
+}
+.menu:hover{
+  background-color: white;
+  color: grey;
+}
+.subheader{
+  width: 900px;
+  height: 48px;
+  margin: 0;
+  padding: 0;
+  background: lightgrey;
+}
+.subtitle{
+  margin: 0;
+}
+#subtitleText{
+  margin-left: 10px;
+}
+.btnLast{
+  border: none;
+  background-color: white;
+  color: grey;
+  font-size: 40px;
+}
+.btnNext:hover{
+  background-color: white;
+}
+.btnLast:hover{
+  background-color: white;
+}
+.btnNext{
+  border: none;
+  background-color: darkgrey;
+  font-size: 40px;
+  color:#002557;
+  float: right;
+}
+.clickBar{
+  width: 130px;
+  height: 5px;
+  border: 5px solid white;
+  background: #002557;
+}
+#btnOverview{
+  background: grey;
+}
+.bar{
+  margin-left: 17px;
+}
+.clickBar:hover{
+  background-color: grey;
+}
+.mainBox{
+  width: 900px;
+  height: 600px;
+  position: relative;
+}
+.rectLeft{
+  background-color: lightgrey;
+  height: 600px;
+  position: absolute;
+  width: 10px;
+}
+.rectRight{
+  background-color: lightgrey;
+  height: 545px;
+  width: 10px;
+  float: right;
+}
+.rectBild{
+  width: 40px;
+  height: 40px;
+  border: 5px dashed lightgrey;
+  position:absolute;
+  bottom:0;
+  right:0;
+}
+.rectBildTrue{
+  width: 200px;
+  height: 200px;
+  border: 5px dashed grey;
+  position:absolute;
+  bottom:0;
+  right:0;
+  background-color: white;
+}
+.rectBildChoose1{
+  width: 60px;
+  height:40px;
+  border: 2px dashed grey;
+  background:rgba(255,255,255,0.7);
+  position:absolute;
+  bottom:78px;
+  right:130px;
+  text-align: center;
+  color: grey;
+  font-size: 40px;
+}
+.rectBildChoose1:hover{
+  background:rgba(255,255,255,0);
+  color: black;
+}
+.rectBildChoose2{
+  width: 60px;
+  height:40px;
+  border: 2px dashed grey;
+  background:rgba(255,255,255,0.7);
+  position:absolute;
+  bottom:90px;
+  right:10px;
+  text-align: center;
+  color: grey;
+  font-size: 40px;
+}
+.close{
+  width: 22px;
+  height: 22px;
+  font-size: 16px;
+  color: grey;
+  position:absolute;
+  bottom:0;
+  right:0;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.rectBildChoose2:hover{
+  background:rgba(255,255,255,0);
+  color: black;
+}
+.schloss{
+  width: 200px;
+}
+#textBild{
+  text-align: center;
+  color: lightgrey;
+}
+#textBild2{
+  text-align: center;
+  color: grey;
+}
+.mainText{
+  margin-left: 40px;
+  margin-right: 40px;
+  font-size: 18px;
+}
+#principleExample{
+  color: #002557;
+  width: 820px;
+}
+.principleExampleTitle{
+  font-size:16px;
+  text-align: center;
+  padding: 11px;
+}
+.principleExampleNumber{
+  border-collapse: separate;
+  border-spacing: 0px;
+  margin-left: 30px;
+}
+.number{
+  width: 30px;
+  height: 30px;
+  border: 1px solid grey;
+  text-align: center;
+  color: #002557;
+}
+.exsampleTable{
+  width: 250px;
+  height: 130px;
+}
+.container{
+  margin-top: 10px;
+  text-align: center;
+}
+.exsampleTable0{
+  width: 250px;
+  height: 130px;
+  margin-top: 10px;
+}
+.quantisationTable{
+  margin: 20px;
+}
+.quantisationMatrix{
+  border-collapse: separate;
+  border-spacing: 0px;
+  margin:30px;
+  margin-right: 50px;
+}
+.matrixTitle{
+  margin-left: 40px;
+  margin-right: 40px;
+  color: #002557;
+}
+.btnEbene{
+  width: 50px;
+  border: 2px solid white;
+  vertical-align: middle;
+}
+.btnEbene:hover{
+  border: 2px solid grey;
+}
+.btnFaktor{
+  padding: 9px;
+  border: 2px solid lightgrey;
+  margin-right: 10px;
+}
+.btnFaktor:hover{
+  border: 2px solid grey;
+}
+#btnY{
+  border: 2px solid red;
+}
+#btn25{
+  border: 2px solid red;
+}
+.compressionTable td{
+  width: 30px;
+  height: 30px;
+  border: 1px solid grey;
+  font-size: 10px;
+  text-align: center;
+  color: #002557;
+}
+.compressionTable{
+  border-collapse: separate;
+  border-spacing: 0px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
