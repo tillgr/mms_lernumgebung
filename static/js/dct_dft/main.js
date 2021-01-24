@@ -123,7 +123,7 @@ function createSliders() {
         '  <input id="userInput' + (2*i+1) + '" class="form-control-range" item-number="'+(2*i+1)+'" type="range" orient="vertical" min="-2040" max="2040" value="' + inputArrays[currentTransformationType][2*i+1] + '">' +
         '  <input id="userTextInput' + (2*i+1) + '" class="form-control" item-number="'+(2*i+1)+'" type="number" min="-2040" max="2040" value="' + inputArrays[currentTransformationType][2*i+1] + '" labelledby="userInput">' +
         '</div>';
-      let sliders = "<div class'duo-wrapper'>" + sliderCos + sliderSin + "</div>";
+      let sliders = "<div class='duo-wrapper'>" + sliderCos + sliderSin + "</div>";
       if (i<=3) {
         inputDiv1.append(sliders);
       } else {
