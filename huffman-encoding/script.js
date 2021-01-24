@@ -976,7 +976,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			
 			document.getElementById("compression_factor").innerHTML = parseFloat((72 / compressed_size).toFixed(2));
 			
-			document.getElementById("encoding_summary_container").style.display = "block";
+			document.getElementById("encoding_summary_container").style.display = "flex";
 			
 			buttonNext.style.display = "none";
 

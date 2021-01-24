@@ -1,0 +1,451 @@
+<script type="text/javascript" src="{{"js/huff.js" | absURL}}"></script>
+<div class="applet snippet">
+  <header class="bg-primary">
+    <strong class="text-white">{{ .Get 0 }}</strong>
+  </header>
+  <div id="user_instructions_and_user_inputs">
+    <div id="button_container">
+      <button class="huff-button btn btn-primary" id="buttonRandom">
+        random
+      </button>
+      <button class="huff-button btn btn-primary" id="buttonLines">
+        lines
+      </button>
+      <button class="huff-button btn btn-primary" id="buttonFill">fill</button>
+      <button class="huff-button btn btn-primary" id="buttonHourglass">
+        hourglass
+      </button>
+    </div>
+
+    <div class="d-flex flex-row">
+      <div id="image_wrapper">
+        <svg
+          width="360"
+          height="360"
+          id="svg_image"
+          viewBox="0 0 360 360"
+        ></svg>
+        <table class="image_grid">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="explanation">
+        <button type="button" class="btn btn-primary" id="buttonNext">
+          &#10132;
+        </button>
+        <div id="user_instructions">
+          <h1>Benutzungshinweise</h1>
+          <div class="text">
+            Bildausschnitt wählen<br />
+            Bildausschnitt - 6x6 Pixel - 3 Farben<br />
+            "Weiter"-Button<br />
+            Legende der Bildfarben<br />
+            Box für Erläuterungen<br />
+          </div>
+        </div>
+        <div id="user_inputs">
+          <h1>Eingabe</h1>
+          <div class="d-flex flex-row">
+            <div class="absolute_inputs">
+              <div class="absolute_inputs_item">
+                Anzahl von
+                <div class="square_r"></div>
+                <input
+                  id="input_r"
+                  type="text"
+                  class="absolute_input"
+                  maxlength="2"
+                />
+              </div>
+              <div class="absolute_inputs_item">
+                Anzahl von
+                <div class="square_g"></div>
+                <input
+                  id="input_g"
+                  type="text"
+                  class="absolute_input"
+                  maxlength="2"
+                />
+              </div>
+              <div class="absolute_inputs_item">
+                Anzahl von
+                <div class="square_b"></div>
+                <input
+                  id="input_b"
+                  type="text"
+                  class="absolute_input"
+                  maxlength="2"
+                />
+              </div>
+              <div class="absolute_inputs_item">
+                Anzahl von
+                <div class="square_v"></div>
+                <input
+                  id="input_v"
+                  type="text"
+                  class="absolute_input"
+                  maxlength="2"
+                />
+              </div>
+            </div>
+            <div class="probabilities">
+              <p>P(R) = <span id="probability_r"></span><br /></p>
+              <p>P(G) = <span id="probability_g"></span><br /></p>
+              <p>P(B) = <span id="probability_b"></span><br /></p>
+              <p>P(V) = <span id="probability_v"></span></p>
+            </div>
+          </div>
+          <div class="absolute_total">Gesamt: <span id="total"></span></div>
+          <div id="user_inputs_result_message">
+            <div id="user_inputs_correct_result_message">
+              <div class="message_right">
+                <div class="symbol_right">&#x2714;</div>
+                Richtig
+              </div>
+            </div>
+            <div id="user_inputs_wrong_result_message">
+              <div class="message_wrong">
+                <div class="symbol_wrong">&#x2716;</div>
+                Falsch
+              </div>
+            </div>
+
+            <div id="user_inputs_amount_tries_message">
+              Noch <span id="user_inputs_amount_tries"></span> Versuch übrig
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="encoding" id="encoding">
+    <div id="encoding_container">
+      <div id="encoding_row1" class="encoding-row row1 e1">
+        <input
+          id="encoding_probability_input1"
+          type="text"
+          class="input_encoding_probability"
+          maxlength="5"
+        />
+        <input
+          id="encoding_probability_input2"
+          type="text"
+          class="input_encoding_probability"
+          maxlength="5"
+        />
+        <input
+          id="encoding_probability_input3"
+          type="text"
+          class="input_encoding_probability"
+          maxlength="5"
+        />
+        <input
+          id="encoding_probability_input4"
+          type="text"
+          class="input_encoding_probability"
+          maxlength="5"
+        />
+      </div>
+      <div id="encoding_row1_2" class="encoding-row row1 e2">
+        <div id="encoding_number1_1" class="input_encoding_number"></div>
+        <div id="encoding_number1_2" class="input_encoding_number"></div>
+        <div id="encoding_number1_3" class="input_encoding_number"></div>
+        <div id="encoding_number1_4" class="input_encoding_number"></div>
+      </div>
+      <div id="encoding_row2" class="encoding-row row2">
+        <div
+          id="encoding_probability5"
+          class="input_encoding_probability"
+        ></div>
+        <div
+          id="encoding_probability6"
+          class="input_encoding_probability"
+        ></div>
+        <div
+          id="encoding_probability7"
+          class="input_encoding_probability"
+        ></div>
+      </div>
+      <div id="encoding_row2_2" class="encoding-row row2 e2">
+        <div id="encoding_number2_1" class="input_encoding_number"></div>
+        <div id="encoding_number2_2" class="input_encoding_number"></div>
+        <div id="encoding_number2_3" class="input_encoding_number"></div>
+      </div>
+      <div id="encoding_row2_3" class="encoding-row row2 e3">
+        <input
+          id="encoding_checkbox_input1"
+          type="checkbox"
+          class="input_encoding_checkbox"
+          maxlength="5"
+        />
+        <input
+          id="encoding_checkbox_input2"
+          type="checkbox"
+          class="input_encoding_checkbox"
+          maxlength="5"
+        />
+        <input
+          id="encoding_checkbox_input3"
+          type="checkbox"
+          class="input_encoding_checkbox"
+          maxlength="5"
+        />
+      </div>
+      <div id="encoding_row3" class="encoding-row row3">
+        <div
+          id="encoding_probability8"
+          class="input_encoding_probability"
+        ></div>
+        <div
+          id="encoding_probability9"
+          class="input_encoding_probability"
+        ></div>
+      </div>
+      <div id="encoding_row4" class="encoding-row row4">
+        <input
+          id="encoding_number_input1"
+          type="text"
+          class="input_encoding_number"
+          maxlength="1"
+          style="display: none"
+        />
+        <input
+          id="encoding_number_input2"
+          type="text"
+          class="input_encoding_number"
+          maxlength="1"
+          style="display: none"
+        />
+        <div id="encoding_number3_1" class="input_encoding_number"></div>
+        <div id="encoding_number3_2" class="input_encoding_number"></div>
+      </div>
+      <div id="encoding_row5" class="encoding-row row5">
+        <div id="encoding_probability10" class="input_encoding_probability">
+          1
+        </div>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="d-flex flex-row">
+        <div
+          id="encoding_image_container"
+          class="encoding_image_container"
+        ></div>
+        <div
+          id="encoding_probability_container"
+          class="encoding_probability_container"
+        >
+          <div id="probabilities" class="probabilities">
+            <div>P(R) = <span id="encoding_probability_r"></span></div>
+            <div>P(G) = <span id="encoding_probability_g"></span></div>
+            <div>P(B) = <span id="encoding_probability_b"></span></div>
+            <div>P(V) = <span id="encoding_probability_v"></span></div>
+          </div>
+        </div>
+      </div>
+      <div
+        id="encoding_codewords_container"
+        class="encoding_codewords_container"
+      >
+        <div class="d-flex flex-column justify-content-between">
+          <div>
+            <div class="encoding_colorblock_r square_r"></div>
+            <span id="encoding_codeword_r"></span>
+          </div>
+          <div>
+            <div class="encoding_colorblock_g square_g"></div>
+            <span id="encoding_codeword_g"></span>
+          </div>
+        </div>
+        <div class="d-flex flex-column justify-content-between">
+          <div>
+            <div class="encoding_colorblock_b square_b"></div>
+            <span id="encoding_codeword_b"></span>
+          </div>
+          <div>
+            <div class="encoding_colorblock_v square_v"></div>
+            <span id="encoding_codeword_v"></span>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" id="nextBtnEncoding">
+        &#10132;
+      </button>
+      <div id="encoding_result_message">
+        <div id="encoding_correct_result_message">
+          <div class="message_right">
+            <div class="symbol_right">&#x2714;</div>
+            Richtig
+          </div>
+        </div>
+        <div id="encoding_wrong_result_message">
+          <div class="message_wrong">
+            <div class="symbol_wrong">&#x2716;</div>
+            Falsch
+          </div>
+        </div>
+
+        <div id="encoding_amount_tries_message">
+          Noch <span id="encoding_amount_tries"></span> Versuch übrig
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-row mb-3">
+    <div id="encoding_summary_container" style="display: none">
+      <div class="encoding_summary_text">
+        Was haben wir nun an Speicherbedarf gespart?
+      </div>
+      <div class="d-flex flex-row" id="summary-container">
+        <div class="d-flex flex-column">
+            <div id="text_uncompressed">
+                Unkomprimiert<br />
+                36 * 2 bit = 72 bit
+              </div>
+              <div id="text_compressed">
+                Komprimiert<br />
+                <span id="amount_r"></span> x <span id="codelength_r"></span> +
+                <span id="amount_g"></span> x <span id="codelength_g"></span> +
+                <span id="amount_b"></span> x <span id="codelength_b"></span> +
+                <span id="amount_v"></span> x <span id="codelength_v"></span> =
+                <span id="compressed"></span> bit
+              </div>
+          </div>
+          <div class="text_compression_factor">
+            Kompressionsfaktor: <span id="compression_factor"></span
+            ><span> : 1</span>
+          </div>
+          <button type="button" class="btn btn-primary" id="buttonAgain">
+            Nochmal?
+          </button>
+      </div>
+    </div>
+    <div id="color_symbols">
+      <div class="color_symbol_wrapper">
+        <div class="square_r"></div>
+        <span> = R</span>
+      </div>
+      <div class="color_symbol_wrapper">
+        <div class="square_g"></div>
+        <span> = G</span>
+      </div>
+      <div class="color_symbol_wrapper">
+        <div class="square_b"></div>
+        <span> = B</span>
+      </div>
+      <div class="color_symbol_wrapper">
+        <div class="square_v"></div>
+        <span> = V</span>
+      </div>
+    </div>
+    <div id="description" class="description">
+      <h3>Beschreibung</h3>
+      <div id="description_block" class="description_block">
+        <div id="description1" class="">
+          Speichert man "reinen" Text, so belegt jedes gespeicherte Zeichen 8
+          Bit. Nun, effektiver wäre eine Kodierung, welche die Häufigkeit der
+          Zeichen im Text berücksichtigt. Wenn ein Zeichen sehr oft vorkommt,
+          kann man dies mit einem möglichst kurzen Code versehen...<br />
+          wenige Bits für häufige Zeichen, viele Bits für seltene Zeichen
+        </div>
+
+        <div id="description2" class="" style="display: none">
+          Zähle das Vorkommen der einzelnen Farbpunkte. Wir benötigen diese
+          Werte, um die relative Häufigkeit zu berechnen:<br />
+          P(Z) = Anzahl der Zeichen Z/Anzahl aller Zeichen P(R) = 9 Rot/36
+          Zeichen = 1/4
+        </div>
+
+        <div id="description3" class="" style="display: none">
+          Trage in die 4 Textfelder der Reihe nach die rel. Häufigkeiten ein,
+          von links beginnend mit der kleinsten bis hin zur größten ganz rechts.
+          Wenn du den Pfeil drückst, werden die kleinsten
+          beidenWahrscheinlichkeiten zu einem Knoten zusammengefasst und ihre
+          Wahrscheinlichkeiten addiert. Bsp. ...
+        </div>
+
+        <div id="description4" class="" style="display: none">
+          Wir haben nur noch 3 Häufigkeiten. Von diesen suchen wir die beiden
+          kleinsten raus und fügen diese wieder zu einem Knoten zusammen. Klicke
+          dazu die zugehörigen beiden Kästchen an. Die Baumkanten werden mit 1
+          für die kleinere Häufigkeit und 0 für die größere Häufigkeit
+          beschriftet.
+        </div>
+
+        <div id="description5" class="" style="display: none">
+          Nun haben wir noch 2 Wahrscheinlichkeiten. Von denen bestimmen wir die
+          kleinste Wahrscheinlichkeit und tragen an der zugehörigen Kante wieder
+          die 1 ein, an der anderen Kante dementsprechend die 0. Zum Schluss
+          muss natürlich als Wahrscheinlichkeit 1 rauskommen.
+        </div>
+
+        <div id="description6" class="" style="display: none">
+          Nun wird der Binärkode für jede Wahrscheinlichkeit bestimmt, indem man
+          von der Wurzel die Kanten, bis hin zur gesuchten Wahrscheinlichkeit,
+          abwärts geht und dabei die auftretenden 1 oder 0 in Schreibrichtung
+          notiert.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none">
+    <div class="message_wrong">
+      <div class="symbol_wrong">&#x2716;</div>
+      Falsch
+    </div>
+    <div class="message_right">
+      <div class="symbol_right">&#x2714;</div>
+      Richtig
+    </div>
+  </div>
+</div>
