@@ -96,6 +96,7 @@
     #encoding_container {
       flex: 2;
       display: flex;
+      position: relative;
       flex-direction: column;
 
       #svg_encoding {
@@ -124,6 +125,12 @@
           }
         }
       }
+
+      #encoding_result_message {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
     }
 
     .menu {
@@ -141,6 +148,7 @@
         padding: 10px;
         display: flex;
         flex-direction: row;
+        margin: 1.5em 0;
 
         > div {
           flex: 1;
@@ -186,8 +194,15 @@
     justify-content: space-between;
     height: 100%;
 
+    .encoding_summary_text {
+      background-color: var(--p-color);
+      color: white;
+    }
+
     #summary-container {
-        justify-content: space-between;
+      justify-content: space-between;
+      border: 1px solid var(--p-color);
+      padding: 1em;
     }
 
     #text_compressed {
@@ -223,18 +238,11 @@
     width: 100%;
     height: 100%;
   }
-
-  .encoding_image_container_left {
-    position: absolute;
-    top: 550px;
-    left: 10px;
-    width: 180px;
-    height: 180px;
-  }
 }
 
 .description {
   padding: 1em;
+  flex: 1;
 }
 
 #description_block {

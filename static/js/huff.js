@@ -367,8 +367,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		document.getElementById("encoding_correct_result_message").style.display = "none";
 		document.getElementById("encoding_wrong_result_message").style.display = "none";
 
-		svg_encoding = document.getElementById("svg_encoding");
-
 		document.getElementById("description2").style.display = "none";
 		document.getElementById("description3").style.display = "";
 		
@@ -378,6 +376,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		document.getElementById("user_instructions_and_user_inputs").style.display = "none";
 
 		document.getElementById("encoding").style.display = "flex";
+		document.getElementById("encoding_container").style.display = "";
 		
 		const encoding_probability_r = document.getElementById("encoding_probability_r");
 		const encoding_probability_g = document.getElementById("encoding_probability_g");
@@ -486,7 +485,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		function drawLine3(element1, x2, y2) {
 
-			var rect_svg = svg_encoding.getBoundingClientRect();
+			var rect_svg = document.getElementById('svg_encoding').getBoundingClientRect();
 			
 			var rect1 = element1.getBoundingClientRect();
 			var x1 = rect1.left + (rect1.width / 2) - rect_svg.left;
@@ -953,9 +952,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			document.getElementById("color_symbols").style.display = "none";
 			
 			document.getElementById("description").style.display = "none";
-			document.getElementById("encoding_image_container").className = "encoding_image_container_left";
-			document.getElementById("encoding_probability_container").className = "encoding_probability_container_left";
-			document.getElementById("encoding_codewords_container").className = "encoding_codewords_container_left";
 			
 			var amount_r = document.getElementById("amount_r").innerHTML = color_amounts[0];
 			var amount_g = document.getElementById("amount_g").innerHTML = color_amounts[1];
@@ -972,7 +968,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			document.getElementById("compression_factor").innerHTML = parseFloat((72 / compressed_size).toFixed(2));
 			
 			document.getElementById("encoding_summary_container").style.display = "flex";
-			
+
+			buttonAgain.style.display = "";
 			encButtonNext.style.display = "none";
 
 			buttonAgain.onclick = function() {
@@ -980,15 +977,15 @@ document.addEventListener("DOMContentLoaded", function() {
 				document.getElementById("encoding_container").style.display = "none";
 				document.getElementById("encoding_summary_container").style.display = "none";
 				document.getElementById("user_instructions").style.display = "";
+				document.getElementById("encoding").style.display = "none";
 				encButtonNext.style.display = "";
+				buttonAgain.style.display = "none";
 
 				total.style.color = "black";
 				probability_r.style.color = "black";
 				probability_g.style.color = "black";
 				probability_b.style.color = "black";
 				probability_v.style.color = "black";
-
-				svg_encoding.innerHTML = "";
 
 				description6.style.display = "none";
 				description1.style.display = "";
