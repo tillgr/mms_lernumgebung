@@ -95,6 +95,9 @@
 
     #encoding_container {
       flex: 2;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      padding-right: 1em;
       display: flex;
       position: relative;
       flex-direction: column;
@@ -144,7 +147,7 @@
 
       .encoding_codewords_container {
         position: relative;
-        background-color: #dddddd;
+        border: 1px solid var(--p-color);
         padding: 10px;
         display: flex;
         flex-direction: row;
