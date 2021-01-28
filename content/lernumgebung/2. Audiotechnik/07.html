@@ -13,18 +13,18 @@ draft: true
 
 {{% image url="Audiotechnik/7/1_1_6_adsr_phasen.gif" caption="Abb. 2.7-0 ADSR-Phasen" %}}
 
-<h5>Attack Phase A:</h5><!--TODO: Formatierung-->
+<h3 class="h5">Attack Phase A</h3><!--TODO: Formatierung-->
 <p>Beim Anschlagen der Taste (Anblasen einer Flöte, Streichen eines Bogens) steigt die Lautstärke in 3-10 ms auf ihr
     Maximum an. Es bildet sich der Ton, die Amplitude wächst exponentiell, die Oszillationen sind noch sehr chaotisch
     und nicht harmonisch sowie reich an Oberwellen. </p>
-<h5>Decay Phase D:</h5><!--TODO: Formatierung-->
+<h3 class="h5">Decay Phase D</h3><!--TODO: Formatierung-->
 <p>Die Oszillationen ordnen sich, die unharmonischen Obertöne verschwinden, wodurch sich die Amplitude ein wenig
     verringert. Es kristallisiert sich die Wellenform des Signals heraus. die Attack/Decay-Phase ist besonders wichtig
     für den Klangeindruck.</p>
-<h5>Sustain Phase S:</h5><!--TODO: Formatierung-->
+<h3 class="h5">Sustain Phase S</h3><!--TODO: Formatierung-->
 <p>Der "saubere" Ton des Instrumentes erklingt, die Wellenform ist konstant, bei einigen Instrumenten fällt die
     Amplitude, bei anderen ist sie konstant (Saiten-, Blasinstrumente).</p>
-<h5>Release Phase R:</h5><!--TODO: Formatierung-->
+<h3 class="h5">Release Phase R</h3><!--TODO: Formatierung-->
 <p>Der Ton klingt aus, der Zeitpunkt entspricht dem Loslassen der Klaviertaste.</p>
 
 <p>Elektronische Instrumente (Synthesizer) erzeugen elektronische Signale, die im Lautsprecher in Töne gewandelt werden.
@@ -59,7 +59,7 @@ draft: true
     MSP).</p>
 <p>Der Erfolg von Synthesizern hängt von der richtigen Anzahl kontrollierbarer, klangbestimmender Parameter ab.</p>
 
-<h5>Oszillatoren</h5>
+<h3 class="h5">Oszillatoren</h3>
 <p>Ein Oszillator erzeugt ein mehr oder minder obertonreiches Signal, das die Grundfrequenz und den Charakter des zu
     erzeugenden Klangs bestimmt. Aufbau/Funktionsweise des Oszillators ist meist namensgebend für das Verfahren zur
     Klangerzeugung.</p>
@@ -92,17 +92,17 @@ f_1(x) = a_1 * sin(4\pi * x)
     Amplitude der Grundfrequenz am größten ist. Bei natürlichen Quellen besitzen die niedrigen Frequenzen die größte
     Energie, höhere Frequenzen bestimmen nur die Klangfarbe des Tones. </p>
 
-<h5>LFO (Low Frequency Oszillator)</h5>
+<h3 class="h5">LFO (Low Frequency Oszillator)</h3>
 <p>Den niederfrequenten Oszillator nutzt man zur kontinuierlichen Einstellung klangbestimmender Parameter wie Amplitude,
     Filterfrequenz und Resonanz. Meist ist die LFO-Frequenz kleiner als 20 Hz; wichtig ist die Wellenform (Sinus,
     Dreieck, Sägezahn).</p>
 
-<h5>Verstärker</h5>
+<h3 class="h5">Verstärker</h3>
 <p>Der Verstärker bestimmt den Pegelverlauf des Schallsignals. Hierdurch wird nicht nur die Lautstärke, sondern der
     Gesamtcharakter des Schalls beeinflusst. Wichtig für Klangeindruck ist auch der zeitliche Verlauf des Pegels
     (Hüllkurve, ADSR).</p>
 
-<h5>Filter</h5>
+<h3 class="h5">Filter</h3>
 <p>Im Allgemeinen soll die Farbe bzw. spektrale Zusammensetzung des Klangs nicht konstant bleiben, weshalb man das
     Oszillatorsignal anhand von Filtern verändert. Parameter hierbei sind u.a. Grenzfrequenz und Resonanz.(Siehe
     nächstes Kapitel!)</p>
@@ -115,21 +115,18 @@ f_1(x) = a_1 * sin(4\pi * x)
     {{% sound-sample url="Audiotechnik/07/1_2_8_filter_original.mp3" title="Original" %}}
 </div>
 
-<h5>Tiefpass:</h5><!--TODO: Formatierung-->
+<h3 class="h5">Tiefpass</h3><!--TODO: Formatierung-->
 <p>Lässt alle Frequenzen durch, die unter einer Grenzfrequenz liegen.</p>
-<!--TODO: Audio shortcode-->
 <div class="row mb-3">
     {{% sound-sample url="Audiotechnik/07/1_2_9_wirkung_eines_tiefpassfilters.mp3" title="Wirkung eines Tiefpassfilters" %}}
 </div>
-<h5>Hochpass:</h5><!--TODO: Formatierung-->
+<h3 class="h5">Hochpass</h3><!--TODO: Formatierung-->
 <p>Es werden nur hochfrequente Anteile durchgelassen.</p>
-<!--TODO: Audio shortcode-->
 <div class="row mb-3">
     {{% sound-sample url="Audiotechnik/07/1_2_10_wirkung_eines_hochpassfilters.mp3" title="Wirkung eines Hochpassfilters" %}}
 </div>
-<h5>Bandpass, Bandsperre: </h5><!--TODO: Formatierung-->
+<h3 class="h3">Bandpass, Bandsperre </h3><!--TODO: Formatierung-->
 <p>Es werden die Frequenzanteile in einem Band durchgelassen bzw. gesperrt.</p>
-<!--TODO: Audio shortcode-->
 <div class="row mb-3">
     {{% sound-sample url="Audiotechnik/07/1_2_11_wirkung_eines_bandpassfilters.mp3" title="Wirkung eines Bandpassfilters" %}}
     {{% sound-sample url="Audiotechnik/07/1_2_12_wirkung_eines_bandsperrefilters.mp3" title="Wirkung eines Bandsperrefilters" %}}
@@ -155,7 +152,7 @@ f_1(x) = a_1 * sin(4\pi * x)
     {{< /formula >}}
 </p>
 
-<h5>LTI-Filter</h5>
+<h3 class="h5">LTI-Filter</h3>
 <p>LTI-Filter sind Filter, die sowohl linear als auch zeitinvariant sind (linear and time-invariant). Sie haben einige
     spezielle Eigenschaften, die ihre Beschreibung und die Analyse vereinfachen. Die Reaktion eines LTI-Filter auf einen
     {{< ref "glossar" "DiracImpuls" "Dirac-Impuls" >}} ist die Impulsantwort. LTI-Filter sind durch ihre Impulsantwort
@@ -181,7 +178,7 @@ f_1(x) = a_1 * sin(4\pi * x)
 
 {{% formulaRow f1 = "h[n] = \frac{1}{a_0}(b_n - \sum \limits_{i=1}^N a_i h [n-i])" ref = "1.23" %}}
 
-<h5>FIR Filter</h5>
+<h3 class="h5">FIR Filter</h3>
 <p>'Finite Impulse Response' Filter sind ein spezieller Typ der LTI-Filter, bei denen keine Rekursion existiert. Auf die
     Differenzengleichungen (1.21) bis (1.23) angewandt bedeutet dies, dass alle Koeffizienten gleich 0 sind.</p>
 
@@ -206,7 +203,7 @@ f_1(x) = a_1 * sin(4\pi * x)
 
 {{% image url="Audiotechnik/7/1_2_10_grundaufbau_eines_fir_filters.gif" caption="Abb. 2.7-4 Grundaufbau eines FIR-Filters" %}}
 
-<h5>IIR Filter</h5>
+<h3 class="h5">IIR Filter</h3>
 <p>'Infinite Impuls Response' Filter sind rekursive LTI Systeme, die das Signal vom Ausgang des Filters rückkoppeln, um
     die gewünschte Eigenschaft des Signals mit weniger Elementen effizienter auszufiltern.</p>
 
@@ -241,7 +238,7 @@ f_1(x) = a_1 * sin(4\pi * x)
     </li>
 </ul>
 
-<h5>Kriterien zur Charakterisierung von Filter und Effekte:</h5>
+<h3 class="h5">Kriterien zur Charakterisierung von Filter und Effekte</h3>
 <p>Es gibt Effekte, die bei der Aufnahme verwendet werden, Effekte, die im Studio für die Nachbearbeitung und Aufwertung
     des Audiomaterials zur Anwendung kommen und Effekte, die nachträglich fehlerhaftes Material korrigieren und
     verbessern. Man unterscheidet in:</p>
@@ -324,20 +321,20 @@ f_1(x) = a_1 * sin(4\pi * x)
 <p>Die wichtigsten Methoden zur synthetischen Klangerzeugung sind FM-Synthese (Frequenzmodulation), Additive und
     Subtraktive Synthese, Wavetable-Synthese sowie Acoustic Physical Modeling.</p>
 
-<h5>Additive Synthese:</h5>
+<h3 class="h5">Additive Synthese</h3>
 <p>Verschiedene Töne werden addiert und der zeitliche Verlauf mit Hüllkurven gesteuert. Die additive Synthese ist vom
     Prinzip her die Umkehrung der Fourier-Analyse. Sie bietet theoretisch die Möglichkeit, jeden Ton zu erzeugen. Es
     bedarf jedoch einer großen Menge an Parametern. Das bedeutet, dass jeder einzelne Teilton von einem eigenen
     Oszillator erzeugt und mit einer Hüllkurve in seiner Dynamik gesteuert werden muss.</p><!--TODO: Formatierung-->
 
-<h5>Subtraktive Synthese:</h5>
+<h3 class="h5">Subtraktive Synthese</h3>
 <p>Aus einer möglichst obertonreichen Schwingung werden Obertöne herausgefiltert, um unterschiedliche Klänge oder
     Klangverläufe zu erzeugen. Damit dieses Prinzip sinnvoll ist, muss ein relativ komplexes Signal von einem Oszillator
     oder anderen tongebenden Gerät geliefert werden, damit eine Vielfalt an Klängen und damit Beschneidungen möglich
     sind. Diese Methode ist klanglich vorhersagbar, da sie einfache Parameter wie Obertonreichtum oder Lautstärke
     verändert.</p><!--TODO: Formatierung-->
 
-<h5>Wavetable Synthese:</h5>
+<h3 class="h5">Wavetable Synthese</h3>
 <p>Man nimmt die Klänge eines echten Instrumentes im Studio auf, bearbeitet sie je nach Zweck und speichert sie als
     Klangvorlage. Nicht jeder Ton jedes Instrumentes kann aufgenommen werden. Deshalb berechnet der Soundchip aus einem
     Grundsample die benötigten Klänge. Die Filteralgorithmen und die Qualität der Samples unterscheiden sich je
@@ -353,13 +350,13 @@ f_1(x) = a_1 * sin(4\pi * x)
 <p>Beispiel für Klangerzeugung auf Wavetable - Basis: LinkFastTracker
     <!--TODO: Missing Hyperlink site--></p><!--TODO: Formatierung-->
 
-<h5>Waveshaping-Synthese:</h5>
+<h3 class="h5">Waveshaping-Synthese</h3>
 <p>Durch nichtlineare Verzerrung der Grundwelle werden obertonreiche Signale erzeugt, wobei neue Spektralkomponenten
     (Teiltöne) entstehen. Nachteil dieser Methode ist, daß die so erzeugten Signale eine eindeutige Periodendauer haben
     - nämlich ganzzahlige Vielfache der Grundfrequenz. Für die Simulation natürlicher Instrumente reicht das aber nicht
     aus, da z.B. Schlag- und Blasinstrumente einen gewissen Rauschanteil aufweisen.</p><!--TODO: Formatierung-->
 
-<h5>FM-Synthese:</h5>
+<h3 class="h5">FM-Synthese</h3>
 <p>Die Frequenzmodulationssynthese ist ein von Yamaha 1973 entwickeltes Verfahren zur Beschreibung von
     Instrumentenklängen. Yamaha entwickelte den ersten Synthesizer OPL2. Heute ist OPL3 der de facto Standard. Der
     FM-Synthesizer generiert eine Sinuswelle mit konstanter, hoher Frequenz und konstanter Lautstärke, die sogenannte
@@ -388,7 +385,7 @@ f_1(x) = a_1 * sin(4\pi * x)
     wurde die FM-Synthese zunehmend durch modernere Verfahren, wie z.B. die Wavetable-Synthese
     ersetzt.</p><!--TODO: Formatierung-->
 
-<h5>Sampling-Synthese:</h5>
+<h3 class="h5">Sampling-Synthese</h3>
 <p>Bei diesem Verfahren werden Unzulänglichkeiten der anderen Verfahren durch im Studio aufgenommene Klangvorlagen
     (Samples, digitale PCM - Signale ) von echten Instrumenten beseitigt. Zusätzlich kommen Filteralgorithmen,
     Verstärkung- und Wiederholung der Samples zur Anwendung. </p>
@@ -401,7 +398,7 @@ f_1(x) = a_1 * sin(4\pi * x)
 
 {{% image url="Audiotechnik/7/sampling.gif" caption="Abb. 2.7-8 Sampling Synthese" %}}
 
-<h5></h5>
+<h3 class="h5">Granularsynthese</h3>
 <p>Bei der Granularsynthese wird ein beliebiges Schallsignal in kurze (ms) Abschnitte (Grains) unterteilt. Diese Grains
     werden dann in beliebiger Reihenfolge zu Klängen zusammengesetzt. </p>
 <p>Wiedergabegeschwindigkeit und Tonhöhe werden so voneinander entkoppelt, wobei die Tonhöhe konstant bleibt. Die
@@ -411,7 +408,7 @@ f_1(x) = a_1 * sin(4\pi * x)
     experimentelle Klanggestaltung. Parameter: Startposition, Länge, Smooth, Wiedergabegeschwindigkeit
     (u.A.)</p><!--TODO: Formatierung-->
 
-<h5>Acoustic Physical Modeling:</h5>
+<h3 class="h5">Acoustic Physical Modeling</h3>
 <p>Bei diesem Verfahren wird das Klangverhalten der Musikinstrumente durch komplexe mathematische Gleichungen
     nachgebildet und akustisch simuliert. Damit wird ein naturgetreuer Klang möglich. Es ist jedoch eine sehr hohe
     Rechenleistung nötig.</p><!--TODO: Formatierung-->
