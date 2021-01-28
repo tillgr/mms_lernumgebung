@@ -9302,6 +9302,7 @@ a.text-grey:hover, a.text-grey:focus {
 
 .snippet {
   border: 0.1rem solid #002557;
+  margin-bottom: 1rem;
 }
 
 .snippet header {
@@ -9322,7 +9323,7 @@ a.text-grey:hover, a.text-grey:focus {
 .snippet .content .left-col {
   -ms-grid-column: 1;
   grid-column: 1;
-  padding: 2rem 1rem 1rem 1rem;
+  padding: 1rem;
   background-color: #f7f7f7;
   border-bottom: 0.1rem solid #EBEBEB;
 }
@@ -9364,6 +9365,19 @@ a.text-grey:hover, a.text-grey:focus {
   cursor: pointer;
 }
 
+.snippet .content .signalVisualization .visualOrigin, .snippet .content .signalVisualization .visualResult {
+  border: 0.1rem solid #343a40;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: .5rem;
+}
+
+.snippet .content .signalVisualization .visualOrigin div, .snippet .content .signalVisualization .visualResult div {
+  width: 100%;
+  height: 1rem;
+}
+
 .snippet .content .slider-wrapper {
   background-color: #EBEBEB;
   padding: .25rem;
@@ -9385,10 +9399,16 @@ a.text-grey:hover, a.text-grey:focus {
           justify-content: flex-start;
 }
 
+.snippet .content .slider-wrapper .slider-group .duo-wrapper {
+  border-radius: .25rem;
+  border: 0.1rem solid #343a40;
+}
+
 .snippet .content .slider-wrapper .slider-group .slider_and_textfield {
   width: 2.8rem;
   display: inline-block;
   margin: .25rem;
+  text-align: center;
   /* Chrome, Safari, Edge, Opera */
   /* Firefox */
 }
@@ -9406,6 +9426,9 @@ a.text-grey:hover, a.text-grey:focus {
 
 .snippet .content .slider-wrapper .slider-group .slider_and_textfield input[type=number] {
   -moz-appearance: textfield;
+  padding: .25rem;
+  text-align: center;
+  font-size: .8rem;
 }
 
 @media screen and (min-width: 1050px) {
