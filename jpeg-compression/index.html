@@ -1,0 +1,2700 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="d3.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="script.js"></script>
+    <title>Applet JPEG Kompression</title>
+</head>
+<body>
+    <main>
+		<div class="jpeg_applet">
+			<div class="applet_header"></div>
+			<div class="chapter_selection">
+				<div id="jpeg_selectChapter1div">
+					<img id="svgChapter1" src="assets/svg/chapter1.svg"></img>
+					<h1>Einleitung</h1>
+					<span>JPEG = Kompression durch Irrelevanzreduktion.<br> Das Auge nimmt Helligkeit besser als Farbe wahr.</span>
+				</div>
+				<div id="jpeg_selectChapter2div">
+					<img id="svgChapter2" src="assets/svg/chapter2.svg"></img>
+					<h1>Bildaufbereitung</h1>
+					<span>Transformation in geeigneteres Farbsystem YCC.<br> Unterabtastung der Farbwerte. Blockbildung.</span>
+				</div>
+				<div id="jpeg_selectChapter3div">
+					<img id="svgChapter3" src="assets/svg/chapter3.svg"></img>
+					<h1>Diskrete Cosinus-Transformation</h1>
+					<span>Bestimmen des Farbgrundwerts in einem Block<br> und der Abweichungen von diesem.</span>
+				</div>
+				<div id="jpeg_selectChapter4div">
+					<img id="svgChapter4" src="assets/svg/chapter4.svg"></img>
+					<h1>Quantisierung</h1>
+					<span>Entfernen der irrelevanten Informationen durch<br> Stufenbildung im Wertebereich (verlustbehaftet).</span>
+				</div>
+				<div id="jpeg_selectChapter5div">
+					<img id="svgChapter5" src="assets/svg/chapter5.svg"></img>
+					<h1>Entropiekodierung</h1>
+					<span>Redundanzreduktion: effizientere Speicherung<br> durch Entfernen von überflüssigen Daten.</span>
+				</div>
+			</div>
+			<div class="section_selection">
+				<div>
+					<button id="buttonSectionSelectionLeft"></button>
+					<span id="current_section_heading">1.1 Bedienungsanleitung</span>
+					<button id="buttonSectionSelectionRight"></button>
+				</div>
+				<div class="section_selection_buttons">
+					<button id="buttonShowSection1" class="buttonSectionSelection"></button>
+					<button id="buttonShowSection2" class="buttonSectionSelection"></button>
+					<button id="buttonShowSection3" class="buttonSectionSelection"></button>
+					<button id="buttonShowSection4" class="buttonSectionSelection"></button>
+					<button id="buttonShowSection5" class="buttonSectionSelection" style="display: none;"></button>
+					<button id="buttonShowSection6" class="buttonSectionSelection" style="display: none;"></button>
+					<button id="buttonShowSection7" class="buttonSectionSelection" style="display: none;"></button>
+				</div>
+			</div>
+			<!--========== chapter1 ==========-->
+			<div id="jpeg_chapter1" class="jpeg_chapter">
+			
+				<div id="jpeg_chapter1_section1">
+					<h1>Bedienelemente</h1>
+					<p>Mit dieser Lernanwendung soll das JPEG-Kompressionsverfahren anschaulich gemacht werden. Die Bedienelemente werden beim Drücken des Hilfe-Symbols (rechts oben) erklärt.</p>
+					
+					<h1>Auswahl des Bildausschnitts</h1>
+					<p>Das Bild unten soll in der ganzen Lernanwendung als Beispiel dienen. Es gibt zwei Ausschnitte, die verschiedene Typen von Bildern symbolisieren. Sie können in jedem Abschnitt, wo dies sinnvoll ist, mit dem Bild-Button (rechts unten) ausgewählt und umgeschaltet werden.</p>
+					
+					<div>
+						<img src="assets/images/main_image.png" />
+						<h1>Ausschnitt 1</h1>
+						<p>Natürlichfarbiges Bild mit Farbverläufen und Kanten (standardmäßig ausgewählt)</p>
+						<h1>Ausschnitt 2</h1>
+						<p>Strichzeichnung mit starken Farbkontrasten und harten Kanten</p>
+					</div>
+				</div>
+				
+				<div id="jpeg_chapter1_section2">
+					<p>Grundlegendes Ziel von JPEG ist die <b>Kompression</b>, das heißt die Verringerung des Speicherplatzbedarfs. Das soll dadurch erreicht werden, dass irrelevante Daten weggelassen werden. </p>
+					<p>Irrelevant sind solche Daten, die vom menschlichen Auge ohnehin nicht wahrgenommen werden bzw. für das Erscheinungsbild nicht so bedeutsam sind. Dieses Vorgehen bezeichnet man daher als <b>Irrelevanzreduktion</b>: Man möchte mit weniger Informationen den gleichen oder einen genügend ähnlichen visuellen Eindruck erzielen (zum Vergleich die zwei Bilder). </p>
+					<div>
+						<figure>
+							<img src="assets/images/main_image.png" />
+							<figcaption>unkomprimiertes Bild (82 kB)</figcaption>
+						</figure>
+						<figure>
+							<img src="assets/images/main_image.png" />
+							<figcaption>komprimiertes Bild (59 kB)</figcaption>
+						</figure>
+					</div>
+					<p>Dadurch gehen allerdings Informationen unwiederbringlich verloren, das heißt, das JPEG-Kompressionsverfahren ist <b>verlustbehaftet</b>. Optimiert ist das Verfahren für natürlichfarbige Bilder.</p>
+				</div>
+				
+				<div id="jpeg_chapter1_section3">
+					<p>Beim JPEG-Verfahren wird folgende Erkenntnis aus der Wahrnehmungspsychologie ausgenutzt: <b>das menschliche Auge ist für Helligkeitsunterschiede sensibler als für Farbunterschiede.</b></p>
+					<p>Das kann hier ausprobiert werden:</p>
+					<div>
+						<div>
+							<img id="image_manipulation_example" src="assets/images/main_image.png" />
+						</div>
+						<div class="image_manipulation_div">
+							<div class="image_manipulation_selection">
+								<div>
+									<input type="radio" id="jpeg_radioButtonOriginalImage" name="jpeg_chapter1_radioButton">
+									<label for="jpeg_radioButtonOriginalImage">Originalbild</label>
+								</div>
+								<div>
+									<input type="radio" id="jpeg_radioButtonColorChanged" name="jpeg_chapter1_radioButton">
+									<label for="jpeg_radioButtonColorChanged">Farbe verändert</label>
+								</div>
+								<div>
+									<input type="radio" id="jpeg_radioButtonBrightnessChanged" name="jpeg_chapter1_radioButton">
+									<label for="jpeg_radioButtonBrightnessChanged">Helligkeit verändert</label>
+								</div>
+							</div>
+							<div class="image_manipulation_text">
+								<span id="image_manipulation_explanation"></span>
+							</div>
+						</div>
+					</div>
+					<p>Daher werden <b>bei den Farbunterschieden Abstriche</b> gemacht (vor allem bei den kleineren), um Speicherplatz zu sparen. Es sollen nur so viele Informationen übrig bleiben, wie nötig sind, um das Bild noch richtig zu verstehen. Die Einschätzung, wann dies noch der Fall ist, kann und muss der Nutzer selbst machen und zwar, indem er den Qualitätsfaktor entsprechend festlegt.</p>
+				</div>
+				
+				<div id="jpeg_chapter1_section4">
+					<p>Das JPEG-Verfahren ist <b>in vier Phasen gegliedert</b>, in denen man dem Ziel der Irrelevanzreduktion schrittweise näher kommt:</p>
+					<div>
+						<img src="assets/svg/chapter2.svg"/>
+						<h1>1. Bildaufbereitung</h1>
+						<p>Zunächst erfolgt die Umwandlung in ein zweckmäßigeres Farbsystem, dann die Unterabtastung der Farbwerte und die Blockbildung</p>
+					</div>
+					<div>
+						<img src="assets/svg/chapter3.svg"/>
+						<h1>2. Diskrete Cosinus-Transformation</h1>
+						<p>Diese Phase dient dazu, den Farbgrundwert innerhalb eines Blockes zu bestimmen und die Abweichungen von diesem.</p>
+					</div>
+					<div>
+						<img src="assets/svg/chapter4.svg"/>
+						<h1>3. Quantisierung</h1>
+						<p>In diesem Schritt werden die irrelevanten Informationen entfernt und gehen damit unwiederderbringlich verloren.</p>
+					</div>
+					<div>
+						<img src="assets/svg/chapter5.svg"/>
+						<h1>4. Entropiekodierung</h1>
+						<p>Zuletzt werden die übrigen Daten effizienter gespeichert, indem redundante, d.h. mehrfach auftretende, Informationen entfernt werden.</p>
+					</div>
+				</div>
+			</div>
+
+
+			<!--========== chapter2 ==========-->
+			<div id="jpeg_chapter2" class="jpeg_chapter">
+				<!--========== section1 ==========-->
+				<div id="jpeg_chapter2_section1">
+					<div>
+						Im ersten Kapitel haben wir gelernt, dass unser Auge Helligkeitsunterschiede besser wahrnimmt als Farbunterschiede. 
+						Das zweite Kapitel "<b>Bildaufarbeitung</b>" wird nun veranschaulichen, welche Vorbereitungen nötig sind, damit jene Erkenntnis
+						dafür ausgenutzt werden kann, das Ziel der Datenkompression zu erreichen:
+					</div>
+					<div class="jpeg_chapter2_list">
+						<ol>
+							<li>Farbraumveränderung</b> (Umwandlung in das Farbsystem YCC),</li>
+							<li>Unterabtastung der Farbwerte</b> (Chrominanz-Subsampling),</li>
+							<li>Indexverschiebung,</li>
+							<li>Blockbildung</b> (8x8-Pixel-Blöcke).</li>
+						</ol>
+					</div>
+				</div>
+				<!--========== section2 ==========-->
+				<div id="jpeg_chapter2_section2">
+					<div>
+						Das JPEG-Verfahren beruht vor allem darauf, dass kleine Unterschiede in der Farbe (und in geringen Maße auch in der Helligkeit) entfernt werden.
+						Bei den gängigen Farbsystemen, wie RGB und CMYK, wird das Bild in einzelne Farben (Ebenen) zerlegt. Wir brauchen aber ein 
+						<strong>System, bei dem Farbwerte von den Helligkeitswerten getrennt werden</strong>, damit sie im weiteren Verlauf 
+						auch einzeln behandelt werden können. Deshalb wird das vorhandende Farbmodell in das <strong>YCC-System</strong> 
+						umgewandelt, das genau dies tut (Rechenvorschrift siehe Pfeil). Durch diese Umwandlung gehen keine Farbinformationen verloren. (Farbwerte siehe Ebenen)
+					</div>
+					<div class="jpeg_chapter2_images_wrapper">
+						<div class="jpeg_chapter2_images_wrapper_left">
+							<!-- image1 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
+								<p>R</p>
+								<div>
+									<img id="jpeg_chapter2_2_image_R_1" src="assets/images/2_2/redImg.png"/>
+									<img id="jpeg_chapter2_2_image_R_2" src="assets/images/2_2/red.png"/>
+								</div>
+								<svg>
+									<defs>
+										<linearGradient id="jpeg_grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+										  <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+										  <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+										</linearGradient>
+									  </defs>
+									<rect class="jpeg_chapter2_colorGradient" fill="url(#jpeg_grad1)"/>
+								</svg>
+							</div>
+							<!-- image2 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
+								<p>G</p>
+								<div>
+									<img id="jpeg_chapter2_2_image_G_1" src="assets/images/2_2/greenImg.png"/>
+									<img id="jpeg_chapter2_2_image_G_2" src="assets/images/2_2/green.png"/>
+								</div>
+								<svg >
+									<defs>
+										<linearGradient id="jpeg_grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+										  <stop offset="0%" style="stop-color:rgb(0,255,0);stop-opacity:1" />
+										  <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+										</linearGradient>
+									  </defs>
+									<rect class="jpeg_chapter2_colorGradient" fill="url(#jpeg_grad2)"/>
+								</svg>
+							</div>
+							<!-- image3 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
+								<p>B</p>
+								<div>
+									<img  id="jpeg_chapter2_2_image_B_1" src="assets/images/2_2/blueImg.png"/>
+									<img  id="jpeg_chapter2_2_image_B_2" src="assets/images/2_2/blue.png"/>
+								</div>
+								<svg >
+									<defs>
+										<linearGradient id="jpeg_grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+										  <stop offset="0%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+										  <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+										</linearGradient>
+									  </defs>
+									<rect class="jpeg_chapter2_colorGradient" fill="url(#jpeg_grad3)"/>
+								</svg>
+							</div>
+						</div>
+						<!-- arrow image -->
+						<div id="jpeg_chapter2_2_arrow">
+							<span class="jpeg_chapter2_arrow">&rarr;</span>
+						</div>
+						<div class="jpeg_chapter2_images_wrapper_right">
+							<!-- image1 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
+								<p>Y</p>
+								<div>
+									<img id="jpeg_chapter2_2_image_Y_1" src="assets/images/YImg.png"/>
+									<img id="jpeg_chapter2_2_image_Y_2" src="assets/images/2_2/y.png"/>
+								</div>
+								<svg >
+									<defs>
+										<linearGradient id="jpeg_grad4" x1="0%" y1="0%" x2="0%" y2="100%">
+										  <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
+										  <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+										</linearGradient>
+									  </defs>
+									<rect class="jpeg_chapter2_colorGradient" fill="url(#jpeg_grad4)"/>
+								</svg>
+							</div>
+							<!-- image2 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
+								<p>Cb</p>
+								<div>
+									<img id="jpeg_chapter2_2_image_Cb_1" src="assets/images/CbImg.png"/>
+									<img id="jpeg_chapter2_2_image_Cb_2" src="assets/images/2_2/cb.png"/>
+								</div>
+								<svg >
+									<defs>
+										<linearGradient id="jpeg_grad5" x1="0%" y1="0%" x2="0%" y2="100%">
+										  <stop offset="0%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+										  <stop offset="100%" style="stop-color:rgb(255, 255, 10);stop-opacity:1" />
+										</linearGradient>
+									  </defs>
+									<rect class="jpeg_chapter2_colorGradient" fill="url(#jpeg_grad5)"/>
+								</svg>
+							</div>
+							<!-- image3 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
+								<p>Cr</p>
+								<div>
+									<img id="jpeg_chapter2_2_image_Cr_1" src="assets/images/CrImg.png"/>
+									<img id="jpeg_chapter2_2_image_Cr_2" src="assets/images/2_2/cr.png"/>
+								</div>
+								<svg >
+									<defs>
+										<linearGradient id="jpeg_grad6" x1="0%" y1="0%" x2="0%" y2="100%">
+										  <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+										  <stop offset="100%" style="stop-color:rgb(0,255,255);stop-opacity:1" />
+										</linearGradient>
+									  </defs>
+									<rect class="jpeg_chapter2_colorGradient" fill="url(#jpeg_grad6)"/>
+								</svg>
+							</div>
+						</div>
+					</div>
+
+					
+					<div id="jpeg_chapter2_2_tooltip_R" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_right">
+						<h2>Abschnitt 1: <strong>Rot-Ebene</strong></h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_2_matrix_table_content_R">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div id="jpeg_chapter2_2_tooltip_G" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_right">
+						<h2>Abschnitt 1: <strong>Grün-Ebene</strong></h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_2_matrix_table_content_G">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div id="jpeg_chapter2_2_tooltip_B" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_right">
+						<h2>Abschnitt 1: <strong>Blau-Ebene</strong></h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_2_matrix_table_content_B">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div id="jpeg_chapter2_2_tooltip_arrow" class="jpeg_chapter2_tooltip">
+							<p>Die Umwandlung erfolgt über folgende Rechenvorschrift:</p>
+							<p>
+								Y  =  0,299  R + 0,587  G + 0,114  B		<br>
+								Cb = -0,1687 R - 0,3313 G + 0,5    B + 128	<br>
+								Cr =  0,5    R - 0,4187 G - 0,0813 B + 128
+							</p>
+					</div>
+					
+					<div id="jpeg_chapter2_2_tooltip_Y" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_left">
+						<h2>Abschnitt 1: Die <strong>Y-Ebene</strong> enthält die Werte für die Helligkeitsverteilung im Bild (Grauwerte).</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_2_matrix_table_content_Y">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div id="jpeg_chapter2_2_tooltip_Cb" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_left">
+						<h2>Abschnitt 1: Die <strong>Cb-Ebene</strong> enthält die Abweichungen der Blauwerte zu den Grauwerten.</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_2_matrix_table_content_Cb">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div id="jpeg_chapter2_2_tooltip_Cr" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_left">
+						<h2>Abschnitt 1: Die <strong>Cr-Ebene</strong> enthält die Abweichungen der Rotwerte zu den Grauwerten.</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_2_matrix_table_content_Cr">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--========== section3 ==========-->
+				<div id="jpeg_chapter2_section3" class="jpeg_chapter">
+					<div>
+						Nach der Umwandlung in das YCC-Farbmodell erfolgt die Unterabtastung der Farbwerte (Chrominanzwerte): die 
+						<b>Farbwerte Cb und Cr werden in einer geringeren Auflösung gespeichert</b> und weiterverarbeitet als die Helligkeitswerte Y.
+						Durch diesen Vorgang werden bereits für das Auge <b>unbedeutendere Farbinformationen eingespart</b>. 
+						<p>Dies geschieht zum Beispiel im Vehältnis Y:Cb:Cr = 4:1:1, was man sich so vorstellen kann:</p>
+					</div>
+					<div class="jpeg_chapter2_flex_row">
+						<div class="jpeg_chapter2_animation_buttons">
+							<p class="jpeg_chapter2_3_show_steps">Schritte anzeigen:</p>
+							<div class="jepg_chapter2_3_button_wrapper">
+								<button id="animationButton1">1</button>
+								<button id="animationButton2">2</button>
+								<button id="animationButton3">3</button>
+								<button id="animationButton4">4</button>
+							</div>
+						</div>
+						<div class="jpeg_chapter2_3_descriptions">
+
+							<div id="jpeg_chapter2_3_description1">
+								<p>1. In den drei Ebenen Y, Cb und Cr ist für ein Pixel jeweils ein Wert abgespeichert.</p>
+							</div>
+							<div id="jpeg_chapter2_3_description2">
+								<p>2. In der Y-Ebene werden für ein 2x2 Pixel großes Feld alle view Helligkeitswerte übernommen.</p>
+							</div>
+							<div id="jpeg_chapter2_3_description3">
+								<p>3. In der Cb-Ebene werden die 4 Pixelwerte zunächst gemittelt und anschließend als ein Wert übernommen. Dies nennt man Unterabtastung.</p>
+							</div>
+							<div id="jpeg_chapter2_3_description4">
+								<p>4. Auch in der Cr-Ebene werden die 4 Pixelwerte zunächst gemittelt und anschließend als ein Wert übernommen. Damit ist die Unterabtastung im Verhältnis 4:1:1 beendet.</p>
+							</div>
+						</div>
+					</div>
+					<div id="jpeg_chapter2_3_animation_wrapper" class="jpeg_chapter2_3_animation_wrapper">
+						<div id="jpeg_chapter2_3_animation_svg_Y_div" class="jpeg_chapter2_3_animation_wrapper_Y">
+							<p>Y</p>
+							<svg id="jpeg_chapter2_3_animation_svg_Y" viewBox="-2 -2 724 164">
+								<!-- left pixels -->
+								<rect x="0" y="0" height="160" width="160" class="jpeg_chapter2_rect"/>
+								<line x1="80" y1="0" x2="80" y2="160" class="jpeg_chapter2_line"/>
+								<line x1="0" y1="80" x2="160" y2="80" class="jpeg_chapter2_line"/>
+								<rect x="0" y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<rect x="80" y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<rect x="0" y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<rect x="80" y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<!-- right pixels -->
+								<g id="jepg_chapter2_3_rect_right_Y">
+									<rect x="560" y="0" height="160" width="160" class="jpeg_chapter2_rect"/>
+									<line x1="640" y1="0" x2="640" y2="160" class="jpeg_chapter2_line"/>
+									<line x1="560" y1="80" x2="720" y2="80" class="jpeg_chapter2_line"/>
+									<rect x=560 y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+									<rect x="640" y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+									<rect x=560 y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+									<rect x="640" y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								</g>
+	
+								<!-- top left -->
+								<g id="jpeg_animation_pixel_Y_1" class="jpeg_animation_pixel">
+									<circle r="8" cx="20" cy="20" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="60" cy="20" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="20" cy="60" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="60" cy="60" class="circle jpeg_chapter2_circleY"/>
+								</g>
+								
+								<!-- top right-->
+								<g id="jpeg_animation_pixel_Y_2" class="jpeg_animation_pixel">
+									<circle r="8" cx="100" cy="20" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="140" cy="20" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="100" cy="60" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="140" cy="60" class="circle jpeg_chapter2_circleY"/>
+								</g>
+								
+								<!-- bottom left -->
+								<g id="jpeg_animation_pixel_Y_3" class="jpeg_animation_pixel">
+									<circle r="8" cx="20" cy="100" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="60" cy="100" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="20" cy="140" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="60" cy="140" class="circle jpeg_chapter2_circleY"/>
+								</g>
+
+								<!-- bottom right-->
+								<g id="jpeg_animation_pixel_Y_4" class="jpeg_animation_pixel">
+									<circle r="8" cx="100" cy="100" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="140" cy="100" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="100" cy="140" class="circle jpeg_chapter2_circleY"/>
+									<circle r="8" cx="140" cy="140" class="circle jpeg_chapter2_circleY"/>
+								</g>
+							</svg>
+						</div>
+
+						<div id="jpeg_chapter2_3_animation_svg_Cb_div" class="jpeg_chapter2_3_animation_wrapper_Cb">
+							<p>Cb</p>
+							<svg id="jpeg_chapter2_3_animation_svg_Cb" viewBox="-2 -2 724 164">
+								<!-- left -->
+								<rect x="0" y="0" height="160" width="160" class="jpeg_chapter2_rect"/>
+								<line x1="80" y1="0" x2="80" y2="160" class="jpeg_chapter2_line"/>
+								<line x1="0" y1="80" x2="160" y2="80" class="jpeg_chapter2_line"/>
+								<rect x="0" y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<rect x="80" y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<rect x="0" y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<rect x="80" y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<!-- right -->
+								<g id="jepg_chapter2_3_rect_right_Cb">
+									<rect x="560" y="0" height="160" width="160" class="jpeg_chapter2_rect"/>
+									<line x1="640" y1="0" x2="640" y2="160" class="jpeg_chapter2_line"/>
+									<line x1="560" y1="80" x2="720" y2="80" class="jpeg_chapter2_line"/>
+									<rect x=560 y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+									<rect x="640" y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+									<rect x=560 y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+									<rect x="640" y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								</g>
+
+								<!-- top left -->
+								<circle r="8" cx="20" cy="20" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="60" cy="20" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="20" cy="60" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="60" cy="60" class="circle jpeg_chapter2_circleCb"/>
+
+								<g id="jpeg_animation_pixel_Cb_1" class="jpeg_animation_pixel">
+									<circle r="8" cx="40" cy="40" class="jpeg_chapter2_circleCb"/>
+								</g>
+
+								<!-- top right -->
+								<circle r="8" cx="100" cy="20" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="140" cy="20" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="100" cy="60" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="140" cy="60" class="circle jpeg_chapter2_circleCb"/>
+
+								<g id="jpeg_animation_pixel_Cb_2" class="jpeg_animation_pixel">
+									<circle r="8" cx="120" cy="40" class="jpeg_chapter2_circleCb"/>
+								</g>
+								
+								<!-- bottom left -->
+								<circle r="8" cx="20" cy="100" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="60" cy="100" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="20" cy="140" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="60" cy="140" class="circle jpeg_chapter2_circleCb"/>
+
+								<g id="jpeg_animation_pixel_Cb_3" class="jpeg_animation_pixel">
+									<circle r="8" cx="40" cy="120" class="jpeg_chapter2_circleCb"/>
+								</g>
+
+								<!-- bottom right -->
+								<circle r="8" cx="100" cy="100" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="140" cy="100" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="100" cy="140" class="circle jpeg_chapter2_circleCb"/>
+								<circle r="8" cx="140" cy="140" class="circle jpeg_chapter2_circleCb"/>
+								
+								<g id="jpeg_animation_pixel_Cb_4" class="jpeg_animation_pixel">
+									<circle r="8" cx="120" cy="120" class="jpeg_chapter2_circleCb"/>
+								</g>
+							</svg>
+						</div>
+
+						<div id="jpeg_chapter2_3_animation_svg_Cr_div" class="jpeg_chapter2_3_animation_wrapper_Cr">
+							<p>Cr</p>
+							<svg id="jpeg_chapter2_3_animation_svg_Cr" viewBox="-2 -2 724 164">
+								<!-- left -->
+								<rect x="0" y="0" height="160" width="160" class="jpeg_chapter2_rect"/>
+								<line x1="80" y1="0" x2="80" y2="160" class="jpeg_chapter2_line"/>
+								<line x1="0" y1="80" x2="160" y2="80" class="jpeg_chapter2_line"/>
+								<rect x="0" y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<rect x="80" y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<rect x="0" y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<rect x="80" y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								<!-- right -->
+								<g id="jepg_chapter2_3_rect_right_Cr">
+									<rect x="560" y="0" height="160" width="160" class="jpeg_chapter2_rect"/>
+									<line x1="640" y1="0" x2="640" y2="160" class="jpeg_chapter2_line"/>
+									<line x1="560" y1="80" x2="720" y2="80" class="jpeg_chapter2_line"/>
+									<rect x=560 y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+									<rect x="640" y="0" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+									<rect x=560 y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+									<rect x="640" y="80" height="80" width="80" class="jpeg_chapter2_rectRed"/>
+								</g>
+
+								<!-- top left -->
+								<circle r="8" cx="20" cy="20" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="60" cy="20" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="20" cy="60" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="60" cy="60" class="circle jpeg_chapter2_circleCr"/>
+
+								<g id="jpeg_animation_pixel_Cr_1" class="jpeg_animation_pixel">
+									<circle r="8" cx="40" cy="40" class="jpeg_chapter2_circleCr"/>
+								</g>
+								
+								<!-- top right -->
+								<circle r="8" cx="100" cy="20" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="140" cy="20" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="100" cy="60" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="140" cy="60" class="circle jpeg_chapter2_circleCr"/>
+
+								<g id="jpeg_animation_pixel_Cr_2" class="jpeg_animation_pixel">
+									<circle r="8" cx="120" cy="40" class="jpeg_chapter2_circleCr"/>
+								</g>
+								
+								<!-- bottom left -->
+								<circle r="8" cx="20" cy="100" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="60" cy="100" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="20" cy="140" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="60" cy="140" class="circle jpeg_chapter2_circleCr"/>
+
+								<g id="jpeg_animation_pixel_Cr_3" class="jpeg_animation_pixel">
+									<circle r="8" cx="40" cy="120" class="jpeg_chapter2_circleCr"/>
+								</g>
+								
+								<!-- bottom right -->
+								<circle r="8" cx="100" cy="100" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="140" cy="100" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="100" cy="140" class="circle jpeg_chapter2_circleCr"/>
+								<circle r="8" cx="140" cy="140" class="circle jpeg_chapter2_circleCr"/>
+
+								<g id="jpeg_animation_pixel_Cr_4" class="jpeg_animation_pixel">
+									<circle r="8" cx="120" cy="120" class="jpeg_chapter2_circleCr"/>
+								</g>
+							</svg>
+						</div>
+					</div>
+				</div>
+				<!--========== section4 ==========-->
+				<div id="jpeg_chapter2_section4">
+					<div>
+						<div>
+							Nach dem Chrominanz-Subsampling befinden sich sowohl die Helligkeits- als auch die Farbwerte im <b>Intervall (0...255)</b>. 
+							Dieses <b>wird in das symmetrische Intervall (-128...127) verschoben</b>. Damit vereinfacht man die Rechnungen in der nächsten
+							Phase "Diskrete Cosinus-Transformation", da ausschließlich mit reelen Koeffizienten, anstatt mit komplexen, gerechnet werden kann.
+						</div>
+					</div>
+					<div class="jpeg_chapter2_images_wrapper">
+						<div class="jpeg_chapter2_images_wrapper_left">
+							<!-- image 1 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
+								<p>Y</p>
+								<div>
+									<img id="jpeg_chapter2_4_image_Y1_1" src="assets/images/YImg.png"/>
+									<img id="jpeg_chapter2_4_image_Y1_2" src="assets/images/2_2/y.png"/>
+								</div>
+							</div>
+							<!-- image 2 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
+								<p>Cb</p>
+								<div>
+									<img id="jpeg_chapter2_4_image_Cb1_1" src="assets/images/CbImg.png"/>
+									<img id="jpeg_chapter2_4_image_Cb1_2" src="assets/images/2_2/cb.png"/>
+								</div>
+							</div>
+							<!-- image 3 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
+								<p>Cr</p>
+								<div>
+									<img id="jpeg_chapter2_4_image_Cr1_1" src="assets/images/CrImg.png"/>
+									<img id="jpeg_chapter2_4_image_Cr1_2" src="assets/images/2_2/cr.png"/>
+								</div>
+							</div>
+						</div>
+						<!-- arrow image -->
+						<div>
+							<figure>
+								<!--<img id="jpeg_chapter2_4_arrow" src="assets/arrow2_2.png" class="arrow2_4"/>-->
+								<span class="jpeg_chapter2_arrow">&rarr;</span>
+								<figcaption>Interval - 128</figcaption>
+							</figure>
+						</div>
+						<div class="jpeg_chapter2_images_wrapper_left">
+							<!-- image 1 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
+								<p>Y</p>
+								<div>
+									<img id="jpeg_chapter2_4_image_Y2_1" src="assets/images/YImg.png"/>
+									<img id="jpeg_chapter2_4_image_Y2_2" src="assets/images/2_2/y.png"/>
+								</div>
+							</div>
+							<!-- image 2 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
+								<p>Cb</p>
+								<div>
+									<img id="jpeg_chapter2_4_image_Cb2_1" src="assets/images/CbImg.png"/>
+									<img id="jpeg_chapter2_4_image_Cb2_2" src="assets/images/2_2/cb.png"/>
+								</div>
+							</div>
+							<!-- image 3 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
+								<p>Cr</p>
+								<div>
+									<img id="jpeg_chapter2_4_image_Cr2_1" src="assets/images/CrImg.png"/>
+									<img id="jpeg_chapter2_4_image_Cr2_2" src="assets/images/2_2/cr.png"/>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					
+					<div id="jpeg_chapter2_4_tooltip_Y1" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_right">
+						<h2>Abschnitt 1: <b>Y-Ebene</b> vor der Intervallverschiebung</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_4_matrix_table_content_Y1">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					
+					<div id="jpeg_chapter2_4_tooltip_Cb1" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_right">
+						<h2>Abschnitt 1: <b>Cb-Ebene</b> nach dem Subsampling und vor der Intervallverschiebung</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_4_matrix_table_content_Cb1">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					
+					<div id="jpeg_chapter2_4_tooltip_Cr1" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_right">
+						<h2>Abschnitt 1: <b>Cr-Ebene</b> nach dem Subsampling und vor der Intervallverschiebung</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_4_matrix_table_content_Cr1">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div id="jpeg_chapter2_4_tooltip_Y2" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_left">
+						<h2>Abschnitt 1: <b>Y-Ebene</b> nach der Intervallverschiebung</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_4_matrix_table_content_Y2">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					
+					<div id="jpeg_chapter2_4_tooltip_Cb2" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_left">
+						<h2>Abschnitt 1: <b>Cb-Ebene</b> nach Intervallverschiebung.</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_4_matrix_table_content_Cb2">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					
+					<div id="jpeg_chapter2_4_tooltip_Cr2" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_left">
+						<h2>Abschnitt 1: <b>Cr-Ebene</b> nach der Intervallverschiebung</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_4_matrix_table_content_Cr2">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--========== section5 ==========-->
+				<div id="jpeg_chapter2_section5">
+					<div>
+						<div>
+							Abschließend wird jede der drei <b>Ebenen in 8x8 Pixel große Blöcke (Matrizen) zerlegt</b>, die im weiteren Verlauf unabhängig voneinander
+							verarbeitet werden. Wenn dies in den Randbereichen nicht aufgeht, werden die Randpixel entsprechend oft wiederholt.
+							<p>Diese Zerlegung ist notwenig, <b>weil die nächste Phase sehr rechenintensiv ist</b> und dadurch nicht die ganze Ebene auf einmal verarbeitet werden kann.</p>
+						</div>
+					</div>
+
+					<div class="jpeg_chapter2_images_wrapper">
+						<div class="jpeg_chapter2_images_wrapper_left">
+							<!-- image 1 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
+								<p>Y</p>
+								<div>
+									<img id="jpeg_chapter2_5_image_Y1_1" src="assets/images/YImg.png"/>
+									<img id="jpeg_chapter2_5_image_Y1_2" src="assets/images/2_2/y.png"/>
+								</div>
+							</div>
+							<!-- image 2 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
+								<p>Cb</p>
+								<div>
+									<img id="jpeg_chapter2_5_image_Cb1_1" src="assets/images/CbImg.png"/>
+									<img id="jpeg_chapter2_5_image_Cb1_2" src="assets/images/2_2/cb.png"/>
+								</div>
+							</div>
+							<!-- image 3 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
+								<p>Cr</p>
+								<div>
+									<img id="jpeg_chapter2_5_image_Cr1_1" src="assets/images/CrImg.png"/>
+									<img id="jpeg_chapter2_5_image_Cr1_2" src="assets/images/2_2/cr.png"/>
+								</div>
+							</div>
+						</div>
+						<!-- arrow image -->
+						<div>
+							<figure>
+								<span class="jpeg_chapter2_arrow">&rarr;</span>
+								<figcaption>Blockbildung</figcaption>
+							</figure>
+						</div>
+						<div class="jpeg_chapter2_images_wrapper_right">
+							<!-- image 1 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
+								<p>Y</p>
+								<div>
+									<img id="jpeg_chapter2_5_image_Y2_1" src="assets/images/2_5/blockY.png"/>
+									<img id="jpeg_chapter2_5_image_Y2_2" src="assets/images/2_5/y.png"/>
+								</div>
+							</div>
+							<!-- image 2 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
+								<p>Cb</p>
+								<div>
+									<img id="jpeg_chapter2_5_image_Cb2_1" src="assets/images/2_5/blockCb.png"/>
+									<img id="jpeg_chapter2_5_image_Cb2_2" src="assets/images/2_5/cb.png"/>
+								</div>
+							</div>
+							<!-- image 3 -->
+							<div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
+								<p>Cr</p>
+								<div>
+									<img id="jpeg_chapter2_5_image_Cr2_1" src="assets/images/2_5/blockCr.png"/>
+									<img id="jpeg_chapter2_5_image_Cr2_2" src="assets/images/2_5/cr.png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="jpeg_chapter2_5_tooltip_Y1" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_right">
+						<h2>Abschnitt 1: <b>Y-Ebene</b> vor der Intervallverschiebung</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_5_matrix_table_content_Y1">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="jpeg_chapter2_5_tooltip_Cb1" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_right">
+						<h2>Abschnitt 1: <b>Cb-Ebene</b> nach dem Subsampling und vor der Intervallverschiebung</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_5_matrix_table_content_Cb1">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="jpeg_chapter2_5_tooltip_Cr1" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_right">
+						<h2>Abschnitt 1: <b>Cr-Ebene</b> nach dem Subsampling und vor der Intervallverschiebung</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_5_matrix_table_content_Cr1">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="jpeg_chapter2_5_tooltip_Y2" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_left">
+						<h2>Abschnitt 1: <b>Y-Ebene</b> nach der Intervallverschiebung</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_5_matrix_table_content_Y2">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="jpeg_chapter2_5_tooltip_Cb2" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_left">
+						<h2>Abschnitt 1: <b>Cb-Ebene</b> nach Intervallverschiebung.</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_5_matrix_table_content_Cb2">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="jpeg_chapter2_5_tooltip_Cr2" class="jpeg_chapter2_tooltip jpeg_chapter2_tooltip_left">
+						<h2>Abschnitt 1: <b>Cr-Ebene</b> nach der Intervallverschiebung</h2>
+						<p>Ausschnitt aus den Farbwerten:</p>
+						<table>
+							<tbody id="jpeg_chapter2_5_matrix_table_content_Cr2">
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+				
+
+
+			<!--========== chapter3 ==========-->
+			<div id="jpeg_chapter3" class="jpeg_chapter">
+				<!--========== section1 ==========-->
+				<div id="jpeg_chapter3_section1">
+					<p>
+						Während der Bildaufbereitungsphase erfolgte die Farbraumumwandlung und die Unterabtastung der Farbinformationen.
+						In der Phase der Diskreten Cosinus-Transformation soll bestimmt werden, wie stark die <b>Helligkeits- bzw. Farbunterschiede in einem Block</b> sind, um diese dann in der Quantisierungsphase einschränken zu können.
+					</p>
+					<p>
+						Dazu werden die <b>Blockmatrizen mit Hilfe der Diskreten Cosinus-Transformation (DCT) in eine andere Darstellung umgewandelt</b>, welche nicht mehr die Anordnung der einzelnen Farb- bzw. Helligkeitswerte beschreibt, sondern die Größe der Wertschwankungen und die Verteilung der Schwankungen über den Bildblock.
+						Dies hat den Vorteil, dass die Wertunterschiede strukturierter angeordnet sind und somit auch besser ablesbar und leichter komprimierbar.
+					</p>
+					<p>
+						Mit Hilfe der DCT wird die zweidimensionale Bildfunktion durch die Überlagerung verschiedener Cosinusfunktionen nachgebildet.
+						Das Prinzip soll in diesem Kapitel erklärt werden.
+					</p>
+				</div>
+				<!--========== section2 ==========-->
+				<div id="jpeg_chapter3_section2">
+					<p>
+						Jeder 8x8-Pixel Block stellt eine zweidimensionale Funktion <b>f(x,y)=z</b> dar, das heißt eine <b>Zuordnung eines Wertes zu einem Ort</b>.
+					</p>
+					<p>
+						<b>x und y geben einen der 64 Orte</b> in dem 8x8-Pixel Block <b>an</b> und <b>z den Pixelwert</b> an dieser Stelle.
+					</p>
+					<p>
+						Folgende Abbildung zeigt dies am Beispiel eines Y-Blocks (des gewählten Ausschnitts) aus dem letzten Kapitel.
+						Man kann erkennen, dass es sich um eine stufige <b>Rechteckfunktion</b> handelt.
+					</p>
+
+					<div>
+						<div>
+							<p>Blockmatrix (Y-Ebene)</p>
+							<svg id="jpeg_chapter3_block_matrix"></svg>
+							<table>
+								<tbody>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								</tbody>
+							</table>
+						</div>
+						<div>
+							<p>Darstellung als graphische Funktion</p>
+							<svg id="jpeg_chapter3_rectangle_function"></svg>
+						</div>
+					</div>
+
+				</div>
+				<!--========== section3 ==========-->
+				<div id="jpeg_chapter3_section3">
+					<p>
+						Mit Hilfe der Diskreten Cosinus-Transformation werden Rechteckfunktionen durch Überlagerung von verschiedenen Cosinus-Funktionen nachgebildet, d.h. die <b>diskrete Stufenform wird in eine kontinuierliche Wellenform umgewandelt</b>.
+					</p>
+					<p>
+						Für eine eindimensionale Rechteckfunktion kann man sich das folgendermaßen vorstellen:
+						Cosinus-Funktionen mit unterschiedlicher Frequenz und Amplitude werden addiert und bilden die Rechteckfunktion so nach, dass die Werte an den einzelnen Stellen genau übereinstimmen.
+						<b>Aus einer Ort-Werte-Zuordnung z=f(x) wird eine Frequenz-Amplituden-Zuordnung S=F(u)</b>:
+						die Orte im resultierenden Block entsprechen den verwendeten Cosinus-Funktionen verschiedener Frequenz (Basisfunktionen);
+						die Werte entsprechen deren Amplituden (abhängig von den Ausgangswerten).
+					</p>
+					<div>
+						<div>
+							<p><b>Ausgangswerte (Beispiel):</b></p>
+							<p class="jpeg_chapter3_instruction">Maus über Felder bewegen</p>
+							<svg id="jpeg_chapter3_function_values"></svg>
+							<div><svg id="jpeg_chapter3_rectangle_function_example"></svg></div>
+						</div>
+						<div>
+							<p><b>Werte nach DCT:</b></p>
+							<p class="jpeg_chapter3_instruction">Maus über Felder bewegen</p>
+							<svg id="jpeg_chapter3_function_amplitudes"></svg>
+							<p>Basisfunktion:</p>
+							<svg id="jpeg_chapter3_basis_function"></svg>
+						</div>
+						<div>
+							<p><b>Resultierende Kurve</b> durch Überlagerung (Addition) der Cosinus-Funktionen:</p>
+							<svg id="jpeg_chapter3_total_function"></svg>
+						</div>
+					</div>
+
+				</div>
+				<!--========== section4 ==========-->
+				<div id="jpeg_chapter3_section4">
+					<p>
+						Bei der 2-dimensionalen DCT wird die Ort-Werte-Zuordnung z=f(x,y) durch Überlagerung von 2D-Cosinus-Funktionen in eine <b>Frequenz-Amplituden-Zuordnung S=F(u,v)</b> umgewandelt.
+					</p>
+					<p>
+						Folgende Formel kommt hierbei zur Anwendung:
+					</p>
+
+					<div>
+						<div>
+							\[\textcolor{red}{S_{uv}} = F(u,v) = {1 \over 4}c_{u}c_{v}\sum_{x=0}^7 \sum_{y=0}^7 z_{xy}\]
+						</div>
+
+						<div class="jpeg_chapter3_formular_wrapper">
+							\[\cos((2x+1){\textcolor{red}{u} \over 16}\pi)\cos((2y+1){\textcolor{red}{v} \over 16}\pi)\]
+							<p class="jpeg_chapter3_instruction">
+								Allgemeine Beschreibung der Basisfunktionen
+							</p>
+						</div>
+
+						<div>
+							<b><strong>S</strong> ist die Amplitude</b> (größte Auslenkung) der jeweils durch (u,v) zugeordneten Basisfunktion.
+						</div>
+
+						<div>
+							<b><strong>u</strong> und <strong>v</strong> bestimmen die Frequenz</b> und damit eine von 64 verwendeten Basisfunktionen.
+						</div>
+
+						<div>
+							Die Amplituden hängen von den Pixelwerten \(z_{xy}\) des Ausgangsblocks ab und geben an, wie stark die Änderung der Pixelwerte ist, die von der jeweiligen Basisfunktion beschrieben wird.
+							Damit beschreiben die 64 resultierenden Amplituden auch, mit welchem Anteil sich diese Basisfunktion bei der Addition aller Funktionen auswirkt.
+						</div>
+
+						<div>
+							Die Frequenzen geben an, wie häufig bzw. schnell sich die Pixelwerte in einem Block ändern.<br />
+							Es gibt je 8 verschiedene Frequenzen in horizontaler und 8 in vertikaler Richtung.<br />
+							Aus ihrer Kombination ergeben sich 64 verschiedene Funktionen.
+						</div>
+					</div>
+
+				</div>
+				<!--========== section5 ==========-->
+				<div id="jpeg_chapter3_section5">
+					<p>
+						<b>u und v bestimmen die Frequenz</b> und damit eine der 64 verwendeten Basisfunktionen.
+						<br />
+						In dieser Abbildung werden einige von diesen dargestellt und beschrieben (rot unterlegt):
+					</p>
+					<table class="jpeg_chapter3_figures" style="margin-top:0;">
+						<tr>
+							<td width="50%" align="left">64 Basisfunktionen der DCT (Draufsicht):</td>
+							<td width="50%" align="right">Beschreibung der Basisfunktion:</td>
+						</tr>
+						<tr>
+							<td align="left">
+								<svg id="jpeg_chapter3_tile_mask" width="16em" height="16em"></svg>
+							</td>
+							<td align="right">
+								<div id="jpeg_chapter3_basis_description" class="jpeg_chapter3_description">
+									<p id="jpeg_chapter3_basis_description_text"></p>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<div style="width:8em;position:relative;top:-14em;left:16em;" align="center">
+						<p>3D-Darstellung der Basisfunktion:</p>
+						<!--only images, no svg-->
+						<img src="assets/images/3_5/no_function.png" width="128em" height="128em" id="jpeg_chapter3_no_function_image" class="jpeg_chapter3_basis_function_image" />
+						<img src="assets/images/3_5/function0.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image0" class="jpeg_chapter3_basis_function_image" hidden />
+						<img src="assets/images/3_5/function1.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image1" class="jpeg_chapter3_basis_function_image" hidden />
+						<img src="assets/images/3_5/function2.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image2" class="jpeg_chapter3_basis_function_image" hidden />
+						<img src="assets/images/3_5/function3.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image3" class="jpeg_chapter3_basis_function_image" hidden />
+						<img src="assets/images/3_5/function4.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image4" class="jpeg_chapter3_basis_function_image" hidden />
+						<img src="assets/images/3_5/function5.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image5" class="jpeg_chapter3_basis_function_image" hidden />
+					</div>
+					<table style="position:relative;top:-15em;">
+						<tr>
+							<td width="32.5%"></td>
+							<td width="30%" style="color:#AFAFFF;font-size:12px;text-align:center;">x-Anteil</td>
+							<td width="30%" style="color:#AFAFFF;font-size:12px;text-align:center;">y-Anteil</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td style="color:#AFAFFF;">Gleichung der Basisfunktion:</td>
+							<td>
+								<p id="jpeg_chapter3_formular_basis_x">
+									\[\cos((2x+1)\textcolor{red}{{u \over 16}\pi})\]
+								</p>
+							</td>
+							<td>
+								<p id="jpeg_chapter3_formular_basis_y">
+									\[\cos((2y+1)\textcolor{red}{{v \over 16}\pi})\]
+								</p>
+							</td>
+							<td id="jpeg_chapter3_basis_equals_1" style="padding-left:0.5em;color:#AFAFFF;font-size:20px;visibility:hidden;"><b>= 1<b></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td style="color:#FF0000;font-size:12px;text-align:right;">Frequenz in x-Richtung</td>
+							<td style="color:#FF0000;font-size:12px;text-align:right;">Frequenz in y-Richtung</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<!--========== section6 ==========-->
+				<div id="jpeg_chapter3_section6">
+					<p>
+						<b>\(S_{uv}\) gibt die Amplitude</b> von der jeweiligen Basisfunktion an der Stelle (u,v) an.
+						<br /><br />
+						Aus 64 Ausgangswerten ergeben sich für die 64 verschiedenen Basisfunktionen 64 Amplitudenwerte und damit das <b>Resultat der DCT: die Koeffizientenmatrix</b>, eine neue 8x8-Matrix, die bestimmte Vielfache der 64 errechneten Amplitudenwerte enthält, die DCT-Koeffizienten.
+					</p>
+					<p id="jpeg_chapter3_formular">
+						\[\mathbf{\textcolor{red}{S_{uv} = F(u,v)}} = {1 \over 4}c_{u}c_{v}\sum_{x=0}^7 \sum_{y=0}^7 z_{xy}\cos((2x+1){u \over 16}\pi)\cos((2y+1){v \over 16}\pi)\]
+					</p>
+
+					<div>
+						<div>
+							<p>Ausschnitt</p>
+							<div>
+								<div>
+									<p>Y</p>
+									<button id="jpeg_chapter3_select_y"></button>
+								</div>
+
+								<div>
+									<p>Cb</p>
+									<button id="jpeg_chapter3_select_cb"></button>
+								</div>
+
+								<div>
+									<p>Cr</p>
+									<button id="jpeg_chapter3_select_cr"></button>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<p>Koeffizientenmatrix nach DCT</p>
+							<table id="jpeg_chapter3_coefficient_matrix_table">
+								<tbody id="jpeg_chapter3_coefficient_matrix_table_content">
+									<tr>
+										<td id="jpeg_chapter3_td_1_1" class="jpeg_chapter3_matrix_box"></td>
+										<td id="jpeg_chapter3_td_2_1" class="jpeg_chapter3_matrix_box"></td>
+										<td></td><td></td><td></td><td></td><td></td>
+										<td id="jpeg_chapter3_td_8_1" class="jpeg_chapter3_matrix_box"></td>
+									</tr>
+									<tr>
+										<td id="jpeg_chapter3_td_1_2" class="jpeg_chapter3_matrix_box"></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+									</tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr>
+										<td id="jpeg_chapter3_td_1_8" class="jpeg_chapter3_matrix_box"></td>
+										<td></td><td></td><td></td><td></td><td></td><td></td>
+										<td id="jpeg_chapter3_td_8_8" class="jpeg_chapter3_matrix_box"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div>
+							<p>Beschreibung des Koeffizienten:</p>
+							<div id="jpeg_chapter3_coefficient_description" class="jpeg_chapter3_description">
+								<p id="jpeg_chapter3_coefficient_description_text"></p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!--========== section7 ==========-->
+				<div id="jpeg_chapter3_section7">
+					<p>
+						<b>In diesem Kapitel wurde gezeigt, dass jeder beliebige Block eines realen Bildes durch die Überlagerung der 64 DCT-Basisfunktionen mit unterschiedlichen Amplituden zusammengesetzt werden kann.</b>
+					</p>
+					<p>
+						Durch die DCT wird zunächst der mittlere Farbton in einem Block bestimmt und in der Koeffizientenmatrix an der Stelle (0,0) eingetragen.
+						Anschließend werden die Abweichungen von diesem bestimmmt, indem für jede Basisfunktion eine Amplitude errechnet wird.
+					</p>
+					<p>
+						Große, regelmäßige Flächen im Bild resultieren in niedrigen Frequenzen: in der Koeffizientenmatrix sind das die Werte in der linken oberen Hälfte.
+						Ständig wechselnde Details resultieren in hohen Frequenzen: das sind die Werte in der rechten unteren Hälfte.
+					</p>
+					<p>
+						Große Unterschiede in den Pixelwerten schlagen sich in großen Amplituden und damit in großen Koeffizienten nieder, kleine Unterschiede in kleinen Amplituden und kleinen Koeffizienten.
+					</p>
+					<p>
+						<b>Die ursprünglichen Pixelwerte lassen sich aus den DCT-Koeffizienten mit Hilfe der inversen DCT (IDCT) fast exakt wieder berechnen.
+						Aufgrund von Rundungsfehlern ist der Schritt der DCT minimal verlustbehaftet.</b>
+					</p>
+				</div>
+			</div>
+
+
+			<!--========== chapter4 ==========-->
+			<div id="jpeg_chapter4" class="jpeg_chapter">
+				<!--========== section1 ==========-->
+				<div id="jpeg_chapter4_section1">
+
+					<p>In der vorhergehenden Phase wurden die Pixelwerte in einem Block mit
+					Hilfe der DCT in einen Grundwert und in Abweichungen von diesem zerlegt.
+					In der Quantisierung soll nun erreicht werden, dass <b>nur Informationen
+					übrig</b> bleiben, <b>die für das menschliche Auge besonders relevant sind.</b></p>
+					<p>Dieses Ziel wird dadurch erreicht, dass <b>vor allem geringe Abweichungen
+					ignoriert, das heißt entfernt werden und somit Speicherplatz eigespart
+					wird.</b> Wieviele Informationen verloren gehen, hängt von einem
+					Qualitätsfaktor ab, den der Nutzer selbst festgelegt. Das Prinzip
+					der Quantisierung soll in diesem Kapital erklärt werden.</p>
+
+				</div>
+
+				<!--========== section2 ==========-->
+				<div id="jpeg_chapter4_section2">
+
+					<p>Ausgangspunkt für die Quantisierung ist die DCT-Koeffizientenmatrix.
+					Sie kann alle Werte zwischen 1028 und 1027 auf eine Kommastelle
+					genau enthalten. Dieser <b>Wertebereich wird durch die Quantisierung
+					eingeschränkt, indem ganzzahlge Wertestufen gebildet werden.</b>
+					Das heißt, alle Werte in einem bestimmten intervall werden zu einer
+					der beiden Intervallgrenzen durch Rundung zugeordnet. Die Größe
+					des Intervalls bezeichnet man dabei als <b>Quantisierungsstufe</b>.
+					Sie wird <b>von einem Quantisierungsfaktor (QF) bestimmt.</b></p>
+			
+					<p>Bei der Quantisierung wird jeder Wert durch den entsprechenden
+					Quantisierungsfaktor geteilt und auf die nächste ganze Zahl gerundet.
+					<b>Je größer dieser Faktor ist</b>, desto höher ist die Stufe und
+					desto größer ist auch das Intervall. Damit ist auch die Rundungsfehler
+					um so größer und <b>desto mehr Informationen gehen verloren</b>, da sie
+					bei der Dequantisierung (= Multiplikation mit QF) nicht mehr exakt rekonstruiert
+					werden können. Hier dazu ein Beispiel:</p>
+
+					<div id="jpeg_chapter4_principleExample">
+
+						<div>
+							<p>Werte vor Quantisierung:</p>
+							<table class="jpeg_chapter4_table">
+								<tr>
+									<td>3.3</td><td>3.5</td><td>2.4</td>
+									<td>1.0</td><td>1.8</td><td>0.5</td>
+								</tr>
+							</table>
+							<img class="jpeg_chapter4_exampleTable" src="assets/images/4_2/svg0.JPG">
+						</div>
+						<div>
+							<p>Werte nach Quantisierung:</p>
+							<table id="jpeg_principleExampleNumber20" class="jpeg_chapter4_table">
+								<tr>
+									<td></td><td></td><td></td>
+									<td></td><td></td><td></td>
+								</tr>
+							</table>
+							<table id="jpeg_principleExampleNumber21" class="jpeg_chapter4_table">
+								<tr>
+									<td>3</td><td>4</td><td>2</td>
+									<td>1</td><td>2</td><td>1</td>
+								</tr>
+							  </table>
+							<table id="jpeg_principleExampleNumber22" class="jpeg_chapter4_table">
+								<tr>
+									<td>2</td><td>2</td><td>1</td>
+									<td>1</td><td>1</td><td>0</td>
+								</tr>
+							</table>
+							<table id="jpeg_principleExampleNumber24" class="jpeg_chapter4_table">
+								<tr>
+									<td>1</td><td>1</td><td>1</td>
+									<td>0</td><td>0</td><td>0</td>
+								</tr>
+							</table>
+							<p>Quantisierungsfaktor</p>
+							<div>
+								<button id="jpeg_buttonShowPrincipleExample0">/</button>
+								<button id="jpeg_buttonShowPrincipleExample1">1</button>
+								<button id="jpeg_buttonShowPrincipleExample2">2</button>
+								<button id="jpeg_buttonShowPrincipleExample4">4</button>
+							</div>
+							<div id="jpeg_chapter4_exampleResult1">
+								<p>Resultat: 5 Stufen</p>
+								<p>Speicherbedarf: 3 bit/Wert</p>
+							</div>
+							<div id="jpeg_chapter4_exampleResult2">
+								<p>Resultat: 3 Stufen</p>
+								<p>Speicherbedarf: 2 bit/Wert</p>
+							</div>
+							<div id="jpeg_chapter4_exampleResult4">
+								<p>Resultat: 2 Stufen</p>
+								<p>Speicherbedarf: 1 bit/Wert</p>
+							</div>
+						</div>
+						<div>
+							<p> Werte nach Dequantisierung: </p>
+							<table id="jpeg_principleExampleNumber30" class="jpeg_chapter4_table">
+								<tr>
+									<td></td><td></td><td></td>
+									<td></td><td></td><td></td>
+								</tr>
+							</table>
+							<table id="jpeg_principleExampleNumber31" class="jpeg_chapter4_table">
+								<tr>
+									<td>3</td><td>4</td><td>2</td>
+									<td>1</td><td>2</td><td>1</td>
+								</tr>
+							</table>
+							<table id="jpeg_principleExampleNumber32" class="jpeg_chapter4_table">
+								<tr>
+									<td>4</td><td>4</td><td>2</td>
+									<td>2</td><td>2</td><td>0</td>
+								</tr>
+							</table>
+							<table id="jpeg_principleExampleNumber34" class="jpeg_chapter4_table">
+								<tr>
+									<td>4</td><td>4</td><td>4</td>
+									<td>0</td><td>0</td><td>0</td>
+								</tr>
+							</table>
+							<div>
+								<div>
+									<img id="jpeg_chapter4_image_example_table0" class="jpeg_chapter4_image_example_table" src="assets/images/4_2/svg1.JPG">
+								</div>
+								<div>
+									<img id="jpeg_chapter4_image_example_table1" class="jpeg_chapter4_image_example_table" src="assets/images/4_2/svg2.JPG">
+								</div>
+								<div>
+									<img id="jpeg_chapter4_image_example_table2" class="jpeg_chapter4_image_example_table" src="assets/images/4_2/svg3.JPG">
+								</div>
+								<div>
+									<img id="jpeg_chapter4_image_example_table4" class="jpeg_chapter4_image_example_table" src="assets/images/4_2/svg4.JPG">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--========== section3 ==========-->
+				<div id="jpeg_chapter4_section3">
+
+					<p>Beim JPEG-Verfahren wird für jeden einzelnen DCT-Koeffizienten ein spezifischer
+					Quantisierungsfaktor festgelegt. So wird eine <b>feinere Quantisierung für
+					die Koeffizienten der niedrigen Frequenzen und eine gröbere Quantisierung
+					für die Koeffizienten der höheren Frequenzen</b> erreicht.</p>
+					<p>Die einzelnen <b>Quantisierungsfaktoren werden</b> zudem <b>in zwei
+					verschiedenen Quantisierungsmatrizen definiert</b>: je eine für die
+					Helligkeitswerte(Y) und eine für die Farbwerte(Cb, Cr). Damit wird
+					erreicht, dass man entsprechend der Helligkeitspräferenz des Auges
+					die Helligkeitswerte sensibler behandeln kann als die Farbwerte.</p>
+					
+					<div>
+						<div>
+							<p> Quantisierungsmatrix für die Y-Ebene:</p>
+							<table class="jpeg_chapter4_table">
+								<tr>
+									<td>16</td><td>11</td><td>10</td><td>16</td>
+									<td>24</td><td>40</td><td>51</td><td>61</td>
+								</tr>
+								<tr>
+									<td>12</td><td>12</td><td>14</td><td>19</td>
+									<td>26</td><td>58</td><td>60</td><td>55</td>
+								</tr>
+								<tr>
+									<td>14</td><td>13</td><td>16</td><td>24</td>
+									<td>40</td><td>57</td><td>69</td><td>56</td>
+								</tr>
+								<tr>
+									<td>14</td><td>17</td><td>22</td><td>29</td>
+									<td>51</td><td>87</td><td>80</td><td>62</td>
+								</tr>
+								<tr>
+									<td>18</td><td>22</td><td>37</td><td>56</td>
+									<td>68</td><td>109</td><td>103</td><td>77</td>
+								</tr>
+								<tr>
+									<td>24</td><td>35</td><td>55</td><td>64</td>
+									<td>81</td><td>104</td><td>113</td><td>92</td>
+								</tr>
+								<tr>
+									<td>49</td><td>64</td><td>78</td><td>87</td>
+									<td>103</td><td>121</td><td>120</td><td>101</td>
+								</tr>
+								<tr>
+									<td>72</td><td>92</td><td>95</td><td>98</td>
+									<td>112</td><td>100</td><td>103</td><td>99</td>
+								</tr>
+							</table>
+						</div>
+
+						<div>
+							<p> Quantisierungsmatrix für die Cb- und Cr- Ebene:</p>
+							<table class="jpeg_chapter4_table">
+								<tr>
+									<td>17</td><td>18</td><td>24</td><td>47</td>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+								</tr>
+								<tr>
+									<td>18</td><td>21</td><td>26</td><td>66</td>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+								</tr>
+								<tr>
+									<td>24</td><td>26</td><td>56</td><td>99</td>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+								</tr>
+								<tr>
+									<td>47</td><td>66</td><td>99</td><td>99</td>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+								</tr>
+								<tr>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+								</tr>
+								<tr>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+								</tr>
+								<tr>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+								</tr>
+								<tr>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+									<td>99</td><td>99</td><td>99</td><td>99</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!--========== section4 ==========-->
+				<div id="jpeg_chapter4_section4">
+
+					<p>In <b>natürlichen Bildern</b> gibt es auf dem kleinem Maßstab eines
+					8x8-Pixel-Blocks nur geringe Helligkeits bzw. Farbunterschiede, so dass
+					an den höherfrequenten Stellen meist kleine Koeffizienten stehen.
+					Diese werden durch die höheren Quantisierungsfaktoren zu Null quantisiert,
+					wobei man ausnutzt, dass diese kleinen Unterschiede für das menschliche
+					Auge allgemain nicht so relevant sind (sowohl bei den Helligkeits- als
+					auch bei den Farbwerten).</p>
+					<p><b>Die häufigen Nullwerte bringen durch ihre Redundanz einen Vorteil
+					bei der letzten Phase der Entropiekodierung</b>. Genau dies ist das angestrebte
+					Ziel von JPEG: man nutzt für höhere Frequenzen größere Quantisierungsfaktoren,
+					um auf Kosten von stärkeren Rundungsfehlern, die allerdings auf Grund
+					der Unzulänglichkeiten des menschlichen Auges nicht wichtig sind, den
+					Vorteil von mehr entstandenen Nullen nutzen zu können.</p>
+					<p>Da sich dieser Effekt nur einstellt, wenn es in einem Block nicht
+					zu starke und häufige Farbänderung gibt, liefert JPEG die besten Ergebnisse bei
+					natürlichen farbigen Bilder, in denen viele allmähliche farbübergänge
+					vorkommen.</p>
+					<p><b>Für Bilder mit vielen harten Kanten</b>, also plötzlichen Farbänderungen
+					(z.b. Texte, Strichzeichungen),<b>ist das Verfahren nicht geeignet</b>,
+					da bei diesen auch in den höherfrequenten Bereichen große Koeffizienten
+					auftreten, die kaum zu Nullwerten quantisiert werden können (vor allem in
+					der Y-Ebene, also bei den Helligkeitswerten). </p>
+
+				</div>
+
+				<!--========== section5 ==========-->
+				<div id="jpeg_chapter4_section5">
+
+					<p>Die <b>Quantisierungsfaktoren könnnen durch einen Qualitätsfaktor verkleinert
+					bzw. vergrößert werden</b>. Diesen Faktor kann der Nutzer direkt manipulieren
+					und somit auch die Höhe der Quantisierungsstufen. Dabei gilt der Zusammenhang:
+					<b>kleinerer Qualitätsfaktor - größerer Quantisierungsfaktor - höherer
+					Informationsverlust - geringerer Speicherbedarf.</b></p>
+					<p>Das bedeutet, dass immer mehr Pixel in einem Block den Farbgrundwert
+					annehmen, da die Abweichungen (die AC-Koeffizienten) "wegquantisiert"
+					werden. Diesen Effekt nimmt man in einem stark komprimierten Bild in Form
+					kleiner Blöcke (eben diese JPEG-Pixelblöcke) wahr. Sie werden als Artefakte
+					bezeichnet.</p>
+
+					<div>
+						<div>
+							<p>Koeffizientenmatrix vor Quantisierung</p>
+							<table class="jpeg_chapter4_table">
+								<tbody id="tableCoefficientMatrix"></tbody>
+							</table>
+						</div>
+						<div>
+							<p>Quantisierungsmatrix</p>
+							<table class="jpeg_chapter4_table">
+								<tbody id="tableQuantizationMatrix"></tbody>
+							</table>
+						</div>
+						<div>
+							<p>Quantisierte Koeffizientenmatrix</p>
+							<table class="jpeg_chapter4_table">
+								<tbody id="tableQuantizedCoefficientMatrix"></tbody>
+							</table>
+						</div>
+					</div>
+
+					<div>
+						<div class="jpeg_chapter4_5_button_wrapper">
+							<span>Ebene wählen:</span>
+							<b>Y</b>						
+							<button id="jpeg_chapter4_5_button_channel_Y" class="jpeg_chapter4_buttonChannel">
+								<img id="jpeg_chapter4_5_button_channel_Y_image1" src="assets/images/YImg.png"></img>
+								<img id="jpeg_chapter4_5_button_channel_Y_image2" src="assets/images/2_2/y.png"></img>
+							</button>
+							<b>Cb</b>
+							<button id="jpeg_chapter4_5_button_channel_Cb" class="jpeg_chapter4_buttonChannel">
+								<img id="jpeg_chapter4_5_button_channel_Cb_image1" src="assets/images/CbImg.png"></img>
+								<img id="jpeg_chapter4_5_button_channel_Cb_image2" src="assets/images/2_2/cb.png"></img>
+							</button>
+							<b>Cr</b>
+							<button id="jpeg_chapter4_5_button_channel_Cr">
+								<img id="jpeg_chapter4_5_button_channel_Cr_image1" src="assets/images/CrImg.png"></img>
+								<img id="jpeg_chapter4_5_button_channel_Cr_image2" src="assets/images/2_2/cr.png"></img>
+							</button>
+						</div>
+						<div class="jpeg_chapter4_5_button_wrapper" class="jpeg_chapter4_buttonChannel">
+							<span>Qualitätsfaktor wählen:</span>
+							<button id="jpeg_chapter4_5_button_quality_25">25</button>
+							<button id="jpeg_chapter4_5_button_quality_50">50</button>
+							<button id="jpeg_chapter4_5_button_quality_75">75</button>
+						</div>
+					</div>
+				</div>
+
+				<!--========== section6 ==========-->
+				<div id="jpeg_chapter4_section6">
+
+					<p>In diesem Kapitel wurde gezeigt,dass <b>durch das Quantisieren</b>,
+					also das Teilen durch einen Quantisierungsfaktor und Runden der Werte,
+					eine <b>Reduzierung der Wertemenge der DCT-Koeffizientenmatrix</b>
+					erreicht wird. Dies ermöglicht den Vorteil einer späteren Kodierung
+					mit weniger Bits. Außerdem werden viele hochfrequente AC-Koeffizienten
+					zu Null quantisiert, was durch Redundanz einen Vorteil bei der
+					Kodierung bietet (siehe nächstes Kapitel).</p>
+					<p>Die Quantisierung erfolgt mit zwei verschiedenen Quantisierungsmatrizen.
+					Diese beinhalten verschiedene Quantisierungsfaktoren und bewirken daher
+					eine feinere Koeffizienten der niedrigen Frequenzen und eine gröbere
+					für die Koeffizienten höheren Frequenzen. Die Skalierung der Quantisierungsfaktoren
+					geschieht mittels eines Qualitätsfaktors, wodurch letztendlich die
+					Kompressionsrate durch den Nutzer selbst festgelegt wird.</p>
+					<b>Die Quantisierung ist damit die Phase, während derer entsprechend des
+					gewählten Qualitätsfaktors der größte Verlust an Informationen entsteht:
+					einerseits bewusst durch die Einschränkung des Wertebereichs, andererseits
+					aber, wie auch bei der DCT, durch Rundungsfehler.</b>
+
+				</div>
+
+
+			</div>
+
+
+			<!--========== chapter5 ==========-->
+			<div id="jpeg_chapter5" class="jpeg_chapter">
+				<!--========== section1 ==========-->
+				<div id="jpeg_chapter5_section1">
+					<div>
+						Nachdem die Informationen in der vorhergehenden Phase auf das Nötigste beschränkt worden sind, sollen sie in dieser
+						abschließenden Phase der Kodierung noch möglichst effizient gespeichert werden. Effizient bedeutet in diesem Fall,
+						dass alle mehrfach auftretenden, das heißt <b>redundanten Informationen zusammengefasst</b> werden. Man bezeichnet
+						dieses
+						Vorgehen daher als <b>Redundanzreduktion</b>.
+						Die Phase wird Entropiekodierung genannt. <b>Entropie ist ein Maß für den Informationsgehalt, der bei redundanten
+						Informationen gleich null ist</b> und somit keinen weiteren Wissens-zuwachs bedeutet. <b>Während dieser
+						Kodierungsphase
+						gehen keine Informationen mehr verloren</b>Während dieser Kodierungsphase
+						gehen keine Informationen mehr verloren, sie werden nur geschickt zusammengefasst und so die Datenmenge für die
+						Beschreibung des Bildes noch einmal verringert.
+					</div>
+				</div>
+				<!--========== section2 ==========-->
+				<div id="jpeg_chapter5_section2">
+					<div>
+						Durch das Quantisieren sind viele Nullwerte entstanden, was ja auch die Absicht war, um Redundanzen zusammenfassen
+						zu können. <b>Redundante Informationen können </b>aber <b>nur dann zusammengefasst werden, wenn sie hintereinander
+						stehen</b>. Das
+						heißt, die quantisierten Matrizen müssen in eine andere Form gebracht werden, in der dies der Fall ist. <b>Dazu
+						liest
+						man die 8x8-Matrizen in einer Zick-Zack-Linie aus und erhält eine Zeilendarstellung</b>. Bei dieser stehen die Werte
+						der
+						niedrigeren Frequenzen am Anfang und die Werte der höheren Frequenzen am Ende, so dass insbesondere viele Nullwerte
+						hintereinander-stehen. Dies wird hier veranschaulicht:
+					</div>
+					<div>
+						<p id="jpeg_chapter5_2_description_1">
+							<b>Ausschnitt 1</b> ist ein natürliches Bild. Hier stehen, wie gewünscht, viele Nullwerte hintereinander.
+						</p>
+						<p id="jpeg_chapter5_2_description_2">
+							<b>Ausschnitt 2</b> ist eine Strichgrafik mit großen Helligkeitsunterschieden. Hier sind die Nullwerte immer wieder unterbrochen.
+						</p>
+					</div>
+
+					<button id="jpeg_chapter5_buttonShowMatrixStart">show start</button>
+					<button id="jpeg_chapter5_buttonShowMatrixAnimation">show Animation</button>
+					<button id="jpeg_chapter5_buttonShowMatrixEnd">show end</button>
+
+					<div class="jpeg_chapter5_2_matrix_animation">
+
+						<table id="jpeg_chapter5_2_matrix">
+							<tbody id="jpeg_chapter5_2_matrix_content">
+								<tr>
+									<td><span data-id="1" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="2" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="6" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="7" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="15" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="16" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="28" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="29" class="jpeg_chapter5_field">-6</span></td>
+								</tr>
+								<tr>
+									<td><span data-id="3" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="5" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="8" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="14" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="17" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="27" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="30" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="43" class="jpeg_chapter5_field">-6</span></td>
+								</tr>
+								<tr>
+									<td><span data-id="4" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="9" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="13" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="18" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="26" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="31" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="42" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="44" class="jpeg_chapter5_field">-6</span></td>
+								</tr>
+								<tr>
+									<td><span data-id="10" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="12" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="19" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="25" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="32" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="41" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="45" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="54" class="jpeg_chapter5_field">-6</span></td>
+								</tr>
+								<tr>
+									<td><span data-id="11" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="20" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="24" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="33" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="40" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="46" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="53" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="55" class="jpeg_chapter5_field">-6</span></td>
+								</tr>
+								<tr>
+									<td><span data-id="21" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="23" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="34" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="39" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="47" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="52" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="56" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="61" class="jpeg_chapter5_field">-6</span></td>
+								</tr>
+								<tr>
+									<td><span data-id="22" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="35" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="38" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="48" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="51" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="57" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="60" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="62" class="jpeg_chapter5_field">-6</span></td>
+								</tr>
+								<tr>
+									<td><span data-id="36" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="37" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="49" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="50" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="58" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="59" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="63" class="jpeg_chapter5_field">-6</span></td>
+									<td><span data-id="64" class="jpeg_chapter5_field">-6</span></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div id="jpeg_chapter5_boxesNode">
+							<!-- Here are the boxes -->
+							<!-- boxes don't get added, but the divs position and width is used for the animation -->
+						</div>
+
+						<!-- path animation with svg -->
+						<svg id="jpeg_chapter5_2_svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+							width="400" height="400" style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve" opacity="0%" viewbox="5 5 402 402">
+							<g transform="rotate(90) scale(1, -1)">
+								<polyline id="jpeg_polyline" class="jpeg_chapter5_svg_st2" points="27.6,27.6 27.6,63.3 63.4,27.6 99.1,27.6 27.6,99.1 27.6,134.9 134.9,27.6 170.7,27.6 27.6,170.7
+									27.6,206.4 206.5,27.6 242.4,27.6 27.6,242.2 27.6,278 278,27.6 278,63.3 63.4,278 99.1,278 278,99.1 278,134.9 134.9,278
+									170.7,278 278,170.7 278,206.4 206.5,278 242.4,278 278.1,242.2 278.3,278"/>
+								<polygon id="jpeg_polygon" points="-10,0 10,0 0,15" class="jpeg_chapter5_svg_triangle" transform="rotate(-90 0 0) translate(0, -10)" visibility="visible">
+									<animateMotion id="jpeg_chapter_5_2_triangle_animation" dur="15s" begin="indefinite" fill="remove" rotate="auto"
+										path=
+										"M27.6,27.6
+										L27.6,63.3 63.4,27.6 99.1,27.6 27.6,99.1 27.6,134.9 134.9,27.6 170.7,27.6 27.6,170.7
+										27.6,206.4 206.5,27.6 242.4,27.6 27.6,242.2 27.6,278 278,27.6 278,63.3 63.4,278 99.1,278 278,99.1 278,134.9 134.9,278
+										170.7,278 278,170.7 278,206.4 206.5,278 242.4,278 278.1,242.2 278.3,278"
+									/>
+								</polygon>
+								<!--<path class="st2" d="M375.6,269.8"/>-->
+							</g>
+							
+						</svg>
+					</div>
+				</div>
+
+				<!--========== section3 ==========-->
+				<div id="jpeg_chapter5_section3">
+					<div>
+						Nachdem die Matrix in Zeilenform gebracht worden ist, werden nun die Nullwerte der AC-Koeffizienten zusammengefasst.
+						Dies nennt man <b>Lauflängenkodierung</b>. <b>Dabei entstehen Zahlenpaare</b>, in denen festgehalten wird, wieviele Nullwerte
+						hintereinanderstehen und welcher Wert darauf folgt. Stehen am Ende nur noch Nullen hintereinander, wird ein
+						<b>"end-of-block"-Symbol (0,0)</b> gesetzt, das genau dies verdeutlicht. Dieses Vorgehen wird hier dargestellt:
+					</div>
+
+					<div id="jpeg_chapter5_3_image_section1">
+
+						<div class="jpeg_chapter5_number_pair_explanation">
+							<h3>Zahlenpaar:</h3>
+							<h2>(i,s)</h2>
+							<div>
+								<div>
+									Anzahl der aufeinander folgender Nullen
+								</div>
+								<div>
+									darauf folgender Wert ungleich Null
+								</div>
+							</div>
+							<div>
+								<b>Ausschnitt 1:</b>
+								<br>
+								Das Resultat sind nur wenige Zahlenpaare, da an Ende nur noch Nullwerte stehen.
+							</div>
+						</div>
+
+						<div class="jpeg_chapter5_wrapped">
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-6</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-6)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-10</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-10)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">2</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,2)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">2</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,2)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">-1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(1,-1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(4,1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">-1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(2,-1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,0)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+								</div>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+								</div>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!--Second explanation-->
+					<div id="jpeg_chapter5_3_image_section2">
+
+						<div class="jpeg_chapter5_number_pair_explanation">
+							<h3>Zahlenpaar:</h3>
+							<h2>(i,s)</h2>
+							<div>
+								<div>
+									Anzahl der aufeinander folgender Nullen
+								</div>
+								<div>
+									darauf folgender Wert ungleich Null
+								</div>
+							</div>
+							<div>
+								<b>Ausschnitt 2:</b>
+								<br>
+								Das Resultat sind viele Zahlenpaare, da die Nullwerte immer wieder unterbrochen werden.
+							</div>
+						</div>
+
+						<div class="jpeg_chapter5_wrapped">
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">30</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,30)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-4</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-4)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-22</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-22)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-2</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-2)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-13</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-13)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-5</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-5)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-2</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-2)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">2</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,2)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">5</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,5)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">17</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,17)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">17</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,17)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">3</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,3)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">4</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,4)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(1,1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">-1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(1,-1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(2,1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">-1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(4,-1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(2,1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">-1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(3,-1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">-1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(5,-1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">-1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(2,-1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">-1</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,-1)</span>
+							</div>
+							<div class="jpeg_chapter5_group">
+								<div class="jpeg_chapter5_boxes">
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+									<span class="jpeg_chapter5_box">0</span>
+								</div>
+								<span class="jpeg_chapter5_pair">(0,0)</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--========== section4 ==========-->
+				<div id="jpeg_chapter5_section4">
+					<div>
+						Letztendlich folgt noch die Huffman-Kodierung. Bei dieser werden die <b>häufig auftretenden Zahlenpaare durch wenige
+						Bit repräsentiert</b>, während <b>für die Kodierung seltener Paarungen entsprechend mehr Bit verwendet</b> werden.
+						Diese
+						Kodierung sorgt nochmals für eine Minimierung der Datenmenge und kommt ohne zusätzliche Bits für Trennzeichen aus.
+						Der <b>DC-Wert</b> (der erste Wert der Zeile) wird <b>gesondert verschlüsselt</b>, weil er meist der mit Abstand
+						größte
+						Wert ist.
+						Es wird nicht sein eigener Wert kodiert, sondern die Differenz zum DC-Wert des vorhergehenden Blocks.
+					</div>
+					
+					<div id="jpeg_chapter5_4_image_section1">
+						<span class="tables-container">
+							<div class="text-block">
+							<h4>Ausschnitt 1:</h4>
+							<p>
+								Es werden maximal <b>4 Bit</b> für die Kodierung eines Zahlenpaares benötigt. Insgesamt für alle AC-Koeffizienten: 33 Bit
+							</p>
+						</div>
+						<table>
+							<tr>
+								<th>Paar</th>
+								<th>Wahrscheinlichket</th>
+								<th>Bitcode</th>
+							</tr>
+							<tr>
+								<td class="jpeg_chapter5_table-pair">(0,1)</td>
+								<td>
+									2/11
+									<img src="" alt="">
+								</td>
+								<td>
+									11
+								</td>
+							</tr>
+							<tr>
+								<td class="jpeg_chapter5_table-pair">(0,-1)</td>
+								<td>
+									2/11
+									<img src="" alt="">
+								</td>
+								<td>
+									10
+								</td>
+							</tr>
+							<tr>
+								<td class="jpeg_chapter5_table-pair">(0,2)</td>
+								<td>
+									2/11
+									<img src="" alt="">
+								</td>
+								<td>
+									011
+								</td>
+							</tr>
+							<tr>
+								<td class="jpeg_chapter5_table-pair">(0,0)</td>
+								<td>
+									1/11
+									<img src="" alt="">
+								</td>
+								<td>
+									001
+								</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<th>Paar</th>
+								<th>Wahrscheinlichket</th>
+								<th>Bitcode</th>
+							</tr>
+							<tr>
+								<td class="jpeg_chapter5_table-pair">(4,1)</td>
+								<td>
+									1/11
+									<img src="" alt="">
+								</td>
+								<td>
+									0101
+								</td>
+							</tr>
+							<tr>
+								<td class="jpeg_chapter5_table-pair">(1,-1)</td>
+								<td>
+									1/11
+									<img src="" alt="">
+								</td>
+								<td>
+									0100
+								</td>
+							</tr>
+							<tr>
+								<td class="jpeg_chapter5_table-pair">(2,-1)</td>
+								<td>
+									1/11
+									<img src="" alt="">
+								</td>
+								<td>
+									0001
+								</td>
+							</tr>
+							<tr>
+								<td class="jpeg_chapter5_table-pair">(0,-10)</td>
+								<td>
+									1/11
+									<img src="" alt="">
+								</td>
+								<td>
+									0000
+								</td>
+							</tr>
+						</table>
+						</span>
+					
+						<div>
+							DC-Koeffizient <span class="jpeg_chapter5_text-mark">-6</span> wird als Differenz zum DC-Wert des vorhergehenden Blocks
+							kodiert.
+						</div>
+					</div>
+					
+					<!--Second container-->
+					<div id="jpeg_chapter5_4_image_section2">
+						<span class="tables-container">
+							<div class="text-block">
+							<h4>Ausschnitt 2:</h4>
+							<p>
+								Es werden maximal <b>5 Bit</b> für die Kodierung eines Zahlenpaares benötigt. Insgesamt für alle AC-Koeffizienten: 137 Bit
+							</p>
+						</div>
+							<table>
+								<tr>
+									<th>Paar</th>
+									<th>Wahrscheinlichket</th>
+									<th>Bitcode</th>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,2)</td>
+									<td>
+										6/33
+										<img src="" alt="">
+									</td>
+									<td>
+										111
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(2,1)</td>
+									<td>
+										3/33
+										<img src="" alt="">
+									</td>
+									<td>
+										011
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,1)</td>
+									<td>
+										2/33
+										<img src="" alt="">
+									</td>
+									<td>
+										1101
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(1,1)</td>
+									<td>
+										2/33
+										<img src="" alt="">
+									</td>
+									<td>
+										1011
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(1,-1)</td>
+									<td>
+										2/33
+										<img src="" alt="">
+									</td>
+									<td>
+										1011
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,-2)</td>
+									<td>
+										2/33
+										<img src="" alt="">
+									</td>
+									<td>
+										1010
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,17)</td>
+									<td>
+										2/33
+										<img src="" alt="">
+									</td>
+									<td>
+										1001
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,0)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										10001
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,-1)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										10000
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(2,-1)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										00111
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(3,-1)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										00110
+									</td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<th>Paar</th>
+									<th>Wahrscheinlichket</th>
+									<th>Bitcode</th>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(4,-1)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										00101
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(5,-1)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										00101
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,3)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										00011
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,4)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										00010
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,-4)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										00001
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,5)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										00000
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,-5)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										01011
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,10)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										01010
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,-13)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										01001
+									</td>
+								</tr>
+								<tr>
+									<td class="jpeg_chapter5_table-pair">(0,-22)</td>
+									<td>
+										1/33
+										<img src="" alt="">
+									</td>
+									<td>
+										01000
+									</td>
+								</tr>
+					
+							</table>
+						</span>
+						<div>
+							DC-Koeffizient <span class="jpeg_chapter5_text-mark">30</span> wird als Differenz zum DC-Wert des vorhergehenden Blocks
+							kodiert.
+						</div>
+					</div>
+				</div>
+				<!--========== section5 ==========-->
+				<div id="jpeg_chapter5_section5">
+					<div>
+						<b>Folgende Informationen werden letztendlich in einer JPEG-Datei übertragen</b>, da sie für Dekodierung, die
+						Dequantisierung und die inverse DCT nötig sind, um das Bild zu rekonstruieren:
+						<ul>
+							<li>die Bildauflösung</li>
+							<li>Ausgangsfarbprofil</li>
+							<li>die Quantisierungsmatrizen</li>
+							<li>der Qualitätsfaktor</li>
+							<li>die Huffmancode-Zuordnungstabelle</li>
+							<li>die quantisierten DCT-Koeffizienten als Bitcode</li>
+						</ul>
+						<b>Mit dem JPEG-Kompressionsverfahren wird typischerweise ein Datenreduktionsfaktor um acht erreicht</b>, wobei für die
+						meisten Bildinhalte bei diesem Reduktionsfaktor das rekonstruierte Bild und das Original subjektiv nahezu
+						ununterscheidbar sind.
+					</div>
+				</div>
+				<div id="jpeg_chapter5_section6">
+					<p>
+						Folgende Daten werden aus den komprimierten Informationen rekonstruiert (YCC-Werte, noch vor inversem Subsampling
+						und Rückwandlung in RGB):
+					</p>
+					<div>
+						<span>Ebene wählen:</span>
+						<span>Y</span>
+						<button id="jpeg_chapter5_6_button_channel_Y">
+							<img id="jpeg_chapter5_6_button_channel_Y_image1" src="assets/images/YImg.png"></img>
+							<img id="jpeg_chapter5_6_button_channel_Y_image2" src="assets/images/2_2/y.png"></img>
+						</button>
+						<span>Cb</span>
+						<button id="jpeg_chapter5_6_button_channel_Cb">
+							<img id="jpeg_chapter5_6_button_channel_Cb_image1" src="assets/images/CbImg.png"></img>
+							<img id="jpeg_chapter5_6_button_channel_Cb_image2" src="assets/images/2_2/cb.png"></img>
+						</button>
+						<span>Cr</span>
+						<button id="jpeg_chapter5_6_button_channel_Cr">
+							<img id="jpeg_chapter5_6_button_channel_Cr_image1" src="assets/images/CrImg.png"></img>
+							<img id="jpeg_chapter5_6_button_channel_Cr_image2" src="assets/images/2_2/cr.png"></img>
+						</button>
+
+						<span>Qualitätsfaktor wählen:</span>
+						<button id="jpeg_chapter5_6_button_quality_25">25</button>
+						<button id="jpeg_chapter5_6_button_quality_50">50</button>
+						<button id="jpeg_chapter5_6_button_quality_75">75</button>
+					</div>
+					<div>
+						<div>
+							<p>Pixelwerte vor der Kompression</p>
+							<table>
+								<tbody id="jpeg_chapter5_6_matrix_content_before">
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								</tbody>
+							</table>
+						</div>
+						<div>
+							<p>Pixelwerte nach der Kompression</p>
+							<table>
+								<tbody id="jpeg_chapter5_6_matrix_content_after">
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+									<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+								</tbody>
+							</table>
+						</div>
+						<div>
+							<div>
+								<p>Originalbild: <span id="jpeg_chapter5_original_size"> kB</span></p>
+								<img id="jpeg_chapter5_6_original_image_1" src="assets/images/5_6/original_1.png">
+								<img id="jpeg_chapter5_6_original_image_2" src="assets/images/5_6/original_2.png">
+							</div>
+							<div>
+								<p>Komprimiertes Bild: <span id="jpeg_chapter5_compressed_size"></span> kB</p>
+								<img id="jpeg_chapter5_6_compressed_image_1_25" src="assets/images/5_6/compressed_25_1.png">
+								<img id="jpeg_chapter5_6_compressed_image_2_25" src="assets/images/5_6/compressed_25_2.png">
+								<img id="jpeg_chapter5_6_compressed_image_1_50" src="assets/images/5_6/compressed_50_1.png">
+								<img id="jpeg_chapter5_6_compressed_image_2_50" src="assets/images/5_6/compressed_50_2.png">
+								<img id="jpeg_chapter5_6_compressed_image_1_75" src="assets/images/5_6/compressed_75_1.png">
+								<img id="jpeg_chapter5_6_compressed_image_2_75" src="assets/images/5_6/compressed_75_2.png">
+							</div>
+						</div>
+					</div>
+					<p>
+						<b>Anhand dieser zusammenfassenden Darstellung kann man sehen, dass das Ziel von JPEG, Informationen ohne sichtbare
+						Qualitätseinbußen zu reduzieren, bei geeignetem Qualitätsfaktor zufriedenstellend erreicht wurde.</b>
+					</p>
+				</div>
+			</div>
+
+			<!--========== image section selection ==========-->
+			<div id="jpeg_image_section_selection">
+				<span>Auswahl Bildausschnitt</span>
+				<div>
+					<img src="assets/images/main_image.png" width="" height="80px"/>
+					<button id="jpeg_buttonImageSectionSelection1">1</button>
+					<button id="jpeg_buttonImageSectionSelection2">2</button>
+				</div>
+				<button id="jpeg_buttonHideImageSectionSelection"></button>
+			</div>
+
+			<button id="jpeg_buttonShowImageSectionSelection">Bild</button>
+
+		</div>
+    </main>
+</body>
+</html>
