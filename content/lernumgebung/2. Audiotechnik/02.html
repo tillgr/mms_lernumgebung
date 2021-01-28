@@ -12,13 +12,13 @@ draft: true
 {{% image url="Audiotechnik/2/1_1_1a_frequenz_wellenlaenge.gif" alt="Wellenlänge und Amplitude eines analogen Audisignals" caption="Abb. 2.2-0 Wellenlänge und Amplitude eines analogen Audiosignals" %}}
 {{% image url="Audiotechnik/2/1_1_1b_typische_frequenzbereiche.gif" alt="Typische Frequenzbereiche" caption="Abb. 2.2-1 Typische Frequenzbereiche" %}}
 
-<h5>Klang:</h5>
+<h3 class="h5">Klang</h3>
 <p>Als Klang bezeichnet man ein beliebiges Audiosignal.</p>
-<h5>Ton:</h5>
+<h3 class="h5">Ton</h3>
 <p>Ein Ton ist ein periodisches Audiosignal mit konstanter Wellenform.</p>
-<h5>Rauschen:</h5>
+<h3 class="h5">Rauschen</h3>
 <p>Als Rauschen bezeichnet man den andauernden Teil des Audiosignals, der keine relevante Audioinformation enthält.</p>
-<h5>Geräusch:</h5>
+<h3 class="h5">Geräusch</h3>
 <p>Ein Geräusch ist ein zeitlich begrenztes Rauschen.</p>
 
 <p>Ein Ton wird durch seine Höhe, Farbe (Timbre), Lautstärke und Dauer bestimmt. Aus der Sicht der Signalbearbeitung
@@ -28,11 +28,11 @@ draft: true
 <p>Beliebige Wellenformen der Wellenlänge {{< formula >}}\lambda{{< /formula >}} können als Summe von Sinus-Wellen der
     Wellenlängen {{< formula >}}n \times \lambda{{< /formula >}} dargestellt werden.</p>
 
-<h5>Grundton:</h5>
+<h3 class="h5">Grundton</h3>
 <p>Den Sinus-Ton mit der größten Wellenlänge, d.h. mit der niedrigsten Frequenz bezeichnet man als Grundton.</p>
-<h5>Obertöne</h5>
+<h3 class="h5">Obertöne</h3>
 <p>Sinus-Töne mit höheren Frequenzen werden Obertöne genannt.</p>
-<h5>Harmonische</h5>
+<h3 class="h5">Harmonische</h3>
 <p>Obertöne mit ganzzahligem Verhältnis heißen "Harmonische". Es wird zwischen geraden und ungeraden Harmonischen
     unterschieden.</p>
 
@@ -65,14 +65,14 @@ draft: true
 <h2>2.2.2 Signalanalyse</h2>
 <p>Für die Signalanalyse bieten sich drei Methoden an:</p>
 
-<h5>Statistische Analyse</h5>
+<h3 class="h5">Statistische Analyse</h3>
 <p>betrachtet das Signal statistisch als Folge von Ereignissen.</p>
-<h5>Fourier Analyse</h5>
+<h3 class="h5">Fourier Analyse</h3>
 <p>transformiert das Signal aus dem Zeit- in den Frequenzraum und analysiert die Frequenzinhalte des Signals.</p>
-<h5>Wavelet-Analyse</h5>
+<h3 class="h5">Wavelet-Analyse</h3>
 <p>verwendet verschiedene Funktionen, um ein Signal im Frequenzraum zu beobachten.</p><!--TODO: Formatierung-->
 
-<h4>Statistische Analyse</h4>
+<h3 class="h5">Statistische Analyse</h3>
 <p>Es wird unterschieden zwischen zeitdiskreten und zeitkontinuierlichen Signalen. Obwohl Schnittsysteme digitale, also
     zeitdiskrete Signale verarbeiten, betrachtet man diese zum Teil als zeitkontinuierlich, um bestimmte Eigenschaften
     der Audiosequenzen zu berücksichtigen. Die nachfolgenden Formeln sind deshalb sowohl für diskrete (links) wie auch
@@ -109,7 +109,7 @@ draft: true
 
 <p>Sie ist ein Maß für die Streuung der möglichen Werte der Variablen um den Erwartungswert.</p>
 
-<h4>Fourier Analyse</h4>
+<h3 class="h5">Fourier Analyse</h3>
 <p>Die Fouriertransformation erlaubt die Betrachtung von Systemen und Signalformen im Frequenzbereich, indem sie die
     Zeitsignale in eine andere Darstellung überführt. Diese Darstellung lässt die zur Bildung der Signale notwendigen
     Frequenzanteile erkennen. Jede beliebige periodische Funktion kann durch die Summe einer Reihe (Fourier Reihe)
@@ -118,8 +118,6 @@ draft: true
 <p>
     {{< formula >}} \omega = 2 \pi * f_0 (f_0 \text{ - Frequenz}) {{< /formula >}}
 </p>
-
-
 
 <p>lässt sich als folgende Summe darstellen:</p>
 
@@ -238,7 +236,7 @@ draft: true
     <li>Andauernde Störungen sind DC-Offset und Hintergrundrauschen.</li>
 </ul>
 
-<h5>Clicks (Klicken, Knacksen):</h5>
+<h3 class="h5">Clicks (Klicken, Knacksen)</h3>
 <p>Clicks sind lokale Störungen des Audiomaterials, die bei Schallplatten und Filmen entstehen. Sie haben meistens
     mechanische Ursachen und entstehen durch Kratzer oder große Staubpartikel. Die Länge variiert zwischen 50 µs und 4
     ms. </p> <!--TODO: Formatierung-->
@@ -248,11 +246,11 @@ draft: true
     {{% sound-sample url="Audiotechnik/02/1_2_2_musik_mit_knackser.mp3" title="Musik mit Knackser" %}}
 </div>
 
-<h5>Crackles (Knistern):</h5>
+<h3 class="h5">Crackles (Knistern)</h3>
 <p>Crackles sind oszillierende Störungen mit kleinerer Energie als bei den Clicks, jedoch ist ihre Dauer länger. Durch
     ihren oszillierenden Charakter werden sie als sehr störend empfunden.</p>
 
-<h5>Drop Outs (Ausfälle):</h5>
+<h3 class="h5">Drop Outs (Ausfälle)</h3>
 <p>Drop Outs entstehen bei Ausfällen oder Synchronisationsproblemen in digitalen Systemen. Ihre Dauer kann zwischen
     einem und mehreren Tausend Samples betragen. </p>
 <p>Hörbeispiele:</p><!--TODO: Formatierung-->
@@ -261,7 +259,7 @@ draft: true
     {{% sound-sample url="Audiotechnik/02/1_2_3_musik_mit_drop_out.mp3" title="AudioMusik mit drop out" %}}
 </div>
 
-<h5>DC-Offset:</h5>
+<h3 class="h5">DC-Offset</h3>
 <p>Der DC-Offset (direct current - Gleichspannng) verursacht keine hörbaren Störungen, sie bilden den
     Gleichspannungsanteil eines Signals. Es ist die Verschiebung des Signals von der x-Achse weg. Er entsteht bei allen
     Verstärkern, die keine perfekte Nullspannung an ihrem Ausgang liefern (Drifting). Der DC-Offset entsteht auch bei
@@ -278,7 +276,7 @@ draft: true
 {{% image url="Audiotechnik/2/1_2_1_schwingung_des_original_musikstuecks.gif" caption="Abb. 2.2-11 Schwingung des Original-Musikstücks" %}}
 {{% image url="Audiotechnik/2/1_2_2_musikstueck_mit_dc_offset.gif" caption="Abb. 2.2-12 Musikstück mit DC-offset" %}}
 
-<h5>Hintergrundrauschen:</h5>
+<h3 class="h5">Hintergrundrauschen</h3>
 <p>Hintergrundrauschen bezeichnet alle stochastischen und statistisch nichtdeterminierbaren Störungen. Es ist die am
     meisten vorkommende Störung. Diese Störungen sind schwer zu entfernen, weil es keine Regel für ihre Form, Häufigkeit
     oder Intensität gibt. Sie verfälschen das Signal in allen Frequenzbereichen. Das Hintergrundrauschen entsteht durch
@@ -290,7 +288,7 @@ draft: true
     {{% sound-sample url="Audiotechnik/02/1_2_6_musikstueck_mit_rauschen.mp3" title="Musik mit rauschen" %}}
 </div>
 
-<h5>Wows oder 'Pitch Variationen':</h5>
+<h3 class="h5">Wows oder 'Pitch Variationen'</h3>
 <p>Wows entstehen durch Veränderungen der Aufnahme- oder Abspielgeschwindigkeit mechanischer Tonträger, z.B. bei nicht
     exakt gleichmäßiger Umdrehung oder Zentrierung einer Schallplatte oder durch ungleichmäßige Arbeit des
     Antriebsmotors. </p>
