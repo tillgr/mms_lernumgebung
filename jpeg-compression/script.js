@@ -53,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 	
 	jpeg_selectChapter1div.onclick = function() {
-		
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		selected = jpeg_selectChapter1div;
 		currentChapter = showChapter1;
 		current_chapter = 1;
@@ -63,7 +64,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 	
 	jpeg_selectChapter2div.onclick = function() {
-		
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		selected = jpeg_selectChapter2div;
 		currentChapter = showChapter2;
 		current_chapter = 2;
@@ -73,7 +75,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 	
 	jpeg_selectChapter3div.onclick = function() {
-		
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		selected = jpeg_selectChapter3div;
 		currentChapter = showChapter3;
 		current_chapter = 3;
@@ -83,7 +86,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 	
 	jpeg_selectChapter4div.onclick = function() {
-		
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		selected = jpeg_selectChapter4div;
 		currentChapter = showChapter4;
 		current_chapter = 4;
@@ -93,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 	
 	jpeg_selectChapter5div.onclick = function() {
-		
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		selected = jpeg_selectChapter5div;
 		currentChapter = showChapter5;
 		current_chapter = 5;
@@ -161,42 +166,56 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	buttonShowSection1.onclick = function() {
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		current_section = 1;
 		currentChapter.showSection1();
 		updateButtonStates();
 	}
 	
 	buttonShowSection2.onclick = function() {
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		current_section = 2;
 		currentChapter.showSection2();
 		updateButtonStates();
 	}
 	
 	buttonShowSection3.onclick = function() {
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		current_section = 3;
 		currentChapter.showSection3();
 		updateButtonStates();
 	}
 	
 	buttonShowSection4.onclick = function() {
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		current_section = 4;
 		currentChapter.showSection4();
 		updateButtonStates();
 	}
 
 	buttonShowSection5.onclick = function() {
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		current_section = 5;
 		currentChapter.showSection5();
 		updateButtonStates();
 	}
 
 	buttonShowSection6.onclick = function() {
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		current_section = 6;
 		currentChapter.showSection6();
 		updateButtonStates();
 	}
 
 	buttonShowSection7.onclick = function() {
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		current_section = 7;
 		currentChapter.showSection7();
 		updateButtonStates();
