@@ -182,6 +182,7 @@ draft: true
   Wiedergabe von Bild und Ton bereitgestellt.
 </p>
 {{% image url="Videokompression/4/4_4_1_mpeg-schichten.gif"
+alt="MPEG-Schichten"
 caption="Abb. 5.4-0 MPEG-Schichten" %}}
 
 <p>
@@ -247,6 +248,7 @@ caption="Abb. 5.4-0 MPEG-Schichten" %}}
   Digitalisierung der analogen Luminanz- und Farbdifferenzsignale.
 </p>
 {{% image url="Videokompression/4/4_4_2_randparameter_der_digitalisierung.gif"
+alt="Randparameter der Digitalisierung bei ITU-R BT 601"
 caption="Abb. 5.4-1 Randparameter der Digitalisierung bei ITU-R BT 601" %}}
 
 <p>Luminanzsignale werden in 220 Werte aufgeteilt. Z.B. ist L-Wert 16 als Schwarz definiert, L-Wert 235 ist definiert
@@ -270,6 +272,7 @@ caption="Abb. 5.4-1 Randparameter der Digitalisierung bei ITU-R BT 601" %}}
   folgenden Bild dargestellt:
 </p>
 {{% image url="Videokompression/4/4_4_3_abtastung_einer_zeile.gif"
+alt="Abtastung einer Zeile bei ITU-R BT 601"
 caption="Abb. 5.4-2 Abtastung einer Zeile bei ITU-R BT 601" %}}
 
 <p>
@@ -298,6 +301,7 @@ caption="Abb. 5.4-2 Abtastung einer Zeile bei ITU-R BT 601" %}}
   Bei der Bildkompression wird zwischen den folgenden 4 Bildtypen unterschieden:
 </p>
 {{% image url="Videokompression/4/4_4_7_i-p-b-bilder.gif"
+alt="Aufbau eines MPEG-Stromes aus I-, P-, B-Bildern"
 caption="Abb. 5.4-3 Aufbau eines MPEG-Stromes aus I-, P-, B-Bildern" %}}
 
 <ul>
@@ -332,6 +336,7 @@ caption="Abb. 5.4-3 Aufbau eines MPEG-Stromes aus I-, P-, B-Bildern" %}}
     kodiert. Zusätzlich wird der Bewegungsvektor gespeichert.
   </li>
   {{% image url="Videokompression/4/4_4_8_bewegungskompensation.gif"
+  alt="Bewegungskompensation"
   caption="Abb. 5.4-4 Bewegungskompensation" %}}
   <li>
     <strong>B-Bild</strong>
@@ -389,6 +394,7 @@ caption="Abb. 5.4-3 Aufbau eines MPEG-Stromes aus I-, P-, B-Bildern" %}}
   rechts bewegenden Fahrzeug erkennbar.
 </p>
 {{% image url="Videokompression/4/4_4_4_mpeg_motion_compensation.jpg"
+alt="Beispiel zweier sich ähnelnder Bilder im MPEG-Strom"
 caption="Abb. 5.4-5 Beispiel zweier sich ähnelnder Bilder im MPEG-Strom" %}}
 
 <p>
@@ -443,6 +449,7 @@ caption="Abb. 5.4-5 Beispiel zweier sich ähnelnder Bilder im MPEG-Strom" %}}
   der Nähe.
 </p>
 {{% image url="Videokompression/4/4_4_5_mpeg_bewegegungsabschaetzung.gif"
+alt="Prinzip der Bewegungsabschätzung bei MPEG"
 caption="Abb. 5.4-6 Prinzip der Bewegungsabschätzung bei MPEG" %}}
 
 <p>
@@ -469,7 +476,9 @@ caption="Abb. 5.4-6 Prinzip der Bewegungsabschätzung bei MPEG" %}}
     die 8 benachbarten Positionen mit einem Abstand von einem halben Pixel.</p>
 <p>Andere Verfahren verwenden eine heuristische, zweidimensionale logarithmische Suche, indem der Pfad der größten
     Ähnlichkeit verfolgt wird.</p>
-{{% image url = "Videokompression/4/4_4_6_heuristische_suche.gif" alt = "" caption = "Abb. 5.4-7 Demonstration der logarithmischen Suche" %}}
+{{% image url = "Videokompression/4/4_4_6_heuristische_suche.gif"
+alt = "Demonstration der logarithmischen Suche"
+caption = "Abb. 5.4-7 Demonstration der logarithmischen Suche" %}}
 
 <p>
   Im obigen Bild wird der Suchbereich S dargestellt. Die Kreise repräsentieren
@@ -587,6 +596,7 @@ caption="Abb. 5.4-6 Prinzip der Bewegungsabschätzung bei MPEG" %}}
 
 <p><strong>Makroblockebene</strong></p>
 {{% image url="Videokompression/4/mpeg-blockebene.gif"
+alt="Aufbau eines Makroblocks in Abhängigkeit des Abtastformats"
 caption="Abb. 5.4-8 Aufbau eines Makroblocks in Abhängigkeit des Abtastformats" %}}
 
 <p>
@@ -629,6 +639,7 @@ caption="Abb. 5.4-8 Aufbau eines Makroblocks in Abhängigkeit des Abtastformats"
   beliebig positionierten Makroblöcken beginnen oder aufhören.
 </p>
 {{% image url="Videokompression/4/4_4_9_mpeg_slices.gif"
+alt="Aufteilung eines MPEG-kodierten Bildes in Slices"
 caption="Abb. 5.4-9 Aufteilung eines MPEG-kodierten Bildes in Slices" %}}
 
 <p><strong>Picture-Ebene</strong></p>
@@ -762,6 +773,7 @@ I<sub>0</sub> B<sub>1</sub> P<sub>2</sub> B<sub>3</sub> P<sub>4</sub> B<sub>5</s
 
 <h2>5.4.6 MPEG Video-Enkoder</h2>
 {{% image url="Videokompression/4/mpeg-video-encoder.gif"
+alt="Aufbau eines MPEG-Videoenkoders, DCT = Discrete Cosinus Transformation, RLC = Run Lenght Coding, VLC = Variable Length Coding"
 caption="Abb. 5.4-10 Aufbau eines MPEG-Videoenkoders, DCT = Discrete Cosinus Transformation, RLC = Run Lenght Coding, VLC = Variable Length Coding" %}}
 
 <p>
@@ -789,6 +801,7 @@ caption="Abb. 5.4-10 Aufbau eines MPEG-Videoenkoders, DCT = Discrete Cosinus Tra
 <h2>5.4.7 MPEG-Dekoder</h2>
 <p>Ein MPEG-Dekoder besteht i. W. aus vier Komponenten.</p>
 {{% image url="Videokompression/4/mpeg-video-decoder.gif"
+alt="MPEG-Dekoder"
 caption="Abb. 5.4-11 MPEG-Dekoder" %}}
 
 <p>
@@ -811,6 +824,7 @@ caption="Abb. 5.4-11 MPEG-Dekoder" %}}
   (VRP) CL-4000 von C-Cube.
 </p>
 {{% image url="Videokompression/4/4_4_11_risc_cpu.gif"
+alt="Aufbau des Video Risc Processor von C-Cube"
 caption="Abb. 5.4-12 Aufbau des Video Risc Processor von C-Cube" %}}
 
 <p>
