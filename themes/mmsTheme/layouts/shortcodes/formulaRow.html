@@ -1,0 +1,27 @@
+<div class="row align-items-center justify-content-between mb-3">
+    {{ if isset .Params "f1" }}
+    <div class="col">
+        \({{.Get "f1"}}\)
+    </div>
+    {{end}}
+    {{ if isset .Params "f2" }}
+    <div class="col">
+        \({{.Get "f2"}}\)
+    </div>
+    {{end}}
+    {{ if isset .Params "f3" }}
+    <div class="col">
+        \({{.Get "f3"}}\)
+    </div>
+    {{end}}
+    {{ if isset .Params "f4" }}
+    <div class="col">
+        \({{.Get "f4"}}\)
+    </div>
+    {{end}}
+    {{ if isset .Params "ref" }}
+    <div class="col-auto">
+        <span>({{.Get "ref"}})</span>
+    </div>
+    {{end}}
+</div>

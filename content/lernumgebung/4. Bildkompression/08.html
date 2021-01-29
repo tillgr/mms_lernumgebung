@@ -28,7 +28,9 @@ draft: true
 <p>Für JPEG 2000 wird die Wavelet-Transformation verwendet. Damit wird eine bessere Bildqualität bei höherer Kompression
     erreicht. Es gibt neue Merkmale wie Skalierbarkeit und Region-of-Interest. Das Verfahren findet v.a. im Internet, in
     Bildarchiven, bei medizinischen Bildern, in der digitalen Fotogtafie und anderen Einsatzmöglichkeiten Anwendung.</p>
-{{% image url="Bildkompression/8/3_8_1_jpeg_wavelet.jpg" caption="Abb. 4.8-0 Vergleich zwischen einem wavelet-komprimierten Bild (rechts) und einem JPEG-komprimierten Bild (Mitte). Das Original-Bild (links) ist ein TIFF-Bild" %}}
+{{% image url="Bildkompression/8/3_8_1_jpeg_wavelet.jpg"
+alt="Vergleich zwischen einem wavelet-komprimierten Bild (rechts) und einem JPEG-komprimierten Bild (Mitte). Das Original-Bild (links) ist ein TIFF-Bild"
+caption="Abb. 4.8-0 Vergleich zwischen einem wavelet-komprimierten Bild (rechts) und einem JPEG-komprimierten Bild (Mitte). Das Original-Bild (links) ist ein TIFF-Bild" %}}
 
 <h2>4.8.1 Wesentliche Eigenschaften</h2>
 <p>Die Bilder werden progressiv geladen, d.h. sie werden zunächst recht grob dargestellt und dann schrittweise
@@ -42,17 +44,24 @@ draft: true
     werden, was als <strong>tiling</strong> bezeichnet wird. Diese Blöcke werden dann bei der Kompression wie
     eigenständige Bilder behandelt. Tiling reduziert den Speicherbedarf und ist Grundlage für die Extraktion bestimmter
     Bildbereiche (Region of Interests).</p>
-{{% image url="Bildkompression/8/subbaender.gif" caption="Abb. 4.8-1  Unterteilung eines Bildes in Subbänder" %}}
+{{% image url="Bildkompression/8/subbaender.gif"
+alt="Unterteilung eines Bildes in Subbänder"
+caption="Abb. 4.8-1  Unterteilung eines Bildes in Subbänder" %}}
 
 <p>Die Quantisierung erfolgt nach</p>
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}} c_q (u,v) = \text{sign} (c(u,v)) \lfloor \frac{\lvert c(u,v)\rvert}{q} \rfloor {{< /formula >}}
+</p>
 
-<p>wobei c(u,v) einen Wavelet-Koeffizienten, und c<sub>q</sub>(u,v) den quantisierten Wert+ darstellt. Mit q wird die
-    Quantisierung eingestellt, und kann je Subband festgelegt werden.</p>
+<p>wobei c(u,v) einen Wavelet-Koeffizienten, und {{< formula >}} c_q (u,v) {{< /formula >}} den quantisierten Wert
+    darstellt. Mit {{< formula >}} q {{< /formula >}} wird die Quantisierung eingestellt, und kann je Subband festgelegt
+    werden.</p>
 <p>Die Kompression komplexer Dokumente (compound components) ist möglich.</p>
 <p>Das Verfahren verwendet ein flexibles Fileformat (codestream). Dies gestattet einen wahlfreien Zugriff und partielle
     Aktualisierungen. Der Codestream besteht aus einer Sequenz von Boxen (Bild + Metadaten).</p>
-{{% image url="Bildkompression/8/3_8_2_jpeg2000_progressives_laden.jpg" caption="Abb. 4.8-2 Ein Beispiel für das progressive Laden eines mit Kompressionsfaktor 50:1 komprimierten Bildes" %}}
+{{% image url="Bildkompression/8/3_8_2_jpeg2000_progressives_laden.jpg"
+alt="Ein Beispiel für das progressive Laden eines mit Kompressionsfaktor 50:1 komprimierten Bildes"
+caption="Abb. 4.8-2 Ein Beispiel für das progressive Laden eines mit Kompressionsfaktor 50:1 komprimierten Bildes" %}}
 
 <p class="small">Von links oben nach rechts unten:<br>
   Zeitpunkt 1: 1.324 bytes geladen (500:1 Kompression),<br>
@@ -66,7 +75,9 @@ draft: true
 <p>Es können mehrere Farbmodelle verwendet werden, z.B. können sowohl RGB-, CMYK- als auch LAB-Farbmodelle gleichzeitig
     in einer Bilddatei enthalten sein. Der Bitstrom enthält die volle ICC Profile Information (International Color
     Consortium), so dass ein nahtloser Übergang zwischen den Modellen möglich ist.</p>
-{{% image url="Bildkompression/8/jpeg2000_farbsystem.gif" caption="Abb. 4.8-3  Das JPEG 2000 Farbsystem" %}}
+{{% image url="Bildkompression/8/jpeg2000_farbsystem.gif"
+alt="Das JPEG 2000 Farbsystem"
+caption="Abb. 4.8-3  Das JPEG 2000 Farbsystem" %}}
 
 <p>Das Farbsystem besteht aus 2 Teilen:</p>
 <ul>
@@ -78,7 +89,9 @@ draft: true
     Teil der Bilddatei.</p>
 <p>Im JPEG 2000-Verfahren wurde die Fehlerrobustheit erhöht, was z.B. bei mobiler Übertragung von Vorteil ist.</p>
 <p>Mit JPEG 2000 wird die Kompression über alle Bereiche von mindesten 20-30% verbessert.</p>
-{{% image url="Bildkompression/8/3_8_3_jpeg2000_region-of-interest.jpg" caption="Abb. 4.8-4 Ein Beispiel für eine Region of Interest: Ein 100:1 komprimiertes Bild, wobei das Gebiet in dem Rechteck mit höherer Qualität kodiert wurde (linkes Bild, 7.864 bytes).Rechts befindet sich das unkomprimierte Originalbild (768 KByte)" %}}
+{{% image url="Bildkompression/8/3_8_3_jpeg2000_region-of-interest.jpg"
+alt="Ein Beispiel für eine Region of Interest: Ein 100:1 komprimiertes Bild, wobei das Gebiet in dem Rechteck mit höherer Qualität kodiert wurde (linkes Bild, 7.864 bytes).Rechts befindet sich das unkomprimierte Originalbild (768 KByte)"
+caption="Abb. 4.8-4 Ein Beispiel für eine Region of Interest: Ein 100:1 komprimiertes Bild, wobei das Gebiet in dem Rechteck mit höherer Qualität kodiert wurde (linkes Bild, 7.864 bytes).Rechts befindet sich das unkomprimierte Originalbild (768 KByte)" %}}
 
 <h2>4.8.2 File-Format </h2>
 <p>Die Dateien bilden eine Sequenz von Boxes. Eine Box enthält sowohl Bild- wie auch Meta-Daten. Die Reihenfolge liegt
@@ -87,8 +100,12 @@ draft: true
     Farbraumspezifikation, die Komponentenordnung, die räumliche Auflösung.</p>
 <p>Die Meta-Daten befinden sich in eigenen Boxes. Es gibt die UUID-Boxes (Universal Unique Identifier, statisch
     definiert) und XML-Boxes (selbstdefininiert).</p>
-{{% image url="Bildkompression/8/3_8_4_jpeg2000_box-struktur.gif" caption="Abb. 4.8-5 JPEG2000-File-Format und Box-Struktur" %}}
-{{% image url="Bildkompression/8/3_8_5_jpeg2000_fragmentierung.gif" caption="Abb. 4.8-6 JPEG 2000 - Fragmentierung" %}}
+{{% image url="Bildkompression/8/3_8_4_jpeg2000_box-struktur.gif"
+alt="JPEG2000-File-Format und Box-Struktur"
+caption="Abb. 4.8-5 JPEG2000-File-Format und Box-Struktur" %}}
+{{% image url="Bildkompression/8/3_8_5_jpeg2000_fragmentierung.gif"
+alt="JPEG 2000 - Fragmentierung"
+caption="Abb. 4.8-6 JPEG 2000 - Fragmentierung" %}}
 
 <p><strong>Weiterführende Links</strong></p>
 <!--TODO: Fehlende Referenzen-->

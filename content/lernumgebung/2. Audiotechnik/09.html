@@ -30,8 +30,9 @@ draft: true
 </p>
 <!--TODO: Formatierung-->
 
-{{% image url="Audiotechnik/9/reflexion.gif" caption="Abb. 2.9-0 Reflexion von Wellen"
-%}}
+{{% image url="Audiotechnik/9/reflexion.gif"
+alt="Reflexion von Wellen"
+caption="Abb. 2.9-0 Reflexion von Wellen"%}}
 
 <p><strong>Absorption, Dissipation und Transmission</strong></p>
 <p>
@@ -44,6 +45,7 @@ draft: true
 <!--TODO: Formatierung-->
 
 {{% image url="Audiotechnik/9/brechung_von_schallwellen.gif"
+alt="Absorbtion und Brechung von Wellen"
 caption="Abb. 2.9-1 Absorbtion und Brechung von Wellen" %}}
 
 <p><strong>Brechung, Beugung</strong></p>
@@ -64,6 +66,7 @@ caption="Abb. 2.9-1 Absorbtion und Brechung von Wellen" %}}
 <!--TODO: Formatierung-->
 
 {{% image url="Audiotechnik/9/beugung_von_schallwellen.gif"
+alt="Beugung von Wellen"
 caption="Abb. 2.9-2 Beugung von Wellen" %}}
 
 <p><strong>Direktschall, Erstreflektion, Nachhall</strong></p>
@@ -88,6 +91,7 @@ caption="Abb. 2.9-2 Beugung von Wellen" %}}
 <!--TODO: Formatierung-->
 
 {{% image url="Audiotechnik/9/direktschall.gif"
+alt="Direktschall und Reflexionen"
 caption="Abb. 2.9-3 Direktschall und Reflexionen" %}}
 
 <p><strong>Impulsantwort</strong></p>
@@ -103,6 +107,7 @@ caption="Abb. 2.9-3 Direktschall und Reflexionen" %}}
 </p>
 
 {{% image url="Audiotechnik/9/nachhall.gif"
+alt="Impulsantwort eines Systems"
 caption="Abb. 2.9-4 Impulsantwort eines Systems" %}}
 
 <h2>1.9.2 Akustische Raumwahrnehmung</h2>
@@ -126,6 +131,7 @@ caption="Abb. 2.9-4 Impulsantwort eines Systems" %}}
 </p>
 
 {{% image url="Audiotechnik/9/1_9_1_schallausbreitung.gif"
+alt="Schallausbreitung"
 caption="Abb. 2.9-5 Schallausbreitung" %}}
 
 <p>
@@ -161,7 +167,7 @@ caption="Abb. 2.9-5 Schallausbreitung" %}}
 
 <p>
   Bewegen sich Schallquellen oder der Hörende relativ zueinander, so bezeichnen
-  wir den zu beobachtenden Effekt als GlossarDoppler-Effekt<!--TODO: Missing Hyperlink-->
+  wir den zu beobachtenden Effekt als {{< ref "glossar" "Doppler-Effekt" "Doppler-Effekt" >}}
   . Ausschlaggebend ist, dass die von einem Empfänger registrierte Frequenz
   einer Schallwelle nicht mehr mit der gesendeten Frequenz übereinstimmt. D.h.,
   bewegen sich Schallquelle und Hörer aufeinander zu, so erhöht sich die
@@ -193,8 +199,10 @@ caption="Abb. 2.9-5 Schallausbreitung" %}}
 <!-- TODO: Formelzeichen--><!--TODO: Formatierung-->
 
 {{% image url="Audiotechnik/9/1_9_2_idt.gif"
+alt="Interaural time difference"
 caption="Abb. 2.9-6 Interaural time difference" %}}
 {{% image url="Audiotechnik/9/1_9_3_idd.gif"
+alt="Interaural intensity difference"
 caption="Abb. 2.9-7 Interaural intensity difference" %}}
 
 <p>
@@ -212,10 +220,13 @@ caption="Abb. 2.9-7 Interaural intensity difference" %}}
 </p>
 
 {{% image url="Audiotechnik/9/aussenohr_links.gif"
+alt="Aussenohr-Übertragungsfunktion (Klang von links)"
 caption="Abb. 2.9-8 Aussenohr-Übertragungsfunktion (Klang von links)" %}}
 {{% image url="Audiotechnik/9/aussenohr_vorn.gif"
+alt="Aussenohr-Übertragungsfunktion (Klang von vorn)"
 caption="Abb. 2.9-9 Aussenohr-Übertragungsfunktion (Klang von vorn)" %}}
 {{% image url="Audiotechnik/9/aussenohr_oben.gif"
+alt="Aussenohr-Übertragungsfunktion (Klang von oben)"
 caption="Abb. 2.9-10 Aussenohr-Übertragungsfunktion (Klang von oben)" %}}
 
 <p>
@@ -274,6 +285,7 @@ caption="Abb. 2.9-10 Aussenohr-Übertragungsfunktion (Klang von oben)" %}}
 </p>
 
 {{% image url="Audiotechnik/9/schema_raumklang.gif"
+alt="Schema Raumklangerzeugung"
 caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
 
 <p>
@@ -286,13 +298,13 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
 <!--TODO: Fehlende Referenzen-->
 
 <h2>1.9.3 3D-Audioverfahren</h2>
-<h4>1.9.3.1 Verfahren zur Echtzeitberechnung</h4>
+<h3 class="h4">1.9.3.1 Verfahren zur Echtzeitberechnung</h3>
 <p>
   Eine exakte Berechnung des Raumklanges an einem bestimmten Punkt im Raum ist
   durch Nachbildung der in Kapitel 1.9.2 beschriebenen Effekte möglich. Da sich
   Schallwellen wie Lichtwellen ausbreiten und an der Position des Hörers
-  eintreffen, kann man diese Berechnung mit den Verfahren Link Raytracing<!--TODO: Missing Hyperlink-->
-  und Link Radiosity<!--TODO: Missing Hyperlink-->
+  eintreffen, kann man diese Berechnung mit den Verfahren Link Raytracing<!--TODO: Missing Hyperlink site-->
+  und Link Radiosity<!--TODO: Missing Hyperlink site-->
   vergleichen, die aus der 3D-Grafik bekannt sind. Dort beschreibt Radiosity die
   Berechnung von aufgenommener und abgestrahlter Energie an Oberflächen,
   Raytracing ist die Verfolgung von Strahlen und deren Reflektionen (im
@@ -307,7 +319,7 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
   Vereinfachungen gefunden werden.
 </p>
 
-<h4>1.9.3.2 Image Source Verfahren</h4>
+<h3 class="h4">1.9.3.2 Image Source Verfahren</h3>
 <p>
   Hierbei werden virtuelle Schallquellen durch Spiegelung der Ursprungsquellen
   an allen nicht verdeckten Oberflächen der Umgebung erzeugt und Absorptionen
@@ -323,7 +335,7 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
   für die Richtungswahrnehmung keine Rolle spielt.
 </p>
 
-<h4>1.9.3.3 Beamtracing</h4>
+<h3 class="h4">1.9.3.3 Beamtracing</h3>
 <p>
   Beamtracing ist ein Verfahren, das sich besonders gut für feststehende
   Schallquellen eignet. Für diese werden im Vorfeld mögliche Reflektionspfade
@@ -346,7 +358,7 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
   berechnet werden muss.
 </p>
 
-<h4>1.9.3.4 Approximative Verfahren</h4>
+<h3 class="h4">1.9.3.4 Approximative Verfahren</h3>
 <p>
   Bei approximativen Verfahren wird Raumklang nur näherungsweise berechnet, ohne
   eine Strahlverfolgung durchzuführen. Man vereinfacht die Umgebung und führt
@@ -382,7 +394,7 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
   Richtungen gleichzeitig wiedergegeben wird. Um Interferenzeffekte zu
   vermeiden, ist jedoch bei der Auffächerung bzw. der Verwendung mehrerer
   gleichklingender Schallquellen zu beachten, dass die Audiosignale aus den
-  verschiedenen Richtungen dekorreliert<!--TODO: Missing Hyperlink-->
+  verschiedenen Richtungen {{< ref "glossar" "Dekorrelation" "dekorreliert" >}}
   werden müssen.
 </p>
 
@@ -555,7 +567,7 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
   Möglichkeiten zur Wiedergabe räumlicher Musik eingegangen werden.
 </p>
 
-<h4>1.9.6.1 Quadrophonie und andere Mehrkanalverfahren</h4>
+<h3 class="h4">1.9.6.1 Quadrophonie und andere Mehrkanalverfahren</h3>
 <p>
   Man baute bestehende Systeme aus und kodierte zusätzlich zwei hintere Kanäle
   in das Stereo Signal mit ein. Vier Lautsprecher wurden nun quadratisch um den
@@ -568,12 +580,13 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
   einem größeren Winkel zum Zuhörer als 60° auseinander stehen - selbst wenn das
   Signal gleichermaßen auf die vorderen Kanäle verteilt ist. Auch die exakte
   Trennung der vorderen und hinteren Kanäle aus dem kodierten Signal ist nicht
-  möglich Literatur<!--TODO: Missing Hyperlink-->
+  möglich Literatur<!--TODO: Fehlende Referenzen-->
   . Folglich war dieses System nicht sehr erfolgreich.
 </p>
 
-{{% image url="Audiotechnik/9/1_9_4_quadrofonie.gif" caption="Abb. 2.9-12 Quadrophonie"
-%}}
+{{% image url="Audiotechnik/9/1_9_4_quadrofonie.gif"
+alt="Quadrophonie"
+caption="Abb. 2.9-12 Quadrophonie"%}}
 
 <p>
   Um wirklich realitätsnahen Raumklang zu erzeugen, sind zwei Möglichkeiten
@@ -585,7 +598,7 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
   Mehrkanalverfahren den oben genannten Ansprüchen nicht gerecht werden.
 </p>
 
-<h4>1.9.6.2 Binauralization (Schalldruckverfahren)</h4>
+<h3 class="h4">1.9.6.2 Binauralization (Schalldruckverfahren)</h3>
 <p>
   Eine einfache Herangehensweise zur Erzeugung von Raumklang ist die
   Durchführung von <strong>Kunstkopfaufnahmen</strong>. Dabei wird ein
@@ -613,6 +626,7 @@ caption="Abb. 2.9-11 Schema Raumklangerzeugung" %}}
 </p>
 
 {{% image url="Audiotechnik/9/1_9_5_entstehung_des_crosstalks.gif"
+alt="Entstehung des Crosstalks"
 caption="Abb. 2.9-13 Entstehung des Crosstalks" %}}
 
 <p>
@@ -640,9 +654,10 @@ caption="Abb. 2.9-13 Entstehung des Crosstalks" %}}
 </p>
 
 {{% image url="Audiotechnik/9/1_9_6_glocke.jpg"
+alt="Virtual Audio Manager aus"
 caption="Abb. 2.9-14 Virtual Audio Manager aus" %}}
 
-<h4>1.9.6.3 Ambisonics Raumklangverfahren</h4>
+<h3 class="h4">1.9.6.3 Ambisonics Raumklangverfahren</h3>
 <p>
   Mit dem <strong>Ambisonics-Verfahren</strong
   ><!--TODO: Fehlende Referenzen-->
@@ -683,6 +698,7 @@ caption="Abb. 2.9-14 Virtual Audio Manager aus" %}}
 </p>
 
 {{% image url="Audiotechnik/9/1_9_7_ambisonics_converter.jpg"
+alt="Ambisonics Converter aus"
 caption="Abb. 2.9-15 Ambisonics Converter aus" %}}
 
 <p>
@@ -691,7 +707,7 @@ caption="Abb. 2.9-15 Ambisonics Converter aus" %}}
   Aufzeichnungsverfahren zu ermöglichen.
 </p>
 
-<h4>1.9.6.4 Audio Spotlight</h4>
+<h3 class="h4">1.9.6.4 Audio Spotlight</h3>
 <p>
   Ein erster Prototyp eines anderen Verfahrens zur Klangerzeugung wurde 1998 auf
   der 105th Convention of the Audio Engineering Society vorgeführt, das
@@ -735,17 +751,18 @@ caption="Abb. 2.9-15 Ambisonics Converter aus" %}}
 </p>
 
 {{% image url="Audiotechnik/9/1_9_8_architektur_i-o_auditiv.gif"
+alt="Architektur des auditiven Ein-/Ausgabesystems"
 caption="Abb. 2.9-16 Architektur des auditiven Ein-/Ausgabesystems" %}}
 
 <h2>1.9.8 3D Sound APIs</h2>
-<h4>1.9.8.1 Das Audio-Subsystem</h4>
+<h3 class="h4">1.9.8.1 Das Audio-Subsystem</h3>
 <p>
   <strong
     >Anforderungen der Interactive Audio Special Interest Group (IASIG)</strong
   >
 </p>
 <p>
-  Ein 3D-Audio-Subsystem sollte aus einer DSP-Soundkarte<!--TODO: Missing Hyperlink-->
+  Ein 3D-Audio-Subsystem sollte aus einer {{< ref "glossar" "DSP" "DSP" >}}-Soundkarte
   , der Wiedergabetechnologie und einem 3D-Sound API bestehen. Diese
   Anforderungen können als Richtinien für die Mindestanforderungen an
   interaktive 3D-Audio-Systeme betrachtet werden. Es gibt verschiedene Level;
@@ -939,6 +956,7 @@ caption="Abb. 2.9-16 Architektur des auditiven Ein-/Ausgabesystems" %}}
 </ul>
 
 {{% image url="Audiotechnik/9/1_9_9_3d_sound-apis.gif"
+alt="Einordnung der wichtigsten 3D-Sound-APIs"
 caption="Abb. 2.9-17 Einordnung der wichtigsten 3D-Sound-APIs" %}}
 
 <p><strong>Direct Sound 3D</strong></p>
@@ -946,13 +964,13 @@ caption="Abb. 2.9-17 Einordnung der wichtigsten 3D-Sound-APIs" %}}
   Direct Sound 3D ist ein Microsoft API. Die aktuelle Version DirectX 8.0
   unterstützt die IASIG-Richtlinien Level 2, was z.B. das Abspielen und Mischen
   beliebiger .wav-Quellen und die automatische Verwaltung der Puffer (1
-  Primärpuffer, n Sekundärpuffer) anbelangt. Es verwendet HEL<!--TODO: Fehlende Referenzen-->
-  , eine automatische Sample-Rate-Konvertierung, 3D-Funktionen inclusive HRTF<!--TODO: Missing Hyperlink-->
+  Primärpuffer, n Sekundärpuffer) anbelangt. Es verwendet {{< ref "glossar" "HEL" "HEL" >}}
+  , eine automatische Sample-Rate-Konvertierung, 3D-Funktionen inclusive HRTF<!--TODO: Missing Hyperlink site-->
   . Direct Sound 3D wurde primär für Spiele entwickelt, unterstützt aber
   inzwischen MIDI über DirectMusic.
 </p>
 <p>
-  Eine Direct Sound 3D-Anwendung verwendet das COM<!--TODO: Fehlende Referenzen-->
+  Eine Direct Sound 3D-Anwendung verwendet das {{< ref "glossar" "COM" "COM" >}}
   -Objektmodell. Die prinzipielle Vorgehensweise ist die folgende: Zunächst wird
   ein DirectSound Objekt angelegt. Die Hardware und die
   Lautsprecherkonfiguration (Aufstellwinkel) werden ausgewählt. Es werden
@@ -1075,8 +1093,8 @@ caption="Abb. 2.9-17 Einordnung der wichtigsten 3D-Sound-APIs" %}}
   Es können verschiedene Echo- und Halleffekte global für den Primärpuffer und
   für einzelne DirectSound Quellen eingestellt werden. Es bietet
   Hardwareunterstützung für occlusion
-  <!--TODO: Missing Hyperlink-->
-  und obstruction<!--TODO: Missing Hyperlink-->
+  <!--TODO: Missing Hyperlink site-->
+  und obstruction<!--TODO: Missing Hyperlink site-->
   . Die akustische Umgebung kann modelliert werden, so gibt es diverse Presets
   wie "concert hall" oder "bathroom". Über Hall-Parameter sind die Verzögerung,
   die Intensität der early reflections, die Dichte, das Spektrum und die Dauer
@@ -1090,13 +1108,13 @@ caption="Abb. 2.9-17 Einordnung der wichtigsten 3D-Sound-APIs" %}}
   veröffentlicht. Der Programmcode der Library existiert als Open Source für
   Windows, Mac OS, Unix-Systeme und BeOS. Unter Windows wird auf die DirectSound
   3D-API aufgesetzt. Der erste Code und die Spezifikation sind unter
-  http://www.openal.org/<!--TODO: Missing Hyperlink-->
+  <a href="http://www.openal.org/">http://www.openal.org/</a>
   verfügbar. Open AL integriert in der aktuellen Spezifikation nur
   IASIG-Richtlinien Level 1 Funktionen. Über Extensions sind Erweiterungen
   möglich: z.B. gibt es von Creative Labs ein OpenAL SDK.
 </p>
 
-<h2 class="h4">1.9.8.3 Ein Beispiel: Das Projekt DIVA</h2>
+<h3 class="h4">1.9.8.3 Ein Beispiel: Das Projekt DIVA</h3>
 <p>
   DIVA (Digital Interactive Virtual Acoustics) Literatur<!--TODO: Fehlende Referenzen-->
   ist ein Kooperationsprojekt der Telecommunication Software and Multimedia
@@ -1111,6 +1129,7 @@ caption="Abb. 2.9-17 Einordnung der wichtigsten 3D-Sound-APIs" %}}
 </ul>
 
 {{% image url="Audiotechnik/9/1_9_10_die_diva_band.jpg"
+alt="Die DIVA-Band aus"
 caption="Abb. 2.9-18 Die DIVA-Band aus" %}}
 
 <p><strong>Animation</strong></p>
@@ -1214,5 +1233,5 @@ caption="Abb. 2.9-18 Die DIVA-Band aus" %}}
 <p>LinkDirectSound 3D<!--TODO: Fehlende Referenzen--></p>
 <p>LinkEAX<!--TODO: Fehlende Referenzen--></p>
 
-<h3 class="h4">Weiterführende Links</h3>
+<h2 class="h4">Weiterführende Links</h2>
 <!--TODO: Fehlende Referenzen-->

@@ -1,9 +1,9 @@
-<div class="col-auto sound-sample">
+<div class="col col-md-auto sound-sample">
   {{ $url := (print "/audio/" (.Get "url")) }}
   {{ $id := (print (lower (replace (.Get "title") " " "")) (replace (replace (replace (replace (lower (.Get "url")) " " "") "/" "") "_" "") ".mp3" ""))}}
   {{ $random := "" }}
   {{ range $index, $num := (shuffle (seq 1 10)) }}
-    {{ $random = (print $random $num) }}
+  {{ $random = (print $random $num) }}
   {{ end }}
   {{ $playId := (print "play-" (print $id $random)) }}
   {{ $pauseId := (print "pause-" (print $id $random)) }}
@@ -29,9 +29,26 @@
       })
     });
   </script>
-    <div class="d-flex flex-row justify-content-center align-items-center">
-      <span class="sound-title text-primary">{{ .Get "title" }}<small class="text-muted">{{ if isset .Params "ref"}}[{{.Get "ref"}}]{{end}}</small></span>
-      <img class="play ml-1" id="{{$playId}}" src="/images/sound-samples/play.png" />
-      <img class="pause ml-1" id="{{$pauseId}}" src="/images/sound-samples/pause.png" />
+  <div class="d-flex flex-row align-items-center">
+    <div class="sound-title text-primary">
+      {{ .Get "title" }}
+      {{ if isset .Params "ref"}}
+      <small class="text-muted">
+        [{{.Get "ref"}}]
+      </small>
+      {{end}}
+      <img
+        class="play ml-1"
+        id="{{$playId}}"
+        src="/images/sound-samples/play.png"
+        alt="Audio abspielen"
+      />
+      <img
+        class="pause ml-1"
+        id="{{$pauseId}}"
+        src="/images/sound-samples/pause.png"
+        alt="Audio anhalten"
+      />
     </div>
+  </div>
 </div>

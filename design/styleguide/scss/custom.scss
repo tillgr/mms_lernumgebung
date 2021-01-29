@@ -115,18 +115,24 @@ img {
 
 .snippet {
   border: .1rem solid theme-color("primary");
+  margin-bottom: 1rem;
 
   header {
     padding: .5rem;
   }
 
   .content {
-    padding: .5rem;
-    display: grid;
-    grid-gap: 1rem;
+    display: block;
+
+    @media screen and (min-width: 1500px) {
+      display: grid;
+    }
 
     .left-col {
       grid-column: 1;
+      padding: 1rem;
+      background-color: #f8f8f8;
+      border-bottom: .1rem solid theme-color("secondary");
 
       &#button_wrapper button {
         margin-bottom: .5rem;
@@ -135,13 +141,60 @@ img {
 
     .right-col {
       grid-column: 1;
+      padding: 1rem;
+
+      // mainly used in linear non linear quantisation Snippet
+      // TODO: remove comment when reused somewhere else
+      .validation,.solution {
+        display: none;
+      }
+
+      .diagram {
+        .axis {
+          font-size: 1rem !important;
+        }
+
+        .svgCurve {
+          fill: none;
+          stroke: theme-color("primary");
+          stroke-width: .1rem;
+        }
+        .grid .tick line {
+          stroke: theme-color("secondary");
+          stroke-width: .1rem;
+        }
+
+        .grid path {
+          stroke-width: 0;
+        }
+
+        .circleButton {
+          cursor: pointer;
+        }
+      }
     }
 
+    // mainly used in DCT and DFT Snippet
+    // TODO: remove comment when reused somewhere else
+
+    .signalVisualization {
+      .visualOrigin, .visualResult {
+        border: .1rem solid theme-color("dark");
+        display: flex;
+        margin-bottom: .5rem;
+
+        div{
+          width: 100%;
+          height: 1rem;
+        }
+      }
+    }
+
+    // used for Fourier Snippet and DCT DFT Snippet
     .slider-wrapper {
       background-color: theme-color("secondary");
       padding: .25rem;
       border-radius: .25rem;
-      // Fourieranalyse specific styling
 
       hr {
         margin: .5rem 0;
@@ -152,10 +205,16 @@ img {
         flex-wrap: wrap;
         justify-content: flex-start;
 
+        .duo-wrapper {
+          border-radius: .25rem;
+          border: .1rem solid theme-color("dark");
+        }
+
         .slider_and_textfield {
-          width: 3rem;
+          width: 2.8rem;
           display: inline-block;
           margin: .25rem;
+          text-align: center;
 
           input[type=range] {
             display: none;
@@ -172,6 +231,9 @@ img {
           /* Firefox */
           input[type=number] {
             -moz-appearance: textfield;
+            padding: .25rem;
+            text-align: center;
+            font-size: .8rem;
           }
         }
       }
@@ -192,7 +254,8 @@ img {
 
       .left-col {
         grid-column: 1;
-        margin-top: 1rem;
+        border: 0;
+        border-right: .1rem solid theme-color("secondary");
 
         &#button_wrapper button {
           width: 100%;

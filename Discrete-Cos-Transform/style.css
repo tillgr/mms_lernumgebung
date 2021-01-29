@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+.leftPart {
+    display: flex;
+    flex-direction: column;
+}
+
+.topPanel{
+    display: flex;
+    flex-direction: row;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.panel{
+    margin-left: 1rem;
+}
+
+.signalValues{
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+    width: 20em;
+}
+
+.signalValues span{
+    width: 100%;
+}
+
+.signalColors{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.mt-0{
+ margin-top: 0;
+}
+
+.center-text{
+    text-align: center;
+}
+
+/*Board*/
+
+.square{
+    width: 40px;
+    height: 15px;
+    display: inline-block;
+    margin: 0;
+    /*animation: fadeIn 1s;*/
+}
+
+#board{
+    border: solid 1px black;
+    width: 320px;
+    /*height: 200px;*/
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding: 0;
+    box-sizing: unset;
+}
+
+.valueBox{
+    flex-grow: 1;
+}
