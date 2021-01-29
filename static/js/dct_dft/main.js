@@ -91,9 +91,9 @@ function createSliders() {
     inputArrays[currentTransformationType].forEach((item, i) => {
       let slider =
         '<div class="slider_and_textfield">' +
-        '  <label class="small" for="userInput">cos' + i + '</label>' +
+        '  <label class="small" for="userInput' + i + '">cos' + i + '</label>' +
         '  <input id="userInput' + i + '" class="form-control-range" type="range" orient="vertical" min="-400" max="400" value="' + item + '">' +
-        '  <input id="userTextInput' + i + '" class="form-control" type="number" min="-400" max="400" value="' + item + '" labelledby="userInput">' +
+        '  <input id="userTextInput' + i + '" class="form-control" type="number" min="-400" max="400" value="' + item + '" aria-labelledby="userInput' + i + '">' +
         '</div>';
       inputDiv.append(slider);
       $('#userInput' + i + "," + '#userTextInput' + i).on("input", function() {
@@ -115,13 +115,13 @@ function createSliders() {
         '<div class="slider_and_textfield">' +
         '  <label class="small" for="userInput' + (2*i) + '">cos ' + i + '</label>' +
         '  <input id="userInput' + (2*i) + '" class="form-control-range" item-number="'+(2*i)+'" type="range" orient="vertical" min="-2040" max="2040" value="' + inputArrays[currentTransformationType][2*i] + '">' +
-        '  <input id="userTextInput' + (2*i) + '" class="form-control" item-number="'+(2*i)+'" type="number" min="-2040" max="2040" value="' + inputArrays[currentTransformationType][2*i] + '" labelledby="userInput">' +
+        '  <input id="userTextInput' + (2*i) + '" class="form-control" item-number="'+(2*i)+'" type="number" min="-2040" max="2040" value="' + inputArrays[currentTransformationType][2*i] + '" aria-labelledby="userInput' + (2*i) + '">' +
         '</div>';
       let sliderSin =
         '<div class="slider_and_textfield">' +
         '  <label class="small" for="userInput' + (2*i+1) + '">sin ' + i + '</label>' +
         '  <input id="userInput' + (2*i+1) + '" class="form-control-range" item-number="'+(2*i+1)+'" type="range" orient="vertical" min="-2040" max="2040" value="' + inputArrays[currentTransformationType][2*i+1] + '">' +
-        '  <input id="userTextInput' + (2*i+1) + '" class="form-control" item-number="'+(2*i+1)+'" type="number" min="-2040" max="2040" value="' + inputArrays[currentTransformationType][2*i+1] + '" labelledby="userInput">' +
+        '  <input id="userTextInput' + (2*i+1) + '" class="form-control" item-number="'+(2*i+1)+'" type="number" min="-2040" max="2040" value="' + inputArrays[currentTransformationType][2*i+1] + '" aria-labelledby="userInput' + (2*i+1) + '">' +
         '</div>';
       let sliders = "<div class='duo-wrapper'>" + sliderCos + sliderSin + "</div>";
       if (i<=3) {
