@@ -143,7 +143,7 @@ caption="Abb. 2.4-0 Prinzip der DPCM" %}}
   wird deshalb in kurzen Zeitabschnitten, z.B. alle 30ms neu berechnet.
 </p>
 
-<h5>Verschiedene Audio-Qualitäten</h5>
+<h3 class="h5">Verschiedene Audio-Qualitäten</h3>
 
 <table class="table table-bordered">
   <tbody>
@@ -192,7 +192,7 @@ caption="Abb. 2.4-0 Prinzip der DPCM" %}}
 </table>
 
 <h2>2.4.5 Anwendung der verschiedenen Verfahren bei CD und DVD</h2>
-<h4>2.4.5.1 Anwendung bei CD</h4>
+<h3 class="h4">2.4.5.1 Anwendung bei CD</h3>
 <p>
   Auf CDs werden die verschiedenen Verfahren der LinkPulse Code Modulation (PCM)<!--TODO: Missing Hyperlink site-->
   mit einer Abtastfrequenz von 44,1 kHz verwendet.
@@ -244,7 +244,7 @@ class="table table-bordered"
   </tbody>
 </table>
 
-<h4>2.4.5.2 Anwendung bei DVD</h4>
+<h3 class="h4">2.4.5.2 Anwendung bei DVD</h3>
 <p><strong>DVD Audio-Formate</strong></p>
 <!--TODO: Formatierung-->
 <p>
@@ -368,11 +368,11 @@ class="table table-bordered"
 
 <p><strong>Mehrkanal-Ton bei DVD-Video:</strong></p>
 <p>
-  Die drei primären Audio-Formate der DVD-Video sind LinkPCM<!--TODO: Missing Hyperlink site-->
-  , LinkDolby Digital
+  Die drei primären Audio-Formate der DVD-Video sind PCM<!--TODO: Missing Hyperlink site-->
+  , Dolby Digital
   <!--TODO: Missing Hyperlink site-->
-  und LinkMPEG-Audio<!--TODO: Missing Hyperlink site-->
-  . Optional sind LinkDTS und LinkSDDS. Beide erfordern externe Decoder. Auf bis
+  und MPEG-Audio<!--TODO: Missing Hyperlink site-->
+  . Optional sind DTS und SDDS. Beide erfordern externe Decoder. Auf bis
   zu 8 unabhängigen Tonspuren können diese Audio-Formate und/oder
   unterschiedlichen Synchronisations-Fassungen (englisch, deutsch etc.) des
   Films abgelegt werden. Der Zuschauer kann somit die gewünschte Sprachversion
@@ -384,4 +384,80 @@ class="table table-bordered"
   oder mit MPEG2 versehen.
 </p>
 
-<!-- TODO: Missing section ? -->
+<p>Die verschiedenen Formate verwenden bis zu 8 Kanäle:</p>
+<ul>
+  <li>Lineare Pulse Code Modulation (LPCM): 1 bis 8 Audiokanäle</li>
+  <li>Dolby Digital (AC-3): 1 bis 5+1 Kanäle</li><!--TODO: Missing Hyperlink site-->
+  <li>MPEG 2 Audio: 1 bis 5+1 oder 7+1 Kanäle</li>
+</ul>
+
+<p>Es sind jedoch auch andere Tonformate, z.B. DDS (Dynamic Digital Sound)<!--TODO: Missing Hyperlink site--> erlaubt,
+  jedoch nur in Ergänzung zu mindestens einem der zuvor genannten Systeme.</p>
+<p>Beispiel:</p>
+<p>Ein PAL DVD-Video (625/50) enthält entweder LPCM, MPEG-1 oder Dolby Digital (AC-3) Ton in Mono oder Stereo,
+  zusätzlich sind Dolby Digital Mehrkanal, MPEG-2 Mehrkanal, DTS, DDS und andere Formate erlaubt.</p>
+<p>LPCM</p><!--TODO: Missing Hyperlink site-->
+<p>mit Abtastraten von 44,1 kHz bis 192 kHz, Quantisierung bis zu 24 Bit und bis zu 8 Übertragungskanälen. Die maximale
+  Bitrate ist 6.144 Mbit/s. Für high-fidelity Sound genügen i. Allg. 120 dB dynamic range von 20 bits und Frequenzen bis
+  zu 22 KHz (48 kHz sampling). Es wurde das von Meridian entwickelte MLP (Meridian Lossless Packing) standardisiert, das
+  die Spielzeit verlängert ohne auf die Klangqualität Einfluss zu nehmen. Es entfernt Redundanzen im Signal. Die
+  Kompression beträgt 2:1.</p>
+<p>Für eine DVD-5, deren Kapazität exklusiv für Audio genutzt wird, ergibt sich folgende Spielzeit:</p>
+<table>
+  <thead></thead>
+  <tbody></tbody>
+</table><!--TODO: TABLE-->
+
+<p>Die angegeben Werte für LPCM sind ohne MLP, durch MLP würden sie sich abhängig vom Audiomaterial um ca. 10 bis 20%
+  verlängern. Generell beträgt die Daten-Transferrate maximal 9,6 Mbit/sec.</p>
+
+<p>Dolby Digital</p><!--TODO: Missing Hyperlink site-->
+<p>Wird Dolby Digital auf DVDs verwendet, beträgt die Abtastrate 48 kHz, die Quantisierung 24 bit. Die Komprimierung
+  erfolgt bis auf 64 bis 448 kbit/s, im Mittel 384 kbit/s für 5.1 Kanäle und 192 kbit/s für Stereo. Die meisten Dolby
+  Digital Decoder unterstützen bis zu 640 kbit/s.</p>
+
+<p>MPEG-Audio</p>
+<p>Bei der Speicherung von MPEG-Audio auf DVD-Video wird mit 48 kHz abgetastet und mit 16 oder 20 bit quantisiert. Es
+  wird eine variable Bitrate zwischen 32 und 912 kbit/s (im Mittel 384 kbit/s) verwendet. MPEG-1 ist auf 384 kbit/s
+  beschränkt. Folgende Kanalkombinationen können verwendet werden (front / surround): 1/0, 2/0, 2/1, 2/2, 3/0, 3/1, 3/2,
+  5/2. MPEG Layer III (MP3) und MPEG-2 ACC werden im DVD-Video Standard nicht unterstützt.</p>
+
+<p>DTS</p><!--TODO: Missing Hyperlink site-->
+<p>Bei Speicherung von DTS Audio-Daten auf DVD-Video wird ein 5.1 Format verwendet. Die Daten werden mit 48 kHz und 24
+  bit gespeichert. Die Datenraten betragen 64 bis 1.536 kbit/s, typisch sind 768 bis 1.536 kbit/s für 5.1 Kanäle und 384
+  bis 768 kbit/s für Stereo. Mögliche Kanalkombinatinen sind (front/surround): 1/0, 2/0, 3/0, 2/1, 2/2, 3/2. DTS für DVD
+  unterscheidet sich von dem für Kinos.</p>
+
+<p>SDDS</p><!--TODO: Missing Hyperlink site-->
+<p>SDDS auf DVD ist optional möglich, wird aber bisher von den Playern nicht unterstützt.</p>
+
+<h3 class="h5">Audio-Formate für DVD-Audio</h3>
+<p>Ausgehend von der Audio-Spezifikation des DVD-Video-Standards hat man die "Nur-Audio"-DVD entwickelt, bei der (fast)
+  völlig auf Video verzichtet und die gesamte Daten-Kapazität für Super-HiFi zur Verfügung gestellt wird. Der sehr
+  vielfältige Möglichkeiten bietende Standard wurde im September 1998 festgelegt.</p>
+
+<p>Die hohe Speicherkapazität der DVD kann genutzt werden</p>
+
+<ul>
+  <li>zur Erhöhung der Zahl der Übertragungskanäle</li>
+  <li>für eine Erhöhung der technischen Übertragungqualität.</li>
+</ul>
+
+<p>Beides ermöglicht der DVD-Audio-Standard mit den Formaten:</p>
+<ul>
+  <li>Dolby Digital (AC-3)</li>
+  <li>MPEG-Audio</li>
+  <li>DTS</li><!--TODO: Missing Hyperlink site-->
+  <li>SDDS</li><!--TODO: Missing Hyperlink site-->
+  <li>LPCM</li><!--TODO: Missing Hyperlink site-->
+</ul>
+
+<p>Bei der DVD-Audio ist das "downmixing" der Kanäle spezifiziert. Koeffiziententabellen pro Kanal steuern das Mischen
+  der Kanäle. Bis zu 16 Tabellen können für jeden Audio Title Set (album) definiert werden. Jeder Track kann mit einer
+  Tabelle identifiziert werden. Die Koeffizienten liegen im Bereich von 0 bis 60 dB.</p>
+
+<p><strong>LPCM</strong></p>
+<p>Es werden bis zu 6 Kanäle mit 48, 96 oder 192 kHz (sowie 44,1 88,2 176,4 kHz) und eine Quantisierung von 16, 20 oder
+  24 bit unterstützt. Es wird das von Dolby entwickelte Verfahren für die verlustfreie Kompression
+  MLP<!--TODO: Missing Hyperlink site--> verwendet. MLP ermöglicht Abspielzeiten von 74 - 135 Min bei 6-Kanal 96 kHz.
+  Bei einer Single-Layer-DVD wird 24 bit Audio verwendet. Dies ermöglicht 45 min. ohne Kompression.</p>
