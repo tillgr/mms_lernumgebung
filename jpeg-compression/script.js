@@ -237,6 +237,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function showSection() {
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		switch (current_section) {
 			case 1: currentChapter.showSection1();
 				break;
@@ -246,13 +248,18 @@ document.addEventListener("DOMContentLoaded", function() {
 				break;
 			case 4: currentChapter.showSection4();
 				break;
+			case 5: currentChapter.showSection5();
+				break;
+			case 6: currentChapter.showSection6();
+				break;
+			case 7: currentChapter.showSection7();
+				break;
 			default: currentChapter.showSection1();
 				break;
 		}
 	}
 	
 	function buttonPressLeft() {
-		
 		if(current_section > 1) {
 			current_section -= 1;
 		}
@@ -261,7 +268,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 	
 	function buttonPressRight() {
-		
 		if(current_section < num_sections) {
 			current_section += 1;
 		}
