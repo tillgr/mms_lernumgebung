@@ -30,7 +30,7 @@ draft: true
     wieder erzeugt und vermitteln den Surroundklang. Die Raumklanginformation ist nicht vollständig rekonstruierbar,
     deshalb wird der Surroundkanal in den Höhen gedämpft und verzögert wiedergegeben.</p>
 
-{{% image url="Audiotechnik/5/1_5_1a_surround.gif" caption="Abb. 2.5-0 Prinzip des Dolby Surround" %}}
+{{% image url="Audiotechnik/5/1_5_1a_surround.gif" alt="Prinzip des Dolby Surround" caption="Abb. 2.5-0 Prinzip des Dolby Surround" %}}
 
 <h2>2.5.3 Dolby Surround Pro Logic</h2>
 <p>Anfangs nahmen Dolby Surround Decoder das gesamte Programm im normalen Stereo-Verfahren für links und rechts auf. Das
@@ -40,7 +40,7 @@ draft: true
     Frontbereich (links, center, rechts) und zwei Surround-Lautsprecher an der Seite. Dolby Pro Logic unterstützt
     außerdem eine bessere Trennung zwischen allen Kanälen für eine bessere Soundlokalisierung.</p>
 
-{{% image url="Audiotechnik/5/1_5_1b_dspl-kodierung.gif" caption="Abb. 2.5-1 Dolby Surround Pro Logic Kodierung" %}}
+{{% image url="Audiotechnik/5/1_5_1b_dspl-kodierung.gif" alt="Dolby Surround Pro Logic Kodierung" caption="Abb. 2.5-1 Dolby Surround Pro Logic Kodierung" %}}
 
 <p>Die Kodierung erfolgt folgendermaßen (0,7 entspricht -3 dB):</p>
 <p> {{< formula >}} Lt := L + 0,7 * C + 0,7 * S {{< /formula >}} </p>
@@ -58,7 +58,7 @@ draft: true
     sind Firmengeheimnis. Es ist in Kinos, bei Laserdiscs und im US Satellitenfernsehen
     gebräuchlich.</p><!--TODO: Fehlende Referenzen-->
 
-{{% image url="Audiotechnik/5/1_5_1_dolby_digital_in_the_cinema.gif" caption="Abb. 2.5-2 Dolby Digital in the cinema" %}}
+{{% image url="Audiotechnik/5/1_5_1_dolby_digital_in_the_cinema.gif" alt="Dolby Digital in the cinema" caption="Abb. 2.5-2 Dolby Digital in the cinema" %}}
 
 <p>Zur Abmischung im Tonstudio liegen fünf Signale vor: vorn-links (front-left), vorn-rechts (front-right), Mitte
     (center), Links-Surround (left-surround) und Rechts-Surround (right-surround). </p>
@@ -74,13 +74,13 @@ draft: true
     Verdeckung<!--TODO: Missing Hyperlink site--> . Der Dynamikumfang beträgt 20 Bit und es verwendet Abtastraten von 44,1
     und 48 kHz. </p>
 
-{{% image url="Audiotechnik/5/1_5_3_dolby_digital_in_the_home.gif" caption="Abb. 2.5-3 Dolby Digital in the home" %}}
+{{% image url="Audiotechnik/5/1_5_3_dolby_digital_in_the_home.gif" alt="Dolby Digital in the home" caption="Abb. 2.5-3 Dolby Digital in the home" %}}
 
 <p>AC-3 liefert perfekte Kanaltrennung zwischen allen Kanälen über den vollen
     Frequenzumfang.</p><!--TODO: Fehlende Referenzen-->
 
-{{% image url="Audiotechnik/5/1_5_4_ac3_satellite_audio_transmission.gif" caption="Abb. 2.5-4 AC3 Audio Satellitenübertragung" %}}
-{{% image url="Audiotechnik/5/1_5_5_ac3_synchronization_frame.gif" caption="Abb. 2.5-5 AC-3 Synchronisationsframe" %}}
+{{% image url="Audiotechnik/5/1_5_4_ac3_satellite_audio_transmission.gif" alt="AC3 Audio Satellitenübertragung" caption="Abb. 2.5-4 AC3 Audio Satellitenübertragung" %}}
+{{% image url="Audiotechnik/5/1_5_5_ac3_synchronization_frame.gif" alt="AC-3 Synchronisationsframe" caption="Abb. 2.5-5 AC-3 Synchronisationsframe" %}}
 
 <p>Eine typische Anwendung des AC-3 Algorithmus ist die Übertragung eines PCM Audio-Datenstroms bestehend aus 5+1
     Kanälen mit ca. 5 Mbps (6 channels × 48 kHz × 18 bits = 5.184 Mbps) in einem 384 kbps seriellen Bit-Strom. Der AC-3
@@ -90,8 +90,8 @@ draft: true
     enthält Parameter, die die Kodierung und den Datenstrom beschreiben. Das Ende eines jeden Frames bilden ein 'error
     check field' mit CRC-Daten (cyclic redundancy check) zur Fehlererkennung.</p>
 
-{{% image url="Audiotechnik/5/1_5_6_dolby_digital_filmspuren.gif" caption="Abb. 2.5-6 Dolby Digital Filmspuren" %}}
-{{% image url="Audiotechnik/5/1_5_7_prinzip_ac3decoder.gif" caption="Abb. 2.5-7 Prinzip des AC-3-Encoders" %}}
+{{% image url="Audiotechnik/5/1_5_6_dolby_digital_filmspuren.gif" alt="Dolby Digital Filmspuren" caption="Abb. 2.5-6 Dolby Digital Filmspuren" %}}
+{{% image url="Audiotechnik/5/1_5_7_prinzip_ac3decoder.gif" alt="Prinzip des AC-3-Encoders" caption="Abb. 2.5-7 Prinzip des AC-3-Encoders" %}}
 
 <p>'Dolby Stereo Digital' basiert auf dem AC-3 Kodierungsverfahren und ist kompatibel zur analogen Stereo-Lichttonspur
     und dem dafür optimierten SR-Rauschunterdrückungsverfahren.</p>
@@ -135,7 +135,7 @@ draft: true
     </li>
 </ul>
 
-<h5>MPEG2 - Audio</h5>
+<h3 class="h5">MPEG2 - Audio</h3>
 <p>MPEG2 Audio ist ein digitales Mehrkanal-Tonverfahren mit Datenkompression</p><!--TODO: Formatierung-->
 <p>Die Datenrate für 5+1 Kanäle reicht hier von 32 bis 912 kbps, im Durchschnitt von 384
     kbps.</p><!--TODO: Formatierung-->
@@ -162,7 +162,7 @@ draft: true
     diskreter hinterer Center-Kanal möglich, d.h. es ist ein 6.1-Format. Die Wiedergabe auf 5.1-Systemen ist möglich;
     dabei werden alle Kanäle etwas stärker komprimiert.</p>
 
-<h5>Weiterführende Links</h5>
+<h3 class="h5">Weiterführende Links</h3>
 <p>Digital Theater Soundsystem - Homepage</p><!--TODO: Fehlende Referenzen-->
 
 <h2>2.5.8 Sony Dynamic Digital Sound (SDDS)</h2>

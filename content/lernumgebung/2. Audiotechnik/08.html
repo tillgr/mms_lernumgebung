@@ -106,6 +106,7 @@ draft: true
 </ul>
 
 {{% image url="Audiotechnik/8/1_8_1_midi-schaltung.gif"
+alt="MIDI-Schaltung"
 caption="Abb. 2.8-0 MIDI-Schaltung" %}}
 
 <p>
@@ -115,13 +116,14 @@ caption="Abb. 2.8-0 MIDI-Schaltung" %}}
   m sein.
 </p>
 
-<h5>Gerätekopplungen</h5>
+<h3 class="h5">Gerätekopplungen</h3>
 <p>
   Eine Reihenschaltung von mehr als 3 Geräten wird nicht empfohlen, da die
   Zeitverzögerungen zu groß werden können. Es wird eine MIDI-THRU-BOX genutzt.
 </p>
 
 {{% image url="Audiotechnik/8/1_8_2_midi_thru_box.gif"
+alt="Verwendung der MIDI-THRU-Box"
 caption="Abb. 2.8-1 Verwendung der MIDI-THRU-Box" %}}
 
 <p>
@@ -323,7 +325,7 @@ class="table table-bordered"
 </table>
 
 <h2>2.8.2 MIDI - Befehle</h2>
-<h5>Datenformate</h5>
+<h3 class="h5">Datenformate</h3>
 <p>
   MIDI - Befehle (MIDI-Nachrichten, MIDI-Meldungen) bestehen in einfachster Form
   aus:
@@ -357,7 +359,7 @@ class="table table-bordered"
 
       <th>0</th>
 
-      <th>&nbsp;</th>
+      <th>Info</th>
     </tr>
 
     <tr>
@@ -432,7 +434,7 @@ class="table table-bordered"
     </tr>
 
     <tr>
-      <th>&nbsp;</th>
+      <th>Modus</th>
 
       <th>Status</th>
 
@@ -475,7 +477,7 @@ class="table table-bordered"
   zweite Befehl, d.h. das Status-Byte '93h', nicht mehr notwendig.
 </p>
 
-<h5>Ausgewählte MIDI - Befehle</h5>
+<h3 class="h5">Ausgewählte MIDI - Befehle</h3>
 <p>
   MIDI Nachrichten sind entweder Kanalnachrichten (Channel Messages) oder
   Systemnachrichten (System Messages).
@@ -493,7 +495,7 @@ class="table table-bordered"
   <li>System Exclusive Messages: für gerätespezifische Übertragung</li>
 </ul>
 
-<h5>Channel Voice Messages:</h5>
+<h3 class="h5">Channel Voice Messages:</h3>
 <p>
   Werden in der Regel durch das Bespielen einer Tastatur oder eines anderen
   Controllers erzeugt, können jedoch auch zur Steuerung von z.B. Lichtreglern
@@ -601,7 +603,7 @@ class="table table-bordered"
   </li>
 </ul>
 
-<h5>Channel Mode Messages</h5>
+<h3 class="h5">Channel Mode Messages</h3>
 <p>Steuern vor allem die grundsätzlichen Spielmöglichkeiten der MIDI Modes.</p>
 
 <table class="table table-bordered">
@@ -611,7 +613,7 @@ class="table table-bordered"
     </tr>
 
     <tr>
-      <th>&nbsp;</th>
+      <th>Modus</th>
 
       <th>ID</th>
 
@@ -702,7 +704,7 @@ class="table table-bordered"
     </tr>
 
     <tr>
-      <th>&nbsp;</th>
+      <th>Modus</th>
 
       <th>ID</th>
 
@@ -767,7 +769,7 @@ class="table table-bordered"
   </tbody>
 </table>
 
-<h5>Systembefehle (System Common Messages)</h5>
+<h3 class="h5">Systembefehle (System Common Messages)</h3>
 <p>
   Systembefehle sind allgemeine Nachrichten, die ohne Rücksicht auf die
   Kanal-Nr. an alle Geräte im MIDI-System gesendet werden.
@@ -783,7 +785,7 @@ class="table table-bordered"
 </p>
 <!--TODO: Formatierung-->
 
-<h5>Real-Time-Messages</h5>
+<h3 class="h5">Real-Time-Messages</h3>
 <p>
   werden hauptsächlich zur Synchronisation von Synthesizern, Drum-Maschinen und
   vergleichbaren Geräten genutzt.
@@ -801,7 +803,7 @@ class="table table-bordered"
 </ul>
 <!--TODO: Formatierung-->
 
-<h5>System-Exclusive-Befehle</h5>
+<h3 class="h5">System-Exclusive-Befehle</h3>
 <p>
   ermöglichen die Weiterentwicklung der Instrumente bei vorgegebenem
   MIDI-Standard (Implementierung von Befehlen, die nicht der MIDI-Norm
@@ -960,7 +962,7 @@ class="table table-bordered"
   <li>File Dump: Übertragung von Files zwischen Geräten.</li>
 </ul>
 
-<h5>Real Time Universal System Exclusive</h5>
+<h3 class="h5">Real Time Universal System Exclusive</h3>
 <p>ist ein MIDI-Time-Code zur Synchronisation von Geräten.</p>
 <p>
   MIDI verwendet ein taktbezogenes (relatives) Zeitmaß in PPQ (Pulse per
@@ -987,10 +989,10 @@ class="table table-bordered"
 </ul>
 <!--TODO: Formatierung-->
 
-<h5>
+<h3 class="h5">
   Anpassen des MIDI Time Code MTC an die SMPTE-Norm (Society of Motion Picture
   and Television Engineers)
-</h5>
+</h3>
 <p>
   SMPTE ist eine Synchronisationsnorm des Audio- und Videobereiches. Als Maß
   werden verwendet: Stunden, Minuten, Sekunden und Frames.
@@ -1227,6 +1229,7 @@ class="table table-bordered"
 </ul>
 
 {{% image url="Audiotechnik/8/1_8_2b_standard-midi-file.gif"
+alt="Das Standard MIDI-file-Format SMF"
 caption="Abb. 2.8-2 Das Standard MIDI-file-Format SMF" %}}
 
 <h2>1.8.4 MIDI Sequenzerprogramm</h2>
@@ -1252,6 +1255,7 @@ caption="Abb. 2.8-2 Das Standard MIDI-file-Format SMF" %}}
 </p>
 
 {{% image url="Audiotechnik/8/1_8_3_midi-connection_midi-band.gif"
+alt="MIDI connection - MIDI Band"
 caption="Abb. 2.8-3 MIDI connection - MIDI Band" %}}
 
 <p>
@@ -1277,6 +1281,7 @@ caption="Abb. 2.8-3 MIDI connection - MIDI Band" %}}
 </p>
 
 {{% image url="Audiotechnik/8/1_8_4_midi_connection_midi-tape.gif"
+alt="MIDI-Connection MIDI-Tape"
 caption="Abb. 2.8-4 MIDI-Connection MIDI-Tape" %}}
 
 <p>
