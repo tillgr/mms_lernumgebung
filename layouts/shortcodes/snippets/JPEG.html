@@ -2,31 +2,33 @@
   <header class="bg-primary">
     <strong class="text-white">{{ .Get 0 }}</strong>
   </header>
-  <div class="jpeg_applet">
-    <div class="applet_header"></div>
+  <div class="no-mobile">
+    <p>Auf Mobilgeräten kann dieses Snippet leider nicht verwendet werden!</p>
+  </div>
+  <div class="jpeg_applet clearfix">
     <div class="chapter_selection">
       <div id="jpeg_selectChapter1div">
-        <img id="svgChapter1" src="assets/svg/chapter1.svg"></img>
+        <img id="svgChapter1" src="/assets/svg/chapter1.svg"></img>
         <h1>Einleitung</h1>
         <span>JPEG = Kompression durch Irrelevanzreduktion.<br> Das Auge nimmt Helligkeit besser als Farbe wahr.</span>
       </div>
       <div id="jpeg_selectChapter2div">
-        <img id="svgChapter2" src="assets/svg/chapter2.svg"></img>
+        <img id="svgChapter2" src="/assets/svg/chapter2.svg"></img>
         <h1>Bildaufbereitung</h1>
         <span>Transformation in geeigneteres Farbsystem YCC.<br> Unterabtastung der Farbwerte. Blockbildung.</span>
       </div>
       <div id="jpeg_selectChapter3div">
-        <img id="svgChapter3" src="assets/svg/chapter3.svg"></img>
+        <img id="svgChapter3" src="/assets/svg/chapter3.svg"></img>
         <h1>Diskrete Cosinus-Transformation</h1>
         <span>Bestimmen des Farbgrundwerts in einem Block<br> und der Abweichungen von diesem.</span>
       </div>
       <div id="jpeg_selectChapter4div">
-        <img id="svgChapter4" src="assets/svg/chapter4.svg"></img>
+        <img id="svgChapter4" src="/assets/svg/chapter4.svg"></img>
         <h1>Quantisierung</h1>
         <span>Entfernen der irrelevanten Informationen durch<br> Stufenbildung im Wertebereich (verlustbehaftet).</span>
       </div>
       <div id="jpeg_selectChapter5div">
-        <img id="svgChapter5" src="assets/svg/chapter5.svg"></img>
+        <img id="svgChapter5" src="/assets/svg/chapter5.svg"></img>
         <h1>Entropiekodierung</h1>
         <span>Redundanzreduktion: effizientere Speicherung<br> durch Entfernen von überflüssigen Daten.</span>
       </div>
@@ -58,7 +60,7 @@
         <p>Das Bild unten soll in der ganzen Lernanwendung als Beispiel dienen. Es gibt zwei Ausschnitte, die verschiedene Typen von Bildern symbolisieren. Sie können in jedem Abschnitt, wo dies sinnvoll ist, mit dem Bild-Button (rechts unten) ausgewählt und umgeschaltet werden.</p>
 
         <div>
-          <img src="assets/images/main_image.png" />
+          <img src="/assets/images/main_image.png" />
           <h1>Ausschnitt 1</h1>
           <p>Natürlichfarbiges Bild mit Farbverläufen und Kanten (standardmäßig ausgewählt)</p>
           <h1>Ausschnitt 2</h1>
@@ -69,13 +71,13 @@
       <div id="jpeg_chapter1_section2" style="display: none;">
         <p>Grundlegendes Ziel von JPEG ist die <b>Kompression</b>, das heißt die Verringerung des Speicherplatzbedarfs. Das soll dadurch erreicht werden, dass irrelevante Daten weggelassen werden. </p>
         <p>Irrelevant sind solche Daten, die vom menschlichen Auge ohnehin nicht wahrgenommen werden bzw. für das Erscheinungsbild nicht so bedeutsam sind. Dieses Vorgehen bezeichnet man daher als <b>Irrelevanzreduktion</b>: Man möchte mit weniger Informationen den gleichen oder einen genügend ähnlichen visuellen Eindruck erzielen (zum Vergleich die zwei Bilder). </p>
-        <div>
+        <div class="my-3">
           <figure>
-            <img src="assets/images/main_image.png" />
+            <img src="/assets/images/main_image.png" />
             <figcaption>unkomprimiertes Bild (82 kB)</figcaption>
           </figure>
           <figure>
-            <img src="assets/images/main_image.png" />
+            <img src="/assets/images/main_image.png" />
             <figcaption>komprimiertes Bild (59 kB)</figcaption>
           </figure>
         </div>
@@ -85,10 +87,8 @@
       <div id="jpeg_chapter1_section3" style="display: none;">
         <p>Beim JPEG-Verfahren wird folgende Erkenntnis aus der Wahrnehmungspsychologie ausgenutzt: <b>das menschliche Auge ist für Helligkeitsunterschiede sensibler als für Farbunterschiede.</b></p>
         <p>Das kann hier ausprobiert werden:</p>
-        <div>
-          <div>
-            <img id="image_manipulation_example" src="assets/images/main_image.png" />
-          </div>
+        <div class="mb-5 clearfix">
+          <img id="image_manipulation_example" src="/assets/images/main_image.png" />
           <div class="image_manipulation_div">
             <div class="image_manipulation_selection">
               <div>
@@ -115,22 +115,22 @@
       <div id="jpeg_chapter1_section4" style="display: none;">
         <p>Das JPEG-Verfahren ist <b>in vier Phasen gegliedert</b>, in denen man dem Ziel der Irrelevanzreduktion schrittweise näher kommt:</p>
         <div>
-          <img src="assets/svg/chapter2.svg"/>
+          <img src="/assets/svg/chapter2.svg"/>
           <h1>1. Bildaufbereitung</h1>
           <p>Zunächst erfolgt die Umwandlung in ein zweckmäßigeres Farbsystem, dann die Unterabtastung der Farbwerte und die Blockbildung</p>
         </div>
         <div>
-          <img src="assets/svg/chapter3.svg"/>
+          <img src="/assets/svg/chapter3.svg"/>
           <h1>2. Diskrete Cosinus-Transformation</h1>
           <p>Diese Phase dient dazu, den Farbgrundwert innerhalb eines Blockes zu bestimmen und die Abweichungen von diesem.</p>
         </div>
         <div>
-          <img src="assets/svg/chapter4.svg"/>
+          <img src="/assets/svg/chapter4.svg"/>
           <h1>3. Quantisierung</h1>
           <p>In diesem Schritt werden die irrelevanten Informationen entfernt und gehen damit unwiederderbringlich verloren.</p>
         </div>
         <div>
-          <img src="assets/svg/chapter5.svg"/>
+          <img src="/assets/svg/chapter5.svg"/>
           <h1>4. Entropiekodierung</h1>
           <p>Zuletzt werden die übrigen Daten effizienter gespeichert, indem redundante, d.h. mehrfach auftretende, Informationen entfernt werden.</p>
         </div>
@@ -171,8 +171,8 @@
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
               <p>R</p>
               <div>
-                <img id="jpeg_chapter2_2_image_R_1" src="assets/images/2_2/redImg.png"/>
-                <img id="jpeg_chapter2_2_image_R_2" src="assets/images/2_2/red.png"/>
+                <img id="jpeg_chapter2_2_image_R_1" src="/assets/images/2_2/redImg.png"/>
+                <img id="jpeg_chapter2_2_image_R_2" src="/assets/images/2_2/red.png"/>
               </div>
               <svg>
                 <defs>
@@ -188,8 +188,8 @@
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
               <p>G</p>
               <div>
-                <img id="jpeg_chapter2_2_image_G_1" src="assets/images/2_2/greenImg.png"/>
-                <img id="jpeg_chapter2_2_image_G_2" src="assets/images/2_2/green.png"/>
+                <img id="jpeg_chapter2_2_image_G_1" src="/assets/images/2_2/greenImg.png"/>
+                <img id="jpeg_chapter2_2_image_G_2" src="/assets/images/2_2/green.png"/>
               </div>
               <svg >
                 <defs>
@@ -205,8 +205,8 @@
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
               <p>B</p>
               <div>
-                <img  id="jpeg_chapter2_2_image_B_1" src="assets/images/2_2/blueImg.png"/>
-                <img  id="jpeg_chapter2_2_image_B_2" src="assets/images/2_2/blue.png"/>
+                <img  id="jpeg_chapter2_2_image_B_1" src="/assets/images/2_2/blueImg.png"/>
+                <img  id="jpeg_chapter2_2_image_B_2" src="/assets/images/2_2/blue.png"/>
               </div>
               <svg >
                 <defs>
@@ -228,8 +228,8 @@
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
               <p>Y</p>
               <div>
-                <img id="jpeg_chapter2_2_image_Y_1" src="assets/images/YImg.png"/>
-                <img id="jpeg_chapter2_2_image_Y_2" src="assets/images/2_2/y.png"/>
+                <img id="jpeg_chapter2_2_image_Y_1" src="/assets/images/YImg.png"/>
+                <img id="jpeg_chapter2_2_image_Y_2" src="/assets/images/2_2/y.png"/>
               </div>
               <svg >
                 <defs>
@@ -245,8 +245,8 @@
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
               <p>Cb</p>
               <div>
-                <img id="jpeg_chapter2_2_image_Cb_1" src="assets/images/CbImg.png"/>
-                <img id="jpeg_chapter2_2_image_Cb_2" src="assets/images/2_2/cb.png"/>
+                <img id="jpeg_chapter2_2_image_Cb_1" src="/assets/images/CbImg.png"/>
+                <img id="jpeg_chapter2_2_image_Cb_2" src="/assets/images/2_2/cb.png"/>
               </div>
               <svg >
                 <defs>
@@ -262,8 +262,8 @@
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
               <p>Cr</p>
               <div>
-                <img id="jpeg_chapter2_2_image_Cr_1" src="assets/images/CrImg.png"/>
-                <img id="jpeg_chapter2_2_image_Cr_2" src="assets/images/2_2/cr.png"/>
+                <img id="jpeg_chapter2_2_image_Cr_1" src="/assets/images/CrImg.png"/>
+                <img id="jpeg_chapter2_2_image_Cr_2" src="/assets/images/2_2/cr.png"/>
               </div>
               <svg >
                 <defs>
@@ -673,31 +673,31 @@
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
               <p>Y</p>
               <div>
-                <img id="jpeg_chapter2_4_image_Y1_1" src="assets/images/YImg.png"/>
-                <img id="jpeg_chapter2_4_image_Y1_2" src="assets/images/2_2/y.png"/>
+                <img id="jpeg_chapter2_4_image_Y1_1" src="/assets/images/YImg.png"/>
+                <img id="jpeg_chapter2_4_image_Y1_2" src="/assets/images/2_2/y.png"/>
               </div>
             </div>
             <!-- image 2 -->
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
               <p>Cb</p>
               <div>
-                <img id="jpeg_chapter2_4_image_Cb1_1" src="assets/images/CbImg.png"/>
-                <img id="jpeg_chapter2_4_image_Cb1_2" src="assets/images/2_2/cb.png"/>
+                <img id="jpeg_chapter2_4_image_Cb1_1" src="/assets/images/CbImg.png"/>
+                <img id="jpeg_chapter2_4_image_Cb1_2" src="/assets/images/2_2/cb.png"/>
               </div>
             </div>
             <!-- image 3 -->
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
               <p>Cr</p>
               <div>
-                <img id="jpeg_chapter2_4_image_Cr1_1" src="assets/images/CrImg.png"/>
-                <img id="jpeg_chapter2_4_image_Cr1_2" src="assets/images/2_2/cr.png"/>
+                <img id="jpeg_chapter2_4_image_Cr1_1" src="/assets/images/CrImg.png"/>
+                <img id="jpeg_chapter2_4_image_Cr1_2" src="/assets/images/2_2/cr.png"/>
               </div>
             </div>
           </div>
           <!-- arrow image -->
           <div>
             <figure>
-              <!--<img id="jpeg_chapter2_4_arrow" src="assets/arrow2_2.png" class="arrow2_4"/>-->
+              <!--<img id="jpeg_chapter2_4_arrow" src="/assets/arrow2_2.png" class="arrow2_4"/>-->
               <span class="jpeg_chapter2_arrow">&rarr;</span>
               <figcaption>Interval - 128</figcaption>
             </figure>
@@ -707,24 +707,24 @@
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
               <p>Y</p>
               <div>
-                <img id="jpeg_chapter2_4_image_Y2_1" src="assets/images/YImg.png"/>
-                <img id="jpeg_chapter2_4_image_Y2_2" src="assets/images/2_2/y.png"/>
+                <img id="jpeg_chapter2_4_image_Y2_1" src="/assets/images/YImg.png"/>
+                <img id="jpeg_chapter2_4_image_Y2_2" src="/assets/images/2_2/y.png"/>
               </div>
             </div>
             <!-- image 2 -->
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
               <p>Cb</p>
               <div>
-                <img id="jpeg_chapter2_4_image_Cb2_1" src="assets/images/CbImg.png"/>
-                <img id="jpeg_chapter2_4_image_Cb2_2" src="assets/images/2_2/cb.png"/>
+                <img id="jpeg_chapter2_4_image_Cb2_1" src="/assets/images/CbImg.png"/>
+                <img id="jpeg_chapter2_4_image_Cb2_2" src="/assets/images/2_2/cb.png"/>
               </div>
             </div>
             <!-- image 3 -->
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
               <p>Cr</p>
               <div>
-                <img id="jpeg_chapter2_4_image_Cr2_1" src="assets/images/CrImg.png"/>
-                <img id="jpeg_chapter2_4_image_Cr2_2" src="assets/images/2_2/cr.png"/>
+                <img id="jpeg_chapter2_4_image_Cr2_1" src="/assets/images/CrImg.png"/>
+                <img id="jpeg_chapter2_4_image_Cr2_2" src="/assets/images/2_2/cr.png"/>
               </div>
             </div>
 
@@ -869,24 +869,24 @@
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
               <p>Y</p>
               <div>
-                <img id="jpeg_chapter2_5_image_Y1_1" src="assets/images/YImg.png"/>
-                <img id="jpeg_chapter2_5_image_Y1_2" src="assets/images/2_2/y.png"/>
+                <img id="jpeg_chapter2_5_image_Y1_1" src="/assets/images/YImg.png"/>
+                <img id="jpeg_chapter2_5_image_Y1_2" src="/assets/images/2_2/y.png"/>
               </div>
             </div>
             <!-- image 2 -->
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
               <p>Cb</p>
               <div>
-                <img id="jpeg_chapter2_5_image_Cb1_1" src="assets/images/CbImg.png"/>
-                <img id="jpeg_chapter2_5_image_Cb1_2" src="assets/images/2_2/cb.png"/>
+                <img id="jpeg_chapter2_5_image_Cb1_1" src="/assets/images/CbImg.png"/>
+                <img id="jpeg_chapter2_5_image_Cb1_2" src="/assets/images/2_2/cb.png"/>
               </div>
             </div>
             <!-- image 3 -->
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
               <p>Cr</p>
               <div>
-                <img id="jpeg_chapter2_5_image_Cr1_1" src="assets/images/CrImg.png"/>
-                <img id="jpeg_chapter2_5_image_Cr1_2" src="assets/images/2_2/cr.png"/>
+                <img id="jpeg_chapter2_5_image_Cr1_1" src="/assets/images/CrImg.png"/>
+                <img id="jpeg_chapter2_5_image_Cr1_2" src="/assets/images/2_2/cr.png"/>
               </div>
             </div>
           </div>
@@ -902,24 +902,24 @@
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_top">
               <p>Y</p>
               <div>
-                <img id="jpeg_chapter2_5_image_Y2_1" src="assets/images/2_5/blockY.png"/>
-                <img id="jpeg_chapter2_5_image_Y2_2" src="assets/images/2_5/y.png"/>
+                <img id="jpeg_chapter2_5_image_Y2_1" src="/assets/images/2_5/blockY.png"/>
+                <img id="jpeg_chapter2_5_image_Y2_2" src="/assets/images/2_5/y.png"/>
               </div>
             </div>
             <!-- image 2 -->
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_middle">
               <p>Cb</p>
               <div>
-                <img id="jpeg_chapter2_5_image_Cb2_1" src="assets/images/2_5/blockCb.png"/>
-                <img id="jpeg_chapter2_5_image_Cb2_2" src="assets/images/2_5/cb.png"/>
+                <img id="jpeg_chapter2_5_image_Cb2_1" src="/assets/images/2_5/blockCb.png"/>
+                <img id="jpeg_chapter2_5_image_Cb2_2" src="/assets/images/2_5/cb.png"/>
               </div>
             </div>
             <!-- image 3 -->
             <div class="jpeg_chapter2_image_wrapper jpeg_chapter2_image_wrapper_bottom">
               <p>Cr</p>
               <div>
-                <img id="jpeg_chapter2_5_image_Cr2_1" src="assets/images/2_5/blockCr.png"/>
-                <img id="jpeg_chapter2_5_image_Cr2_2" src="assets/images/2_5/cr.png"/>
+                <img id="jpeg_chapter2_5_image_Cr2_1" src="/assets/images/2_5/blockCr.png"/>
+                <img id="jpeg_chapter2_5_image_Cr2_2" src="/assets/images/2_5/cr.png"/>
               </div>
             </div>
           </div>
@@ -1198,13 +1198,13 @@
         <div style="width:8em;position:relative;top:-14em;left:16em;" align="center">
           <p>3D-Darstellung der Basisfunktion:</p>
           <!--only images, no svg-->
-          <img src="assets/images/3_5/no_function.png" width="128em" height="128em" id="jpeg_chapter3_no_function_image" class="jpeg_chapter3_basis_function_image" />
-          <img src="assets/images/3_5/function0.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image0" class="jpeg_chapter3_basis_function_image" hidden />
-          <img src="assets/images/3_5/function1.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image1" class="jpeg_chapter3_basis_function_image" hidden />
-          <img src="assets/images/3_5/function2.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image2" class="jpeg_chapter3_basis_function_image" hidden />
-          <img src="assets/images/3_5/function3.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image3" class="jpeg_chapter3_basis_function_image" hidden />
-          <img src="assets/images/3_5/function4.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image4" class="jpeg_chapter3_basis_function_image" hidden />
-          <img src="assets/images/3_5/function5.png" width="128em" height="128em" id="jpeg_chapter3_basis_function_image5" class="jpeg_chapter3_basis_function_image" hidden />
+          <img src="/assets/images/3_5/no_function.PNG" width="128em" height="128em" id="jpeg_chapter3_no_function_image" class="jpeg_chapter3_basis_function_image" />
+          <img src="/assets/images/3_5/function0.PNG" width="128em" height="128em" id="jpeg_chapter3_basis_function_image0" class="jpeg_chapter3_basis_function_image" hidden />
+          <img src="/assets/images/3_5/function1.PNG" width="128em" height="128em" id="jpeg_chapter3_basis_function_image1" class="jpeg_chapter3_basis_function_image" hidden />
+          <img src="/assets/images/3_5/function2.PNG" width="128em" height="128em" id="jpeg_chapter3_basis_function_image2" class="jpeg_chapter3_basis_function_image" hidden />
+          <img src="/assets/images/3_5/function3.PNG" width="128em" height="128em" id="jpeg_chapter3_basis_function_image3" class="jpeg_chapter3_basis_function_image" hidden />
+          <img src="/assets/images/3_5/function4.PNG" width="128em" height="128em" id="jpeg_chapter3_basis_function_image4" class="jpeg_chapter3_basis_function_image" hidden />
+          <img src="/assets/images/3_5/function5.PNG" width="128em" height="128em" id="jpeg_chapter3_basis_function_image5" class="jpeg_chapter3_basis_function_image" hidden />
         </div>
         <table style="position:relative;top:-15em;">
           <tr>
@@ -1375,7 +1375,7 @@
                 <td>1.0</td><td>1.8</td><td>0.5</td>
               </tr>
             </table>
-            <img class="jpeg_chapter4_exampleTable" src="assets/images/4_2/svg0.JPG">
+            <img class="jpeg_chapter4_exampleTable" src="/assets/images/4_2/svg0.JPG">
           </div>
           <div>
             <p>Werte nach Quantisierung:</p>
@@ -1451,16 +1451,16 @@
             </table>
             <div>
               <div>
-                <img id="jpeg_chapter4_image_example_table0" class="jpeg_chapter4_image_example_table" src="assets/images/4_2/svg1.JPG">
+                <img id="jpeg_chapter4_image_example_table0" class="jpeg_chapter4_image_example_table" src="/assets/images/4_2/svg1.JPG">
               </div>
               <div>
-                <img id="jpeg_chapter4_image_example_table1" class="jpeg_chapter4_image_example_table" src="assets/images/4_2/svg2.JPG">
+                <img id="jpeg_chapter4_image_example_table1" class="jpeg_chapter4_image_example_table" src="/assets/images/4_2/svg2.JPG">
               </div>
               <div>
-                <img id="jpeg_chapter4_image_example_table2" class="jpeg_chapter4_image_example_table" src="assets/images/4_2/svg3.JPG">
+                <img id="jpeg_chapter4_image_example_table2" class="jpeg_chapter4_image_example_table" src="/assets/images/4_2/svg3.JPG">
               </div>
               <div>
-                <img id="jpeg_chapter4_image_example_table4" class="jpeg_chapter4_image_example_table" src="assets/images/4_2/svg4.JPG">
+                <img id="jpeg_chapter4_image_example_table4" class="jpeg_chapter4_image_example_table" src="/assets/images/4_2/svg4.JPG">
               </div>
             </div>
           </div>
@@ -1627,18 +1627,18 @@
             <span>Ebene wählen:</span>
             <b>Y</b>
             <button id="jpeg_chapter4_5_button_channel_Y" class="jpeg_chapter4_buttonChannel">
-              <img id="jpeg_chapter4_5_button_channel_Y_image1" src="assets/images/YImg.png"></img>
-              <img id="jpeg_chapter4_5_button_channel_Y_image2" src="assets/images/2_2/y.png"></img>
+              <img id="jpeg_chapter4_5_button_channel_Y_image1" src="/assets/images/YImg.png"></img>
+              <img id="jpeg_chapter4_5_button_channel_Y_image2" src="/assets/images/2_2/y.png"></img>
             </button>
             <b>Cb</b>
             <button id="jpeg_chapter4_5_button_channel_Cb" class="jpeg_chapter4_buttonChannel">
-              <img id="jpeg_chapter4_5_button_channel_Cb_image1" src="assets/images/CbImg.png"></img>
-              <img id="jpeg_chapter4_5_button_channel_Cb_image2" src="assets/images/2_2/cb.png"></img>
+              <img id="jpeg_chapter4_5_button_channel_Cb_image1" src="/assets/images/CbImg.png"></img>
+              <img id="jpeg_chapter4_5_button_channel_Cb_image2" src="/assets/images/2_2/cb.png"></img>
             </button>
             <b>Cr</b>
             <button id="jpeg_chapter4_5_button_channel_Cr">
-              <img id="jpeg_chapter4_5_button_channel_Cr_image1" src="assets/images/CrImg.png"></img>
-              <img id="jpeg_chapter4_5_button_channel_Cr_image2" src="assets/images/2_2/cr.png"></img>
+              <img id="jpeg_chapter4_5_button_channel_Cr_image1" src="/assets/images/CrImg.png"></img>
+              <img id="jpeg_chapter4_5_button_channel_Cr_image2" src="/assets/images/2_2/cr.png"></img>
             </button>
           </div>
           <div class="jpeg_chapter4_5_button_wrapper" class="jpeg_chapter4_buttonChannel">
@@ -2598,18 +2598,18 @@
           <span>Ebene wählen:</span>
           <span>Y</span>
           <button id="jpeg_chapter5_6_button_channel_Y">
-            <img id="jpeg_chapter5_6_button_channel_Y_image1" src="assets/images/YImg.png"></img>
-            <img id="jpeg_chapter5_6_button_channel_Y_image2" src="assets/images/2_2/y.png"></img>
+            <img id="jpeg_chapter5_6_button_channel_Y_image1" src="/assets/images/YImg.png"></img>
+            <img id="jpeg_chapter5_6_button_channel_Y_image2" src="/assets/images/2_2/y.png"></img>
           </button>
           <span>Cb</span>
           <button id="jpeg_chapter5_6_button_channel_Cb">
-            <img id="jpeg_chapter5_6_button_channel_Cb_image1" src="assets/images/CbImg.png"></img>
-            <img id="jpeg_chapter5_6_button_channel_Cb_image2" src="assets/images/2_2/cb.png"></img>
+            <img id="jpeg_chapter5_6_button_channel_Cb_image1" src="/assets/images/CbImg.png"></img>
+            <img id="jpeg_chapter5_6_button_channel_Cb_image2" src="/assets/images/2_2/cb.png"></img>
           </button>
           <span>Cr</span>
           <button id="jpeg_chapter5_6_button_channel_Cr">
-            <img id="jpeg_chapter5_6_button_channel_Cr_image1" src="assets/images/CrImg.png"></img>
-            <img id="jpeg_chapter5_6_button_channel_Cr_image2" src="assets/images/2_2/cr.png"></img>
+            <img id="jpeg_chapter5_6_button_channel_Cr_image1" src="/assets/images/CrImg.png"></img>
+            <img id="jpeg_chapter5_6_button_channel_Cr_image2" src="/assets/images/2_2/cr.png"></img>
           </button>
 
           <span>Qualitätsfaktor wählen:</span>
@@ -2651,17 +2651,17 @@
           <div>
             <div>
               <p>Originalbild: <span id="jpeg_chapter5_original_size"> kB</span></p>
-              <img id="jpeg_chapter5_6_original_image_1" src="assets/images/5_6/original_1.png">
-              <img id="jpeg_chapter5_6_original_image_2" src="assets/images/5_6/original_2.png">
+              <img id="jpeg_chapter5_6_original_image_1" src="/assets/images/5_6/original_1.png">
+              <img id="jpeg_chapter5_6_original_image_2" src="/assets/images/5_6/original_2.png">
             </div>
             <div>
               <p>Komprimiertes Bild: <span id="jpeg_chapter5_compressed_size"></span> kB</p>
-              <img id="jpeg_chapter5_6_compressed_image_1_25" src="assets/images/5_6/compressed_25_1.png">
-              <img id="jpeg_chapter5_6_compressed_image_2_25" src="assets/images/5_6/compressed_25_2.png">
-              <img id="jpeg_chapter5_6_compressed_image_1_50" src="assets/images/5_6/compressed_50_1.png">
-              <img id="jpeg_chapter5_6_compressed_image_2_50" src="assets/images/5_6/compressed_50_2.png">
-              <img id="jpeg_chapter5_6_compressed_image_1_75" src="assets/images/5_6/compressed_75_1.png">
-              <img id="jpeg_chapter5_6_compressed_image_2_75" src="assets/images/5_6/compressed_75_2.png">
+              <img id="jpeg_chapter5_6_compressed_image_1_25" src="/assets/images/5_6/compressed_25_1.png">
+              <img id="jpeg_chapter5_6_compressed_image_2_25" src="/assets/images/5_6/compressed_25_2.png">
+              <img id="jpeg_chapter5_6_compressed_image_1_50" src="/assets/images/5_6/compressed_50_1.png">
+              <img id="jpeg_chapter5_6_compressed_image_2_50" src="/assets/images/5_6/compressed_50_2.png">
+              <img id="jpeg_chapter5_6_compressed_image_1_75" src="/assets/images/5_6/compressed_75_1.png">
+              <img id="jpeg_chapter5_6_compressed_image_2_75" src="/assets/images/5_6/compressed_75_2.png">
             </div>
           </div>
         </div>
@@ -2676,7 +2676,7 @@
     <div id="jpeg_image_section_selection" style="display: none;">
       <span>Auswahl Bildausschnitt</span>
       <div>
-        <img src="assets/images/main_image.png" width="" height="80px"/>
+        <img src="/assets/images/main_image.png" width="" height="80px"/>
         <button id="jpeg_buttonImageSectionSelection1">1</button>
         <button id="jpeg_buttonImageSectionSelection2">2</button>
       </div>

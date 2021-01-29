@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	var chapters = [jpeg_chapter1, jpeg_chapter2, jpeg_chapter3, jpeg_chapter4, jpeg_chapter5];
 	const sectionButtons = [buttonShowSection1, buttonShowSection2, buttonShowSection3, buttonShowSection4, buttonShowSection5, buttonShowSection6, buttonShowSection7];
 	const chapterButtons = [jpeg_selectChapter1div, jpeg_selectChapter2div, jpeg_selectChapter3div, jpeg_selectChapter4div, jpeg_selectChapter5div];
-	
+
 	jpeg_chapter2.style.display = "none";
 	jpeg_chapter3.style.display = "none";
 	jpeg_chapter4.style.display = "none";
@@ -20,22 +20,22 @@ document.addEventListener("DOMContentLoaded", function() {
 	buttonSectionSelectionRight.onclick = buttonPressRight;
 
 	jpeg_selectChapter1div.className = "selected";
-	
+
 	jpeg_buttonImageSectionSelection1.disabled = true;
 	jpeg_buttonImageSectionSelection1.className = "selected";
-	
+
 	jpeg_image_section_selection.style.display = "none";
-	
+
 	jpeg_buttonShowImageSectionSelection.onclick = function() {
 		jpeg_buttonShowImageSectionSelection.style.display = "none";
 		jpeg_image_section_selection.style.display = "";
 	}
-	
+
 	jpeg_buttonHideImageSectionSelection.onclick = function() {
 		jpeg_image_section_selection.style.display = "none";
 		jpeg_buttonShowImageSectionSelection.style.display = "";
 	}
-	
+
 	jpeg_buttonImageSectionSelection1.onclick = selectImage1 = function() {
 		this.disabled = true;
 		jpeg_buttonImageSectionSelection2.disabled = false;
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		jpeg_buttonImageSectionSelection2.className = "";
 		current_image_section = 1;
 	}
-	
+
 	jpeg_buttonImageSectionSelection2.onclick = selectImage2 = function() {
 		this.disabled = true;
 		jpeg_buttonImageSectionSelection1.disabled = false;
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		jpeg_buttonImageSectionSelection1.className = "";
 		current_image_section = 2;
 	}
-	
+
 	jpeg_selectChapter1div.onclick = function() {
 		jpeg_image_section_selection.style.display = "none";
 		jpeg_buttonShowImageSectionSelection.style.display = "";
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		showChapter();
 		updateSectionButtons();
 	}
-	
+
 	jpeg_selectChapter2div.onclick = function() {
 		jpeg_image_section_selection.style.display = "none";
 		jpeg_buttonShowImageSectionSelection.style.display = "";
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		showChapter();
 		updateSectionButtons();
 	}
-	
+
 	jpeg_selectChapter3div.onclick = function() {
 		jpeg_image_section_selection.style.display = "none";
 		jpeg_buttonShowImageSectionSelection.style.display = "";
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		showChapter();
 		updateSectionButtons();
 	}
-	
+
 	jpeg_selectChapter4div.onclick = function() {
 		jpeg_image_section_selection.style.display = "none";
 		jpeg_buttonShowImageSectionSelection.style.display = "";
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		showChapter();
 		updateSectionButtons();
 	}
-	
+
 	jpeg_selectChapter5div.onclick = function() {
 		jpeg_image_section_selection.style.display = "none";
 		jpeg_buttonShowImageSectionSelection.style.display = "";
@@ -126,16 +126,16 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		}
 	}
-	
+
 	var selected = jpeg_selectChapter1div;
-	
+
 	jpeg_selectChapter1div.onmouseover = jpeg_selectChapter2div.onmouseover = jpeg_selectChapter3div.onmouseover = jpeg_selectChapter4div.onmouseover = jpeg_selectChapter5div.onmouseover = function() {
 		if(this != selected) {
 			this.className = "selected";
 			selected.className = "";
 		}
 	}
-	
+
 	jpeg_selectChapter1div.onmouseout = jpeg_selectChapter2div.onmouseout = jpeg_selectChapter3div.onmouseout = jpeg_selectChapter4div.onmouseout = jpeg_selectChapter5div.onmouseout = function() {
 		if(this != selected) {
 			this.className = "";
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function updateButtonStates() {
-			
+
 		if(current_section == 1) {
 			buttonSectionSelectionLeft.disabled = true;
 			buttonSectionSelectionRight.disabled = false;
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		currentChapter.showSection1();
 		updateButtonStates();
 	}
-	
+
 	buttonShowSection2.onclick = function() {
 		jpeg_image_section_selection.style.display = "none";
 		jpeg_buttonShowImageSectionSelection.style.display = "";
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		currentChapter.showSection2();
 		updateButtonStates();
 	}
-	
+
 	buttonShowSection3.onclick = function() {
 		jpeg_image_section_selection.style.display = "none";
 		jpeg_buttonShowImageSectionSelection.style.display = "";
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		currentChapter.showSection3();
 		updateButtonStates();
 	}
-	
+
 	buttonShowSection4.onclick = function() {
 		jpeg_image_section_selection.style.display = "none";
 		jpeg_buttonShowImageSectionSelection.style.display = "";
@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function showChapter() {
-		
+
 		for(var i = 0; i < chapters.length; i++) {
 			if(i != (current_chapter - 1)) {
 				chapters[i].style.display = "none";
@@ -237,6 +237,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function showSection() {
+		jpeg_image_section_selection.style.display = "none";
+		jpeg_buttonShowImageSectionSelection.style.display = "";
 		switch (current_section) {
 			case 1: currentChapter.showSection1();
 				break;
@@ -246,22 +248,26 @@ document.addEventListener("DOMContentLoaded", function() {
 				break;
 			case 4: currentChapter.showSection4();
 				break;
+			case 5: currentChapter.showSection5();
+				break;
+			case 6: currentChapter.showSection6();
+				break;
+			case 7: currentChapter.showSection7();
+				break;
 			default: currentChapter.showSection1();
 				break;
 		}
 	}
-	
+
 	function buttonPressLeft() {
-		
 		if(current_section > 1) {
 			current_section -= 1;
 		}
 		updateButtonStates();
 		showSection();
 	}
-	
+
 	function buttonPressRight() {
-		
 		if(current_section < num_sections) {
 			current_section += 1;
 		}
@@ -272,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// ========== chapter1 ========== //
 	showChapter1 = function() {
-		
+
 		num_sections = 4;
 		const current_section_headings = ["1.1 Bedienungsanleitung",
 										"1.2 Ziel - Was soll mit JPEG erreicht werden?",
@@ -287,59 +293,59 @@ document.addEventListener("DOMContentLoaded", function() {
 					document.getElementById("jpeg_chapter1_section" + i).style.display = "";
 				}
 			}
-		};	
-		
+		};
+
 		function showSection1() {
 
 			jpeg_buttonShowImageSectionSelection.disabled = false;
 			current_section_heading.innerHTML = "1.1 Bedienungsanleitung";
 			showSection(1);
-			
+
 		}
-		
+
 		function showSection2() {
-			
+
 			jpeg_buttonShowImageSectionSelection.disabled = true;
 			current_section_heading.innerHTML = "1.2 Ziel - Was soll mit JPEG erreicht werden?";
 			showSection(2);
-			
+
 		}
-		
+
 		function showSection3() {
-			
+
 			jpeg_buttonShowImageSectionSelection.disabled = true;
 			current_section_heading.innerHTML = "1.3 Psychologische Grundlagen - Wie soll das Ziel von JPEG erreicht werden?";
 			jpeg_radioButtonOriginalImage.checked = true;
 			showSection(3);
-			
+
 			jpeg_radioButtonOriginalImage.onchange = function() {
-				
+
 				image_manipulation_example.className = "";
 				image_manipulation_explanation.innerHTML = "";
 			}
-			
+
 			jpeg_radioButtonColorChanged.onchange = function() {
-				
+
 				image_manipulation_example.className = "filter_color";
 				image_manipulation_explanation.innerHTML = "Die Farbe ändert sich zwar leicht, aber der Gesamteindruck bleibt.";
 			}
-			
+
 			jpeg_radioButtonBrightnessChanged.onchange = function() {
-				
+
 				image_manipulation_example.className = "filter_brightness";
 				image_manipulation_explanation.innerHTML = "Die Helligkeit ändert sich leicht, plötzlich sieht es aus wie Abend.";
 			}
-			
+
 		}
-		
+
 		function showSection4() {
-			
+
 			jpeg_buttonShowImageSectionSelection.disabled = true;
 			current_section_heading.innerHTML = "1.4  Ablauf - Womit soll das Ziel von JPEG erreicht werden?";
-			showSection(4);			
-			
+			showSection(4);
+
 		}
-		
+
 		return {
 			showSection1: showSection1,
 			showSection2: showSection2,
@@ -407,7 +413,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			153,157,165,174,187,193,201,207,214,215,217,223,231,233,235,247,
 			105,121,134,143,156,166,178,182,186,192,193,200,210,212,210,214,
 			166,178,192,199,206,210,218,230,231,235,230,224,230,230,228,226]
-		
+
 		var matrix_2_2_G_1 = [
 			71,73,76,86,86,92,97,100,98,99,103,106,111,107,159,215,
 			73,69,74,86,87,93,96,102,102,104,105,105,111,113,112,178,
@@ -425,7 +431,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			78,78,87,90,98,102,106,110,114,117,122,119,116,113,119,126,
 			58,67,76,82,88,97,103,105,108,118,121,126,129,134,141,144,
 			133,139,146,156,162,169,167,177,180,171,168,166,165,168,161,0]
-		
+
 		var matrix_2_2_B_1 = [
 			38,40,45,52,49,55,60,61,61,63,64,66,73,73,149,221,
 			40,38,44,47,50,56,56,61,66,65,62,68,74,74,74,171,
@@ -443,7 +449,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			48,50,55,54,57,60,67,75,81,77,81,76,71,78,85,93,
 			23,33,41,40,40,46,52,52,56,61,81,67,68,78,86,94,
 			108,111,119,128,125,129,128,133,132,127,116,113,107,99,92,0]
-		
+
 		var matrix_2_2_Y_1 = [
 			100,103,108,119,119,126,130,134,134,134,137,140,146,145,179,214,
 			104,100,106,120,121,127,129,135,136,138,141,142,147,148,145,191,
@@ -461,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			97,98,106,111,119,124,129,135,140,141,145,145,145,144,149,158,
 			68,79,89,95,102,111,119,121,125,133,135,141,146,150,155,159,
 			140,147,156,165,170,176,177,187,189,188,180,177,177,178,173,173]
-		
+
 		var matrix_2_2_Cb_1 = [
 			93,93,93,90,89,88,89,87,87,88,87,87,87,88,111,131,
 			92,93,93,87,88,88,87,86,89,87,84,87,87,86,88,117,
@@ -479,7 +485,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			101,101,99,96,93,92,93,95,95,92,92,89,87,91,92,92,
 			103,102,101,97,93,91,90,89,89,88,86,87,84,87,89,92,
 			110,108,107,106,103,102,100,98,96,94,92,92,89,84,83,84]
-		
+
 		var matrix_2_2_Cr_1 = [
 			185,187,190,193,193,195,193,195,198,197,196,195,197,201,165,126,
 			189,188,190,195,195,195,194,195,195,196,199,200,198,198,193,152,
@@ -497,7 +503,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			167,169,169,172,175,176,178,179,180,180,178,183,189,190,188,191,
 			154,157,159,161,165,166,169,170,171,169,168,169,173,171,166,167,
 			146,149,153,152,153,151,156,158,157,161,163,161,165,164,167,165]
-		
+
 		var matrix_2_2_R_2 = [
 			247,245,245,245,247,248,247,248,247,248,245,244,120,106,246,247,
 			93,86,78,76,73,72,69,149,245,150,62,60,2,89,247,245,
@@ -514,8 +520,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			11,10,10,10,9,8,10,141,245,186,31,9,0,89,245,245,
 			209,197,198,198,200,198,197,228,232,235,205,177,13,76,245,248,
 			245,245,245,244,246,246,245,245,245,248,245,245,69,73,247,245,
-			244,245,245,247,247,247,247,245,247,248,246,245,222,174,243,248] 
-		
+			244,245,245,247,247,247,247,245,247,248,246,245,222,174,243,248]
+
 		var matrix_2_2_G_2 = [
 			243,243,243,243,243,243,242,242,242,243,242,244,120,106,244,242,
 			91,86,78,74,71,72,69,69,245,149,62,58,2,87,242,243,
@@ -533,7 +539,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			209,197,198,198,200,198,197,197,234,236,207,177,13,76,243,242,
 			243,243,243,242,244,244,243,243,243,244,243,243,69,73,242,243,
 			242,243,243,242,242,242,242,242,242,243,244,243,220,176,242,0]
-		
+
 		var matrix_2_2_B_2 = [
 			218,220,222,220,218,223,220,223,220,221,223,218,118,108,221,220,
 			92,86,78,77,72,74,71,145,221,147,62,61,2,88,222,222,
@@ -551,7 +557,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			209,197,198,198,200,198,197,225,221,220,206,179,11,76,222,218,
 			220,220,220,219,221,221,220,218,222,219,218,218,69,73,222,222,
 			219,220,220,220,220,220,220,220,222,221,221,222,223,173,221,0]
-		
+
 		var matrix_2_2_Y_2 = [
 			241,240,241,240,241,242,240,242,240,241,240,241,119,106,241,240,
 			91,86,77,74,71,72,69,149,242,149,62,58,1,87,241,241,
@@ -569,7 +575,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			208,197,198,198,200,198,197,227,231,233,206,177,12,76,241,241,
 			240,240,240,239,241,241,240,240,241,242,240,240,69,73,241,241,
 			239,240,240,240,240,240,240,240,241,241,241,241,220,175,239,241]
-		
+
 		var matrix_2_2_Cb_2 = [
 			115,117,118,117,115,118,117,118,117,117,118,115,127,129,117,117,
 			128,128,128,129,128,129,129,126,116,127,128,129,128,128,118,118,
@@ -587,7 +593,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			128,128,128,128,128,128,128,127,122,121,128,129,127,128,118,115,
 			117,117,117,117,117,117,117,116,118,115,116,116,128,128,118,118,
 			117,117,117,117,117,117,117,117,118,117,117,118,129,127,118,117]
-		
+
 		var matrix_2_2_Cr_2 = [
 			132,130,130,130,132,132,132,132,132,132,131,130,128,128,130,132,
 			128,128,128,128,128,128,128,128,129,128,128,128,128,128,132,130,
@@ -781,7 +787,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 
 			const animationSvgs = [jpeg_chapter2_3_animation_svg_Y_div, jpeg_chapter2_3_animation_svg_Cb_div, jpeg_chapter2_3_animation_svg_Cr_div];
-			
+
 			function showAnimationSvg(number) {
 				jpeg_chapter2_3_animation_wrapper.style.display = "";
 				for(var i = 0; i < animationSvgs.length; i++) {
@@ -803,14 +809,14 @@ document.addEventListener("DOMContentLoaded", function() {
 				jpeg_chapter2_3_animation_svg_Cr_div.classList.add("jpeg_chapter2_svg_back");
 
 				showDescription2_3(1);
-				
+
 				stopAnimations();
 				showAnimationSvg(1);
 
 				jepg_chapter2_3_rect_right_Y.style.display = "none";
 				jepg_chapter2_3_rect_right_Cb.style.display = "none";
 				jepg_chapter2_3_rect_right_Cr.style.display = "none";
-				
+
 				pixels_Y.attr("transform", d => "translate(0, 0)");
 				pixels_Cb.attr("transform", d => "translate(0, 0)");
 				pixels_Cr.attr("transform", d => "translate(0, 0)");
@@ -848,7 +854,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				jepg_chapter2_3_rect_right_Y.style.display = "";
 				jepg_chapter2_3_rect_right_Cb.style.display = "none";
 				jepg_chapter2_3_rect_right_Cr.style.display = "none";
-				
+
 				pixels_Y.attr("transform", d => "translate(0, 0)");
 				pixels_Cb.attr("transform", d => "translate(0, 0)");
 				pixels_Cr.attr("transform", d => "translate(0, 0)");
@@ -883,7 +889,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 				circles_Cb.style("display", "");
 				circles_Cr.style("display", "");
-				
+
 				pixels_Y.data(d3.range(4))
 					.transition()
 					.duration(2000)
@@ -955,7 +961,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							.duration(0)
 							.style("display", "none");
 					});
-				
+
 				pixels_Cb.data(d3.range(4))
 					.transition()
 					.duration(0)
@@ -1066,7 +1072,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			97,98,106,111,119,124,129,135,140,141,145,145,145,144,149,158,
 			68,79,89,95,102,111,119,121,125,133,135,141,146,150,155,159,
 			140,147,156,165,170,176,177,187,189,188,180,177,177,178,173,173]
-		
+
 		var matrix_2_4_Cb_1_1 = [
 			93,91,88,87,88,86,87,112,
 			96,92,88,88,87,85,85,100,
@@ -1076,7 +1082,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			97,93,90,100,114,88,89,84,
 			98,93,90,90,90,89,87,88,
 			106,103,97,94,92,89,86,87]
-		
+
 		var matrix_2_4_Cr_1_1 = [
 			187,192,195,194,197,198,199,159,
 			183,190,194,196,198,199,198,173,
@@ -1086,7 +1092,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			184,189,193,168,148,192,191,195,
 			178,181,185,186,187,189,194,194,
 			152,156,159,163,165,165,168,166]
-		
+
 		var matrix_2_4_Y_2_1 = [
 			-28,-25,-20,-9,-9,-2,2,6,6,6,9,12,18,17,51,86,
 			-24,-28,-22,-8,-7,-1,1,7,8,10,13,14,19,20,17,63,
@@ -1104,7 +1110,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			-31,-30,-22,-17,-9,-4,1,7,12,13,17,17,17,16,21,30,
 			-60,-49,-39,-33,-26,-17,-9,-7,-3,5,7,13,18,22,27,31,
 			12,19,28,37,42,48,49,59,61,60,52,49,49,50,45,45]
-		
+
 		var matrix_2_4_Cb_2_1 = [
 			-35,-37,-40,-41,-40,-42,-41,-16,
 			-33,-37,-41,-40,-42,-43,-43,-28,
@@ -1114,7 +1120,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			-31,-36,-39,-28,-14,-41,-39,-44,
 			-30,-35,-38,-38,-38,-40,-41,-40,
 			-22,-25,-31,-34,-36,-39,-42,-41]
-		
+
 		var matrix_2_4_Cr_2_1 = [
 			59,64,67,66,69,70,71,31,
 			55,62,66,68,70,71,70,45,
@@ -1124,7 +1130,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			56,61,65,40,20,64,63,67,
 			50,53,57,58,59,61,66,66,
 			24,28,31,35,37,37,40,38]
-		
+
 		var matrix_2_4_Y_1_2 = [
 			241,240,241,240,241,242,240,242,240,241,240,241,119,106,241,240,
 			91,86,77,74,71,72,69,149,242,149,62,58,1,87,241,241,
@@ -1142,7 +1148,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			208,197,198,198,200,198,197,227,231,233,206,177,12,76,241,241,
 			240,240,240,239,241,241,240,240,241,242,240,240,69,73,241,241,
 			239,240,240,240,240,240,240,240,241,241,241,241,220,175,239,241]
-		
+
 		var matrix_2_4_Cb_1_2 = [122,123,123,123,119,123,128,118,
 			129,124,123,123,121,122,128,117,
 			124,117,120,125,117,117,126,117,
@@ -1151,7 +1157,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			123,123,123,123,121,123,128,117,
 			128,128,128,127,122,128,128,117,
 			117,117,117,117,117,117,128,118]
-		
+
 		var matrix_2_4_Cr_1_2 = [130,129,130,130,130,129,128,131,
 			128,129,130,129,129,129,129,128,131,
 			129,131,130,129,132,131,128,131,
@@ -1160,7 +1166,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			130,129,129,129,130,130,128,131,
 			128,128,128,128,129,129,128,131,
 			130,131,131,131,132,131,128,131]
-		
+
 		var matrix_2_4_Y_2_2 = [
 			113,112,113,112,113,114,112,114,112,113,112,113,-9,-22,113,112,
     		-37,-42,-51,-54,-57,-56,-59,21,114,21,-66,-70,-127,-41,113,113,
@@ -1178,7 +1184,7 @@ document.addEventListener("DOMContentLoaded", function() {
     		80,69,70,70,72,70,69,99,103,105,78,49,-116,-52,113,113,
     		112,112,112,111,113,113,112,112,113,114,112,112,-59,-55,113,113,
     		111,112,112,112,112,112,112,112,113,113,113,113,92,47,111,113]
-		
+
 		var matrix_2_4_Cb_2_2 = [
 			-6,-5,-6,-6,-9,-6,0,-11,
 			1,-4,-6,-5,-8,-6,0,-11,
@@ -1188,7 +1194,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			-6,-6,-6,-6,-7,-6,0,-11,
 			0,0,0,-1,-6,0,0,-12,
 			-11,-11,-11,-11,-11,-11,0,-10]
-		
+
 		var matrix_2_4_Cr_2_2 = [
 			2,1,2,2,2,1,0,3,
 			0,1,2,1,1,1,1,0,3,
@@ -1303,7 +1309,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			-31,-30,-22,-17,-9,-4,1,7,12,13,17,17,17,16,21,30,
 			-60,-49,-39,-33,-26,-17,-9,-7,-3,5,7,13,18,22,27,31,
 			12,19,28,37,42,48,49,59,61,60,52,49,49,50,45,45]
-		
+
 		var matrix_2_5_Cb_1_1 = [
 			-35,-37,-40,-41,-40,-42,-41,-16,
 			-33,-37,-41,-40,-42,-43,-43,-28,
@@ -1313,7 +1319,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			-31,-36,-39,-28,-14,-41,-39,-44,
 			-30,-35,-38,-38,-38,-40,-41,-40,
 			-22,-25,-31,-34,-36,-39,-42,-41]
-		
+
 		var matrix_2_5_Cr_1_1 = [
 			59,64,67,66,69,70,71,31,
 			55,62,66,68,70,71,70,45,
@@ -1323,7 +1329,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			56,61,65,40,20,64,63,67,
 			50,53,57,58,59,61,66,66,
 			24,28,31,35,37,37,40,38]
-		
+
 		var matrix_2_5_Y_1_2 = [
 			113,112,113,112,113,114,112,114,112,113,112,113,-9,-22,113,112,
     		-37,-42,-51,-54,-57,-56,-59,21,114,21,-66,-70,-127,-41,113,113,
@@ -1341,7 +1347,7 @@ document.addEventListener("DOMContentLoaded", function() {
     		80,69,70,70,72,70,69,99,103,105,78,49,-116,-52,113,113,
     		112,112,112,111,113,113,112,112,113,114,112,112,-59,-55,113,113,
     		111,112,112,112,112,112,112,112,113,113,113,113,92,47,111,113]
-		
+
 		var matrix_2_5_Cb_1_2 = [
 			-6,-5,-6,-6,-9,-6,0,-11,
     		1,-4,-6,-5,-8,-6,0,-11,
@@ -1351,7 +1357,7 @@ document.addEventListener("DOMContentLoaded", function() {
     		-6,-6,-6,-6,-7,-6,0,-11,
     		0,0,0,-1,-6,0,0,-12,
     		-11,-11,-11,-11,-11,-11,0,-10]
-		
+
 		var matrix_2_5_Cr_1_2 = [
 			2,1,2,2,2,1,0,3,
     		0,1,2,1,1,1,1,0,3,
@@ -1512,10 +1518,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 			width = jpeg_chapter3_rectangle_function.width.baseVal.value;
 			height = jpeg_chapter3_rectangle_function.height.baseVal.value;
-			
+
 			var rectangle_function = d3.select("#jpeg_chapter3_rectangle_function")
 				.attr("viewbox", [0, 0, width, height]);
-			
+
 			var min = b_matrix[0][0];
 			var max = b_matrix[0][0];
 			var matrix_as_stream = [];
@@ -1529,16 +1535,16 @@ document.addEventListener("DOMContentLoaded", function() {
 					matrix_as_stream.push(b_matrix[i][j]);
 				}
 			}
-			
+
 			const x0 = width / 3;
 			const y0 = 2 * height / 3;
-			
+
 			var mapper = d3.scaleLinear()
 				.domain([min, max])
 				.range([height - y0, 5 * height / 6]);
-				
+
 			const z0 = height - mapper(0);
-			
+
 			rectangle_function.append("line")
 				.attr("stroke", "#AFAFFF")
 				.attr("stroke-width", 2)
@@ -1546,7 +1552,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				.attr("x2", width)
 				.attr("y1", y0)
 				.attr("y2", y0);
-			
+
 			rectangle_function.append("line")
 				.attr("stroke", "#AFAFFF")
 				.attr("stroke-width", 2)
@@ -1554,7 +1560,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				.attr("x2", x0)
 				.attr("y1", y0)
 				.attr("y2", 0);
-			
+
 			rectangle_function.append("line")
 				.attr("stroke", "#AFAFFF")
 				.attr("stroke-width", 2)
@@ -1562,7 +1568,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				.attr("x2", 0)
 				.attr("y1", y0)
 				.attr("y2", height);
-				
+
 			rectangle_function.append("line")
 				.attr("stroke", "#CFCFFF")
 				.attr("stroke-width", 1)
@@ -1570,7 +1576,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				.attr("x2", width)
 				.attr("y1", z0)
 				.attr("y2", z0);
-			
+
 			rectangle_function.append("line")
 				.attr("stroke", "#CFCFFF")
 				.attr("stroke-width", 1)
@@ -1578,9 +1584,9 @@ document.addEventListener("DOMContentLoaded", function() {
 				.attr("x2", 0)
 				.attr("y1", z0)
 				.attr("y2", (height / 3) + z0);
-			
+
 			var rectangles = rectangle_function.selectAll("g").data(matrix_as_stream).enter().append("g");
-			
+
 			rectangles
 				.attr("fill", "#AFAFFF")
 				.attr("stroke", "#8F8FFF")
@@ -1591,40 +1597,40 @@ document.addEventListener("DOMContentLoaded", function() {
 						var x = Math.floor(i / 8);
 						var y = i % 8;
 						var z = d;
-						
+
 						var transformed_x = (width / 3) + (x * width / 12) - (y * width / 24);
 						var transformed_y = (height - mapper(z)) + (y * height / 24);
-						
+
 						return "M " + transformed_x + "," + transformed_y + " l " + (width / 12) + ",0 l " + (-width / 24) + "," + (height / 24) + " l " + (-width / 12) + ",0 Z";
 					});
-			
+
 			rectangles.append("rect")
 					.attr("class", "rect")
 				.attr("x", function(d, i) {
 					var x = Math.floor(i / 8);
 					var y = i % 8;
-					
+
 					return (width / 3) + (x * width / 12) - (y * width / 24) - (width / 24);
 				})
 				.attr("y", function(d, i) {
 					var y = i % 8;
 					var z = d;
-					
+
 					return (height - mapper(z)) + (y * height / 24) + (height / 24);
 				})
 				.attr("width", width / 12)
 				.attr("height", d => y0 - (height - mapper(d)));
-			
+
 			rectangles.append("path")
 				.attr("class", "path_2")
 				.attr("d", function(d, i) {
 					var x = Math.floor(i / 8);
 					var y = i % 8;
 					var z = d;
-					
+
 					var transformed_x = (width / 3) + (x * width / 12) - (y * width / 24);
 					var transformed_y = (height - mapper(z)) + (y * height / 24);
-					
+
 					return "M " + (transformed_x + (width / 12)) + "," + transformed_y + " l 0," + (y0 - (height - mapper(z))) + " l " + (-width / 24) + "," + (height / 24) + " l 0," + (-(y0 - (height - mapper(z)))) + " Z";
 				});
 		}
@@ -1647,15 +1653,15 @@ document.addEventListener("DOMContentLoaded", function() {
 					matrix_as_stream.push(b_matrix[i][j]);
 				}
 			}
-			
+
 			const y0 = 2 * height / 3;
-			
+
 			var mapper = d3.scaleLinear()
 				.domain([min, max])
 				.range([height - y0, 5 * height / 6]);
 
 			var rectangles = d3.select("#jpeg_chapter3_rectangle_function").selectAll("g").data(matrix_as_stream);
-			
+
 			rectangles
 				.select(".path_1")
 					.attr("d", function(d, i) {
@@ -1665,7 +1671,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 							var transformed_x = (width / 3) + (x * width / 12) - (y * width / 24);
 							var transformed_y = (height - mapper(z)) + (y * height / 24);
-							
+
 							return "M " + transformed_x + "," + transformed_y + " l " + (width / 12) + ",0 l " + (-width / 24) + "," + (height / 24) + " l " + (-width / 12) + ",0 Z";
 					});
 
@@ -1684,45 +1690,45 @@ document.addEventListener("DOMContentLoaded", function() {
 					})
 					.attr("width", width / 12)
 					.attr("height", d => y0 - (height - mapper(d)));
-			
+
 			rectangles
 				.select(".path_2")
 					.attr("d", function(d, i) {
 						var x = Math.floor(i / 8);
 						var y = i % 8;
 						var z = d;
-						
+
 						var transformed_x = (width / 3) + (x * width / 12) - (y * width / 24);
 						var transformed_y = (height - mapper(z)) + (y * height / 24);
-						
+
 						return "M " + (transformed_x + (width / 12)) + "," + transformed_y + " l 0," + (y0 - (height - mapper(z))) + " l " + (-width / 24) + "," + (height / 24) + " l 0," + (-(y0 - (height - mapper(z)))) + " Z";
 					});
 
 		}
 
 		function renderBlockMatrix(b_matrix) {
-			
+
 			var width = jpeg_chapter3_block_matrix.width.baseVal.value;
 			var height = jpeg_chapter3_block_matrix.height.baseVal.value;
 
 			var block_matrix = d3.select("#jpeg_chapter3_block_matrix")
 				.attr("viewbox", [0, 0, width, height]);
-			
+
 			var x = d3.scaleOrdinal()
 				.domain([0, 1, 2, 3, 4, 5, 6, 7])
 				.range([0, width/8, width/4, 3*width/8, width/2, 5*width/8, 3*width/4, 7*width/8, width]);
-			
+
 			var y = d3.scaleOrdinal()
 				.domain([0, 1, 2, 3, 4, 5, 6, 7])
 				.range([height, 7*height/8, 3*height/4, 5*height/8, height/2, 3*height/8, height/4, height/8, 0]);
-			
+
 			var matrix_as_stream = [];
 			for(var j = 0; j < 8; j++) {
 				for(var i = 0; i < 8; i++) {
 					matrix_as_stream.push(b_matrix[i][j]);
 				}
 			}
-			
+
 			block_matrix.append("g")
 				.attr("fill", "#FFEFEF")
 				.attr("stroke", "#AFAFFF")
@@ -1735,7 +1741,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					.attr("y", (d, i) => y(i % 8) - height / 8)
 					.attr("width", width / 8)
 					.attr("height", height / 8);
-			
+
 			block_matrix.append("g")
 				.attr("fill", "#AFAFFF")
 				.attr("font-size", "12")
@@ -1812,7 +1818,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				}
 				selectImage2();
 			}
-			
+
 			current_section_heading.innerHTML = "3.2 Blockmatrix als 2D-Rechteckfunktion";
 			showSection(2);
 
@@ -1821,12 +1827,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		{ // mouseover/mouseout need to show/hide "Ort" and "Wert"
 				const width = jpeg_chapter3_function_values.width.baseVal.value;
 				const height = jpeg_chapter3_function_values.height.baseVal.value;
-				
+
 				var function_values = d3.select("#jpeg_chapter3_function_values")
 					.attr("viewbox", [0, 0, width, height]);
-				
+
 				const values_as_stream = [2, 4, 1];
-				
+
 				function_values.append("g")
 					.attr("fill", "#EFEFFF")
 					.attr("stroke", "#AFAFFF")
@@ -1843,18 +1849,18 @@ document.addEventListener("DOMContentLoaded", function() {
 						.on("mouseover", function() {
 							d3.selectAll("rect[id='" + this.id.substring(0, 2) + "2" + this.id.substring(3) + "']")
 								.style("opacity", 1);
-							
+
 							d3.selectAll("circle[id='" + this.id.substring(0, 2) + "3" + this.id.substring(3) + "']")
 								.style("opacity", 1);
 						})
 						.on("mouseout", function() {
 							d3.selectAll("rect[id='" + this.id.substring(0, 2) + "2" + this.id.substring(3) + "']")
 								.style("opacity", 0);
-							
+
 							d3.selectAll("circle[id='" + this.id.substring(0, 2) + "3" + this.id.substring(3) + "']")
 								.style("opacity", 0);
 						});
-				
+
 				function_values.append("g")
 					.selectAll("rect")
 					.data(values_as_stream)
@@ -1871,28 +1877,28 @@ document.addEventListener("DOMContentLoaded", function() {
 						.on("mouseover", function() {
 							d3.selectAll("rect[id='" + this.id.substring(0, 2) + "2" + this.id.substring(3) + "']")
 								.style("opacity", 1);
-							
+
 							d3.selectAll("circle[id='" + this.id.substring(0, 2) + "3" + this.id.substring(3) + "']")
 								.style("opacity", 1);
 						})
 						.on("mouseout", function() {
 							d3.selectAll("rect[id='" + this.id.substring(0, 2) + "2" + this.id.substring(3) + "']")
 								.style("opacity", 0);
-							
+
 							d3.selectAll("circle[id='" + this.id.substring(0, 2) + "3" + this.id.substring(3) + "']")
 								.style("opacity", 0);
 						});
 			}
-			
+
 			{ // mouseover/mouseout need to show/hide "Frequenz" and "Amplitude"
 				const width = jpeg_chapter3_function_amplitudes.width.baseVal.value;
 				const height = jpeg_chapter3_function_amplitudes.height.baseVal.value;
-				
+
 				var function_amplitudes = d3.select("#jpeg_chapter3_function_amplitudes")
 					.attr("viewbox", [0, 0, width, height]);
-				
+
 				const amplitudes_as_stream = [4.4, 0.9, -2.3];
-				
+
 				function_amplitudes.append("g")
 					.attr("fill", "#EFEFFF")
 					.attr("stroke", "#AFAFFF")
@@ -1914,7 +1920,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							d3.selectAll("g[id='" + this.id.substring(0, 2) + "2" + this.id.substring(3) + "']")
 								.style("opacity", 0);
 						});
-				
+
 				function_amplitudes.append("g")
 					.selectAll("rect")
 					.data(amplitudes_as_stream)
@@ -1937,24 +1943,24 @@ document.addEventListener("DOMContentLoaded", function() {
 								.style("opacity", 0);
 						});
 			}
-			
+
 			{
 				const width = jpeg_chapter3_rectangle_function_example.width.baseVal.value;
 				const height = jpeg_chapter3_rectangle_function_example.height.baseVal.value;
-				
+
 				var rectangle_function_example = d3.select("#jpeg_chapter3_rectangle_function_example")
 					.attr("viewbox", [0, 0, width, height]);
-				
+
 				const values_as_stream = [2, 4, 1];
-				
+
 				var x = d3.scaleLinear()
 					.domain([-2.5, 3.5])
 					.range([0, width]);
-				
+
 				var y = d3.scaleLinear()
 					.domain([-1, 5])
 					.range([height, 0]);
-				
+
 				rectangle_function_example.append("line")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -1962,7 +1968,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					.attr("x2", width)
 					.attr("y1", y(0))
 					.attr("y2", y(0));
-				
+
 				rectangle_function_example.append("line")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -1970,9 +1976,9 @@ document.addEventListener("DOMContentLoaded", function() {
 					.attr("x2", x(0))
 					.attr("y1", height)
 					.attr("y2", 0);
-				
+
 				var rectangles = rectangle_function_example.selectAll("g").data(values_as_stream).enter().append("g");
-				
+
 				rectangles
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 2)
@@ -1981,7 +1987,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						.attr("x2", (d, i) => x(i + 0.5))
 						.attr("y1", d => y(d))
 						.attr("y2", d => y(d));
-						
+
 				rectangles.append("line")
 					.attr("x1", (d, i) => x(i - 0.5))
 					.attr("x2", (d, i) => x(i - 0.5))
@@ -1991,7 +1997,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							return y(0);
 						return y(values_as_stream[i - 1]);
 					});
-				
+
 				rectangle_function_example.append("line")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 2)
@@ -1999,7 +2005,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					.attr("x2", x(2.5))
 					.attr("y1", y(0))
 					.attr("y2", y(values_as_stream[2]));
-				
+
 				rectangle_function_example.append("g")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -2011,7 +2017,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						.attr("x2", d => x(d))
 						.attr("y1", y(0.15))
 						.attr("y2", y(-0.15));
-				
+
 				rectangle_function_example.append("g")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -2023,7 +2029,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						.attr("x2", x(0.15))
 						.attr("y1", d => y(d))
 						.attr("y2", d => y(d));
-				
+
 				rectangle_function_example.selectAll("rect[class='hover']")
 					.data(values_as_stream)
 					.enter()
@@ -2037,7 +2043,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						.attr("y", y(0.15))
 						.attr("height", y(-0.15) - y(0.15))
 						.style("opacity", 0);
-				
+
 				rectangle_function_example.selectAll("circle[class='hover']")
 					.data(values_as_stream)
 					.enter()
@@ -2051,24 +2057,24 @@ document.addEventListener("DOMContentLoaded", function() {
 						.attr("r", 3)
 						.style("opacity", 0);
 			}
-			
+
 			{
 				const width = jpeg_chapter3_basis_function.width.baseVal.value;
 				const height = jpeg_chapter3_basis_function.height.baseVal.value;
-				
+
 				var basis_function = d3.select("#jpeg_chapter3_basis_function")
 					.attr("viewbox", [0, 0, width, height]);
-				
+
 				const amplitudes_as_stream = [4.4, 0.9, -2.3];
-				
+
 				var x = d3.scaleLinear()
 					.domain([-2.5, 3.5])
 					.range([width/20, 19*width/20]);
-				
+
 				var y = d3.scaleLinear()
 					.domain([-4, 6])
 					.range([19*height/20, height/20]);
-				
+
 				basis_function.append("line")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -2076,7 +2082,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					.attr("x2", x(3.5))
 					.attr("y1", y(0))
 					.attr("y2", y(0));
-				
+
 				basis_function.append("line")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -2084,7 +2090,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					.attr("x2", x(0))
 					.attr("y1", y(-4))
 					.attr("y2", y(6));
-				
+
 				basis_function.append("g")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -2096,7 +2102,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						.attr("x2", d => x(d))
 						.attr("y1", y(0.3))
 						.attr("y2", y(-0.3));
-				
+
 				basis_function.append("g")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -2108,7 +2114,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						.attr("x2", x(0.15))
 						.attr("y1", d => y(d))
 						.attr("y2", d => y(d));
-				
+
 				basis_function.append("g")
 					.attr("id", "3120")
 					.attr("stroke", "#AFAFFF")
@@ -2119,12 +2125,12 @@ document.addEventListener("DOMContentLoaded", function() {
 						.attr("x2", x(3.5))
 						.attr("y1", y(amplitudes_as_stream[0]))
 						.attr("y2", y(amplitudes_as_stream[0]));
-						
+
 				var amplitudes = [];
 				for(var i = -2.5; i <= 3.5; i += 0.01){
 					amplitudes.push(amplitudes_as_stream[1] * Math.cos((2 * i + 1) * (Math.PI / 6)));
 				}
-				
+
 				basis_function.append("g")
 					.attr("id", "3121")
 					.attr("stroke", "#AFAFFF")
@@ -2143,12 +2149,12 @@ document.addEventListener("DOMContentLoaded", function() {
 								return y(amplitudes[i - 1]);
 							return y(d);
 						});
-				
+
 				amplitudes = [];
 				for(var i = -2.5; i <= 3.5; i += 0.01){
 					amplitudes.push(amplitudes_as_stream[2] * Math.cos((2 * i + 1) * (2 * Math.PI / 6)));
 				}
-				
+
 				basis_function.append("g")
 					.attr("id", "3122")
 					.attr("stroke", "#AFAFFF")
@@ -2168,22 +2174,22 @@ document.addEventListener("DOMContentLoaded", function() {
 							return y(d);
 						});
 			}
-			
+
 			{ // function is a little bit offset
 				const width = jpeg_chapter3_total_function.width.baseVal.value;
 				const height = jpeg_chapter3_total_function.height.baseVal.value;
-				
+
 				var total_function = d3.select("#jpeg_chapter3_total_function")
 					.attr("viewbox", [0, 0, width, height]);
-				
+
 				var x = d3.scaleLinear()
 					.domain([-2.5, 3.5])
 					.range([width/20, 19*width/20]);
-				
+
 				var y = d3.scaleLinear()
 					.domain([-4, 6])
 					.range([19*height/20, height/20]);
-				
+
 				total_function.append("line")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -2191,7 +2197,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					.attr("x2", x(3.5))
 					.attr("y1", y(0))
 					.attr("y2", y(0));
-				
+
 				total_function.append("line")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -2199,7 +2205,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					.attr("x2", x(0))
 					.attr("y1", y(-4))
 					.attr("y2", y(6));
-				
+
 				total_function.append("g")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -2211,7 +2217,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						.attr("x2", d => x(d))
 						.attr("y1", y(0.3))
 						.attr("y2", y(-0.3));
-				
+
 				total_function.append("g")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 1)
@@ -2223,12 +2229,12 @@ document.addEventListener("DOMContentLoaded", function() {
 						.attr("x2", x(0.15))
 						.attr("y1", d => y(d))
 						.attr("y2", d => y(d));
-				
+
 				var amplitudes = [];
 				for(var i = -1.5; i <= 2.5; i += 0.01){
 					amplitudes.push(2 + (0.9 * Math.cos((2 * i + 1) * (Math.PI / 6))) - (2.3 * Math.cos((2 * i + 1) * (2 * Math.PI / 6))));
 				}
-				
+
 				total_function.append("g")
 					.attr("stroke", "#AFAFFF")
 					.attr("stroke-width", 2)
@@ -2245,7 +2251,7 @@ document.addEventListener("DOMContentLoaded", function() {
 								return y(amplitudes[i - 1]);
 							return y(d);
 						});
-				
+
 				total_function.selectAll("circle[class='points']")
 					.data([2, 4, 1])
 					.enter()
@@ -2261,7 +2267,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		function showSection3() {
 			jpeg_buttonShowImageSectionSelection.disabled = true;
 			current_section_heading.innerHTML = "3.3 Eindimensionale diskrete Cosinus-Transformation";
-			showSection(3);			
+			showSection(3);
 		};
 
 		function showSection4() {
@@ -2278,21 +2284,21 @@ document.addEventListener("DOMContentLoaded", function() {
 			{ // formular text-size different after hover
 				const width = jpeg_chapter3_tile_mask.width.baseVal.value;
 				const height = jpeg_chapter3_tile_mask.height.baseVal.value;
-				
+
 				var tile_mask = d3.select("#jpeg_chapter3_tile_mask")
 					.attr("viewbox", [0, 0, width, height]);
-				
+
 				const scale = 0.9;
 				const offset = 2;
-				
+
 				var x = d3.scaleOrdinal()
 					.domain([0, 1, 2, 3, 4, 5, 6, 7])
 					.range([0, scale*width/8, scale*width/4, scale*3*width/8, scale*width/2, scale*5*width/8, scale*3*width/4, scale*7*width/8, scale*width]);
-				
+
 				var y = d3.scaleOrdinal()
 					.domain([0, 1, 2, 3, 4, 5, 6, 7])
 					.range([scale*height, scale*7*height/8, scale*3*height/4, scale*5*height/8, scale*height/2, scale*3*height/8, scale*height/4, scale*height/8, 0]);
-				
+
 				const tiles = [	{	"id" : 0,
 									"x"  : 0,
 									"y"  : 0	},
@@ -2311,7 +2317,7 @@ document.addEventListener("DOMContentLoaded", function() {
 								{	"id" : 5,
 									"x"  : 7,
 									"y"  : 7	}	];
-				
+
 				tile_mask.append("g")
 					.attr("fill", "#FFAFAF")
 					.attr("stroke-width", 2)
@@ -2329,30 +2335,30 @@ document.addEventListener("DOMContentLoaded", function() {
 							d3.selectAll("rect[id='" + this.id + "']")
 								.style("stroke", "#FF0000")
 								.style("opacity", 1);
-							
+
 							const index = parseInt(this.id.substring(3, 4));
-							
+
 							if(tiles[index].x == 0) {
 								jpeg_chapter3_formular_basis_x.style.backgroundColor = "#EFEFFF";
 								jpeg_chapter3_formular_basis_x.innerText = "\\[\\textcolor{#CFCFFF}{\\cos((2x+1)}\\textcolor{#FFCFCF}{{0 \\over 16}\\pi}\\textcolor{#CFCFFF}{)}\\]";
 							} else {
 								jpeg_chapter3_formular_basis_x.innerText = "\\[\\cos((2x+1)\\textcolor{red}{{" + tiles[index].x + " \\over 16}\\pi})\\]";
 							}
-							
+
 							if(tiles[index].y == 0) {
 								jpeg_chapter3_formular_basis_y.style.backgroundColor = "#EFEFFF";
 								jpeg_chapter3_formular_basis_y.innerText = "\\[\\textcolor{#CFCFFF}{\\cos((2y+1)}\\textcolor{#FFCFCF}{{0 \\over 16}\\pi}\\textcolor{#CFCFFF}{)}\\]";
 							} else {
 								jpeg_chapter3_formular_basis_y.innerText = "\\[\\cos((2y+1)\\textcolor{red}{{" + tiles[index].y + " \\over 16}\\pi})\\]";
 							}
-							
+
 							document.getElementById("jpeg_chapter3_basis_function_image" + index).hidden = false;
 							jpeg_chapter3_no_function_image.hidden = true;
-							
+
 							switch(index) {
 								case 0:
 									jpeg_chapter3_basis_equals_1.style.visibility = "visible";
-									
+
 									jpeg_chapter3_basis_description_text.innerHTML = "Stelle: (0,0)<br /><br />Die Frequenz ist Null, d.h. diese Funktion beschreibt den gleichbleibenden Anteil aller Pixelwerte des Blocks.<br /><br />Der Wert an dieser Stelle entspricht dem 8-fachen Mittelwert aller 64 Pixelwerte in einem Block.";
 									break;
 								case 1:
@@ -2376,22 +2382,22 @@ document.addEventListener("DOMContentLoaded", function() {
 						.on("mouseout", function() {
 							d3.selectAll("rect[id='" + this.id + "']")
 								.style("stroke", "none");
-							
+
 							const index = parseInt(this.id.substring(3, 4));
-							
+
 							if(index == 0)
 								jpeg_chapter3_basis_equals_1.style.visibility = "hidden";
-							
+
 							jpeg_chapter3_formular_basis_x.style.backgroundColor = "transparent";
 							jpeg_chapter3_formular_basis_y.style.backgroundColor = "transparent";
 							jpeg_chapter3_formular_basis_x.innerText = "\\[\\cos((2x+1)\\textcolor{red}{{u \\over 16}\\pi})\\]";
 							jpeg_chapter3_formular_basis_y.innerText = "\\[\\cos((2y+1)\\textcolor{red}{{v \\over 16}\\pi})\\]";
-							
+
 							document.getElementById("jpeg_chapter3_basis_function_image" + index).hidden = true;
 							jpeg_chapter3_no_function_image.hidden = false;
-							
+
 							jpeg_chapter3_basis_description_text.innerText = "";
-							
+
 							MathJax.typeset([jpeg_chapter3_formular_basis_x, jpeg_chapter3_formular_basis_y]);
 						});
 			}
@@ -2453,7 +2459,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			showSection(6);
 
 			const buttons = [jpeg_chapter3_select_y, jpeg_chapter3_select_cb, jpeg_chapter3_select_cr];
-			
+
 			function showMatrix(number) {
 				var tbody = jpeg_chapter3_coefficient_matrix_table_content;
 				var lines = tbody.children;
@@ -2486,7 +2492,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				box.onmouseover = function() {
 					showFormularMouseOver(boxes.indexOf(this));
 				}
-				
+
 				box.onclick = function() {
 					showFormularMouseOver(boxes.indexOf(this));
 					for(box of boxes) {
@@ -2524,9 +2530,9 @@ document.addEventListener("DOMContentLoaded", function() {
 				selectImage2();
 				showMatrix(0);
 			}
-			
+
 			function showFormularMouseOver(index) {
-				
+
 				for(box of boxes) {
 					if(boxes.indexOf(box) == index) {
 						box.classList.add("jpeg_chapter3_selected");
@@ -2535,26 +2541,26 @@ document.addEventListener("DOMContentLoaded", function() {
 					}
 					box.onmouseout = showFormularMouseOut;
 				}
-				
+
 				var x = tiles[index].x;
 				var y = tiles[index].y;
 
 				var formular = "\\[\\mathbf{\\textcolor{red}{S_{" + x + "" + y + "} = F(" + x + "," + y + ")}} = {1 \\over 4}c_{" + x + "}c_{" + y + "}\\sum_{x=0}^7 \\sum_{y=0}^7 z_{xy}";
-							
+
 				if(x == 0) {
 					formular += "\\textcolor{lightgrey}{\\cos((2x+1){0 \\over 16}\\pi)}";
 				} else {
 					formular += "\\cos((2x+1){" + x + "\\over 16}\\pi)";
 				}
-				
+
 				if(y == 0) {
 					formular += "\\textcolor{lightgrey}{\\cos((2y+1){0 \\over 16}\\pi)}\\]";
 				} else {
 					formular += "\\cos((2y+1){" + y + "\\over 16}\\pi)\\]";
 				}
-				
+
 				jpeg_chapter3_formular.textContent = formular;
-				
+
 				switch(index) {
 					case 0:
 						jpeg_chapter3_coefficient_description_text.innerHTML = "Stelle: (0,0) -> <b>\\(S_{00}\\)</b><br />Dieser Koeffizient ist der 8fache <b>Grundton des Blocks</b>, also der gleich bleibende Anteil aller Werte. Man bezeichnet ihn daher als Gleichanteil oder <b>DC-Koeffizient</b> (von engl. direct current = Gleichstrom)";
@@ -2575,18 +2581,18 @@ document.addEventListener("DOMContentLoaded", function() {
 						jpeg_chapter3_coefficient_description_text.innerHTML = "Stelle: (7,7) -> <b>\\(S_{77}\\)</b><br />Dieser Koeffizient ist ein <b>AC-Koeffizient</b>.<br /><b>Gro&szlig;er Wert</b>: Pixelwerte &auml;ndern sich in beide Richtungen st&auml;ndig mit gro&szlig;em Unterschied.<br /><b>Kleiner Wert</b>: Pixelwerte &auml;ndern sich in beide Richtungen st&auml;ndig, aber nur mit kleinem Unterschieden.";
 						break;
 				}
-				
+
 				MathJax.typeset([jpeg_chapter3_coefficient_description_text, jpeg_chapter3_formular]);
 			}
-			
+
 			function showFormularMouseOut() {
 
 				for(box of boxes) {
 					box.classList.remove("jpeg_chapter3_selected");
 				}
 
-				jpeg_chapter3_formular.innerText = "\\[\\mathbf{\\textcolor{red}{S_{uv} = F(u,v)}} = {1 \\over 4}c_{u}c_{v}\\sum_{x=0}^7 \\sum_{y=0}^7 z_{xy}\\cos((2x+1){u \\over 16}\\pi)\\cos((2y+1){v \\over 16}\\pi)\\]";			
-				jpeg_chapter3_coefficient_description_text.innerHTML = "";		
+				jpeg_chapter3_formular.innerText = "\\[\\mathbf{\\textcolor{red}{S_{uv} = F(u,v)}} = {1 \\over 4}c_{u}c_{v}\\sum_{x=0}^7 \\sum_{y=0}^7 z_{xy}\\cos((2x+1){u \\over 16}\\pi)\\cos((2y+1){v \\over 16}\\pi)\\]";
+				jpeg_chapter3_coefficient_description_text.innerHTML = "";
 				MathJax.typeset([jpeg_chapter3_coefficient_description_text, jpeg_chapter3_formular]);
 			}
 
@@ -2791,7 +2797,7 @@ document.addEventListener("DOMContentLoaded", function() {
 															0,0,0,0,0,0,0,0,
 															0,0,0,0,0,0,0,0,
 															0,0,0,0,0,0,0,0);
-		
+
 		koeffizientenmatrixTables[9] = koeffizientenmatrixTables[10] = koeffizientenmatrixTables[11] = [
 			486.8, - 45.0, - 51.7, - 37.2,   97.1,   10.9,   85.2,   20.6,
 			-258.3, -159.0,   32.0,   17.3,   33.4,   91.3,   58.9,   34.4,
@@ -2819,15 +2825,15 @@ document.addEventListener("DOMContentLoaded", function() {
 			-1.5, -0.5,  1.6,  0.7,  0.6, -0.4, -0.4,  0.4,
 			 2.4,  0.8, -1.1,  0.9,  0.4, -0.4,  0.2,  0.2,
 			 0.2, -0.4, -1.4,  0.1, -0.3, -0.1,  0.0, -0.2]
-		
+
 		quantisierungsmatrixTables[9] = quantisierungsmatrixTables[0];
 		quantisierungsmatrixTables[10] = quantisierungsmatrixTables[1];
 		quantisierungsmatrixTables[11] = quantisierungsmatrixTables[2];
-		
+
 		quantisierungsmatrixTables[15] = quantisierungsmatrixTables[12] = quantisierungsmatrixTables[3];
 		quantisierungsmatrixTables[16] = quantisierungsmatrixTables[13] = quantisierungsmatrixTables[4];
 		quantisierungsmatrixTables[17] = quantisierungsmatrixTables[14] = quantisierungsmatrixTables[5];
-		
+
 		quantisierteKoeffizientenmatrixTables[9] = [
 			15,-2,-3,-1,2,0,1,0,
 			-11,-7,1,0,1,1,0,0,
@@ -2837,7 +2843,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			5,1,0,0,0,0,0,0,
 			1,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0]
-		
+
 		quantisierteKoeffizientenmatrixTables[10] = [
 			30,-4,-5,-2,4,0,2,0,
 			-22,-13,2,1,1,2,1,1,
@@ -2847,7 +2853,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			10,2,0,0,-1,0,-1,0,
 			2,1,0,0,0,-1,0,0,
 			0,0,0,0,0,0,0,0]
-		
+
 		quantisierteKoeffizientenmatrixTables[11]= [
 			61,-8,-10,-5,8,1,3,1,
 			-43,-27,5,2,3,3,2,1,
@@ -2857,7 +2863,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			20,3,1,0,-1,-1,-1,-1,
 			3,2,0,0,-1,-1,-1,-1,
 			0,0,0,0,-1,-1,-1,0]
-		
+
 		quantisierteKoeffizientenmatrixTables[12] = [
 			-2,0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
@@ -2867,7 +2873,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0]
-		
+
 		quantisierteKoeffizientenmatrixTables[13] = [
 			-3,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
@@ -2877,7 +2883,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0]
-		
+
 		quantisierteKoeffizientenmatrixTables[14] = [
 			-6,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
@@ -2887,9 +2893,9 @@ document.addEventListener("DOMContentLoaded", function() {
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0]
-		
+
 		quantisierteKoeffizientenmatrixTables[15]= new Array(64).fill(0);
-		
+
 		quantisierteKoeffizientenmatrixTables[16] = [
 			1,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
@@ -2899,7 +2905,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0]
-		
+
 		quantisierteKoeffizientenmatrixTables[17] = [
 			2,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,
@@ -2936,7 +2942,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			currentChannel = channel;
 			currentQualityFactor = qualityFactor;
 		}
-		
+
 		updateTables(2, 1);
 		highlightButtons2_5(2, 1);
 
@@ -2984,7 +2990,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				if((i + 1) == number){
 					exampleResults[i].style.display = "";
 				} else {
-					exampleResults[i].style.display = "none";					
+					exampleResults[i].style.display = "none";
 				}
 			}
 		}
@@ -3005,7 +3011,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			jpeg_buttonShowPrincipleExample1.onclick = function() {
 				showTables(1);
 			}
-			  
+
 			jpeg_buttonShowPrincipleExample2.onclick = function() {
 				showTables(2);
 			}
@@ -3179,7 +3185,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				});
 			}
 		}
-		
+
 		var numbers1 = [
 			-6, -10, 1, -1, 1, 0, 0, 0,
 			2, 2, 0, 1, 0, 0, 0, 0,
@@ -3277,11 +3283,11 @@ document.addEventListener("DOMContentLoaded", function() {
 					jpeg_chapter5_2_description_1.style.display = "none";
 					jpeg_chapter5_2_description_2.style.display = "";
 				}
-				
+
 			}
-			
+
 			function animateMatrix() {
-				
+
 				showAnimationStart();
 
 				jpeg_chapter_5_2_triangle_animation.beginElement();
@@ -3337,7 +3343,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				}, 234.375);
 
 			}
-			
+
 			if(current_image_section == 1) {
 				renderMatrix1();
 			} else {
@@ -3355,7 +3361,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				showAnimationStart();
 				selectImage2();
 			}
-			
+
 			function renderMatrix1() {
 				var lines = jpeg_chapter5_2_matrix_content.children;
 				var elements = [];
@@ -3381,7 +3387,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					elements[i].innerHTML = numbers2[i];
 				}
 			}
-			
+
 			jpeg_chapter5_buttonShowMatrixStart.onclick = showAnimationStart;
 			jpeg_chapter5_buttonShowMatrixAnimation.onclick = animateMatrix;
 			jpeg_chapter5_buttonShowMatrixEnd.onclick = showAnimationEnd;
@@ -3476,7 +3482,7 @@ document.addEventListener("DOMContentLoaded", function() {
 								102, 92, 96, 114, 123, 121, 130, 147,
 								96, 86, 90, 109, 118, 117, 126, 144,
 								92, 82, 86, 105, 115, 114, 124, 141]
-		
+
 		matricesAfter[1] =  [103, 103, 109, 118, 120, 120, 129, 142,
 								107, 103, 107, 118, 122, 122, 129, 140,
 								111, 104, 105, 117, 125, 126, 130, 137,
@@ -3485,7 +3491,7 @@ document.addEventListener("DOMContentLoaded", function() {
 								95, 95, 102, 114, 118, 120, 130, 143,
 								83, 90, 102, 113, 113, 113, 129, 149,
 								76, 86, 103, 113, 109, 109, 128, 153]
-		
+
 		matricesAfter[2] = [99, 93, 111, 119, 124, 128, 122, 137,
 							106, 97, 111, 116, 122, 128, 125, 140,
 							114, 101, 110, 113, 121, 129, 127, 142,
@@ -3494,7 +3500,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							99, 92, 106, 113, 119, 126, 125, 142,
 							90, 85, 103, 108, 113, 120, 124, 145,
 							85, 82, 100, 104, 108, 116, 124, 149]
-		
+
 		matricesBefore[1] = [93, 91, 88, 87, 88, 86, 87, 112,
 							96, 92, 88, 88, 87, 85, 85, 100,
 							97, 94, 92, 90, 89, 86, 87, 93,
@@ -3503,7 +3509,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							97, 93, 90, 100, 114, 88, 89, 84,
 							98, 93, 90, 90, 90, 89, 87, 88,
 							106, 103, 97, 94, 92, 89, 86, 87]
-		
+
 		matricesAfter[3] = [100, 99, 98, 95, 93, 90, 89, 88,
 							100, 99, 98, 95, 93, 90, 89, 88,
 							100, 99, 98, 95, 93, 90, 89, 88,
@@ -3512,16 +3518,16 @@ document.addEventListener("DOMContentLoaded", function() {
 							100, 99, 98, 95, 93, 90, 89, 88,
 							100, 99, 98, 95, 93, 90, 89, 88,
 							100, 99, 98, 95, 93, 90, 89, 88]
-		
+
 		matricesAfter[4] = [96, 93, 88, 86, 86, 91, 96, 100,
 							96, 93, 89, 87, 87, 90, 95, 98,
 							95, 93, 91, 89, 88, 90, 93, 95,
 							95, 94, 93, 91, 90, 90, 91, 91,
 							95, 95, 95, 94, 92, 90, 88, 87,
-							95, 96, 97, 96, 94, 90, 85, 83, 
+							95, 96, 97, 96, 94, 90, 85, 83,
 							94, 96, 98, 98, 95, 90, 84, 79,
 							94, 96, 99, 99, 96, 90, 83, 78]
-		
+
 		matricesAfter[5] = [97, 92, 85, 81, 82, 88, 96, 102,
 							95, 92, 88, 86, 86, 89, 93, 96,
 							93, 93, 93, 92, 91, 90, 88, 87,
@@ -3530,7 +3536,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							95, 96, 98, 98, 96, 91, 86, 83,
 							97, 97, 96, 94, 93, 91, 90, 89,
 							99, 97, 94, 91, 90, 91, 92, 94]
-		
+
 		matricesBefore[2] = [187, 192, 195, 194, 197, 198, 199, 159,
 							183, 190, 194, 196, 198, 199, 198, 173,
 							183, 188, 191, 192, 195, 194, 195, 178,
@@ -3539,7 +3545,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							184, 189, 193, 168, 148, 192, 191, 195,
 							178, 181, 185, 186, 187, 189, 194, 194,
 							152, 156, 159, 163, 165, 165, 168, 166]
-		
+
 		matricesAfter[6] = [178, 185, 194, 201, 201, 194, 185, 178,
 							179, 184, 193, 199, 199, 193, 184, 179,
 							180, 184, 190, 193, 193, 190, 184, 180,
@@ -3548,7 +3554,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							186, 182, 177, 173, 173, 177, 182, 186,
 							188, 182, 174, 168, 168, 174, 182, 188,
 							189, 182, 172, 165, 165, 172, 182, 189]
-		
+
 		matricesAfter[7] = [173, 183, 197, 207, 206, 195, 180, 169,
 							181, 186, 194, 200, 199, 193, 184, 178,
 							192, 191, 189, 189, 189, 190, 191, 192,
@@ -3557,16 +3563,16 @@ document.addEventListener("DOMContentLoaded", function() {
 							182, 178, 173, 170, 172, 180, 188, 194,
 							166, 167, 169, 172, 175, 178, 180, 181,
 							156, 161, 168, 174, 178, 177, 174, 172]
-		
+
 		matricesAfter[8] = [178, 189, 191, 189, 197, 205, 188, 160,
 							189, 199, 199, 194, 201, 211, 199, 175,
 							190, 198, 195, 185, 190, 204, 200, 182,
 							179, 188, 183, 169, 172, 188, 192, 181,
-							178, 188, 185, 169, 169, 186, 195, 189, 
+							178, 188, 185, 169, 169, 186, 195, 189,
 							181, 195, 196, 180, 178, 194, 204, 200,
 							165, 184, 189, 175, 171, 185, 194, 191,
 							140, 162, 171, 158, 152, 164, 173, 170]
-		
+
 		matricesBefore[3] = [241, 240, 241, 240, 241, 242, 240, 242,
 							91, 86, 77, 74, 71, 72, 69, 149,
 							87, 49, 89, 113, 112, 112, 112, 185,
@@ -3575,7 +3581,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							223, 240, 240, 242, 241, 222, 160, 219,
 							240, 241, 242, 239, 242, 204, 188, 202,
 							240, 241, 240, 241, 240, 175, 121, 201]
-		
+
 		matricesAfter[9] = [255, 185, 261, 269, 218, 245, 249, 246,
 							19, 19, 16, 77, 55, 64, 77, 123,
 							98, 115, 73, 149, 136, 113, 112, 190,
@@ -3584,7 +3590,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							205, 241, 270, 218, 236, 259, 199, 222,
 							242, 262, 272, 224, 240, 219, 137, 189,
 							241, 234, 240, 226, 251, 193, 106, 199]
-		
+
 		matricesAfter[10] = [251, 221, 259, 245, 241, 225, 263, 223,
 							70, 97, 50, 75, 39, 92, 50, 160,
 							104, 22, 105, 98, 144, 133, 69, 194,
@@ -3593,7 +3599,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							221, 248, 262, 221, 261, 249, 110, 240,
 							229, 243, 235, 264, 213, 202, 187, 190,
 							235, 272, 211, 236, 250, 185, 110, 225]
-		
+
 		matricesAfter[11] = [240, 254, 238, 237, 242, 252, 228, 250,
 							98, 93, 79, 72, 77, 57, 79, 156,
 							85, 38, 92, 108, 117, 111, 130, 162,
@@ -3602,7 +3608,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							219, 247, 236, 257, 232, 215, 175, 213,
 							242, 236, 246, 230, 247, 192, 178, 225,
 							244, 233, 254, 235, 243, 180, 131, 182]
-		
+
 		matricesBefore[4] = [122, 123, 123, 123, 119, 123, 128, 118,
 							129, 124, 123, 123, 121, 122, 128, 117,
 							124, 117, 120, 125, 117, 117, 126, 117,
@@ -3611,10 +3617,10 @@ document.addEventListener("DOMContentLoaded", function() {
 							123, 123, 123, 123, 121, 123, 128, 117,
 							128, 128, 128, 127, 122, 128, 128, 117,
 							117, 117, 117, 117, 117, 117, 128, 118]
-		
+
 		matricesAfter[12] = new Array(64).fill(120);
 		matricesAfter[13] = new Array(64).fill(122);
-		
+
 		matricesAfter[14] = [123, 123, 123, 123, 123, 123, 123, 123,
 							122, 122, 122, 122, 122, 122, 122, 122,
 							120, 120, 120, 120, 120, 120, 120, 120,
@@ -3623,7 +3629,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							120, 120, 120, 120, 120, 120, 120, 120,
 							122, 122, 122, 122, 122, 122, 122, 122,
 							123, 123, 123, 123, 123, 123, 123, 123]
-		
+
 		matricesBefore[5] = [130, 129, 130, 130, 130, 129, 128, 131,
 							128, 129, 130, 129, 129, 129, 128, 131,
 							129, 131, 130, 129, 132, 131, 128, 131,
@@ -3632,14 +3638,14 @@ document.addEventListener("DOMContentLoaded", function() {
 							130, 129, 129, 129, 130, 130, 128, 131,
 							128, 128, 128, 128, 129, 129, 128, 131,
 							130, 131, 131, 131, 132, 131, 128, 131]
-		
+
 		matricesAfter[15] = new Array(64).fill(128);
 		matricesAfter[16] = new Array(64).fill(130);
 		matricesAfter[17] = matricesAfter[16];
 
 		showMatrixBefore(0, 1);
 		showMatrixAfter(0, 1);
-		
+
 		function showMatrixBefore(numberMatrix, numberImageSection) {
 			var tbody = jpeg_chapter5_6_matrix_content_before;
 			var lines = tbody.children;
@@ -3715,7 +3721,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				}
 			}
 		}
-		
+
 		const buttonsQuality = [jpeg_chapter5_6_button_quality_25, jpeg_chapter5_6_button_quality_50, jpeg_chapter5_6_button_quality_75];
 		const buttonsChannel = [jpeg_chapter5_6_button_channel_Y, jpeg_chapter5_6_button_channel_Cb, jpeg_chapter5_6_button_channel_Cr];
 		var currentQuality = 1;
