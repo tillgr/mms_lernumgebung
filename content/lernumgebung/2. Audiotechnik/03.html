@@ -45,7 +45,7 @@ draft: true
     Bei einer Auflösung von 8 Bit können 256 und bei 16 Bit können 65 536 verschiedene Werte unterschieden werden.</p>
 {{% image url="Audiotechnik/3/1_3_3_3bit_quantisierung.gif" caption="Abb. 2.3-3 3bit-Quantisierung" %}}
 
-<h5>Oversampling</h5>
+<h3 class="h5">Oversampling</h3>
 <p>Die zwischen zwei Abtastwerten fehlende Information macht sich bei der Demodulation als Rauschen bemerkbar.</p>
 
 <p>Beispiel CD-DA:</p>
@@ -60,7 +60,7 @@ draft: true
     </li>
 </ul><!--TODO: Formatierung-->
 
-<h5>Quantisierungs-Rauschen (QR)</h5>
+<h3 class="h5">Quantisierungs-Rauschen (QR)</h3>
 <p>Die Quantisierungs-Fehler, die durch auf- bzw. abrunden der Messwerte entstehen, sind bei nichtdeterministischen
     Signalen (Musik oder Sprache) von statistischer Natur und machen sich als gleichmäßiges Rauschen (QR) bemerkbar. Ein
     Problem entsteht bei leisen Nutzsignalen, da hier das Quantisierungs-Rauschen im Extremfall das Nutzsignal verdecken
@@ -71,7 +71,7 @@ draft: true
 <p>2 dB, (1,76 dB) resultiert aus der Annahme, das Fehler von ±0 bis ±½ Intervallgröße mit gleicher Wahrscheinlichkeit
     auftreten.</p>
 
-<h5>Lineare und nichtlineare Quantisierung</h5><!--TODO: Formatierung-->
+<h3 class="h5">Lineare und nichtlineare Quantisierung</h3><!--TODO: Formatierung-->
 <p><strong><em>Lineare Quantisierung:</em></strong></p>
 <p>Die Amplitudenwerte werden auf gleich große Intervalle abgebildet, das Quantisierungs-Rauschen ist
     konstant.</p><!--TODO: Formatierung-->
@@ -120,4 +120,5 @@ draft: true
 {{% image url="Audiotechnik/3/kodierung_lp.gif" caption="Abb. 2.3-9 Rauschen und Dynamikbereich der LP" %}}
 {{% image url="Audiotechnik/3/kodierung_fm.gif" caption="Abb. 2.3-10 Rauschen und Dynamikbereich von UKW-Radio" %}}
 
+<h3 class="h5" id="QuantisierungApplet">Applet zur Linearen und nichtlinearen Quantisierung von Audiosignalen</h3>
 {{% snippets/LinearNonLinearQuantization "Quantisierung & Digitalisierung von Audiosignalen"%}}
