@@ -2,7 +2,10 @@ $theme-colors: (
   "primary": #002557,
   "secondary": #EBEBEB,
   "danger": #dd2727,
-  "grey": #6f7174
+  "grey": #6f7174,
+  "orange": #ffa940,
+  "lightblue": #6e86d6,
+
 );
 $font-family-base: (
   'Open Sans',
@@ -31,6 +34,8 @@ ul {
 
 img {
   max-width: 100%;
+  margin: 0px;
+  align-self: center;
 }
 
 .MathJax {
@@ -44,6 +49,16 @@ img {
   top: 0;
   z-index: 1071;
   box-shadow: 0 2px 1rem rgba(0,0,0,0.2);
+}
+
+.image_border {
+    width: 550px;
+    height: 450px;
+    border: 1px solid theme-color("primary");
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center
 }
 
 .mms-sidenav {
