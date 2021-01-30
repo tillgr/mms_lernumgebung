@@ -1,0 +1,62 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="595.3px"
+     height="841.9px" viewBox="0 0 595.3 841.9" style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve">
+<style type="text/css">
+	.st0 {
+		fill:none;
+		stroke:#E30613;
+		stroke-width:5;
+		stroke-miterlimit:10;
+	}
+    .st1 {
+    display:none;
+    fill:none;
+    stroke:#009FE3;
+    stroke-width:5;
+    stroke-miterlimit:10;
+    }
+    .st2 {
+    fill:none;
+    stroke:#009FE3;
+    stroke-width:5;
+    stroke-miterlimit:10;
+
+    stroke-dasharray: 1500;
+    stroke-dashoffset: 1500;
+    animation: dash 5s linear forwards;
+    }
+    .st3 {
+    fill:#009FE3;
+    }
+
+    @keyframes dash {
+    from {
+    stroke-dashoffset: 822;
+    }
+    to {
+    stroke-dashoffset: 0;
+    }
+    }
+</style>
+    <polygon points="0,0 40,0 20,30" class="triangle" />
+    <g id="Ebene_2">
+	<rect x="127.2" y="97.2" class="st0" width="229.2" height="229.2"/>
+        <polyline class="st1"
+                  points="333.5,120.1 150,303.6 150,303.6 202.4,303.6 333.5,172.5 333.5,224.9 254.8,303.6 307.3,303.6
+                  333.5,277.3 333.5,303.6 333.5,277.3 307.3,303.6 254.8,303.6 333.5,224.9 333.5,172.5 202.4,303.6 150,303.6 333.5,120.1
+                  281.1,120.1 150,251.2 150,198.8 228.7,120.1 176.3,120.1 150,146.3 150,120.1 150,146.3 176.3,120.1 228.7,120.1 150,198.8
+                  150,251.2 281.1,120.1"/>
+    </g>
+    <g id="Ebene_3">
+		<g>
+			<polyline class="st2"
+                      points="150,120.1 150,146.3 176.3,120.1 228.7,120.1 150,198.8 150,251.2 281.1,120.1 333.5,120.1
+				      150,303.6 202.4,303.6 333.5,172.5 333.5,224.9 254.8,303.6 307.3,303.6 333.5,277.3 333.5,303.6"/>
+
+            <path class="st3"
+                  d="M333.5,315.7c-2.1-5.7-5.7-12.7-9.5-17.1l9.5,3.4l9.5-3.4C339.2,303,335.6,310,333.5,315.7z"/>
+
+		</g>
+        <path class="st2" d="M375.6,269.8"/>
+    </g>
+</svg>
