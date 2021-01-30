@@ -4,7 +4,7 @@ date: 2020-10-12T09:49:41+02:00
 draft: true
 ---
 
-<h2>3.7.1 Einleitung</h2>
+<h2>4.7.1 Einleitung</h2>
 <p>Ende der 80er Jahre erkannte der französische Mathematiker Yves Meyer tiefere Zusammenhänge zwischen Entwicklungen in
     der Mathematik und der Geophysik und faßte sie zu der Wavelet-Theorie zusammen. Stephane Mallat von der New York
     University und Ingrid Daubechies von den Bell Labs entwickelten die Theorie weiter und stellten Zusammenhänge zur
@@ -29,7 +29,9 @@ draft: true
     analysiert ist.</p>
 <p>Beispiel: rechtes Bild mit abrupter Frequenzänderung, DFT liefert gleiches Ergebnis, WFT zeigt
     Zeit-Frequenz-Abhängigkeit.</p>
-{{% image "Bildkompression/7/wavelet.gif" "" "Abb. 4.7-0  Vergleich Fourier-Transformation zu Windowed Fourier-Transformation" %}}
+{{% image url="Bildkompression/7/wavelet.gif"
+alt="Vergleich Fourier-Transformation zu Windowed Fourier-Transformation"
+caption="Abb. 4.7-0 Vergleich Fourier-Transformation zu Windowed Fourier-Transformation" %}}
 
 <p><strong>Vorteile der Kompression mittels Wavelets:</strong></p>
 <p>Bei der Wavelet-Transformation erfolgt eine automatische Anpassung des Zeit-Frequenz-Fensters, so dass bei hohen
@@ -66,49 +68,79 @@ draft: true
 <h2>4.7.2 Mathematischer Hintergrund</h2>
 <p>Seit langem bekannt als bewährtes Mittel zur Untersuchung eines Signals im Frequenzbereich ist die
     Fourier-Transformation:</p>
-<!--TODO: Formeln shortcode-->
+<p>
+{{< formula >}}X(\omega) = \int \limits_{-\infty}^{+\infty} x(t) e^{-j\omega t}dt{{< /formula >}}
+</p>
+
+<p>Die hinter der Transformationsbasis, der komplexen exp-Funktion, steckenden trigonometrischen Funktionen oszillieren
+    jedoch zeitlich unbegrenzt. Das bedeutet, dass die Fourier-Transformation keine Aussagen über das zeitliche (bzw.
+    bei einem Bildsignal räumliche) Auftreten einzelner Frequenzen oder Frequenzbereiche gestattet. Um diesen Effekt zu
+    erreichen, kann das Signal mit einer Fensterfunktion {{< formula >}}w{{< /formula >}} multipliziert werden. Diese
+    Funktion schneidet einen Bereich des Signals heraus, der dann als quasistationär angesehen werden kann. Man
+    bezeichnet diese Transformation als gefensterte Fourier-Transformation {{< formula >}}STFT{{< /formula >}} (Short
+    Time Fourier Transformation):</p>
+<p>
+{{< formula >}}\text{STFT}(t_0 , \omega) = \int \limits_{-\infty}^{+\infty} x(t) \cdot w(t-t_0) \cdot e^{-j\omega t}dt{{< /formula >}}
+</p>
 
 <p>Bildflächen enthalten tiefe Frequenzen und nur auf geringer Fläche hohe Frequenzen (Kanten). Daher ist es sinnvoll,
     bei tiefen Frequenzen ein eher breites Fenster mit entsprechend detaillierter spektraler Auflösung und bei hohen
     Frequenzen ein schmales Fenster mit geringer spektraler Auflösung zu wählen. Die starre Fensterung läßt dies jedoch
     nicht zu.</p>
 <p>Das erreicht die Wavelet-Transformation. Man verwendet als Basis Elemente einer Wavelet-Funktionenfamilien
-    <!--TODO: Formeln shortcode-->a,b , die aus einem Basiswavelet <!--TODO: Formeln shortcode-->(mother wavelet) durch
-    Skalierung (Dehnung oder Stauchung) mittels des Faktors a und Verschiebung durch den Parameter b abgeleitet
-    werden:</p>
-<!--TODO: Formeln shortcode-->
+    {{< formula >}}\psi_{a,b}{{< /formula >}}, die aus einem Basiswavelet {{< formula >}}\psi{{< /formula >}}
+    (mother wavelet) durch Skalierung (Dehnung oder Stauchung) mittels des Faktors a und Verschiebung durch den
+    Parameter b abgeleitet werden:</p>
+<p>
+{{< formula >}}\psi_{a,b}(t) = \frac{1}{\sqrt{a}} \left(\frac{t-b}{a}\right) ; a \in \mathbb{R^+} , b \in \mathbb{R}  {{< /formula >}}
+</p>
 
-<p>Damit ergibt sich für die kontinuierliche Wavelet-Transformation CWT (Continous Wavelet Transformation):</p>
-<!--TODO: Formeln shortcode-->
+<p>Damit ergibt sich für die kontinuierliche Wavelet-Transformation {{< formula >}}\text{CWT}{{< /formula >}} (Continous Wavelet Transformation):</p>
+<p>
+    {{< formula >}}\text{CWT}(a,b) = \int \limits_{-\infty}^{+\infty} x(t)\psi_{a,b}(t)dt{{< /formula >}}
+</p>
 
 <h2>4.7.3 Diskrete Wavelet-Transformation</h2>
 <p>Für die praktische Handhabung müssen nun die Parameter a und b diskretisiert werden, um nicht überabzählbar viele
     Basisfunktionen zu erhalten. Dies erreicht die Diskrete Wavelet-Transformation, bei der diskrete Werte für
     Verschiebung und Skalierung verwendet werden:</p>
-<!--TODO: Formeln shortcode-->
+<p>
+    {{% formulaRow f1 = "a = a_0^m" f2 = "b = n \cdot b_0 \cdot a_0^m" f3 = "a_0 > 1, b_0 \neq 0" %}}
+</p>
 
 <p>Durch die Diskretisierung von a und b wird aus der Koeffizientenebene ein diskretes Gitternetz. Man wählt meist
     a<sub>0</sub>=2 und b<sub>0</sub>=1, damit das Gitternetz nicht zu dicht wird (damit stünden mehr Koeffizienten zur
     Verfügung als zur Signalrekonstruktion notwendig) aber auch nicht zu weit.</p>
 <p>Man erhält eine endliche Zahl möglicher Waveletfunktionen:</p>
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}}\psi_{m,n} = 2^{-\frac{m}{2}} \psi(2^{-m}t-n)  {{< /formula >}}
+</p>
 
-<p>dabei sind: m...Skalierungsfaktor und n...Verschiebung</p>
-<p>Für ein kontinuierliches Signal x(t) ergibt sich folgende Transformationsgleichung:</p>
-<!--TODO: Formeln shortcode-->
+<p>dabei sind: {{< formula >}}m{{< /formula >}} Skalierungsfaktor und {{< formula >}}n{{< /formula >}} Verschiebung</p>
+<p>Für ein kontinuierliches Signal {{< formula >}}x(t){{< /formula >}} ergibt sich folgende Transformationsgleichung:</p>
+<p>
+    {{< formula >}}d_{m,n} = 2^{-\frac{m}{2}} \int \limits_{-\infty}^{+\infty} x(t) \cdot \psi(2^{-m}t-n)  {{< /formula >}}
+</p>
 
-<p>Für ein diskretes Bildsignal x[j,k] erhält man die Bildpunkte d<sub>m,n</sub> im Wavelet-Bereich durch:</p>
-<!--TODO: Formeln shortcode-->
+<p>Für ein diskretes Bildsignal {{< formula >}}x[j,k]{{< /formula >}} erhält man die Bildpunkte
+    {{< formula >}}d_{m,n}{{< /formula >}} im Wavelet-Bereich durch:</p>
+<p>
+    {{< formula >}}d_{m,n} = 2^{-\frac{m}{2}} \sum \limits_{j} \sum \limits_{k} x[j,k] \cdot \psi(2^{-m}t-n)  {{< /formula >}}
+</p>
 
 <p>Summieren der mit den Waveletkoeffizienten gewichteten Basisfunktionen ergibt das rekonstruierte Signal:</p>
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}}x(t) = \sum \limits_{m} \sum \limits_{n} d_{m,n} \cdot \psi_{m,n}(t) {{< /formula >}}
+</p>
 
 <h2>4.7.4 Eindimensionale Wavelet-Transformation</h2>
 <p>Ziel der Transformation ist die optimale Signaldarstellung für anschließende Operationen. Dabei ist nicht jede
     Transformationsfunktion geeignet. Die Rechteckfunktion weist z.B. bei der Darstellung mittels der Basisfunktionen
     der Fourier-Reihe (sin, cos) Über- bzw. Unterschwinger an den Unstetigkeitsstellen auf. Daraus läßt sich schließen,
     dass die verwendeten Basisfunktionen nicht optimal gewählt wurden.</p>
-{{% image "Bildkompression/7/3_7_1_rechteckfunktion.gif" "" "Abb. 4.7-1 Rechteckfunktion aus" %}}
+{{% image url="Bildkompression/7/3_7_1_rechteckfunktion.gif"
+alt="Rechteckfunktion aus"
+caption="Abb. 4.7-1 Rechteckfunktion aus" %}}
 
 <p>Wavelets eignen sich besser für Unstetigkeiten, da sie sowohl im Zeit- wie auch im Frequenzbereich endliche
     Intervalle belegen.</p>
@@ -116,7 +148,9 @@ draft: true
     durch die Folge (9, 7, 3, 5) repräsentiert wird. Als Basisfunktionen verwendet man vier zueinander verschobene
     Rechteckimpulse. Mit den jeweiligen Koeffizienten multipliziert, die genau der abgetasteten Folge entsprechen,
     ergibt sich die gewünschte Funktion.</p>
-{{% image "Bildkompression/7/3_7_2_vier_rechteckimpulse.gif" "" "Abb. 4.7-2 vier Rechteckimpulse für die betrachtete Funktion aus" %}}
+{{% image url="Bildkompression/7/3_7_2_vier_rechteckimpulse.gif"
+alt="vier Rechteckimpulse für die betrachtete Funktion aus"
+caption="Abb. 4.7-2 vier Rechteckimpulse für die betrachtete Funktion aus" %}}
 
 <p>Ein Nachteil der Funktionsdarstellung ist, dass die Kenntnis eines Koeffizienten nichts über das Gesamtsignal
     aussagt, was sich bei einer verlustbehafteten Übertragung ungünstig auswirken kann. Informationen über den
@@ -124,39 +158,56 @@ draft: true
 <p>Für das Beispiel werden geeignetere Funktionen gesucht. Man wählt 3 Funktionen, die sich durch Stauchung und
     Verschiebung voneinander unterscheiden (wavelet functions), und eine über das gesamte Intervall konstante Funktion
     (scaling function). "Baby wavelets" ergeben sich durch Stauchung und Verschiebung aus "mother wavelet".</p>
-{{% image "Bildkompression/7/3_7_3_wavelet_bases.gif" "" "Abb. 4.7-3 Ableitung der Basiswavelets au" %}}
+{{% image url="Bildkompression/7/3_7_3_wavelet_bases.gif"
+alt="Ableitung der Basiswavelets aus"
+caption="Abb. 4.7-3 Ableitung der Basiswavelets aus" %}}
 
 <p>Die "scaling function" hat eine Art mittelwertbildene Aufgabe. Das Originalsignal kann mittels dieser Wavelets und
-    den Koeffizienten (12, 4,<!--TODO: Formeln shortcode--> , -<!--TODO: Formeln shortcode--> ) dargestellt werden.</p>
+    den Koeffizienten ({{< formula >}}12{{< /formula >}}, {{< formula >}}4{{< /formula >}}, {{< formula >}}\sqrt{2}
+    {{< /formula >}}, {{< formula >}}\sqrt{2}{{< /formula >}} ) dargestellt werden.</p>
 <p>Die Wavelet-Transformation wird schrittweise vollzogen, d.h. die darzustellende Funktion wird in immer "glattere"
-    Versionen aufgespaltet. Man spaltet ein Signal aus dem Signalraum V<sup>j</sup> durch orthogonale Filterung in einen
-    Hochpassanteil im Signalraum W<sup>j-1</sup> und einen Tiefpassanteil V<sup>j-1</sup>.</p><!--TODO: Formatierung-->
-{{% image "Bildkompression/7/3_7_4_wavelet_v3.gif" "" "Abb. 4.7-4 Aufspaltung des Haar-Wavelets in verschiedene Signalräume aus" %}}
+    Versionen aufgespaltet. Man spaltet ein Signal aus dem Signalraum {{< formula >}}V^j{{< /formula >}} durch
+    orthogonale Filterung in einen Hochpassanteil im Signalraum {{< formula >}}W^{j-1}{{< /formula >}} und einen
+    Tiefpassanteil {{< formula >}}V^{j-1}{{< /formula >}}.</p>
+{{% image url="Bildkompression/7/3_7_4_wavelet_v3.gif"
+alt="Aufspaltung des Haar-Wavelets in verschiedene Signalräume aus"
+caption="Abb. 4.7-4 Aufspaltung des Haar-Wavelets in verschiedene Signalräume aus" %}}
 
-<p>Die orthogonale Filterung schließt aus, dass sich V<sup>j-1</sup> und W<sup>j-1</sup> gegenseitig enthalten. V<sup>j-1</sup>
-    und W<sup>j-1</sup> ergänzen sich zu V<sup>j</sup>.</p>
-{{% image "Bildkompression/7/3_7_5_v3_dekomposition.gif" "" "Abb. 4.7-5 Zerlegung des Vektorraumes V3 aus" %}}
+<p>Die orthogonale Filterung schließt aus, dass sich {{< formula >}}V^{j-1}{{< /formula >}} und
+    {{< formula >}}W^{j-1}{{< /formula >}} gegenseitig enthalten. {{< formula >}}V^{j-1}{{< /formula >}}
+    und {{< formula >}}W^{j-1}{{< /formula >}} ergänzen sich zu {{< formula >}}V^{j}{{< /formula >}}.</p>
+{{% image url="Bildkompression/7/3_7_5_v3_dekomposition.gif"
+alt="Zerlegung des Vektorraumes V3 aus"
+caption="Abb. 4.7-5 Zerlegung des Vektorraumes V3 aus" %}}
 
-<p>Jeder Vektorraum niedriger Ordnung ist mit einem Vektorraum höherer Ordnung darstellbar: V2 = V0 W0 W1. Daraus folgt
-    V0 V1 V2 ...</p><!--TODO: Formatierung-->
-<p>Die Transformation wird schrittweise entwickelt, d.h. zunächst wird V2 in V1 und W1 und dann V1 in V0 und W0
+<p>Jeder Vektorraum niedriger Ordnung ist mit einem Vektorraum höherer Ordnung darstellbar:
+    {{< formula >}}V^2 = V^0 \oplus W^0 \oplus W^1 {{< /formula >}}. Daraus folgt:
+    {{< formula >}}V^0 \subset V^1 \subset V^2 \subset \ldots {{< /formula >}}</p>
+<p>Die Transformation wird schrittweise entwickelt, d.h. zunächst wird {{< formula >}}V^2{{< /formula >}} in
+    {{< formula >}}V^1{{< /formula >}} und {{< formula >}}W^1{{< /formula >}} und dann
+    {{< formula >}}V^1{{< /formula >}} in {{< formula >}}V^0{{< /formula >}} und {{< formula >}}W^0{{< /formula >}}
     aufgegliedert. Die hier als Vektorräume bezeichneten Vj stellen bei der Wavelet Transformation den Raum der Scaling
     Functions dar, während die Unterräume Wj von Wavelets aufgespannt werden.</p>
 
 <p><strong>Filterbänke</strong></p>
-<p>Filterung bedeutet, dass eine Eingangssignalfolge x mit einer anderen Signalfolge h gefaltet wird
-    (Filterkoeffizienten).</p>
-<!--TODO: Formeln shortcode-->
+<p>Filterung bedeutet, dass eine Eingangssignalfolge {{< formula >}}x{{< /formula >}} mit einer anderen Signalfolge
+    {{< formula >}}h{{< /formula >}} gefaltet wird (Filterkoeffizienten).</p>
+<p>
+{{< formula >}}Y(n) = \sum \limits_{K=0}^{\propto} x(n-k)h(k){{< /formula >}}
+</p>
 
 <p>Die Dekomposition eines Signals durch Wavelets kann ebenfalls auf eine Faltung mit den sogenannten
-    Filter-Koeffizienten des Wavelets zurückgeführt werden. Man konstruiert aus den Koeffizientensätzen h(n) (Scaling
-    Koeffizienten) und g(n) (Wavelet Koeffizienten) die Skalierungsfunktionen c<sub>j</sub> und Wavelets d<sub>j</sub>
+    Filter-Koeffizienten des Wavelets zurückgeführt werden. Man konstruiert aus den Koeffizientensätzen
+    {{< formula >}}h(n){{< /formula >}} (Scaling Koeffizienten) und {{< formula >}}g(n){{< /formula >}} (Wavelet
+    Koeffizienten) die Skalierungsfunktionen {{< formula >}}c_j{{< /formula >}} und Wavelets
+    {{< formula >}}d_j{{< /formula >}}
 </p>
-<!--TODO: Formeln shortcode-->
+{{% formulaRow f1 = "c_j(k) = \sum \limits_{m} h(m-2k)c_{j+1}(m)" f2 = "d_j(k) = \sum \limits_{m} h(m-2k)d_{j+1}(m)" %}}
+
 
 <p>Für die Rekonstruktion muss jede j-te Auflösungsstufe der Wavelet-Funktionen zurück zur nächsten detailreicheren
-    Auflösung der (j+1)-ten Stufe gebracht werden. Die Filterbank-Implementierung gewährleistet eine schnelle numerische
-    Realisierung der Diskreten Wavelet Transformation.</p>
+    Auflösung der {{< formula >}}(j+1){{< /formula >}}-ten Stufe gebracht werden. Die Filterbank-Implementierung
+    gewährleistet eine schnelle numerische Realisierung der Diskreten Wavelet Transformation.</p>
 
 <h2>4.7.5 Zweidimensionale Diskrete Wavelet-Transformation</h2>
 <p>Die mehrdimensionale Diskrete Wavelet Transformation ist eine Erweiterung der Transformation eindimensionaler Daten.
@@ -173,16 +224,20 @@ draft: true
     <li>in HL dominieren die vertikalen Bildelemente und</li>
     <li>HH betont die diagonalen Strukturen des Originalbildes.</li>
 </ul>
-{{% image "Bildkompression/7/3_7_6_wavelet_decomposition_level3.gif" "" "Abb. 4.7-6 Dekomposition nach 3 Iterationsschritten" %}}
+{{% image url="Bildkompression/7/3_7_6_wavelet_decomposition_level3.gif"
+alt="Dekomposition nach 3 Iterationsschritten"
+caption="Abb. 4.7-6 Dekomposition nach 3 Iterationsschritten" %}}
 
 <h2>4.7.6 Basiswavelets und Wavelet-Familien</h2>
 <p>Die folgende Tabelle zeigt Beispiele für gebräuchliche Basiswaveletfunktionen. Um eine eindeutige Rücktransformation
-    zu ermöglichen, muss ein Basiswavelet<!--TODO: Formeln shortcode--> absolut integrierbar sein:</p>
-<!--TODO: Formeln shortcode-->
+    zu ermöglichen, muss ein Basiswavelet {{< formula >}}\psi{{< /formula >}} absolut integrierbar sein:</p>
+<p>
+    {{< formula >}} \int \limits_{-\infty}^{+\infty} \psi(x)dx = 0{{< /formula >}}
+</p>
 <!-- TODO: transform to table shortcode? -->
 <div style="overflow-x: scroll; width: 100%;">
   <table class="table table-bordered" aria-hidden="true">
-    <thead class="thead-dark">
+    <thead class="thead-primary">
       <tr>
         <th>Waveletklasse</th>
         <th>Scaling-Funktion</th>
@@ -226,17 +281,21 @@ draft: true
 
 <p>Das folgende Bild zeigt die Wavelet-Funktionenfamilie der Mexican hat-Wavelets. Es sind die unterschiedlich
     skalierten und verschobenen Basisfunktionen anhand einiger Beispiele erkennbar.</p>
-{{% image "Bildkompression/7/3_7_7_wavelet_mexican_hat.gif" "" "Abb. 4.7-7 Die Mexican hat-Wavelet-Familie aus Literatur" %}}
+{{% image url="Bildkompression/7/3_7_7_wavelet_mexican_hat.gif"
+alt="Die Mexican hat-Wavelet-Familie aus Literatur"
+caption="Abb. 4.7-7 Die Mexican hat-Wavelet-Familie aus Literatur" %}}
 
 <p>Die stark gestauchten Versionen berücksichtigen hochfrequente Anteile, also Bereiche mit schnellem
     Helligkeitswechsel. Die gedehnten Versionen informieren über niederfrequente Anteile. Innerhalb einer Skalierung
     bzw. eines Frequenzbereiches dienen die Verschiebungen dazu, das Auftreten der jeweiligen Frequenz an den
     verschiedenen Stellen des Bildes zu untersuchen. Speziell gelten folgende Bedingungen:</p>
-<p>|a| > 1 Dehnung in x-Richtung, Stauchung in <!--TODO: Formeln shortcode-->-Richtung</p>
-<p>|a| < 1 Stauchung in x-Richtung, Dehnung in <!--TODO: Formeln shortcode-->-Richtung</p>
-<p>a < 0 Spiegelung an x=0</p>
-<p>b > 0 Verschiebung nach rechts</p>
-<p>b < 0 Verschiebung nach links</p>
+<p>{{< formula >}}\lvert a \rvert > 1{{< /formula >}} Dehnung in {{< formula >}}x{{< /formula >}}-Richtung, Stauchung in
+    {{< formula >}}\psi{{< /formula >}}-Richtung</p>
+<p>{{< formula >}}\lvert a \rvert < 1{{< /formula >}} Stauchung in {{< formula >}}x{{< /formula >}}-Richtung, Dehnung in
+    {{< formula >}}\psi{{< /formula >}}-Richtung</p>
+<p>{{< formula >}}a < 0{{< /formula >}} Spiegelung an {{< formula >}}x = 0{{< /formula >}}</p>
+<p>{{< formula >}}b > 0{{< /formula >}} Verschiebung nach rechts</p>
+<p>{{< formula >}}b < 0{{< /formula >}} Verschiebung nach links</p>
 
 <h2>4.7.7 Multi Resolution Analysis (MRA) </h2>
 <p>Die Wavelet-Transformation läßt sich elegant mit Filterbänken realisieren. Die Signallänge und auch die
@@ -248,26 +307,32 @@ draft: true
     Multi-Resolution-Analysis (MRA) her.</p>
 <p>Der Ansatz der MRA geht von der psychooptischen Tatsache aus, dass das Gehirn Bilder gleichzeitig in mehreren
     Auflösungen verarbeitet. Man stellt sich deshalb vor, dass das Bildsignal in einem Signalraum enthalten ist, der in
-    eine Folge von Teilräumen V<sub>i</sub> zerlegt werden kann. Die V<sub>i</sub> enthalten das Signal in jeweils
+    eine Folge von Teilräumen {{< formula >}}V_i{{< /formula >}} zerlegt werden kann. Die {{< formula >}}V_i{{< /formula >}} enthalten das Signal in jeweils
     reduzierter Auflösung. Die Reduktion der Auflösung erfolgt mittels eines geeigneten Tiefpassfilters. Zu den
-    V<sub>i</sub> gehören entsprechende Differenzräume W<sub>i</sub> , die die Differenzinformationen zweier
-    aufeinanderfolgender V<sub>i</sub> enthalten. Die Übergänge der W<sub>i</sub> werden durch einen Hochpassfilter
-    verursacht. Die Wi werden durch die verschiedenen Versionen einer Wavelet-Funktionenfamilie
-    <!--TODO: Formeln shortcode--> erzeugt, während die V<sub>i</sub> durch die Versionen der dazugehörenden
-    Skalierungsfunktion<!--TODO: Formeln shortcode--> erzeugt werden. Die Zusammenhänge zwischen
-    <!--TODO: Formeln shortcode--> und<!--TODO: Formeln shortcode--> sowie den Koeffizienten t<sub>K</sub> des
-    Tiefpasses und h<sub>K</sub> des Hochpasses beschreiben die folgenden Gleichungen:</p>
-<!--TODO: Formeln shortcode-->
+    {{< formula >}}V_i{{< /formula >}} gehören entsprechende Differenzräume {{< formula >}}W_i{{< /formula >}},
+    die die Differenzinformationen zweier aufeinanderfolgender {{< formula >}}V_i{{< /formula >}} enthalten. Die
+    Übergänge der {{< formula >}}W_i{{< /formula >}} werden durch einen Hochpassfilter verursacht. Die
+    {{< formula >}}W_i{{< /formula >}} werden durch die verschiedenen Versionen einer Wavelet-Funktionenfamilie
+    {{< formula >}}\psi{{< /formula >}} erzeugt, während die {{< formula >}}V_i{{< /formula >}} durch die Versionen der dazugehörenden
+    Skalierungsfunktion {{< formula >}}\phi{{< /formula >}} erzeugt werden. Die Zusammenhänge zwischen
+    {{< formula >}}\psi{{< /formula >}} und {{< formula >}}\phi{{< /formula >}} sowie den Koeffizienten
+    {{< formula >}}t_K{{< /formula >}} des Tiefpasses und {{< formula >}}h_K{{< /formula >}} des Hochpasses beschreiben
+    die folgenden Gleichungen:</p>
+{{% formulaRow f1 = "\phi(x) = 2 \sum \limits_{k} t_k \cdot \phi(2x-k)" f2 = "\psi(x) = 2 \sum \limits_{k} h_k \cdot \phi(2x-k)" %}}
 
 <p>Man bezeichnet den Tiefpassfilter auch als Wavelet-Filter und den Hochpassfilter als Skalierungsfilter.</p>
-<p>Aus den Tiefpasskoeffizienten t<sub>k</sub> lassen sich durch Umkehrung der Reihenfolge und Negation jedes zweiten
-    Wertes die h<sub>k</sub> erzeugen:</p>
-<!--TODO: Formeln shortcode-->
+<p>Aus den Tiefpasskoeffizienten {{< formula >}}t_K{{< /formula >}} lassen sich durch Umkehrung der Reihenfolge und
+    Negation jedes zweiten Wertes die {{< formula >}}h_K{{< /formula >}} erzeugen:</p>
+<p>
+    {{< formula >}} h_k = (-1)^{1-k}t_k {{< /formula >}}
+</p>
 
 <p>Durch Konstruktion eines geeigneten Tiefpassfilters, welcher eine MRA-Konstellation erzeugt, lässt sich somit die
     zugehörige Waveletbasis erzeugen und gleichzeitig der Hochpassfilter erzeugen. Setzt man z.B. t<sub>k</sub> = (0.5,
     0.5) so erhält man das Haar-Wavelet,</p>
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}} (h_k) = \frac{1}{4\sqrt{2}}(1 + \sqrt{3,3} - \sqrt{3,3} - \sqrt{3}){{< /formula >}}
+</p>
 
 <p>führt zum Daubechies-Wavelet.</p>
 
@@ -281,21 +346,28 @@ draft: true
 <p>Bei Graubildern (2D) erfolgt die Extraktion durch sequenzielle Anwendung der diskreten eindimensionalen
     Transformation (Filter) auf Zeilen und Spalten, bei farbigen Bildern wird das Verfahren auf jede Farbebene
     angewandt.</p>
-{{% image "Bildkompression/7/3_7_8_wavelet_prinzip_neu.gif" "" "Abb. 4.7-8 Prinzip eines Transformationsschrittes aus" %}}
-{{% image "Bildkompression/7/3_7_9_wavelet_2_iterationen.gif" "" "Abb. 4.7-9 Schematische Darstellung von 2 Transformationsstufen aus" %}}
+{{% image url="Bildkompression/7/3_7_8_wavelet_prinzip_neu.gif"
+alt="Prinzip eines Transformationsschrittes aus"
+caption="Abb. 4.7-8 Prinzip eines Transformationsschrittes aus" %}}
+{{% image url="Bildkompression/7/3_7_9_wavelet_2_iterationen.gif"
+alt="Schematische Darstellung von 2 Transformationsstufen aus"
+caption="Abb. 4.7-9 Schematische Darstellung von 2 Transformationsstufen aus" %}}
 
 <p>Mit mehreren Transformationsschritten wird das skalierte Bild immer kleiner und in den Differenzbildern sammelt sich
     mehr und mehr Information an. In jeder Transformationsstufe läßt sich das Bild aus dem Original- und den
     Differenzanteilen vollständig rekonstruieren.</p>
 <div class="row">
   <div class="col">
-    {{% image "Bildkompression/7/3_7_10_a_wavelet_haus.jpg" "" "" %}}
+    {{% image url="Bildkompression/7/3_7_10_a_wavelet_haus.jpg"
+    alt="Originalbild" %}}
   </div>
   <div class="col">
-    {{% image "Bildkompression/7/3_7_10_b_wavelet_haus_1_iteration.jpg" "" "" %}}
+    {{% image url="Bildkompression/7/3_7_10_b_wavelet_haus_1_iteration.jpg"
+    alt="Differenzbild 1. Iteration"%}}
   </div>
   <div class="col">
-    {{% image "Bildkompression/7/3_7_10_c_wavelet_haus_2_iteration.jpg" "" "" %}}
+    {{% image url="Bildkompression/7/3_7_10_c_wavelet_haus_2_iteration.jpg"
+    alt="Differenzbild 2. Iteration"%}}
   </div>
 </div>
 <p class="small">Abb. 4.7.10. - Darstellung von 2 Transformationsstufen anhand eines Bildbeispiels</p>
@@ -308,8 +380,12 @@ draft: true
     gewichtet komprimiert werden.</p>
 <p>Die folgenden beiden Bilder zeigen die Wirkung an einem realen Bild, wobei Abb. 4.7.11.das Originalbild zeigt und
     Abb. 4.7.12. das Transformationsergebis nach der 2. Iteration.</p>
-{{% image "Bildkompression/7/3_7_11_wavelet_camera_original.gif" "" "Abb. 4.7-10 Originalbild aus" %}}
-{{% image "Bildkompression/7/3_7_12_wavelet_camera_transform2.gif" "" "Abb. 4.7-11 Transformationsergebnis nach der 2. Iteration aus" %}}
+{{% image url="Bildkompression/7/3_7_11_wavelet_camera_original.gif"
+alt="Originalbild aus"
+caption="Abb. 4.7-10 Originalbild aus" %}}
+{{% image url="Bildkompression/7/3_7_12_wavelet_camera_transform2.gif"
+alt="Transformationsergebnis nach der 2. Iteration aus"
+caption="Abb. 4.7-11 Transformationsergebnis nach der 2. Iteration aus" %}}
 
 <p>Im transformierten Bild befindet sich links oben die Komponente, die dem Tiefpassband entspricht und das Originalbild
     in verminderter örtlicher Auflösung enthält. Die anderen Komponenten enthalten die hochfrequenten Informationen. In
@@ -325,24 +401,27 @@ draft: true
     Grossteil des Bildes ausmachen, auf viele, betragsmäßig kleine Koeffizienten verstreut sind. Bei der
     Schwellenwert-Methode werden nun alle Koeffizienten, die unter einem bestimmten Schwellenwert liegen, auf Null
     gesetzt und im nächsten Schritt mit der Run-Length-Codierung<!--TODO: Fehlende Referenzen--> zusammengefasst.</p>
-<p>Bessere Kompressionsraten können durch den Gebrauch eines endlichen Systems von Quantisierungsfunktionen Qi i{1..m}
-    erzielt werden. Die Quantisierungsfunktion Q ist nicht injektiv.
-    Sei A ein beliebiges Intervall auf der reellen Achse und { k: k=1..m} eine nichtleere Menge von inneren Punkten von
-    A
-    mit 1 < 2 < ...< m , 0:= -, dann ist Q(x)=smax{i{0..k}: x> i}.</p><!--TODO: Formatierung-->
+<p>Bessere Kompressionsraten können durch den Gebrauch eines endlichen Systems von Quantisierungsfunktionen
+    {{< formula >}} Q_i, i \in \{1 \ldots m\} {{< /formula >}} erzielt werden. Die Quantisierungsfunktion
+    {{< formula >}} Q {{< /formula >}} ist nicht injektiv.
+<p>Sei {{< formula >}} A {{< /formula >}} ein beliebiges Intervall auf der reellen Achse und
+    {{< formula >}} \{\xi_k : k = 1 \ldots m\} \subset \mathcal{I} {{< /formula >}} eine nichtleere Menge von inneren
+    Punkten von {{< formula >}} A {{< /formula >}} mit {{< formula >}} \xi_1 < \xi_2 < \ldots < \xi_m, \xi_0 := -\infty {{< /formula >}}
+    dann ist {{< formula >}} Q(x)=s_{max}, \{i \in \{0 \ldots k\}: x> \xi_i\} {{< /formula >}}.</p>
 
 <p>Die Quantisierungsgüte hängt von 3 wesentlichen Faktoren ab:</p>
 <ul>
-    <li>der Anzahl k der k - ein zu kleiner Wert führt zu einer zu groben Quantisierung, ein zu großer Wert verringert
-        die Kompressionsrate.
+    <li>der Anzahl {{< formula >}} k {{< /formula >}} der {{< formula >}} \xi_k {{< /formula >}} - ein zu kleiner Wert
+        führt zu einer zu groben Quantisierung, ein zu großer Wert verringert die Kompressionsrate.
     </li>
-    <li>der Wahl der k- eine nicht-äquidistante Zerlegung von A bei der gleichen Anzahl von kkann zu einem besseren
-        Ergebnis führen als eine äquidistante Zerlegung.
+    <li>der Wahl der {{< formula >}} \xi_k {{< /formula >}}- eine nicht-äquidistante Zerlegung von
+        {{< formula >}} A {{< /formula >}} bei der gleichen Anzahl von {{< formula >}} \xi_k {{< /formula >}} kann zu
+        einem besseren Ergebnis führen als eine äquidistante Zerlegung.
     </li>
-    <li>der Anzahl m der Quantisierungsfunktionen - üblicherweise kann durch den Gebrauch von mehreren unterschiedlichen
-        Quantisierungsfunktionen die Kompressionensrate verbessert werden.
+    <li>der Anzahl {{< formula >}} m {{< /formula >}} der Quantisierungsfunktionen - üblicherweise kann durch den
+        Gebrauch von mehreren unterschiedlichen Quantisierungsfunktionen die Kompressionensrate verbessert werden.
     </li>
-</ul><!--TODO: Formatierung-->
+</ul>
 
 <p><strong>Kodierung</strong></p>
 <p>An die Quantisierung schließt sich die Kodierung der quantisierten Werte an. Üblicherweise wird eine
@@ -351,15 +430,21 @@ draft: true
     der Hilber-Kurve) geordnet werden, da die wenigen Koeffizienten, die nicht Null geworden sind, in bestimmten
     Regionen lokalisiert sind.</p>
 
-{{% image "Bildkompression/7/3_7_13_peano-kurve.gif" "" "Abb. 4.7-12 Hilbert-Kurve aus" %}}
+{{% image url="Bildkompression/7/3_7_13_peano-kurve.gif"
+alt="Hilbert-Kurve aus"
+caption="Abb. 4.7-12 Hilbert-Kurve aus" %}}
 
 <p>Es bestehen Abhängigkeiten zwischen Teilbildern: Ist ein Koeffizient in einem Teilbild "insignificant", d.h. kann er
     auf Null quantisiert werden, so sind es auch die Koeffizienten an den gleichen Positionen in den entsprechenden
     Teilbildern höherer Auflösung. In der Reihenfolge dieser Koeffizienten entsteht ein sogenannter "zerotree root", der
     als einziges Symbol kodiert werden kann (Abb. 4.7.14.). Bei der "subband prediction" wird die gleiche Abhängigkeit
     nutzbringend beseitigt, indem nur die Differenz zwischen den Punkten kodiert wird (Abb. 4.7.15.).</p>
-{{% image "Bildkompression/7/3_7_14_zerotree_encoding.gif" "" "Abb. 4.7-13 Zerotree encoding aus" %}}
-{{% image "Bildkompression/7/3_7_15_subband_prediction.gif" "" "Abb. 4.7-14 Subband prediction aus" %}}
+{{% image url="Bildkompression/7/3_7_14_zerotree_encoding.gif"
+alt="Zerotree encoding aus"
+caption="Abb. 4.7-13 Zerotree encoding aus" %}}
+{{% image url="Bildkompression/7/3_7_15_subband_prediction.gif"
+alt="Subband prediction aus"
+caption="Abb. 4.7-14 Subband prediction aus" %}}
 
 <h2>4.7.10 Wavelet-Transformation im Vergleich mit anderen Verfahren</h2>
 <p>Verglichen mit verlustfreien Verfahren sind die mit der Wavelet-Transformation erreichbaren Kompressionsraten
@@ -377,9 +462,9 @@ draft: true
 <!-- TODO: transform to table shortcode? -->
 <div style="overflow-x: scroll; width: 100%;">
   <table class="table table-bordered" aria-hidden="true">
-    <thead class="thead-dark">
+    <thead class="thead-primary">
       <tr>
-        <th></th>
+        <th>Verfahren</th>
         <th>100%</th>
         <th>300%</th>
       </tr>

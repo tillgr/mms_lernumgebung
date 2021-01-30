@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>JPEG Kompressionsverfahren</title>
+    <script src="bootstrap/compiled/bootstrap.bundle.min.js" charset="utf-8">
+    </script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+  </head>
+  <body>
+    <div>
+      <header class="header">
+          <h1 class="title">JPEG Kompressionsverfahren</h1>
+          <table id="menu">
+            <tr>
+              <th><li><a href="#" class="menu">Einleitung</a></li></th>
+              <th><li><a href="#" class="menu">Bildaufbereitung</a></li></th>
+              <th><li><a href="#" class="menu">Diskrete Cosinus.Transformation</a></li></th>
+              <th><li><a href="#" class="menu" id="quantisation">Quantisierung</a></li></th>
+              <th><li><a href="#" class="menu">Entropiekodierung</a></li></th>
+            </tr>
+          </table>
+      </header>
+    </div>
+    <div class="subheader">
+      <span>
+        <h2 class="subtitle"><button type="button" class="btnLast" name="last">&laquo</button><b id="subtitleText"> 4.1 Quantisierung Übersicht </b><button type="button" class="btnNext" name="next">&raquo</button></h2>
+      </span>
+    </div>
+    <div>
+      <table class="bar">
+        <tr>
+          <th class="clickBar" title="4.1 Quantisierung Übersicht" id="btnOverview" onclick="overview()"></th>
+          <th class="clickBar" title="4.2 Prinzip der Quantisierung" id="btnPrinciple" onclick="principle()"></th>
+          <th class="clickBar" title="4.3 Quantisierung bei JPEG" id="btnQuantisation1" onclick="quantisation1()"></th>
+          <th class="clickBar" title="4.3 Quantisierung bei JPEG" id="btnQuantisation2" onclick="quantisation2()"></th>
+          <th class="clickBar" title="4.4 Kompressionsfaktor" id="btnCompression" onclick="compression()"></th>
+          <th class="clickBar" title="4.5 Quantisierung: Zusammenfassung" id="btnSummary" onclick="summary()"></th>
+        </tr>
+      </table>
+    </div>
+    <div class="mainBox">
+      <div class="rectLeft">
+      </div>
+      <div class="rectRight">
+      </div>
+      <div class="rectBild">
+        <p id="textBild">bild</p>
+      </div>
+      <div class="rectBildTrue">
+        <p id="textBild2">auswahl bildausschnitt</p>
+        <img src="schloss.JPG" class="schloss">
+        <div class="rectBildChoose1" onclick="choose1()">1</div>
+        <div class="rectBildChoose2" onclick="choose2()">2</div>
+        <button class="close" onclick="closeBild()">x</button>
+      </div>
+
+
+      <div id="overview" class="mainText">
+        <p>In der vorhergehenden Phase wurden die Pixelwerte in einem Block mit
+        Hilfe der DCT in einen Grundwert und in Abweichungen von diesem zerlegt.
+        In der Quantisierung soll nun erreicht werden, dass <b>nur Informationen
+        übrig</b> bleiben, <b>die für das menschliche Auge besonders relevant sind.</b></p>
+        <p>Dieses Ziel wird dadurch erreicht, dass <b>vor allem geringe Abweichungen
+        ignoriert, das heißt entfernt werden und somit Speicherplatz eigespart
+        wird.</b> Wieviele Informationen verloren gehen, hängt von einem
+        Qualitätsfaktor ab, den der Nutzer selbst festgelegt. Das Prinzip
+        der Quantisierung soll in diesem Kapital erklärt werden.</p>
+      </div>
+      <div id="principle" class="mainText">
+        <p>Ausgangspunkt für die Quantisierung ist die DCT-Koeffizientenmatrix.
+        Sie kann alle Werte zwischen 1028 und 1027 auf eine Kommastelle
+        genau enthalten. Dieser <b>Wertebereich wird durch die Quantisierung
+        eingeschränkt, indem ganzzahlge Wertestufen gebildet werden.</b>
+        Das heißt, alle Werte in einem bestimmten intervall werden zu einer
+        der beiden Intervallgrenzen durch Rundung zugeordnet. Die Größe
+        des Intervalls bezeichnet man dabei als <b>Quantisierungsstufe</b>.
+        Sie wird <b>von einem Quantisierungsfaktor (QF) bestimmt.</b></p>
+
+        <p>Bei der Quantisierung wird jeder Wert durch den entsprechenden
+        Quantisierungsfaktor geteilt und auf die nächste ganze Zahl gerundet.
+        <b>Je größer dieser Faktor ist</b>, desto höher ist die Stufe und
+        desto größer ist auch das Intervall. Damit ist auch die Rundungsfehler
+        um so größer und <b>desto mehr Informationen gehen verloren</b>, da sie
+        bei der Dequantisierung (= Multiplikation mit QF) nicht mehr exakt rekonstruiert
+        werden können. Hier dazu ein Beispiel:</p>
+        <table id="principleExample">
+          <tr>
+            <td class="principleExampleTitle"> Werte vor Quantisierung: </td>
+            <td class="principleExampleTitle"> Werte nach Quantisierung: </td>
+            <td class="principleExampleTitle"> Werte nach Dequantisierung: </td>
+          </tr>
+          <tr>
+            <td>
+              <table class="principleExampleNumber">
+                <tr>
+                  <td class="number">3.3</td><td class="number">3.5</td><td class="number">2.4</td>
+                  <td class="number">1.0</td><td class="number">1.8</td><td class="number">0.5</td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table class="principleExampleNumber" id="principleExampleNumber20">
+                <tr>
+                  <td class="number"></td><td class="number"></td><td class="number"></td>
+                  <td class="number"></td><td class="number"></td><td class="number"></td>
+                </tr>
+              </table>
+              <table class="principleExampleNumber" id="principleExampleNumber21">
+                <tr>
+                  <td class="number">3</td><td class="number">4</td><td class="number">2</td>
+                  <td class="number">1</td><td class="number">2</td><td class="number">1</td>
+                </tr>
+              </table>
+              <table class="principleExampleNumber" id="principleExampleNumber22">
+                <tr>
+                  <td class="number">2</td><td class="number">2</td><td class="number">1</td>
+                  <td class="number">1</td><td class="number">1</td><td class="number">0</td>
+                </tr>
+              </table>
+              <table class="principleExampleNumber" id="principleExampleNumber24">
+                <tr>
+                  <td class="number">1</td><td class="number">1</td><td class="number">1</td>
+                  <td class="number">0</td><td class="number">0</td><td class="number">0</td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table class="principleExampleNumber" id="principleExampleNumber30">
+                <tr>
+                  <td class="number"></td><td class="number"></td><td class="number"></td>
+                  <td class="number"></td><td class="number"></td><td class="number"></td>
+                </tr>
+              </table>
+              <table class="principleExampleNumber" id="principleExampleNumber31">
+                <tr>
+                  <td class="number">3</td><td class="number">4</td><td class="number">2</td>
+                  <td class="number">1</td><td class="number">2</td><td class="number">1</td>
+                </tr>
+              </table>
+              <table class="principleExampleNumber" id="principleExampleNumber32">
+                <tr>
+                  <td class="number">4</td><td class="number">4</td><td class="number">2</td>
+                  <td class="number">2</td><td class="number">2</td><td class="number">0</td>
+                </tr>
+              </table>
+              <table class="principleExampleNumber" id="principleExampleNumber34">
+                <tr>
+                  <td class="number">4</td><td class="number">4</td><td class="number">4</td>
+                  <td class="number">0</td><td class="number">0</td><td class="number">0</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr class="principleExampleLine3">
+            <td>
+              <div class="container">
+                <img class="exsampleTable" src="svg0.JPG">
+              </div>
+            </td>
+            <td class="container" id="exampleText">
+              <p>Quantisierungsfaktor</p>
+              <span>
+                <button type="button" name="button" class="btnPrincipleExample" onclick="principle0()">/</button>
+                <button type="button" name="button" class="btnPrincipleExample" onclick="principle1()">1</button>
+                <button type="button" name="button" class="btnPrincipleExample" onclick="principle2()">2</button>
+                <button type="button" name="button" class="btnPrincipleExample" onclick="principle4()">4</button>
+              </span>
+              <div id="exampleResult1">
+                <p>Resultat: 5 Stufen</p>
+                <p>Speicherbedarf: 3 bit/Wert</p>
+              </div>
+              <div id="exampleResult2">
+                <p>Resultat: 3 Stufen</p>
+                <p>Speicherbedarf: 2 bit/Wert</p>
+              </div>
+              <div id="exampleResult4">
+                <p>Resultat: 2 Stufen</p>
+                <p>Speicherbedarf: 1 bit/Wert</p>
+              </div>
+            </td>
+            <td>
+              <div class="container">
+                <img class="exsampleTable0" id="exsampleTable1" src="svg1.JPG">
+              </div>
+              <div class="container">
+                <img class="exsampleTable0" id="exsampleTable2" src="svg2.JPG">
+              </div>
+              <div class="container">
+                <img class="exsampleTable0" id="exsampleTable3" src="svg3.JPG">
+              </div>
+              <div class="container">
+                <img class="exsampleTable0" id="exsampleTable4" src="svg4.JPG">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="quantisation1" class="mainText">
+        <p>Beim JPEG-Verfahren wird für jeden einzelnen DCT-Koeffizienten ein spezifischer
+        Quantisierungsfaktor festgelegt. So wird eine <b>feinere Quantisierung für
+        die Koeffizienten der niedrigen Frequenzen und eine gröbere Quantisierung
+        für die Koeffizienten der höheren Frequenzen</b> erreicht.</p>
+        <p>Die einzelnen <b>Quantisierungsfaktoren werden</b> zudem <b>in zwei
+        verschiedenen Quantisierungsmatrizen definiert</b>: je eine für die
+        Helligkeitswerte(Y) und eine für die Farbwerte(Cb, Cr). Damit wird
+        erreicht, dass man entsprechend der Helligkeitspräferenz des Auges
+        die Helligkeitswerte sensibler behandeln kann als die Farbwerte.</p>
+        <table class="quantisationTable">
+          <tr>
+            <td class="matrixTitle"> Quantisierungsmatrix für die Y-Ebene: </td>
+            <td class="matrixTitle"> Quantisierungsmatrix für die Cb- und Cr- Ebene: </td>
+          </tr>
+          <tr>
+            <td>
+              <table class="quantisationMatrix">
+                <tr>
+                  <td class="number">16</td><td class="number">11</td><td class="number">10</td><td class="number">16</td>
+                  <td class="number">24</td><td class="number">40</td><td class="number">51</td><td class="number">61</td>
+                </tr>
+                <tr>
+                  <td class="number">12</td><td class="number">12</td><td class="number">14</td><td class="number">19</td>
+                  <td class="number">26</td><td class="number">58</td><td class="number">60</td><td class="number">55</td>
+                </tr>
+                <tr>
+                  <td class="number">14</td><td class="number">13</td><td class="number">16</td><td class="number">24</td>
+                  <td class="number">40</td><td class="number">57</td><td class="number">69</td><td class="number">56</td>
+                </tr>
+                <tr>
+                  <td class="number">14</td><td class="number">17</td><td class="number">22</td><td class="number">29</td>
+                  <td class="number">51</td><td class="number">87</td><td class="number">80</td><td class="number">62</td>
+                </tr>
+                <tr>
+                  <td class="number">18</td><td class="number">22</td><td class="number">37</td><td class="number">56</td>
+                  <td class="number">68</td><td class="number">109</td><td class="number">103</td><td class="number">77</td>
+                </tr>
+                <tr>
+                  <td class="number">24</td><td class="number">35</td><td class="number">55</td><td class="number">64</td>
+                  <td class="number">81</td><td class="number">104</td><td class="number">113</td><td class="number">92</td>
+                </tr>
+                <tr>
+                  <td class="number">49</td><td class="number">64</td><td class="number">78</td><td class="number">87</td>
+                  <td class="number">103</td><td class="number">121</td><td class="number">120</td><td class="number">101</td>
+                </tr>
+                <tr>
+                  <td class="number">72</td><td class="number">92</td><td class="number">95</td><td class="number">98</td>
+                  <td class="number">112</td><td class="number">100</td><td class="number">103</td><td class="number">99</td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table class="quantisationMatrix">
+                <tr>
+                  <td class="number">17</td><td class="number">18</td><td class="number">24</td><td class="number">47</td>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                </tr>
+                <tr>
+                  <td class="number">18</td><td class="number">21</td><td class="number">26</td><td class="number">66</td>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                </tr>
+                <tr>
+                  <td class="number">24</td><td class="number">26</td><td class="number">56</td><td class="number">99</td>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                </tr>
+                <tr>
+                  <td class="number">47</td><td class="number">66</td><td class="number">99</td><td class="number">99</td>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                </tr>
+                <tr>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                </tr>
+                <tr>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                </tr>
+                <tr>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                </tr>
+                <tr>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                  <td class="number">99</td><td class="number">99</td><td class="number">99</td><td class="number">99</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="quantisation2" class="mainText">
+        <p>In <b>natürlichen Bildern</b> gibt es auf dem kleinem Maßstab eines
+        8x8-Pixel-Blocks nur geringe Helligkeits bzw. Farbunterschiede, so dass
+        an den höherfrequenten Stellen meist kleine Koeffizienten stehen.
+        Diese werden durch die höheren Quantisierungsfaktoren zu Null quantisiert,
+        wobei man ausnutzt, dass diese kleinen Unterschiede für das menschliche
+        Auge allgemain nicht so relevant sind (sowohl bei den Helligkeits- als
+        auch bei den Farbwerten).</p>
+        <p><b>Die häufigen Nullwerte bringen durch ihre Redundanz einen Vorteil
+        bei der letzten Phase der Entropiekodierung</b>. Genau dies ist das angestrebte
+        Ziel von JPEG: man nutzt für höhere Frequenzen größere Quantisierungsfaktoren,
+        um auf Kosten von stärkeren Rundungsfehlern, die allerdings auf Grund
+        der Unzulänglichkeiten des menschlichen Auges nicht wichtig sind, den
+        Vorteil von mehr entstandenen Nullen nutzen zu können.</p>
+        <p>Da sich dieser Effekt nur einstellt, wenn es in einem Block nicht
+        zu starke und häufige Farbänderung gibt, liefert JPEG die besten Ergebnisse bei
+        natürlichen farbigen Bilder, in denen viele allmähliche farbübergänge
+        vorkommen.</p>
+        <p><b>Für Bilder mit vielen harten Kanten</b>, also plötzlichen Farbänderungen
+        (z.b. Texte, Strichzeichungen),<b>ist das Verfahren nicht geeignet</b>,
+        da bei diesen auch in den höherfrequenten Bereichen große Koeffizienten
+        auftreten, die kaum zu Nullwerten quantisiert werden können (vor allem in
+        der Y-Ebene, also bei den Helligkeitswerten). </p>
+      </div>
+      <div id="compression" class="mainText">
+        <p>Die <b>Quantisierungsfaktoren könnnen durch einen Qualitätsfaktor verkleinert
+        bzw. vergrößert werden</b>. Diesen Faktor kann der Nutzer direkt manipulieren
+        und somit auch die Höhe der Quantisierungsstufen. Dabei gilt der Zusammenhang:
+        <b>kleinerer Qualitätsfaktor - größerer Quantisierungsfaktor - höherer
+        Informationsverlust - geringerer Speicherbedarf.</b></p>
+        <p>Das bedeutet, dass immer mehr Pixel in einem Block den Farbgrundwert
+        annehmen, da die Abweichungen (die AC-Koeffizienten) "wegquantisiert"
+        werden. Diesen Effekt nimmt man in einem stark komprimierten Bild in Form
+        kleiner Blöcke (eben diese JPEG-Pixelblöcke) wahr. Sie werden als Artefakte
+        bezeichnet.</p>
+        <table>
+          <tr>
+            <td class="matrixTitle">Koeffizientenmatrix vor Quantisierung</td>
+            <td class="matrixTitle">Quantisierungsmatrix</td>
+            <td class="matrixTitle">Quantisierte Koeffizientenmatrix</td>
+          </tr>
+          <tr>
+            <td>
+              <table class="compressionTable">
+                <tbody id="koeffizientenmatrixTable">
+                </tbody>
+            </table>
+            </td>
+            <td>
+              <table class="compressionTable">
+                <tbody id="quantisierungsmatrixTable">
+                </tbody>
+            </table>
+            </td>
+            <td>
+              <table class="compressionTable">
+                <tbody id="quantisierteKoeffizientenmatrixTable">
+                </tbody>
+            </table>
+            </td>
+          </tr>
+        </table>
+        <p>Ebene wählen: <b>Y </b><img src="Y.JPG" class="btnEbene" id="btnY" onclick="btnY()">
+           <b>Cb </b><img src="Cb.JPG" class="btnEbene" id="btnCb" onclick="btnCb()">
+           <b>Cr </b><img src="Cr.JPG" class="btnEbene" id="btnCr" onclick="btnCr()">
+           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+           Qualitätsfaktor wählen: <b class="btnFaktor" id="btn25" onclick="btn25()"> 25 </b>
+           <b class="btnFaktor" id="btn50" onclick="btn50()"> 50 </b>
+           <b class="btnFaktor" id="btn75" onclick="btn75()"> 75 </b></p>
+      </div>
+      <div id="summary" class="mainText">
+        <p>In diesem Kapitel wurde gezeigt,dass <b>durch das Quantisieren</b>,
+        also das Teilen durch einen Quantisierungsfaktor und Runden der Werte,
+        eine <b>Reduzierung der Wertemenge der DCT-Koeffizientenmatrix</b>
+        erreicht wird. Dies ermöglicht den Vorteil einer späteren Kodierung
+        mit weniger Bits. Außerdem werden viele hochfrequente AC-Koeffizienten
+        zu Null quantisiert, was durch Redundanz einen Vorteil bei der
+        Kodierung bietet (siehe nächstes Kapitel).</p>
+        <p>Die Quantisierung erfolgt mit zwei verschiedenen Quantisierungsmatrizen.
+        Diese beinhalten verschiedene Quantisierungsfaktoren und bewirken daher
+        eine feinere Koeffizienten der niedrigen Frequenzen und eine gröbere
+        für die Koeffizienten höheren Frequenzen. Die Skalierung der Quantisierungsfaktoren
+        geschieht mittels eines Qualitätsfaktors, wodurch letztendlich die
+        Kompressionsrate durch den Nutzer selbst festgelegt wird.</p>
+        <b>Die Quantisierung ist damit die Phase, während derer entsprechend des
+        gewählten Qualitätsfaktors der größte Verlust an Informationen entsteht:
+        einerseits bewusst durch die Einschränkung des Wertebereichs, andererseits
+        aber, wie auch bei der DCT, durch Rundungsfehler.</b>
+      </div>
+    </div>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

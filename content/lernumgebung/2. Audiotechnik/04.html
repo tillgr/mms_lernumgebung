@@ -5,90 +5,491 @@ draft: true
 ---
 
 <h2>2.4.1 Pulse Code Modulation</h2>
-<p>Die Pulse Code Modulation <strong>PCM</strong> ist ein Aufzeichnungsformat für Audiosamples. Das Signal wird in
-    gleichmäßigen
-    Abständen abgetastet und so in Spannungsimpulse (Pulse) umgewandelt. Jeder Impuls wird in einen digitalen Wert
-    umgewandelt (Code).</p>
+<p>
+  Die Pulse Code Modulation <strong>PCM</strong> ist ein Aufzeichnungsformat für
+  Audiosamples. Das Signal wird in gleichmäßigen Abständen abgetastet und so in
+  Spannungsimpulse (Pulse) umgewandelt. Jeder Impuls wird in einen digitalen
+  Wert umgewandelt (Code).
+</p>
 <ul>
-    <li>16 Bit Kodierung, d.h. 2^16 = 65536 Werte darstellbar</li><!--TODO: Formatierung-->
-    <li>Datenrate für Stereosignal bei einer CD-DA</li><!--TODO: Formeln shortcode-->
+    <li>16 Bit Kodierung, d.h. 2^16 = 65536 Werte darstellbar</li>
+    <li>Datenrate für Stereosignal bei einer CD-DA
+        <p>{{< formula >}} 2 * \frac{44100}{\text{s}} * \frac{16 \text{bit}}{8 \frac{\text{bit}}{\text{Byte}}} = 176400 \frac{Byte}{s} \approx 10 \frac{MByte}{min} {{< /formula >}}</p>
+    </li>
     <li>Ein CD-DA Sektor umfasst 98 Frames zu 24 PCM-Samples = 2352 Byte</li>
-    <li>75 Sektoren = 75 X 2352 Byte = 176400 Byte = 1 Sekunde Musik</li>
-</ul>
+    <li>{{< formula >}} 75 {{< /formula >}} Sektoren = {{< formula >}} 75 * 2352 \text{ Byte} = 176400 \text{ Byte} = 1{{< /formula >}} Sekunde Musik</li>
+</ul><!--TODO: Formatierung-->
 
-<p>Bei Stereo-Samples werden der rechte und der linke Kanal verschachtelt (interleaved) abgespeichert.</p>
+<p>
+  Bei Stereo-Samples werden der rechte und der linke Kanal verschachtelt
+  (interleaved) abgespeichert.
+</p>
 
 <h2>2.4.2 Linear Pulse Code Modulation</h2>
-<p>Linear Pulse Code Modulation <strong>LPCM</strong> entspricht im Prinzip der von CD-DA, jedoch sind folgende
-    Qualitätsstufen definiert,</p>
+<p>
+  Linear Pulse Code Modulation <strong>LPCM</strong> entspricht im Prinzip der
+  von CD-DA, jedoch sind folgende Qualitätsstufen definiert,
+</p>
 
 <ul>
-    <li>Abtastfrequenzen von 48 kHz oder 96 kHz und Quantisierungen von 16, 20 oder 24 Bit, d.h. die CD-DA Qualität
-        (44,1 kHz) wird nicht unterstützt.
-    </li>
-    <li>Da die Datenkapazität für den Audio-Teil auf 6,144 Mbps beschränkt ist, ergeben sich folgenden Möglichkeiten:
-    </li>
-    <!--TODO: Tabelle shortcode-->
-    <li>Bei 96 kHz werden nur zwei Kanäle unterstützt.
-    </li>
+  <li>
+    Abtastfrequenzen von 48 kHz oder 96 kHz und Quantisierungen von 16, 20 oder
+    24 Bit, d.h. die CD-DA Qualität (44,1 kHz) wird nicht unterstützt.
+  </li>
+  <li>
+    Da die Datenkapazität für den Audio-Teil auf 6,144 Mbps beschränkt ist,
+    ergeben sich folgenden Möglichkeiten:
+  </li>
+
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th>Abtastrate</th>
+        <th>Wortbreite</th>
+        <th>h2-Kanal</th>
+        <th>h5-Kanal</th>
+        <th>h8-Kanal</th>
+      </tr>
+
+      <tr>
+        <td>48 kHz</td>
+        <td>16 Bit</td>
+        <td>ja</td>
+        <td>ja</td>
+        <td>ja</td>
+      </tr>
+
+      <tr>
+        <td>48 kHz</td>
+        <td>20 Bit</td>
+        <td>ja</td>
+        <td>ja</td>
+        <td>nein</td>
+      </tr>
+
+      <tr>
+        <td>48 kHz</td>
+        <td>24 Bit</td>
+        <td>ja</td>
+        <td>ja</td>
+        <td>nein</td>
+      </tr>
+
+      <tr>
+        <td>96 kHz</td>
+        <td>16 Bit</td>
+        <td>ja</td>
+        <td>nein</td>
+        <td>nein</td>
+      </tr>
+
+      <tr>
+        <td>96 kHz</td>
+        <td>20 Bit</td>
+        <td>ja</td>
+        <td>nein</td>
+        <td>nein</td>
+      </tr>
+
+      <tr>
+        <td>96 kHz</td>
+        <td>24 Bit</td>
+        <td>ja</td>
+        <td>nein</td>
+        <td>nein</td>
+      </tr>
+    </tbody>
+  </table>
+  <li>Bei 96 kHz werden nur zwei Kanäle unterstützt.</li>
 </ul>
 
 <h2>2.4.3 Differential Pulse Code Modulation</h2>
 <p><strong>DPCM</strong> = Differential Pulse Code Modulation</p>
-<p>{S} sei die Folge digitaler Signalwerte = {S 0, S 1, S 2, ..., S i}. Die DPCM nutzt zur Kompression die statistische
-    Abhängigkeit zwischen benachbarten Signalwerten. Zu jedem Abtastwert S i kann aus den vorhergehenden Werten ein
-    Schätzwert X i = a 1 S i-1, a 2 S i-2, ..., a n S i-n erzeugt werden. Dieser wird auch als Prädiktor bezeichnet.
-    Zwischen Sender und Empfänger wird jeweils nur die Differenz aus Prädiktor und Originalwert d i = S i - X i
-    übertragen. </p><!--TODO: Formatierung-->
+<p>{S} sei die Folge digitaler Signalwerte = {{< formula >}} {S_0 \text{, } S_1 \text{, } S_2 \text{, } \ldots \text{, } S_i} {{< /formula >}}.
+    Die DPCM nutzt zur Kompression die statistische Abhängigkeit zwischen benachbarten Signalwerten. Zu jedem Abtastwert
+    {{< formula >}} S_i {{< /formula >}} kann aus den vorhergehenden Werten ein Schätzwert
+    {{< formula >}} X_i = a_1 * S_{i-1} \text{, } a_2 * S_{i-2} \text{, } \ldots \text{, } a_n * S_{i-n} {{< /formula >}}
+    erzeugt werden. Dieser wird auch als Prädiktor bezeichnet. Zwischen Sender und Empfänger wird jeweils nur die
+    Differenz aus Prädiktor und Originalwert {{< formula >}} d_i = S_i - X_i {{< /formula >}} übertragen.
+</p><!--TODO: Formatierung-->
 <p>Der Empfänger rekonstruiert einen Näherungswert s i für den Originalwert S i aus der empfangenen Differenz d i und
-    einem Schätzwert, der auf die gleiche Art und Weise wie beim Sender aus den vorangegangenen Werten s i-1, s i-2, ...
-    , s i-n berechnet wurde. </p><!--TODO: Formatierung-->
-<p>s i = d i + x i mit x i = a 1 s i-1 + a 2 s i-2 + ... + a n s i-n</p><!--TODO: Formatierung-->
-<p>a 1, a 2, ..., a n sind die Prädikatorkoeffizienten. Wird nur ein Prädiktorkoeffizient benutzt (n = 1), so bezeichnet
-    man diese spezielle Form der DPCM auch als Delta-Modulation. </p><!--TODO: Formatierung-->
+    einem Schätzwert, der auf die gleiche Art und Weise wie beim Sender aus den vorangegangenen Werten
+    {{< formula >}} s_{i-1} \text{, } s_{i-2} \text{, } s_{i-2} \text{, } \ldots \text{, } s_{i-n} {{< /formula >}}
+    berechnet wurde. </p><!--TODO: Formatierung-->
+<p> {{< formula >}}s_i = d_i + x_i \text{ mit } x_i = a_1 s_{i-1} + a_2 * s_{i-2} + \ldots + a_n * s_{i-n} {{< /formula >}} </p><!--TODO: Formatierung-->
+<p>{{< formula >}} a_1 \text{, } a_2 \text{, } \ldots \text{, } a_n {{< /formula >}} sind die
+    Prädikatorkoeffizienten. Wird nur ein Prädiktorkoeffizient benutzt (n = 1), so bezeichnet man diese spezielle Form
+    der DPCM auch als Delta-Modulation. </p><!--TODO: Formatierung-->
 
-{{% image "Audiotechnik/4/1_4_1_prinzip_der_dpcm.gif" "" "Abb. 2.4-0 Prinzip der DPCM" %}}
+{{% image url="Audiotechnik/4/1_4_1_prinzip_der_dpcm.gif" alt="Prinzip der DPCM" caption="Abb. 2.4-0 Prinzip der DPCM" %}}
 
 <h2>2.4.4 Adaptive Different Pulse Code Modulation</h2>
-<p><strong>ADPCM</strong> = Adaptive Different Pulse Code Modulation ITU G.721, G.722</p>
-
-<p>Bei DPCM ist die Anzahl der Bits, mit der d i übertragen wird, fest. Ist die Differenz zwischen zwei Abtastwerten
-    sehr groß, entsteht ein Fehler. Dieses Problem wird mit ADPCM dadurch gelöst, dass die Skalierung des Wertebereiches
-    dynamisch angepasst wird.</p>
 <p>
-    Bei leisen Audiosequenzen ist die Einteilung der Abtastwerte fein, bei lauten Stellen wird sie dynamisch an den
-    großen Wertebereich angepasst. Ein Problem sind dabei sich in ihrer Lautstärke schnell ändernde Sequenzen. Die
-    Skalierung wird deshalb in kurzen Zeitabschnitten, z.B. alle 30ms neu berechnet.</p>
+  <strong>ADPCM</strong> = Adaptive Different Pulse Code Modulation ITU G.721,
+  G.722
+</p>
 
-<h5>Verschiedene Audio-Qualitäten</h5>
-<!--TODO: Tabelle shortcode-->
+<p>
+  Bei DPCM ist die Anzahl der Bits, mit der d i übertragen wird, fest. Ist die
+  Differenz zwischen zwei Abtastwerten sehr groß, entsteht ein Fehler. Dieses
+  Problem wird mit ADPCM dadurch gelöst, dass die Skalierung des Wertebereiches
+  dynamisch angepasst wird.
+</p>
+<p>
+  Bei leisen Audiosequenzen ist die Einteilung der Abtastwerte fein, bei lauten
+  Stellen wird sie dynamisch an den großen Wertebereich angepasst. Ein Problem
+  sind dabei sich in ihrer Lautstärke schnell ändernde Sequenzen. Die Skalierung
+  wird deshalb in kurzen Zeitabschnitten, z.B. alle 30ms neu berechnet.
+</p>
+
+<h3 class="h5">Verschiedene Audio-Qualitäten</h3>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th>ADPCM Level</th>
+      <th>Abtastrate [kHz]</th>
+      <th>Auflösung [bit]</th>
+      <th>Kompression (gegenüber CD-DA)</th>
+      <th>
+        Mono:<br />
+        CD-Zeit [h]
+      </th>
+      <th>
+        Stereo:<br />
+        CD-Zeit [h]
+      </th>
+    </tr>
+
+    <tr>
+      <td>A</td>
+      <td>37,8</td>
+      <td>8</td>
+      <td>2</td>
+      <td>4:48</td>
+      <td>2:24</td>
+    </tr>
+
+    <tr>
+      <td>B</td>
+      <td>37,8</td>
+      <td>4</td>
+      <td>4</td>
+      <td>9:36</td>
+      <td>4:48</td>
+    </tr>
+
+    <tr>
+      <td>C</td>
+      <td>37,8</td>
+      <td>4</td>
+      <td>8</td>
+      <td>19:12</td>
+      <td>9:36</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2>2.4.5 Anwendung der verschiedenen Verfahren bei CD und DVD</h2>
-<h4>2.4.5.1 Anwendung bei CD</h4>
-<p>Auf CDs werden die verschiedenen Verfahren der LinkPulse Code Modulation (PCM)<!--TODO: Missing Hyperlink--> mit
-    einer Abtastfrequenz von 44,1 kHz verwendet.</p>
-<p>LinkADPCM-Formate<!--TODO: Missing Hyperlink--> für CD-ROM XA:</p>
-<!--TODO: Tabelle shortcode-->
+<h3 class="h4">2.4.5.1 Anwendung bei CD</h3>
+<p>
+  Auf CDs werden die verschiedenen Verfahren der LinkPulse Code Modulation (PCM)<!--TODO: Missing Hyperlink site-->
+  mit einer Abtastfrequenz von 44,1 kHz verwendet.
+</p>
+<p>
+  LinkADPCM-Formate<!--TODO: Missing Hyperlink site-->
+  für CD-ROM XA:
+</p>
 
-<h4>2.4.5.2 Anwendung bei DVD</h4>
-<p><strong>DVD Audio-Formate</strong></p><!--TODO: Formatierung-->
-<p>Für Video (DVD-Video) wie auch Audio DVDs (DVD-Audio) wurden verschiedene Audio-Formate festgelegt. Die hohe
-    Kapazität des Mediums DVD ermöglicht die Speicherung verschiedener Kanäle unterschiedlicher Formate. Es gibt 12 cm
-    wie auch 8 cm DVDs, jeweils 1,2 mm dick. Diese können ein- oder doppelseitig bespielt sein, jede Seite kann zwei
-    Informationsebenen enthalten. Die Kapazitäten sind:</p>
-<!--TODO: Tabelle shortcode-->
+<table
+class="table table-bordered"
+>
+  <tbody>
+    <tr>
+      <th>ADPCM</th>
+      <th>Abtastfr.</th>
+      <th>Auflösung</th>
+      <th>Kompression <sup>1)</sup></th>
+      <th>Mono: CD-Zeit <sup>2)</sup></th>
+      <th>Stereo: CD-Zeit <sup>2)</sup></th>
+    </tr>
 
-<p>Die Spielzeitangaben beziehen sich auf eine durchschnittliche Video-Datenrate von 3,5 Mbps, was einer sehr guten
-    Bildqualität bei einem durchschnittlichen Film entspricht. Da die maximale Datenrate der DVD 9,8 Mbps beträgt,
-    stehen max. 6,144 Mbps für Audio sowie 0,04 Mbps. für Untertitel zur Verfügung.</p>
+    <tr>
+      <td>Level A</td>
+      <td>37,8 KHz</td>
+      <td>8 Bit</td>
+      <td>2</td>
+      <td>4:48 h</td>
+      <td>2:24 h</td>
+    </tr>
+
+    <tr>
+      <td>Level B</td>
+      <td>37,8 KHz</td>
+      <td>4 Bit</td>
+      <td>4</td>
+      <td>9:36 h</td>
+      <td>4:48 h</td>
+    </tr>
+
+    <tr>
+      <td>Level C</td>
+      <td>18,9 KHz</td>
+      <td>4 Bit</td>
+      <td>8</td>
+      <td>19:12h</td>
+      <td>9:36 h</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 class="h4">2.4.5.2 Anwendung bei DVD</h3>
+<p><strong>DVD Audio-Formate</strong></p>
+<!--TODO: Formatierung-->
+<p>
+  Für Video (DVD-Video) wie auch Audio DVDs (DVD-Audio) wurden verschiedene
+  Audio-Formate festgelegt. Die hohe Kapazität des Mediums DVD ermöglicht die
+  Speicherung verschiedener Kanäle unterschiedlicher Formate. Es gibt 12 cm wie
+  auch 8 cm DVDs, jeweils 1,2 mm dick. Diese können ein- oder doppelseitig
+  bespielt sein, jede Seite kann zwei Informationsebenen enthalten. Die
+  Kapazitäten sind:
+</p>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th>Name</th>
+      <th>Durchmesser [cm]</th>
+      <th>Seiten</th>
+      <th>Ebenen</th>
+      <th>Kapazität [GByte]</th>
+      <th>Video Spieldauer [h]</th>
+    </tr>
+
+    <tr>
+      <td>DVD-5</td>
+      <td>12</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4,7</td>
+      <td>&gt; 2</td>
+    </tr>
+
+    <tr>
+      <td>DVD-9</td>
+      <td>12</td>
+      <td>1</td>
+      <td>2</td>
+      <td>8,5</td>
+      <td>~4</td>
+    </tr>
+
+    <tr>
+      <td>DVD-10</td>
+      <td>12</td>
+      <td>2</td>
+      <td>1</td>
+      <td>9,4</td>
+      <td>~ 4,5</td>
+    </tr>
+
+    <tr>
+      <td>DVD-18</td>
+      <td>12</td>
+      <td>2</td>
+      <td>2</td>
+      <td>17</td>
+      <td>&gt; 8</td>
+    </tr>
+
+    <tr>
+      <td>DVD-1</td>
+      <td>8</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1,4</td>
+      <td>~ 1/2</td>
+    </tr>
+
+    <tr>
+      <td>DVD-2</td>
+      <td>8</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2,7</td>
+      <td>~ 1,3</td>
+    </tr>
+
+    <tr>
+      <td>DVD-3</td>
+      <td>8</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2,9</td>
+      <td>~ 1,4</td>
+    </tr>
+
+    <tr>
+      <td>DVD-4</td>
+      <td>8</td>
+      <td>2</td>
+      <td>2</td>
+      <td>5,3</td>
+      <td>~ 2,5</td>
+    </tr>
+
+    <tr>
+      <td>DVD-R</td>
+      <td>12</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3,95</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>DVD-RAM</td>
+      <td>12</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2,58</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Die Spielzeitangaben beziehen sich auf eine durchschnittliche Video-Datenrate
+  von 3,5 Mbps, was einer sehr guten Bildqualität bei einem durchschnittlichen
+  Film entspricht. Da die maximale Datenrate der DVD 9,8 Mbps beträgt, stehen
+  max. 6,144 Mbps für Audio sowie 0,04 Mbps. für Untertitel zur Verfügung.
+</p>
 
 <p><strong>Mehrkanal-Ton bei DVD-Video:</strong></p>
-<p>Die drei primären Audio-Formate der DVD-Video sind LinkPCM<!--TODO: Missing Hyperlink--> , LinkDolby Digital
-    <!--TODO: Missing Hyperlink--> und LinkMPEG-Audio<!--TODO: Missing Hyperlink--> . Optional sind
-    LinkDTS und LinkSDDS. Beide erfordern externe Decoder. Auf bis zu 8 unabhängigen Tonspuren können diese
-    Audio-Formate und/oder unterschiedlichen Synchronisations-Fassungen (englisch, deutsch etc.) des Films abgelegt
-    werden. Der Zuschauer kann somit die gewünschte Sprachversion oder das gewünschte Audio-Format selbst wählen. Im
-    Bereich des Mehrkanaltons für europäische PAL-DVDs gab es 1997 einige Unstimmigkeiten. Zunächst war bei der
-    Verwendung von Mehrkanalton MPEG2 Pflicht. Aufgrund von Verzögerungen bei der Optimierung von MPEG2 ist seit Ende
-    1997 diese Bestimmung aufgehoben. Europäische Produzenten können ihre DVDs nun entweder mit Dolby Digital (AC3) oder
-    mit MPEG2 versehen.</p>
+<p>
+  Die drei primären Audio-Formate der DVD-Video sind PCM<!--TODO: Missing Hyperlink site-->
+  , Dolby Digital
+  <!--TODO: Missing Hyperlink site-->
+  und LinkMPEG-Audio<!--TODO: Missing Hyperlink site-->
+  . Optional sind LinkDTS<!--TODO: Missing Hyperlink site--> und LinkSDDS<!--TODO: Missing Hyperlink site-->. Beide erfordern externe Decoder. Auf bis
+  zu 8 unabhängigen Tonspuren können diese Audio-Formate und/oder
+  unterschiedlichen Synchronisations-Fassungen (englisch, deutsch etc.) des
+  Films abgelegt werden. Der Zuschauer kann somit die gewünschte Sprachversion
+  oder das gewünschte Audio-Format selbst wählen. Im Bereich des Mehrkanaltons
+  für europäische PAL-DVDs gab es 1997 einige Unstimmigkeiten. Zunächst war bei
+  der Verwendung von Mehrkanalton MPEG2 Pflicht. Aufgrund von Verzögerungen bei
+  der Optimierung von MPEG2 ist seit Ende 1997 diese Bestimmung aufgehoben.
+  Europäische Produzenten können ihre DVDs nun entweder mit Dolby Digital (AC3)
+  oder mit MPEG2 versehen.
+</p>
+
+<!-- TODO: Missing section ? -->
+<p>Die verschiedenen Formate verwenden bis zu 8 Kanäle:</p>
+<ul>
+  <li>Lineare Pulse Code Modulation (LPCM): 1 bis 8 Audiokanäle</li>
+  <li>{{< ref "glossar" "DD" "Dolby Digital" >}} (LinkAC-3<!--TODO: Missing Hyperlink site-->): 1 bis 5+1 Kanäle</li>
+  <li>MPEG 2 Audio: 1 bis 5+1 oder 7+1 Kanäle</li>
+</ul>
+<p>Es sind jedoch auch andere Tonformate, z.B. LinkDDS (Dynamic Digital Sound) erlaubt, jedoch nur in Ergänzung zu mindestens einem der zuvor genannten Systeme.</p>
+<p>Beispiel:</p>
+<p>Ein PAL DVD-Video (625/50) enthält entweder LPCM, MPEG-1 oder Dolby Digital (AC-3) Ton in Mono oder Stereo, zusätzlich sind Dolby Digital Mehrkanal, MPEG-2 Mehrkanal, DTS, DDS und andere Formate erlaubt.</p>
+
+<p><strong>LinkLPCM<!--TODO: Missing Hyperlink site--></strong></p>
+<p>mit Abtastraten von 44,1 kHz bis 192 kHz, Quantisierung bis zu 24 Bit und bis zu 8 Übertragungskanälen. Die maximale Bitrate ist 6.144 Mbit/s. Für high-fidelity Sound genügen i. Allg. 120 dB dynamic range von 20 bits und Frequenzen bis zu 22 KHz (48 kHz sampling). Es wurde das von Meridian entwickelte MLP (Meridian Lossless Packing) standardisiert, das die Spielzeit verlängert ohne auf die Klangqualität Einfluss zu nehmen. Es entfernt Redundanzen im Signal. Die Kompression beträgt 2:1.</p>
+<p>Für eine DVD-5, deren Kapazität exklusiv für Audio genutzt wird, ergibt sich folgende Spielzeit:</p>
+<table class="table">                
+  <tbody>
+    <tr>
+      <td class="bg-primary" rowspan="2">&nbsp;</td>
+      <th colspan="4">Audio Spielzeit von DVD-5 mit 4,7 GB Kapazität</th>
+    </tr>                  
+    <tr>
+      <th>Audio-Kanäle</th>
+      <th>Abtastfrequenz</th>
+      <th>Wortbreite</th>
+      <th>Spielzeit</th>              
+    </tr>                 
+    <tr>
+      <td rowspan="5">LPCM</td>
+      <td>2</td>
+      <td>192 kHz</td>
+      <td>24 Bit</td>
+      <td>64 Min.</td>                
+    </tr>             
+    <tr>               
+      <td>5</td>
+      <td>96 kHz</td>
+      <td>20 Bit</td>
+      <td>61 Min.</td>              
+    </tr>               
+    <tr>           
+      <td>3</td>
+      <td>96 kHz</td>
+      <td>24 Bit</td>
+      <td rowspan="2">43 Min.</td>          
+    </tr>        
+    <tr>             
+      <td>2</td>
+      <td>48 kHz</td>
+      <td>24 Bit</td>          
+    </tr>                 
+    <tr>               
+      <td>2</td>
+      <td>44,1 kHz</td>
+      <td>16 Bit</td>
+      <td>8 Std.</td>          
+    </tr>               
+    <tr>                  
+      <td>Dolby Digital (AC-3)</td>
+      <td>5+1</td>
+      <td>48 kHz</td>
+      <td>Datenreduktion</td>
+      <td>35 Std.</td>               
+    </tr>
+  </tbody>
+</table>
+<p>Die angegeben Werte für LPCM sind ohne MLP, durch MLP würden sie sich abhängig vom Audiomaterial um ca. 10 bis 20% verlängern. Generell beträgt die Daten-Transferrate maximal 9,6 Mbit/sec.</p>
+<p><strong>LinkDolby Digital<!--TODO: Missing Hyperlink site--></strong></p>
+<p>Wird Dolby Digital auf DVDs verwendet, beträgt die Abtastrate 48 kHz, die Quantisierung 24 bit. Die Komprimierung erfolgt bis auf 64 bis 448 kbit/s, im Mittel 384 kbit/s für 5.1 Kanäle und 192 kbit/s für Stereo. Die meisten Dolby Digital Decoder unterstützen bis zu 640 kbit/s.</p>
+
+<p><strong>MPEG-Audio<!--TODO: Missing Hyperlink site--></strong></p>
+
+
+<p>Bei der Speicherung von MPEG-Audio auf DVD-Video wird mit 48 kHz abgetastet und mit 16 oder 20 bit quantisiert. Es wird eine variable Bitrate zwischen 32 und 912 kbit/s (im Mittel 384 kbit/s) verwendet. MPEG-1 ist auf 384 kbit/s beschränkt. Folgende Kanalkombinationen können verwendet werden (front / surround): 1/0, 2/0, 2/1, 2/2, 3/0, 3/1, 3/2, 5/2. MPEG Layer III (MP3) und MPEG-2 ACC werden im DVD-Video Standard nicht unterstützt.</p>
+
+<p><strong>LinkDTS<!--TODO: Missing Hyperlink site--></strong></p>
+
+
+<p>Bei Speicherung von DTS Audio-Daten auf DVD-Video wird ein 5.1 Format verwendet. Die Daten werden mit 48 kHz und 24 bit gespeichert. Die Datenraten betragen 64 bis 1.536 kbit/s, typisch sind 768 bis 1.536 kbit/s für 5.1 Kanäle und 384 bis 768 kbit/s für Stereo. Mögliche Kanalkombinatinen sind (front/surround): 1/0, 2/0, 3/0, 2/1, 2/2, 3/2. DTS für DVD unterscheidet sich von dem für Kinos.</p>
+
+<p><strong>LinkSDDS<!--TODO: Missing Hyperlink site--></strong></p>
+
+
+<p>SDDS auf DVD ist optional möglich, wird aber bisher von den Playern nicht unterstützt.</p>
+
+
+<p><strong>Audio-Formate für DVD-Audio</strong></p>
+
+<p>Ausgehend von der Audio-Spezifikation des DVD-Video-Standards hat man die "Nur-Audio"-DVD entwickelt, bei der (fast) völlig auf Video verzichtet und die gesamte Daten-Kapazität für Super-HiFi zur Verfügung gestellt wird. Der sehr vielfältige Möglichkeiten bietende Standard wurde im September 1998 festgelegt.</p>
+
+<p>Die hohe Speicherkapazität der DVD kann genutzt werden</p>
+
+<ul>
+  <li>zur Erhöhung der Zahl der Übertragungskanäle</li>
+  <li>für eine Erhöhung der technischen Übertragungqualität.</li>
+</ul>
+
+<p>Beides ermöglicht der DVD-Audio-Standard mit den Formaten:</p>
+
+<ul>
+  <li>Dolby Digital (AC-3)<!--TODO: Missing Hyperlink site--></li>
+  <li>MPEG-Audio<!--TODO: Missing Hyperlink site--></li>
+  <li>LinkDTS<!--TODO: Missing Hyperlink site--></li>
+  <li>LinkSDDS<!--TODO: Missing Hyperlink site--> - und</li>
+  <li>LinkLPCM<!--TODO: Missing Hyperlink site--></li>
+</ul>
+
+<p>Bei der DVD-Audio ist das "downmixing" der Kanäle spezifiziert. Koeffiziententabellen pro Kanal steuern das Mischen der Kanäle. Bis zu 16 Tabellen können für jeden Audio Title Set (album) definiert werden. Jeder Track kann mit einer Tabelle identifiziert werden. Die Koeffizienten liegen im Bereich von 0 bis 60 dB.</p>
+
+<p><strong>LPCM<!--TODO: Missing Hyperlink site--></strong></p>
+<p>Es werden bis zu 6 Kanäle mit 48, 96 oder 192 kHz (sowie 44,1 88,2 176,4 kHz) und eine Quantisierung von 16, 20 oder 24 bit unterstützt. Es wird das von Dolby entwickelte Verfahren für die verlustfreie Kompression WikipediaMLP verwendet. MLP<!--TODO: Missing Hyperlink site--> ermöglicht Abspielzeiten von 74 - 135 Min bei 6-Kanal 96 kHz. Bei einer Single-Layer-DVD wird 24 bit Audio verwendet. Dies ermöglicht 45 min. ohne Kompression.</p>

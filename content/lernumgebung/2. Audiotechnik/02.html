@@ -9,39 +9,44 @@ draft: true
     Frequenz und hängt von der Ausbreitungssgeschwindigkeit der Welle ab. Die Amplitude bestimmt die Lautstärke des
     Signals und wird in Dezibel [dB] gemessen.</p>
 
-{{% image "Audiotechnik/2/1_1_1a_frequenz_wellenlaenge.gif" "Wellenlänge und Amplitude eines analogen Audisignals" "Abb. 2.2-0 Wellenlänge und Amplitude eines analogen Audiosignals" %}}
-{{% image "Audiotechnik/2/1_1_1b_typische_frequenzbereiche.gif" "Typische Frequenzbereiche" "Abb. 2.2-1 Typische Frequenzbereiche" %}}
+{{% image url="Audiotechnik/2/1_1_1a_frequenz_wellenlaenge.gif" alt="Wellenlänge und Amplitude eines analogen Audisignals" caption="Abb. 2.2-0 Wellenlänge und Amplitude eines analogen Audiosignals" %}}
+{{% image url="Audiotechnik/2/1_1_1b_typische_frequenzbereiche.gif" alt="Typische Frequenzbereiche" caption="Abb. 2.2-1 Typische Frequenzbereiche" %}}
 
-<h5>Klang:</h5>
+<h3 class="h5">Klang</h3>
 <p>Als Klang bezeichnet man ein beliebiges Audiosignal.</p>
-<h5>Ton:</h5>
+<h3 class="h5">Ton</h3>
 <p>Ein Ton ist ein periodisches Audiosignal mit konstanter Wellenform.</p>
-<h5>Rauschen:</h5>
+<h3 class="h5">Rauschen</h3>
 <p>Als Rauschen bezeichnet man den andauernden Teil des Audiosignals, der keine relevante Audioinformation enthält.</p>
-<h5>Geräusch:</h5>
+<h3 class="h5">Geräusch</h3>
 <p>Ein Geräusch ist ein zeitlich begrenztes Rauschen.</p>
 
 <p>Ein Ton wird durch seine Höhe, Farbe (Timbre), Lautstärke und Dauer bestimmt. Aus der Sicht der Signalbearbeitung
     spricht man von Frequenz (pitch), Wellenform (waveform), Amplitude und Dauer eines Audiosignals. Ein Mensch kann
     Töne im Frequenzbereich zwischen 16 Hz und 20 kHz wahrnehmen. Die Farbe des Tones wird durch seine Wellenform
     bestimmt. Die "weichste" Wellenform hat ein Sinus-Signal und ergibt den angenehmsten Klang.</p>
-<p>Beliebige Wellenformen der Wellenlänge λ können als Summe von Sinus-Wellen der Wellenlängen n x λ dargestellt
-    werden.</p> <!-- TODO: Formelzeichen-->
+<p>Beliebige Wellenformen der Wellenlänge {{< formula >}}\lambda{{< /formula >}} können als Summe von Sinus-Wellen der
+    Wellenlängen {{< formula >}}n \times \lambda{{< /formula >}} dargestellt werden.</p>
 
-<h5>Grundton:</h5>
+<h3 class="h5">Grundton</h3>
 <p>Den Sinus-Ton mit der größten Wellenlänge, d.h. mit der niedrigsten Frequenz bezeichnet man als Grundton.</p>
-<h5>Obertöne</h5>
+<h3 class="h5">Obertöne</h3>
 <p>Sinus-Töne mit höheren Frequenzen werden Obertöne genannt.</p>
-<h5>Harmonische</h5>
+<h3 class="h5">Harmonische</h3>
 <p>Obertöne mit ganzzahligem Verhältnis heißen "Harmonische". Es wird zwischen geraden und ungeraden Harmonischen
     unterschieden.</p>
 
-{{% image "Audiotechnik/2/1_1_2_entstehung_einer_schwingung_mit_einer_harmonischen.gif" "" "Abb. 2.2-2  Entstehung einer Schwingung mit einer Harmonischen" %}}
-{{% image "Audiotechnik/2/1_1_3_entstehung_einer_schwingung_mit_einer_ungeraden_harmonischen.gif" "" "Abb. 2.2-3  Enstehung einer Schwingung mit einer ungeraden Harmonischen" %}}
-{{% image "Audiotechnik/2/1_1_4_entstehung_einer_schwingung_mit_nichthamonischen_obertoenen.gif" "" "Abb. 2.2-4  Enstehung einer Schwingung mit nichtharmonischen Obertönen" %}}
+{{% image url="Audiotechnik/2/1_1_2_entstehung_einer_schwingung_mit_einer_harmonischen.gif" alt="Entstehung einer Schwingung mit einer Harmonischen" caption="Abb. 2.2-2 Entstehung einer Schwingung mit einer Harmonischen" %}}
+{{% image url="Audiotechnik/2/1_1_3_entstehung_einer_schwingung_mit_einer_ungeraden_harmonischen.gif" alt="Enstehung einer Schwingung mit einer ungeraden Harmonischen" caption="Abb. 2.2-3 Enstehung einer Schwingung mit einer ungeraden Harmonischen" %}}
+{{% image url="Audiotechnik/2/1_1_4_entstehung_einer_schwingung_mit_nichthamonischen_obertoenen.gif" alt="Enstehung einer Schwingung mit nichtharmonischen Obertönen" caption="Abb. 2.2-4 Enstehung einer Schwingung mit nichtharmonischen Obertönen" %}}
 
 <p>Hörbeispiele:</p><!--TODO:Formatierung-->
-<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/02/1_1_1_grundton.mp3" title="Grundton" %}}
+    {{% sound-sample url="Audiotechnik/02/1_1_2_schwingung_mit_ungerader_harmonischen.mp3" title="Schwingung mit ungerader Harmonischen" ref="2.2-2" %}}
+    {{% sound-sample url="Audiotechnik/02/1_1_3_schwingung_mit_gerader_harmonischen.mp3" title="Schwingung mit gerader Harmonischen" ref="2.2-3" %}}
+    {{% sound-sample url="Audiotechnik/02/1_1_4_entstehung_einer_schwingung_mit_nichtharmonischen_obertoenen.mp3" title="Schwingung mit nichtharmonischen Obertönen" ref="2.2-4" %}}
+</div>
 
 <p>Musikinstrumente besitzen auch Obertöne, deren Frequenz kein Ganzzahliges der Grundfrequenz ist. Die Anzahl, die
     relative Intensität und die relativen Phasenverschiebungen der Obertöne bestimmen die Farbe des Tones. Je größer die
@@ -51,7 +56,7 @@ draft: true
     Luftsäule (Blasinstrument). Die Klangfarbe wird vom Material des Instrumentes beeinflusst (Blech-, Holzinstrumente).
     Beispiel: Saiteninstrument</p><!--TODO: Fehlende Referenzen-->
 
-{{% image "Audiotechnik/2/1_1_5_schwingung_einer_saite.gif" "" "Abb. 2.2-5  Schwingung einer Saite" %}}
+{{% image url="Audiotechnik/2/1_1_5_schwingung_einer_saite.gif" alt="Schwingung einer Saite" caption="Abb. 2.2-5  Schwingung einer Saite" %}}
 
 <p>Zu Beginn entstehen in der Saite Oszillationen verschiedenster Frequenzen, wobei die mit einer nicht ganzzahligen
     Wellenlänge schnell abklingen. In der Saite bilden sich so genannte stehende Wellen mit Knoten, in denen die Saite
@@ -60,14 +65,14 @@ draft: true
 <h2>2.2.2 Signalanalyse</h2>
 <p>Für die Signalanalyse bieten sich drei Methoden an:</p>
 
-<h5>Statistische Analyse</h5>
+<h3 class="h5">Statistische Analyse</h3>
 <p>betrachtet das Signal statistisch als Folge von Ereignissen.</p>
-<h5>Fourier Analyse</h5>
+<h3 class="h5">Fourier Analyse</h3>
 <p>transformiert das Signal aus dem Zeit- in den Frequenzraum und analysiert die Frequenzinhalte des Signals.</p>
-<h5>Wavelet-Analyse</h5>
+<h3 class="h5">Wavelet-Analyse</h3>
 <p>verwendet verschiedene Funktionen, um ein Signal im Frequenzraum zu beobachten.</p><!--TODO: Formatierung-->
 
-<h4>Statistische Analyse</h4>
+<h3 class="h5">Statistische Analyse</h3>
 <p>Es wird unterschieden zwischen zeitdiskreten und zeitkontinuierlichen Signalen. Obwohl Schnittsysteme digitale, also
     zeitdiskrete Signale verarbeiten, betrachtet man diese zum Teil als zeitkontinuierlich, um bestimmte Eigenschaften
     der Audiosequenzen zu berücksichtigen. Die nachfolgenden Formeln sind deshalb sowohl für diskrete (links) wie auch
@@ -76,101 +81,150 @@ draft: true
     Amplitudenverteilung des Signals erhält man aus der Wahrscheinlichkeitsdichte. Sie zeigt, mit welcher
     Wahrscheinlichkeit die Amplitude den Wert x erreicht.</p>
 
-<!--TODO: Formeln shortcode-->
+{{% formulaRow f1 = "P(\underline{x} = x_i) = p(x_i) = \frac{n_i}{N}" f2 = "P(x = x_0) = \lim \limits_{\Delta x \to \infty} \frac{p(x_0 < x < (x_0 + \Delta x)}{\Delta x}" ref = "1.1" %}}
+
 <p>Dabei gilt:</p>
-<!--TODO: Formeln shortcode-->
-<p>Die wichtigsten Parameter sind Erwartungswert E, Median M und Varianz . Erwartungswert oder Mittelwert ist der Wert,
-    um den sich die Funktionswerte mit größter Wahrscheinlichkeit sammeln.</p> <!-- TODO: Formelzeichen-->
-<!--TODO: Formlen shortcode-->
-<p>Die Wurzel aus der Varianz ist die Standardabweichung :</p> <!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+{{% formulaRow f1 = "\sum \limits_{i} p_i = 1" f2 = "\int \limits_{- \infty}^{+ \infty} P(x) = 1" ref = "1.2" %}}
+
+<p>Die wichtigsten Parameter sind Erwartungswert E, Median M und Varianz {{< formula >}} \sigma ^2{{< /formula >}}.
+    Erwartungswert oder Mittelwert ist der Wert, um den sich die Funktionswerte mit größter Wahrscheinlichkeit
+    sammeln.</p>
+
+{{% formulaRow f1 = "E(\underline{x}) = \sum \limits_{i} x_i * p(x_i)" f2 = "E(x) = \int \limits_{- \infty}^{+ \infty} x * f(x)\text{d}x" ref = "1.3" %}}
+
+<p>Der Median ist der Wert der zufälligen Variablen:</p>
+
+{{% formulaRow f1 = "P(f(x) < M) = P(f(x) > M) = 0.5" ref = "1.4" %}}
+
+<p>Bei einer diskreten Verteilung ist der Median der mittlere Wert aller der Größe nach sortierten Funktionswerte. Die
+    Varianz ist die mittlere quadratische Abweichung vom Mittelwert:</p>
+
+{{% formulaRow f1 = "\sigma^2 = E[(\underline{x} - E(\underline{x}))^2]" ref = "1.5" %}}
+
+{{% formulaRow f1 = "\sigma^2 = \sum \limits_{i} (x_i - E(\underline{x}))^2 * p_i" f2 = "\sigma^2 = \int \limits_{-\infty}^{+\infty} (x - E(\underline{x}))^2 * f(x)" ref = "1.6" %}}
+
+<p>Die Wurzel aus der Varianz ist die Standardabweichung {{< formula >}}\sigma{{< /formula >}}:</p>
+{{% formulaRow f1 = "\sigma = \sqrt{\sigma^2}" ref = "1.7" %}}
+
+
 <p>Sie ist ein Maß für die Streuung der möglichen Werte der Variablen um den Erwartungswert.</p>
 
-<h4>Fourier Analyse</h4>
+<h3 class="h5">Fourier Analyse</h3>
 <p>Die Fouriertransformation erlaubt die Betrachtung von Systemen und Signalformen im Frequenzbereich, indem sie die
     Zeitsignale in eine andere Darstellung überführt. Diese Darstellung lässt die zur Bildung der Signale notwendigen
     Frequenzanteile erkennen. Jede beliebige periodische Funktion kann durch die Summe einer Reihe (Fourier Reihe)
     dargestellt werden. Jede periodische Funktion mit der Kreisfrequenz</p>
-<!--TODO: Formeln shortcode-->
+
+<p>
+    {{< formula >}} \omega = 2 \pi * f_0 (f_0 \text{ - Frequenz}) {{< /formula >}}
+</p>
+
 <p>lässt sich als folgende Summe darstellen:</p>
-<!--TODO: Formeln shortcode-->
+
+{{% formulaRow f1 = "f(\omega_0 * t) = a_0 + \sum \limits_{k=1}^\infty (a_k * \cos(k * \omega_0 * t) + b_k * \sin(k * \omega_0 * t))" ref = "1.8" %}}
+
 <p>Hierzu gibt es ein Java-Applet, dass grafisch zu verschiedenen Funktionen die zugehörigen Fourierspektren darstellen
     kann.</p>
 
+<h3 class="h5" id="FourierApplet">Applet zur Fourieranalyse</h3>
 {{% snippets/Fourieranalysis Fourieranalyse%}}
 
-<p>Mit anderen Worten, man kann jede beliebige periodische Funktion der Frequenz aus der Summe der Sinus- und
-    Cosinusfunktionen mit der n-fachen Frequenz () bilden. Dabei ist der Offset. Die Berechnung der unendlichen Reihen
-    und wird als Fourier-Transformation gekennzeichnet:</p> <!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
-{{% image "Audiotechnik/2/1_2_6_darstellung_der_koeffizienten_als_vektor.gif" "Diagramm mit Vektordarstellung" "Abb. 2.2-6 Darstellung der Koeffizienten als Vektor" %}}
+<p>Mit anderen Worten, man kann jede beliebige periodische Funktion der Frequenz {{< formula >}} f {{< /formula >}} aus
+    der Summe der Sinus- und Cosinusfunktionen mit der n-fachen Frequenz
+    ({{< formula >}} n \in \mathbb{N}\text{; } n=1 \text{, } \infty{{< /formula >}})
+    bilden. Dabei ist {{< formula >}} a_0 {{< /formula >}} der Offset. Die Berechnung der unendlichen Reihen
+    {{< formula >}} a_i {{< /formula >}} und {{< formula >}} b_i {{< /formula >}} wird als Fourier-Transformation
+    gekennzeichnet:</p>
 
-<p>Koeffizienten und können als Vektor aufgefasst werden, wodurch sie durch einen Winkel und eine Intensität dargestellt
-    werden können. Dies hat den Vorteil, dass die Intensität des Vektors die Amplitude des Frequenzanteils der Funktion
-    bei der Zentralfrequenz und der Winkel die Phasenverschiebung ist.</p> <!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+{{% formulaRow f1 = "a_k = \frac{1}{\pi} * \int \limits_{0}^{2\pi} f(t) * \cos(k*\omega_0*t) \text{d}t" f2 = "b_k = \frac{1}{\pi} * \int \limits_{0}^{2\pi} f(t) * \sin(k*\omega_0*t) \text{d}t" ref = "1.9" %}}
 
-<p>Zur weiteren Vereinfachung wird das Zahlenpaar oft als eine komplexe Zahl dargestellt. Dann liefert die Eulersche
-    Gleichung (2.3) eine weitere Basis für die Vereinfachung in der Form:</p> <!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+<p>
+    {{< formula >}} \omega = 2\pi * f \Rightarrow f = \frac{\omega}{2\pi}{{< /formula >}}
+</p>
+
+{{% formulaRow f1 = "a_k = \frac{1}{\pi} * \int \limits_{0}^{2\pi} f(t) * \cos(k*\frac{\omega}{2\pi}*t) \text{d}t" f2 = "b_k = \frac{1}{\pi} * \int \limits_{0}^{2\pi} f(t) * \sin(k*\frac{\omega}{2\pi}*t) \text{d}t" ref = "1.10" %}}
+
+{{% image url = "Audiotechnik/2/1_2_6_darstellung_der_koeffizienten_als_vektor.gif" alt = "Diagramm mit Vektordarstellung" caption = "Abb. 2.2-6 Darstellung der Koeffizienten als Vektor" %}}
+
+<p>Die Koeffizienten {{< formula >}} a_k {{< /formula >}} und {{< formula >}} b_k {{< /formula >}} können als Vektor
+    aufgefasst werden, wodurch sie durch einen Winkel und eine Intensität dargestellt werden können. Dies hat den
+    Vorteil, dass die Intensität des Vektors die Amplitude des Frequenzanteils der Funktion bei der Zentralfrequenz
+    {{< formula >}} k_\omega {{< /formula >}} und der Winkel {{< formula >}} \varphi {{< /formula >}} die
+    Phasenverschiebung ist.</p>
+
+{{% formulaRow f1 = "A_k = \sqrt{a_k^2 + b_k^2}" f2 = "\varphi_k = \arctan(\frac{a_k}{b_k})" ref = "1.11" %}}
+
+<p>Zur weiteren Vereinfachung wird das Zahlenpaar {{< formula >}} a \text{, } b {{< /formula >}} oft als eine komplexe
+    Zahl {{< formula >}} a + bi {{< /formula >}} dargestellt. Dann liefert die Eulersche Gleichung (2.3) eine weitere
+    Basis für die Vereinfachung in der Form:</p>
+
+{{% formulaRow f1 = "e^{i\varphi} = \cos(\varphi) + i * \sin(\varphi)" ref = "1.12" %}}
 
 <p>Damit lässt sich die Formel (1.10) wie folgt ausdrücken:</p>
-<!--TODO: Formeln shortcode-->
 
-<p>sind komplexe Zahlen:</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+{{% formulaRow f1 = "f(t) = \sum \limits_{k = - \infty}^{\infty} \underline{X_k} * e^{k\omega_0 t_i}" ref = "1.13" %}}
 
-<p>Die Reihe aller Amplituden stellt das Spektrum der Funktion dar. Das Spektrum einer Funktion ist Ausgangsbasis für
-    viele Anwendungen und Analysen des Signals. Eine verbreitete Anwendungen ist die Datenkompression. Die Berechnung
-    der ursprünglichen Funktion aus den Koeffizienten und erfolgt über die inverse Fourier
-    Transformation.</p><!-- TODO: Formelzeichen-->
-<p>Dient als Ausgangsbasis eine diskrete Funktion, die als Reihe mit der Periode N angegeben ist, wird die Fourier
-    Transformation für diskrete Funktionen, die Diskrete Fourier Transformation (DFT)
-    angewandt.</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+<p>{{< formula >}} \underline{X_k} {{< /formula >}} sind komplexe Zahlen:</p>
+{{% formulaRow f1 = "\underline{X_k} = \frac{1}{\pi} * \int \limits_{0}^{2\pi} f(t) * e^{-k\omega_0 t_i} \text{d}t" ref = "1.14" %}}
+
+<p>Die Reihe aller Amplituden {{< formula >}} A_k {{< /formula >}} stellt das Spektrum der Funktion dar. Das Spektrum
+    einer Funktion ist Ausgangsbasis für viele Anwendungen und Analysen des Signals. Eine verbreitete Anwendungen ist
+    die Datenkompression. Die Berechnung der ursprünglichen Funktion aus den Koeffizienten {{< formula >}} a_k {{< /formula >}}
+    und {{< formula >}} b_k {{< /formula >}} erfolgt über die inverse Fourier Transformation.</p>
+<p>Dient als Ausgangsbasis eine diskrete Funktion, die als Reihe {{< formula >}} \underline{x_k} {{< /formula >}} mit
+    der Periode N angegeben ist, wird die Fourier Transformation für diskrete Funktionen, die Diskrete Fourier
+    Transformation (DFT) angewandt.</p>
+
+{{% formulaRow f1 = "x_k = \sum \limits_{n=0}^{N-1}(a_k * \sin(n * \frac{2\pi}{N} * k) + b_k + \cos(n * \frac{2\pi}{N} + k))" ref = "1.15" %}}
 
 <p>Die Berechnung der Koeffizienten der DFT lautet:</p>
-<!--TODO: Formeln shortcode-->
+{{% formulaRow f1 = "a_k = \frac{1}{N} \sum \limits_{n=0}^{N-1}(x_k * \sin(n * \frac{2\pi}{N} * k)" f2 = "a_k = \frac{1}{N} \sum \limits_{n=0}^{N-1}(x_k * \sin(n * \frac{2\pi}{N} * k)" ref = "1.16" %}}
 
 <p>Die beiden Formeln kann man analog zur stetigen Version in der komplexen Form darstellen. Zusätzlich werden die
-    Winkel oft zur Vereinfachung durch ersetzt.</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+    Winkel {{< formula >}} \frac{2\pi}{N} * n * k {{< /formula >}} oft zur Vereinfachung durch
+    {{< formula >}} W_N^{nk} {{< /formula >}} ersetzt.</p>
+{{% formulaRow f1 = "X_k = \sum \limits_{n=0}^{N-1}(x_n * W_N^{nk})" f2 = "x_k = \sum \limits_{n=0}^{N-1}(X_n * W_N^{-nk})" ref = "1.17" %}}
 
 <p>Sowohl die Ausgangsfunktion wie auch die Fourier-Transformierte sind diskrete Funktionen, ausgedrückt durch die
-    Reihen und . Die Zusammenhänge sollen an einem Ausschnitt einer Orgelsequenz erläutert
-    werden:</p><!-- TODO: Formelzeichen-->
+    Reihen {{< formula >}} x_k {{< /formula >}} und {{< formula >}} X_k {{< /formula >}}. Die Zusammenhänge sollen an
+    einem Ausschnitt einer Orgelsequenz erläutert werden:</p>
 
-{{% image "Audiotechnik/2/1_2_7_schwingung_einer_orgelsequenz.gif" "Amplitude bei einem Orgelton" "Abb. 2.2-7 Schwingung einer Orgelsequenz" %}}
+{{% image url="Audiotechnik/2/1_2_7_schwingung_einer_orgelsequenz.gif" alt="Amplitude bei einem Orgelton" caption="Abb. 2.2-7 Schwingung einer Orgelsequenz" %}}
 
 <p>Das Ergebnis der DFT ist als diskretes Spektrum dieses Klanges im folgenden Diagramm dargestellt. Es sind der
     Grundton und einige Harmonische zu erkennen. Man sieht, dass die einzelnen Spitzen in Abständen, die ein
-    ganzzahliges der niedrigsten Frequenz darstellen, verteilt sind. Das ist ein Zeichen für die Glossar Konsonanz
-    <!--TODO: Missing Hyperlink--> dieses Klanges.</p>
+    ganzzahliges der niedrigsten Frequenz darstellen, verteilt sind. Das ist ein Zeichen für die {{< ref "glossar" "Konsonanz" "Konsonanz" >}}
+    dieses Klanges.</p>
 
-{{% image "Audiotechnik/2/1_2_8_frequenzspektrum_des_orgelklanges.gif" "" "Abb. 2.2-8 Frequenzspektrum des Orgelklanges" %}}
+{{% image url="Audiotechnik/2/1_2_8_frequenzspektrum_des_orgelklanges.gif" alt="Frequenzspektrum des Orgelklanges" caption="Abb. 2.2-8 Frequenzspektrum des Orgelklanges" %}}
 
 <p>Die Formel für die DFT lässt sich auch in Matrixform darstellen:</p>
-<!--TODO: Formeln shortcode-->
+
+{{% formulaRow f1 = "\begin{bmatrix} X_0 \\ X_1 \\ \vdots \\ X_{N-1} \end{bmatrix} = \begin{bmatrix} W_N^0 & W_N^0 & \ldots & W_N^0 \\ W_N^0 & W_N^1 & \ldots & W_N^{N-1}\\ \vdots & \vdots & \ddots & \vdots \\ W_N^0 & W_N^{N-1} & \ldots & W_N^{(N-1)(N-1)} \end{bmatrix} * \begin{bmatrix} x_0 \\ x_1 \\ \vdots \\ x_{N-1} \end{bmatrix} = W * \begin{bmatrix} x_0 \\ x_1 \\ \vdots \\ x_{N-1} \end{bmatrix}" ref = "1.18" %}}
+
 <p>Die Anzahl der notwendigen Rechenoperationen für die DFT beträgt ca. N² (siehe auch Arbeiten von Cooley
     <!--TODO: Fehlende Referenzen-->)</p>
 
 <h2>2.2.3 Dämpfung, Frequenzgang und Klirrfaktor</h2>
-<p>Das <strong>Dämpfungsmaß</strong> wird durch die Formel (1.19) bestimmt, wobei Ue das Eingangssignal und Ua das
-    Ausgangssignal ist. Ua = Ue / 2 entspricht einer Dämpfung von 6 dB.</p><!-- TODO: Formelzeichen-->
-<!--TODO: Formeln shortcode-->
+<p>Das <strong>Dämpfungsmaß</strong> wird durch die Formel (1.19) bestimmt, wobei {{< formula >}} U_e {{< /formula >}} das Eingangssignal und {{< formula >}} U_a {{< /formula >}} das
+    Ausgangssignal ist. {{< formula >}} U_a = U_e / 2 {{< /formula >}} entspricht einer Dämpfung von 6 dB.</p>
+{{% formulaRow f1 = "a_d = 20 \log \frac{U_e}{U_a} [dB]" ref = "1.19" %}}
 
-<p>Der <strong>Frequenzgang</strong> lässt sich als Ua = f (Ue) beschreiben; f gibt Aufschluss über Nichtlineare
-    Verzerrung, Clipping, Zeit- und Frequenzbereich. </p><!-- TODO: Formelzeichen-->
+<p>Der <strong>Frequenzgang</strong> lässt sich als {{< formula >}} U_a = f(U_e) {{< /formula >}} beschreiben;
+    {{< formula >}} f {{< /formula >}} gibt Aufschluss über Nichtlineare Verzerrung, Clipping, Zeit- und Frequenzbereich.</p>
 
-{{% image "Audiotechnik/2/frequenzgang_a.gif" "" "Abb. 2.2-9 Übertragungssystem mit Begrenzung" %}}
-{{% image "Audiotechnik/2/frequenzgang_b.gif" "" "Abb. 2.2-10 Lineare Verzerrung durch die Begrenzung" %}}
+{{% image url="Audiotechnik/2/frequenzgang_a.gif" alt="Übertragungssystem mit Begrenzung" caption="Abb. 2.2-9 Übertragungssystem mit Begrenzung" %}}
+{{% image url="Audiotechnik/2/frequenzgang_b.gif" alt="Lineare Verzerrung durch die Begrenzung" caption="Abb. 2.2-10 Lineare Verzerrung durch die Begrenzung" %}}
 
 <p>Der <strong>Klirrfaktor</strong> k ist das Maß für die Obertöne (Harmonische); er ermittelt sich aus der Gleichung
-    (1.20), wobei das Ausgangsignal Ua z.B. die Grundschwingung U1 und deren Obertöne (U2, U3, ...) umfasst.
-</p><!-- TODO: Formelzeichen-->
+    (1.20), wobei das Ausgangsignal {{< formula >}} U_a {{< /formula >}} z.B. die Grundschwingung
+    {{< formula >}} U_1 {{< /formula >}} und deren Obertöne ({{< formula >}} U_2 {{< /formula >}},
+    {{< formula >}} U_3 {{< /formula >}}, ...) umfasst.
+</p>
 <p>Die <strong>Klirrdämpfung</strong> folgt aus dem Klirrfaktor k. </p>
 
-<!--TODO: Formeln shortcode-->
+{{% formulaRow f1 = "k = \sqrt{\frac{U_2^2 + U_3^2 + \ldots}{U_1^2 + U_2^2 + U_3^2 + \ldots}}" f2 = "a_k = 20 * \log(1/k)" ref = "1.20" %}}
+
 
 <h2>2.2.4 Störsignalarten</h2>
 <p>Die Übertragung bzw. Speicherung eines Signals ist stark von der Art des Signals bzw. der in ihm enthaltenen
@@ -183,52 +237,67 @@ draft: true
     <li>Andauernde Störungen sind DC-Offset und Hintergrundrauschen.</li>
 </ul>
 
-<h5>Clicks (Klicken, Knacksen):</h5>
+<h3 class="h5">Clicks (Klicken, Knacksen)</h3>
 <p>Clicks sind lokale Störungen des Audiomaterials, die bei Schallplatten und Filmen entstehen. Sie haben meistens
     mechanische Ursachen und entstehen durch Kratzer oder große Staubpartikel. Die Länge variiert zwischen 50 µs und 4
     ms. </p> <!--TODO: Formatierung-->
 <p>Hörbeispiele:</p><!--TODO: Formatierung-->
-<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/02/1_2_1_musik_ohne_knackser.mp3" title="Musik ohne Knackser" %}}
+    {{% sound-sample url="Audiotechnik/02/1_2_2_musik_mit_knackser.mp3" title="Musik mit Knackser" %}}
+</div>
 
-<h5>Crackles (Knistern):</h5>
+<h3 class="h5">Crackles (Knistern)</h3>
 <p>Crackles sind oszillierende Störungen mit kleinerer Energie als bei den Clicks, jedoch ist ihre Dauer länger. Durch
     ihren oszillierenden Charakter werden sie als sehr störend empfunden.</p>
 
-<h5>Drop Outs (Ausfälle):</h5>
+<h3 class="h5">Drop Outs (Ausfälle)</h3>
 <p>Drop Outs entstehen bei Ausfällen oder Synchronisationsproblemen in digitalen Systemen. Ihre Dauer kann zwischen
     einem und mehreren Tausend Samples betragen. </p>
 <p>Hörbeispiele:</p><!--TODO: Formatierung-->
-<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/02/1_2_5_originalmusikstueck.mp3" title="Originalmusikstück" %}}
+    {{% sound-sample url="Audiotechnik/02/1_2_3_musik_mit_drop_out.mp3" title="AudioMusik mit drop out" %}}
+</div>
 
-<h5>DC-Offset:</h5>
+<h3 class="h5">DC-Offset</h3>
 <p>Der DC-Offset (direct current - Gleichspannng) verursacht keine hörbaren Störungen, sie bilden den
     Gleichspannungsanteil eines Signals. Es ist die Verschiebung des Signals von der x-Achse weg. Er entsteht bei allen
     Verstärkern, die keine perfekte Nullspannung an ihrem Ausgang liefern (Drifting). Der DC-Offset entsteht auch bei
     vielen A/D Wandlern. Diese Störung ist unerwünscht, weil sich durch den Gleichspannungsanteil die Symmetrie des
     Signals verfälscht, was bei der weiteren Bearbeitung des Signals nachteilig sein kann. Bei der 'Fast Fourier
-    Transformation' (FFT) ist dies unerwünscht, da jede Frequenzkomponente mit der Glossar Diracfunktion
-    <!--TODO: Missing Hyperlink--> gefaltet wird, wodurch eine Verdeckung niedrigerer Frequenzen entsteht. </p>
+    Transformation' (FFT) ist dies unerwünscht, da jede Frequenzkomponente mit der {{< ref "glossar" "DiracImpuls" "Diracfunktion" >}}
+     gefaltet wird, wodurch eine Verdeckung niedrigerer Frequenzen entsteht. </p>
 <p>Hörbeispiele:</p><!--TODO: Formatierung-->
-<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/02/1_2_5_originalmusikstueck.mp3" title="Originalmusikstück" %}}
+    {{% sound-sample url="Audiotechnik/02/1_2_4_musik_mit_dc_offset.mp3" title="Musik mit dc offset" %}}
+</div>
 
-{{% image "Audiotechnik/2/1_2_1_schwingung_des_original_musikstuecks.gif" "" "Abb. 2.2-11 Schwingung des Original-Musikstücks" %}}
-{{% image "Audiotechnik/2/1_2_2_musikstueck_mit_dc_offset.gif" "" "Abb. 2.2-12 Musikstück mit DC-offset" %}}
+{{% image url="Audiotechnik/2/1_2_1_schwingung_des_original_musikstuecks.gif" alt="Schwingung des Original-Musikstücks" caption="Abb. 2.2-11 Schwingung des Original-Musikstücks" %}}
+{{% image url="Audiotechnik/2/1_2_2_musikstueck_mit_dc_offset.gif" alt="Musikstück mit DC-offset" caption="Abb. 2.2-12 Musikstück mit DC-offset" %}}
 
-<h5>Hintergrundrauschen:</h5>
+<h3 class="h5">Hintergrundrauschen</h3>
 <p>Hintergrundrauschen bezeichnet alle stochastischen und statistisch nichtdeterminierbaren Störungen. Es ist die am
     meisten vorkommende Störung. Diese Störungen sind schwer zu entfernen, weil es keine Regel für ihre Form, Häufigkeit
     oder Intensität gibt. Sie verfälschen das Signal in allen Frequenzbereichen. Das Hintergrundrauschen entsteht durch
     Fehler im Medium (Bandrauschen), in einzelnen Bauteilen (thermisches Rauschen, Verstärkerrauschen) oder durch äußere
     Einflüsse. </p>
 <p>Hörbeispiele:</p><!--TODO: Formatierung-->
-<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/02/1_2_5_originalmusikstueck.mp3" title="Originalmusikstück" %}}
+    {{% sound-sample url="Audiotechnik/02/1_2_6_musikstueck_mit_rauschen.mp3" title="Musik mit rauschen" %}}
+</div>
 
-<h5>Wows oder 'Pitch Variationen':</h5>
+<h3 class="h5">Wows oder 'Pitch Variationen'</h3>
 <p>Wows entstehen durch Veränderungen der Aufnahme- oder Abspielgeschwindigkeit mechanischer Tonträger, z.B. bei nicht
     exakt gleichmäßiger Umdrehung oder Zentrierung einer Schallplatte oder durch ungleichmäßige Arbeit des
     Antriebsmotors. </p>
 <p>Hörbeispiele:</p><!--TODO: Formatierung-->
-<!--TODO: Audio shortcode-->
+<div class="row mb-3">
+    {{% sound-sample url="Audiotechnik/02/1_2_5_originalmusikstueck.mp3" title="Originalmusikstück" %}}
+    {{% sound-sample url="Audiotechnik/02/1_2_7_musikstueck_mit_pitch.mp3" title="Musik mit pitch" %}}
+</div>
 
 <h2>2.2.5 Hintergrundrauschen</h2>
 <p>Rauschen enthält keine relevante Information und hat viele Ursachen:</p>
@@ -244,22 +313,22 @@ draft: true
 <ul>
     <li><strong>Weißes Rauschen</strong> entsteht durch thermische Bewegung in Leitern und Bestrahlung durch
         energiegeladene Teilchen. Es
-        hat zufälligen Charakter. Die Amplituden sind normalverteilt und die GlossarSpektraldichte
-        <!--TODO: Missing Hyperlink--> ist frequenzunabhängig. Die Rauschanteile im Signal verringern den Dynamikumfang
+        hat zufälligen Charakter. Die Amplituden sind normalverteilt und die {{< ref "glossar" "Spektraldichte" "Spektraldichte" >}}
+         ist frequenzunabhängig. Die Rauschanteile im Signal verringern den Dynamikumfang
         und verschlechtern die Qualität des Signals. Weißes Rauschen lässt sich nicht vollständig vermeiden. Es sind
         aber trotzdem einige Maßnahmen zur Verringerung des Rauschens möglich.
 
-        {{% image "Audiotechnik/2/1_2_3_schwingung_des_weissen_rauschens.gif" "" "Abb. 2.2-13 Schwingung des weißen Rauschens" %}}
+        {{% image url="Audiotechnik/2/1_2_3_schwingung_des_weissen_rauschens.gif" alt="Schwingung des weißen Rauschens" caption="Abb. 2.2-13 Schwingung des weißen Rauschens" %}}
     </li>
     <li><strong>Stoßrauschen</strong> entsteht in bestimmten Halbleitern oder bei Fehlern im Kristallgitter eines
         Bauteils. Stoßrauschen ist, wie in der Abbildung dargestellt, im Allgemeinen durch weißes Rauschen überlagert
         und für Audiosignale nur von geringer Bedeutung. Die Signal- und Pausendauer ist exponentiell verteilt.
 
-        {{% image "Audiotechnik/2/1_2_4_schwingung_des_stossrauschens.gif" "" "Abb. 2.2-14  Schwingung des Stoßrauschens" %}}
+        {{% image url="Audiotechnik/2/1_2_4_schwingung_des_stossrauschens.gif" alt="Schwingung des Stoßrauschens" caption="Abb. 2.2-14  Schwingung des Stoßrauschens" %}}
     </li>
     <li><strong>Funkelrauschen</strong> entsteht durch thermische Bewegungen der Ladungsträger in aktiven Bauteilen
         (Halbleitern), hat stochastischen Charakter und unterscheidet sich von dem weißen Rauschen nur durch seine
-        Glossarspektrale Dichte<!--TODO: Missing Hyperlink-->. Die spektrale Dichte des Funkelrauschens fällt mit
+        {{< ref "glossar" "Spektraldichte" "spektrale Dichte" >}}. Die spektrale Dichte des Funkelrauschens fällt mit
         steigender Frequenz und zwar etwa 10 dB pro Oktave. Bei Frequenzen ab etwa 2kHz ist das Funkelrauschen durch das
         weiße Rauschen verdeckt. Da die Bewegungen der Elektronen im Halbleiter komplizierter sind als im Leiter, kommt
         es bei dem Funkelrauschen zu Schwankungen in der Verteilung der Amplitudenwerte, so dass man stochastische
@@ -284,7 +353,7 @@ draft: true
         Eigenschaften des Systems bei natürlichen Audiosignalen nachgebildet, da bei ihnen die Spektralenergie mit
         steigender Frequenz meistens fallend ist.
 
-        {{% image "Audiotechnik/2/1_2_5_schwingung_des_rosa_rauschens.gif" "" "Abb. 2.2-15 Schwingung des Rosa Rauschens" %}}
+        {{% image url="Audiotechnik/2/1_2_5_schwingung_des_rosa_rauschens.gif" alt="Schwingung des Rosa Rauschens" caption="Abb. 2.2-15 Schwingung des Rosa Rauschens" %}}
     </li>
     <li>
         <strong>Braunes Rauschen</strong> entspricht der Brownschen Bewegung der Atome. Das Signal hat zu einem
@@ -293,4 +362,3 @@ draft: true
         Schallplatte.
     </li>
 </ul>
-<!--TODO: Tabelle shortcode-->

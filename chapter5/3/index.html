@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lauflängenkodierung</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>5.3 Lauflängenkodierung</h1>
+<div class="text-block">
+    Nachdem die Matrix in Zeilenform gebracht worden ist, werden nun die Nullwerte der AC-Koeffizienten zusammengefasst.
+    Dies nennt man <b>Lauflängenkodierung</b>. <b>Dabei entstehen Zahlenpaare</b>, in denen festgehalten wird, wieviele Nullwerte
+    hintereinanderstehen und welcher Wert darauf folgt. Stehen am Ende nur noch Nullen hintereinander, wird ein
+    <b>"end-of-block"-Symbol (0,0)</b> gesetzt, das genau dies verdeutlicht. Dieses Vorgehen wird hier dargestellt:
+</div>
+<div id="expl1" class="explanation">
+    <table>
+        <tr>
+            <td class="hierarchy">
+                <h3>Zahlenpaar:</h3>
+                <h2>(i,s)</h2>
+
+                <div class="cols">
+                    <span class="text-block">
+                        Anzahl der aufeinander folgender Nullen
+                    </span>
+                    <span class="text-block">
+                        darauf folgender Wert ungleich Null
+                    </span>
+                </div>
+                <div class="text-block">
+                    <b>Ausschnitt 1:</b>
+                    <br>
+                    Das Resultat sind nur wenige Zahlenpaare, da an Ende nur noch Nullwerte stehen.
+                </div>
+            </td>
+            <td class="wrapped">
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-6</span>
+                    </div>
+                    <span class="pair">(0,-6)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-10</span>
+                    </div>
+                    <span class="pair">(0,-10)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">2</span>
+                    </div>
+                    <span class="pair">(0,2)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-1</span>
+                    </div>
+                    <span class="pair">(0,-1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">2</span>
+                    </div>
+                    <span class="pair">(0,2)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">1</span>
+                    </div>
+                    <span class="pair">(0,1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-1</span>
+                    </div>
+                    <span class="pair">(0,-1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">-1</span>
+                    </div>
+                    <span class="pair">(1,-1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">1</span>
+                    </div>
+                    <span class="pair">(4,1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">1</span>
+                    </div>
+                    <span class="pair">(0,1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">-1</span>
+                    </div>
+                    <span class="pair">(2,-1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                    </div>
+                    <span class="pair">(0,0)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--Second explanation-->
+<div id="expl2" class="explanation">
+    <table>
+        <tr>
+            <td class="hierarchy">
+                <h3>Zahlenpaar:</h3>
+                <h2>(i,s)</h2>
+
+                <div class="cols">
+                    <span class="text-block">
+                        Anzahl der aufeinander folgender Nullen
+                    </span>
+                    <span class="text-block">
+                        darauf folgender Wert ungleich Null
+                    </span>
+                </div>
+                <div class="text-block">
+                    <b>Ausschnitt 1:</b>
+                    <br>
+                    Das Resultat sind nur wenige Zahlenpaare, da an Ende nur noch Nullwerte stehen.
+                </div>
+            </td>
+            <td class="wrapped">
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">30</span>
+                    </div>
+                    <span class="pair">(0,30)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-4</span>
+                    </div>
+                    <span class="pair">(0,-4)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-22</span>
+                    </div>
+                    <span class="pair">(0,-22)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-2</span>
+                    </div>
+                    <span class="pair">(0,-2)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-13</span>
+                    </div>
+                    <span class="pair">(0,-13)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-5</span>
+                    </div>
+                    <span class="pair">(0,-5)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-2</span>
+                    </div>
+                    <span class="pair">(0,-2)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">2</span>
+                    </div>
+                    <span class="pair">(0,2)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">5</span>
+                    </div>
+                    <span class="pair">(0,5)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">17</span>
+                    </div>
+                    <span class="pair">(0,17)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">17</span>
+                    </div>
+                    <span class="pair">(0,17)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">3</span>
+                    </div>
+                    <span class="pair">(0,3)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">1</span>
+                    </div>
+                    <span class="pair">(0,1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">1</span>
+                    </div>
+                    <span class="pair">(0,1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">4</span>
+                    </div>
+                    <span class="pair">(0,4)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">1</span>
+                    </div>
+                    <span class="pair">(1,1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">-1</span>
+                    </div>
+                    <span class="pair">(1,-1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">1</span>
+                    </div>
+                    <span class="pair">(2,1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">-1</span>
+                    </div>
+                    <span class="pair">(4,-1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">1</span>
+                    </div>
+                    <span class="pair">(2,1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">-1</span>
+                    </div>
+                    <span class="pair">(3,-1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">-1</span>
+                    </div>
+                    <span class="pair">(5,-1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">-1</span>
+                    </div>
+                    <span class="pair">(2,-1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">-1</span>
+                    </div>
+                    <span class="pair">(0,-1)</span>
+                </div>
+                <div class="group">
+                    <div class="boxes">
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                        <span class="box">0</span>
+                    </div>
+                    <span class="pair">(0,0)</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

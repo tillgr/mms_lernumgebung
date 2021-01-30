@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Huffman-Kodierung</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>
+    5.4 Huffman-Kodierung
+</h1>
+<div>
+    Letztendlich folgt noch die Huffman-Kodierung. Bei dieser werden die <b>häufig auftretenden Zahlenpaare durch wenige
+    Bit repräsentiert</b>, während <b>für die Kodierung seltener Paarungen entsprechend mehr Bit verwendet</b> werden.
+    Diese
+    Kodierung sorgt nochmals für eine Minimierung der Datenmenge und kommt ohne zusätzliche Bits für Trennzeichen aus.
+    Der <b>DC-Wert</b> (der erste Wert der Zeile) wird <b>gesondert verschlüsselt</b>, weil er meist der mit Abstand
+    größte
+    Wert ist.
+    Es wird nicht sein eigener Wert kodiert, sondern die Differenz zum DC-Wert des vorhergehenden Blocks.
+</div>
+
+<div>
+    <span class="tables-container">
+        <div class="text-block">
+        <h4>Ausschnitt 1:</h4>
+        <p>
+            Es werden maximal <b>4 Bit</b> für die Kodierung eines Zahlenpaares benötigt. Insgesamt für alle AC-Koeffizienten: 33 Bit
+        </p>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Paar</th>
+            <th>Wahrscheinlichket</th>
+            <th>Bitcode</th>
+        </tr>
+        <tr>
+            <td class="table-pair">(0,1)</td>
+            <td>
+                2/11
+                <img src="" alt="">
+            </td>
+            <td>
+                11
+            </td>
+        </tr>
+        <tr>
+            <td class="table-pair">(0,-1)</td>
+            <td>
+                2/11
+                <img src="" alt="">
+            </td>
+            <td>
+                10
+            </td>
+        </tr>
+        <tr>
+            <td class="table-pair">(0,2)</td>
+            <td>
+                2/11
+                <img src="" alt="">
+            </td>
+            <td>
+                011
+            </td>
+        </tr>
+        <tr>
+            <td class="table-pair">(0,0)</td>
+            <td>
+                1/11
+                <img src="" alt="">
+            </td>
+            <td>
+                001
+            </td>
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            <th>Paar</th>
+            <th>Wahrscheinlichket</th>
+            <th>Bitcode</th>
+        </tr>
+        <tr>
+            <td class="table-pair">(4,1)</td>
+            <td>
+                1/11
+                <img src="" alt="">
+            </td>
+            <td>
+                0101
+            </td>
+        </tr>
+        <tr>
+            <td class="table-pair">(1,-1)</td>
+            <td>
+                1/11
+                <img src="" alt="">
+            </td>
+            <td>
+                0100
+            </td>
+        </tr>
+        <tr>
+            <td class="table-pair">(2,-1)</td>
+            <td>
+                1/11
+                <img src="" alt="">
+            </td>
+            <td>
+                0001
+            </td>
+        </tr>
+        <tr>
+            <td class="table-pair">(0,-10)</td>
+            <td>
+                1/11
+                <img src="" alt="">
+            </td>
+            <td>
+                0000
+            </td>
+        </tr>
+    </table>
+    </span>
+
+    <div>
+        DC-Koeffizient <span class="text-mark">-6</span> wird als Differenz zum DC-Wert des vorhergehenden Blocks
+        kodiert.
+    </div>
+</div>
+
+<!--Second container-->
+<div>
+    <span class="tables-container">
+        <div class="text-block">
+        <h4>Ausschnitt 2:</h4>
+        <p>
+            Es werden maximal <b>5 Bit</b> für die Kodierung eines Zahlenpaares benötigt. Insgesamt für alle AC-Koeffizienten: 137 Bit
+        </p>
+    </div>
+        <table class="table">
+            <tr>
+                <th>Paar</th>
+                <th>Wahrscheinlichket</th>
+                <th>Bitcode</th>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,2)</td>
+                <td>
+                    6/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    111
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(2,1)</td>
+                <td>
+                    3/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    011
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,1)</td>
+                <td>
+                    2/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    1101
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(1,1)</td>
+                <td>
+                    2/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    1011
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(1,-1)</td>
+                <td>
+                    2/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    1011
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,-2)</td>
+                <td>
+                    2/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    1010
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,17)</td>
+                <td>
+                    2/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    1001
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,0)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    10001
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,-1)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    10000
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(2,-1)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    00111
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(3,-1)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    00110
+                </td>
+            </tr>
+        </table>
+        <table class="table">
+            <tr>
+                <th>Paar</th>
+                <th>Wahrscheinlichket</th>
+                <th>Bitcode</th>
+            </tr>
+            <tr>
+                <td class="table-pair">(4,-1)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    00101
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(5,-1)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    00101
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,3)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    00011
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,4)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    00010
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,-4)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    00001
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,5)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    00000
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,-5)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    01011
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,10)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    01010
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,-13)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    01001
+                </td>
+            </tr>
+            <tr>
+                <td class="table-pair">(0,-22)</td>
+                <td>
+                    1/33
+                    <img src="" alt="">
+                </td>
+                <td>
+                    01000
+                </td>
+            </tr>
+
+        </table>
+    </span>
+    <div>
+        DC-Koeffizient <span class="text-mark">30</span> wird als Differenz zum DC-Wert des vorhergehenden Blocks
+        kodiert.
+    </div>
+</div>
+
+</body>
+</html>
