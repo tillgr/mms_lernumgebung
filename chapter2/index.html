@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPEG-Kompression</title>
+</head>
+<body>
+    <div>
+        <header class="header">
+            Headertext / images
+        </header>
+    </div>
+    <div class="overview">
+        <!--LEFT-->
+        <!--2.1-->
+        <div id="arrowLeft1" class="arrowG">
+            <img src="./assets/arrowLeftGrey.png">
+        </div>
+        <!--2.2-->
+        <div id="arrowLeft2" class="arrow">
+            <img src="./assets/arrowLeft.png" onclick="btn2_1()">
+        </div>
+        <!--2.3-->
+        <div id="arrowLeft3" class="arrow">
+            <img src="./assets/arrowLeft.png" onclick="btn2_2()">
+        </div>
+        <!--2.4-->
+        <div id="arrowLeft4" class="arrow">
+            <img src="./assets/arrowLeft.png" onclick="btn2_3()">
+        </div>
+        <!--2.5-->
+        <div id="arrowLeft5" class="arrow">
+            <img src="./assets/arrowLeft.png" onclick="btn2_4()">
+        </div>
+        <!--TEXT-->
+        <div class="textOverview" id="textOverview">
+            Testtext
+        </div>
+        <!--RIGHT-->
+        <!--2.1-->
+        <div id="arrowRight1" class="arrow">
+            <img src="./assets/arrowRight.png" onclick="btn2_2()" alt="">
+        </div>
+        <!--2.2-->
+        <div id="arrowRight2" class="arrow">
+            <img src="./assets/arrowRight.png" onclick="btn2_3()" alt="">
+        </div>
+        <!--2.3-->
+        <div id="arrowRight3" class="arrow">
+            <img src="./assets/arrowRight.png" onclick="btn2_4()" alt="">
+        </div>
+        <!--2.4-->
+        <div id="arrowRight4" class="arrow">
+            <img src="./assets/arrowRight.png" onclick="btn2_5()" alt="">
+        </div>
+        <!--2.5-->
+        <div id="arrowRight5" class="arrowG">
+            <img src="./assets/arrowRightGrey.png" alt="">
+        </div>
+    </div>
+    <div class="navbar">
+        <button id="navbar1" class="btnMargR" type="button" title="2.1 Bildaufbereitung: Übersicht" onclick="btn2_1()"></button>
+        <button id="navbar2" class="btnMargR" type="button" title="2.2 Farbraumveränderung" onclick="btn2_2()"></button>
+        <button id="navbar3" class="btnMargR" type="button" title="2.3 Unterabtastung der Farbwerte (Chrominanz-Subsampling)" onclick="btn2_3()"></button>
+        <button id="navbar4" class="btnMargR" type="button" title="2.4 Indexverschiebung (Normalisierung)" onclick="btn2_4()"></button>
+        <button id="navbar5" class="btnMargR" type="button" title="2.5 Blockbildung" onclick="btn2_5()"></button>
+    </div>
+    <div class="description" id="2_1">
+        <div>
+            Im ersten Kapitel haben wir gelernt, dass unser Auge Helligkeitsunterschiede besser wahrnimmt als Farbunterschiede. 
+            Das zweite Kapitel "<strong>Bildaufarbeitung</strong>" wird nun veranschaulichen, welche Vorbereitungen nötig sind, damit jene Erkenntnis
+            dafür ausgenutzt werden kann, das Ziel der Datenkompression zu erreichen:
+        </div>
+        <div class="list">
+            <p><strong>1. Farbraumveränderung</strong> (Umwandlung in das Farbsystem YCC),</p>
+            <p><strong>2. Unterabtastung der Farbwerte</strong> (Chrominanz-Subsampling),</p>
+            <p><strong>3. Indexverschiebung</strong>,</p>
+            <p><strong>4. Blockbildung</strong> (8x8-Pixel-Blöcke).</p>
+        </div>
+    </div>
+    <div class="description" id="2_2">
+        <div>
+            Das JPEG-Verfahren beruht vor allem darauf, dass kleine Unterschiede in der Farbe (und in geringen Maße auch in der Helligkeit) entfernt werden.
+            Bei den gängigen Farbsystemen, wie RGB und CMYK, wird das Bild in einzelne Farben (Ebenen) zerlegt. Wir brauchen aber ein 
+            <strong>System, bei dem Farbwerte von den Helligkeitswerten getrennt werden</strong>, damit sie im weiteren Verlauf 
+            auch einzeln behandelt werden können. Deshalb wird das vorhandende Farbmodell in das <strong>YCC-System</strong> 
+            umgewandelt, das genau dies tut (Rechenvorschrift siehe Pfeil). Durch diese Umwandlung gehen keine Farbinformationen verloren. (Farbwerte siehe Ebenen)
+        
+            
+                <div style="display: flex;" class="red rightTableHIDDEN" id="redImg">
+                    <p class="letters" >R</p>
+                    <div class="tooltip">
+                        <img src="./assets/redImg.png" alt="" class="imgSmall"/>
+                        <span class="tooltiptext redTt">
+                            <h2>Abschnitt 1: <strong>Rot-Ebene</strong></h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>181</td><td>187</td><td>195</td><td>212</td><td>211</td><td>220</td><td>222</td><td>229</td><td>233</td><td>233</td><td>234</td><td>235</td><td>244</td><td>248</td><td>232</td><td>210</td>
+                                </tr>
+                                <tr>
+                                    <td>191</td><td>185</td><td>195</td><td>215</td><td>215</td><td>221</td><td>223</td><td>231</td><td>232</td><td>235</td><td>242</td><td>244</td><td>246</td><td>248</td><td>237</td><td>226</td>
+                                </tr>
+                                <tr>
+                                    <td>191</td><td>182</td><td>195</td><td>218</td><td>215</td><td>218</td><td>226</td><td>241</td><td>239</td><td>242</td><td>244</td><td>249</td><td>255</td><td>237</td><td>192</td><td>215</td>
+                                </tr>
+                                <tr>
+                                    <td>196</td><td>175</td><td>193</td><td>208</td><td>211</td><td>219</td><td>225</td><td>233</td><td>240</td><td>250</td><td>253</td><td>251</td><td>254</td><td>239</td><td>162</td><td>203</td>
+                                </tr> 
+                                <tr>
+                                    <td>184</td><td>177</td><td>192</td><td>209</td><td>211</td><td>214</td><td>220</td><td>237</td><td>239</td><td>250</td><td>255</td><td>254</td><td>255</td><td>254</td><td>226</td><td>294</td>
+                                </tr>
+                                <tr>
+                                    <td>171</td><td>172</td><td>183</td><td>198</td><td>208</td><td>217</td><td>215</td><td>234</td><td>240</td><td>246</td><td>252</td><td>254</td><td>254</td><td>255</td><td>252</td><td>230</td>
+                                </tr>
+                                <tr>
+                                    <td>161</td><td>167</td><td>180</td><td>189</td><td>197</td><td>206</td><td>210</td><td>232</td><td>235</td><td>241</td><td>250</td><td>254</td><td>255</td><td>253</td><td>254</td><td>253</td>
+                                </tr>
+                                <tr>
+                                    <td>158</td><td>164</td><td>175</td><td>187</td><td>193</td><td>207</td><td>198</td><td>226</td><td>242</td><td>236</td><td>240</td><td>250</td><td>252</td><td>255</td><td>254</td><td>251</td>
+                                </tr>
+                                <tr>
+                                    <td>155</td><td>158</td><td>181</td><td>195</td><td>195</td><td>207</td><td>167</td><td>200</td><td>165</td><td>205</td><td>245</td><td>249</td><td>254</td><td>253</td><td>252</td><td>248</td>
+                                </tr>
+                                <tr>
+                                    <td>156</td><td>156</td><td>184</td><td>194</td><td>194</td><td>205</td><td>172</td><td>177</td><td>116</td><td>170</td><td>255</td><td>254</td><td>255</td><td>255</td><td>251</td><td>252</td>
+                                </tr>
+                                <tr>
+                                    <td>168</td><td>165</td><td>192</td><td>199</td><td>207</td><td>210</td><td>177</td><td>174</td><td>102</td><td>168</td><td>255</td><td>254</td><td>255</td><td>255</td><td>255</td><td>252</td>
+                                </tr>
+                                <tr>
+                                    <td>181</td><td>178</td><td>197</td><td>205</td><td>213</td><td>226</td><td>194</td><td>186</td><td>133</td><td>189</td><td>252</td><td>254</td><td>255</td><td>252</td><td>255</td><td>255</td>
+                                </tr>
+                                <tr>
+                                    <td>191</td><td>185</td><td>202</td><td>206</td><td>215</td><td>217</td><td>217</td><td>229</td><td>242</td><td>247</td><td>242</td><td>247</td><td>255</td><td>254</td><td>255</td><td>255</td>
+                                </tr>
+                                <tr>
+                                    <td>153</td><td>157</td><td>165</td><td>174</td><td>187</td><td>193</td><td>201</td><td>207</td><td>214</td><td>215</td><td>217</td><td>223</td><td>231</td><td>233</td><td>235</td><td>247</td>
+                                </tr>
+                                <tr>
+                                    <td>105</td><td>121</td><td>134</td><td>143</td><td>156</td><td>166</td><td>178</td><td>182</td><td>186</td><td>192</td><td>193</td><td>200</td><td>210</td><td>212</td><td>210</td><td>214</td>
+                                </tr>
+                                <tr>
+                                    <td>166</td><td>178</td><td>192</td><td>199</td><td>206</td><td>210</td><td>218</td><td>230</td><td>231</td><td>235</td><td>230</td><td>224</td><td>230</td><td>230</td><td>228</td><td>226</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                    <svg >
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+                              <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+                            </linearGradient>
+                          </defs>
+                        <rect class="colorPalette" fill="url(#grad1)"/>
+                    </svg>
+                </div>
+                <div style="display: flex;" class="green rightTableHIDDEN" id="greenImg">
+                    <p class="letters">G</p>
+                    <div class="tooltip">
+                        <img src="./assets/greenImg.png" alt="" class="imgSmall"/>
+                        <span class="tooltiptext greenTt">
+                            <h2>Abschnitt 1: <strong>Grün-Ebene</strong></h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>71</td><td>73</td><td>76</td><td>86</td><td>86</td><td>92</td><td>97</td><td>100</td><td>98</td><td>99</td><td>103</td><td>106</td><td>111</td><td>107</td><td>159</td><td>215</td>
+                                </tr>
+                                <tr>
+                                    <td>73</td><td>69</td><td>74</td><td>86</td><td>87</td><td>93</td><td>96</td><td>102</td><td>102</td><td>104</td><td>105</td><td>105</td><td>111</td><td>113</td><td>112</td><td>178</td>
+                                </tr>
+                                <tr>
+                                    <td>82</td><td>66</td><td>79</td><td>91</td><td>86</td><td>93</td><td>96</td><td>101</td><td>106</td><td>108</td><td>108</td><td>108</td><td>115</td><td>106</td><td>70</td><td>136</td>
+                                </tr>
+                                <tr>
+                                    <td>111</td><td>60</td><td>78</td><td>86</td><td>86</td><td>94</td><td>97</td><td>108</td><td>111</td><td>112</td><td>116</td><td>116</td><td>121</td><td>104</td><td>74</td><td>144</td>
+                                </tr> 
+                                <tr>
+                                    <td>86</td><td>61</td><td>75</td><td>84</td><td>86</td><td>94</td><td>96</td><td>109</td><td>111</td><td>120</td><td>123</td><td>125</td><td>127</td><td>119</td><td>120</td><td>132</td>
+                                </tr>
+                                <tr>
+                                    <td>65</td><td>68</td><td>76</td><td>84</td><td>88</td><td>95</td><td>97</td><td>112</td><td>114</td><td>119</td><td>127</td><td>131</td><td>129</td><td>128</td><td>124</td><td>147</td>
+                                </tr>
+                                <tr>
+                                    <td>59</td><td>61</td><td>73</td><td>77</td><td>81</td><td>91</td><td>96</td><td>108</td><td>111</td><td>117</td><td>130</td><td>131</td><td>130</td><td>134</td><td>129</td><td>129</td>
+                                </tr>
+                                <tr>
+                                    <td>58</td><td>57</td><td>69</td><td>75</td><td>78</td><td>86</td><td>83</td><td>132</td><td>175</td><td>144</td><td>125</td><td>129</td><td>130</td><td>132</td><td>131</td><td>121</td>
+                                </tr>
+                                <tr>
+                                    <td>54</td><td>55</td><td>69</td><td>77</td><td>81</td><td>68</td><td>69</td><td>152</td><td>133</td><td>147</td><td>134</td><td>125</td><td>130</td><td>128</td><td>122</td><td>117</td>
+                                </tr>
+                                <tr>
+                                    <td>57</td><td>55</td><td>71</td><td>79</td><td>83</td><td>89</td><td>71</td><td>128</td><td>92</td><td>121</td><td>138</td><td>126</td><td>129</td><td>128</td><td>121</td><td>113</td>
+                                </tr>
+                                <tr>
+                                    <td>62</td><td>60</td><td>75</td><td>83</td><td>87</td><td>90</td><td>76</td><td>131</td><td>91</td><td>125</td><td>140</td><td>129</td><td>133</td><td>135</td><td>129</td><td>120</td>
+                                </tr>
+                                <tr>
+                                    <td>71</td><td>65</td><td>78</td><td>85</td><td>85</td><td>92</td><td>84</td><td>131</td><td>103</td><td>124</td><td>132</td><td>127</td><td>133</td><td>132</td><td>129</td><td>126</td>
+                                </tr>
+                                <tr>
+                                    <td>74</td><td>70</td><td>84</td><td>81</td><td>87</td><td>90</td><td>89</td><td>106</td><td>117</td><td>117</td><td>108</td><td>114</td><td>118</td><td>119</td><td>119</td><td>121</td>
+                                </tr>
+                                <tr>
+                                    <td>78</td><td>78</td><td>87</td><td>90</td><td>98</td><td>102</td><td>106</td><td>110</td><td>114</td><td>117</td><td>122</td><td>119</td><td>116</td><td>113</td><td>119</td><td>126</td>
+                                </tr>
+                                <tr>
+                                    <td>58</td><td>67</td><td>76</td><td>82</td><td>88</td><td>97</td><td>103</td><td>105</td><td>108</td><td>118</td><td>121</td><td>126</td><td>129</td><td>134</td><td>141</td><td>144</td>
+                                </tr>
+                                <tr>
+                                    <td>133</td><td>139</td><td>146</td><td>156</td><td>162</td><td>169</td><td>167</td><td>177</td><td>180</td><td>171</td><td>168</td><td>166</td><td>165</td><td>168</td><td>161</td><td>0</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                    <svg >
+                        <defs>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" style="stop-color:rgb(0,255,0);stop-opacity:1" />
+                              <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+                            </linearGradient>
+                          </defs>
+                        <rect class="colorPalette" fill="url(#grad2)"/>
+                    </svg>
+                </div>
+                <div style="display: flex;" class="blue rightTableHIDDEN" id="blueImg">
+                    <p class="letters">B</p>
+                    <div class="tooltip">
+                        <img src="./assets/blueImg.png" alt="" class="imgSmall"/>
+                        <span class="tooltiptext blueTt">
+                            <h2>Abschnitt 1: <strong>Blau-Ebene</strong></h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>38</td><td>40</td><td>45</td><td>52</td><td>49</td><td>55</td><td>60</td><td>61</td><td>61</td><td>63</td><td>64</td><td>66</td><td>73</td><td>73</td><td>149</td><td>221</td>
+                                </tr>
+                                <tr>
+                                    <td>40</td><td>38</td><td>44</td><td>47</td><td>50</td><td>56</td><td>56</td><td>61</td><td>66</td><td>65</td><td>62</td><td>68</td><td>74</td><td>74</td><td>74</td><td>171</td>
+                                </tr>
+                                <tr>
+                                    <td>51</td><td>35</td><td>46</td><td>51</td><td>45</td><td>53</td><td>61</td><td>68</td><td>65</td><td>71</td><td>68</td><td>67</td><td>73</td><td>67</td><td>36</td><td>111</td>
+                                </tr>
+                                <tr>
+                                    <td>78</td><td>33</td><td>49</td><td>55</td><td>49</td><td>56</td><td>61</td><td>67</td><td>72</td><td>74</td><td>75</td><td>75</td><td>78</td><td>63</td><td>46</td><td>117</td>
+                                </tr> 
+                                <tr>
+                                    <td>56</td><td>37</td><td>49</td><td>55</td><td>57</td><td>58</td><td>59</td><td>74</td><td>74</td><td>80</td><td>77</td><td>83</td><td>89</td><td>77</td><td>82</td><td>108</td>
+                                </tr>
+                                <tr>
+                                    <td>39</td><td>39</td><td>47</td><td>49</td><td>56</td><td>61</td><td>63</td><td>78</td><td>79</td><td>84</td><td>89</td><td>91</td><td>88</td><td>87</td><td>79</td><td>101</td>
+                                </tr>
+                                <tr>
+                                    <td>38</td><td>37</td><td>49</td><td>47</td><td>48</td><td>55</td><td>61</td><td>70</td><td>77</td><td>79</td><td>90</td><td>91</td><td>91</td><td>94</td><td>90</td><td>85</td>
+                                </tr>
+                                <tr>
+                                    <td>37</td><td>33</td><td>42</td><td>46</td><td>49</td><td>56</td><td>53</td><td>97</td><td>135</td><td>107</td><td>82</td><td>84</td><td>90</td><td>88</td><td>84</td><td>74</td>
+                                </tr>
+                                <tr>
+                                    <td>33</td><td>32</td><td>42</td><td>44</td><td>47</td><td>59</td><td>39</td><td>117</td><td>105</td><td>111</td><td>91</td><td>81</td><td>84</td><td>84</td><td>78</td><td>72</td>
+                                </tr>
+                                <tr>
+                                    <td>32</td><td>31</td><td>47</td><td>48</td><td>48</td><td>57</td><td>43</td><td>102</td><td>85</td><td>94</td><td>97</td><td>81</td><td>88</td><td>85</td><td>79</td><td>73</td>
+                                </tr>
+                                <tr>
+                                    <td>36</td><td>32</td><td>47</td><td>50</td><td>55</td><td>56</td><td>47</td><td>105</td><td>89</td><td>105</td><td>99</td><td>90</td><td>99</td><td>92</td><td>84</td><td>75</td>
+                                </tr>
+                                <tr>
+                                    <td>43</td><td>38</td><td>47</td><td>49</td><td>48</td><td>55</td><td>49</td><td>101</td><td>86</td><td>94</td><td>89</td><td>86</td><td>97</td><td>91</td><td>84</td><td>76</td>
+                                </tr>
+                                <tr>
+                                    <td>48</td><td>40</td><td>47</td><td>43</td><td>51</td><td>50</td><td>45</td><td>66</td><td>74</td><td>76</td><td>69</td><td>76</td><td>75</td><td>77</td><td>77</td><td>77</td>
+                                </tr>
+                                <tr>
+                                    <td>48</td><td>50</td><td>55</td><td>54</td><td>57</td><td>60</td><td>67</td><td>75</td><td>81</td><td>77</td><td>81</td><td>76</td><td>71</td><td>78</td><td>85</td><td>93</td>
+                                </tr>
+                                <tr>
+                                    <td>23</td><td>33</td><td>41</td><td>40</td><td>40</td><td>46</td><td>52</td><td>52</td><td>56</td><td>61</td><td>81</td><td>67</td><td>68</td><td>78</td><td>86</td><td>94</td>
+                                </tr>
+                                <tr>
+                                    <td>108</td><td>111</td><td>119</td><td>128</td><td>125</td><td>129</td><td>128</td><td>133</td><td>132</td><td>127</td><td>116</td><td>113</td><td>107</td><td>99</td><td>92</td><td>0</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                    <svg >
+                        <defs>
+                            <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+                              <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+                            </linearGradient>
+                          </defs>
+                        <rect class="colorPalette" fill="url(#grad3)"/>
+                    </svg>
+                </div>
+                <div class="arrowBlack">
+                    <div class="tooltip">
+                        <img src="./assets/arrow2_2.png" alt="" id="arrow2_2" class="rightTableHIDDEN"/>
+                        <span class="tooltiptext arrowTt">
+                            <p>Die Umwandlung erfolgt über folgende Rechenvorschrift:</p>
+                            <p>Y  =  0,299  R + 0,587  G + 0,114  B<br>
+                            Cb = -0,1687 R - 0,3313 G + 0,5    B + 128<br>
+                            Cr =  0,5    R - 0,4187 G - 0,0813 B + 128</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="Y">
+                    <p class="letters" >Y</p>
+                    <div class="tooltip">
+                        <img src="./assets/YImg.png" alt="" class="imgSmall rightImg" id="YImg" onmouseover="showRightTable()" onmouseout="showAll2_2()"/>
+                        <span class="tooltiptext yTt">
+                            <h2>Abschnitt 1: Die <strong>Y-Ebene</strong> enthält die Werte für die Helligkeitsverteilung im Bild (Grauwerte).</h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>100</td><td>103</td><td>108</td><td>119</td><td>119</td><td>126</td><td>130</td><td>134</td><td>134</td><td>134</td><td>137</td><td>140</td><td>146</td><td>145</td><td>179</td><td>214</td>
+                                </tr>
+                                <tr>
+                                    <td>104</td><td>100</td><td>106</td><td>120</td><td>121</td><td>127</td><td>129</td><td>135</td><td>136</td><td>138</td><td>141</td><td>142</td><td>147</td><td>148</td><td>145</td><td>191</td>
+                                </tr>
+                                <tr>
+                                    <td>111</td><td>97</td><td>109</td><td>124</td><td>119</td><td>125</td><td>130</td><td>139</td><td>141</td><td>143</td><td>144</td><td>145</td><td>152</td><td>140</td><td>102</td><td>156</td>
+                                </tr>
+                                <tr>
+                                    <td>132</td><td>91</td><td>109</td><td>118</td><td>119</td><td>127</td><td>131</td><td>140</td><td>145</td><td>148</td><td>152</td><td>151</td><td>155</td><td>139</td><td>97</td><td>158</td>
+                                </tr> 
+                                <tr>
+                                    <td>111</td><td>92</td><td>107</td><td>118</td><td>120</td><td>125</td><td>128</td><td>143</td><td>145</td><td>154</td><td>157</td><td>158</td><td>160</td><td>154</td><td>147</td><td>147</td>
+                                </tr>
+                                <tr>
+                                    <td>93</td><td>95</td><td>104</td><td>114</td><td>120</td><td>127</td><td>128</td><td>144</td><td>147</td><td>152</td><td>160</td><td>163</td><td>161</td><td>161</td><td>157</td><td>166</td>
+                                </tr>
+                                <tr>
+                                    <td>87</td><td>89</td><td>102</td><td>107</td><td>111</td><td>121</td><td>126</td><td>140</td><td>144</td><td>149</td><td>161</td><td>163</td><td>162</td><td>165</td><td>161</td><td>161</td>
+                                </tr>
+                                <tr>
+                                    <td>85</td><td>86</td><td>97</td><td>105</td><td>109</td><td>118</td><td>113</td><td>156</td><td>190</td><td>167</td><td>154</td><td>160</td><td>161</td><td>163</td><td>162</td><td>154</td>
+                                </tr>
+                                <tr>
+                                    <td>81</td><td>83</td><td>99</td><td>108</td><td>111</td><td>120</td><td>94</td><td>162</td><td>139</td><td>160</td><td>162</td><td>157</td><td>161</td><td>160</td><td>155</td><td>151</td>
+                                </tr>
+                                <tr>
+                                    <td>83</td><td>82</td><td>102</td><td>109</td><td>112</td><td>120</td><td>98</td><td>139</td><td>98</td><td>132</td><td>168</td><td>159</td><td>162</td><td>161</td><td>155</td><td>150</td>
+                                </tr>
+                                <tr>
+                                    <td>90</td><td>88</td><td>106</td><td>113</td><td>119</td><td>122</td><td>102</td><td>140</td><td>94</td><td>135</td><td>169</td><td>161</td><td>165</td><td>165</td><td>161</td><td>154</td>
+                                </tr>
+                                <tr>
+                                    <td>100</td><td>95</td><td>110</td><td>116</td><td>119</td><td>127</td><td>112</td><td>144</td><td>110</td><td>140</td><td>163</td><td>160</td><td>165</td><td>163</td><td>161</td><td>158</td>
+                                </tr>
+                                <tr>
+                                    <td>106</td><td>100</td><td>115</td><td>114</td><td>121</td><td>123</td><td>122</td><td>138</td><td>149</td><td>151</td><td>143</td><td>149</td><td>154</td><td>154</td><td>154</td><td>156</td>
+                                </tr>
+                                <tr>
+                                    <td>97</td><td>98</td><td>106</td><td>111</td><td>119</td><td>124</td><td>129</td><td>135</td><td>140</td><td>141</td><td>145</td><td>145</td><td>145</td><td>144</td><td>149</td><td>158</td>
+                                </tr>
+                                <tr>
+                                    <td>68</td><td>79</td><td>89</td><td>95</td><td>102</td><td>111</td><td>119</td><td>121</td><td>125</td><td>133</td><td>135</td><td>141</td><td>146</td><td>150</td><td>155</td><td>159</td>
+                                </tr>
+                                <tr>
+                                    <td>140</td><td>147</td><td>156</td><td>165</td><td>170</td><td>176</td><td>177</td><td>187</td><td>189</td><td>188</td><td>180</td><td>177</td><td>177</td><td>178</td><td>173</td><td>173</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                    <svg >
+                        <defs>
+                            <linearGradient id="grad4" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
+                              <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+                            </linearGradient>
+                          </defs>
+                        <rect class="colorPalette" fill="url(#grad4)"/>
+                    </svg>
+                </div>
+                <div style="display: flex;" class="Cb">
+                    <p class="letters">Cb</p>
+                    <div class="tooltip">
+                        <img src="./assets/CbImg.png" alt="" class="imgSmall" onmouseover="showRightTable()" onmouseout="showAll2_2()" />
+                        <span class="tooltiptext CbTt">
+                            <h2>Abschnitt 1: Die <strong>Cb-Ebene</strong> enthält die Abweichungen der Blauwerte zu den Grauwerten.</h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>93</td><td>93</td><td>93</td><td>90</td><td>89</td><td>88</td><td>89</td><td>87</td><td>87</td><td>88</td><td>87</td><td>87</td><td>87</td><td>88</td><td>111</td><td>131</td>
+                                </tr>
+                                <tr>
+                                    <td>92</td><td>93</td><td>93</td><td>87</td><td>88</td><td>88</td><td>87</td><td>86</td><td>89</td><td>87</td><td>84</td><td>87</td><td>87</td><td>86</td><td>88</td><td>117</td>
+                                </tr>
+                                <tr>
+                                    <td>95</td><td>93</td><td>92</td><td>87</td><td>86</td><td>87</td><td>89</td><td>88</td><td>86</td><td>87</td><td>86</td><td>84</td><td>84</td><td>87</td><td>91</td><td>103</td>
+                                </tr>
+                                <tr>
+                                    <td>98</td><td>96</td><td>95</td><td>92</td><td>89</td><td>88</td><td>89</td><td>87</td><td>87</td><td>86</td><td>85</td><td>85</td><td>85</td><td>85</td><td>100</td><td>105</td>
+                                </tr> 
+                                <tr>
+                                    <td>97</td><td>97</td><td>96</td><td>93</td><td>93</td><td>90</td><td>89</td><td>89</td><td>88</td><td>87</td><td>83</td><td>86</td><td>88</td><td>85</td><td>92</td><td>106</td>
+                                </tr>
+                                <tr>
+                                    <td>98</td><td>96</td><td>96</td><td>92</td><td>92</td><td>91</td><td>92</td><td>91</td><td>90</td><td>90</td><td>88</td><td>88</td><td>87</td><td>87</td><td>84</td><td>91</td>
+                                </tr>
+                                <tr>
+                                    <td>101</td><td>99</td><td>98</td><td>95</td><td>92</td><td>91</td><td>92</td><td>89</td><td>91</td><td>89</td><td>88</td><td>88</td><td>88</td><td>88</td><td>88</td><td>86</td>
+                                </tr>
+                                <tr>
+                                    <td>101</td><td>98</td><td>97</td><td>95</td><td>95</td><td>93</td><td>94</td><td>99</td><td>97</td><td>94</td><td>88</td><td>86</td><td>88</td><td>86</td><td>84</td><td>83</td>
+                                </tr>
+                                <tr>
+                                    <td>101</td><td>100</td><td>96</td><td>92</td><td>92</td><td>94</td><td>92</td><td>103</td><td>109</td><td>101</td><td>88</td><td>86</td><td>85</td><td>85</td><td>85</td><td>84</td>
+                                </tr>
+                                <tr>
+                                    <td>99</td><td>99</td><td>97</td><td>94</td><td>92</td><td>93</td><td>97</td><td>107</td><td>121</td><td>107</td><td>88</td><td>84</td><td>87</td><td>86</td><td>86</td><td>85</td>
+                                </tr>
+                                <tr>
+                                    <td>98</td><td>97</td><td>95</td><td>92</td><td>92</td><td>91</td><td>97</td><td>108</td><td>126</td><td>111</td><td>89</td><td>88</td><td>91</td><td>87</td><td>85</td><td>84</td>
+                                </tr>
+                                <tr>
+                                    <td>96</td><td>96</td><td>93</td><td>90</td><td>88</td><td>87</td><td>92</td><td>104</td><td>115</td><td>103</td><td>86</td><td>87</td><td>90</td><td>88</td><td>85</td><td>82</td>
+                                </tr>
+                                <tr>
+                                    <td>96</td><td>94</td><td>90</td><td>88</td><td>89</td><td>87</td><td>85</td><td>88</td><td>86</td><td>86</td><td>86</td><td>87</td><td>84</td><td>85</td><td>85</td><td>84</td>
+                                </tr>
+                                <tr>
+                                    <td>101</td><td>101</td><td>99</td><td>96</td><td>93</td><td>92</td><td>93</td><td>95</td><td>95</td><td>92</td><td>92</td><td>89</td><td>87</td><td>91</td><td>92</td><td>92</td>
+                                </tr>
+                                <tr>
+                                    <td>103</td><td>102</td><td>101</td><td>97</td><td>93</td><td>91</td><td>90</td><td>89</td><td>89</td><td>88</td><td>86</td><td>87</td><td>84</td><td>87</td><td>89</td><td>92</td>
+                                </tr>
+                                <tr>
+                                    <td>110</td><td>108</td><td>107</td><td>106</td><td>103</td><td>102</td><td>100</td><td>98</td><td>96</td><td>94</td><td>92</td><td>92</td><td>89</td><td>84</td><td>83</td><td>84</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                    <svg >
+                        <defs>
+                            <linearGradient id="grad5" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+                              <stop offset="100%" style="stop-color:rgb(255, 255, 10);stop-opacity:1" />
+                            </linearGradient>
+                          </defs>
+                        <rect class="colorPalette" fill="url(#grad5)"/>
+                    </svg>
+                </div>
+                <div style="display: flex;" class="Cr">
+                    <p class="letters">Cr</p>
+                    <div class="tooltip">
+                        <img src="./assets/CrImg.png" alt="" class="imgSmall" onmouseover="showRightTable()" onmouseout="showAll2_2()" />
+                        <span class="tooltiptext CrTt">
+                            <h2>Abschnitt 1: Die <strong>Cr-Ebene</strong> enthält die Abweichungen der Rotwerte zu den Grauwerten.</h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>185</td><td>187</td><td>190</td><td>193</td><td>193</td><td>195</td><td>193</td><td>195</td><td>198</td><td>197</td><td>196</td><td>195</td><td>197</td><td>201</td><td>165</td><td>126</td>
+                                </tr>
+                                <tr>
+                                    <td>189</td><td>188</td><td>190</td><td>195</td><td>195</td><td>195</td><td>194</td><td>195</td><td>195</td><td>196</td><td>199</td><td>200</td><td>198</td><td>198</td><td>193</td><td>152</td>
+                                </tr>
+                                <tr>
+                                    <td>185</td><td>188</td><td>188</td><td>194</td><td>195</td><td>193</td><td>195</td><td>200</td><td>197</td><td>198</td><td>199</td><td>201</td><td>201</td><td>196</td><td>191</td><td>169</td>
+                                </tr>
+                                <tr>
+                                    <td>173</td><td>187</td><td>182</td><td>191</td><td>193</td><td>193</td><td>194</td><td>193</td><td>195</td><td>200</td><td>199</td><td>198</td><td>197</td><td>198</td><td>174</td><td>159</td>
+                                </tr> 
+                                <tr>
+                                    <td>179</td><td>187</td><td>188</td><td>192</td><td>192</td><td>190</td><td>193</td><td>194</td><td>195</td><td>196</td><td>197</td><td>195</td><td>195</td><td>198</td><td>184</td><td>160</td>
+                                </tr>
+                                <tr>
+                                    <td>183</td><td>182</td><td>183</td><td>187</td><td>190</td><td>191</td><td>189</td><td>191</td><td>193</td><td>194</td><td>193</td><td>192</td><td>193</td><td>194</td><td>195</td><td>173</td>
+                                </tr>
+                                <tr>
+                                    <td>180</td><td>182</td><td>183</td><td>186</td><td>188</td><td>188</td><td>187</td><td>193</td><td>192</td><td>193</td><td>191</td><td>192</td><td>193</td><td>190</td><td>193</td><td>193</td>
+                                </tr>
+                                <tr>
+                                    <td>179</td><td>183</td><td>183</td><td>186</td><td>187</td><td>190</td><td>187</td><td>177</td><td>164</td><td>177</td><td>188</td><td>192</td><td>192</td><td>193</td><td>193</td><td>196</td>
+                                </tr>
+                                <tr>
+                                    <td>180</td><td>181</td><td>186</td><td>189</td><td>187</td><td>189</td><td>179</td><td>154</td><td>146</td><td>159</td><td>186</td><td>193</td><td>193</td><td>194</td><td>196</td><td>197</td>
+                                </tr>
+                                <tr>
+                                    <td>179</td><td>180</td><td>186</td><td>188</td><td>186</td><td>188</td><td>180</td><td>154</td><td>140</td><td>154</td><td>189</td><td>195</td><td>194</td><td>194</td><td>196</td><td>200</td>
+                                </tr>
+                                <tr>
+                                    <td>183</td><td>182</td><td>188</td><td>188</td><td>190</td><td>190</td><td>180</td><td>151</td><td>133</td><td>151</td><td>188</td><td>193</td><td>191</td><td>191</td><td>194</td><td>197</td>
+                                </tr>
+                                <tr>
+                                    <td>185</td><td>186</td><td>190</td><td>190</td><td>195</td><td>198</td><td>185</td><td>157</td><td>144</td><td>162</td><td>191</td><td>194</td><td>191</td><td>191</td><td>194</td><td>196</td>
+                                </tr>
+                                <tr>
+                                    <td>188</td><td>187</td><td>190</td><td>193</td><td>194</td><td>194</td><td>195</td><td>192</td><td>193</td><td>196</td><td>198</td><td>197</td><td>199</td><td>198</td><td>199</td><td>198</td>
+                                </tr>
+                                <tr>
+                                    <td>167</td><td>169</td><td>169</td><td>172</td><td>175</td><td>176</td><td>178</td><td>179</td><td>180</td><td>180</td><td>178</td><td>183</td><td>189</td><td>190</td><td>188</td><td>191</td>
+                                </tr>
+                                <tr>
+                                    <td>154</td><td>157</td><td>159</td><td>161</td><td>165</td><td>166</td><td>169</td><td>170</td><td>171</td><td>169</td><td>168</td><td>169</td><td>173</td><td>171</td><td>166</td><td>167</td>
+                                </tr>
+                                <tr>
+                                    <td>146</td><td>149</td><td>153</td><td>152</td><td>153</td><td>151</td><td>156</td><td>158</td><td>157</td><td>161</td><td>163</td><td>161</td><td>165</td><td>164</td><td>167</td><td>165</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                    <svg >
+                        <defs>
+                            <linearGradient id="grad6" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+                              <stop offset="100%" style="stop-color:rgb(0,255,255);stop-opacity:1" />
+                            </linearGradient>
+                          </defs>
+                        <rect class="colorPalette" fill="url(#grad6)"/>
+                    </svg>
+                </div>
+            </div>
+            
+    </div>
+    <div class="description" id="2_3">
+        <div>
+            Nach der Umwandlung in das YCC-Farbmodell erfolgt die Unterabtastung der Farbwerte (Chrominanzwerte): die 
+            <strong>Farbwerte Cb und Cr werden in einer geringeren Auflösung gespeichert</strong> und weiterverarbeitet als die Helligkeitswerte Y.
+            Durch diesen Vorgang werden bereits für das Auge <strong>unbedeutendere Farbinformationen eingespart</strong>. 
+            <p>Dies geschieht zum Beispiel im Vehältnis Y:Cb:Cr = 4:1:1, was man sich so vorstellen kann:</p>
+            <div>
+                <p class="text2_3">Schritte anzeigen:</p>
+                <button id="animationBtn1" class="btn2_3" type="button" onclick="animationStep1()">1</button>
+                <button id="animationBtn2" class="btn2_3" type="button" onclick="animationStep2()">2</button>
+                <button id="animationBtn3" class="btn2_3" type="button" onclick="animationStep3()">3</button>
+                <button id="animationBtn4" class="btn2_3" type="button" onclick="animationStep4()">4</button>
+                <div class="descr2_3" id="descr2_3"></div>
+                <div id="animation">
+                    <div style="display: flex;" id="y2_3_1">
+                        <p class="letters letter2_3">Y </p>
+                        <svg width="650px" height="120px" >
+                            <rect x="0" y="0" height="120px" width="143px" class="rect2_3"/>
+                            <line x1="71px" y1="0" x2="71px" y2="120px" class="line2_3"/>
+                            <line x1="0px" y1="60px" x2="143px" y2="60px" class="line2_3"/>
+                            <rect x="0" y="0" height="60px" width="71px" class="rectRedY" id="rectRedY"/>
+                            <rect x="0" y="60" height="60px" width="71px" class="rectRedY" id="rectRedY3"/>
+                            <rect x="72" y="0" height="60px" width="71px" class="rectRedY" id="rectRedY2"/>
+                            <rect x="72" y="60" height="60px" width="71px" class="rectRedY" id="rectRedY4"/>
+
+                            <!--left top-->
+                            <circle r="7px" cx="15px" cy="15px" class="circleY" id="circleY1"/>
+                            <circle r="7px" cx="55px" cy="15px" class="circleY" id="circleY2"/>
+                            <circle r="7px" cx="15px" cy="45px" class="circleY" id="circleY3"/>
+                            <circle r="7px" cx="55px" cy="45px" class="circleY" id="circleY4"/>
+                            <!--right top-->
+                            <circle r="7px" cx="86px" cy="15px" class="circleY" id="circleY5"/>
+                            <circle r="7px" cx="126px" cy="15px" class="circleY" id="circleY6"/>
+                            <circle r="7px" cx="86px" cy="45px" class="circleY" id="circleY7"/>
+                            <circle r="7px" cx="126px" cy="45px" class="circleY" id="circleY8"/>
+                            <!--left bottom-->
+                            <circle r="7px" cx="15px" cy="75px" class="circleY" id="circleY9"/>
+                            <circle r="7px" cx="55px" cy="75px" class="circleY" id="circleY10"/>
+                            <circle r="7px" cx="15px" cy="105px" class="circleY" id="circleY11"/>
+                            <circle r="7px" cx="55px" cy="105px" class="circleY" id="circleY12"/>
+                            <!--right bottom-->
+                            <circle r="7px" cx="86px" cy="75px" class="circleY" id="circleY13"/>
+                            <circle r="7px" cx="126px" cy="75px" class="circleY" id="circleY14"/>
+                            <circle r="7px" cx="86px" cy="105px" class="circleY" id="circleY15"/>
+                            <circle r="7px" cx="126px" cy="105px" class="circleY" id="circleY16"/>
+                        </svg>
+                    </div>
+                    <div style="display: flex;" class="cb2_3_1" id="cr2_3_1">
+                        <p class="letters letter2_3">Cb</p>
+                        <svg width="650px" height="120px">
+                            <rect x="0" y="0" height="120px" width="143px" class="rect2_3"/>
+                            <line x1="71px" y1="0" x2="71px" y2="120px" class="line2_3"/>
+                            <line x1="0px" y1="60px" x2="143px" y2="60px" class="line2_3"/>
+                            <rect x="0" y="0" height="60px" width="71px" class="rectRedY" id="rectRedCb"/>
+                            <rect x="0" y="60" height="60px" width="71px" class="rectRedY" id="rectRedCb2"/>
+                            <rect x="72" y="0" height="60px" width="71px" class="rectRedY" id="rectRedCb3"/>
+                            <rect x="72" y="60" height="60px" width="71px" class="rectRedY" id="rectRedCb4"/>
+                            <!--left top-->
+                            <circle r="7px" cx="15px" cy="15px" class="circleCb" id="circleCb1"/>
+                            <circle r="7px" cx="55px" cy="15px" class="circleCb" id="circleCb2"/>
+                            <circle r="7px" cx="15px" cy="45px" class="circleCb" id="circleCb3"/>
+                            <circle r="7px" cx="55px" cy="45px" class="circleCb" id="circleCb4"/>
+                            <circle r="7px" cx="35px" cy="30px" class="circleCb" id="circleCb5"/>
+                            <!--right top-->
+                            <circle r="7px" cx="86px" cy="15px" class="circleCb" id="circleCb6"/>
+                            <circle r="7px" cx="126px" cy="15px" class="circleCb"id="circleCb7"/>
+                            <circle r="7px" cx="86px" cy="45px" class="circleCb" id="circleCb8"/>
+                            <circle r="7px" cx="126px" cy="45px" class="circleCb" id="circleCb9"/>
+                            <circle r="7px" cx="106px" cy="30px" class="circleCb" id="circleCb10"/>
+                            <!--left bottom-->
+                            <circle r="7px" cx="15px" cy="75px" class="circleCb" id="circleCb11"/>
+                            <circle r="7px" cx="55px" cy="75px" class="circleCb" id="circleCb12"/>
+                            <circle r="7px" cx="15px" cy="105px" class="circleCb" id="circleCb13"/>
+                            <circle r="7px" cx="55px" cy="105px" class="circleCb" id="circleCb14"/>
+                            <circle r="7px" cx="35px" cy="90px" class="circleCb" id="circleCb15"/>
+                            <!--right bottom-->
+                            <circle r="7px" cx="86px" cy="75px" class="circleCb" id="circleCb16"/>
+                            <circle r="7px" cx="126px" cy="75px" class="circleCb" id="circleCb17"/>
+                            <circle r="7px" cx="86px" cy="105px" class="circleCb" id="circleCb18"/>
+                            <circle r="7px" cx="126px" cy="105px" class="circleCb" id="circleCb19"/>
+                            <circle r="7px" cx="106px" cy="90px" class="circleCb" id="circleCb20"/>
+
+                        </svg>
+                    </div>
+                    <div style="display: flex;" class="cr2_3_1">
+                        <p class="letters letter2_3">Cr</p>
+                        <svg width="650px" height="120px">
+                            <rect x="0" y="0" height="120px" width="143px" class="rect2_3"/>
+                            <line x1="71px" y1="0" x2="71px" y2="120px" class="line2_3"/>
+                            <line x1="0px" y1="60px" x2="143px" y2="60px" class="line2_3"/>
+                            <rect x="0" y="0" height="60px" width="71px" class="rectRedY" id="rectRedCr"/>
+                            <rect x="0" y="60" height="60px" width="71px" class="rectRedY" id="rectRedCr2"/>
+                            <rect x="72" y="0" height="60px" width="71px" class="rectRedY" id="rectRedCr3"/>
+                            <rect x="72" y="60" height="60px" width="71px" class="rectRedY" id="rectRedCr4"/>
+                            <!--left top-->
+                            <circle r="7px" cx="15px" cy="15px" class="circleCr" id="circleCr1"/>
+                            <circle r="7px" cx="55px" cy="15px" class="circleCr" id="circleCr2"/>
+                            <circle r="7px" cx="15px" cy="45px" class="circleCr" id="circleCr3"/>
+                            <circle r="7px" cx="55px" cy="45px" class="circleCr" id="circleCr4"/>
+                            <circle r="7px" cx="35px" cy="30px" class="circleCr" id="circleCr5"/>
+                            <!--right top-->
+                            <circle r="7px" cx="86px" cy="15px" class="circleCr" id="circleCr6"/>
+                            <circle r="7px" cx="126px" cy="15px" class="circleCr" id="circleCr7"/>
+                            <circle r="7px" cx="86px" cy="45px" class="circleCr" id="circleCr8"/>
+                            <circle r="7px" cx="126px" cy="45px" class="circleCr" id="circleCr9"/>
+                            <circle r="7px" cx="106px" cy="30px" class="circleCr" id="circleCr10"/>
+                            <!--left bottom-->
+                            <circle r="7px" cx="15px" cy="75px" class="circleCr" id="circleCr11"/>
+                            <circle r="7px" cx="55px" cy="75px" class="circleCr" id="circleCr12"/>
+                            <circle r="7px" cx="15px" cy="105px" class="circleCr" id="circleCr13"/>
+                            <circle r="7px" cx="55px" cy="105px" class="circleCr" id="circleCr14"/>
+                            <circle r="7px" cx="35px" cy="90px" class="circleCr" id="circleCr15"/>
+                            <!--right bottom-->
+                            <circle r="7px" cx="86px" cy="75px" class="circleCr" id="circleCr16"/>
+                            <circle r="7px" cx="126px" cy="75px" class="circleCr" id="circleCr17"/>
+                            <circle r="7px" cx="86px" cy="105px" class="circleCr" id="circleCr18"/>
+                            <circle r="7px" cx="126px" cy="105px" class="circleCr" id="circleCr19"/>
+                            <circle r="7px" cx="106px" cy="90px" class="circleCr" id="circleCr20"/>
+                        </svg>
+                    </div>
+                    <div id="secondStep">
+                        <div class="arrowBlack2_4" id="arrowB2_4">
+                            <img src="./assets/arrow2_2.png" alt="" id="arrow2_4"/>
+                        </div>
+                        <div class="y2_3_2">
+                            <p class="letters letter2_3">Y </p>
+                            <svg width="143px" height="120px" >
+                                <rect x="0" y="0" height="120px" width="143px" class="rect2_3"/>
+                                <line x1="71px" y1="0" x2="71px" y2="120px" class="line2_3"/>
+                                <line x1="0px" y1="60px" x2="143px" y2="60px" class="line2_3"/>
+                                <rect x="0" y="0" height="60px" width="71px" class="rectRedY" id="rectRedY_2"/>
+                                <rect x="0" y="60" height="60px" width="71px" class="rectRedY" id="rectRedY3_2"/>
+                                <rect x="72" y="0" height="60px" width="71px" class="rectRedY" id="rectRedY2_2"/>
+                                <rect x="72" y="60" height="60px" width="71px" class="rectRedY" id="rectRedY4_2"/>
+                                <!--left top-->
+                            <circle r="7px" cx="15px" cy="15px" class="circleY" id="circleY1_2"/>
+                            <circle r="7px" cx="55px" cy="15px" class="circleY" id="circleY2_2"/>
+                            <circle r="7px" cx="15px" cy="45px" class="circleY" id="circleY3_2"/>
+                            <circle r="7px" cx="55px" cy="45px" class="circleY" id="circleY4_2"/>
+                            <!--right top-->
+                            <circle r="7px" cx="86px" cy="15px" class="circleY" id="circleY5_2"/>
+                            <circle r="7px" cx="126px" cy="15px" class="circleY" id="circleY6_2"/>
+                            <circle r="7px" cx="86px" cy="45px" class="circleY" id="circleY7_2"/>
+                            <circle r="7px" cx="126px" cy="45px" class="circleY" id="circleY8_2"/>
+                            <!--left bottom-->
+                            <circle r="7px" cx="15px" cy="75px" class="circleY" id="circleY9_2"/>
+                            <circle r="7px" cx="55px" cy="75px" class="circleY" id="circleY10_2"/>
+                            <circle r="7px" cx="15px" cy="105px" class="circleY" id="circleY11_2"/>
+                            <circle r="7px" cx="55px" cy="105px" class="circleY" id="circleY12_2"/>
+                            <!--right bottom-->
+                            <circle r="7px" cx="86px" cy="75px" class="circleY" id="circleY13_2"/>
+                            <circle r="7px" cx="126px" cy="75px" class="circleY" id="circleY14_2"/>
+                            <circle r="7px" cx="86px" cy="105px" class="circleY" id="circleY15_2"/>
+                            <circle r="7px" cx="126px" cy="105px" class="circleY" id="circleY16_2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="thirdStep">
+                        <div style="display: flex;" class="cb2_3_2">
+                            <p class="letters letter2_3">Cb</p>
+                            <svg width="143px" height="120px">
+                                <rect x="0" y="0" height="120px" width="143px" class="rect2_3"/>
+                                <line x1="71px" y1="0" x2="71px" y2="120px" class="line2_3"/>
+                                <line x1="0px" y1="60px" x2="143px" y2="60px" class="line2_3"/>
+                                <rect x="0" y="0" height="60px" width="71px" class="rectRedY" id="rectRedCb_2"/>
+                                <rect x="0" y="60" height="60px" width="71px" class="rectRedY" id="rectRedCb3_2"/>
+                                <rect x="72" y="0" height="60px" width="71px" class="rectRedY" id="rectRedCb2_2"/>
+                                <rect x="72" y="60" height="60px" width="71px" class="rectRedY" id="rectRedCb4_2"/>
+                                <!--left top-->
+                                <circle r="7px" cx="35px" cy="30px" class="circleCb" id="circleCb5_2"/>
+                                <!--right top-->
+                                <circle r="7px" cx="106px" cy="30px" class="circleCb" id="circleCb10_2"/>
+                                <!--left bottom-->
+                                <circle r="7px" cx="35px" cy="90px" class="circleCb" id="circleCb15_2"/>
+                                <!--right bottom-->
+                                <circle r="7px" cx="106px" cy="90px" class="circleCb" id="circleCb20_2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="fourthStep">
+                        <div style="display: flex;" class="cr2_3_2">
+                            <p class="letters letter2_3">Cr</p>
+                            <svg width="143px" height="120px">
+                                <rect x="0" y="0" height="120px" width="143px" class="rect2_3"/>
+                                <line x1="71px" y1="0" x2="71px" y2="120px" class="line2_3"/>
+                                <line x1="0px" y1="60px" x2="143px" y2="60px" class="line2_3"/>
+                                <rect x="0" y="0" height="60px" width="71px" class="rectRedY" id="rectRedCr_2"/>
+                                <rect x="0" y="60" height="60px" width="71px" class="rectRedY" id="rectRedCr3_2"/>
+                                <rect x="72" y="0" height="60px" width="71px" class="rectRedY" id="rectRedCr2_2"/>
+                                <rect x="72" y="60" height="60px" width="71px" class="rectRedY" id="rectRedCr4_2"/>
+                                <!--left top-->
+                                <circle r="7px" cx="35px" cy="30px" class="circleCr" id="circleCr5_2"/>
+                                <!--right top-->
+                                <circle r="7px" cx="106px" cy="30px" class="circleCr" id="circleCr10_2"/>
+                                <!--left bottom-->
+                                <circle r="7px" cx="35px" cy="90px" class="circleCr" id="circleCr15_2"/>
+                                <!--right bottom-->
+                                <circle r="7px" cx="106px" cy="90px" class="circleCr" id="circleCr20_2"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="description" id="2_4">
+        <div>
+            Nach dem Chrominanz-Subsampling befinden sich sowohl die Helligkeits- als auch die Farbwerte im <strong>Intervall (0...255)</strong>. 
+            Dieses <strong>wird in das symmetrische Intervall (-128...127) verschoben</strong>. Damit vereinfacht man die Rechnungen in der nächsten
+            Phase "Diskrete Cosinus-Transformation", da ausschließlich mit reelen Koeffizienten, anstatt mit komplexen, gerechnet werden kann.
+            <div style="display: flex;" class="red rightTableHIDDEN" id="2_2_Y_1">
+                    <p class="letters" >Y</p>
+                    <div class="tooltip">
+                        <img src="./assets/YImg.png" alt="" class="imgSmall"/>
+                        <span class="tooltiptext YTt2_4">
+                            <h2>Abschnitt 1: <strong>Y-Ebene</strong> vor der Intervallverschiebung</h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>100</td><td>103</td><td>108</td><td>119</td><td>119</td><td>126</td><td>130</td><td>134</td><td>134</td><td>134</td><td>137</td><td>140</td><td>146</td><td>145</td><td>179</td><td>214</td>
+                                </tr>
+                                <tr>
+                                    <td>104</td><td>100</td><td>106</td><td>120</td><td>121</td><td>127</td><td>129</td><td>135</td><td>136</td><td>138</td><td>141</td><td>142</td><td>147</td><td>148</td><td>145</td><td>191</td>
+                                </tr>
+                                <tr>
+                                    <td>111</td><td>97</td><td>109</td><td>124</td><td>119</td><td>125</td><td>130</td><td>139</td><td>141</td><td>143</td><td>144</td><td>145</td><td>152</td><td>140</td><td>102</td><td>156</td>
+                                </tr>
+                                <tr>
+                                    <td>132</td><td>91</td><td>109</td><td>118</td><td>119</td><td>127</td><td>131</td><td>140</td><td>145</td><td>148</td><td>152</td><td>151</td><td>155</td><td>139</td><td>97</td><td>158</td>
+                                </tr> 
+                                <tr>
+                                    <td>111</td><td>92</td><td>107</td><td>118</td><td>120</td><td>125</td><td>128</td><td>143</td><td>145</td><td>154</td><td>157</td><td>158</td><td>160</td><td>154</td><td>147</td><td>147</td>
+                                </tr>
+                                <tr>
+                                    <td>93</td><td>95</td><td>104</td><td>114</td><td>120</td><td>127</td><td>128</td><td>144</td><td>147</td><td>152</td><td>160</td><td>163</td><td>161</td><td>161</td><td>157</td><td>166</td>
+                                </tr>
+                                <tr>
+                                    <td>87</td><td>89</td><td>102</td><td>107</td><td>111</td><td>121</td><td>126</td><td>140</td><td>144</td><td>149</td><td>161</td><td>163</td><td>162</td><td>165</td><td>161</td><td>161</td>
+                                </tr>
+                                <tr>
+                                    <td>85</td><td>86</td><td>97</td><td>105</td><td>109</td><td>118</td><td>113</td><td>156</td><td>190</td><td>167</td><td>154</td><td>160</td><td>161</td><td>163</td><td>162</td><td>154</td>
+                                </tr>
+                                <tr>
+                                    <td>81</td><td>83</td><td>99</td><td>108</td><td>111</td><td>120</td><td>94</td><td>162</td><td>139</td><td>160</td><td>162</td><td>157</td><td>161</td><td>160</td><td>155</td><td>151</td>
+                                </tr>
+                                <tr>
+                                    <td>83</td><td>82</td><td>102</td><td>109</td><td>112</td><td>120</td><td>98</td><td>139</td><td>98</td><td>132</td><td>168</td><td>159</td><td>162</td><td>161</td><td>155</td><td>150</td>
+                                </tr>
+                                <tr>
+                                    <td>90</td><td>88</td><td>106</td><td>113</td><td>119</td><td>122</td><td>102</td><td>140</td><td>94</td><td>135</td><td>169</td><td>161</td><td>165</td><td>165</td><td>161</td><td>154</td>
+                                </tr>
+                                <tr>
+                                    <td>100</td><td>95</td><td>110</td><td>116</td><td>119</td><td>127</td><td>112</td><td>144</td><td>110</td><td>140</td><td>163</td><td>160</td><td>165</td><td>163</td><td>161</td><td>158</td>
+                                </tr>
+                                <tr>
+                                    <td>106</td><td>100</td><td>115</td><td>114</td><td>121</td><td>123</td><td>122</td><td>138</td><td>149</td><td>151</td><td>143</td><td>149</td><td>154</td><td>154</td><td>154</td><td>156</td>
+                                </tr>
+                                <tr>
+                                    <td>97</td><td>98</td><td>106</td><td>111</td><td>119</td><td>124</td><td>129</td><td>135</td><td>140</td><td>141</td><td>145</td><td>145</td><td>145</td><td>144</td><td>149</td><td>158</td>
+                                </tr>
+                                <tr>
+                                    <td>68</td><td>79</td><td>89</td><td>95</td><td>102</td><td>111</td><td>119</td><td>121</td><td>125</td><td>133</td><td>135</td><td>141</td><td>146</td><td>150</td><td>155</td><td>159</td>
+                                </tr>
+                                <tr>
+                                    <td>140</td><td>147</td><td>156</td><td>165</td><td>170</td><td>176</td><td>177</td><td>187</td><td>189</td><td>188</td><td>180</td><td>177</td><td>177</td><td>178</td><td>173</td><td>173</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                </div>
+                <div style="display: flex;" class="green rightTableHIDDEN" id="2_2_Cb_1">
+                    <p class="letters">Cb</p>
+                    <div class="tooltip">
+                        <img src="./assets/CbImg.png" alt="" class="imgSmall"/>
+                        <span class="tooltiptext greenTt">
+                            <h2>Abschnitt 1: <strong>Cb-Ebene</strong> nach dem Subsampling und vor der Intervallverschiebung</h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>93</td><td>91</td><td>88</td><td>87</td><td>88</td><td>86</td><td>87</td><td>112</td>
+                                </tr>
+                                <tr>
+                                    <td>96</td><td>92</td><td>88</td><td>88</td><td>87</td><td>85</td><td>85</td><td>100</td>
+                                </tr>
+                                <tr>
+                                    <td>97</td><td>94</td><td>92</td><td>90</td><td>89</td><td>86</td><td>87</td><td>93</td>
+                                </tr>
+                                <tr>
+                                    <td>100</td><td>96</td><td>93</td><td>93</td><td>93</td><td>88</td><td>88</td><td>85</td>
+                                </tr>
+                                <tr>
+                                    <td>100</td><td>95</td><td>93</td><td>101</td><td>110</td><td>87</td><td>86</td><td>85</td>
+                                </tr>
+                                <tr>
+                                    <td>97</td><td>93</td><td>90</td><td>100</td><td>114</td><td>88</td><td>89</td><td>84</td>
+                                </tr>
+                                <tr>
+                                    <td>98</td><td>93</td><td>90</td><td>90</td><td>90</td><td>89</td><td>87</td><td>88</td>
+                                </tr>
+                                <tr>
+                                    <td>106</td><td>103</td><td>97</td><td>94</td><td>92</td><td>89</td><td>86</td><td>87</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                </div>
+                <div style="display: flex;" class="blue rightTableHIDDEN" id="2_2_Cr_1">
+                    <p class="letters">Cr</p>
+                    <div class="tooltip">
+                        <img src="./assets/CrImg.png" alt="" class="imgSmall"/>
+                        <span class="tooltiptext blueTt">
+                            <h2>Abschnitt 1: <strong>Cr-Ebene</strong> nach dem Subsampling und vor der Intervallverschiebung</h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>187</td><td>192</td><td>195</td><td>194</td><td>197</td><td>198</td><td>199</td><td>159</td>
+                                </tr>
+                                <tr>
+                                    <td>183</td><td>190</td><td>194</td><td>196</td><td>198</td><td>199</td><td>198</td><td>173</td>
+                                </tr>
+                                <tr>
+                                    <td>183</td><td>188</td><td>191</td><td>192</td><td>195</td><td>194</td><td>195</td><td>178</td>
+                                </tr>
+                                <tr>
+                                    <td>181</td><td>185</td><td>188</td><td>186</td><td>182</td><td>191</td><td>192</td><td>194</td>
+                                </tr>
+                                <tr>
+                                    <td>180</td><td>187</td><td>188</td><td>167</td><td>150</td><td>191</td><td>194</td><td>197</td>
+                                </tr>
+                                <tr>
+                                    <td>184</td><td>189</td><td>193</td><td>168</td><td>148</td><td>192</td><td>191</td><td>195</td>
+                                </tr>
+                                <tr>
+                                    <td>178</td><td>181</td><td>185</td><td>186</td><td>187</td><td>189</td><td>194</td><td>194</td>
+                                </tr>
+                                <tr>
+                                    <td>152</td><td>156</td><td>159</td><td>163</td><td>165</td><td>165</td><td>168</td><td>166</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                </div>
+                <div class="arrowBlack2_4 rightTableHIDDEN" id="arrowB2_4">
+                    <figure>
+                        <img src="./assets/arrow2_2.png" alt="" id="arrow2_4"/>
+                        <figcaption style="margin-top: -50px;"><h6>Interval - 128</h6></figcaption>
+                    </figure>
+                </div>
+                <div class="Y">
+                    <p class="letters" >Y</p>
+                    <div class="tooltip">
+                        <img src="./assets/YImg.png" alt="" class="imgSmall rightImg" id="YImg" onmouseover="showRightTable()" onmouseout="showAll2_2()"/>
+                        <span class="tooltiptext yTt">
+                            <h2>Abschnitt 1: <strong>Y-Ebene</strong> nach der Intervallverschiebung</h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>-28</td><td>-25</td><td>-20</td><td>-9</td><td>-9</td><td>-2</td><td>2</td><td>6</td><td>6</td><td>6</td><td>9</td><td>12</td><td>18</td><td>17</td><td>51</td><td>86</td>
+                                </tr>
+                                <tr>
+                                    <td>-24</td><td>-28</td><td>-22</td><td>-8</td><td>-7</td><td>-1</td><td>1</td><td>7</td><td>8</td><td>10</td><td>13</td><td>14</td><td>19</td><td>20</td><td>17</td><td>63</td>
+                                </tr>
+                                <tr>
+                                    <td>-17</td><td>-31</td><td>-19</td><td>-4</td><td>-9</td><td>-3</td><td>2</td><td>11</td><td>13</td><td>15</td><td>16</td><td>17</td><td>24</td><td>12</td><td>-26</td><td>28</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td><td>-37</td><td>-19</td><td>-10</td><td>-9</td><td>-1</td><td>3</td><td>12</td><td>17</td><td>20</td><td>24</td><td>23</td><td>27</td><td>11</td><td>-31</td><td>30</td>
+                                </tr> 
+                                <tr>
+                                    <td>-17</td><td>-36</td><td>-21</td><td>-10</td><td>-8</td><td>-3</td><td>0</td><td>15</td><td>17</td><td>26</td><td>29</td><td>30</td><td>32</td><td>26</td><td>19</td><td>19</td>
+                                </tr>
+                                <tr>
+                                    <td>-35</td><td>-33</td><td>-24</td><td>-14</td><td>-8</td><td>-1</td><td>0</td><td>16</td><td>19</td><td>24</td><td>32</td><td>35</td><td>33</td><td>33</td><td>29</td><td>38</td>
+                                </tr>
+                                <tr>
+                                    <td>-41</td><td>-39</td><td>-26</td><td>-21</td><td>-17</td><td>-7</td><td>-2</td><td>12</td><td>16</td><td>21</td><td>33</td><td>35</td><td>34</td><td>37</td><td>33</td><td>33</td>
+                                </tr>
+                                <tr>
+                                    <td>-43</td><td>-42</td><td>-31</td><td>-23</td><td>-19</td><td>-10</td><td>-15</td><td>28</td><td>62</td><td>39</td><td>26</td><td>32</td><td>33</td><td>35</td><td>34</td><td>26</td>
+                                </tr>
+                                <tr>
+                                    <td>-47</td><td>-45</td><td>-29</td><td>-20</td><td>-17</td><td>-8</td><td>-34</td><td>34</td><td>11</td><td>32</td><td>34</td><td>29</td><td>33</td><td>32</td><td>27</td><td>23</td>
+                                </tr>
+                                <tr>
+                                    <td>-45</td><td>-46</td><td>-26</td><td>-19</td><td>-16</td><td>-8</td><td>-30</td><td>11</td><td>-30</td><td>4</td><td>40</td><td>31</td><td>34</td><td>33</td><td>27</td><td>22</td>
+                                </tr>
+                                <tr>
+                                    <td>-38</td><td>-40</td><td>-22</td><td>-15</td><td>-9</td><td>-6</td><td>-26</td><td>12</td><td>-34</td><td>7</td><td>41</td><td>33</td><td>37</td><td>37</td><td>33</td><td>26</td>
+                                </tr>
+                                <tr>
+                                    <td>-28</td><td>-33</td><td>-18</td><td>-12</td><td>-9</td><td>-1</td><td>-16</td><td>16</td><td>-18</td><td>12</td><td>35</td><td>32</td><td>37</td><td>35</td><td>33</td><td>30</td>
+                                </tr>
+                                <tr>
+                                    <td>-22</td><td>-28</td><td>-13</td><td>-14</td><td>-7</td><td>-5</td><td>-6</td><td>10</td><td>21</td><td>23</td><td>15</td><td>21</td><td>26</td><td>26</td><td>26</td><td>28</td>
+                                </tr>
+                                <tr>
+                                    <td>-31</td><td>-30</td><td>-22</td><td>-17</td><td>-9</td><td>-4</td><td>1</td><td>7</td><td>12</td><td>13</td><td>17</td><td>17</td><td>17</td><td>16</td><td>21</td><td>30</td>
+                                </tr>
+                                <tr>
+                                    <td>-60</td><td>-49</td><td>-39</td><td>-33</td><td>-26</td><td>-17</td><td>-9</td><td>-7</td><td>-3</td><td>5</td><td>7</td><td>13</td><td>18</td><td>22</td><td>27</td><td>31</td>
+                                </tr>
+                                <tr>
+                                    <td>12</td><td>19</td><td>28</td><td>37</td><td>42</td><td>48</td><td>49</td><td>59</td><td>61</td><td>60</td><td>52</td><td>49</td><td>49</td><td>50</td><td>45</td><td>45</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                </div>
+                <div style="display: flex;" class="Cb">
+                    <p class="letters">Cb</p>
+                    <div class="tooltip">
+                        <img src="./assets/CbImg.png" alt="" class="imgSmall" onmouseover="showRightTable()" onmouseout="showAll2_2()" />
+                        <span class="tooltiptext CbTt2_4">
+                            <h2>Abschnitt 1: <strong>Cb-Ebene</strong> nach Intervallverschiebung.</h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>-35</td><td>-37</td><td>-40</td><td>-41</td><td>-40</td><td>-42</td><td>-41</td><td>-16</td>
+                                </tr>
+                                <tr>
+                                    <td>-33</td><td>-37</td><td>-41</td><td>-40</td><td>-42</td><td>-43</td><td>-43</td><td>-28</td>
+                                </tr>
+                                <tr>
+                                    <td>-31</td><td>-34</td><td>-37</td><td>-38</td><td>-39</td><td>-42</td><td>-41</td><td>-35</td>
+                                </tr>
+                                <tr>
+                                    <td>-28</td><td>-32</td><td>-35</td><td>-36</td><td>-35</td><td>-41</td><td>-41</td><td>-43</td>
+                                </tr>
+                                <tr>
+                                    <td>-28</td><td>-33</td><td>-35</td><td>-27</td><td>-19</td><td>-42</td><td>-42</td><td>-43</td>
+                                </tr>
+                                <tr>
+                                    <td>-31</td><td>-36</td><td>-39</td><td>-28</td><td>-14</td><td>-41</td><td>-39</td><td>-44</td>
+                                </tr>
+                                <tr>
+                                    <td>-30</td><td>-35</td><td>-38</td><td>-38</td><td>-38</td><td>-40</td><td>-41</td><td>-40</td>
+                                </tr>
+                                <tr>
+                                    <td>-22</td><td>-25</td><td>-31</td><td>-34</td><td>-36</td><td>-39</td><td>-42</td><td>-41</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                </div>
+                <div style="display: flex;" class="Cr">
+                    <p class="letters">Cr</p>
+                    <div class="tooltip">
+                        <img src="./assets/CrImg.png" alt="" class="imgSmall" onmouseover="showRightTable()" onmouseout="showAll2_2()" />
+                        <span class="tooltiptext CrTt2_4">
+                            <h2>Abschnitt 1: <strong>Cr-Ebene</strong> nach der Intervallverschiebung</h2>
+                            <p>Ausschnitt aus den Farbwerten:</p>
+                            <table>
+                                <tr>
+                                    <td>59</td><td>64</td><td>67</td><td>66</td><td>69</td><td>70</td><td>71</td><td>31</td>
+                                </tr>
+                                <tr>
+                                    <td>55</td><td>62</td><td>66</td><td>68</td><td>70</td><td>71</td><td>70</td><td>45</td>
+                                </tr>
+                                <tr>
+                                    <td>55</td><td>60</td><td>63</td><td>64</td><td>67</td><td>66</td><td>67</td><td>50</td>
+                                </tr>
+                                <tr>
+                                    <td>53</td><td>57</td><td>60</td><td>58</td><td>54</td><td>63</td><td>64</td><td>66</td>
+                                </tr>
+                                <tr>
+                                    <td>52</td><td>59</td><td>60</td><td>39</td><td>22</td><td>63</td><td>66</td><td>69</td>
+                                </tr>
+                                <tr>
+                                    <td>56</td><td>61</td><td>65</td><td>40</td><td>20</td><td>64</td><td>63</td><td>67</td>
+                                </tr>
+                                <tr>
+                                    <td>50</td><td>53</td><td>57</td><td>58</td><td>59</td><td>61</td><td>66</td><td>66</td>
+                                </tr>
+                                <tr>
+                                    <td>24</td><td>28</td><td>31</td><td>35</td><td>37</td><td>37</td><td>40</td><td>38</td>
+                                </tr>
+                            </table>
+                        </span>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="description" id="2_5">
+        <div>
+            Abschließend wird jede der drei <strong>Ebenen in 8x8 Pixel große Blöcke (Matrizen) zerlegt</strong>, die im weiteren Verlauf unabhängig voneinander
+            verarbeitet werden. Wenn dies in den Randbereichen nicht aufgeht, werden die Randpixel entsprechend oft wiederholt.
+            <p>Diese Zerlegung ist notwenig, <strong>weil die nächste Phase sehr rechenintensiv ist</strong> und dadurch nicht die ganze Ebene auf einmal verarbeitet werden kann.</p>
+            <div style="display: flex;" class="red rightTableHIDDEN" id="2_5_Y_1">
+                <p class="letters" >Y</p>
+                <div class="tooltip">
+                    <img src="./assets/YImg.png" alt="" class="imgSmall"/>
+                    <span class="tooltiptext YTt2_4">
+                        <h2>Abschnitt 1: <strong>Y-Ebene</strong> vor der Intervallverschiebung</h2>
+                        <p>Ausschnitt aus den Farbwerten:</p>
+                        <table>
+                            <tr>
+                                <td>-28</td><td>-25</td><td>-20</td><td>-9</td><td>-9</td><td>-2</td><td>2</td><td>6</td><td>6</td><td>6</td><td>9</td><td>12</td><td>18</td><td>17</td><td>51</td><td>86</td>
+                            </tr>
+                            <tr>
+                                <td>-24</td><td>-28</td><td>-22</td><td>-8</td><td>-7</td><td>-1</td><td>1</td><td>7</td><td>8</td><td>10</td><td>13</td><td>14</td><td>19</td><td>20</td><td>17</td><td>63</td>
+                            </tr>
+                            <tr>
+                                <td>-17</td><td>-31</td><td>-19</td><td>-4</td><td>-9</td><td>-3</td><td>2</td><td>11</td><td>13</td><td>15</td><td>16</td><td>17</td><td>24</td><td>12</td><td>-26</td><td>28</td>
+                            </tr>
+                            <tr>
+                                <td>4</td><td>-37</td><td>-19</td><td>-10</td><td>-9</td><td>-1</td><td>3</td><td>12</td><td>17</td><td>20</td><td>24</td><td>23</td><td>27</td><td>11</td><td>-31</td><td>30</td>
+                            </tr> 
+                            <tr>
+                                <td>-17</td><td>-36</td><td>-21</td><td>-10</td><td>-8</td><td>-3</td><td>0</td><td>15</td><td>17</td><td>26</td><td>29</td><td>30</td><td>32</td><td>26</td><td>19</td><td>19</td>
+                            </tr>
+                            <tr>
+                                <td>-35</td><td>-33</td><td>-24</td><td>-14</td><td>-8</td><td>-1</td><td>0</td><td>16</td><td>19</td><td>24</td><td>32</td><td>35</td><td>33</td><td>33</td><td>29</td><td>38</td>
+                            </tr>
+                            <tr>
+                                <td>-41</td><td>-39</td><td>-26</td><td>-21</td><td>-17</td><td>-7</td><td>-2</td><td>12</td><td>16</td><td>21</td><td>33</td><td>35</td><td>34</td><td>37</td><td>33</td><td>33</td>
+                            </tr>
+                            <tr>
+                                <td>-43</td><td>-42</td><td>-31</td><td>-23</td><td>-19</td><td>-10</td><td>-15</td><td>28</td><td>62</td><td>39</td><td>26</td><td>32</td><td>33</td><td>35</td><td>34</td><td>26</td>
+                            </tr>
+                            <tr>
+                                <td>-47</td><td>-45</td><td>-29</td><td>-20</td><td>-17</td><td>-8</td><td>-34</td><td>34</td><td>11</td><td>32</td><td>34</td><td>29</td><td>33</td><td>32</td><td>27</td><td>23</td>
+                            </tr>
+                            <tr>
+                                <td>-45</td><td>-46</td><td>-26</td><td>-19</td><td>-16</td><td>-8</td><td>-30</td><td>11</td><td>-30</td><td>4</td><td>40</td><td>31</td><td>34</td><td>33</td><td>27</td><td>22</td>
+                            </tr>
+                            <tr>
+                                <td>-38</td><td>-40</td><td>-22</td><td>-15</td><td>-9</td><td>-6</td><td>-26</td><td>12</td><td>-34</td><td>7</td><td>41</td><td>33</td><td>37</td><td>37</td><td>33</td><td>26</td>
+                            </tr>
+                            <tr>
+                                <td>-28</td><td>-33</td><td>-18</td><td>-12</td><td>-9</td><td>-1</td><td>-16</td><td>16</td><td>-18</td><td>12</td><td>35</td><td>32</td><td>37</td><td>35</td><td>33</td><td>30</td>
+                            </tr>
+                            <tr>
+                                <td>-22</td><td>-28</td><td>-13</td><td>-14</td><td>-7</td><td>-5</td><td>-6</td><td>10</td><td>21</td><td>23</td><td>15</td><td>21</td><td>26</td><td>26</td><td>26</td><td>28</td>
+                            </tr>
+                            <tr>
+                                <td>-31</td><td>-30</td><td>-22</td><td>-17</td><td>-9</td><td>-4</td><td>1</td><td>7</td><td>12</td><td>13</td><td>17</td><td>17</td><td>17</td><td>16</td><td>21</td><td>30</td>
+                            </tr>
+                            <tr>
+                                <td>-60</td><td>-49</td><td>-39</td><td>-33</td><td>-26</td><td>-17</td><td>-9</td><td>-7</td><td>-3</td><td>5</td><td>7</td><td>13</td><td>18</td><td>22</td><td>27</td><td>31</td>
+                            </tr>
+                            <tr>
+                                <td>12</td><td>19</td><td>28</td><td>37</td><td>42</td><td>48</td><td>49</td><td>59</td><td>61</td><td>60</td><td>52</td><td>49</td><td>49</td><td>50</td><td>45</td><td>45</td>
+                            </tr>
+                        </table>
+                    </span>
+                </div>
+            </div>
+            <div style="display: flex;" class="green rightTableHIDDEN" id="2_5_Cb_1">
+                <p class="letters">Cb</p>
+                <div class="tooltip">
+                    <img src="./assets/CbImg.png" alt="" class="imgSmall"/>
+                    <span class="tooltiptext greenTt">
+                        <h2>Abschnitt 1: <strong>Cb-Ebene</strong> nach dem Subsampling und vor der Intervallverschiebung</h2>
+                        <p>Ausschnitt aus den Farbwerten:</p>
+                        <table>
+                            <tr>
+                                <td>-35</td><td>-37</td><td>-40</td><td>-41</td><td>-40</td><td>-42</td><td>-41</td><td>-16</td>
+                            </tr>
+                            <tr>
+                                <td>-33</td><td>-37</td><td>-41</td><td>-40</td><td>-42</td><td>-43</td><td>-43</td><td>-28</td>
+                            </tr>
+                            <tr>
+                                <td>-31</td><td>-34</td><td>-37</td><td>-38</td><td>-39</td><td>-42</td><td>-41</td><td>-35</td>
+                            </tr>
+                            <tr>
+                                <td>-28</td><td>-32</td><td>-35</td><td>-36</td><td>-35</td><td>-41</td><td>-41</td><td>-43</td>
+                            </tr>
+                            <tr>
+                                <td>-28</td><td>-33</td><td>-35</td><td>-27</td><td>-19</td><td>-42</td><td>-42</td><td>-43</td>
+                            </tr>
+                            <tr>
+                                <td>-31</td><td>-36</td><td>-39</td><td>-28</td><td>-14</td><td>-41</td><td>-39</td><td>-44</td>
+                            </tr>
+                            <tr>
+                                <td>-30</td><td>-35</td><td>-38</td><td>-38</td><td>-38</td><td>-40</td><td>-41</td><td>-40</td>
+                            </tr>
+                            <tr>
+                                <td>-22</td><td>-25</td><td>-31</td><td>-34</td><td>-36</td><td>-39</td><td>-42</td><td>-41</td>
+                            </tr>
+                        </table>
+                    </span>
+                </div>
+            </div>
+            <div style="display: flex;" class="blue rightTableHIDDEN" id="2_5_Cr_1">
+                <p class="letters">Cr</p>
+                <div class="tooltip">
+                    <img src="./assets/CrImg.png" alt="" class="imgSmall"/>
+                    <span class="tooltiptext blueTt">
+                        <h2>Abschnitt 1: <strong>Cr-Ebene</strong> nach dem Subsampling und vor der Intervallverschiebung</h2>
+                        <p>Ausschnitt aus den Farbwerten:</p>
+                        <table>
+                            <tr>
+                                <td>59</td><td>64</td><td>67</td><td>66</td><td>69</td><td>70</td><td>71</td><td>31</td>
+                            </tr>
+                            <tr>
+                                <td>55</td><td>62</td><td>66</td><td>68</td><td>70</td><td>71</td><td>70</td><td>45</td>
+                            </tr>
+                            <tr>
+                                <td>55</td><td>60</td><td>63</td><td>64</td><td>67</td><td>66</td><td>67</td><td>50</td>
+                            </tr>
+                            <tr>
+                                <td>53</td><td>57</td><td>60</td><td>58</td><td>54</td><td>63</td><td>64</td><td>66</td>
+                            </tr>
+                            <tr>
+                                <td>52</td><td>59</td><td>60</td><td>39</td><td>22</td><td>63</td><td>66</td><td>69</td>
+                            </tr>
+                            <tr>
+                                <td>56</td><td>61</td><td>65</td><td>40</td><td>20</td><td>64</td><td>63</td><td>67</td>
+                            </tr>
+                            <tr>
+                                <td>50</td><td>53</td><td>57</td><td>58</td><td>59</td><td>61</td><td>66</td><td>66</td>
+                            </tr>
+                            <tr>
+                                <td>24</td><td>28</td><td>31</td><td>35</td><td>37</td><td>37</td><td>40</td><td>38</td>
+                            </tr>
+                        </table>
+                    </span>
+                </div>
+            </div>
+            <div class="arrowBlack2_4 rightTableHIDDEN" id="arrowB2_5">
+                <figure>
+                    <img src="./assets/arrow2_2.png" alt="" id="arrow2_4"/>
+                    <figcaption style="margin-top: -50px;"><h6>Blockbildung</h6></figcaption>
+                </figure>
+            </div>
+            <div class="Y">
+                <p class="letters" >Y</p>
+                <div class="tooltip">
+                    <img src="./assets/blockY.png" alt="" class="imgSmall rightImg" id="YImg" onmouseover="showRightTable()" onmouseout="showAll2_2()"/>
+                    <span class="tooltiptext yTt">
+                        <h2>Abschnitt 1: <strong>Y-Ebene</strong> nach der Intervallverschiebung</h2>
+                        <p>Ausschnitt aus den Farbwerten:</p>
+                        <table class="table2_5">
+                            <tr>
+                                <td>-28</td><td>-25</td><td>-20</td><td>-9</td><td>-9</td><td>-2</td><td>2</td><td class="borderRight">6</td><td>6</td><td>6</td><td>9</td><td>12</td><td>18</td><td>17</td><td>51</td><td>86</td>
+                            </tr>
+                            <tr>
+                                <td>-24</td><td>-28</td><td>-22</td><td>-8</td><td>-7</td><td>-1</td><td>1</td><td class="borderRight">7</td><td>8</td><td>10</td><td>13</td><td>14</td><td>19</td><td>20</td><td>17</td><td>63</td>
+                            </tr>
+                            <tr>
+                                <td>-17</td><td>-31</td><td>-19</td><td>-4</td><td>-9</td><td>-3</td><td>2</td><td class="borderRight">11</td><td>13</td><td>15</td><td>16</td><td>17</td><td>24</td><td>12</td><td>-26</td><td>28</td>
+                            </tr>
+                            <tr>
+                                <td>4</td><td>-37</td><td>-19</td><td>-10</td><td>-9</td><td>-1</td><td>3</td><td class="borderRight">12</td><td>17</td><td>20</td><td>24</td><td>23</td><td>27</td><td>11</td><td>-31</td><td>30</td>
+                            </tr> 
+                            <tr>
+                                <td>-17</td><td>-36</td><td>-21</td><td>-10</td><td>-8</td><td>-3</td><td>0</td><td class="borderRight">15</td><td>17</td><td>26</td><td>29</td><td>30</td><td>32</td><td>26</td><td>19</td><td>19</td>
+                            </tr>
+                            <tr>
+                                <td>-35</td><td>-33</td><td>-24</td><td>-14</td><td>-8</td><td>-1</td><td>0</td><td class="borderRight">16</td><td>19</td><td>24</td><td>32</td><td>35</td><td>33</td><td>33</td><td>29</td><td>38</td>
+                            </tr>
+                            <tr>
+                                <td>-41</td><td>-39</td><td>-26</td><td>-21</td><td>-17</td><td>-7</td><td>-2</td><td class="borderRight">12</td><td>16</td><td>21</td><td>33</td><td>35</td><td>34</td><td>37</td><td>33</td><td>33</td>
+                            </tr>
+                            <tr >
+                                <td class="borderBottom">-43</td><td class="borderBottom">-42</td><td class="borderBottom">-31</td><td class="borderBottom">-23</td><td class="borderBottom">-19</td><td class="borderBottom">-10</td><td class="borderBottom">-15</td><td class="borderRight borderBottom">28</td><td class="borderBottom">62</td><td class="borderBottom">39</td><td class="borderBottom">26</td><td class="borderBottom">32</td><td class="borderBottom">33</td><td class="borderBottom">35</td><td class="borderBottom">34</td><td class="borderBottom">26</td>
+                            </tr>
+                            <tr>
+                                <td>-47</td><td>-45</td><td>-29</td><td>-20</td><td>-17</td><td>-8</td><td>-34</td><td class="borderRight">34</td><td>11</td><td>32</td><td>34</td><td>29</td><td>33</td><td>32</td><td>27</td><td>23</td>
+                            </tr>
+                            <tr>
+                                <td>-45</td><td>-46</td><td>-26</td><td>-19</td><td>-16</td><td>-8</td><td>-30</td><td class="borderRight">11</td><td>-30</td><td>4</td><td>40</td><td>31</td><td>34</td><td>33</td><td>27</td><td>22</td>
+                            </tr>
+                            <tr>
+                                <td>-38</td><td>-40</td><td>-22</td><td>-15</td><td>-9</td><td>-6</td><td>-26</td><td class="borderRight">12</td><td>-34</td><td>7</td><td>41</td><td>33</td><td>37</td><td>37</td><td>33</td><td>26</td>
+                            </tr>
+                            <tr>
+                                <td>-28</td><td>-33</td><td>-18</td><td>-12</td><td>-9</td><td>-1</td><td>-16</td><td class="borderRight">16</td><td>-18</td><td>12</td><td>35</td><td>32</td><td>37</td><td>35</td><td>33</td><td>30</td>
+                            </tr>
+                            <tr>
+                                <td>-22</td><td>-28</td><td>-13</td><td>-14</td><td>-7</td><td>-5</td><td>-6</td><td class="borderRight">10</td><td>21</td><td>23</td><td>15</td><td>21</td><td>26</td><td>26</td><td>26</td><td>28</td>
+                            </tr>
+                            <tr>
+                                <td>-31</td><td>-30</td><td>-22</td><td>-17</td><td>-9</td><td>-4</td><td>1</td><td class="borderRight">7</td><td>12</td><td>13</td><td>17</td><td>17</td><td>17</td><td>16</td><td>21</td><td>30</td>
+                            </tr>
+                            <tr>
+                                <td>-60</td><td>-49</td><td>-39</td><td>-33</td><td>-26</td><td>-17</td><td>-9</td><td class="borderRight">-7</td><td>-3</td><td>5</td><td>7</td><td>13</td><td>18</td><td>22</td><td>27</td><td>31</td>
+                            </tr>
+                            <tr>
+                                <td>12</td><td>19</td><td>28</td><td>37</td><td>42</td><td>48</td><td>49</td><td class="borderRight">59</td><td>61</td><td>60</td><td>52</td><td>49</td><td>49</td><td>50</td><td>45</td><td>45</td>
+                            </tr>
+                        </table>
+                    </span>
+                </div>
+            </div>
+            <div style="display: flex;" class="Cb">
+                <p class="letters">Cb</p>
+                <div class="tooltip">
+                    <img src="./assets/BlockCb.png" alt="" class="imgSmall" onmouseover="showRightTable()" onmouseout="showAll2_2()" />
+                    <span class="tooltiptext CbTt2_4">
+                        <h2>Abschnitt 1: <strong>Cb-Ebene</strong> nach Intervallverschiebung.</h2>
+                        <p>Ausschnitt aus den Farbwerten:</p>
+                        <table class="table2_5">
+                            <tr>
+                                <td>-35</td><td>-37</td><td>-40</td><td>-41</td><td>-40</td><td>-42</td><td>-41</td><td>-16</td>
+                            </tr>
+                            <tr>
+                                <td>-33</td><td>-37</td><td>-41</td><td>-40</td><td>-42</td><td>-43</td><td>-43</td><td>-28</td>
+                            </tr>
+                            <tr>
+                                <td>-31</td><td>-34</td><td>-37</td><td>-38</td><td>-39</td><td>-42</td><td>-41</td><td>-35</td>
+                            </tr>
+                            <tr>
+                                <td>-28</td><td>-32</td><td>-35</td><td>-36</td><td>-35</td><td>-41</td><td>-41</td><td>-43</td>
+                            </tr>
+                            <tr>
+                                <td>-28</td><td>-33</td><td>-35</td><td>-27</td><td>-19</td><td>-42</td><td>-42</td><td>-43</td>
+                            </tr>
+                            <tr>
+                                <td>-31</td><td>-36</td><td>-39</td><td>-28</td><td>-14</td><td>-41</td><td>-39</td><td>-44</td>
+                            </tr>
+                            <tr>
+                                <td>-30</td><td>-35</td><td>-38</td><td>-38</td><td>-38</td><td>-40</td><td>-41</td><td>-40</td>
+                            </tr>
+                            <tr>
+                                <td>-22</td><td>-25</td><td>-31</td><td>-34</td><td>-36</td><td>-39</td><td>-42</td><td>-41</td>
+                            </tr>
+                        </table>
+                    </span>
+                </div>
+            </div>
+            <div style="display: flex;" class="Cr">
+                <p class="letters">Cr</p>
+                <div class="tooltip">
+                    <img src="./assets/blockCr.png" alt="" class="imgSmall" onmouseover="showRightTable()" onmouseout="showAll2_2()" />
+                    <span class="tooltiptext CrTt2_4">
+                        <h2>Abschnitt 1: <strong>Cr-Ebene</strong> nach der Intervallverschiebung</h2>
+                        <p>Ausschnitt aus den Farbwerten:</p>
+                        <table class="table2_5">
+                            <tr>
+                                <td>59</td><td>64</td><td>67</td><td>66</td><td>69</td><td>70</td><td>71</td><td>31</td>
+                            </tr>
+                            <tr>
+                                <td>55</td><td>62</td><td>66</td><td>68</td><td>70</td><td>71</td><td>70</td><td>45</td>
+                            </tr>
+                            <tr>
+                                <td>55</td><td>60</td><td>63</td><td>64</td><td>67</td><td>66</td><td>67</td><td>50</td>
+                            </tr>
+                            <tr>
+                                <td>53</td><td>57</td><td>60</td><td>58</td><td>54</td><td>63</td><td>64</td><td>66</td>
+                            </tr>
+                            <tr>
+                                <td>52</td><td>59</td><td>60</td><td>39</td><td>22</td><td>63</td><td>66</td><td>69</td>
+                            </tr>
+                            <tr>
+                                <td>56</td><td>61</td><td>65</td><td>40</td><td>20</td><td>64</td><td>63</td><td>67</td>
+                            </tr>
+                            <tr>
+                                <td>50</td><td>53</td><td>57</td><td>58</td><td>59</td><td>61</td><td>66</td><td>66</td>
+                            </tr>
+                            <tr>
+                                <td>24</td><td>28</td><td>31</td><td>35</td><td>37</td><td>37</td><td>40</td><td>38</td>
+                            </tr>
+                        </table>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
