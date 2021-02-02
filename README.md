@@ -1,5 +1,10 @@
 # README
 
+## General Information
+At the beginning of the project, we analyzed the old site thoroughly and summarized this in a small documentation, which serves as a good starting point for the project.
+
+You can find the documentation here: #27
+
 ## Styleguide usage
 * Go to /design/styleguide/
 * Open styleGuide.combined.html with your favourite browser
