@@ -151,7 +151,7 @@ function initTasks() {
     .attr("cy", function(d) {
       return yScaleLinear(d.y);
     })
-    .attr("r", "9")
+    .attr("r", "10")
     .style("fill", "grey")
     .on("click", function(point) {
       setCircleColumnGreyByX(Object.values(point)[0], getCircleDataLinear(), circlesLinear);

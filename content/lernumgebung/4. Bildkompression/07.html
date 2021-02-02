@@ -1,7 +1,7 @@
 ---
 title: "4.7 Bildkompression mit Wavelets"
 date: 2020-10-12T09:49:41+02:00
-draft: true
+draft: false
 ---
 
 <h2>4.7.1 Einleitung</h2>
@@ -234,50 +234,48 @@ caption="Abb. 4.7-6 Dekomposition nach 3 Iterationsschritten" %}}
 <p>
     {{< formula >}} \int \limits_{-\infty}^{+\infty} \psi(x)dx = 0{{< /formula >}}
 </p>
-<!-- TODO: transform to table shortcode? -->
-<div style="overflow-x: scroll; width: 100%;">
-  <table class="table table-bordered" aria-hidden="true">
-    <thead class="thead-primary">
-      <tr>
-        <th>Waveletklasse</th>
-        <th>Scaling-Funktion</th>
-        <th>Wavelet</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Haar</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_a_scaling_haar.gif" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_b_wavelet_haar.gif" alt=""></td>
-      </tr>
-      <tr>
-        <td>CloseToCoiflet</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_c_scaling_closetocoiflet.gif" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_d_wavelet_closetocoiflet.gif" alt=""></td>
-      </tr>
-      <tr>
-        <td>Coiflet</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_e_scaling_coiflet.gif" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_f_wavelet_coiflet.gif" alt=""></td>
-      </tr>
-      <tr>
-        <td>Daubechies</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_g_scaling_daubechies.gif" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_h_wavelet_daubechies.gif" alt=""></td>
-      </tr>
-      <tr>
-        <td>Johnston-Barnard</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_i_scaling_johnston-barnard.gif" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_j_wavelet_johnston-barnard.gif" alt=""></td>
-      </tr>
-      <tr>
-        <td>Biorthogonal-Spline</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_k_scaling_biorthogonal-spline.gif" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_l_wavelet_biorthogonal-spline.gif" alt=""></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+
+<table class="table table-bordered" aria-hidden="true">
+  <thead class="thead-primary">
+    <tr>
+      <th>Waveletklasse</th>
+      <th>Scaling-Funktion</th>
+      <th>Wavelet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Haar</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_a_scaling_haar.gif" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_b_wavelet_haar.gif" alt=""></td>
+    </tr>
+    <tr>
+      <td>CloseToCoiflet</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_c_scaling_closetocoiflet.gif" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_d_wavelet_closetocoiflet.gif" alt=""></td>
+    </tr>
+    <tr>
+      <td>Coiflet</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_e_scaling_coiflet.gif" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_f_wavelet_coiflet.gif" alt=""></td>
+    </tr>
+    <tr>
+      <td>Daubechies</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_g_scaling_daubechies.gif" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_h_wavelet_daubechies.gif" alt=""></td>
+    </tr>
+    <tr>
+      <td>Johnston-Barnard</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_i_scaling_johnston-barnard.gif" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_j_wavelet_johnston-barnard.gif" alt=""></td>
+    </tr>
+    <tr>
+      <td>Biorthogonal-Spline</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_k_scaling_biorthogonal-spline.gif" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/3_7_4_l_wavelet_biorthogonal-spline.gif" alt=""></td>
+    </tr>
+  </tbody>
+</table>
 
 <p>Das folgende Bild zeigt die Wavelet-Funktionenfamilie der Mexican hat-Wavelets. Es sind die unterschiedlich
     skalierten und verschobenen Basisfunktionen anhand einiger Beispiele erkennbar.</p>
@@ -459,55 +457,52 @@ caption="Abb. 4.7-14 Subband prediction aus" %}}
 <p>Die folgenden Bilder zeigen ein Bild in verschiedenen Kompressionsraten mit der Wavelet-Transformation und zum
     Vergleich im JPEG-Verfahren.</p>
 
-<!-- TODO: transform to table shortcode? -->
-<div style="overflow-x: scroll; width: 100%;">
-  <table class="table table-bordered" aria-hidden="true">
-    <thead class="thead-primary">
-      <tr>
-        <th>Verfahren</th>
-        <th>100%</th>
-        <th>300%</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Original - 571 KB</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_original.jpg" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_original_gross.jpg" alt=""></td>
-      </tr>
-      <tr>
-        <td>Wavelet 1:25 - 22,4 KB</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_lwf_1_zu_25.jpg" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_lwf_1_zu_25_gross.jpg" alt=""></td>
-      </tr>
-      <tr>
-        <td>JPEG 1:25 - 24,3 KB</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_jpeg_1_zu_25.jpg" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_jpeg_1_zu_25_gross.jpg" alt=""></td>
-      </tr>
-      <tr>
-        <td>Fraktal 1:25 - 22,4 KB</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_frakt_1_zu_25.jpg" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_frakt_1_zu_25_gross.jpg" alt=""></td>
-      </tr>
-      <tr>
-        <td>Wavelet 1:50 - 11,2 KB</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_lwf_1_zu_50.jpg" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_lwf_1_zu_50_gross.jpg" alt=""></td>
-      </tr>
-      <tr>
-        <td>JPEG 1:50 - 11,1 KB</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_jpeg_1_zu_50.jpg" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_jpeg_1_zu_50_gross.jpg" alt=""></td>
-      </tr>
-      <tr>
-        <td>Fraktal 1:50 - 11,0 KB</td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_frakt_1_zu_50.jpg" alt=""></td>
-        <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_frakt_1_zu_50_gross.jpg" alt=""></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<table class="table table-bordered" aria-hidden="true">
+  <thead class="thead-primary">
+    <tr>
+      <th>Verfahren</th>
+      <th>100%</th>
+      <th>300%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Original - 571 KB</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_original.jpg" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_original_gross.jpg" alt=""></td>
+    </tr>
+    <tr>
+      <td>Wavelet 1:25 - 22,4 KB</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_lwf_1_zu_25.jpg" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_lwf_1_zu_25_gross.jpg" alt=""></td>
+    </tr>
+    <tr>
+      <td>JPEG 1:25 - 24,3 KB</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_jpeg_1_zu_25.jpg" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_jpeg_1_zu_25_gross.jpg" alt=""></td>
+    </tr>
+    <tr>
+      <td>Fraktal 1:25 - 22,4 KB</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_frakt_1_zu_25.jpg" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_frakt_1_zu_25_gross.jpg" alt=""></td>
+    </tr>
+    <tr>
+      <td>Wavelet 1:50 - 11,2 KB</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_lwf_1_zu_50.jpg" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_lwf_1_zu_50_gross.jpg" alt=""></td>
+    </tr>
+    <tr>
+      <td>JPEG 1:50 - 11,1 KB</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_jpeg_1_zu_50.jpg" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_jpeg_1_zu_50_gross.jpg" alt=""></td>
+    </tr>
+    <tr>
+      <td>Fraktal 1:50 - 11,0 KB</td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_frakt_1_zu_50.jpg" alt=""></td>
+      <td class="py-0"><img src="../../../images/Bildkompression/7/t_ausschnitt_frakt_1_zu_50_gross.jpg" alt=""></td>
+    </tr>
+  </tbody>
+</table>
 
 <p>Eine Großansicht ist bei Klick auf das jeweilige Bild verfügbar.</p>
 
