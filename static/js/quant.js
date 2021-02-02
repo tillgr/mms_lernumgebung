@@ -112,6 +112,7 @@ function snippetRestart() {
   $('.btn-solution').hide();
   $('#linearSVG').empty();
   $('#nonLinearSVG').empty();
+  $('#evaluationSVG').empty();
   $('#snippet-nonlinearQuantisation tbody td').empty();
   $('#snippet-linearQuantisation tbody td').empty();
   currentMaxStep = 0;
