@@ -38,11 +38,43 @@ img {
   align-self: center;
 }
 
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
 .MathJax {
   text-align: left !important;
 }
 
 @import "../bootstrap/scss/bootstrap.scss";
+
+h1,h2,h3,h4,h5,h6 {
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+  h3 {
+    font-size: 1.4rem;
+  }
+  h4 {
+    font-size: 1.3rem;
+  }
+  h5 {
+    font-size: 1.2rem;
+  }
+  h6 {
+    font-size: 1.1rem;
+  }
+}
 
 .mms-navbar {
   position: sticky;
@@ -110,6 +142,16 @@ img {
 
   ul ul {
     margin-left: 1rem;
+  }
+}
+
+.inline-formula {
+  display: block;
+  overflow-x: auto;
+
+  @media screen and (min-width: 1000px) {
+    display: inline;
+    overflow: visible;
   }
 }
 
@@ -219,6 +261,7 @@ img {
           input[type=range] {
             display: none;
             height: 7rem;
+            -webkit-appearance: slider-vertical;
           }
 
           /* Chrome, Safari, Edge, Opera */
