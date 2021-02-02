@@ -1,5 +1,9 @@
+// for the marginal.js to work the heading levels need to be in the correct Order
+// this is also good practice for the accessibility since screen reader users are navigating by the headings
+
 $(document).ready(()=> {
-  var headings = $('main').find('h2,h3,h4,h5,h6');
+  // escape the snippets for the heading scan
+  var headings = $('main').find('h2,h3,h4,h5,h6').not('.snippet h2, .snippet h3, .snippet h4, .snippet h5, .snippet h6');
 
   if (headings.length > 0) {
     headings.addClass('h-marginal');

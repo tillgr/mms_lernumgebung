@@ -399,7 +399,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				.attr("class", "dataLine")
 			.merge(dataLine)
 			.transition()
-			.duration(200)
+			.duration(50)
 				.attr("fill", "none")
 				.attr("stroke", "blue")
 				.attr("stroke-linejoin", "round")
