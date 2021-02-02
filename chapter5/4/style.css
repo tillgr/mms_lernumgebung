@@ -1,0 +1,15 @@
+.text-block{
+    hyphens: auto;
+    text-align: justify;
+}
+.tables-container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.table-pair{
+    color: darkred;
+}
+.text-mark{
+    color: darkred;
+}
