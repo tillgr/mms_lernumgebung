@@ -20,7 +20,7 @@ draft: true
 
 ➡️ We can do so by naming the archetype after a folder in our content directory
 
-![Archetypes%20d1b729353c224ccdb70567094442e949/Untitled.png](Archetypes%20d1b729353c224ccdb70567094442e949/Untitled.png)
+![Archetypes/Untitled.png](./Archetypes/Untitled.png)
 
 The `[dir1.md](http://dir1.md)` file in the archetypes folder will be used for every .md file in `/content/dir1/...` . So we can specify different Front Matters for files.
 

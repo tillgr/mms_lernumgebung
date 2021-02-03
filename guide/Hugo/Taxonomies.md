@@ -8,7 +8,7 @@
 
 → Organiese your content
 
-We use [Front Matter](Front%20Matter%204177e84103c54b1487dc8e8db6ba13ba.md) to add tags/categories to the page:
+We use [Front Matter](./Front%20Matter.md) to add tags/categories to the page:
 
 ```bash
 ---

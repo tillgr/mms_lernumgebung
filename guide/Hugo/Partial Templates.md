@@ -6,7 +6,7 @@ Or: How to make HUGO modular.
 
 Used for eg.: header, footer, etc.
 
-![Partial%20Templates%209725f0b5bdcc43fa856175d410109e60/Untitled.png](Partial%20Templates%209725f0b5bdcc43fa856175d410109e60/Untitled.png)
+![Partial Templates/Untitled.png](./PartialTemplates/Untitled.png)
 
 The partials will be stored in a folder called
 

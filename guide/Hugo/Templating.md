@@ -17,7 +17,7 @@ Parameters for functions are separated using spaces. The general syntax is:
 
 ### Methods and Fields are Accessed via dot Notation
 
-Accessing the Page Parameter `bar` defined in a piece of content’s [Front Matter](Front%20Matter%204177e84103c54b1487dc8e8db6ba13ba.md) .
+Accessing the Page Parameter `bar` defined in a piece of content’s [Front Matter](./Front%20Matter.md) .
 
 ```jsx
 {{ .Params.bar }}
