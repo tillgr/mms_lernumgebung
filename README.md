@@ -13,23 +13,23 @@ We also created a summary of topics for future developers under %5
 
 ### Guides
 
-[Datafiles](guide/Hugo%20d30128abd4d3405a83dc8f4b85741991/Datafiles%20613aa5e7baca47249a99126eaf69b8cd.md)
+[Datafiles](guide/Hugo/Datafiles.md)
 
-[Shortcode Templates](guide/Hugo%20d30128abd4d3405a83dc8f4b85741991/Shortcode%20Templates%20cb01d77cf56d47498e5521d74f8a985d.md)
+[Shortcode Templates](guide/Hugo/Shortcode%20Templates.md)
 
-[Taxonomies](guide/Hugo%20d30128abd4d3405a83dc8f4b85741991/Taxonomies%204e69c0ef66e54542afa436b2c5182575.md)
+[Taxonomies](guide/Hugo/Taxonomies.md)
 
-[Partial Templates](guide/Hugo%20d30128abd4d3405a83dc8f4b85741991/Partial%20Templates%209725f0b5bdcc43fa856175d410109e60.md)
+[Partial Templates](guide/Hugo/Partial%20Templates.md)
 
-[Front Matter](guide/Hugo%20d30128abd4d3405a83dc8f4b85741991/Front%20Matter%204177e84103c54b1487dc8e8db6ba13ba.md)
+[Front Matter](guide/Hugo/Front%20Matter.md)
 
-[Section Templates](guide/Hugo%20d30128abd4d3405a83dc8f4b85741991/Section%20Templates%202663fa27068f4c339e6215a5d34a821e.md)
+[Section Templates](guide/Hugo/Section%20Templates.md)
 
-[Archetypes](guide/Hugo%20d30128abd4d3405a83dc8f4b85741991/Archetypes%20d1b729353c224ccdb70567094442e949.md)
+[Archetypes](guide/Hugo/Archetypes.md)
 
-[Shortcodes](guide/Hugo%20d30128abd4d3405a83dc8f4b85741991/Shortcodes%209d29790e4a224e2dbade6771f8fa5cbf.md)
+[Shortcodes](guide/Hugo/Shortcodes.md)
 
-[Templating](guide/Hugo%20d30128abd4d3405a83dc8f4b85741991/Templating%2086263d712d394400ae44c06aa7ed5dd8.md)
+[Templating](guide/Hugo/Templating.md)
 
 <hr>
 
