@@ -5,6 +5,11 @@ You can find the documentation here: #27
 
 We also created a summary of topics for future developers under %5
 
+# 🧬 Shortcodes
+To harness the full power of HUGO we have introduced our own shortcodes. We have documented them here (#37) and provided examples.
+
+You can also find a short guide about what they are and how to use them.
+
 # 🎨 Styleguide usage
 * Go to /design/styleguide/
 * Open styleGuide.combined.html with your favourite browser
