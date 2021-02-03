@@ -10,10 +10,13 @@ To harness the full power of HUGO we have introduced our own shortcodes. We have
 
 You can also find a short guide about what they are and how to use them.
 
-# 🎨 Styleguide usage
-* Go to /design/styleguide/
-* Open styleGuide.combined.html with your favourite browser
-* Have fun
+# 🎨 Styleguide
+We created a styling guide for our project. It is included as a subproject in this one and can be found here:
+```
+/design/styleguide/
+```
+
+The folder includes a README.md with more information on how to use it.
 
 # 💻 Local Installation
 
