@@ -43,6 +43,12 @@ themes/mmsTheme
 
 Everything related to styling the app lives here. So if you want th change a styling you have to change the theme!
 
+New styles should be added to:
+```
+themes/mmsTheme/static/css/custom.min.css
+```
+(ℹ️ [How to minify a .css file](https://www.elegantthemes.com/blog/tips-tricks/how-to-minify-your-websites-css-html-javascript#:~:text=Go%20to%20minifycode.com%20and,with%20the%20new%20minified%20version.))
+
 If you want to add a .css-file you should add it here:
 ```
 themes/mmsTheme/static/css
@@ -59,7 +65,6 @@ static/js
 The styling files:
 ```
 static/css
-themes/mmsTheme/static/css
 ```
 The assets:
 ```
