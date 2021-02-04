@@ -294,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	var xAxis = d3.axisBottom(x)
 		.ticks(8)
-		.tickFormat(d => d + "π");
+		.tickFormat(d => d > 0 ? d + "π":"");
 
 	var yAxis = d3.axisLeft(y);
 
@@ -434,7 +434,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			.append("rect")
 			.attr("x", function(d, i) { return x(i)/*return bar_width * i + padding * i + 50; */})
 			.attr("y", 0)
-			.attr("width", bar_width)
+			.attr("width", x.bandwidth())
 			.attr("height", 0)
 			.style("fill", function(d) { return "blue";})
 
