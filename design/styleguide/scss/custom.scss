@@ -20,7 +20,8 @@ $headings-color: #002557;
 }
 
 .sidebar {
-  width: 25%;
+  flex: 0 0 25%;
+  max-width: 25%;
 }
 
 pre {
@@ -44,15 +45,99 @@ table {
   white-space: nowrap;
 }
 
+/* TABLE STYLING */
+
+.table th {
+  background-color: #002557;
+  border: #002557 1px solid;
+  color: white;
+  text-align: center;
+}
+
+.table tr:not(:first-child) td {
+  vertical-align: middle;
+}
+
+.table td {
+  text-align: center;
+}
+
+.table td,
+.table th {
+  white-space: nowrap;
+  width: 1%;
+}
+
+/* AUDIO STYLING */
+.sound-sample {
+  display: inline-block;
+}
+
+.sound-title {
+  color: black;
+}
+
+img.play,
+img.pause {
+  border: 1px solid black;
+  padding: 2px;
+  width: 15px;
+  height: 15px;
+}
+
+img.play:hover,
+img.pause:hover {
+  cursor: pointer;
+}
+
+/* GLOSSAR STYLING */
+
+:target::before {
+  content: "";
+  display: block;
+  height: 60px;
+  margin: -60px 0 0;
+}
+
+.glossar-img {
+    width: 15px;
+}
+
+#quicknavi ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#quicknavi li {
+  float: left;
+}
+
+#quicknavi li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+}
+
+#quicknavi li a:hover {
+  background-color: #002557;
+  color: white;
+}
+
 .MathJax {
   text-align: left !important;
 }
 
 @import "../bootstrap/scss/bootstrap.scss";
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,
+.h1,.h2,.h3,.h4,.h5,.h6 {
   overflow: hidden;
   word-wrap: break-word;
+  line-height: 150%;
 }
 
 @media screen and (max-width: 768px) {
@@ -183,6 +268,7 @@ h1,h2,h3,h4,h5,h6 {
 
     .right-col {
       grid-column: 1;
+      min-width: 0;
       padding: 1rem;
 
       // mainly used in linear non linear quantisation Snippet
