@@ -2,6 +2,11 @@
 	position: relative;
 	padding-bottom: 2rem;
 }
+
+.jpeg_applet table {
+	display: table !important;
+}
+
 .no-mobile {
 	display: none;
 	padding: .5rem;
@@ -807,18 +812,10 @@
 	text-align: center;
 }
 
-#jpeg_chapter4_section5 > div > div > p {
-	text-align: center;
-}
-
 #jpeg_chapter4_section5 td {
-	height: 2rem;
-	padding: 0 0.05rem 0 0.05rem;
-}
-
-#jpeg_chapter4_section3 table {
-	height: 15rem;
-	margin: 3rem;
+	padding: 0 .1rem 0 .1rem;
+	font-size: 0.8rem;
+	line-height: 200%;
 }
 
 .jpeg_chapter4_5_button_wrapper {
